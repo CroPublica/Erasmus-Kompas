@@ -218,3 +218,12 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+
+
+# Data (keep only processed outputs)
+EDA/Data/*
+!EDA/Data/processed/
+
+# macOS
+.DS_Store
