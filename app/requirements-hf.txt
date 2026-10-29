@@ -1,0 +1,6 @@
+# Optional: run Hugging Face models in-process (e.g. gemma-4-31B-it in 4-bit) instead of through Ollama.
+# Needs a CUDA GPU. Install after requirements.txt:  pip install -r app/requirements-hf.txt
+torch>=2.7
+transformers>=5.0
+accelerate>=1.0
+bitsandbytes>=0.46

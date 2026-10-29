@@ -1,0 +1,61 @@
+"""Model configuration: reads config/models.yaml and builds LangChain chat/embedding models by role."""
+import os
+from pathlib import Path
+from typing import Literal, Optional
+
+import yaml
+from pydantic import BaseModel
+
+DEFAULT_PATH = Path(__file__).resolve().parent.parent / "config" / "models.yaml"
+ROLES = ("ask_router", "ask_answer", "extraction", "translation", "embeddings")
+
+
+class ModelSpec(BaseModel):
+    provider: Literal["ollama", "openai"]
+    model: str
+    temperature: float = 0.0
+    num_ctx: Optional[int] = None
+    base_url: Optional[str] = None
+
+
+def load_profile(profile: Optional[str] = None, path: Path = DEFAULT_PATH) -> dict[str, ModelSpec]:
+    """Return {role: ModelSpec} for a profile (argument > ATLAS_PROFILE > active_profile in the file)."""
+    raw = yaml.safe_load(Path(path).read_text(encoding="utf-8"))
+    name = profile or os.environ.get("ATLAS_PROFILE") or raw["active_profile"]
+    if name not in raw["profiles"]:
+        raise KeyError(f"profile {name!r} not in {path}; available: {sorted(raw['profiles'])}")
+    specs = {role: ModelSpec(**cfg) for role, cfg in raw["profiles"][name].items()}
+    missing = [r for r in ROLES if r not in specs]
+    if missing:
+        raise ValueError(f"profile {name!r} lacks roles: {missing}")
+    return specs
+
+
+def max_concurrency(path: Path = DEFAULT_PATH) -> int:
+    """Parallel LLM requests allowed (ATLAS_MAX_CONCURRENCY overrides runtime.max_concurrency)."""
+    raw = yaml.safe_load(Path(path).read_text(encoding="utf-8"))
+    return int(os.environ.get("ATLAS_MAX_CONCURRENCY") or raw.get("runtime", {}).get("max_concurrency", 2))
+
+
+def _ollama_url(spec: ModelSpec) -> str:
+    return spec.base_url or os.environ.get("ATLAS_OLLAMA_URL", "http://127.0.0.1:11434")
+
+
+def make_chat_model(role: str, profile: Optional[str] = None):
+    """LangChain chat model for a role (imports the provider package only when called)."""
+    spec = load_profile(profile)[role]
+    if spec.provider == "ollama":
+        from langchain_ollama import ChatOllama
+        extra = {"num_ctx": spec.num_ctx} if spec.num_ctx else {}
+        return ChatOllama(model=spec.model, base_url=_ollama_url(spec), temperature=spec.temperature, **extra)
+    from langchain_openai import ChatOpenAI
+    return ChatOpenAI(model=spec.model, base_url=spec.base_url, temperature=spec.temperature,
+                      api_key=os.environ.get("ATLAS_OPENAI_API_KEY", "not-needed"))
+
+
+def make_embeddings(profile: Optional[str] = None):
+    spec = load_profile(profile)["embeddings"]
+    if spec.provider != "ollama":
+        raise NotImplementedError("embeddings are served through Ollama in this project")
+    from langchain_ollama import OllamaEmbeddings
+    return OllamaEmbeddings(model=spec.model, base_url=_ollama_url(spec))

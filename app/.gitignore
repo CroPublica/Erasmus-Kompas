@@ -1,0 +1,18 @@
+.venv/
+.pytest_cache/
+__pycache__/
+# built data: regenerate with ./run_pipeline.sh
+data/*.duckdb
+data/*.duckdb.wal
+data/parquet/
+data/place_conflicts.csv
+data/review_queue.csv
+data/extraction_cache.jsonl
+data/review/ holds human decisions and IS committed
+
+# site
+site/node_modules/
+site/dist/
+site/.astro/
+site/src/data/orgs_full.json
+# eval/shots/

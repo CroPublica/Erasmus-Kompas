@@ -1,0 +1,56 @@
+# Which model does which job. Change a model here; no code changes needed.
+#
+# Roles
+#   ask_router   classifies the user's question and picks tool arguments (short, structured JSON)
+#   ask_answer   writes the final answer in Croatian or English from tool results
+#   extraction   pulls problems/approaches/target groups/outputs out of project summaries
+#   translation  Croatian labels for concepts and topics
+#   embeddings   semantic search and concept clustering (must handle Croatian)
+#
+# Providers
+#   ollama   a model served by a local Ollama (`ollama pull <model>` first)
+#   openai   any OpenAI-compatible server: vLLM, llama.cpp server, LM Studio, or a hosted API (set base_url)
+#
+# Select a profile with  active_profile  below, or per run:  ATLAS_PROFILE=gemma8b
+# Other overrides: ATLAS_OLLAMA_URL (default http://127.0.0.1:11434), ATLAS_OPENAI_API_KEY.
+
+active_profile: light
+
+# Limits that matter on CPU-only machines: too many parallel LLM calls starve the threads and can freeze the host.
+runtime:
+  max_concurrency: 2        # parallel LLM requests from the pipeline and API (use 1-2 on CPU, 4-8 on a GPU)
+
+profiles:
+
+  # Small models for the public Ask page; Gemma 8B stays on the offline extraction job.
+  light:
+    ask_router:   {provider: ollama, model: "qwen2.5:3b-instruct", temperature: 0.0, num_ctx: 4096}
+    ask_answer:   {provider: ollama, model: "qwen2.5:3b-instruct", temperature: 0.2, num_ctx: 8192}
+    extraction:   {provider: ollama, model: "gemma4:latest",       temperature: 0.0, num_ctx: 8192}
+    translation:  {provider: ollama, model: "gemma4:latest",       temperature: 0.0, num_ctx: 4096}
+    embeddings:   {provider: ollama, model: "bge-m3"}
+
+  # CPU-only host (no GPU): smallest model that can still produce valid JSON; explicit Q4_K_M tag.
+  # bge-m3 (not nomic-embed-text, which is English-focused) because queries are Croatian.
+  cpu:
+    ask_router:   {provider: ollama, model: "qwen2.5:3b-instruct-q4_K_M", temperature: 0.0, num_ctx: 4096}
+    ask_answer:   {provider: ollama, model: "qwen2.5:3b-instruct-q4_K_M", temperature: 0.2, num_ctx: 4096}
+    extraction:   {provider: ollama, model: "qwen2.5:3b-instruct-q4_K_M", temperature: 0.0, num_ctx: 4096}
+    translation:  {provider: ollama, model: "qwen2.5:3b-instruct-q4_K_M", temperature: 0.0, num_ctx: 2048}
+    embeddings:   {provider: ollama, model: "bge-m3"}
+
+  # Everything on the Gemma model that is already installed.
+  gemma8b:
+    ask_router:   {provider: ollama, model: "gemma4:latest", temperature: 0.0, num_ctx: 4096}
+    ask_answer:   {provider: ollama, model: "gemma4:latest", temperature: 0.2, num_ctx: 8192}
+    extraction:   {provider: ollama, model: "gemma4:latest", temperature: 0.0, num_ctx: 8192}
+    translation:  {provider: ollama, model: "gemma4:latest", temperature: 0.0, num_ctx: 4096}
+    embeddings:   {provider: ollama, model: "bge-m3"}
+
+  # Example: Ask on a hosted or self-hosted OpenAI-compatible endpoint (fill in before use).
+  hosted:
+    ask_router:   {provider: openai, model: "CHANGE-ME", base_url: "https://CHANGE-ME/v1", temperature: 0.0}
+    ask_answer:   {provider: openai, model: "CHANGE-ME", base_url: "https://CHANGE-ME/v1", temperature: 0.2}
+    extraction:   {provider: ollama, model: "gemma4:latest", temperature: 0.0, num_ctx: 8192}
+    translation:  {provider: ollama, model: "gemma4:latest", temperature: 0.0, num_ctx: 4096}
+    embeddings:   {provider: ollama, model: "bge-m3"}
