@@ -74,6 +74,11 @@ await test('organisation page: project link opens the project page with summary'
   const p = await open('/en/organisations/mzo-19-049-502/'); await p.locator('#prows a').first().click();
   await p.waitForURL(/projects\//); assert.ok((await p.locator('h2', { hasText: 'Summary' }).count()) === 1);
 });
+await test('project page links to the EU Project Results Platform', async () => {
+  const p = await open('/en/projects/' + '2023-1-hr01-ka220-sch-000158622'.replace(/[^a-z0-9]+/g, '-') + '/');
+  const href = await p.locator('a', { hasText: 'Project Results Platform' }).getAttribute('href');
+  assert.match(href, /^https:\/\/erasmus-plus\.ec\.europa\.eu\/projects\/search\/details\//);
+});
 await test('similar organisations are listed', async () => {
   const p = await open('/en/organisations/mzo-19-049-502/'); assert.ok(await p.locator('.simcard').count() >= 1);
 });

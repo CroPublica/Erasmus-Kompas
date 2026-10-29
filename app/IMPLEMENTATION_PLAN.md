@@ -343,3 +343,10 @@ You mentioned features for later but haven't listed them yet, so these are propo
 4. **Organisational e-mails.** DECIDED 2026-10-29 by the owner: **no**, e-mail addresses are not published. The registries stay loaded without e-mail columns; the e-mail line and phase-1 step 4 (organisational e-mails) are dropped.
 5. **Gold set.** Are you able to annotate 50–100 summaries per period, or should I propose labels for you to correct?
 6. **Gemma 31B keyphrase pass.** Keep it (needs a debugging run first) or drop it, since spaCy keyphrases already exist and Phase 2 supersedes them?
+
+
+### Decisions recorded 2026-10-29 (owner)
+- **Where the model runs:** for now on the owner's machine; later it is the responsibility of whoever deploys. It must switch to CPU when no GPU is present: `active_profile: auto` in `config/models.yaml` (GPU or Apple silicon: `light`; otherwise `cpu`; `ATLAS_FORCE_CPU=1` forces CPU).
+- **EU-wide project pages:** the export carries a link to each project's page on the Erasmus+ Project Results Platform, so project pages link there (no separate pages are built for the ~43,000 KA2 projects without a Croatian participant).
+- **Croatian labels:** drafted for review in a shared document (topics, website text); the owner reviews. Draft files: `data/review/topic_labels_hr.csv`, `data/review/ui_strings_hr.csv`.
+- **E-mail addresses:** not published.

@@ -3,7 +3,7 @@
 #
 #   ./setup.sh                 create .venv, install requirements, run tests, check Ollama
 #   ./setup.sh --hf            also install the optional Hugging Face extras (torch, transformers, bitsandbytes; needs a CUDA GPU)
-#   ./setup.sh --pull-models   also `ollama pull` the models in config/models.yaml profile "light"
+#   ./setup.sh --pull-models   also `ollama pull` the models of the active profile in config/models.yaml
 #   ./setup.sh --recreate      delete .venv first and rebuild it
 #
 # Afterwards:  source .venv/bin/activate
@@ -59,7 +59,7 @@ say "Ollama (LLMs and embeddings run there)"
 if command -v ollama >/dev/null 2>&1; then
   MODELS=$(.venv/bin/python - <<'EOF'
 from atlas.config import load_profile
-specs = load_profile("light")
+specs = load_profile()      # active profile; "auto" picks light with a GPU, cpu without
 print(" ".join(sorted({s.model for s in specs.values() if s.provider == "ollama"})))
 EOF
 )

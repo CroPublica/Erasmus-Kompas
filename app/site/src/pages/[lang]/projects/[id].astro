@@ -29,6 +29,13 @@ const coord = p.countries[0];
         <small>{s.grantNote}</small>
         {p.grant_not_comparable && <p class="warn" style="font-size:.85rem">{s.notComparable}</p>}
       </section>
+      {(p.results_card_url || p.project_website) && <section class="card">
+        <h2>{s.euLinks}</h2>
+        <ul style="padding-left:18px">
+          {p.results_card_url && <li><a href={p.results_card_url} rel="noopener noreferrer" target="_blank">{s.euCard}</a></li>}
+          {p.project_website && <li><a href={p.project_website} rel="noopener noreferrer nofollow" target="_blank">{s.projectSite}</a></li>}
+        </ul>
+      </section>}
       <section class="card">
         <h2>{s.participants}</h2>
         <ul style="padding-left:18px">{p.hr.map((h: any) => (

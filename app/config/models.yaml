@@ -14,7 +14,8 @@
 # Select a profile with  active_profile  below, or per run:  ATLAS_PROFILE=gemma8b
 # Other overrides: ATLAS_OLLAMA_URL (default http://127.0.0.1:11434), ATLAS_OPENAI_API_KEY.
 
-active_profile: light
+# auto = "light" when a GPU is present (NVIDIA or Apple silicon), otherwise "cpu". Force CPU with ATLAS_FORCE_CPU=1.
+active_profile: auto
 
 # Limits that matter on CPU-only machines: too many parallel LLM calls starve the threads and can freeze the host.
 runtime:
@@ -30,13 +31,13 @@ profiles:
     translation:  {provider: ollama, model: "gemma4:latest",       temperature: 0.0, num_ctx: 4096}
     embeddings:   {provider: ollama, model: "bge-m3"}
 
-  # CPU-only host (no GPU): smallest model that can still produce valid JSON; explicit Q4_K_M tag.
+  # CPU-only host (no GPU): smallest model that can still produce valid JSON; the default tag is already Q4_K_M.
   # bge-m3 (not nomic-embed-text, which is English-focused) because queries are Croatian.
   cpu:
-    ask_router:   {provider: ollama, model: "qwen2.5:3b-instruct-q4_K_M", temperature: 0.0, num_ctx: 4096}
-    ask_answer:   {provider: ollama, model: "qwen2.5:3b-instruct-q4_K_M", temperature: 0.2, num_ctx: 4096}
-    extraction:   {provider: ollama, model: "qwen2.5:3b-instruct-q4_K_M", temperature: 0.0, num_ctx: 4096}
-    translation:  {provider: ollama, model: "qwen2.5:3b-instruct-q4_K_M", temperature: 0.0, num_ctx: 2048}
+    ask_router:   {provider: ollama, model: "qwen2.5:3b-instruct", temperature: 0.0, num_ctx: 4096}
+    ask_answer:   {provider: ollama, model: "qwen2.5:3b-instruct", temperature: 0.2, num_ctx: 4096}
+    extraction:   {provider: ollama, model: "qwen2.5:3b-instruct", temperature: 0.0, num_ctx: 4096}
+    translation:  {provider: ollama, model: "qwen2.5:3b-instruct", temperature: 0.0, num_ctx: 2048}
     embeddings:   {provider: ollama, model: "bge-m3"}
 
   # Everything on the Gemma model that is already installed.

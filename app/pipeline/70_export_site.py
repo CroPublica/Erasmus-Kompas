@@ -111,7 +111,7 @@ def main():
         hp.setdefault(r["project_id"], []).append({"id": r["org_id"], "name": r["name"], "role": r["role"]})
     projs = {}
     for r in rows(con, "select project_id, period, call_year, action_type, family, title, summary, status, grant_eur, grant_not_comparable, "
-                       "good_practice, results_available, management, countries from project"):
+                       "good_practice, results_available, management, countries, results_card_url, project_website from project"):
         projs[r["project_id"]] = {**r, "countries": [c for c in (r["countries"] or "").split(",") if c],
                                   "topics": pt.get(r["project_id"], []), "hr": hp.get(r["project_id"], [])}
     write("projects_full.json", projs)

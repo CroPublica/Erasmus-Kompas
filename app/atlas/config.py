@@ -18,10 +18,28 @@ class ModelSpec(BaseModel):
     base_url: Optional[str] = None
 
 
+def gpu_available() -> bool:
+    """True when a GPU that Ollama can use is present: NVIDIA (nvidia-smi lists one) or Apple silicon. ATLAS_FORCE_CPU=1 or
+    CUDA_VISIBLE_DEVICES=-1 forces CPU. Ollama itself falls back to CPU, so this only decides which models to ask for."""
+    import platform, shutil, subprocess
+    if os.environ.get("ATLAS_FORCE_CPU") == "1" or os.environ.get("CUDA_VISIBLE_DEVICES") == "-1":
+        return False
+    if platform.system() == "Darwin" and platform.machine() == "arm64":
+        return True
+    if shutil.which("nvidia-smi"):
+        try:
+            return bool(subprocess.run(["nvidia-smi", "-L"], capture_output=True, text=True, timeout=10).stdout.strip())
+        except Exception:                                  # noqa: BLE001
+            return False
+    return False
+
+
 def load_profile(profile: Optional[str] = None, path: Path = DEFAULT_PATH) -> dict[str, ModelSpec]:
     """Return {role: ModelSpec} for a profile (argument > ATLAS_PROFILE > active_profile in the file)."""
     raw = yaml.safe_load(Path(path).read_text(encoding="utf-8"))
     name = profile or os.environ.get("ATLAS_PROFILE") or raw["active_profile"]
+    if name == "auto":                                     # GPU present -> "light", otherwise the CPU profile
+        name = "light" if gpu_available() else "cpu"
     if name not in raw["profiles"]:
         raise KeyError(f"profile {name!r} not in {path}; available: {sorted(raw['profiles'])}")
     specs = {role: ModelSpec(**cfg) for role, cfg in raw["profiles"][name].items()}

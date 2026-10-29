@@ -142,8 +142,16 @@ Not a check, an open question: school coverage. The coverage screenshot says 399
 |---|---|---|---|---|---|
 | Qwen 2.5 3B | code (template) | 44/46 | 29/31 | 8/9 | 0.4 s |
 | Gemma 4 8B | code (template) | 43/46 | 27/31 | 8/9 | 2.4 s |
+| Qwen 2.5 3B | the model, checked | 44/46 | 18/31 | 8/9 | 11.8 s |
+| Gemma 4 8B | the model, checked | 43/46 | 18/31 | 8/9 | 23.3 s |
 
-  The router needs few-shot examples written as JSON: with arrow-style examples Gemma copied the arrows, returned no valid JSON and every question was refused (route 20/46); a failed router now falls back to program rules instead of refusing. First LLM-written answers (Qwen 3B, old prompt): facts 19/31, median 11 s, garbled Croatian. Reruns of LLM-written answers with the fixed router prompt are in progress.
+  The router needs few-shot examples written as JSON: with arrow-style examples Gemma copied the arrows, returned no valid JSON and every question was refused (route 20/46); a failed router now falls back to program rules instead of refusing. First LLM-written answers (Qwen 3B, old prompt): facts 19/31, median 11 s, garbled Croatian. Reruns with the fixed router prompt: neither model writes reliable answers (facts 18/31 for both, with the verifier and template fallback; 11.8 s and 23.3 s per question), so code-written answers stay the default and the model search continues.
+
+### Owner decisions and review document (2026-10-29)
+
+- Model hosting: owner's machine for now, later the deployer's job; `active_profile: auto` picks `light` with a GPU (NVIDIA or Apple silicon) and `cpu` without (`ATLAS_FORCE_CPU=1` forces CPU). The `cpu` profile now uses the plain `qwen2.5:3b-instruct` tag, which is already Q4_K_M (checked with `ollama show`).
+- EU pages: project pages link to the project's page on the Erasmus+ Project Results Platform (`results_card_url`, present for every project) and to its own website when it has one; no pages are built for the ~43,000 projects without a Croatian participant.
+- Croatian labels: review document with 76 topic names and 130 website strings (drafts by me, unreviewed) at https://claude.ai/artifact/65f8Ttm2AwiDRmBnfVW1BU ; copies in `data/review/topic_labels_hr.csv` and `data/review/ui_strings_hr.csv`. When the owner has edited the document, the corrected Croatian goes into those files and into the site (`label_hr` for topics, `site/src/lib/i18n.ts`). 39 Python tests and 17 browser tests pass.
 
 ## 6. Findings about the raw data
 

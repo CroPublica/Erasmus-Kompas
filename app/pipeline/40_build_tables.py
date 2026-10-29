@@ -29,6 +29,7 @@ def main():
         grant = find_col(con, t, "EU Grant")
         pieces.append(f"""select '{period}' period, "Project Identifier" project_id, try_cast("Call year" as integer) call_year,
             "Action Type" action_type, trim("Project Title") title, trim("Project Summary") summary, "Project Status" status,
+            nullif(trim("Results Platform Project Card"), '') results_card_url, nullif(trim("Project Website"), '') project_website,
             try_cast("{grant}" as double) grant_eur, ("Is Good Practice" = 'Yes') good_practice,
             ("Results Available" = 'Yes') results_available, "Topics" topics_raw, "Participating countries" countries
             from "{t}" """)
