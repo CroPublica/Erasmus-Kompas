@@ -1,0 +1,46 @@
+---
+import Base from '../../../layouts/Base.astro';
+import counties from '../../../data/counties.json';
+import orgs from '../../../data/orgs.json';
+import { LANGS, t, num, eur, pct, slug, type Lang } from '../../../lib/i18n';
+import { wilson } from '../../../lib/stats';
+export const getStaticPaths = () =>
+  LANGS.flatMap((lang) => (counties as any[]).map((c) => ({ params: { lang, county: slug(c.stem) }, props: { c } })));
+const lang = Astro.params.lang as Lang;
+const { c } = Astro.props as { c: any };
+const s = t(lang);
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const all = c.ka2.all ?? {}, p1 = c.ka2['2014-2020'] ?? {}, p2 = c.ka2['2021-2027'] ?? {};
+const top = orgs.filter((o) => o.county === c.stem).slice(0, 12);
+const typeName: Record<string, string> = lang === 'hr'
+  ? { primary: 'Osnovne škole', secondary: 'Srednje škole', 'primary+secondary school': 'Osnovne i srednje škole' }
+  : { primary: 'Primary schools', secondary: 'Secondary schools', 'primary+secondary school': 'Combined primary and secondary' };
+---
+<Base lang={lang} title={c.label} path={`/places/${slug(c.stem)}/`} active="places">
+  <nav class="crumbs" aria-label="Breadcrumb"><a href={`${base}/${lang}/places/`}>{s.placesTitle}</a><span>{c.label}</span></nav>
+  <div class="kicker">{s.countyKicker}</div>
+  <h1>{c.label}</h1>
+  <hr class="rule" />
+  <div class="grid kpis">
+    <div class="card kpi"><small>{s.orgsInCounty}</small><div class="big">{num(lang, all.organisations ?? 0)}</div><small>{num(lang, p1.organisations ?? 0)} {s.in1420} · {num(lang, p2.organisations ?? 0)} {s.in2127}</small></div>
+    <div class="card kpi"><small>{s.projectsInvolved}</small><div class="big">{num(lang, all.projects_involved ?? 0)}</div><small>{num(lang, p1.projects_involved ?? 0)} {s.in1420} · {num(lang, p2.projects_involved ?? 0)} {s.in2127}</small></div>
+    <div class="card kpi"><small>{s.coordinatedProj}</small><div class="big">{num(lang, all.projects_coordinated ?? 0)}</div><small>{s.grantsCoord}: {eur(lang, all.grants_coordinated_eur)}</small></div>
+    <div class="card kpi"><small>{s.valueInvolved}</small><div class="big">{eur(lang, all.value_involved_eur)}</div></div>
+  </div>
+  <div class="grid two-eq" style="margin-top:18px">
+    <section class="card"><h2>{s.coverageByType}</h2>
+      <table><thead><tr><th>{s.type}</th><th class="num">{s.schools}</th><th class="num">%</th><th class="num">95 %</th><th class="num">{s.expected}</th></tr></thead>
+      <tbody>{c.coverage.map((x: any) => (
+        <tr><td>{typeName[x.school_type] ?? x.school_type}</td><td class="num">{num(lang, x.participating)}/{num(lang, x.institutions)}</td>
+          <td class="num">{pct(lang, x.rate, 0)}</td><td class="num">{pct(lang, x.rate_low, 0)}–{pct(lang, x.rate_high, 0)}</td><td class="num">≈{num(lang, x.expected, 1)}</td></tr>
+      ))}</tbody></table>
+      <p class="lead" style="font-size:.85rem;margin-top:10px">{s.method.split('.')[0]}.</p>
+    </section>
+    <section class="card"><h2>{s.topOrgs}</h2>
+      <table><thead><tr><th>{s.name}</th><th class="num">{s.projects}</th><th class="num">{s.coordinated}</th></tr></thead>
+      <tbody>{top.map((o) => (
+        <tr><td><a href={`${base}/${lang}/organisations/${slug(o.id)}/`}>{o.name}</a></td><td class="num">{num(lang, o.projects)}</td><td class="num">{num(lang, o.coordinated)}</td></tr>
+      ))}</tbody></table>
+    </section>
+  </div>
+</Base>

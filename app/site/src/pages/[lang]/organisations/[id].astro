@@ -1,0 +1,115 @@
+---
+import Base from '../../../layouts/Base.astro';
+import full from '../../../data/orgs_full.json';
+import { LANGS, t, num, eur, slug, type Lang } from '../../../lib/i18n';
+
+export const getStaticPaths = () =>
+  LANGS.flatMap((lang) => Object.values(full as Record<string, any>).map((o) => ({ params: { lang, id: slug(o.org_id) }, props: { o } })));
+const lang = Astro.params.lang as Lang;
+const { o } = Astro.props as { o: any };
+const s = t(lang);
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const all = o.periods.all ?? {}, p1 = o.periods['2014-2020'] ?? {}, p2 = o.periods['2021-2027'] ?? {};
+const years: number[] = [];
+const first = Math.min(...o.projects.map((p: any) => p.year)), last = Math.max(...o.projects.map((p: any) => p.year));
+for (let y = first; y <= last; y++) years.push(y);
+const byYear = (y: number) => o.projects.filter((p: any) => p.year === y);
+const maxC = Math.max(1, ...o.countries.map((c: any) => c[1]));
+const shownProjects = o.projects.slice(0, 12);
+const yy = (y: number) => `'${String(y).slice(2)}`;
+---
+<Base lang={lang} title={o.name} path={`/organisations/${slug(o.org_id)}/`} active="orgs">
+  <nav class="crumbs" aria-label="Breadcrumb">
+    <a href={`${base}/${lang}/organisations/`}>{s.orgsTitle}</a>
+    {o.county && <a href={`${base}/${lang}/places/${slug(o.county)}/`}>{o.county}</a>}
+    <span>{o.town}</span>
+  </nav>
+  <div class="kicker">{s.orgKicker}{o.eu_org_type ? ` · ${o.eu_org_type}` : ''}</div>
+  <h1>{o.name}</h1>
+  <p class="lead" style="max-width:none">{[o.town, o.county].filter(Boolean).join(' · ')}</p>
+  <div class="chips" style="margin-top:10px">
+    {o.register_kind && <span class="pill" style="background:#e3ecff;color:#1d3fc7">{o.register_kind}</span>}
+    {o.n_name_variants > 1 && <span class="pill">{num(lang, o.n_name_variants)} name variants</span>}
+  </div>
+  <hr class="rule" />
+
+  <div class="grid kpis">
+    <div class="card kpi"><small>{s.kaProjects}, {first}–{last}</small><div class="big">{num(lang, all.projects ?? 0)}</div>
+      <small>{num(lang, p1.projects ?? 0)} {s.in1420} · {num(lang, p2.projects ?? 0)} {s.in2127}</small></div>
+    <div class="card kpi"><small>{s.role}</small><div class="big">{num(lang, all.coordinated ?? 0)} <span>{s.coordinatorWord}</span></div>
+      <small>{num(lang, all.partner_only ?? 0)} {s.asPartner}</small></div>
+    <div class="card kpi"><small>{s.grantsCoord}</small><div class="big">{eur(lang, all.grants_coordinated_eur)}</div>
+      <small>{s.valueInvolved}: {eur(lang, all.value_involved_eur)}</small></div>
+    <div class="card kpi"><small>{s.evidence}</small><div class="big">{num(lang, o.good_practice)} <span>{s.goodPractice}</span></div>
+      <small>{num(lang, o.countries.length)} {lang === 'hr' ? 'država partnera' : 'partner countries'}</small></div>
+  </div>
+
+  <div class="grid two" style="margin-top:18px">
+    <div class="grid" style="gap:18px">
+      <section class="card">
+        <div class="headrow"><h2>{s.participation}</h2>
+          <div class="keys"><span><i class="dot c"></i>{s.coordinatorLbl}</span><span><i class="dot"></i>{s.partnerLbl}</span><span><i class="dot g"></i>{s.gpLbl}</span></div></div>
+        <div class="dots" role="img" aria-label={`${s.participation}: ${o.projects.length} ${s.projects.toLowerCase()}`}>
+          {years.map((y) => (
+            <div class="col">
+              {byYear(y).map((p: any) => <i class={`dot ${p.role === 'coordinator' ? 'c' : ''} ${p.good_practice ? 'g' : ''}`}></i>)}
+              <span>{y === last && last >= 2026 ? `${yy(y)}*` : yy(y)}</span>
+            </div>
+          ))}
+        </div>
+        <p class="lead" style="font-size:.85rem;margin-top:10px">{s.partial} {s.periodNote}</p>
+      </section>
+      <section class="card">
+        <div class="headrow"><h2>{s.projectsTitle}</h2>
+          <div class="seg" role="group" aria-label={s.role}>
+            <button type="button" data-role="" aria-pressed="true">{s.all} {num(lang, o.projects.length)}</button>
+            <button type="button" data-role="coordinator" aria-pressed="false">{s.coordinatorLbl} {num(lang, all.coordinated ?? 0)}</button>
+            <button type="button" data-role="partner" aria-pressed="false">{s.partner} {num(lang, all.partner_only ?? 0)}</button>
+          </div></div>
+        <div style="overflow-x:auto"><table>
+          <thead><tr><th>{s.year}</th><th>{s.project}</th><th>{s.type}</th><th>{s.role}</th><th>{s.lead}</th><th>{s.status}</th></tr></thead>
+          <tbody id="prows">
+            {o.projects.map((p: any, i: number) => (
+              <tr data-role={p.role} hidden={i >= 12} data-extra={i >= 12 ? '1' : undefined}>
+                <td class="mono">{p.year}</td><td>{p.title}</td><td>{p.type}</td>
+                <td>{p.role === 'coordinator' ? <span class="badge">{s.coordinatorLbl}</span> : s.partner}</td>
+                <td class="mono">{p.lead}</td>
+                <td>{s.statuses[p.status] ?? p.status}{p.good_practice ? ` · ${s.goodPractice}` : ''}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table></div>
+        {o.projects.length > 12 && <p><button type="button" class="btn" id="more">{lang === 'hr' ? 'Prikaži sve' : 'Show all'} {num(lang, o.projects.length)}</button></p>}
+      </section>
+    </div>
+    <div class="grid" style="gap:18px">
+      <section class="card">
+        <h2>{s.worksWith}</h2><p class="lead" style="font-size:.85rem">{s.worksWithLead}</p>
+        {o.countries.slice(0, 9).map(([c, n]: [string, number]) => (
+          <div class="barrow"><span>{c}</span><span class="track"><i style={`width:${(n / maxC) * 100}%`}></i></span><span class="mono" style="text-align:right">{n}</span></div>
+        ))}
+        {o.countries.length === 0 && <p class="lead">–</p>}
+      </section>
+      {o.topics.length > 0 && <section class="card">
+        <h2>{s.topics}</h2>
+        <div style="margin-top:10px">{o.topics.map(([topic, n]: [string, number]) => <span class="tag">{topic}<b>{n}</b></span>)}</div>
+        <p class="lead" style="font-size:.85rem">{s.topicsNote}</p>
+      </section>}
+    </div>
+  </div>
+</Base>
+<script>
+  let role = '', all = false;
+  const rows = Array.from(document.querySelectorAll<HTMLElement>('#prows tr'));
+  const paint = () => {
+    let k = 0;
+    rows.forEach((r) => {
+      const ok = !role || r.dataset.role === role;
+      r.hidden = !ok || (!all && k >= 12);
+      if (ok) k++;
+    });
+    document.querySelectorAll<HTMLElement>('[data-role][aria-pressed]').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.role === role)));
+  };
+  document.querySelectorAll<HTMLElement>('.seg [data-role]').forEach((b) => b.addEventListener('click', () => { role = b.dataset.role || ''; paint(); }));
+  document.getElementById('more')?.addEventListener('click', (e) => { all = true; (e.target as HTMLElement).remove(); paint(); });
+</script>

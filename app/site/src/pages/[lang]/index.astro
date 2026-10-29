@@ -1,0 +1,136 @@
+---
+import Base from '../../layouts/Base.astro';
+import { LANGS, t, num, pct, slug, type Lang } from '../../lib/i18n';
+import { coverage, TILES, type Filter } from '../../lib/stats';
+
+export const getStaticPaths = () => LANGS.map((lang) => ({ params: { lang } }));
+const lang = Astro.params.lang as Lang;
+const s = t(lang);
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const filters: Filter[] = ['both', 'primary', 'secondary'];
+const label: Record<Filter, string> = { both: s.both, primary: s.primary, secondary: s.secondary };
+const data = Object.fromEntries(filters.map((f) => [f, coverage(f)])) as Record<Filter, ReturnType<typeof coverage>>;
+const ramp = (r: number) => (r < 0.2 ? 1 : r < 0.25 ? 2 : r < 0.3 ? 3 : r < 0.4 ? 4 : 5);
+const short = (l: string) => l.replace(/ županija$/, '');
+const summary = (f: Filter, r: ReturnType<typeof coverage>['rows'][number]) => {
+  const head = s.tookPart(num(lang, r.k), num(lang, r.n), pct(lang, r.rate), pct(lang, r.lo, 0), pct(lang, r.hi, 0));
+  return `${head} ${s.wouldExpect(num(lang, r.expected, 0))}`;
+};
+---
+<Base lang={lang} title={s.coverageTitle} path="" active="coverage" description={s.coverageLead}>
+  <div class="headrow">
+    <div>
+      <div class="kicker">{s.coverageKicker}</div>
+      <h1>{s.coverageTitle}</h1>
+      <p class="lead">{s.coverageLead}</p>
+    </div>
+    <div>
+      {filters.map((f, i) => (
+        <div class="big-n-wrap" data-for={f} hidden={i !== 0}>
+          <div class="big-n">{pct(lang, data[f].national)} %</div>
+          <div class="lead" style="text-align:right">{num(lang, data[f].k)} / {num(lang, data[f].n)} {s.schoolsNationally}</div>
+        </div>
+      ))}
+    </div>
+  </div>
+  <hr class="rule" />
+  <div class="kicker">{s.institutions}</div>
+  <div class="seg" role="group" aria-label={s.institutions} style="margin-top:8px">
+    {filters.map((f, i) => <button type="button" data-filter={f} aria-pressed={i === 0 ? 'true' : 'false'}>{label[f]}</button>)}
+  </div>
+
+  {filters.map((f, i) => {
+    const d = data[f];
+    const sorted = [...d.rows].sort((a, b) => b.rate - a.rate);
+    const max = Math.max(0.7, ...d.rows.map((r) => r.hi));
+    return (
+      <section data-view={f} hidden={i !== 0} style="margin-top:20px">
+        <div class="grid two-eq">
+          <div class="card">
+            <h2>{s.byCounty}</h2>
+            <p class="lead">{s.byCountyLead}</p>
+            <div class="tiles" role="group" aria-label={s.byCounty}>
+              {d.rows.map((r) => {
+                const [c, row] = TILES[r.stem];
+                return (
+                  <button type="button" class="tile" data-r={ramp(r.rate)} data-county={r.stem}
+                    data-label={r.label} data-summary={summary(f, r)} data-href={`${base}/${lang}/places/${slug(r.stem)}/`}
+                    data-out={num(lang, r.n - r.k)}
+                    style={`left:calc(${c} * 100% / 6 + 2px);top:calc(${row} * 100% / 8 + 2px)`} aria-pressed="false">
+                    <span>{short(r.label)}</span>
+                    <strong>{pct(lang, r.rate, 0)} % {r.flag === 'above' ? '▲' : r.flag === 'below' ? '▼' : ''}</strong>
+                    <span class="sr"> {num(lang, r.k)} / {num(lang, r.n)}</span>
+                  </button>
+                );
+              })}
+            </div>
+            <div class="legend" aria-label={s.shareOfSchools}>
+              {s.shareOfSchools}
+              {[['1', '<20 %'], ['2', '20–25'], ['3', '25–30'], ['4', '30–40'], ['5', '40 %+']].map(([k, l]) => (
+                <span><i style={`background:var(--ramp-${k})`}></i> {l}</span>
+              ))}
+              <span>▲▼ {s.above} / {s.below}</span>
+            </div>
+          </div>
+          <div class="card">
+            <h2>{s.ranked}</h2>
+            <p class="lead">{s.rankedLead}</p>
+            <div class="rank head"><span>{s.county.toUpperCase()}</span><span>0 % · {s.national} {pct(lang, d.national)} % · {Math.round(max * 100)} %</span><span class="n">{s.schools.toUpperCase()}</span><span class="n">{s.expected.toUpperCase()}</span></div>
+            <div role="list">
+              {sorted.map((r) => (
+                <div class="rank" role="listitem" data-rank={r.stem}>
+                  <span><button type="button" class="linkish" data-county={r.stem} style="all:unset;cursor:pointer;color:var(--accent);text-decoration:underline">{short(r.label)}</button></span>
+                  <span class={`range ${r.flag ? 'flag' : ''}`}>
+                    <i class="nat" style={`left:${(d.national / max) * 100}%`}></i>
+                    <i class="bar" style={`left:${(r.lo / max) * 100}%;width:${((r.hi - r.lo) / max) * 100}%`}></i>
+                    <i class="dot" style={`left:${(r.rate / max) * 100}%`}></i>
+                  </span>
+                  <span class="n mono">{num(lang, r.k)}/{num(lang, r.n)}</span>
+                  <span class="n mono">≈{num(lang, r.expected, r.expected < 10 ? 1 : 0)}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+    );
+  })}
+
+  <div class="selected" id="selected" hidden aria-live="polite">
+    <div>
+      <div class="kicker">{s.selected} · <span id="sel-name"></span></div>
+      <p id="sel-text"></p>
+    </div>
+    <div><a class="primary" id="sel-open" href="#">{s.openCounty}</a></div>
+  </div>
+  <p class="method">{s.method}</p>
+  <p class="method" style="border:0;margin-top:0">{s.partial}</p>
+</Base>
+
+<script>
+  const q = (sel: string) => Array.from(document.querySelectorAll<HTMLElement>(sel));
+  let filter = 'both', county = '';
+  function paint() {
+    q('[data-view]').forEach((v) => (v.hidden = v.dataset.view !== filter));
+    q('[data-for]').forEach((v) => (v.hidden = v.dataset.for !== filter));
+    q('[data-filter]').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.filter === filter)));
+    const view = document.querySelector<HTMLElement>(`[data-view="${filter}"]`)!;
+    q('[data-view] .tile').forEach((t) => t.setAttribute('aria-pressed', String(t.dataset.county === county)));
+    q('[data-view] [data-rank]').forEach((r) => r.setAttribute('aria-selected', String(r.dataset.rank === county)));
+    const tile = county ? view.querySelector<HTMLElement>(`.tile[data-county="${county}"]`) : null;
+    const box = document.getElementById('selected')!;
+    box.hidden = !tile;
+    if (tile) {
+      document.getElementById('sel-name')!.textContent = (tile.dataset.label || '').toUpperCase();
+      document.getElementById('sel-text')!.textContent = tile.dataset.summary || '';
+      (document.getElementById('sel-open') as HTMLAnchorElement).href = tile.dataset.href || '#';
+    }
+  }
+  document.addEventListener('click', (e) => {
+    const el = (e.target as HTMLElement).closest<HTMLElement>('[data-filter], [data-county]');
+    if (!el) return;
+    if (el.dataset.filter) filter = el.dataset.filter;
+    else county = el.dataset.county || '';
+    paint();
+  });
+</script>

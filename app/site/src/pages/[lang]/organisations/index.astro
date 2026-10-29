@@ -1,0 +1,51 @@
+---
+import Base from '../../../layouts/Base.astro';
+import orgs from '../../../data/orgs.json';
+import { LANGS, t, num, slug, type Lang } from '../../../lib/i18n';
+export const getStaticPaths = () => LANGS.map((lang) => ({ params: { lang } }));
+const lang = Astro.params.lang as Lang;
+const s = t(lang);
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const counties = [...new Set(orgs.map((o) => o.county).filter(Boolean))].sort((a, b) => a!.localeCompare(b!, 'hr'));
+---
+<Base lang={lang} title={s.orgsTitle} path="/organisations/" active="orgs" description={s.orgsLead}>
+  <div class="kicker">{s.nav.orgs}</div>
+  <h1>{s.orgsTitle}</h1>
+  <p class="lead">{s.orgsLead}</p>
+  <div class="toolbar">
+    <label class="sr" for="q">{s.filter}</label>
+    <input id="q" type="search" placeholder={s.filter} style="min-width:min(100%,320px)" />
+    <label class="sr" for="c">{s.county}</label>
+    <select id="c"><option value="">{s.allCounties}</option>{counties.map((c) => <option value={c!}>{c}</option>)}</select>
+    <span class="lead" id="count" aria-live="polite"></span>
+  </div>
+  <div class="card" style="overflow-x:auto">
+    <table>
+      <thead><tr><th>{s.name}</th><th>{s.town}</th><th>{s.county}</th><th class="num">{s.projects}</th><th class="num">{s.coordinated}</th></tr></thead>
+      <tbody id="rows">
+        {orgs.map((o) => (
+          <tr data-s={`${o.name} ${o.town ?? ''}`.toLowerCase()} data-c={o.county ?? ''}>
+            <td><a href={`${base}/${lang}/organisations/${slug(o.id)}/`}>{o.name}</a></td>
+            <td>{o.town ?? ''}</td><td>{o.county ?? ''}</td>
+            <td class="num">{num(lang, o.projects)}</td><td class="num">{num(lang, o.coordinated)}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+</Base>
+<script define:vars={{ shown: s.shown }}>
+  const rows = Array.from(document.querySelectorAll('#rows tr'));
+  const q = document.getElementById('q'), c = document.getElementById('c'), n = document.getElementById('count');
+  const run = () => {
+    const needle = q.value.trim().toLowerCase();
+    let k = 0;
+    for (const r of rows) {
+      const ok = (!needle || r.dataset.s.includes(needle)) && (!c.value || r.dataset.c === c.value);
+      r.hidden = !ok || k >= 300;
+      if (ok) k++;
+    }
+    n.textContent = `${Math.min(k, 300)} / ${k} ${shown}`;
+  };
+  q.addEventListener('input', run); c.addEventListener('change', run); run();
+</script>
