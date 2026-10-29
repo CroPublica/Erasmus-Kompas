@@ -4,8 +4,15 @@ import { spawn } from 'node:child_process';
 import assert from 'node:assert/strict';
 import { createRequire } from 'node:module';
 const axePath = createRequire(import.meta.url).resolve('axe-core/axe.min.js');
-const URL = 'http://localhost:4399';
-const srv = spawn('npx', ['astro', 'preview', '--port', '4399'], { stdio: 'ignore' });
+const BASE = (process.env.SITE_BASE || '').replace(/\/$/, '');
+const URL = 'http://localhost:4399' + BASE;
+// `astro preview` detaches itself from its parent, so the server is stopped by the port it listens on (Linux: ss)
+import { execSync } from 'node:child_process';
+const listener = () => { try { return execSync("ss -ltnp | grep ':4399 ' | grep -o 'pid=[0-9]*' | cut -d= -f2").toString().trim(); } catch { return ''; } };
+if (listener()) { console.error('port 4399 is already in use (an old preview server?): stop it first'); process.exit(2); }
+const srv = spawn(process.execPath, ['node_modules/astro/bin/astro.mjs', 'preview', '--port', '4399'], { stdio: 'ignore', detached: true });
+const stop = () => { const p = listener(); if (p) try { process.kill(Number(p), 'SIGKILL'); } catch {} };
+process.on('exit', stop);
 await new Promise((r) => setTimeout(r, 4000));
 const browser = await chromium.launch();
 const errors = [];
@@ -85,6 +92,19 @@ await test('accessibility (axe: wcag2a/aa) has no violations', async () => {
   }
   if (bad.length) throw new Error(bad.join(' | '));
 });
+await test('keyboard: skip link moves focus to main; selecting a tile keeps focus on it', async () => {
+  const p = await open('/en/'); await p.keyboard.press('Tab'); await p.keyboard.press('Enter');
+  assert.equal(await p.evaluate(() => document.activeElement.id), 'main');
+  await p.focus('.tile[data-county="Istarska"]'); await p.keyboard.press('Enter');
+  assert.equal(await p.evaluate(() => document.activeElement.dataset.county), 'Istarska');
+  await p.focus('#rank [data-county="Zadarska"]'); await p.keyboard.press('Enter');
+  assert.equal(await p.evaluate(() => document.activeElement.dataset.county), 'Zadarska');
+});
+await test('keyboard: search results reachable with arrows, Escape returns to the box', async () => {
+  const p = await open('/en/'); await p.focus('#gs'); await p.keyboard.type('metkov'); await p.locator('#gs-res a').first().waitFor();
+  await p.keyboard.press('ArrowDown'); assert.equal(await p.evaluate(() => document.activeElement.tagName), 'A');
+  await p.keyboard.press('Escape'); assert.equal(await p.evaluate(() => document.activeElement.id), 'gs');
+});
 await test('no console errors', async () => assert.deepEqual(errors, []));
-await browser.close(); srv.kill();
+await browser.close(); stop();
 console.log(`\n${passed} passed, ${failed} failed`); process.exit(failed ? 1 : 0);

@@ -15,7 +15,6 @@ const groups = [
   ['period', s.periodLbl, [['all', s.pAll], ['2014-2020', s.p1], ['2021-2027', s.p2]]],
   ['role', s.roleLbl, [['any', s.anyRole], ['coordinator', s.coordOnly]]],
 ] as const;
-const legend = [['1', '<20 %'], ['2', '20–25'], ['3', '25–30'], ['4', '30–40'], ['5', '40 %+']];
 ---
 <Base lang={lang} title={s.coverageTitle} path="" active="coverage" description={s.coverageLead}>
   <div class="headrow">
@@ -43,11 +42,7 @@ const legend = [['1', '<20 %'], ['2', '20–25'], ['3', '25–30'], ['4', '30–
       <h2>{s.byCounty}</h2>
       <p class="lead">{s.byCountyLead}</p>
       <div class="tiles" id="tiles" role="group" aria-label={s.byCounty} set:html={v.tiles} />
-      <div class="legend">
-        {s.shareOfSchools}
-        {legend.map(([k, l]) => <span><i style={`background:var(--ramp-${k})`}></i> {l}</span>)}
-        <span>▲▼ {s.above} / {s.below}</span>
-      </div>
+      <div class="legend"><span>{s.shareOfSchools}</span><span id="legend" style="display:contents" set:html={v.legend} /></div>
     </div>
     <div class="card">
       <h2>{s.ranked}</h2>
@@ -79,7 +74,7 @@ const legend = [['1', '<20 %'], ['2', '20–25'], ['3', '25–30'], ['4', '30–
   const $ = (id: string) => document.getElementById(id)!;
   function paint() {
     const v = renderCoverage(lang, st, base);
-    $('tiles').innerHTML = v.tiles; $('rank').innerHTML = v.rank; $('axis').textContent = v.axis; $('headline').innerHTML = v.headline;
+    $('tiles').innerHTML = v.tiles; $('legend').innerHTML = v.legend; $('rank').innerHTML = v.rank; $('axis').textContent = v.axis; $('headline').innerHTML = v.headline;
     document.querySelectorAll<HTMLElement>('#filters button').forEach((b) =>
       b.setAttribute('aria-pressed', String((st as any)[b.dataset.key!] === b.dataset.val)));
     document.querySelectorAll<HTMLElement>('#tiles .tile').forEach((x) => x.setAttribute('aria-pressed', String(x.dataset.county === county)));
@@ -95,8 +90,11 @@ const legend = [['1', '<20 %'], ['2', '20–25'], ['3', '25–30'], ['4', '30–
   document.addEventListener('click', (e) => {
     const el = (e.target as HTMLElement).closest<HTMLElement>('#filters button, [data-county]');
     if (!el) return;
+    const from = el.closest('#rank') ? '#rank' : el.closest('#tiles') ? '#tiles' : '';
     if (el.dataset.key) (st as any)[el.dataset.key] = el.dataset.val;
     else county = el.dataset.county || '';
     paint();
+    // the tiles and the ranking are redrawn, so give keyboard focus back to the same county
+    if (from) document.querySelector<HTMLElement>(`${from} [data-county="${county}"]`)?.focus();
   });
 </script>

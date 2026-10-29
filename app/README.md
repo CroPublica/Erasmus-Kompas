@@ -85,3 +85,19 @@ export PATH=~/.local/opt/node/bin:$PATH      # Node >= 22.23.4 (see LOG.md)
 .venv/bin/python pipeline/70_export_site.py  # DuckDB -> site/src/data/*.json
 cd site && npm install && npm run build      # static site in site/dist (npm run dev for development)
 ```
+
+### Build and deploy the site
+
+```
+./build_site.sh                    # export data from DuckDB, build site/dist (static files, no server needed)
+./build_site.sh --test             # ... and run the 12 browser tests
+SITE_BASE=/atlas ./build_site.sh   # site served under a sub-path (also SITE_URL=https://example.org for canonical links)
+./build_site.sh --docker           # ... and build a container image (deploy/Dockerfile: nginx, port 8080, security headers)
+docker run --rm -p 8080:8080 ka2-atlas
+```
+
+`site/dist` is plain HTML, CSS and JSON, so any static host works (nginx, GitHub Pages, Netlify, an object-storage bucket):
+upload the folder and serve `404.html` for missing pages. The exported data contains no e-mail addresses (owner decision,
+2026-10-29). The Ask page, when built, needs a small API next to the static files; the static part does not depend on it.
+`deploy/nginx.conf` sets caching (hashed assets for a year, pages revalidated) and a strict content-security policy.
+Needs Node >= 22.23.4 (the script checks). The browser tests also need `cd site && npx playwright install chromium` once.

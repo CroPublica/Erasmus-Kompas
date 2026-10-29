@@ -108,7 +108,7 @@ Same phases as §9, with the concrete tasks, the check that closes each, and the
    - University vs faculty: never auto-merge higher-education units (§10).
    - Review queue as a CSV/small UI; decisions stored under `data/review/` and re-applied on every rebuild.
    - English alias list (e.g. "University of Rijeka" ↔ "Sveučilište u Rijeci").
-4. Organisational e-mails from raw registries with a filter (ured@, tajnistvo@, info@ …); anything that looks personal is dropped. **S**
+4. ~~Organisational e-mails from raw registries~~ — dropped: owner decided not to publish e-mail addresses (2026-10-29).
 5. Build DuckDB tables and the four views in §5. **M**
 6. `99_validate.py`: the six regression checks in §4. **S**
 
@@ -340,6 +340,6 @@ You mentioned features for later but haven't listed them yet, so these are propo
 1. **Hosting the LLM for the public site.** Options: a small GPU server, CPU-only (slow), or a hosted API behind a feature flag. This decides how small the model must be.
 2. **EU-wide project pages.** Static pages for all ~46,500 projects, or static for the 3,830 Croatian ones and on-demand for the rest (my default)?
 3. **Croatian translations.** I can machine-translate concept and topic labels with Gemma and mark them "unreviewed"; who reviews them?
-4. **Organisational e-mails.** Are the registries' public e-mail addresses fine to publish as organisational contacts (§4.12), given they come from public registers?
+4. **Organisational e-mails.** DECIDED 2026-10-29 by the owner: **no**, e-mail addresses are not published. The registries stay loaded without e-mail columns; the e-mail line and phase-1 step 4 (organisational e-mails) are dropped.
 5. **Gold set.** Are you able to annotate 50–100 summaries per period, or should I propose labels for you to correct?
 6. **Gemma 31B keyphrase pass.** Keep it (needs a debugging run first) or drop it, since spaCy keyphrases already exist and Phase 2 supersedes them?
