@@ -39,7 +39,7 @@ Instructions: untick (`- [ ]`) proposed items that are wrong or not supported by
 
 - [x] low employability of disadvantaged women
 - [x] need for transversal competencies
-+ 
++ need to upgrade trainers' skills and teaching methods
 
 **Target groups**
 
@@ -51,7 +51,7 @@ Instructions: untick (`- [ ]`) proposed items that are wrong or not supported by
 
 - [x] toolkit development
 - [x] training sessions
-+ 
++ self-directed empowerment and soft skills path for women
 
 **Outputs (products, results)**
 
@@ -59,7 +59,7 @@ Instructions: untick (`- [ ]`) proposed items that are wrong or not supported by
 - [x] Toolkit for unemployed women (reported)
 + 
 
-Reviewed by: 
+Reviewed by: Nikola Gamulin
 
 
 ---
@@ -86,7 +86,8 @@ Reviewed by:
 
 - [x] lack of shared guidelines for ethical AAI practice
 - [x] need to improve socio-emotional development
-+ 
++ limited inclusion and wellbeing of students with intellectual disabilities
++ need for staff competences in animal-assisted interventions
 
 **Target groups**
 
@@ -98,7 +99,9 @@ Reviewed by:
 
 - [x] group mobilities involving animal-assisted activities
 - [x] staff training
-+ 
++ animal-assisted interventions
++ exchange of practices between partners
++ experiential learning
 
 **Outputs (products, results)**
 
@@ -106,7 +109,7 @@ Reviewed by:
 - [x] professional materials (planned)
 + 
 
-Reviewed by: 
+Reviewed by: Nikola Gamulin
 
 
 ---
@@ -133,7 +136,8 @@ Reviewed by:
 
 - [x] lack of environmental consciousness
 - [x] low digital literacy
-+ 
++ limited inclusion of students from disadvantaged backgrounds
++ need for 21st-century skills among students
 
 **Target groups**
 
@@ -148,14 +152,14 @@ Reviewed by:
 - [x] environmental awareness campaigns
 - [x] interactive digital literacy workshops
 - [x] teacher training sessions
-+ 
++ student-led projects
++ cross-country collaboration for sharing best practices
 
 **Outputs (products, results)**
 
 - [x] AI-powered educational resources (planned)
-+ 
-
-Reviewed by: 
++ increased engagement and cooperation among students from diverse backgrounds
+Reviewed by: Nikola Gamulin
 
 
 ---
@@ -183,7 +187,7 @@ Reviewed by:
 **Problems the project addresses**
 
 - [x] need for practical skills in using electronic communications
-+ 
++
 
 **Target groups**
 
@@ -196,16 +200,18 @@ Reviewed by:
 
 - [x] board game with Augmented Reality elements
 - [x] curriculum development
-+ 
++ needs research with students, academic teachers and enterprises
++ pilot sessions
++ workshops for students
 
 **Outputs (products, results)**
 
 - [x] Academic lecturers materials explaining teaching methods using AR solutions supported by board game (reported)
 - [x] Competency framework and best practices for using electronic communication solutions in supply chain (reported)
 - [x] Textbook, presentations, case studies, assignments and tests (reported)
-+ 
++ curriculum at EQF level 6 or 7 on GS1-compliant electronic communication in supply chains
 
-Reviewed by: 
+Reviewed by: Nikola Gamulin
 
 
 ---
@@ -232,7 +238,8 @@ Reviewed by:
 
 - [x] counter disinformation
 - [x] resist manipulation
-+ 
++ polarisation
++ low media literacy among young people
 
 **Target groups**
 
@@ -244,7 +251,10 @@ Reviewed by:
 
 - [x] Media Literacy Compass
 - [x] prebunking and debunking activities
-+ 
++ needs assessment with young people and youth workers
++ cross-country co-creation hub
++ training of trainers
++ peer-to-peer training of youth workers
 
 **Outputs (products, results)**
 
@@ -253,7 +263,7 @@ Reviewed by:
 - [x] pool of trained youth workers (planned)
 + 
 
-Reviewed by: 
+Reviewed by: Nikola Gamulin
 
 
 ---
@@ -327,15 +337,17 @@ Reviewed by:
 
 - [x] sharing stories from own country and other countries
 - [x] storytelling about culture
-+ 
++ short-term learner mobilities in Slovenia, Croatia and North Macedonia
 
 **Outputs (products, results)**
 
 - [x] greater empathy and respect towards individuals from different backgrounds (reported)
 - [x] increased knowledge and awareness of other cultures and nationalities (reported)
-+ 
++ decreased prejudice, discrimination and stereotypes towards other nationalities
++ improved communication, collaboration and appreciation for diversity among students
++ improved academic performance and social skills for caring and sharing Europe cultural heritage
 
-Reviewed by: 
+Reviewed by: Nikola Gamulin
 
 
 ---
@@ -381,7 +393,8 @@ Reviewed by:
 **Problems the project addresses**
 
 - [x] obstacles faced in their professional life
-+ 
++ limited access to flexible lifelong learning for adults with learning difficulties
++ lack of trainer skills in accessible teaching for adults with learning difficulties
 
 **Target groups**
 
@@ -403,7 +416,7 @@ Reviewed by:
 - [x] GUIDE e-platform for Adult trainers (planned)
 + 
 
-Reviewed by: 
+Reviewed by: Nikola Gamulin
 
 
 ---
@@ -449,7 +462,8 @@ Reviewed by:
 - [x] learning difficulties
 - [x] limited social inclusion
 - [x] peer bullying
-+ 
++ few opportunities to use English and interact with peers from other countries
++ teachers' need for innovative methods to support diverse learners
 
 **Target groups**
 
@@ -464,7 +478,8 @@ Reviewed by:
 - [x] music-based activities
 - [x] sharing good practices
 - [x] workshops on preventing peer bullying
-+ 
++ restorative practices
++ eTwinning collaboration
 
 **Outputs (products, results)**
 
@@ -472,9 +487,10 @@ Reviewed by:
 - [x] eTwinning TwinSpace to share resources (reported)
 - [x] lesson plans integrating music into teaching (reported)
 - [x] original songs (reported)
-+ 
++ reduced peer bullying
++ improved English language skills of students
 
-Reviewed by: 
+Reviewed by: Nikola Gamulin
 
 
 ---
