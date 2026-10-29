@@ -105,6 +105,18 @@ def main():
                c.n * t.k * 1.0 / t.n expected, t.k * 1.0 / t.n national_rate
         from county_type c join by_type t using (school_type)""")
 
+    # coverage by period and role (the coverage page's filters): counts only, rates and intervals are computed by the site
+    con.execute("""create or replace table coverage_scenario as
+        with inst as (
+          select i.inst_id, i.org_id, i.county, case i.register_kind when 'primary,secondary' then 'combined' else i.register_kind end school_type
+          from institution i where i.register_kind in ('primary', 'secondary', 'primary,secondary', 'kindergarten') and i.county is not null),
+        scen as (select * from (values ('all', 'any'), ('2014-2020', 'any'), ('2021-2027', 'any'),
+                                       ('all', 'coordinator'), ('2014-2020', 'coordinator'), ('2021-2027', 'coordinator')) v(period, role))
+        select s.period, s.role, i.county, i.school_type, count(*) institutions,
+               count(*) filter (where exists (select 1 from participation x where x.org_id = i.org_id
+                   and (s.period = 'all' or x.period = s.period) and (s.role = 'any' or x.role = s.role))) participating
+        from inst i cross join scen s group by all""")
+
     # ---- report
     n = con.execute("select count(*), count(*) filter (where hr_coordinated) from project").fetchone()
     print(f"project: {n[0]:,} rows, {n[1]} coordinated from Croatia")

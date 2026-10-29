@@ -1,0 +1,49 @@
+---
+import Base from '../../../layouts/Base.astro';
+import projects from '../../../data/projects_full.json';
+import { LANGS, t, num, eur, slug, type Lang } from '../../../lib/i18n';
+import { country } from '../../../lib/countries';
+
+export const getStaticPaths = () =>
+  LANGS.flatMap((lang) => Object.values(projects as Record<string, any>).map((p) => ({ params: { lang, id: slug(p.project_id) }, props: { p } })));
+const lang = Astro.params.lang as Lang;
+const { p } = Astro.props as { p: any };
+const s = t(lang);
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const coord = p.countries[0];
+---
+<Base lang={lang} title={p.title} path={`/projects/${slug(p.project_id)}/`} active="orgs">
+  <div class="kicker">{s.projectKicker} · {p.project_id}</div>
+  <h1 style="font-size:clamp(1.6rem,4vw,2.6rem)">{p.title}</h1>
+  <p class="lead" style="max-width:none">{p.action_type} · {p.call_year} · {s.statuses[p.status] ?? p.status}{p.good_practice ? ` · ${s.gpNote}` : ''}</p>
+  <hr class="rule" />
+  <div class="grid two">
+    <section class="card">
+      <h2>{s.summary}</h2>
+      <p class="lead" style="font-size:.85rem">{s.summaryNote}</p>
+      {p.summary ? p.summary.split(/\n+/).map((para: string) => <p style="max-width:75ch">{para}</p>) : <p>–</p>}
+    </section>
+    <div class="grid" style="gap:18px">
+      <section class="card kpi">
+        <small>{s.grant}</small><div class="big">{eur(lang, p.grant_eur)}</div>
+        <small>{s.grantNote}</small>
+        {p.grant_not_comparable && <p class="warn" style="font-size:.85rem">{s.notComparable}</p>}
+      </section>
+      <section class="card">
+        <h2>{s.participants}</h2>
+        <ul style="padding-left:18px">{p.hr.map((h: any) => (
+          <li><a href={`${base}/${lang}/organisations/${slug(h.id)}/`}>{h.name}</a> {h.role === 'coordinator' && <span class="badge">{s.coordinatorLbl}</span>}</li>
+        ))}</ul>
+      </section>
+      <section class="card">
+        <h2>{s.partners}</h2>
+        <p>{p.countries.map((c: string, i: number) => (<><span class={i === 0 ? 'badge' : ''} title={c}>{country(lang, c)}</span>{i < p.countries.length - 1 ? ', ' : ''}</>))}</p>
+        <p class="lead" style="font-size:.85rem">{s.lead}: {coord ? country(lang, coord) : '–'}</p>
+      </section>
+      <section class="card">
+        <h2>{s.topicsLbl}</h2>
+        {p.topics.length ? p.topics.map((x: string) => <span class="tag">{x}</span>) : <p class="lead">{s.noTopics}</p>}
+      </section>
+    </div>
+  </div>
+</Base>

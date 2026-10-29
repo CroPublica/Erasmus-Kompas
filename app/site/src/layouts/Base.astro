@@ -24,7 +24,7 @@ const soon = [s.nav.graph, s.nav.ask];
     {description && <meta name="description" content={description} />}
     <link rel="alternate" hreflang={otherLang(lang)} href={href(otherLang(lang))} />
   </head>
-  <body>
+  <body data-base={base}>
     <a class="skip" href="#main">{s.skip}</a>
     <header class="site">
       <div class="wrap">
@@ -35,6 +35,11 @@ const soon = [s.nav.graph, s.nav.ask];
           {nav.map(([key, p, label]) => <a href={href(lang, p)} aria-current={active === key ? 'page' : undefined}>{label}</a>)}
           <span title={s.soon}>{soon[1]}<small>{s.soon}</small></span>
         </nav>
+        <form class="search" role="search" onsubmit="return false">
+          <label for="gs" class="sr">{s.search}</label>
+          <input id="gs" type="search" placeholder={s.searchPh} autocomplete="off" aria-controls="gs-res" />
+          <ul id="gs-res" hidden></ul>
+        </form>
         <div class="lang" role="group" aria-label={s.other}>
           <a href={href('hr')} hreflang="hr" lang="hr" aria-current={lang === 'hr' ? 'true' : undefined}>HR</a>
           <a href={href('en')} hreflang="en" lang="en" aria-current={lang === 'en' ? 'true' : undefined}>EN</a>
@@ -48,3 +53,33 @@ const soon = [s.nav.graph, s.nav.ask];
     </div></footer>
   </body>
 </html>
+<script>
+  import { slug } from '../lib/i18n';
+  const input = document.getElementById('gs') as HTMLInputElement;
+  const list = document.getElementById('gs-res') as HTMLUListElement;
+  const lang = document.documentElement.lang;
+  const base = document.body.dataset.base || '';
+  let idx: [string, string, string][] | null = null;
+  const fold = (x: string) => x.normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/đ/g, 'd').toLowerCase();
+  async function load() { if (!idx) idx = await (await fetch(`${base}/search.json`)).json(); return idx!; }
+  input.addEventListener('focus', load);
+  input.addEventListener('input', async () => {
+    const q = fold(input.value.trim());
+    const data = await load();
+    list.innerHTML = '';
+    if (q.length < 2) { list.hidden = true; return; }
+    const hits = data.filter(([, n, t]) => fold(`${n} ${t}`).includes(q)).slice(0, 8);
+    for (const [id, n, t] of hits) {
+      const li = document.createElement('li'), a = document.createElement('a');
+      a.href = `${base}/${lang}/organisations/${slug(id)}/`; a.textContent = t ? `${n} · ${t}` : n; li.append(a); list.append(li);
+    }
+    list.hidden = hits.length === 0;
+  });
+  input.addEventListener('keydown', (e) => { if (e.key === 'Escape') { list.hidden = true; } if (e.key === 'ArrowDown') (list.querySelector('a') as HTMLElement | null)?.focus(); });
+  list.addEventListener('keydown', (e) => {
+    const a = document.activeElement as HTMLElement;
+    if (e.key === 'ArrowDown') { (a.closest('li')?.nextElementSibling?.querySelector('a') as HTMLElement | null)?.focus(); e.preventDefault(); }
+    if (e.key === 'ArrowUp') { ((a.closest('li')?.previousElementSibling?.querySelector('a') as HTMLElement | null) ?? input).focus(); e.preventDefault(); }
+    if (e.key === 'Escape') { list.hidden = true; input.focus(); }
+  });
+</script>

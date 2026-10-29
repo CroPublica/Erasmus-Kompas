@@ -2,6 +2,7 @@
 import Base from '../../../layouts/Base.astro';
 import full from '../../../data/orgs_full.json';
 import { LANGS, t, num, eur, slug, type Lang } from '../../../lib/i18n';
+import { country } from '../../../lib/countries';
 
 export const getStaticPaths = () =>
   LANGS.flatMap((lang) => Object.values(full as Record<string, any>).map((o) => ({ params: { lang, id: slug(o.org_id) }, props: { o } })));
@@ -71,9 +72,9 @@ const yy = (y: number) => `'${String(y).slice(2)}`;
           <tbody id="prows">
             {o.projects.map((p: any, i: number) => (
               <tr data-role={p.role} hidden={i >= 12} data-extra={i >= 12 ? '1' : undefined}>
-                <td class="mono">{p.year}</td><td>{p.title}</td><td>{p.type}</td>
+                <td class="mono">{p.year}</td><td><a href={`${base}/${lang}/projects/${slug(p.id)}/`}>{p.title}</a></td><td>{p.type}</td>
                 <td>{p.role === 'coordinator' ? <span class="badge">{s.coordinatorLbl}</span> : s.partner}</td>
-                <td class="mono">{p.lead}</td>
+                <td title={p.lead ? country(lang, p.lead) : ''} class="mono">{p.lead}</td>
                 <td>{s.statuses[p.status] ?? p.status}{p.good_practice ? ` · ${s.goodPractice}` : ''}</td>
               </tr>
             ))}
@@ -86,7 +87,7 @@ const yy = (y: number) => `'${String(y).slice(2)}`;
       <section class="card">
         <h2>{s.worksWith}</h2><p class="lead" style="font-size:.85rem">{s.worksWithLead}</p>
         {o.countries.slice(0, 9).map(([c, n]: [string, number]) => (
-          <div class="barrow"><span>{c}</span><span class="track"><i style={`width:${(n / maxC) * 100}%`}></i></span><span class="mono" style="text-align:right">{n}</span></div>
+          <div class="barrow"><span title={c}>{country(lang, c)}</span><span class="track"><i style={`width:${(n / maxC) * 100}%`}></i></span><span class="mono" style="text-align:right">{n}</span></div>
         ))}
         {o.countries.length === 0 && <p class="lead">–</p>}
       </section>
@@ -97,6 +98,23 @@ const yy = (y: number) => `'${String(y).slice(2)}`;
       </section>}
     </div>
   </div>
+  {o.similar && o.similar.length > 0 && (
+    <section style="margin-top:32px">
+      <h2 style="font-size:1.8rem">{s.similar}</h2>
+      <p class="lead">{s.similarLead}</p>
+      <div class="grid kpis" style="margin-top:14px">
+        {o.similar.map((x: any) => {
+          const link = x.id ? `${base}/${lang}/organisations/${slug(x.id)}/` : null;
+          const inner = (<>
+            <div class="kicker">{x.town}{x.same_town ? ` · ${s.sameTown}` : ''}</div>
+            <h3>{x.name}</h3>
+            {x.projects > 0 ? <strong>{num(lang, x.projects)} {s.kaProjects}</strong> : <span class="warn">{s.noKa2}</span>}
+          </>);
+          return link ? <a class="card simcard" href={link}>{inner}</a> : <div class="card simcard">{inner}</div>;
+        })}
+      </div>
+    </section>
+  )}
 </Base>
 <script>
   let role = '', all = false;

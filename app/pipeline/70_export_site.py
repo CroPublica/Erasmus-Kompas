@@ -8,6 +8,8 @@ Output
   orgs.json       one row per organisation that took part in a KA2 project (index and search)
   orgs_full.json  per-organisation page data, keyed by org_id (used at build time to create pages)
   counties.json   21 counties: KA2 figures per period, coverage per school type
+  coverage.json   counts per county, school type, period and role (the coverage page filters)
+  projects_full.json  per-project page data (summary, countries, topics, Croatian participants)
 """
 import json
 import sys
@@ -76,7 +78,43 @@ def main():
         }
     index.sort(key=lambda r: (-r["projects"], r["name"]))
     write("orgs.json", index)
+    pub = OUT.parent.parent / "public"
+    pub.mkdir(exist_ok=True)
+    (pub / "search.json").write_text(json.dumps([[o["id"], o["name"], o["town"] or ""] for o in index], ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
+
+    # ---- similar organisations: same register kind in the same county, same town first (no coordinates, so no distances)
+    inst = rows(con, """select i.inst_id, i.name, i.town, i.county, i.register_kind, i.org_id,
+                               coalesce((select projects from v_org_ka2 v where v.org_id = i.org_id and v.period = 'all'), 0) projects
+                        from institution i where i.register_kind in ('primary', 'secondary', 'primary,secondary', 'kindergarten') and i.county is not null""")
+    by_county = {}
+    for i in inst:
+        by_county.setdefault((i["county"], i["register_kind"]), []).append(i)
+    for oid, o in full.items():
+        mine = next((i for i in inst if i["org_id"] == oid), None)
+        if not mine:
+            o["similar"] = []
+            continue
+        pool = [i for i in by_county[(mine["county"], mine["register_kind"])] if i["inst_id"] != mine["inst_id"]]
+        pool.sort(key=lambda i: (i["town"] != mine["town"], -i["projects"], i["name"]))
+        o["similar"] = [{"id": i["org_id"], "name": i["name"], "town": i["town"], "projects": i["projects"],
+                         "same_town": i["town"] == mine["town"]} for i in pool[:4]]
+        o["register_kind"] = mine["register_kind"]
     write("orgs_full.json", full)
+
+    write("coverage.json", rows(con, "select period, role, county, school_type, institutions, participating from coverage_scenario"))
+
+    pt = {}
+    for r in rows(con, "select project_id, topic from project_topic"):
+        pt.setdefault(r["project_id"], []).append(r["topic"])
+    hp = {}
+    for r in rows(con, "select x.project_id, x.org_id, o.name, x.role from participation x join organisation o using (org_id) order by x.role desc, o.name"):
+        hp.setdefault(r["project_id"], []).append({"id": r["org_id"], "name": r["name"], "role": r["role"]})
+    projs = {}
+    for r in rows(con, "select project_id, period, call_year, action_type, family, title, summary, status, grant_eur, grant_not_comparable, "
+                       "good_practice, results_available, management, countries from project"):
+        projs[r["project_id"]] = {**r, "countries": [c for c in (r["countries"] or "").split(",") if c],
+                                  "topics": pt.get(r["project_id"], []), "hr": hp.get(r["project_id"], [])}
+    write("projects_full.json", projs)
 
     # ---- counties
     counties = {}
