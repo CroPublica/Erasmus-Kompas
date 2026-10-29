@@ -52,3 +52,9 @@ def test_force_cpu_overrides_a_present_gpu(monkeypatch):
     monkeypatch.delenv("ATLAS_FORCE_CPU")
     monkeypatch.setenv("CUDA_VISIBLE_DEVICES", "-1")
     assert config.gpu_available() is False
+
+
+def test_thinking_switch_is_passed_to_the_chat_model():
+    from atlas.config import make_chat_model
+    assert make_chat_model("ask_answer", "qwen35").reasoning is False
+    assert load_profile("light")["ask_answer"].think is None

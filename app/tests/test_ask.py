@@ -104,3 +104,9 @@ def test_llm_mode_retries_then_falls_back_to_the_template(tb):
     w = FakeWriter("Gimnazija Metković je imala 99 KA2 projekata.")                       # invented number, twice
     r = asker(tb, FakeRouter(route="organisation", organisation="Gimnazija Metković"), w, mode="llm").ask("Koliko je KA2 projekata imala Gimnazija Metković?")
     assert w.calls == 2 and r["fallback"] and not r["verified"] and "22" in r["answer"] and "99" not in r["answer"]
+
+
+def test_llm_mode_never_calls_the_model_when_nothing_was_found(tb):
+    w = FakeWriter("Gimnazija Atlantida ima 99 projekata.")
+    r = asker(tb, FakeRouter(route="organisation", organisation="Gimnazija Atlantida"), w, mode="llm").ask("Koliko KA2 projekata ima Gimnazija Atlantida?")
+    assert w.calls == 0 and "Nema dokaza" in r["answer"] and "99" not in r["answer"]

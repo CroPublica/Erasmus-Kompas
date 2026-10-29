@@ -15,6 +15,7 @@ class ModelSpec(BaseModel):
     model: str
     temperature: float = 0.0
     num_ctx: Optional[int] = None
+    think: Optional[bool] = None       # thinking models (Qwen3.5): False turns the reasoning phase off; None leaves the model default
     base_url: Optional[str] = None
 
 
@@ -65,6 +66,8 @@ def make_chat_model(role: str, profile: Optional[str] = None):
     if spec.provider == "ollama":
         from langchain_ollama import ChatOllama
         extra = {"num_ctx": spec.num_ctx} if spec.num_ctx else {}
+        if spec.think is not None:
+            extra["reasoning"] = spec.think
         return ChatOllama(model=spec.model, base_url=_ollama_url(spec), temperature=spec.temperature, **extra)
     from langchain_openai import ChatOpenAI
     return ChatOpenAI(model=spec.model, base_url=spec.base_url, temperature=spec.temperature,

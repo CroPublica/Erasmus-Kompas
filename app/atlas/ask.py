@@ -457,7 +457,7 @@ class Asker:
             results.append(tb.search_projects(plan["topic"], plan["period"]))
         used = [x.as_dict() for x in results]
         out = {"plan": plan, "results": used, "trace": s["trace"] + [f"tools={[x['tool'] for x in used]}"]}
-        if self.mode == "template":
+        if self.mode == "template" or not any(x["rows"] for x in used):      # nothing found: the "no evidence" text comes from code, never from the model
             out.update(done=True, answer=template_answer(s["lang"], r, used), trace=out["trace"] + ["template answer"])
         return out
 

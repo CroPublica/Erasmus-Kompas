@@ -55,3 +55,26 @@ profiles:
     extraction:   {provider: ollama, model: "gemma4:latest", temperature: 0.0, num_ctx: 8192}
     translation:  {provider: ollama, model: "gemma4:latest", temperature: 0.0, num_ctx: 4096}
     embeddings:   {provider: ollama, model: "bge-m3"}
+
+  # Candidates from the model search (2026-10-29), to be tested with eval/run_ask.py --mode llm. think: false = no reasoning phase.
+  qwen35:
+    ask_router:   {provider: ollama, model: "qwen3.5:4b", temperature: 0.0, num_ctx: 4096, think: false}
+    ask_answer:   {provider: ollama, model: "qwen3.5:9b", temperature: 0.2, num_ctx: 8192, think: false}
+    extraction:   {provider: ollama, model: "qwen3.5:9b", temperature: 0.0, num_ctx: 8192, think: false}
+    translation:  {provider: ollama, model: "qwen3.5:9b", temperature: 0.0, num_ctx: 4096, think: false}
+    embeddings:   {provider: ollama, model: "bge-m3"}
+
+  gemma_e4b:
+    ask_router:   {provider: ollama, model: "gemma4:e4b", temperature: 0.0, num_ctx: 4096}
+    ask_answer:   {provider: ollama, model: "gemma4:e4b", temperature: 0.2, num_ctx: 8192}
+    extraction:   {provider: ollama, model: "gemma4:e4b", temperature: 0.0, num_ctx: 8192}
+    translation:  {provider: ollama, model: "gemma4:e4b", temperature: 0.0, num_ctx: 4096}
+    embeddings:   {provider: ollama, model: "bge-m3"}
+
+  # Large GPU profile (needs `ollama pull gemma4:31b`, 20 GB): phrasing and extraction by the 31B model, routing by the small one.
+  gemma31b:
+    ask_router:   {provider: ollama, model: "qwen3.5:4b", temperature: 0.0, num_ctx: 4096, think: false}
+    ask_answer:   {provider: ollama, model: "gemma4:31b", temperature: 0.2, num_ctx: 8192}
+    extraction:   {provider: ollama, model: "gemma4:31b", temperature: 0.0, num_ctx: 8192}
+    translation:  {provider: ollama, model: "gemma4:31b", temperature: 0.0, num_ctx: 4096}
+    embeddings:   {provider: ollama, model: "bge-m3"}
