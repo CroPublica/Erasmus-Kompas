@@ -12,8 +12,9 @@ const nav = [
   ['coverage', '', s.nav.coverage],
   ['orgs', '/organisations/', s.nav.orgs],
   ['places', '/places/', s.nav.places],
+  ['ask', '/ask/', s.nav.ask],
 ] as const;
-const soon = [s.nav.graph, s.nav.ask];
+const soon = [s.nav.graph];
 ---
 <!doctype html>
 <html lang={lang}>
@@ -33,7 +34,6 @@ const soon = [s.nav.graph, s.nav.ask];
         <nav class="main" aria-label="Main">
           {soon[0] && <span title={s.soon}>{soon[0]}<small>{s.soon}</small></span>}
           {nav.map(([key, p, label]) => <a href={href(lang, p)} aria-current={active === key ? 'page' : undefined}>{label}</a>)}
-          <span title={s.soon}>{soon[1]}<small>{s.soon}</small></span>
         </nav>
         <form class="search" role="search" onsubmit="return false">
           <label for="gs" class="sr">{s.search}</label>

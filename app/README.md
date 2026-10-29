@@ -90,7 +90,7 @@ cd site && npm install && npm run build      # static site in site/dist (npm run
 
 ```
 ./build_site.sh                    # export data from DuckDB, build site/dist (static files, no server needed)
-./build_site.sh --test             # ... and run the 12 browser tests
+./build_site.sh --test             # ... and run the 16 browser tests
 SITE_BASE=/atlas ./build_site.sh   # site served under a sub-path (also SITE_URL=https://example.org for canonical links)
 ./build_site.sh --docker           # ... and build a container image (deploy/Dockerfile: nginx, port 8080, security headers)
 docker run --rm -p 8080:8080 ka2-atlas
@@ -101,3 +101,19 @@ upload the folder and serve `404.html` for missing pages. The exported data cont
 2026-10-29). The Ask page, when built, needs a small API next to the static files; the static part does not depend on it.
 `deploy/nginx.conf` sets caching (hashed assets for a year, pages revalidated) and a strict content-security policy.
 Needs Node >= 22.23.4 (the script checks). The browser tests also need `cd site && npx playwright install chromium` once.
+
+### Ask (question answering), first version
+
+```
+.venv/bin/python -m pytest -q                       # includes the tool, flow and API tests (no model server needed)
+.venv/bin/python eval/run_ask.py                    # score eval/qa_hr.jsonl (template answers; router from the active profile)
+.venv/bin/python eval/run_ask.py --mode llm         # let the answer model phrase the answers (the verifier checks them)
+ATLAS_PROFILE=gemma8b .venv/bin/python eval/run_ask.py --mode llm --profile gemma8b
+.venv/bin/uvicorn atlas.api:app --host 127.0.0.1 --port 8000     # POST /ask {"question": "..."}
+```
+
+Files: `atlas/tools.py` (nine read-only tools), `atlas/ask.py` (LangGraph flow: language, route, tools, answer, verify),
+`atlas/api.py` (FastAPI: size cap, rate limit, concurrency limit), `eval/run_ask.py` (scoring; results in `eval/results/`).
+Answers are built by code from the tool results by default (`ATLAS_ANSWER_MODE=template`); `llm` lets the model phrase them
+with a verifier and a template fallback. Questions about problems, solutions and themes are answered with "not available yet"
+until the concept layer exists. Needs Ollama running on 127.0.0.1 with the models of the active profile.

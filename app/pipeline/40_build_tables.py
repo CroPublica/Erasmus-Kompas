@@ -28,7 +28,7 @@ def main():
     for period, t in (("2014-2020", "stg_ka2_2014_2020"), ("2021-2027", "stg_ka2_2021_2027")):
         grant = find_col(con, t, "EU Grant")
         pieces.append(f"""select '{period}' period, "Project Identifier" project_id, try_cast("Call year" as integer) call_year,
-            "Action Type" action_type, "Project Title" title, "Project Summary" summary, "Project Status" status,
+            "Action Type" action_type, trim("Project Title") title, trim("Project Summary") summary, "Project Status" status,
             try_cast("{grant}" as double) grant_eur, ("Is Good Practice" = 'Yes') good_practice,
             ("Results Available" = 'Yes') results_available, "Topics" topics_raw, "Participating countries" countries
             from "{t}" """)

@@ -19,7 +19,7 @@ const errors = [];
 let passed = 0, failed = 0;
 const open = async (path, w = 1280) => {
   const p = await browser.newPage({ viewport: { width: w, height: 900 } });
-  p.on('console', (m) => m.type() === 'error' && errors.push(`${path}: ${m.text()}`));
+  p.on('console', (m) => m.type() === 'error' && !/status of (429|503|500)/.test(m.text()) && errors.push(`${path}: ${m.text()}`));  // mocked API failures are expected
   p.on('pageerror', (e) => errors.push(`${path}: ${e}`));
   await p.goto(URL + path);
   return p;
@@ -85,7 +85,7 @@ await test('no horizontal scroll at phone width', async () => {
 });
 await test('accessibility (axe: wcag2a/aa) has no violations', async () => {
   const bad = [];
-  for (const path of ['/en/', '/hr/', '/en/organisations/', '/en/organisations/mzo-19-049-502/', '/en/places/zagrebacka/', '/en/places/']) {
+  for (const path of ['/en/', '/hr/', '/en/organisations/', '/en/organisations/mzo-19-049-502/', '/en/places/zagrebacka/', '/en/places/', '/en/ask/', '/hr/ask/']) {
     const p = await open(path); await p.addScriptTag({ path: axePath });
     const r = await p.evaluate(() => axe.run(document, { runOnly: ['wcag2a', 'wcag2aa'] }));
     for (const v of r.violations) bad.push(`${path} ${v.id} (${v.nodes.length}): ${v.nodes[0].target}`);
@@ -104,6 +104,33 @@ await test('keyboard: search results reachable with arrows, Escape returns to th
   const p = await open('/en/'); await p.focus('#gs'); await p.keyboard.type('metkov'); await p.locator('#gs-res a').first().waitFor();
   await p.keyboard.press('ArrowDown'); assert.equal(await p.evaluate(() => document.activeElement.tagName), 'A');
   await p.keyboard.press('Escape'); assert.equal(await p.evaluate(() => document.activeElement.id), 'gs');
+});
+await test('ask page: answer, sources, how-I-got-this, follow-up keeps the organisation', async () => {
+  const p = await open('/en/ask/'); const bodies = [];
+  await p.route('**/api/ask', async (route) => {
+    bodies.push(route.request().postDataJSON());
+    await route.fulfill({ json: { answer: 'Gimnazija METKOVIĆ: 22 KA2 projects.', lang: 'en', route: 'organisation', verified: true, fallback: false,
+      last_org_id: 'MZO-19-049-502', citations: ['org:MZO-19-049-502', 'project:2023-1-HR01-KA220-SCH-000158622'],
+      tools: [{ tool: 'organisation_profile', args: { org_id: 'MZO-19-049-502' }, notes: ['grants are per project'] }] } });
+  });
+  await p.fill('#q', 'How many KA2 projects does Gimnazija Metković have?'); await p.click('#go');
+  await p.locator('#out .card').waitFor();
+  assert.match(await p.locator('#out').innerText(), /22 KA2 projects/);
+  const links = await p.locator('#out a.pill').evaluateAll((a) => a.map((x) => x.getAttribute('href')));
+  assert.ok(links[0].endsWith('/en/organisations/mzo-19-049-502/') && links[1].includes('/en/projects/'), links.join());
+  await p.locator('#out summary').click(); assert.match(await p.locator('#out details').innerText(), /organisation_profile/);
+  await p.fill('#q', 'And how many did it coordinate?'); await p.click('#go'); await p.waitForTimeout(300);
+  assert.equal(bodies[1].last_org_id, 'MZO-19-049-502');
+  await p.locator('#out a.pill').first().click(); await p.waitForURL(/organisations\//);
+});
+await test('ask page: busy, rate limit and failure are shown, example questions work', async () => {
+  const p = await open('/hr/ask/'); let code = 429;
+  await p.route('**/api/ask', (route) => route.fulfill({ status: code, json: {} }));
+  await p.fill('#q', 'test'); await p.click('#go'); await p.locator('#out .warn').waitFor();
+  assert.match(await p.locator('#out').innerText(), /Previše pitanja/);
+  code = 503; await p.click('#go'); await p.waitForFunction(() => /zauzeta/.test(document.getElementById('out').innerText));
+  code = 500; await p.click('#go'); await p.waitForFunction(() => /pošlo po zlu/.test(document.getElementById('out').innerText));
+  await p.locator('.ex').first().click(); assert.ok((await p.inputValue('#q')).length > 10);
 });
 await test('no console errors', async () => assert.deepEqual(errors, []));
 await browser.close(); stop();
