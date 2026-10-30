@@ -77,13 +77,11 @@
    "answer": "Prema podacima, Gimnazija Metković koordinira jedan projekt. Iznos potpore za projekte koje ta organizacija koordinira iznosi 120 000 EUR (grants coordinated). Ukupna vrijednost svih projekata u kojima sudjeluje Gimnazija Metković iznosi 3 273 111,19 EUR.",
    "checks": {
     "route": true,
-    "facts": false,
+    "facts": true,
     "language": true,
     "refusal": null
    },
-   "missing": [
-    "120.000"
-   ],
+   "missing": [],
    "seconds": 2.3,
    "verified": true,
    "fallback": false

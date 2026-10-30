@@ -20,11 +20,25 @@ ROUTE_OK = {"lookup": {"organisation", "county", "top_organisations"}, "statisti
 
 def variants(x: str) -> list[str]:
     """An expected string in the forms an answer may use (3.830 / 3,830; 29,4 / 29.4)."""
-    v = {x, x.replace(".", ","), x.replace(",", ".")}
+    v = {x, x.replace(".", ","), x.replace(",", "."), x.replace(".", " "), x.replace(",", " "), x.replace(".", "\u00a0")}
     if re.fullmatch(r"\d{1,3}([.,]\d{3})+", x):
         v.add(re.sub(r"[.,]", "", x))
         v.add(re.sub(r"[.,]", ".", x)); v.add(re.sub(r"[.,]", ",", x))
     return [t.lower() for t in v]
+
+
+def rescore(path):
+    """Re-grade a saved results file (after a scoring change) without calling any model."""
+    qs = {q["id"]: q for q in (json.loads(l) for l in open(ROOT / "eval" / "qa_hr.jsonl", encoding="utf-8"))}
+    d = json.loads(Path(path).read_text())
+    for r in d["results"]:
+        q = qs[r["id"]]
+        text = strip_acc(r["answer"]).replace("\u00a0", " ")
+        miss = [e for e in (q["expected"] or []) if not any(strip_acc(v) in text for v in variants(e))]
+        r["missing"], r["checks"]["facts"] = miss, (not miss if q["expected"] else None)
+    Path(path).write_text(json.dumps(d, ensure_ascii=False, indent=1))
+    v = [r["checks"]["facts"] for r in d["results"] if r["checks"]["facts"] is not None]
+    print(f"{Path(path).name}: facts {sum(v)}/{len(v)}")
 
 
 def strip_acc(s: str) -> str:
@@ -36,7 +50,12 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--mode", default=None); ap.add_argument("--profile", default=None); ap.add_argument("--out", default=None)
     ap.add_argument("--only", default=None, help="comma-separated question ids")
+    ap.add_argument("--rescore", nargs="+", help="re-grade saved results files, no model calls")
     a = ap.parse_args()
+    if a.rescore:
+        for f in a.rescore:
+            rescore(f)
+        return
     qs = [json.loads(l) for l in open(ROOT / "eval" / "qa_hr.jsonl", encoding="utf-8")]
     if a.only:
         qs = [q for q in qs if q["id"] in a.only.split(",")]

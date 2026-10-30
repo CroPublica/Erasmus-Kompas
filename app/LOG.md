@@ -144,6 +144,9 @@ Not a check, an open question: school coverage. The coverage screenshot says 399
 | Gemma 4 8B | code (template) | 43/46 | 27/31 | 8/9 | 2.4 s |
 | Qwen 2.5 3B | the model, checked | 44/46 | 18/31 | 8/9 | 11.8 s |
 | Gemma 4 8B | the model, checked | 43/46 | 18/31 | 8/9 | 23.3 s |
+| Qwen 3.5 4B router, 9B answers (thinking off) | the model, checked | 46/46 | 26/31 | 8/9 | 2.8 s |
+| Qwen 3.5 4B router, Gemma 4 31B answers | the model, checked | 46/46 | 25/31 | 8/9 | 10.6 s |
+| Gemma 4 E4B (router and answers) | the model, checked | 46/46 | 23/31 | 9/9 | 16.3 s |
 
   The router needs few-shot examples written as JSON: with arrow-style examples Gemma copied the arrows, returned no valid JSON and every question was refused (route 20/46); a failed router now falls back to program rules instead of refusing. First LLM-written answers (Qwen 3B, old prompt): facts 19/31, median 11 s, garbled Croatian. Reruns with the fixed router prompt: neither model writes reliable answers (facts 18/31 for both, with the verifier and template fallback; 11.8 s and 23.3 s per question), so code-written answers stay the default and the model search continues.
 
@@ -168,6 +171,10 @@ Two model-search reports were pasted by the owner (their claims, e.g. the serbev
 | qwen3-embedding:0.6b (with instruction prefix) | 0.656 | 0.856 | 0.727 | 61 s |
 
   bge-m3 stays. Not yet tested: Qwen3-Embedding 4B, and our own 30-50 Croatian queries against project summaries.
+
+### Candidate models, first results (2026-10-30)
+
+Qwen 3.5 9B (thinking off) is the best model-written answer so far: 26/31 facts at 2.8 s, 2 fallbacks to the template. Gemma 4 31B: 25/31 at 10.6 s, 7 fallbacks. Typical faults: raw fractions instead of a percentage (0.5689 for 56.9 %), a requested figure left out (the expected 450, the 1,356 schools), and in one case "no data for Croatia" over a result that had it. Both stay below the code-written answers (31/31, 0.4 s), so code answers remain the default. `gemma4:e4b` failed to load in Ollama 0.30.10 ("Gemma4Assistant requires ctx_other to be set"); after upgrading to Ollama 0.40.13 (2026-10-30, still on 127.0.0.1, models kept) it loads and scores 23/31 at 16.3 s. Its answers can be wrong in meaning while every number is genuine: B01 said "46,526 KA2 projects have a Croatian participant" (the EU total from the tool output), which the number check cannot catch. The scorer now also accepts space-grouped numbers (120 000); `run_ask.py --rescore FILE` regrades saved results.
 
 ## 6. Findings about the raw data
 
