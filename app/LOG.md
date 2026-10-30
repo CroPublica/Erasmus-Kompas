@@ -153,6 +153,22 @@ Not a check, an open question: school coverage. The coverage screenshot says 399
 - EU pages: project pages link to the project's page on the Erasmus+ Project Results Platform (`results_card_url`, present for every project) and to its own website when it has one; no pages are built for the ~43,000 projects without a Croatian participant.
 - Croatian labels: review document with 76 topic names and 130 website strings (drafts by me, unreviewed) at https://claude.ai/artifact/65f8Ttm2AwiDRmBnfVW1BU ; copies in `data/review/topic_labels_hr.csv` and `data/review/ui_strings_hr.csv`. When the owner has edited the document, the corrected Croatian goes into those files and into the site (`label_hr` for topics, `site/src/lib/i18n.ts`). 39 Python tests and 17 browser tests pass.
 
+### Model search results (2026-10-29)
+
+Two model-search reports were pasted by the owner (their claims, e.g. the serbeval scores, are unverified here and used only as hints). Everything below was measured on our own setup.
+
+- Pulled for testing: `qwen3.5:4b`, `qwen3.5:9b`, `gemma4:e4b`, `gemma4:31b`, `qwen3-embedding:0.6b`, `embeddinggemma:300m`. New profiles in `config/models.yaml`: `qwen35` (router 4B, answers and extraction 9B, thinking off), `gemma_e4b`, `gemma31b`; a new `think` setting switches the reasoning phase off for Qwen3.5.
+- Code-side rules the reports recommended, already in place: every number in a model answer is checked against the tool output; when the tools find nothing the "no evidence" text comes from code and the model is not called (new test); the router uses a JSON schema; extraction quotes are verified as substrings of the summary.
+- **Embeddings, Croatian question to English passage** (Belebele hrv_Latn to eng_Latn, 900 questions, 488 passages; `eval/embed_belebele.py`; the two language files are not in the same row order, aligned by article and question number):
+
+| Embedding model | Recall@1 | Recall@10 | MRR | Time |
+|---|---|---|---|---|
+| bge-m3 | 0.859 | 0.972 | 0.906 | 22 s |
+| embeddinggemma:300m | 0.747 | 0.908 | 0.805 | 36 s |
+| qwen3-embedding:0.6b (with instruction prefix) | 0.656 | 0.856 | 0.727 | 61 s |
+
+  bge-m3 stays. Not yet tested: Qwen3-Embedding 4B, and our own 30-50 Croatian queries against project summaries.
+
 ## 6. Findings about the raw data
 
 - `tablica_7` CSV holds call years 2024–2026 only (1,856 rows); the `.xlsx` holds 2021–2026 (3,081). Check 5 uses the 2024–2026 rows.
