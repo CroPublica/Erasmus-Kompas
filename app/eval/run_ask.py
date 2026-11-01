@@ -14,7 +14,7 @@ sys.path.insert(0, str(ROOT))
 from atlas.ask import Asker, detect_language  # noqa: E402
 from atlas.tools import TOOLS  # noqa: E402
 
-ROUTE_OK = {"lookup": {"organisation", "county", "top_organisations"}, "statistics": {"national", "county", "country_ranking", "top_organisations"},
+ROUTE_OK = {"lookup": {"organisation", "county", "top_organisations"}, "statistics": {"national", "county", "country_ranking", "top_organisations", "success"},
             "coverage": {"coverage"}, "refuse": None, "limits": None}
 
 

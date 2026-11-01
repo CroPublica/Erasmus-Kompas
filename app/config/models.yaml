@@ -96,3 +96,11 @@ profiles:
   # Removed 2026-10-30 after testing (models deleted from Ollama; results in LOG.md): gemma_e4b, gemma31b (Q4), qwen35_bf16, cand_mistral24, cand_qwen3_14b, cand_gemma3tools.
 
   # DeepSeek R1 distills 8B/14B/32B were tested 2026-10-31 and deleted (see LOG.md); their profiles were removed.
+
+  # CPU-only host that can run a 9B model (16+ cores, 16 GB RAM or more): tested 2026-11-01 on a 16-core machine with no GPU.
+  cpu_qwen35:
+    ask_router:   {provider: ollama, model: "qwen3.5:4b", temperature: 0.0, num_ctx: 4096, think: false}
+    ask_answer:   {provider: ollama, model: "qwen3.5:9b", temperature: 0.2, num_ctx: 4096, think: false}
+    extraction:   {provider: ollama, model: "qwen3.5:9b", temperature: 0.0, num_ctx: 8192, think: false}
+    translation:  {provider: ollama, model: "qwen3.5:9b", temperature: 0.0, num_ctx: 4096, think: false}
+    embeddings:   {provider: ollama, model: "bge-m3"}

@@ -62,7 +62,8 @@ Output: `data/atlas.duckdb` (rebuilt each time, not committed). Human review dec
 | 40 | `pipeline/40_build_tables.py` | `project`, `project_topic`, and the views `v_org_ka2`, `v_county_ka2`, `v_coverage`, `v_hr_participation` | done |
 | 50 | `pipeline/50_extract_concepts.py` | LLM extraction of problems, target groups, approaches, outputs with evidence quotes; cache in `data/extraction_cache.jsonl`; `--limit N` for tests | written, tested on 6 projects; full run pending |
 | — | `eval/gold/` | gold-set batches of proposed extractions for human review (`make_batch.py`, `read_gold.py`, `batch_01.md`); scores step 50 | batch 1 under review |
-| 51 | canonicalisation | merge near-duplicates, Croatian labels | not started |
+| 35 | `pipeline/35_applications.py` | applications received and projects contracted per call year and sector (tablica 3 and 9) | done |
+| 51 | `pipeline/51_canonicalise.py` | merge near-duplicate concepts (embeddings with guards); tables `concept`, `concept_map`, `project_concept`; Croatian label list for review | written and tested on partial data; runs after the full extraction |
 | 60, 70 | graph analysis, site export | communities, static JSON per page | not started |
 | 99 | `pipeline/99_validate.py` | regression checks from the plan | done (7 checks) |
 
@@ -117,3 +118,10 @@ Files: `atlas/tools.py` (nine read-only tools), `atlas/ask.py` (LangGraph flow: 
 Answers are built by code from the tool results by default (`ATLAS_ANSWER_MODE=template`); `llm` lets the model phrase them
 with a verifier and a template fallback. Questions about problems, solutions and themes are answered with "not available yet"
 until the concept layer exists. Needs Ollama running on 127.0.0.1 with the models of the active profile.
+
+### Tests that need running services
+
+- `cd site && node tests/ui.mjs` (builds are served by its own preview server; `SITE_BASE=/atlas` for a sub-path build).
+- End to end, no mocks: `docker run -d --rm --name ka2t --network host ka2-atlas`, `uvicorn atlas.api:app --host 127.0.0.1 --port 8000`, then `node tests/e2e_ask.mjs`.
+- Load: `python tools/load_test.py http://localhost:8080/api/ask 10` (and `--rate` for the per-minute limit).
+- CPU only: start a second Ollama that cannot see the GPU (`CUDA_VISIBLE_DEVICES=-1 OLLAMA_LLM_LIBRARY=cpu OLLAMA_HOST=127.0.0.1:11435 ollama serve`), then `ATLAS_OLLAMA_URL=http://127.0.0.1:11435 python eval/run_ask.py --profile cpu`.

@@ -38,6 +38,14 @@ def items(rec, kind):
     return [x if isinstance(x, str) else x["text"] for x in xs]
 
 
+def recall_at(gold_texts, ext_texts, embed, tau):
+    """Number of gold phrases that have an extracted phrase with cosine similarity >= tau. `embed(list) -> unit-length rows`."""
+    if not gold_texts or not ext_texts:
+        return 0
+    sim = embed(gold_texts) @ embed(ext_texts).T
+    return int((sim.max(axis=1) >= tau).sum())
+
+
 def main(tags, taus=(0.65, 0.72, 0.80)):
     gold = [json.loads(l) for l in (HERE / "gold.jsonl").read_text(encoding="utf-8").splitlines() if l.strip()]
     emb = make_embeddings()

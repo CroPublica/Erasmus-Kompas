@@ -11,6 +11,7 @@ community_summary, concept_card, concept_centrality), success_rate (tablica 8/9)
 from __future__ import annotations
 
 import math
+import threading
 from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any, Optional
@@ -67,12 +68,19 @@ def _tok_match(a: str, b: str) -> bool:
 class Toolbox:
     def __init__(self, db_path: Optional[Path] = None):
         self.con = duckdb.connect(str(db_path or DB_PATH), read_only=True)
+        self._local = threading.local()                  # one cursor per thread: a DuckDB connection refuses overlapping calls
         self._names: Optional[list[tuple[str, str, Optional[str], str]]] = None
-        self._counties = {r[0]: r[1] for r in self.con.execute("select stem, label from county").fetchall()}
+        self._counties = {r[0]: r[1] for r in self._cur().execute("select stem, label from county").fetchall()}
 
     # ------------------------------------------------------------------ helpers
+    def _cur(self):
+        c = getattr(self._local, "cur", None)
+        if c is None:
+            c = self._local.cur = self.con.cursor()
+        return c
+
     def _rows(self, sql: str, params: Optional[list] = None) -> list[dict]:
-        cur = self.con.execute(sql, params or [])
+        cur = self._cur().execute(sql, params or [])
         names = [d[0] for d in cur.description]
         return [dict(zip(names, r)) for r in cur.fetchall()]
 
@@ -269,7 +277,7 @@ class Toolbox:
         types = self._rows("""select m.org_class, count(*) projects_coordinated
                               from participation x join organisation o using (org_id) join org_class_map m on m.eu_org_type = o.eu_org_type
                               where x.role = 'coordinator' and (? = 'all' or x.period = ?) group by 1 order by 2 desc""", [period, period])
-        eu = sum(self.con.execute(f"select count(*) from {t}").fetchone()[0]
+        eu = sum(self._cur().execute(f"select count(*) from {t}").fetchone()[0]
                  for t in ("stg_ka2_2014_2020", "stg_ka2_2021_2027")
                  if period == "all" or t.endswith(period.replace("-", "_")))
         by_period = {x["period"]: x["projects"] for x in self._rows("select period, projects from v_hr_participation")}
@@ -295,6 +303,34 @@ class Toolbox:
             hr["period"] = period
         res.rows = rows[:limit] + ([hr] if hr and hr["rank"] > limit else [])
         res.notes.append("count of KA2 projects coordinated from each country in the EU export; country codes are Erasmus+ codes (EL = Greece)")
+        return res
+
+    def success_rate(self, period: str = "2021-2027", year: Optional[int] = None, action: str = "KA2", sector: Optional[str] = None) -> ToolResult:
+        """Applications received and projects contracted in Croatia per call year (tablica 3 and 9), with rate = contracted / applications.
+        2014-2020 has one figure for all actions together (the published table has no KA split); 2021-2027 has KA1 and KA2."""
+        res = ToolResult("success_rate", {"period": period, "year": year, "action": action, "sector": sector})
+        if period not in ("2014-2020", "2021-2027"):
+            res.notes.append("period must be 2014-2020 or 2021-2027")
+            return res
+        act = "all" if period == "2014-2020" else action
+        where, params = ["period = ?", "action = ?"], [period, act]
+        if year:
+            where.append("call_year = ?"); params.append(int(year))
+        if sector:
+            where.append("lower(sector) like ?"); params.append(f"%{sector.lower()}%")
+        res.rows = self._rows(f"""select call_year, sum(applications) applications, sum(contracted) contracted,
+                                         sum(contracted) * 1.0 / nullif(sum(applications), 0) rate
+                                  from application_result where {' and '.join(where)} group by 1 order by 1""", params)
+        for r in res.rows:
+            r["rate"] = r["rate"] if r["rate"] is not None else 0.0
+        if len(res.rows) > 1:
+            a, c = sum(r["applications"] for r in res.rows), sum(r["contracted"] for r in res.rows)
+            res.rows.append({"call_year": "total", "applications": a, "contracted": c, "rate": c / a if a else 0.0})
+        if not res.rows:
+            res.notes.append("no application figures for those arguments")
+        res.notes.append("applications received by the Croatian National Agency and projects contracted; rate = contracted / applications. "
+                         + ("2014-2020: all actions together (no KA split is published). " if period == "2014-2020" else f"{act} only. ")
+                         + "The 2026 call is partial.")
         return res
 
     def coverage(self, county: Optional[str] = None, school_type: str = "both", period: str = "all", role: str = "any") -> ToolResult:
@@ -356,4 +392,4 @@ class Toolbox:
 
 
 TOOLS = ["find_organisation", "organisation_profile", "similar_organisations", "county_stats", "top_organisations",
-         "national_stats", "country_stats", "coverage", "search_projects"]
+         "national_stats", "country_stats", "coverage", "search_projects", "success_rate"]

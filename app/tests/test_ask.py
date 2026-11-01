@@ -140,3 +140,20 @@ def test_polish_may_answer_part_of_the_draft_but_not_use_other_numbers(tb):
     eu_total = FakeWriter("Gimnazija Metković sudjeluje u 46526 projekata, od toga 22 njezinih.")           # a real number from the tool output, but not from the draft
     r = asker(tb, plan, eu_total, mode="polish").ask("Koliko KA2 projekata ima Gimnazija Metković?")
     assert r["fallback"] and "46526" not in r["answer"]
+
+
+def test_success_rate_route_needs_keywords_and_answers_from_the_table(tb):
+    a = asker(tb, FakeRouter(route="national"))
+    r = a.ask("Kolika je bila stopa prolaznosti KA2 prijava u Hrvatskoj 2023.?")
+    assert r["route"] == "success" and "405" in r["answer"] and "49" in r["answer"] and "12,1" in r["answer"]
+    r = asker(tb, FakeRouter(route="success")).ask("Koji će projekti biti odobreni 2027.?")       # the router said success, the words do not
+    assert r["route"] == "out_of_scope"
+    r = asker(tb, FakeRouter(route="success")).ask("Koliko je KA2 projekata s hrvatskim sudionicima bilo 2014.–2020.?")
+    assert r["route"] == "national" and "2.040" in r["answer"]
+
+
+def test_verifier_flags_cannot_determine_claims_when_data_exists(tb):
+    res = [tb.national_stats().as_dict()]
+    assert verify_answer("Iz sažetka nije moguće izdvojiti ukupan broj projekata.", res, "hr")
+    assert verify_answer("It is not possible to determine the number of projects.", res, "en")
+    assert verify_answer("3.830 KA2 projekata ima hrvatskog sudionika.", res, "hr") == []

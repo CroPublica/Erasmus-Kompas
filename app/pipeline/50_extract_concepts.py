@@ -18,7 +18,9 @@ Usage: python pipeline/50_extract_concepts.py [--limit N] [--profile NAME] [--pe
   --reload    do not call the model, only rebuild the table from the cache
 """
 import argparse
+import itertools
 import json
+import os
 import re
 import sys
 import time
@@ -97,8 +99,27 @@ def clean(text: str) -> str:
     return re.sub(r"[ \t]+", " ", re.sub(r"\n{3,}", "\n\n", text)).strip()[:MAX_CHARS]
 
 
+# Programme administration and dissemination that the prompt asks the model to leave out but small models still list; flagged (not deleted)
+# so that method and output counts can exclude them and the flagged rows can still be audited.
+GENERIC = re.compile(r"\bdissemination\b|\bdisseminat\w*|project management|management of the project|(transnational|project|partner|steering|management|kick-?off|e-?|online) ?meetings?\b"
+                     r"|\bkick-?off\b|overall (project )?evaluation|evaluation of the (whole )?project|\bmonitoring\b|\breporting\b|visibility|multiplier events?|\bproject website\b"
+                     r"|\bsocial media\b|\bnewsletters?\b|\bpress release", re.I)
+
+
+def is_generic(text: str) -> bool:
+    return bool(GENERIC.search(text or ""))
+
+
 def squash(s: str) -> str:
     return re.sub(r"[^\w]+", " ", s.lower()).strip()
+
+
+def make_clients():
+    """One Ollama client per server in ATLAS_OLLAMA_URLS (comma separated), else the configured one. Models whose architecture cannot serve
+    parallel requests (Qwen 3.5 in Ollama) get their parallelism from several server processes, each holding its own copy of the model."""
+    import ollama
+    urls = [u.strip() for u in os.environ.get("ATLAS_OLLAMA_URLS", "").split(",") if u.strip()] or [load_url()]
+    return [ollama.Client(host=u) for u in urls]
 
 
 def call_model(client, spec, text, status):
@@ -139,9 +160,10 @@ def main():
                 r = json.loads(line)
                 done[(r["project_id"], r["extractor"])] = r
 
-    con = connect()
+    con = connect(read_only=True)                     # the long model run must not hold the database: it is opened for writing only at the end
     rows = con.execute("select project_id, period, status, summary from project where summary is not null "
                        + (f"and period = '{args.period}' " if args.period else "") + "order by project_id").fetchall()
+    con.close()
     rows = [r for r in rows if len(clean(r[3])) > 80]
     if args.ids:
         wanted = {l.strip() for l in Path(args.ids).read_text(encoding="utf-8").splitlines() if l.strip()}
@@ -151,9 +173,9 @@ def main():
 
     todo = [r for r in rows if (r[0], tag) not in done]
     if not args.reload and todo:
-        import ollama
-        client = ollama.Client(host=load_url())
-        workers = max_concurrency()
+        clients = make_clients()
+        workers = max(max_concurrency(), len(clients)) if os.environ.get("ATLAS_OLLAMA_URLS") else max_concurrency()
+        rr = itertools.count()
         print(f"{len(rows)} projects, {len(todo)} to extract with {spec.model} ({workers} parallel)", flush=True)
         t0 = time.time()
 
@@ -161,7 +183,7 @@ def main():
             pid, period, status, summary = r
             text = clean(summary)
             try:
-                res = verify(call_model(client, spec, text, status or "unknown"), text)
+                res = verify(call_model(clients[next(rr) % len(clients)], spec, text, status or "unknown"), text)
             except Exception as e:                       # keep going; failed projects are listed at the end
                 return pid, None, str(e)[:200]
             return pid, res, None
@@ -182,18 +204,20 @@ def main():
             print(f"{len(failed)} failed, e.g. {failed[:3]}")
 
     # ---- table
+    con = connect()
     con.execute("create or replace table concept_mention(project_id varchar, kind varchar, text varchar, status varchar, "
-                "evidence varchar, evidence_verified boolean, extractor varchar)")
+                "evidence varchar, evidence_verified boolean, extractor varchar, generic boolean)")
     ins = []
     for (pid, ex_tag), r in done.items():
         if ex_tag != tag:
             continue
         for kind, key in (("problem", "problems"), ("approach", "approaches"), ("output", "outputs")):
             for it in r.get(key, []):
-                ins.append((pid, kind, it["text"].strip(), it.get("status"), it.get("evidence"), it.get("evidence_verified"), tag))
+                ins.append((pid, kind, it["text"].strip(), it.get("status"), it.get("evidence"), it.get("evidence_verified"), tag,
+                            kind in ("approach", "output") and is_generic(it["text"])))
         for t in r.get("target_groups", []):
-            ins.append((pid, "target_group", t.strip(), None, None, None, tag))
-    con.executemany("insert into concept_mention values (?,?,?,?,?,?,?)", ins)
+            ins.append((pid, "target_group", t.strip(), None, None, None, tag, False))
+    con.executemany("insert into concept_mention values (?,?,?,?,?,?,?,?)", ins)
     n_proj = len({pid for (pid, ex_tag) in done if ex_tag == tag})
     print(f"concept_mention: {len(ins):,} rows for {n_proj:,} projects ({tag})")
     for kind, n, v in con.execute("select kind, count(*), avg(evidence_verified::int) from concept_mention group by 1 order by 1").fetchall():

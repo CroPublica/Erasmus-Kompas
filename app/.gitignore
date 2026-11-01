@@ -8,7 +8,7 @@ data/parquet/
 data/place_conflicts.csv
 data/review_queue.csv
 data/extraction_cache.jsonl
-data/review/ holds human decisions and IS committed
+# data/review/ holds human decisions and IS committed
 
 # site
 site/node_modules/

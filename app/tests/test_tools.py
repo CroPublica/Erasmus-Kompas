@@ -118,3 +118,27 @@ def test_project_search_is_accent_insensitive(tb):
     assert tb.search_projects("Biljna pozornica").rows[0]["title"] == "Biljna pozornica"
     assert tb.search_projects("biljna  POZORNICA").rows[0]["title"] == "Biljna pozornica"
     assert tb.search_projects("").notes == ["empty query"]
+
+
+def test_success_rate_matches_the_published_tables(tb):             # B05, B06, B07
+    r = tb.success_rate("2021-2027", 2023).rows[0]
+    assert (r["applications"], r["contracted"], round(r["rate"] * 100, 1)) == (405, 49, 12.1)
+    rates = {x["call_year"]: round(x["rate"] * 100, 1) for x in tb.success_rate("2021-2027").rows if x["call_year"] != "total"}
+    assert rates[2021] == 33.2 and rates[2024] == 10.2
+    total = tb.success_rate("2021-2027").rows[-1]
+    assert (total["call_year"], total["applications"], total["contracted"]) == ("total", 2106, 322)
+    old = tb.success_rate("2014-2020").rows[-1]                      # one figure for all actions: no KA split exists before 2021
+    assert (old["applications"], old["contracted"]) == (5277, 2111)
+    assert "all actions together" in " ".join(tb.success_rate("2014-2020").notes)
+    assert tb.success_rate("1999").notes == ["period must be 2014-2020 or 2021-2027"]
+    assert tb.success_rate("2021-2027", sector="Mladi").rows[0]["applications"] == 68      # one sector only
+
+
+def test_many_threads_can_use_one_toolbox_at_once(tb):                  # found by the load test: a shared DuckDB connection refused overlapping calls
+    from concurrent.futures import ThreadPoolExecutor
+    names = ["Gimnazija Metković", "Sveučilište u Dubrovniku", "Srednja skola Metkovic", "Centar za karijere mladih Dubrovnik"] * 8
+    with ThreadPoolExecutor(16) as ex:
+        out = list(ex.map(lambda n: (tb.find_organisation(n).rows[0]["projects"], tb.national_stats().rows[0]["projects"],
+                                     tb.coverage("Zagrebačka").rows[1]["schools"]), names))
+    assert {o[1] for o in out} == {3830} and {o[2] for o in out} == {69}
+    assert sorted({o[0] for o in out}) == [12, 19, 22, 34]

@@ -24,7 +24,7 @@ from atlas.config import make_chat_model
 from atlas.countries import country_name
 from atlas.tools import Toolbox, ToolResult
 
-Route = Literal["limits", "organisation", "county", "national", "coverage", "country_ranking", "top_organisations",
+Route = Literal["limits", "success", "organisation", "county", "national", "coverage", "country_ranking", "top_organisations",
                 "project_search", "concepts", "out_of_scope"]
 
 
@@ -46,6 +46,7 @@ Choose exactly one route:
 - county: facts about one county (organisations, projects, grants coordinated)
 - national: Croatia as a whole (number of projects, coordinated, share of EU projects, types of organisations)
 - coverage: share of schools (or kindergartens) that took part, by county, against the national rate or expectation
+- success: success rate of Croatian applications (applications received, projects contracted, pass rate) by call year
 - country_ranking: which country coordinates most / where Croatia ranks among countries
 - top_organisations: the most active organisations (nationally or in a county)
 - project_search: find projects about a topic given in plain words (give the topic words in 'topic')
@@ -110,7 +111,7 @@ NOT_BUILT = {"hr": "Pitanja o problemima, rješenjima i vezama među temama još
 
 _HR_WORDS = {"je", "li", "koliko", "koji", "koja", "koje", "što", "sto", "se", "na", "za", "ima", "od", "kako", "kolika", "sudjeluje",
              "projekata", "projekta", "škola", "skola", "županija", "zupanija", "ih", "iz", "su", "bilo", "najviše", "najvise", "koju",
-             "postavi", "pitanje", "hrvatskom", "sudjelovanju", "partnerstvima", "nema", "dokaza", "podacima", "ne", "mogu", "nije", "nisu", "ili", "jasno", "iznad", "ispod"}
+             "prijava", "prijave", "ugovoreno", "ugovoreni", "hrvatskoj", "projekti", "postavi", "pitanje", "hrvatskom", "sudjelovanju", "partnerstvima", "nema", "dokaza", "podacima", "ne", "mogu", "nije", "nisu", "ili", "jasno", "iznad", "ispod"}
 _EN_WORDS = {"the", "how", "which", "what", "many", "is", "of", "in", "did", "has", "have", "does", "do", "are", "was", "were", "projects",
              "schools", "county", "more", "most", "than", "to", "and"}
 
@@ -122,6 +123,9 @@ def detect_language(text: str) -> str:
     hr = len(words & _HR_WORDS) + 2 * len(re.findall(r"[čćžšđ]", t))
     en = len(words & _EN_WORDS)
     return "hr" if hr >= en and hr > 0 else ("hr" if not text.strip() else "en")
+
+
+SUCCESS_WORDS = re.compile(r"prolaznost|stopa (uspje|odobr)|uspje\w* prijav|success rate|pass rate|prijava (je )?(odobren|podnesen)|applications? (were|was)? ?(received|submitted|approved)|broj prijava|zaprimljen|podnesen\w* prijav|prijava podneseno")
 
 
 def enrich_plan(plan: dict, question: str, tb) -> dict:
@@ -139,9 +143,13 @@ def enrich_plan(plan: dict, question: str, tb) -> dict:
     elif len(years) >= 2 and years[0] >= 2021:
         plan["period"] = "2021-2027"
     # keyword rules that the small router misses (they only ever move a question to a safer or more specific route)
+    if plan["route"] == "success" and not SUCCESS_WORDS.search(q):         # the small router over-uses this route: only keywords may select it
+        plan["route"] = "county" if tb.resolve_county(question) else ("national" if re.search(r"koliko|how many|number of", q) else "out_of_scope")
     school_words = re.search(r"škol|skol|school|vrti[ćc]|kindergarten|postot|udio|share|pokrivenost|očekiv|ocekiv|participation rate|iznad|ispod|above|below", q)
     if re.search(r"ravnatelj|director|principal|e-?mail|telefon|phone|zbroji|sum up|add up|total across", q):
         plan["route"] = "out_of_scope"
+    elif SUCCESS_WORDS.search(q):
+        plan["route"] = "success"
     elif re.search(r"\bka\s?1\b|\bka\s?3\b|mobilnost", q):
         plan["route"] = "limits"
     elif re.search(r"koja zemlja|koje zemlje|na kojem je mjestu|which country|which countries|\brank", q):
@@ -150,6 +158,9 @@ def enrich_plan(plan: dict, question: str, tb) -> dict:
         plan["route"] = "national"
     elif plan["route"] == "coverage" and plan.get("county") and not school_words:
         plan["route"] = "county"
+    elif plan["route"] == "national" and tb.resolve_county(question) and not school_words:
+        plan["route"] = "county"
+        plan["county"] = tb.resolve_county(question)
     elif plan["route"] == "county" and school_words:
         plan["route"] = "coverage"
     elif plan["route"] == "concepts" and not re.search(r"projekt|škol|skol|erasmus|ka2|organiz|tem[aeu]\b|problem|vještin|vjestin|digital|project|school|theme|skill|educat|obrazov|učenik|nastavn|sustav|partner", q):
@@ -241,7 +252,7 @@ def verify_answer(answer: str, results: list[dict], lang: Optional[str] = None) 
         if vals and not (vals & allowed):
             problems.append(f"number not in tool output: {m.group(0).strip()}")
     rows = any(r.get("rows") for r in results)
-    if rows and re.search(r"nema dokaza|no evidence|nisu dostupni|not available|nije pronađen|no data", answer.lower()):
+    if rows and re.search(r"nema dokaza|no evidence|nisu dostupni|not available|nije pronađen|no data|nije moguće|ne može se|ne mogu (se )?(izdvojiti|odrediti|utvrditi)|not possible to|cannot be determined|unable to", answer.lower()):
         problems.append("says there is no evidence although the tools returned data")
     cited = set(re.findall(r"\[((?:project|org|county):[^\]]*)\]", answer))
     known = {c for r in results for c in r.get("citations", [])}
@@ -363,6 +374,19 @@ def template_answer(lang: str, route: str, results: list[dict]) -> str:
         return (f"{f(nat['participating'])} of {f(nat['schools'])} schools took part in KA2 ({f(nat['rate'] * 100, 1)} %). "
                 f"The highest share is in {_label(lang, hi['label'])} ({f(hi['participating'])} of {f(hi['schools'])}). "
                 + (f"Clearly above the national share: {', '.join(above)}. " if above else "") + (f"Clearly below: {', '.join(below)}." if below else ""))
+    if t == "success_rate":
+        rows = last["rows"]
+        a = last["args"]
+        scope = (f"{a['action']}, " if a["period"] == "2021-2027" else "") 
+        def line(r):
+            y = r["call_year"]
+            lab = ("ukupno" if hr else "total") if y == "total" else f"{y}."
+            if not hr and y != "total":
+                lab = str(y)
+            return (f"{lab}: {f(r['applications'])} prijava, {f(r['contracted'])} ugovoreno ({f(r['rate'] * 100, 1)} %)" if hr
+                    else f"{lab}: {f(r['applications'])} applications, {f(r['contracted'])} contracted ({f(r['rate'] * 100, 1)} %)")
+        head = (f"Prijave i ugovoreni projekti u Hrvatskoj ({scope.strip(', ')}): " if hr else f"Applications and contracted projects in Croatia ({scope.strip(', ')}): ")
+        return head + "; ".join(line(r) for r in rows) + "."
     if t == "country_stats":
         top = results[-1]["rows"][0]
         hrr = next((x for x in results[-1]["rows"] if x["country"] == "HR"), None)
@@ -458,6 +482,9 @@ class Asker:
             plan = enrich_plan(plan, s["question"], self.tb)
             if s.get("last_org_id") and not plan.get("organisation") and looks_like_follow_up(s["question"], plan):
                 plan.update(route="organisation", follow_up=True)
+        if plan is not None and plan["route"] == "organisation" and not plan.get("organisation") and not s.get("last_org_id") \
+                and not self.tb.find_organisation_in_text(s["question"]).rows:
+            plan["route"] = "national"                    # "organisation" with no organisation named anywhere: a national question phrased with "those"
         if plan is None or plan["route"] == "out_of_scope":
             return {"plan": plan or {"route": "out_of_scope"}, "results": [], "done": True, "answer": REFUSAL[s["lang"]], "trace": s["trace"] + ["refused"]}
         if plan["route"] == "limits":
@@ -489,6 +516,10 @@ class Asker:
             results.append(tb.national_stats(plan["period"]))
         elif r == "coverage":
             results.append(tb.coverage(plan["county"], plan["school_type"], plan["period"], plan["role"]))
+        elif r == "success":
+            ys = sorted({int(y) for y in re.findall(r"20[12]\d", s["question"])})
+            per = "2014-2020" if ys and ys[-1] <= 2020 else "2021-2027"
+            results.append(tb.success_rate(per, ys[0] if len(ys) == 1 else None, "KA1" if re.search(r"\bka\s?1\b", s["question"].lower()) else "KA2"))
         elif r == "country_ranking":
             results.append(tb.country_stats("2021-2027" if plan["period"] == "all" else plan["period"]))
         elif r == "top_organisations":

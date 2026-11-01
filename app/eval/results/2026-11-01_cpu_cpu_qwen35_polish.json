@@ -1,0 +1,201 @@
+{
+ "mode": "polish",
+ "profile": "cpu_qwen35",
+ "results": [
+  {
+   "id": "A01",
+   "question": "Koliko je KA2 projekata imala Gimnazija Metković?",
+   "route": "organisation",
+   "answer": "Gimnazija Metković imala je ukupno 22 KA2 projekta, od toga 10 u razdoblju 2014.–2020. i 12 u razdoblju 2021.–2026., pri čemu je kao koordinator vodila jedan projekt pod nazivom Biljna pozornica (2023).",
+   "checks": {
+    "route": true,
+    "facts": true,
+    "language": true,
+    "refusal": null
+   },
+   "missing": [],
+   "seconds": 27.4,
+   "verified": true,
+   "fallback": false
+  },
+  {
+   "id": "A02",
+   "question": "Je li Gimnazija Metković ikada koordinirala KA2 projekt?",
+   "route": "organisation",
+   "answer": "Da, Gimnazija Metković je koordinirala jedan KA2 projekt, a to je \"Biljna pozornica\" iz 2023. Ukupno je sudjelovala u 22 KA2 projekta (10 u razdoblju 2014.–2020. i 12 u razdoblju 2021.–2026.). Potpora projekata koje koordinira iznosi 120.000 €, dok je vrijednost svih projekata u kojima sudjeluje 3.273.111 €.",
+   "checks": {
+    "route": true,
+    "facts": true,
+    "language": true,
+    "refusal": null
+   },
+   "missing": [],
+   "seconds": 16.1,
+   "verified": true,
+   "fallback": false
+  },
+  {
+   "id": "A03",
+   "question": "How many KA2 projects has Sveučilište u Dubrovniku taken part in, and in how many was it the coordinator?",
+   "route": "organisation",
+   "answer": "Sveučilište u Dubrovniku has participated in 34 KA2 projects and acted as coordinator for 6 of them. The coordinated projects include BIG-U - Bridging the internationalisation gap in Ukraine's HEIs (2025), Green Skills for Sustainable Tourism (2025), and Booming digital literacy skills among elderly population (2022). It has received 2,375,542 € from these coordinated projects, while all its projects total 25,829,589 €. The university collaborates most with Italy (22), Belgium (18), and Spain (18).",
+   "checks": {
+    "route": true,
+    "facts": true,
+    "language": true,
+    "refusal": null
+   },
+   "missing": [],
+   "seconds": 22.1,
+   "verified": true,
+   "fallback": false
+  },
+  {
+   "id": "A05",
+   "question": "Koliki je iznos potpore za projekte koje koordinira Gimnazija Metković?",
+   "route": "organisation",
+   "answer": "Gimnazija Metković koordinira jedan projekt, a iznos potpore za projekte koje ona koordinira iznosi 120.000 €. Ukupna vrijednost svih projekata u kojima sudjeluje Gimnazija Metković iznosi 3.273.111 €.",
+   "checks": {
+    "route": true,
+    "facts": true,
+    "language": true,
+    "refusal": null
+   },
+   "missing": [],
+   "seconds": 12.7,
+   "verified": true,
+   "fallback": false
+  },
+  {
+   "id": "B01",
+   "question": "Koliko KA2 projekata ima barem jednog hrvatskog sudionika od 2014.?",
+   "route": "national",
+   "answer": "Iz navedenog sažetka nije moguće izdvojiti ukupan broj KA2 projekata s barem jednim hrvatskim sudionikom od 2014., jer tekst navodi samo podjele po razdobljima (2.040 u 2014.–2020. i 1.790 u 2021.–2026.) bez eksplicitnog ukupnog zbroja za cijelo razdoblje od 2014. nadalje, niti daje informaciju o projektima prije 2014. godine.",
+   "checks": {
+    "route": true,
+    "facts": false,
+    "language": true,
+    "refusal": null
+   },
+   "missing": [
+    "3.830"
+   ],
+   "seconds": 15.8,
+   "verified": true,
+   "fallback": false
+  },
+  {
+   "id": "B02",
+   "question": "U koliko je tih projekata koordinator hrvatska organizacija?",
+   "route": "national",
+   "answer": "U 606 KA2 projekata koordinator je hrvatska organizacija (8,2 % svih KA2 projekata u EU). Najčešće koordinate nevladine organizacije (225), visoka učilišta (93), osnovne škole (61) i strukovne škole (54).",
+   "checks": {
+    "route": true,
+    "facts": true,
+    "language": true,
+    "refusal": null
+   },
+   "missing": [],
+   "seconds": 12.2,
+   "verified": true,
+   "fallback": false
+  },
+  {
+   "id": "B05",
+   "question": "Kolika je bila stopa prolaznosti KA2 prijava u Hrvatskoj 2023.?",
+   "route": "success",
+   "answer": "U Hrvatskoj je 2023. godine od 405 KA2 prijava ugovorenih 49 projekata, što predstavlja stopu prolaznosti od 12,1 %.",
+   "checks": {
+    "route": true,
+    "facts": true,
+    "language": true,
+    "refusal": null
+   },
+   "missing": [],
+   "seconds": 10.5,
+   "verified": true,
+   "fallback": false
+  },
+  {
+   "id": "B09",
+   "question": "Na kojem je mjestu Hrvatska po broju koordiniranih KA2 projekata?",
+   "route": "country_ranking",
+   "answer": "Hrvatska je na 21. mjestu od 100 zemalja koordinatora s 354 koordinirana KA2 projekta u razdoblju 2021.–2026., dok Njemačka ima najviše (2.024).",
+   "checks": {
+    "route": true,
+    "facts": true,
+    "language": true,
+    "refusal": null
+   },
+   "missing": [],
+   "seconds": 11.1,
+   "verified": true,
+   "fallback": false
+  },
+  {
+   "id": "B13",
+   "question": "Koliko iznose KA2 potpore za projekte koje koordiniraju organizacije iz Dubrovačko-neretvanske županije?",
+   "route": "county",
+   "answer": "Dubrovačko-neretvanska županija ima 33 organizacije i 151 projekt, od toga je 17 koordiniranih; potpore za te koordinirane projekte iznose 3.719.625 € (3,72 mil. €).",
+   "checks": {
+    "route": true,
+    "facts": true,
+    "language": true,
+    "refusal": null
+   },
+   "missing": [],
+   "seconds": 11.8,
+   "verified": true,
+   "fallback": false
+  },
+  {
+   "id": "C01",
+   "question": "Koliki postotak osnovnih i srednjih škola u Hrvatskoj sudjeluje u KA2?",
+   "route": "coverage",
+   "answer": "U Hrvatskoj je u KA2 sudjelovalo 450 od 1.356 škola, što iznosi 33,2 %. Najveći udio imaju Varaždinska županija (33 od 58) i Međimurska županija, dok je Zagrebačka županija ispod prosjeka.",
+   "checks": {
+    "route": true,
+    "facts": true,
+    "language": true,
+    "refusal": null
+   },
+   "missing": [],
+   "seconds": 12.5,
+   "verified": true,
+   "fallback": false
+  },
+  {
+   "id": "C03",
+   "question": "Je li Zagrebačka županija ispod očekivanja?",
+   "route": "coverage",
+   "answer": "Zagrebačka županija je ispod očekivanja jer je u KA2 sudjelovalo samo 10 od 69 škola (14,5 %, raspon 8–25 %), dok ih još nije uključeno 59. Sastavom bi se očekivalo oko 22 škole, a državni udio iznosi 33,2 %, što je jasno ispod državnog udjela.",
+   "checks": {
+    "route": true,
+    "facts": true,
+    "language": true,
+    "refusal": null
+   },
+   "missing": [],
+   "seconds": 13.0,
+   "verified": true,
+   "fallback": false
+  },
+  {
+   "id": "C06",
+   "question": "Koliko škola u Ličko-senjskoj županiji još nije sudjelovalo u KA2?",
+   "route": "coverage",
+   "answer": "U Ličko-senjskoj županiji sudjelovalo je u KA2 samo 4 od 20 škola (20,0 %, raspon 8–42 %), što znači da još nije uključeno 16 škola. Prema sastavu škola očekivalo bi se oko 6, a državni udio iznosi 33,2 %, bez jasne razlike od državnog udjela.",
+   "checks": {
+    "route": true,
+    "facts": true,
+    "language": true,
+    "refusal": null
+   },
+   "missing": [],
+   "seconds": 13.4,
+   "verified": true,
+   "fallback": false
+  }
+ ],
+ "skipped": []
+}
