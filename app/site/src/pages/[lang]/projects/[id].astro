@@ -1,7 +1,7 @@
 ---
 import Base from '../../../layouts/Base.astro';
 import projects from '../../../data/projects_full.json';
-import { LANGS, t, num, eur, slug, type Lang } from '../../../lib/i18n';
+import { LANGS, t, num, eur, slug, topicName, type Lang } from '../../../lib/i18n';
 import { country } from '../../../lib/countries';
 
 export const getStaticPaths = () =>
@@ -49,7 +49,7 @@ const coord = p.countries[0];
       </section>
       <section class="card">
         <h2>{s.topicsLbl}</h2>
-        {p.topics.length ? p.topics.map((x: string) => <span class="tag">{x}</span>) : <p class="lead">{s.noTopics}</p>}
+        {p.topics.length ? p.topics.map((x: string) => <span class="tag">{topicName(lang, x)}</span>) : <p class="lead">{s.noTopics}</p>}
       </section>
     </div>
   </div>

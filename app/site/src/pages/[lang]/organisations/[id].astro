@@ -1,7 +1,7 @@
 ---
 import Base from '../../../layouts/Base.astro';
 import full from '../../../data/orgs_full.json';
-import { LANGS, t, num, eur, slug, type Lang } from '../../../lib/i18n';
+import { LANGS, t, num, eur, slug, topicName, type Lang } from '../../../lib/i18n';
 import { country } from '../../../lib/countries';
 
 export const getStaticPaths = () =>
@@ -93,7 +93,7 @@ const yy = (y: number) => `'${String(y).slice(2)}`;
       </section>
       {o.topics.length > 0 && <section class="card">
         <h2>{s.topics}</h2>
-        <div style="margin-top:10px">{o.topics.map(([topic, n]: [string, number]) => <span class="tag">{topic}<b>{n}</b></span>)}</div>
+        <div style="margin-top:10px">{o.topics.map(([topic, n]: [string, number]) => <span class="tag">{topicName(lang, topic)}<b>{n}</b></span>)}</div>
         <p class="lead" style="font-size:.85rem">{s.topicsNote}</p>
       </section>}
     </div>

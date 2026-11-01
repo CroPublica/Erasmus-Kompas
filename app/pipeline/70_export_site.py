@@ -32,6 +32,13 @@ def rows(con, sql, params=None):
     return [dict(zip(names, r)) for r in cur.fetchall()]
 
 
+def topic_labels_hr():
+    """Croatian topic names: the owner's reviewed wording, else my draft (data/review/topic_labels_hr.csv)."""
+    import csv
+    with open(Path(__file__).resolve().parent.parent / "data" / "review" / "topic_labels_hr.csv", encoding="utf-8", newline="") as f:
+        return {r["topic"]: (r["label_hr_reviewed"].strip() or r["label_hr_draft"].strip()) for r in csv.DictReader(f)}
+
+
 def write(name, obj):
     OUT.mkdir(parents=True, exist_ok=True)
     (OUT / name).write_text(json.dumps(obj, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
@@ -173,10 +180,12 @@ def main():
             d = seen.setdefault(nme, {"counts": {}, "periods": set()})
             d["counts"][yr] = d["counts"].get(yr, 0) + 1
             d["periods"].add(per)
+    hr_names = topic_labels_hr()
+    write("topic_labels.json", hr_names)
     tops = []
     for nme, d in seen.items():
         old, new = "2014-2020" in d["periods"], "2021-2027" in d["periods"]
-        tops.append({"name": nme, "scope": "both" if old and new else "old" if old else "new",
+        tops.append({"name": nme, "hr": hr_names.get(nme), "scope": "both" if old and new else "old" if old else "new",
                      "counts": {str(y): d["counts"].get(y, 0) for y in years}, "total": sum(d["counts"].values())})
     tops.sort(key=lambda t: (-t["total"], t["name"]))
     write("topics_by_year.json", {"years": years, "projects_with_topics": {str(y): per_year[y] for y in years}, "topics": tops})

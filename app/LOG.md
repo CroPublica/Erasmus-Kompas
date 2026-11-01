@@ -311,3 +311,5 @@ cd app
 ./run_pipeline.sh --check       # checks only
 # EDA scripts: Erasmus-Kompas/EDA/Scripts/*.py in the base conda env (see each script's docstring)
 ```
+
+- Croatian labels reviewed by the owner (2026-11-01, from `eval/gold/KA2_Atlas_Croatian_labels_for_review.docx`): 9 of 76 topic names and 34 of 130 website strings changed (the other 3 strings are year ranges that were not in the document). Reviewed wording is in the `*_reviewed` columns of `data/review/topic_labels_hr.csv` and `ui_strings_hr.csv`, applied in `site/src/lib/i18n.ts`. Topic names now show in Croatian on the topics, organisation and project pages (`topic_labels.json`, `topicName()`); topics only in the 2014–2020 list have no Croatian name and stay in English. Site rebuilt: 58 Python tests and 21 browser tests pass. Style of the reviewed text: formal "Vi" (Pitajte, Postavite pitanje).

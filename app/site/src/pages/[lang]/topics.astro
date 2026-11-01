@@ -31,8 +31,8 @@ const labels = { both: s.topBoth, new: s.topNew, old: s.topOld, break: s.topBrea
           <fieldset data-g={g} style="border:0;padding:0;margin:0 0 12px">
             <legend class="kicker" style="margin-bottom:6px">{label}</legend>
             {data.topics.filter((x: any) => x.scope === g).map((x: any) => (
-              <label class="chk" data-n={x.name.toLowerCase()} style="display:flex;gap:8px;align-items:flex-start;min-height:32px;font-size:.9rem">
-                <input type="checkbox" value={x.name} style="margin-top:3px" /> <span>{x.name}</span>
+              <label class="chk" data-n={`${x.name} ${x.hr ?? ''}`.toLowerCase()} style="display:flex;gap:8px;align-items:flex-start;min-height:32px;font-size:.9rem">
+                <input type="checkbox" value={x.name} style="margin-top:3px" /> <span>{lang === 'hr' && x.hr ? x.hr : x.name}</span>
               </label>
             ))}
           </fieldset>
@@ -54,6 +54,7 @@ const labels = { both: s.topBoth, new: s.topNew, old: s.topOld, break: s.topBrea
   const PAL = ['#1d3fc7', '#c9710f', '#0f8f6a', '#b0306b', '#6b4fbf', '#2a7f9e', '#8a6d00', '#c43a3a'];
   const years: number[] = data.years;
   const topics = data.topics as any[];
+  const nm = (x: any): string => (document.documentElement.lang === 'hr' && x.hr ? x.hr : x.name);
   const byName = new Map(topics.map((x) => [x.name, x]));
   const defaults = ['Environment and climate change', 'Entrepreneurial learning - entrepreneurship education', 'Artificial Intelligence (AI) and data usage', 'Digital skills and competences', 'ICT - new technologies - digital competences'];
   const picker = document.getElementById('picker')!;
@@ -82,13 +83,13 @@ const labels = { both: s.topBoth, new: s.topNew, old: s.topOld, break: s.topBrea
       if (cur.length) segs.push(cur);
       for (const sg of segs) {
         svg += `<polyline fill="none" stroke="${c}" stroke-width="2" points="${sg.map((y) => `${X(y)},${Y(share(t, y))}`).join(' ')}"/>`;
-        for (const y of sg) svg += `<circle cx="${X(y)}" cy="${Y(share(t, y))}" r="3.5" fill="${y === 2026 ? 'var(--surface)' : c}" stroke="${c}" stroke-width="1.5"><title>${t.name}, ${y}: ${fmt.format(share(t, y))} % (${t.counts[String(y)]})</title></circle>`;
+        for (const y of sg) svg += `<circle cx="${X(y)}" cy="${Y(share(t, y))}" r="3.5" fill="${y === 2026 ? 'var(--surface)' : c}" stroke="${c}" stroke-width="1.5"><title>${nm(t)}, ${y}: ${fmt.format(share(t, y))} % (${t.counts[String(y)]})</title></circle>`;
       }
     });
     svg += '</svg>';
     document.getElementById('chart')!.innerHTML = svg;
-    document.getElementById('legend')!.innerHTML = chosen.map((t, i) => `<li class="pill" style="border-color:${PAL[i % PAL.length]}"><span style="color:${PAL[i % PAL.length]}">●</span> ${t.name} <small>(${L[t.scope]})</small></li>`).join('');
-    document.getElementById('dtable')!.innerHTML = `<thead><tr><th>${L.year}</th>${chosen.map((t) => `<th class="num">${t.name}</th>`).join('')}</tr></thead><tbody>` +
+    document.getElementById('legend')!.innerHTML = chosen.map((t, i) => `<li class="pill" style="border-color:${PAL[i % PAL.length]}"><span style="color:${PAL[i % PAL.length]}">●</span> ${nm(t)} <small>(${L[t.scope]})</small></li>`).join('');
+    document.getElementById('dtable')!.innerHTML = `<thead><tr><th>${L.year}</th>${chosen.map((t) => `<th class="num">${nm(t)}</th>`).join('')}</tr></thead><tbody>` +
       years.map((y) => `<tr><td class="mono">${y}</td>${chosen.map((t) => `<td class="num">${inRange(t, y) ? `${fmt.format(share(t, y))} % (${t.counts[String(y)]})` : '–'}</td>`).join('')}</tr>`).join('') + '</tbody>';
   }
   picker.addEventListener('change', (e) => {
