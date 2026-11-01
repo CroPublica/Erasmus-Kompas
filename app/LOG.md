@@ -176,6 +176,69 @@ Two model-search reports were pasted by the owner (their claims, e.g. the serbev
 
 Qwen 3.5 9B (thinking off) is the best model-written answer so far: 26/31 facts at 2.8 s, 2 fallbacks to the template. Gemma 4 31B: 25/31 at 10.6 s, 7 fallbacks. Typical faults: raw fractions instead of a percentage (0.5689 for 56.9 %), a requested figure left out (the expected 450, the 1,356 schools), and in one case "no data for Croatia" over a result that had it. Both stay below the code-written answers (31/31, 0.4 s), so code answers remain the default. `gemma4:e4b` failed to load in Ollama 0.30.10 ("Gemma4Assistant requires ctx_other to be set"); after upgrading to Ollama 0.40.13 (2026-10-30, still on 127.0.0.1, models kept) it loads and scores 23/31 at 16.3 s. Its answers can be wrong in meaning while every number is genuine: B01 said "46,526 KA2 projects have a Croatian participant" (the EU total from the tool output), which the number check cannot catch. The scorer now also accepts space-grouped numbers (120 000); `run_ask.py --rescore FILE` regrades saved results.
 
+### Serbian forms and the native-speaker check (2026-10-30)
+
+Pasted model-search notes warn that small models slip Serbian or ekavian forms into Croatian text (tačno, hiljada, opština, gde) and make orthography errors even when grammar scores look fine. The verifier now flags a short list of such forms in Croatian answers (`SERBIAN_FORMS` in `atlas/ask.py`; a flagged answer is retried, then replaced by the template answer). Diacritics are not checked automatically because organisation names in the data are often written without them. For real evidence a native-speaker check is prepared: `eval/native_rating/rating_sheet.csv` (54 blind answers, 9 from each of six systems, columns for spelling and grammar, naturalness, Serbian forms, diacritics, wrong meaning) and `key_DO_NOT_SHOW_RATERS.csv` (which system wrote each item). Two raters should fill the sheet independently.
+
+### GPU focus: polish mode (2026-10-30)
+
+The 16 GB RAM limit is dropped; work targets the A100 (40 GB). Models now stay loaded 30 minutes (`ATLAS_KEEP_ALIVE`). New answer mode `polish` (`ATLAS_ANSWER_MODE=polish`): the model rewrites the code-built draft answer; the verifier requires every figure of the draft to survive and rejects new numbers and Serbian forms; two failures give the draft. A bug in my own number parser (it read "2020., 12" as one number) was found and fixed before these runs.
+
+| Model (router: same family 4B for Qwen, Qwen 4B for Gemma) | Mode | Route | Facts | Refusals | Median | Answers that fell back to the draft |
+|---|---|---|---|---|---|---|
+| none (code) | template | 46/46 | 31/31 | 9/9 | 0.4 s | – |
+| Qwen 3.5 9B (thinking off) | polish | 46/46 | 31/31 | 9/9 | 1.3 s | 14/46 |
+| Gemma 4 31B (Q4) | polish | 46/46 | 30/31 | 9/9 | 13.4 s | 19/46 |
+
+Facts are safe by construction; the one Gemma miss is wording ("nije sudjelovala ni u jednom" for the expected "nema"). The open question is naturalness: 30-40 % of answers fall back to the draft, and some polished ones read awkwardly (Qwen: "Sastav bi trebao biti oko 22"). This needs the native-speaker sheet (`eval/native_rating/`), to which polish outputs should be added. **Update, same day.** Higher precision alone barely helped (Qwen 9B fell back on 14, 11 and 12 of 46 at Q4, Q8 and bf16). The real cause was the checker: models answered only the asked part and my rule demanded every figure. New rule (`check_polish`): every number in the answer must come from the draft and at least two of the draft's figures must remain. Results with the new rule (`*_polish2.json`):
+
+| Model | Facts | Fell back to draft | Median | p90 |
+|---|---|---|---|---|
+| Qwen 3.5 9B Q4 | 31/31 | 2/46 | 1.3 s | 1.9 s |
+| Qwen 3.5 9B Q8 | 31/31 | 1/46 | 1.4 s | 2.3 s |
+| Gemma 4 31B Q8 | 30/31 | 7/46 | 2.7 s | 4.7 s |
+
+Gemma 31B at Q8 (34 GB) is also 5 times faster than the Q4 build was (13.4 s), probably because the Q4 run swapped models in memory. Answers are now focused (e.g. A02: "Da, ... koordinirala je jedan KA2 projekt pod nazivom Biljna pozornica (2023). Potpore ... 120.000 €."). Scorer note: expected words now match with Croatian case endings (Italija = Italijom). Proposed GPU default: `qwen35_q8` in polish mode; not switched yet, pending the native-speaker sheet (`eval/native_rating/`, regenerated with 8 systems, 7 blind answers each, including the polished ones).
+
+### Owner-suggested models and clean-up (2026-10-30)
+
+Rewrite ("polish") mode, 46 questions, router Qwen 3.5 4B, answer model as listed (`eval/results/2026-10-30_gpu_cand_*_polish.json`):
+
+| Answer model | Facts | Fell back to draft | Median | Wrong-unit error in C03 ("22 %" for "about 22 schools") |
+|---|---|---|---|---|
+| Qwen 3.5 9B Q8 | 31/31 | 1/46 | 1.4 s | no |
+| Gemma 4 31B Q8 | 30/31 | 7/46 | 2.7 s | no |
+| OpenEuroLLM-Croatian (8.1 GB) | 31/31 | 0/46 | 7.5 s | yes |
+| Gemma 3 12B tools build | 31/31 | 0/46 | 6.9 s | no |
+| Qwen 3 14B (thinking off) | 29/31 | 5/46 | 1.3 s | no |
+| Mistral Small 24B | 28/31 | 14/46 | 1.2 s | yes |
+
+The unit error passes the number check (22 is in the draft), so the check cannot catch it; only a native reader can. OpenEuroLLM-Croatian, the one Croatian-specific model, is kept until the native-speaker sheet has been rated; it never fell back but is slow and wordier. Deleted from Ollama (about 78 GB freed): mistral-small:24b, qwen3:14b, gemma3-tools:12b, gemma4:e4b, qwen3.5:9b-bf16, gemma4:31b (Q4), qwen3-embedding:0.6b, embeddinggemma:300m, and their profiles removed from `config/models.yaml`. Kept: gemma4:31b-it-q8_0, qwen3.5:9b-q8_0, qwen3.5:9b (Q4), qwen3.5:4b, OpenEuroLLM-Croatian, bge-m3, qwen2.5:3b-instruct and gemma4:latest (your original extraction model).
+
+### Three more UI screens (2026-10-31)
+
+So that the questions asked in chat can also be answered by browsing: `/overview/` (national totals by period, share of all EU KA2 projects, coordinating organisation types, country ranking with Croatia highlighted), the organisation list now sorts (projects, coordinated, name) and filters (period, organisation type, county, coordinators only), and `/projects/` searches the titles and topics of the 3,830 projects with period, action type, partner country and good-practice filters. Data: `national.json` and `public/projects.json` (1.5 MB) from step 70; project summaries are not searched in the browser (too large to send), the Ask backend does search them. Of the 69 answerable evaluation questions, 25 were already answerable in the UI; the 7 national-figure questions and the project search now are too. Still not answerable by anyone: the 32 questions needing the concept layer or success-rate data. 20 browser tests pass.
+
+### DeepSeek R1 distills (2026-10-31)
+
+Tested in rewrite mode like the others (thinking off, router Qwen 3.5 4B; `eval/results/2026-10-31_gpu_ds_r1_*_polish.json`). Bar to keep: 31/31 facts, at most 2 fallbacks, median under 3 s (Qwen 3.5 9B Q8 reaches it).
+
+| Model | Facts | Fell back | Median | Remarks |
+|---|---|---|---|---|
+| deepseek-r1:8b | 31/31 | 9/46 | 3.6 s | A02 claimed it coordinated 10 and 12 projects (the 10 and 12 are its project counts per period); passed the number check, wrong meaning. "22 %" unit error in C03 |
+| deepseek-r1:14b | 30/31 | 3/46 | 6.2 s | clumsy wording ("U totalu") |
+| deepseek-r1:32b | 29/31 | 1/46 | 11.9 s | left out the figures asked for in C01; slowest |
+
+All three deleted from Ollama (about 34 GB) and their profiles removed. The full DeepSeek V3 family (about 400 GB) does not fit the A100. Kept after this round: qwen3.5:9b-q8_0, qwen3.5:9b, qwen3.5:4b, gemma4:31b-it-q8_0, OpenEuroLLM-Croatian (pending the native-speaker ratings), bge-m3, qwen2.5:3b-instruct, gemma4:latest.
+
+### Activity summary document (2026-10-31)
+
+Owner request: what are the most common activities, outputs and other aspects of KA2 projects, and what to expect when starting from scratch. `analysis/activities.py` counts 33 activities (surveys, interviews, workshops, pilots, platforms, events, evaluation and so on) in the English summaries of 3,804 projects with a rule-based word list, groups them into five stages, and writes `data/activities.json` (counts per period, co-occurrence). Three patterns that were too loose on a five-sample read (toolkit/methodology, bare "evaluate", bare "network") were tightened; no full accuracy measurement exists. Document with a flow chart, a cluster diagram, activity and output tables, target groups, topics, size and money: https://claude.ai/artifact/JRQCY2EP1SNZcLXGnsuiDQ . It is to be redone from the model extraction once the gold set has validated it. Findings: median project 5 countries; 82 % involve learning with people, 80 % develop materials, 71 % share results, 47 % describe evaluation, 31 % research first, 13 % mention all five stages; exchanges fall (43 % to 25 %) while pilots (18 % to 32 %) and toolkits (27 % to 38 %) rise between 2014-2020 and 2021-2027.
+
+### Topics over time (2026-11-01)
+
+Question: does the data give a timeline of topics, and does it make sense. Answer: yes for broad topics, with limits. The EU replaced its topic list in 2021, so the new Topics page (`/hr|en/topics/`) and the document use the labels exactly as the source gives them for each period (no crosswalk) and draw one continuous line only for topics that have the same name in both lists (18 occur in both periods; 34 only in 2014-2020, 57 only in 2021-2027); other topics start or stop at the break (dashed line, "topic list changed"). Shares use the projects with a topic in that year (113 to 586 a year; 2026 partial, hollow points). Readable examples: environment and climate 4-8 % until 2019, about 20 % since 2021; entrepreneurial learning 25 % in 2015, 3 % in 2025; AI and data usage from 2023. Not meaningful: word matches of COVID in old projects (summaries of finished projects mention it later), and any "digital skills" line across 2021 (old name "ICT - new technologies - digital competences" was linked only by the unreviewed crosswalk). Export: `topics_by_year.json` (step 70). 21 browser tests pass; a hidden-attribute bug (inline display:flex overrode `hidden`) was found by the filter test and fixed globally.
+
 ## 6. Findings about the raw data
 
 - `tablica_7` CSV holds call years 2024–2026 only (1,856 rows); the `.xlsx` holds 2021–2026 (3,081). Check 5 uses the 2024–2026 rows.

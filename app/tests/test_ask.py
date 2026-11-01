@@ -110,3 +110,33 @@ def test_llm_mode_never_calls_the_model_when_nothing_was_found(tb):
     w = FakeWriter("Gimnazija Atlantida ima 99 projekata.")
     r = asker(tb, FakeRouter(route="organisation", organisation="Gimnazija Atlantida"), w, mode="llm").ask("Koliko KA2 projekata ima Gimnazija Atlantida?")
     assert w.calls == 0 and "Nema dokaza" in r["answer"] and "99" not in r["answer"]
+
+
+def test_verifier_flags_serbian_forms_in_croatian_text(tb):
+    res = [tb.organisation_profile("MZO-19-049-502").as_dict()]
+    assert verify_answer("Gimnazija ima tačno 22 projekta.", res, "hr")
+    assert verify_answer("Gimnazija ima točno 22 projekta.", res, "hr") == []
+    assert verify_answer("Gimnazija ima 22 hiljade projekata.", res, "hr")
+    assert verify_answer("It has exactly 22 projects.", res, "en") == []              # only Croatian answers are checked
+
+
+def test_polish_mode_keeps_every_figure_or_falls_back_to_the_draft(tb):
+    plan = FakeRouter(route="organisation", organisation="Gimnazija Metković")
+    good = FakeWriter("Gimnazija Metković ima 22 KA2 projekta (10 u 2014.–2020., 12 u 2021.–2026.), jedan kao koordinator (Biljna pozornica, 2023), a koordinirani projekti vrijede 120.000 €; "
+                      "ukupna vrijednost svih projekata je 3.273.111 €. Najčešće surađuje s Italijom (11), Turskom (9) i Španjolskom (8).")
+    r = asker(tb, plan, good, mode="polish").ask("Koliko je KA2 projekata imala Gimnazija Metković?")
+    assert r["verified"] and not r["fallback"] and good.calls == 1
+    dropped = FakeWriter("Gimnazija Metković ima 22 KA2 projekta.")                       # leaves out the grants
+    r = asker(tb, plan, dropped, mode="polish").ask("Koliko je KA2 projekata imala Gimnazija Metković?")
+    assert dropped.calls == 2 and r["fallback"] and "120.000" in r["answer"] and "3.273.111" in r["answer"]
+    assert asker(tb, FakeRouter(route="organisation", organisation="Gimnazija Atlantida"), FakeWriter("x"), mode="polish").ask("Koliko KA2 projekata ima Gimnazija Atlantida?")["answer"].startswith("Nema dokaza")
+
+
+def test_polish_may_answer_part_of_the_draft_but_not_use_other_numbers(tb):
+    plan = FakeRouter(route="organisation", organisation="Gimnazija Metković")
+    focused = FakeWriter("Da, Gimnazija Metković je koordinirala jedan projekt, a u ukupno 22 projekta sudjeluje, od toga 10 u razdoblju 2014.–2020.")
+    r = asker(tb, plan, focused, mode="polish").ask("Je li Gimnazija Metković ikada koordinirala KA2 projekt?")
+    assert r["verified"] and not r["fallback"] and focused.calls == 1
+    eu_total = FakeWriter("Gimnazija Metković sudjeluje u 46526 projekata, od toga 22 njezinih.")           # a real number from the tool output, but not from the draft
+    r = asker(tb, plan, eu_total, mode="polish").ask("Koliko KA2 projekata ima Gimnazija Metković?")
+    assert r["fallback"] and "46526" not in r["answer"]

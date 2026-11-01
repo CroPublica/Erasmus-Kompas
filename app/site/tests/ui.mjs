@@ -90,7 +90,7 @@ await test('no horizontal scroll at phone width', async () => {
 });
 await test('accessibility (axe: wcag2a/aa) has no violations', async () => {
   const bad = [];
-  for (const path of ['/en/', '/hr/', '/en/organisations/', '/en/organisations/mzo-19-049-502/', '/en/places/zagrebacka/', '/en/places/', '/en/ask/', '/hr/ask/']) {
+  for (const path of ['/en/', '/hr/', '/en/organisations/', '/en/organisations/mzo-19-049-502/', '/en/places/zagrebacka/', '/en/places/', '/en/ask/', '/hr/ask/', '/en/overview/', '/hr/overview/', '/en/projects/', '/en/topics/', '/hr/topics/']) {
     const p = await open(path); await p.addScriptTag({ path: axePath });
     const r = await p.evaluate(() => axe.run(document, { runOnly: ['wcag2a', 'wcag2aa'] }));
     for (const v of r.violations) bad.push(`${path} ${v.id} (${v.nodes.length}): ${v.nodes[0].target}`);
@@ -136,6 +136,58 @@ await test('ask page: busy, rate limit and failure are shown, example questions 
   code = 503; await p.click('#go'); await p.waitForFunction(() => /zauzeta/.test(document.getElementById('out').innerText));
   code = 500; await p.click('#go'); await p.waitForFunction(() => /pošlo po zlu/.test(document.getElementById('out').innerText));
   await p.locator('.ex').first().click(); assert.ok((await p.inputValue('#q')).length > 10);
+});
+await test('overview: national figures, period switch, country ranking', async () => {
+  const p = await open('/en/overview/');
+  let text = await p.locator('[data-ov="all"]').innerText();
+  assert.ok(text.includes('3,830') && text.includes('606'), 'national totals');
+  await p.click('#ov-filters button[data-val="2014-2020"]'); await p.waitForTimeout(100);
+  text = await p.locator('[data-ov="2014-2020"]').innerText(); assert.ok(text.includes('2,040'));
+  await p.click('#ov-filters button[data-val="2021-2027"]'); text = await p.locator('[data-ov="2021-2027"]').innerText();
+  assert.ok(text.includes('1,790') && /Germany\s+2,024/.test(text.replace(/\n/g, ' ')) && /Croatia ranks 21 of 100/.test(text));
+  const hr = await open('/hr/overview/'); assert.ok((await hr.locator('[data-ov="all"]').innerText()).includes('3.830'));
+});
+await test('organisation list: sort, period filter, coordinators only', async () => {
+  const p = await open('/en/organisations/');
+  const firstName = async () => p.locator('#rows tr:not([hidden]) td a').first().innerText();
+  assert.match(await firstName(), /SVEUCILISTE U ZAGREBU/i);
+  await p.selectOption('#o', 'n'); const byName = await firstName();
+  assert.notEqual(byName, 'SVEUCILISTE U ZAGREBU'); await p.selectOption('#o', 'p');
+  const all = await p.locator('#rows tr:not([hidden])').count();
+  await p.selectOption('#p', '1'); const first = Number((await p.locator('#rows tr:not([hidden]) .pj').first().innerText()).replace(/\D/g, ''));
+  assert.equal(first, 91);                                   // SVEUCILISTE U ZAGREBU, 2014-2020
+  await p.check('#co'); const coord = await p.locator('#rows tr:not([hidden])').evaluateAll((r) => r.every((x) => Number(x.querySelector('.cd').textContent.replace(/\D/g, '')) > 0));
+  assert.ok(coord);
+  await p.selectOption('#k', 'ngo'); assert.ok((await p.locator('#rows tr:not([hidden])').count()) < all);
+});
+await test('project search: words, filters, links', async () => {
+  const p = await open('/en/projects/'); await p.locator('#pres li a').first().waitFor();
+  const total = Number((await p.locator('#pcount').innerText()).replace(/\D/g, ''));
+  assert.equal(total, 3830);
+  await p.fill('#pq', 'biljna pozornica'); await p.waitForFunction(() => /^1 /.test(document.getElementById('pcount').innerText));
+  assert.match(await p.locator('#pres').innerText(), /Biljna pozornica/);
+  await p.fill('#pq', ''); await p.selectOption('#pp', '2014-2020');
+  await p.waitForFunction(() => /^2,040 /.test(document.getElementById('pcount').innerText));
+  await p.selectOption('#pc', 'DE'); const n = Number((await p.locator('#pcount').innerText()).replace(/\D/g, '')); assert.ok(n > 10 && n < 2040);
+  await p.fill('#pq', 'zzzzqqqq'); await p.waitForFunction(() => /No project matches/.test(document.getElementById('pres').innerText));
+  await p.selectOption('#pp', ''); await p.selectOption('#pc', ''); await p.fill('#pq', 'biljna'); await p.locator('#pres a').first().click(); await p.waitForURL(/projects\//);
+});
+await test('topics over time: lines, the 2021 break, limits, data table', async () => {
+  const p = await open('/en/topics/');
+  assert.equal(await p.locator('#legend li').count(), 5);
+  assert.match(await p.locator('#chart').innerHTML(), /topic list changed/);
+  assert.equal(await p.locator('#chart polyline').count() >= 5, true);
+  await p.locator('summary', { hasText: 'data table' }).click();
+  const rows = await p.locator('#dtable tbody tr').count(); assert.equal(rows, 13);
+  const ai = await p.locator('#dtable tbody tr', { hasText: '2022' }).innerText(); assert.ok(ai.includes('–'));     // AI has no value before 2023? new list only from 2021
+  const first = await p.locator('#dtable tbody tr').first().innerText(); assert.ok(first.includes('2014'));
+  await p.locator('input[value="Artificial Intelligence (AI) and data usage"]').uncheck();
+  assert.equal(await p.locator('#legend li').count(), 4);
+  for (const b of await p.locator('#picker input[type=checkbox]').all()) { if (await p.locator('#legend li').count() >= 8) break; await b.check(); }
+  assert.equal(await p.locator('#legend li').count(), 8);
+  const extra = p.locator('#picker input[type=checkbox]:not(:checked)').first(); await extra.check({ force: true }).catch(() => {});
+  assert.equal(await p.locator('#legend li').count(), 8);
+  await p.fill('#tf', 'zzzz'); assert.equal(await p.locator('#picker label.chk:visible').count(), 0);
 });
 await test('no console errors', async () => assert.deepEqual(errors, []));
 await browser.close(); stop();

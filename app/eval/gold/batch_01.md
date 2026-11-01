@@ -539,9 +539,9 @@ Reviewed by: Nikola Gamulin
 - [x] Mentor Toolkits (planned)
 - [x] WBL Quality Framework and Digital Tracking Portal (open-source) (planned)
 - [x] verified Digital Portfolios (reported)
-+ 
++  Business-VET Alliance
 
-Reviewed by: 
+Reviewed by: Gaurish Thakkar
 
 
 ---
@@ -578,7 +578,7 @@ Reviewed by:
 
 **Problems the project addresses**
 
-- [x] lack of framework for integrating AI
+- [x] lack of framework for integrating AI into higher education institutions
 + 
 
 **Target groups**
@@ -605,7 +605,7 @@ Reviewed by:
 - [x] Trained researchers, teachers, and administration (reported)
 + 
 
-Reviewed by: 
+Reviewed by: Gaurish Thakkar
 
 
 ---
@@ -698,7 +698,7 @@ Reviewed by:
 - [x] sBUZZ Guidelines (reported)
 + 
 
-Reviewed by: 
+Reviewed by: Gaurish Thakkar
 
 
 ---
@@ -776,7 +776,7 @@ Reviewed by:
 - [x] training methodology (reported)
 + 
 
-Reviewed by: 
+Reviewed by: Gaurish Thakkar
 
 
 ---
@@ -825,7 +825,7 @@ Reviewed by:
 - [x] reusable outreach materials (reported)
 + 
 
-Reviewed by: 
+Reviewed by: Gaurish Thakkar
 
 
 ---
@@ -902,7 +902,7 @@ Reviewed by:
 - [x] two online learning courses for deaf and hard-of-hearing youth (reported)  <!-- evidence quote not found in the text -->
 + 
 
-Reviewed by: 
+Reviewed by: Gaurish Thakkar
 
 
 ---
@@ -989,9 +989,9 @@ Reviewed by:
 
 - [x] 3 videos (from each mobility) (reported)
 - [x] e-book with project description, presentations and materials (reported)
-+ 
++ Increase in awareness of the target groups
 
-Reviewed by: 
+Reviewed by: Gaurish Thakkar
 
 
 ---
@@ -1054,9 +1054,9 @@ Reviewed by:
 - [x] proposal of a new business model of language schools (reported)
 - [x] student tutorial for four new courses (reported)
 - [x] webinar for online interaction between trainers and students (reported)
-+ 
++  monograph on the transformation of language schools
 
-Reviewed by: 
+Reviewed by: Gaurish Thakkar
 
 
 ---
@@ -1108,7 +1108,7 @@ Reviewed by:
 - [x] Rural Youth Work Strategy (Serbia) (reported)
 + 
 
-Reviewed by: 
+Reviewed by: Gaurish Thakkar
 
 
 ---
@@ -1193,7 +1193,7 @@ Reviewed by:
 - [x] online course on how develop online advocacy campaigns (reported)
 + 
 
-Reviewed by: 
+Reviewed by: Gaurish Thakkar
 
 
 ---
@@ -1241,7 +1241,7 @@ Reviewed by:
 - [x] booklet and e-book with project activities and outputs (reported)
 + 
 
-Reviewed by: 
+Reviewed by: Gaurish Thakkar
 
 
 ---
@@ -1297,7 +1297,7 @@ Reviewed by:
 - [x] methodology of making handicrafts from old crafts (reported)
 + 
 
-Reviewed by: 
+Reviewed by: Gaurish Thakkar
 
 
 ---
@@ -1352,7 +1352,7 @@ Reviewed by:
 - [x] specific guide for the development of the 3rd sector entities (reported)
 + 
 
-Reviewed by: 
+Reviewed by: Gaurish Thakkar
 
 
 ---
@@ -1413,7 +1413,7 @@ Reviewed by:
 - [x] common vocational-education-guide with all tools which are nescessary for this further training in metal (reported)
 + 
 
-Reviewed by: 
+Reviewed by: Gaurish Thakkar
 
 
 ---
@@ -1460,7 +1460,7 @@ Reviewed by:
 - [x] concepts allowing the development of the companies of the camping (reported)
 + 
 
-Reviewed by: 
+Reviewed by: Gaurish Thakkar
 
 
 ---
@@ -1530,7 +1530,7 @@ Reviewed by:
 - [x] concrete model on entrepreneurship (reported)
 + 
 
-Reviewed by: 
+Reviewed by: Gaurish Thakkar
 
 
 ---
@@ -1600,4 +1600,4 @@ Reviewed by:
 - [x] project's info day at each school (reported)
 + 
 
-Reviewed by: 
+Reviewed by: Gaurish Thakkar

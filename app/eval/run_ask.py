@@ -24,7 +24,10 @@ def variants(x: str) -> list[str]:
     if re.fullmatch(r"\d{1,3}([.,]\d{3})+", x):
         v.add(re.sub(r"[.,]", "", x))
         v.add(re.sub(r"[.,]", ".", x)); v.add(re.sub(r"[.,]", ",", x))
-    return [t.lower() for t in v]
+    out = [t.lower() for t in v]
+    if re.fullmatch(r"[^\W\d_]+", x) and len(x) >= 6:                  # a plain word: accept Croatian case endings (Italija -> Italijom)
+        out.append(strip_acc(x)[: len(x) - 2])
+    return out
 
 
 def rescore(path):

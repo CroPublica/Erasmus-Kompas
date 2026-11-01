@@ -1,0 +1,63 @@
+---
+import Base from '../../../layouts/Base.astro';
+import { LANGS, t, type Lang } from '../../../lib/i18n';
+export const getStaticPaths = () => LANGS.map((lang) => ({ params: { lang } }));
+const lang = Astro.params.lang as Lang;
+const s = t(lang);
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+---
+<Base lang={lang} title={s.pjTitle} path="/projects/" active="projects" description={s.pjLead}>
+  <div class="kicker">{s.nav2.projects}</div>
+  <h1>{s.pjTitle}</h1>
+  <p class="lead">{s.pjLead}</p>
+  <form class="row-form" id="pf" onsubmit="return false" data-base={base}>
+    <label for="pq">{s.pjSearch}<input id="pq" type="search" style="min-width:min(100%,280px)" autocomplete="off" /></label>
+    <label for="pp">{s.pjPeriod}<select id="pp"><option value="">{s.anyPeriod}</option><option value="2014-2020">{s.p1}</option><option value="2021-2027">{s.p2}</option></select></label>
+    <label for="pt">{s.pjType}<select id="pt"><option value="">{s.pjAnyType}</option></select></label>
+    <label for="pc">{s.pjCountry}<select id="pc"><option value="">{s.pjAnyCountry}</option></select></label>
+    <label class="chk"><input id="pg" type="checkbox" /> {s.pjGp}</label>
+  </form>
+  <p class="lead" id="pcount" aria-live="polite"></p>
+  <ul class="res" id="pres"></ul>
+  <p class="lead" id="pmore" hidden>{s.pjMore}</p>
+</Base>
+<script>
+  import { slug } from '../../../lib/i18n';
+  import { country } from '../../../lib/countries';
+  type P = { id: string; title: string; yr: number; period: string; type_: string; status: string; gp: boolean; countries: string[]; topics: string[] };
+  const lang = document.documentElement.lang as 'hr' | 'en';
+  const base = (document.getElementById('pf') as HTMLElement).dataset.base || '';
+  const $ = <T extends HTMLElement>(id: string) => document.getElementById(id) as T;
+  const fold = (x: string) => x.normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/đ/g, 'd').toLowerCase();
+  const none = lang === 'hr' ? 'Nijedan projekt ne odgovara ovim filtrima.' : 'No project matches these filters.';
+  const resultsWord = lang === 'hr' ? 'pronađenih projekata' : 'projects found';
+  const gpWord = lang === 'hr' ? 'dobra praksa' : 'good practice';
+  let data: P[] = [];
+  const fmt = new Intl.NumberFormat(lang === 'hr' ? 'hr-HR' : 'en-GB');
+  function run() {
+    const words = fold($<HTMLInputElement>('pq').value).split(/\s+/).filter(Boolean);
+    const per = $<HTMLSelectElement>('pp').value, ty = $<HTMLSelectElement>('pt').value, co = $<HTMLSelectElement>('pc').value, gp = $<HTMLInputElement>('pg').checked;
+    const hits = data.filter((p) => (!per || p.period === per) && (!ty || p.type_ === ty) && (!co || p.countries.includes(co)) && (!gp || p.gp)
+      && words.every((w) => (p as any)._f.includes(w)));
+    $('pcount').textContent = `${fmt.format(hits.length)} ${resultsWord}`;
+    const ul = $('pres'); ul.innerHTML = '';
+    for (const p of hits.slice(0, 100)) {
+      const li = document.createElement('li'), a = document.createElement('a'), sm = document.createElement('small');
+      a.href = `${base}/${lang}/projects/${slug(p.id)}/`; a.textContent = p.title;
+      sm.textContent = `${p.yr} · ${p.type_} · ${p.countries.slice(0, 6).map((c) => country(lang, c)).join(', ')}${p.gp ? ' · ' + gpWord : ''}`;
+      li.append(a, sm); ul.append(li);
+    }
+    if (!hits.length) { const li = document.createElement('li'); li.textContent = none; ul.append(li); }
+    $('pmore').hidden = hits.length <= 100;
+  }
+  fetch(`${base}/projects.json`).then((r) => r.json()).then((d: P[]) => {
+    data = d;
+    for (const p of data) (p as any)._f = fold(`${p.title} ${p.topics.join(' ')}`);
+    const types = [...new Set(data.map((p) => p.type_))].sort();
+    $('pt').append(...types.map((t) => Object.assign(document.createElement('option'), { value: t, textContent: t })));
+    const cs = [...new Set(data.flatMap((p) => p.countries))].filter((c) => c !== 'HR').sort((a, b) => country(lang, a).localeCompare(country(lang, b), lang));
+    $('pc').append(...cs.map((c) => Object.assign(document.createElement('option'), { value: c, textContent: country(lang, c) })));
+    run();
+  });
+  $('pf').addEventListener('input', run); $('pf').addEventListener('change', run);
+</script>

@@ -64,17 +64,35 @@ profiles:
     translation:  {provider: ollama, model: "qwen3.5:9b", temperature: 0.0, num_ctx: 4096, think: false}
     embeddings:   {provider: ollama, model: "bge-m3"}
 
-  gemma_e4b:
-    ask_router:   {provider: ollama, model: "gemma4:e4b", temperature: 0.0, num_ctx: 4096}
-    ask_answer:   {provider: ollama, model: "gemma4:e4b", temperature: 0.2, num_ctx: 8192}
-    extraction:   {provider: ollama, model: "gemma4:e4b", temperature: 0.0, num_ctx: 8192}
-    translation:  {provider: ollama, model: "gemma4:e4b", temperature: 0.0, num_ctx: 4096}
+  # Large GPU profile (needs `ollama pull gemma4:31b`, 20 GB): phrasing and extraction by the 31B model, routing by the small one.
+
+  # Higher-precision builds for the GPU (A100 40 GB): 8-bit, full precision, and Gemma 31B at 8-bit (34 GB, fits alone).
+  qwen35_q8:
+    ask_router:   {provider: ollama, model: "qwen3.5:4b", temperature: 0.0, num_ctx: 4096, think: false}
+    ask_answer:   {provider: ollama, model: "qwen3.5:9b-q8_0", temperature: 0.2, num_ctx: 8192, think: false}
+    extraction:   {provider: ollama, model: "qwen3.5:9b-q8_0", temperature: 0.0, num_ctx: 8192, think: false}
+    translation:  {provider: ollama, model: "qwen3.5:9b-q8_0", temperature: 0.0, num_ctx: 4096, think: false}
     embeddings:   {provider: ollama, model: "bge-m3"}
 
-  # Large GPU profile (needs `ollama pull gemma4:31b`, 20 GB): phrasing and extraction by the 31B model, routing by the small one.
-  gemma31b:
+  
+
+  
+  gemma31b_q8:
     ask_router:   {provider: ollama, model: "qwen3.5:4b", temperature: 0.0, num_ctx: 4096, think: false}
-    ask_answer:   {provider: ollama, model: "gemma4:31b", temperature: 0.2, num_ctx: 8192}
-    extraction:   {provider: ollama, model: "gemma4:31b", temperature: 0.0, num_ctx: 8192}
-    translation:  {provider: ollama, model: "gemma4:31b", temperature: 0.0, num_ctx: 4096}
+    ask_answer:   {provider: ollama, model: "gemma4:31b-it-q8_0", temperature: 0.2, num_ctx: 8192, think: false}
+    extraction:   {provider: ollama, model: "gemma4:31b-it-q8_0", temperature: 0.0, num_ctx: 8192, think: false}
+    translation:  {provider: ollama, model: "gemma4:31b-it-q8_0", temperature: 0.0, num_ctx: 4096, think: false}
     embeddings:   {provider: ollama, model: "bge-m3"}
+
+  # Candidates suggested by the owner (2026-10-30), answer model only; routing stays with qwen3.5:4b.
+
+  cand_oeuro:
+    ask_router:   {provider: ollama, model: "qwen3.5:4b", temperature: 0.0, num_ctx: 4096, think: false}
+    ask_answer:   {provider: ollama, model: "jobautomation/OpenEuroLLM-Croatian", temperature: 0.2, num_ctx: 8192}
+    extraction:   {provider: ollama, model: "jobautomation/OpenEuroLLM-Croatian", temperature: 0.0, num_ctx: 8192}
+    translation:  {provider: ollama, model: "jobautomation/OpenEuroLLM-Croatian", temperature: 0.0, num_ctx: 4096}
+    embeddings:   {provider: ollama, model: "bge-m3"}
+
+  # Removed 2026-10-30 after testing (models deleted from Ollama; results in LOG.md): gemma_e4b, gemma31b (Q4), qwen35_bf16, cand_mistral24, cand_qwen3_14b, cand_gemma3tools.
+
+  # DeepSeek R1 distills 8B/14B/32B were tested 2026-10-31 and deleted (see LOG.md); their profiles were removed.

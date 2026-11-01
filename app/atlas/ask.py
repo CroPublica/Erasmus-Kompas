@@ -84,6 +84,20 @@ Question: {question}
 Tool results (JSON):
 {results}"""
 
+POLISH_PROMPT = """{lang_rule}
+Below is a DRAFT answer built directly from the data. Rewrite it as a short, natural answer to the question.
+Rules:
+- Keep EVERY number, name and unit of the draft exactly as written. Do not add numbers, do not round, do not convert (no fractions, no new percentages).
+- Do not add facts that are not in the draft. If the draft says there is no evidence, say that.
+- Standard Croatian (or English if the question is English): ijekavian forms, correct diacritics, no Serbian forms (tačno, hiljada, opština).
+- Answer the question first; at most 90 words; plain text, no lists unless the draft has one.
+{lang_rule}
+
+Question: {question}
+
+DRAFT:
+{draft}"""
+
 LANG_RULE = {"hr": "Odgovori isključivo na hrvatskom jeziku. Koristi samo podatke iz alata. Ako nema dokaza, reci to.",
              "en": "Answer in English only. Use only data from the tools. If there is no evidence, say so."}
 
@@ -156,7 +170,8 @@ def looks_like_follow_up(question: str, plan: dict) -> bool:
 
 
 # ---------------------------------------------------------------------------------------------------- number checking
-_NUM = re.compile(r"\d[\d.,  ]*\d|\d")
+# a number: digits with thousands groups (3.830, 3,830, 120 000) or a decimal part; a comma or full stop after a number is punctuation
+_NUM = re.compile(r"\d{1,3}(?:[.,\u00a0 ]\d{3})+(?:[.,]\d+)?|\d+(?:[.,]\d+)?")
 
 
 def _parse_numbers(text: str) -> set[float]:
@@ -210,6 +225,12 @@ def _numbers_in(obj: Any) -> set[float]:
     return out
 
 
+# Serbian and ekavian forms that small models let slip into Croatian text (the Croatian forms are in brackets); a short, conservative list
+SERBIAN_FORMS = re.compile(r"\b(tačn\w*|hiljad\w*|opštin\w*|gde|ovde|vreme|mleko|dete|deca|lepo|uvek|reč|reči|razumeti|videti|sedmic\w*|univerzitet\w*|ukupno broj)\b", re.I)
+SERBIAN_HINT = {"tačn": "točn", "hiljad": "tisuć", "opštin": "općin", "gde": "gdje", "ovde": "ovdje", "vreme": "vrijeme", "mleko": "mlijeko",
+                "dete": "dijete", "deca": "djeca", "lepo": "lijepo", "uvek": "uvijek", "reč": "riječ", "univerzitet": "sveučilište"}
+
+
 def verify_answer(answer: str, results: list[dict], lang: Optional[str] = None) -> list[str]:
     """Problems found in an answer: numbers that no tool returned, or ids that no tool returned. Empty list = ok."""
     allowed = _numbers_in(results) | {float(y) for y in range(2014, 2028)} | {1.0, 2.0, 3.0, 4.0, 5.0, 6.0}
@@ -225,9 +246,27 @@ def verify_answer(answer: str, results: list[dict], lang: Optional[str] = None) 
     cited = set(re.findall(r"\[((?:project|org|county):[^\]]*)\]", answer))
     known = {c for r in results for c in r.get("citations", [])}
     problems += [f"unknown citation: {c}" for c in cited - known]
+    if lang == "hr":
+        for m in SERBIAN_FORMS.finditer(answer):
+            problems.append(f"Serbian/ekavian form in Croatian text: {m.group(0)}")
     if lang and len(answer) > 40 and detect_language(answer) != lang:
         problems.append(f"answer is not in {lang}")
     return problems
+
+
+def check_polish(draft: str, answer: str) -> list[str]:
+    """A polished answer may answer only part of the draft, but every number in it must come from the draft (same value),
+    and it must keep at least two of the draft's figures (one when the draft has only one)."""
+    def figures(text):
+        return [vals for m in _NUM.finditer(text) if (vals := _parse_numbers(m.group(0)))]
+    d, a = figures(draft), figures(answer)
+    d_all = set().union(*d) if d else set()
+    out = [f"number not in the draft: {sorted(v)[0]:g}" for v in a if not (v & d_all) and max(v) > 6]
+    big = [v for v in d if max(v) > 6]
+    kept = sum(1 for v in big if any(v & w for w in a))
+    if big and kept < min(2, len(big)):
+        out.append("keeps too few figures of the draft")
+    return out
 
 
 # ---------------------------------------------------------------------------------------------------- deterministic fallbacks
@@ -346,6 +385,7 @@ class State(TypedDict, total=False):
     plan: Optional[dict]
     results: list[dict]
     answer: str
+    draft: str
     problems: list[str]
     attempts: int
     fallback: bool
@@ -457,6 +497,8 @@ class Asker:
             results.append(tb.search_projects(plan["topic"], plan["period"]))
         used = [x.as_dict() for x in results]
         out = {"plan": plan, "results": used, "trace": s["trace"] + [f"tools={[x['tool'] for x in used]}"]}
+        if self.mode == "polish":
+            out["draft"] = template_answer(s["lang"], r, used)
         if self.mode == "template" or not any(x["rows"] for x in used):      # nothing found: the "no evidence" text comes from code, never from the model
             out.update(done=True, answer=template_answer(s["lang"], r, used), trace=out["trace"] + ["template answer"])
         return out
@@ -464,14 +506,19 @@ class Asker:
     def n_compose(self, s: State) -> State:
         t0 = time.time()
         lang = s["lang"]
-        prompt = ANSWER_PROMPT.format(lang_rule=LANG_RULE[lang], question=s["question"],
-                                      results=json.dumps(_trim(s["results"]), ensure_ascii=False, default=str))
+        if self.mode == "polish":
+            prompt = POLISH_PROMPT.format(lang_rule=LANG_RULE[lang], question=s["question"], draft=s["draft"])
+        else:
+            prompt = ANSWER_PROMPT.format(lang_rule=LANG_RULE[lang], question=s["question"],
+                                          results=json.dumps(_trim(s["results"]), ensure_ascii=False, default=str))
         text = self.writer.invoke([("human", prompt)]).content.strip()
         timings = {**s["timings"], "compose_s": round(s["timings"].get("compose_s", 0) + time.time() - t0, 2)}
         return {"answer": text, "attempts": s["attempts"] + 1, "timings": timings}
 
     def n_verify(self, s: State) -> State:
         problems = verify_answer(s["answer"], s["results"], s["lang"])
+        if self.mode == "polish":
+            problems += check_polish(s["draft"], s["answer"])
         if not problems:
             return {"problems": [], "done": True, "trace": s["trace"] + ["verified"]}
         if s["attempts"] < 2:

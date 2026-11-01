@@ -12,6 +12,9 @@ from collections import defaultdict
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
+# how carefully each reviewer checked, as stated by the owner (2026-10-31); "light" reviews are reported separately because
+# reviewers who check quickly add few missing items, which makes recall look better than it is
+DEPTH = json.loads((HERE / "review_depth.json").read_text(encoding="utf-8")) if (HERE / "review_depth.json").exists() else {}
 KINDS = {"Problems": "problem", "Target groups": "target_group", "Approaches": "approach", "Outputs": "output"}
 
 
@@ -46,19 +49,31 @@ def main():
     print(f"{len(gold)} reviewed projects ({skipped} not yet reviewed) -> gold.jsonl")
     if not gold:
         return
-    stat = defaultdict(lambda: [0, 0, 0])      # kind -> proposed, kept, added
     for r in gold:
-        for it in r["items"]:
-            s = stat[it["kind"]]
-            if it["proposed"]:
-                s[0] += 1
-                s[1] += it["correct"]
-            else:
-                s[2] += 1
-    print(f"{'kind':14s} {'proposed':>8} {'kept':>5} {'added':>5} {'precision':>10} {'recall':>7}")
-    for kind in KINDS.values():
-        p, k, a = stat[kind]
-        print(f"{kind:14s} {p:>8} {k:>5} {a:>5} {k / p if p else float('nan'):>10.0%} {k / (k + a) if k + a else float('nan'):>7.0%}")
+        r["review_depth"] = DEPTH.get(r["reviewer"], "unknown")
+    (HERE / "gold.jsonl").write_text("\n".join(json.dumps(r, ensure_ascii=False) for r in gold) + "\n", encoding="utf-8")
+
+    def table(records, title):
+        stat = defaultdict(lambda: [0, 0, 0])      # kind -> proposed, kept, added
+        for r in records:
+            for it in r["items"]:
+                s = stat[it["kind"]]
+                if it["proposed"]:
+                    s[0] += 1
+                    s[1] += it["correct"]
+                else:
+                    s[2] += 1
+        print(f"\n{title} ({len(records)} projects)")
+        print(f"{'kind':14s} {'proposed':>8} {'kept':>5} {'added':>5} {'precision':>10} {'recall':>7}")
+        for kind in KINDS.values():
+            p, k, a = stat[kind]
+            print(f"{kind:14s} {p:>8} {k:>5} {a:>5} {k / p if p else float('nan'):>10.0%} {k / (k + a) if k + a else float('nan'):>7.0%}")
+
+    for depth in ("thorough", "light"):
+        sub = [r for r in gold if r["review_depth"] == depth]
+        if sub:
+            table(sub, f"{depth} review: " + ", ".join(sorted({r['reviewer'] for r in sub})))
+    table(gold, "all reviewed")
 
 
 if __name__ == "__main__":

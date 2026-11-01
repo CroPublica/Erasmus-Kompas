@@ -1,0 +1,104 @@
+---
+import Base from '../../layouts/Base.astro';
+import data from '../../data/topics_by_year.json';
+import { LANGS, t, type Lang } from '../../lib/i18n';
+export const getStaticPaths = () => LANGS.map((lang) => ({ params: { lang } }));
+const lang = Astro.params.lang as Lang;
+const s = t(lang);
+const groups = [['both', s.topBoth], ['new', s.topNew], ['old', s.topOld]] as const;
+const labels = { both: s.topBoth, new: s.topNew, old: s.topOld, break: s.topBreak, partial: s.topPartial, none: s.topNone, share: s.topShare, count: s.topCount, year: s.topYear };
+---
+<Base lang={lang} title={s.topTitle} path="/topics/" active="topics" description={s.topLead}>
+  <div class="kicker">{s.nav2.topics}</div>
+  <h1>{s.topTitle}</h1>
+  <p class="lead">{s.topLead}</p>
+  <p class="lead" style="font-size:.9rem;margin-top:8px">{s.topBreakNote}</p>
+  <div class="grid two" style="margin-top:20px">
+    <section class="card" id="chartcard">
+      <h2>{s.topShare}</h2>
+      <div id="chart" role="img" aria-label={s.topTitle}></div>
+      <ul id="legend" class="chips" style="list-style:none;padding:0;margin:10px 0 0"></ul>
+      <p class="lead" id="none" hidden>{s.topNone}</p>
+      <p class="lead" style="font-size:.85rem;margin-top:10px">{s.topPartial}</p>
+      <details style="margin-top:10px"><summary>{s.topTable}</summary><div style="overflow-x:auto"><table id="dtable"></table></div></details>
+    </section>
+    <section class="card">
+      <h2>{s.topPick}</h2>
+      <label class="sr" for="tf">{s.topFilter}</label>
+      <input id="tf" type="search" placeholder={s.topFilter} style="width:100%;margin:6px 0 10px" />
+      <div id="picker" style="max-height:520px;overflow:auto">
+        {groups.map(([g, label]) => (
+          <fieldset data-g={g} style="border:0;padding:0;margin:0 0 12px">
+            <legend class="kicker" style="margin-bottom:6px">{label}</legend>
+            {data.topics.filter((x: any) => x.scope === g).map((x: any) => (
+              <label class="chk" data-n={x.name.toLowerCase()} style="display:flex;gap:8px;align-items:flex-start;min-height:32px;font-size:.9rem">
+                <input type="checkbox" value={x.name} style="margin-top:3px" /> <span>{x.name}</span>
+              </label>
+            ))}
+          </fieldset>
+        ))}
+      </div>
+      <p class="lead" style="font-size:.85rem">{s.topNames}</p>
+    </section>
+  </div>
+</Base>
+<script>
+  import data from '../../data/topics_by_year.json';
+  const lang = document.documentElement.lang;
+  const fmt = new Intl.NumberFormat(lang === 'hr' ? 'hr-HR' : 'en-GB', { maximumFractionDigits: 1 });
+  const L: Record<string, string> = lang === 'hr'
+    ? { break: 'popis tema promijenjen', none: 'Odaberi barem jednu temu.', both: 'u oba popisa', new: 'popis 2021.–2027.', old: 'popis 2014.–2020.', count: 'Projekti', year: 'Godina poziva' }
+    : { break: 'topic list changed', none: 'Choose at least one topic.', both: 'both lists', new: '2021–2027 list', old: '2014–2020 list', count: 'Projects', year: 'Call year' };
+  const COLORS = Array.from({ length: 8 }, (_, i) => `var(--cds-chart-categorical-${i + 1}, hsl(${i * 45} 60% 45%))`);
+  // site palette fallbacks (the doc tokens above do not exist on this site)
+  const PAL = ['#1d3fc7', '#c9710f', '#0f8f6a', '#b0306b', '#6b4fbf', '#2a7f9e', '#8a6d00', '#c43a3a'];
+  const years: number[] = data.years;
+  const topics = data.topics as any[];
+  const byName = new Map(topics.map((x) => [x.name, x]));
+  const defaults = ['Environment and climate change', 'Entrepreneurial learning - entrepreneurship education', 'Artificial Intelligence (AI) and data usage', 'Digital skills and competences', 'ICT - new technologies - digital competences'];
+  const picker = document.getElementById('picker')!;
+  const boxes = Array.from(picker.querySelectorAll<HTMLInputElement>('input[type=checkbox]'));
+  boxes.forEach((b) => (b.checked = defaults.includes(b.value)));
+  const share = (t: any, y: number) => (100 * t.counts[String(y)]) / (data.projects_with_topics as any)[String(y)];
+  const inRange = (t: any, y: number) => t.scope === 'both' || (t.scope === 'old' ? y <= 2020 : y >= 2021);
+  function draw() {
+    const chosen = boxes.filter((b) => b.checked).map((b) => byName.get(b.value)!);
+    document.getElementById('none')!.hidden = chosen.length > 0;
+    const W = 680, H = 340, ml = 44, mr = 16, mt = 16, mb = 36;
+    const X = (y: number) => ml + ((y - years[0]) / (years.at(-1)! - years[0])) * (W - ml - mr);
+    const maxv = Math.max(10, ...chosen.flatMap((t) => years.filter((y) => inRange(t, y)).map((y) => share(t, y))));
+    const top = Math.ceil(maxv / 10) * 10;
+    const Y = (v: number) => mt + (1 - v / top) * (H - mt - mb);
+    let svg = `<svg viewBox="0 0 ${W} ${H}" width="100%" role="presentation" font-size="12">`;
+    for (let v = 0; v <= top; v += top > 40 ? 20 : 10) svg += `<line x1="${ml}" x2="${W - mr}" y1="${Y(v)}" y2="${Y(v)}" stroke="var(--line)"/><text x="${ml - 6}" y="${Y(v) + 4}" text-anchor="end" fill="var(--muted)">${v} %</text>`;
+    for (const y of years) svg += `<text x="${X(y)}" y="${H - 12}" text-anchor="middle" fill="var(--muted)">${String(y).slice(2)}${y === 2026 ? '*' : ''}</text>`;
+    const bx = (X(2020) + X(2021)) / 2;
+    svg += `<line x1="${bx}" x2="${bx}" y1="${mt}" y2="${H - mb}" stroke="var(--warm)" stroke-dasharray="4 4"/><text x="${bx + 6}" y="${mt + 12}" fill="var(--warm)">${L.break}</text>`;
+    chosen.forEach((t, i) => {
+      const c = PAL[i % PAL.length];
+      const segs: number[][] = [];
+      let cur: number[] = [];
+      for (const y of years) { if (inRange(t, y)) cur.push(y); else if (cur.length) { segs.push(cur); cur = []; } }
+      if (cur.length) segs.push(cur);
+      for (const sg of segs) {
+        svg += `<polyline fill="none" stroke="${c}" stroke-width="2" points="${sg.map((y) => `${X(y)},${Y(share(t, y))}`).join(' ')}"/>`;
+        for (const y of sg) svg += `<circle cx="${X(y)}" cy="${Y(share(t, y))}" r="3.5" fill="${y === 2026 ? 'var(--surface)' : c}" stroke="${c}" stroke-width="1.5"><title>${t.name}, ${y}: ${fmt.format(share(t, y))} % (${t.counts[String(y)]})</title></circle>`;
+      }
+    });
+    svg += '</svg>';
+    document.getElementById('chart')!.innerHTML = svg;
+    document.getElementById('legend')!.innerHTML = chosen.map((t, i) => `<li class="pill" style="border-color:${PAL[i % PAL.length]}"><span style="color:${PAL[i % PAL.length]}">●</span> ${t.name} <small>(${L[t.scope]})</small></li>`).join('');
+    document.getElementById('dtable')!.innerHTML = `<thead><tr><th>${L.year}</th>${chosen.map((t) => `<th class="num">${t.name}</th>`).join('')}</tr></thead><tbody>` +
+      years.map((y) => `<tr><td class="mono">${y}</td>${chosen.map((t) => `<td class="num">${inRange(t, y) ? `${fmt.format(share(t, y))} % (${t.counts[String(y)]})` : '–'}</td>`).join('')}</tr>`).join('') + '</tbody>';
+  }
+  picker.addEventListener('change', (e) => {
+    const on = boxes.filter((b) => b.checked);
+    if (on.length > 8) (e.target as HTMLInputElement).checked = false;
+    draw();
+  });
+  (document.getElementById('tf') as HTMLInputElement).addEventListener('input', (e) => {
+    const q = (e.target as HTMLInputElement).value.trim().toLowerCase();
+    picker.querySelectorAll<HTMLElement>('label.chk').forEach((l) => (l.hidden = !!q && !l.dataset.n!.includes(q)));
+  });
+  draw();
+</script>

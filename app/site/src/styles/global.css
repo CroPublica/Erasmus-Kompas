@@ -129,3 +129,14 @@ form.search li a:hover, form.search li a:focus { background: var(--chip); }
 .warn { color: var(--warm); font-weight: 600; }
 
 main:focus { outline: none; }
+.row-form { display: flex; gap: 12px; flex-wrap: wrap; align-items: end; margin: 18px 0; }
+.row-form label { display: grid; gap: 4px; font-size: .85rem; color: var(--muted); }
+.row-form input[type='checkbox'] { width: 20px; height: 20px; min-height: 0; }
+.row-form .chk { display: flex; align-items: center; gap: 8px; min-height: 44px; }
+tr.hl td { background: var(--warm-bg); font-weight: 600; }
+.res li { padding: 10px 0; border-bottom: 1px solid var(--line); list-style: none; }
+.res { padding: 0; margin: 0; }
+.res small { color: var(--muted); display: block; }
+[hidden] { display: none !important; }
+#picker { margin-bottom: 10px; }
+@media (max-width: 1400px) { header.site .wrap { row-gap: 6px; } nav.main { order: 5; flex-basis: 100%; } }

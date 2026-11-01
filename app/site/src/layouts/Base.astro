@@ -10,6 +10,9 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const href = (l: Lang, p = path) => `${base}/${l}${p || '/'}`;
 const nav = [
   ['coverage', '', s.nav.coverage],
+  ['overview', '/overview/', s.nav2.overview],
+  ['projects', '/projects/', s.nav2.projects],
+  ['topics', '/topics/', s.nav2.topics],
   ['orgs', '/organisations/', s.nav.orgs],
   ['places', '/places/', s.nav.places],
   ['ask', '/ask/', s.nav.ask],

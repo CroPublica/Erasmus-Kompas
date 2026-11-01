@@ -90,7 +90,7 @@ cd site && npm install && npm run build      # static site in site/dist (npm run
 
 ```
 ./build_site.sh                    # export data from DuckDB, build site/dist (static files, no server needed)
-./build_site.sh --test             # ... and run the 16 browser tests
+./build_site.sh --test             # ... and run the 21 browser tests
 SITE_BASE=/atlas ./build_site.sh   # site served under a sub-path (also SITE_URL=https://example.org for canonical links)
 ./build_site.sh --docker           # ... and build a container image (deploy/Dockerfile: nginx, port 8080, security headers)
 docker run --rm -p 8080:8080 ka2-atlas

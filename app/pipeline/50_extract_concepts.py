@@ -30,7 +30,7 @@ from atlas.config import load_profile, max_concurrency            # noqa: E402
 from common import APP_DIR, connect                                # noqa: E402
 
 CACHE = APP_DIR / "data" / "extraction_cache.jsonl"
-PROMPT_VERSION = "v1"
+PROMPT_VERSION = "v2"          # v1 = first prompt (capped lists, products only); v2 follows the gold-set corrections of 2026-10/11
 MAX_CHARS = 7000
 
 SCHEMA = {
@@ -48,7 +48,7 @@ SCHEMA = {
     "required": ["problems", "target_groups", "approaches", "outputs"],
 }
 
-INSTRUCTIONS = """You read the summary of an Erasmus+ cooperation project and extract structured facts.
+INSTRUCTIONS_V1 = """You read the summary of an Erasmus+ cooperation project and extract structured facts.
 Answer in English with JSON only, following the schema. Rules:
 - problems: the need, gap or problem the project says it addresses (max 4). Short noun phrase, e.g. "lack of practical repair skills".
 - target_groups: who the project is for (max 5), e.g. "secondary school teachers", "young people with fewer opportunities".
@@ -66,6 +66,32 @@ SUMMARY:
 {text}"""
 
 
+INSTRUCTIONS_V2 = """You read the summary of an Erasmus+ cooperation project and extract structured facts.
+Answer in English with JSON only, following the schema. Be thorough: list every distinct item the text states or clearly implies, one item per idea
+(do not merge two ideas, do not repeat one idea in other words). Rules:
+- problems (up to 8): every need, gap, challenge or problem the project addresses, including needs that are only implied by the objectives, e.g.
+  "need to upgrade trainers' skills and teaching methods", "limited inclusion of students from disadvantaged backgrounds", "low media literacy
+  among young people", "polarisation". Short noun phrase.
+- target_groups (up to 8): every group the project is for or works with, e.g. "secondary school teachers", "young people with fewer opportunities".
+- approaches (up to 12): every activity, method or way of working the project carries out or uses: needs research or assessment, workshops,
+  pilot sessions, training and training of trainers, student or staff mobilities and exchanges, peer learning, exchange of practices, co-creation,
+  mentoring, experiential learning, and any named method (e.g. "restorative practices", "animal-assisted interventions", "eTwinning collaboration").
+  Short noun phrase.
+- outputs (up to 12): both (a) concrete products (toolkit, course, curriculum with its level, platform, handbook, videos) and (b) expected or achieved
+  results for people (e.g. "improved English language skills of students", "reduced peer bullying", "decreased prejudice towards other nationalities").
+  status: "planned" if described as something to be made or expected, "reported" if the text says it was made or achieved.
+- evidence: copy a short exact quote (at most 25 words) from the summary that supports the item. Never invent a quote.
+- Expand abbreviations that the text defines (write "library of things", not "LoT").
+- Do not list the project's own name, the partner organisations, or generic programme wording (for example "European added value",
+  "Erasmus+", "dissemination", "project management").
+- If the summary says nothing for a field, return an empty list for it.
+Project status: {status}.
+
+SUMMARY:
+{text}"""
+INSTRUCTIONS = {"v1": INSTRUCTIONS_V1, "v2": INSTRUCTIONS_V2}
+
+
 def clean(text: str) -> str:
     text = re.sub(r"https?://\S+|www\.\S+", " ", text or "")
     return re.sub(r"[ \t]+", " ", re.sub(r"\n{3,}", "\n\n", text)).strip()[:MAX_CHARS]
@@ -77,7 +103,7 @@ def squash(s: str) -> str:
 
 def call_model(client, spec, text, status):
     options = {"temperature": spec.temperature, "num_ctx": spec.num_ctx or 8192}
-    resp = client.chat(model=spec.model, messages=[{"role": "user", "content": INSTRUCTIONS.format(status=status, text=text)}],
+    resp = client.chat(model=spec.model, messages=[{"role": "user", "content": INSTRUCTIONS[PROMPT_VERSION].format(status=status, text=text)}],
                        format=SCHEMA, options=options, think=False, keep_alive="10m")
     return json.loads(resp["message"]["content"])
 
@@ -98,7 +124,11 @@ def main():
     ap.add_argument("--period")
     ap.add_argument("--ids")
     ap.add_argument("--reload", action="store_true")
+    ap.add_argument("--prompt", choices=sorted(INSTRUCTIONS), help="prompt version (default: the current PROMPT_VERSION)")
     args = ap.parse_args()
+    global PROMPT_VERSION
+    if args.prompt:
+        PROMPT_VERSION = args.prompt
 
     spec = load_profile(args.profile)["extraction"]
     tag = f"{spec.model}|{PROMPT_VERSION}"

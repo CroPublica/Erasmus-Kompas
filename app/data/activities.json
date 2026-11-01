@@ -1,0 +1,3290 @@
+{
+ "n_projects": {
+  "2021-2027": 1790,
+  "2014-2020": 2014,
+  "all": 3804
+ },
+ "activities": [
+  {
+   "name": "Survey or questionnaire",
+   "group": "Research and needs analysis",
+   "stage": 1,
+   "projects": {
+    "2021-2027": 249,
+    "2014-2020": 387,
+    "all": 636
+   },
+   "share": {
+    "2021-2027": 0.13910614525139664,
+    "2014-2020": 0.19215491559086395,
+    "all": 0.167192429022082
+   },
+   "pos": 0.557
+  },
+  {
+   "name": "Interviews",
+   "group": "Research and needs analysis",
+   "stage": 1,
+   "projects": {
+    "2021-2027": 123,
+    "2014-2020": 196,
+    "all": 319
+   },
+   "share": {
+    "2021-2027": 0.06871508379888268,
+    "2014-2020": 0.09731876861966236,
+    "all": 0.08385909568874869
+   },
+   "pos": 0.6
+  },
+  {
+   "name": "Focus groups",
+   "group": "Research and needs analysis",
+   "stage": 1,
+   "projects": {
+    "2021-2027": 86,
+    "2014-2020": 48,
+    "all": 134
+   },
+   "share": {
+    "2021-2027": 0.048044692737430165,
+    "2014-2020": 0.023833167825223437,
+    "all": 0.035226077812828605
+   },
+   "pos": 0.541
+  },
+  {
+   "name": "Needs analysis",
+   "group": "Research and needs analysis",
+   "stage": 1,
+   "projects": {
+    "2021-2027": 134,
+    "2014-2020": 95,
+    "all": 229
+   },
+   "share": {
+    "2021-2027": 0.07486033519553073,
+    "2014-2020": 0.04716981132075472,
+    "all": 0.060199789695057834
+   },
+   "pos": 0.445
+  },
+  {
+   "name": "Desk research or literature review",
+   "group": "Research and needs analysis",
+   "stage": 1,
+   "projects": {
+    "2021-2027": 127,
+    "2014-2020": 128,
+    "all": 255
+   },
+   "share": {
+    "2021-2027": 0.07094972067039106,
+    "2014-2020": 0.06355511420059583,
+    "all": 0.06703470031545741
+   },
+   "pos": 0.526
+  },
+  {
+   "name": "Collecting good practices",
+   "group": "Research and needs analysis",
+   "stage": 1,
+   "projects": {
+    "2021-2027": 22,
+    "2014-2020": 25,
+    "all": 47
+   },
+   "share": {
+    "2021-2027": 0.012290502793296089,
+    "2014-2020": 0.012413108242303872,
+    "all": 0.012355415352260778
+   },
+   "pos": 0.6
+  },
+  {
+   "name": "Curriculum or course design",
+   "group": "Design and development",
+   "stage": 2,
+   "projects": {
+    "2021-2027": 763,
+    "2014-2020": 781,
+    "all": 1544
+   },
+   "share": {
+    "2021-2027": 0.4262569832402235,
+    "2014-2020": 0.38778550148957297,
+    "all": 0.4058885383806519
+   },
+   "pos": 0.414
+  },
+  {
+   "name": "Toolkit, handbook or guidelines",
+   "group": "Design and development",
+   "stage": 2,
+   "projects": {
+    "2021-2027": 683,
+    "2014-2020": 534,
+    "all": 1217
+   },
+   "share": {
+    "2021-2027": 0.3815642458100559,
+    "2014-2020": 0.26514399205561073,
+    "all": 0.31992639327024186
+   },
+   "pos": 0.591
+  },
+  {
+   "name": "Online platform, app or website",
+   "group": "Design and development",
+   "stage": 2,
+   "projects": {
+    "2021-2027": 335,
+    "2014-2020": 284,
+    "all": 619
+   },
+   "share": {
+    "2021-2027": 0.1871508379888268,
+    "2014-2020": 0.141012909632572,
+    "all": 0.1627234490010515
+   },
+   "pos": 0.553
+  },
+  {
+   "name": "E-learning or online course",
+   "group": "Design and development",
+   "stage": 2,
+   "projects": {
+    "2021-2027": 432,
+    "2014-2020": 382,
+    "all": 814
+   },
+   "share": {
+    "2021-2027": 0.24134078212290502,
+    "2014-2020": 0.18967229394240318,
+    "all": 0.21398527865404837
+   },
+   "pos": 0.554
+  },
+  {
+   "name": "Open educational resources",
+   "group": "Design and development",
+   "stage": 2,
+   "projects": {
+    "2021-2027": 118,
+    "2014-2020": 133,
+    "all": 251
+   },
+   "share": {
+    "2021-2027": 0.0659217877094972,
+    "2014-2020": 0.0660377358490566,
+    "all": 0.06598317560462671
+   },
+   "pos": 0.557
+  },
+  {
+   "name": "Games and gamification",
+   "group": "Design and development",
+   "stage": 2,
+   "projects": {
+    "2021-2027": 142,
+    "2014-2020": 129,
+    "all": 271
+   },
+   "share": {
+    "2021-2027": 0.07932960893854749,
+    "2014-2020": 0.06405163853028799,
+    "all": 0.07124079915878023
+   },
+   "pos": 0.467
+  },
+  {
+   "name": "Videos, podcasts or multimedia",
+   "group": "Design and development",
+   "stage": 2,
+   "projects": {
+    "2021-2027": 481,
+    "2014-2020": 628,
+    "all": 1109
+   },
+   "share": {
+    "2021-2027": 0.2687150837988827,
+    "2014-2020": 0.3118172790466733,
+    "all": 0.29153522607781285
+   },
+   "pos": 0.629
+  },
+  {
+   "name": "Policy paper or recommendations",
+   "group": "Design and development",
+   "stage": 2,
+   "projects": {
+    "2021-2027": 108,
+    "2014-2020": 55,
+    "all": 163
+   },
+   "share": {
+    "2021-2027": 0.060335195530726256,
+    "2014-2020": 0.02730883813306852,
+    "all": 0.042849631966351207
+   },
+   "pos": 0.668
+  },
+  {
+   "name": "Competence framework or certification",
+   "group": "Design and development",
+   "stage": 2,
+   "projects": {
+    "2021-2027": 178,
+    "2014-2020": 136,
+    "all": 314
+   },
+   "share": {
+    "2021-2027": 0.09944134078212291,
+    "2014-2020": 0.06752730883813307,
+    "all": 0.0825446898002103
+   },
+   "pos": 0.561
+  },
+  {
+   "name": "Workshops",
+   "group": "Learning and practice with people",
+   "stage": 3,
+   "projects": {
+    "2021-2027": 650,
+    "2014-2020": 669,
+    "all": 1319
+   },
+   "share": {
+    "2021-2027": 0.36312849162011174,
+    "2014-2020": 0.33217477656405164,
+    "all": 0.3467402733964248
+   },
+   "pos": 0.558
+  },
+  {
+   "name": "Training courses and seminars",
+   "group": "Learning and practice with people",
+   "stage": 3,
+   "projects": {
+    "2021-2027": 498,
+    "2014-2020": 677,
+    "all": 1175
+   },
+   "share": {
+    "2021-2027": 0.2782122905027933,
+    "2014-2020": 0.3361469712015889,
+    "all": 0.3088853838065195
+   },
+   "pos": 0.558
+  },
+  {
+   "name": "Student or staff exchange, mobility",
+   "group": "Learning and practice with people",
+   "stage": 3,
+   "projects": {
+    "2021-2027": 449,
+    "2014-2020": 860,
+    "all": 1309
+   },
+   "share": {
+    "2021-2027": 0.2508379888268156,
+    "2014-2020": 0.4270109235352532,
+    "all": 0.3441114616193481
+   },
+   "pos": 0.504
+  },
+  {
+   "name": "Summer school, camp or youth exchange",
+   "group": "Learning and practice with people",
+   "stage": 3,
+   "projects": {
+    "2021-2027": 74,
+    "2014-2020": 73,
+    "all": 147
+   },
+   "share": {
+    "2021-2027": 0.041340782122905026,
+    "2014-2020": 0.03624627606752731,
+    "all": 0.038643533123028394
+   },
+   "pos": 0.557
+  },
+  {
+   "name": "Mentoring or coaching",
+   "group": "Learning and practice with people",
+   "stage": 3,
+   "projects": {
+    "2021-2027": 160,
+    "2014-2020": 169,
+    "all": 329
+   },
+   "share": {
+    "2021-2027": 0.0893854748603352,
+    "2014-2020": 0.08391261171797418,
+    "all": 0.08648790746582545
+   },
+   "pos": 0.442
+  },
+  {
+   "name": "Peer learning and exchange of practice",
+   "group": "Learning and practice with people",
+   "stage": 3,
+   "projects": {
+    "2021-2027": 220,
+    "2014-2020": 358,
+    "all": 578
+   },
+   "share": {
+    "2021-2027": 0.12290502793296089,
+    "2014-2020": 0.17775571002979146,
+    "all": 0.1519453207150368
+   },
+   "pos": 0.455
+  },
+  {
+   "name": "Study visits",
+   "group": "Learning and practice with people",
+   "stage": 3,
+   "projects": {
+    "2021-2027": 102,
+    "2014-2020": 90,
+    "all": 192
+   },
+   "share": {
+    "2021-2027": 0.05698324022346369,
+    "2014-2020": 0.044687189672293945,
+    "all": 0.050473186119873815
+   },
+   "pos": 0.568
+  },
+  {
+   "name": "Hackathon or competition",
+   "group": "Learning and practice with people",
+   "stage": 3,
+   "projects": {
+    "2021-2027": 108,
+    "2014-2020": 220,
+    "all": 328
+   },
+   "share": {
+    "2021-2027": 0.060335195530726256,
+    "2014-2020": 0.10923535253227408,
+    "all": 0.08622502628811778
+   },
+   "pos": 0.54
+  },
+  {
+   "name": "Pilot or testing with users",
+   "group": "Learning and practice with people",
+   "stage": 3,
+   "projects": {
+    "2021-2027": 568,
+    "2014-2020": 353,
+    "all": 921
+   },
+   "share": {
+    "2021-2027": 0.31731843575418994,
+    "2014-2020": 0.17527308838133068,
+    "all": 0.2421135646687697
+   },
+   "pos": 0.563
+  },
+  {
+   "name": "Multiplier events",
+   "group": "Sharing and dissemination",
+   "stage": 4,
+   "projects": {
+    "2021-2027": 395,
+    "2014-2020": 387,
+    "all": 782
+   },
+   "share": {
+    "2021-2027": 0.2206703910614525,
+    "2014-2020": 0.19215491559086395,
+    "all": 0.20557308096740273
+   },
+   "pos": 0.664
+  },
+  {
+   "name": "Conferences and info days",
+   "group": "Sharing and dissemination",
+   "stage": 4,
+   "projects": {
+    "2021-2027": 423,
+    "2014-2020": 428,
+    "all": 851
+   },
+   "share": {
+    "2021-2027": 0.23631284916201117,
+    "2014-2020": 0.21251241310824232,
+    "all": 0.22371188222923238
+   },
+   "pos": 0.674
+  },
+  {
+   "name": "Website and social media",
+   "group": "Sharing and dissemination",
+   "stage": 4,
+   "projects": {
+    "2021-2027": 532,
+    "2014-2020": 785,
+    "all": 1317
+   },
+   "share": {
+    "2021-2027": 0.29720670391061454,
+    "2014-2020": 0.3897715988083416,
+    "all": 0.3462145110410095
+   },
+   "pos": 0.711
+  },
+  {
+   "name": "Publications and articles",
+   "group": "Sharing and dissemination",
+   "stage": 4,
+   "projects": {
+    "2021-2027": 403,
+    "2014-2020": 636,
+    "all": 1039
+   },
+   "share": {
+    "2021-2027": 0.22513966480446929,
+    "2014-2020": 0.3157894736842105,
+    "all": 0.2731335436382755
+   },
+   "pos": 0.701
+  },
+  {
+   "name": "Exhibitions and public events",
+   "group": "Sharing and dissemination",
+   "stage": 4,
+   "projects": {
+    "2021-2027": 384,
+    "2014-2020": 391,
+    "all": 775
+   },
+   "share": {
+    "2021-2027": 0.21452513966480447,
+    "2014-2020": 0.19414101290963257,
+    "all": 0.203732912723449
+   },
+   "pos": 0.616
+  },
+  {
+   "name": "Networking and partnerships",
+   "group": "Sharing and dissemination",
+   "stage": 4,
+   "projects": {
+    "2021-2027": 196,
+    "2014-2020": 181,
+    "all": 377
+   },
+   "share": {
+    "2021-2027": 0.10949720670391061,
+    "2014-2020": 0.08987090367428004,
+    "all": 0.0991062039957939
+   },
+   "pos": 0.532
+  },
+  {
+   "name": "Evaluation and feedback",
+   "group": "Evaluation and quality",
+   "stage": 5,
+   "projects": {
+    "2021-2027": 521,
+    "2014-2020": 602,
+    "all": 1123
+   },
+   "share": {
+    "2021-2027": 0.2910614525139665,
+    "2014-2020": 0.29890764647467727,
+    "all": 0.2952155625657203
+   },
+   "pos": 0.612
+  },
+  {
+   "name": "Quality assurance and monitoring",
+   "group": "Evaluation and quality",
+   "stage": 5,
+   "projects": {
+    "2021-2027": 294,
+    "2014-2020": 259,
+    "all": 553
+   },
+   "share": {
+    "2021-2027": 0.16424581005586592,
+    "2014-2020": 0.12859980139026814,
+    "all": 0.1453732912723449
+   },
+   "pos": 0.56
+  },
+  {
+   "name": "Project management and partner meetings",
+   "group": "Project management",
+   "stage": 5,
+   "projects": {
+    "2021-2027": 386,
+    "2014-2020": 465,
+    "all": 851
+   },
+   "share": {
+    "2021-2027": 0.21564245810055865,
+    "2014-2020": 0.23088381330685204,
+    "all": 0.22371188222923238
+   },
+   "pos": 0.545
+  }
+ ],
+ "cooccurrence": [
+  {
+   "a": "Survey or questionnaire",
+   "b": "Interviews",
+   "both": 126,
+   "jaccard": 0.152,
+   "lift": 2.36
+  },
+  {
+   "a": "Survey or questionnaire",
+   "b": "Focus groups",
+   "both": 54,
+   "jaccard": 0.075,
+   "lift": 2.41
+  },
+  {
+   "a": "Survey or questionnaire",
+   "b": "Needs analysis",
+   "both": 58,
+   "jaccard": 0.072,
+   "lift": 1.51
+  },
+  {
+   "a": "Survey or questionnaire",
+   "b": "Desk research or literature review",
+   "both": 84,
+   "jaccard": 0.104,
+   "lift": 1.97
+  },
+  {
+   "a": "Survey or questionnaire",
+   "b": "Curriculum or course design",
+   "both": 297,
+   "jaccard": 0.158,
+   "lift": 1.15
+  },
+  {
+   "a": "Survey or questionnaire",
+   "b": "Toolkit, handbook or guidelines",
+   "both": 220,
+   "jaccard": 0.135,
+   "lift": 1.08
+  },
+  {
+   "a": "Survey or questionnaire",
+   "b": "Online platform, app or website",
+   "both": 120,
+   "jaccard": 0.106,
+   "lift": 1.16
+  },
+  {
+   "a": "Survey or questionnaire",
+   "b": "E-learning or online course",
+   "both": 153,
+   "jaccard": 0.118,
+   "lift": 1.12
+  },
+  {
+   "a": "Survey or questionnaire",
+   "b": "Open educational resources",
+   "both": 48,
+   "jaccard": 0.057,
+   "lift": 1.14
+  },
+  {
+   "a": "Survey or questionnaire",
+   "b": "Games and gamification",
+   "both": 48,
+   "jaccard": 0.056,
+   "lift": 1.06
+  },
+  {
+   "a": "Survey or questionnaire",
+   "b": "Videos, podcasts or multimedia",
+   "both": 259,
+   "jaccard": 0.174,
+   "lift": 1.4
+  },
+  {
+   "a": "Survey or questionnaire",
+   "b": "Competence framework or certification",
+   "both": 79,
+   "jaccard": 0.091,
+   "lift": 1.5
+  },
+  {
+   "a": "Survey or questionnaire",
+   "b": "Workshops",
+   "both": 262,
+   "jaccard": 0.155,
+   "lift": 1.19
+  },
+  {
+   "a": "Survey or questionnaire",
+   "b": "Training courses and seminars",
+   "both": 234,
+   "jaccard": 0.148,
+   "lift": 1.19
+  },
+  {
+   "a": "Survey or questionnaire",
+   "b": "Student or staff exchange, mobility",
+   "both": 269,
+   "jaccard": 0.161,
+   "lift": 1.23
+  },
+  {
+   "a": "Survey or questionnaire",
+   "b": "Mentoring or coaching",
+   "both": 58,
+   "jaccard": 0.064,
+   "lift": 1.05
+  },
+  {
+   "a": "Survey or questionnaire",
+   "b": "Peer learning and exchange of practice",
+   "both": 95,
+   "jaccard": 0.085,
+   "lift": 0.98
+  },
+  {
+   "a": "Survey or questionnaire",
+   "b": "Hackathon or competition",
+   "both": 84,
+   "jaccard": 0.095,
+   "lift": 1.53
+  },
+  {
+   "a": "Survey or questionnaire",
+   "b": "Pilot or testing with users",
+   "both": 174,
+   "jaccard": 0.126,
+   "lift": 1.13
+  },
+  {
+   "a": "Survey or questionnaire",
+   "b": "Multiplier events",
+   "both": 171,
+   "jaccard": 0.137,
+   "lift": 1.31
+  },
+  {
+   "a": "Survey or questionnaire",
+   "b": "Conferences and info days",
+   "both": 167,
+   "jaccard": 0.127,
+   "lift": 1.17
+  },
+  {
+   "a": "Survey or questionnaire",
+   "b": "Website and social media",
+   "both": 322,
+   "jaccard": 0.197,
+   "lift": 1.46
+  },
+  {
+   "a": "Survey or questionnaire",
+   "b": "Publications and articles",
+   "both": 271,
+   "jaccard": 0.193,
+   "lift": 1.56
+  },
+  {
+   "a": "Survey or questionnaire",
+   "b": "Exhibitions and public events",
+   "both": 148,
+   "jaccard": 0.117,
+   "lift": 1.14
+  },
+  {
+   "a": "Survey or questionnaire",
+   "b": "Networking and partnerships",
+   "both": 57,
+   "jaccard": 0.06,
+   "lift": 0.9
+  },
+  {
+   "a": "Survey or questionnaire",
+   "b": "Evaluation and feedback",
+   "both": 311,
+   "jaccard": 0.215,
+   "lift": 1.66
+  },
+  {
+   "a": "Survey or questionnaire",
+   "b": "Quality assurance and monitoring",
+   "both": 145,
+   "jaccard": 0.139,
+   "lift": 1.57
+  },
+  {
+   "a": "Survey or questionnaire",
+   "b": "Project management and partner meetings",
+   "both": 188,
+   "jaccard": 0.145,
+   "lift": 1.32
+  },
+  {
+   "a": "Interviews",
+   "b": "Focus groups",
+   "both": 41,
+   "jaccard": 0.1,
+   "lift": 3.65
+  },
+  {
+   "a": "Interviews",
+   "b": "Desk research or literature review",
+   "both": 65,
+   "jaccard": 0.128,
+   "lift": 3.04
+  },
+  {
+   "a": "Interviews",
+   "b": "Curriculum or course design",
+   "both": 143,
+   "jaccard": 0.083,
+   "lift": 1.1
+  },
+  {
+   "a": "Interviews",
+   "b": "Toolkit, handbook or guidelines",
+   "both": 111,
+   "jaccard": 0.078,
+   "lift": 1.09
+  },
+  {
+   "a": "Interviews",
+   "b": "Online platform, app or website",
+   "both": 63,
+   "jaccard": 0.072,
+   "lift": 1.21
+  },
+  {
+   "a": "Interviews",
+   "b": "E-learning or online course",
+   "both": 67,
+   "jaccard": 0.063,
+   "lift": 0.98
+  },
+  {
+   "a": "Interviews",
+   "b": "Videos, podcasts or multimedia",
+   "both": 157,
+   "jaccard": 0.124,
+   "lift": 1.69
+  },
+  {
+   "a": "Interviews",
+   "b": "Workshops",
+   "both": 146,
+   "jaccard": 0.098,
+   "lift": 1.32
+  },
+  {
+   "a": "Interviews",
+   "b": "Training courses and seminars",
+   "both": 104,
+   "jaccard": 0.075,
+   "lift": 1.06
+  },
+  {
+   "a": "Interviews",
+   "b": "Student or staff exchange, mobility",
+   "both": 124,
+   "jaccard": 0.082,
+   "lift": 1.13
+  },
+  {
+   "a": "Interviews",
+   "b": "Peer learning and exchange of practice",
+   "both": 57,
+   "jaccard": 0.068,
+   "lift": 1.18
+  },
+  {
+   "a": "Interviews",
+   "b": "Pilot or testing with users",
+   "both": 99,
+   "jaccard": 0.087,
+   "lift": 1.28
+  },
+  {
+   "a": "Interviews",
+   "b": "Multiplier events",
+   "both": 88,
+   "jaccard": 0.087,
+   "lift": 1.34
+  },
+  {
+   "a": "Interviews",
+   "b": "Conferences and info days",
+   "both": 97,
+   "jaccard": 0.09,
+   "lift": 1.36
+  },
+  {
+   "a": "Interviews",
+   "b": "Website and social media",
+   "both": 160,
+   "jaccard": 0.108,
+   "lift": 1.45
+  },
+  {
+   "a": "Interviews",
+   "b": "Publications and articles",
+   "both": 138,
+   "jaccard": 0.113,
+   "lift": 1.58
+  },
+  {
+   "a": "Interviews",
+   "b": "Exhibitions and public events",
+   "both": 86,
+   "jaccard": 0.085,
+   "lift": 1.32
+  },
+  {
+   "a": "Interviews",
+   "b": "Evaluation and feedback",
+   "both": 144,
+   "jaccard": 0.111,
+   "lift": 1.53
+  },
+  {
+   "a": "Interviews",
+   "b": "Quality assurance and monitoring",
+   "both": 67,
+   "jaccard": 0.083,
+   "lift": 1.44
+  },
+  {
+   "a": "Interviews",
+   "b": "Project management and partner meetings",
+   "both": 98,
+   "jaccard": 0.091,
+   "lift": 1.37
+  },
+  {
+   "a": "Focus groups",
+   "b": "Curriculum or course design",
+   "both": 78,
+   "jaccard": 0.049,
+   "lift": 1.43
+  },
+  {
+   "a": "Focus groups",
+   "b": "Toolkit, handbook or guidelines",
+   "both": 76,
+   "jaccard": 0.06,
+   "lift": 1.77
+  },
+  {
+   "a": "Focus groups",
+   "b": "E-learning or online course",
+   "both": 44,
+   "jaccard": 0.049,
+   "lift": 1.53
+  },
+  {
+   "a": "Focus groups",
+   "b": "Videos, podcasts or multimedia",
+   "both": 46,
+   "jaccard": 0.038,
+   "lift": 1.18
+  },
+  {
+   "a": "Focus groups",
+   "b": "Workshops",
+   "both": 49,
+   "jaccard": 0.035,
+   "lift": 1.05
+  },
+  {
+   "a": "Focus groups",
+   "b": "Training courses and seminars",
+   "both": 50,
+   "jaccard": 0.04,
+   "lift": 1.21
+  },
+  {
+   "a": "Focus groups",
+   "b": "Pilot or testing with users",
+   "both": 64,
+   "jaccard": 0.065,
+   "lift": 1.97
+  },
+  {
+   "a": "Focus groups",
+   "b": "Conferences and info days",
+   "both": 50,
+   "jaccard": 0.053,
+   "lift": 1.67
+  },
+  {
+   "a": "Focus groups",
+   "b": "Website and social media",
+   "both": 58,
+   "jaccard": 0.042,
+   "lift": 1.25
+  },
+  {
+   "a": "Focus groups",
+   "b": "Publications and articles",
+   "both": 51,
+   "jaccard": 0.045,
+   "lift": 1.39
+  },
+  {
+   "a": "Focus groups",
+   "b": "Evaluation and feedback",
+   "both": 61,
+   "jaccard": 0.051,
+   "lift": 1.54
+  },
+  {
+   "a": "Needs analysis",
+   "b": "Curriculum or course design",
+   "both": 138,
+   "jaccard": 0.084,
+   "lift": 1.48
+  },
+  {
+   "a": "Needs analysis",
+   "b": "Toolkit, handbook or guidelines",
+   "both": 101,
+   "jaccard": 0.075,
+   "lift": 1.38
+  },
+  {
+   "a": "Needs analysis",
+   "b": "Online platform, app or website",
+   "both": 53,
+   "jaccard": 0.067,
+   "lift": 1.42
+  },
+  {
+   "a": "Needs analysis",
+   "b": "E-learning or online course",
+   "both": 86,
+   "jaccard": 0.09,
+   "lift": 1.76
+  },
+  {
+   "a": "Needs analysis",
+   "b": "Videos, podcasts or multimedia",
+   "both": 59,
+   "jaccard": 0.046,
+   "lift": 0.88
+  },
+  {
+   "a": "Needs analysis",
+   "b": "Workshops",
+   "both": 77,
+   "jaccard": 0.052,
+   "lift": 0.97
+  },
+  {
+   "a": "Needs analysis",
+   "b": "Training courses and seminars",
+   "both": 92,
+   "jaccard": 0.07,
+   "lift": 1.3
+  },
+  {
+   "a": "Needs analysis",
+   "b": "Student or staff exchange, mobility",
+   "both": 52,
+   "jaccard": 0.035,
+   "lift": 0.66
+  },
+  {
+   "a": "Needs analysis",
+   "b": "Peer learning and exchange of practice",
+   "both": 40,
+   "jaccard": 0.052,
+   "lift": 1.15
+  },
+  {
+   "a": "Needs analysis",
+   "b": "Pilot or testing with users",
+   "both": 107,
+   "jaccard": 0.103,
+   "lift": 1.93
+  },
+  {
+   "a": "Needs analysis",
+   "b": "Multiplier events",
+   "both": 84,
+   "jaccard": 0.091,
+   "lift": 1.78
+  },
+  {
+   "a": "Needs analysis",
+   "b": "Conferences and info days",
+   "both": 65,
+   "jaccard": 0.064,
+   "lift": 1.27
+  },
+  {
+   "a": "Needs analysis",
+   "b": "Website and social media",
+   "both": 80,
+   "jaccard": 0.055,
+   "lift": 1.01
+  },
+  {
+   "a": "Needs analysis",
+   "b": "Publications and articles",
+   "both": 59,
+   "jaccard": 0.049,
+   "lift": 0.94
+  },
+  {
+   "a": "Needs analysis",
+   "b": "Networking and partnerships",
+   "both": 40,
+   "jaccard": 0.071,
+   "lift": 1.76
+  },
+  {
+   "a": "Needs analysis",
+   "b": "Evaluation and feedback",
+   "both": 96,
+   "jaccard": 0.076,
+   "lift": 1.42
+  },
+  {
+   "a": "Needs analysis",
+   "b": "Quality assurance and monitoring",
+   "both": 62,
+   "jaccard": 0.086,
+   "lift": 1.86
+  },
+  {
+   "a": "Needs analysis",
+   "b": "Project management and partner meetings",
+   "both": 57,
+   "jaccard": 0.056,
+   "lift": 1.11
+  },
+  {
+   "a": "Desk research or literature review",
+   "b": "Curriculum or course design",
+   "both": 141,
+   "jaccard": 0.085,
+   "lift": 1.36
+  },
+  {
+   "a": "Desk research or literature review",
+   "b": "Toolkit, handbook or guidelines",
+   "both": 122,
+   "jaccard": 0.09,
+   "lift": 1.5
+  },
+  {
+   "a": "Desk research or literature review",
+   "b": "Online platform, app or website",
+   "both": 63,
+   "jaccard": 0.078,
+   "lift": 1.52
+  },
+  {
+   "a": "Desk research or literature review",
+   "b": "E-learning or online course",
+   "both": 88,
+   "jaccard": 0.09,
+   "lift": 1.61
+  },
+  {
+   "a": "Desk research or literature review",
+   "b": "Videos, podcasts or multimedia",
+   "both": 69,
+   "jaccard": 0.053,
+   "lift": 0.93
+  },
+  {
+   "a": "Desk research or literature review",
+   "b": "Workshops",
+   "both": 84,
+   "jaccard": 0.056,
+   "lift": 0.95
+  },
+  {
+   "a": "Desk research or literature review",
+   "b": "Training courses and seminars",
+   "both": 96,
+   "jaccard": 0.072,
+   "lift": 1.22
+  },
+  {
+   "a": "Desk research or literature review",
+   "b": "Student or staff exchange, mobility",
+   "both": 65,
+   "jaccard": 0.043,
+   "lift": 0.74
+  },
+  {
+   "a": "Desk research or literature review",
+   "b": "Peer learning and exchange of practice",
+   "both": 43,
+   "jaccard": 0.054,
+   "lift": 1.11
+  },
+  {
+   "a": "Desk research or literature review",
+   "b": "Pilot or testing with users",
+   "both": 111,
+   "jaccard": 0.104,
+   "lift": 1.8
+  },
+  {
+   "a": "Desk research or literature review",
+   "b": "Multiplier events",
+   "both": 83,
+   "jaccard": 0.087,
+   "lift": 1.58
+  },
+  {
+   "a": "Desk research or literature review",
+   "b": "Conferences and info days",
+   "both": 71,
+   "jaccard": 0.069,
+   "lift": 1.24
+  },
+  {
+   "a": "Desk research or literature review",
+   "b": "Website and social media",
+   "both": 99,
+   "jaccard": 0.067,
+   "lift": 1.12
+  },
+  {
+   "a": "Desk research or literature review",
+   "b": "Publications and articles",
+   "both": 83,
+   "jaccard": 0.069,
+   "lift": 1.19
+  },
+  {
+   "a": "Desk research or literature review",
+   "b": "Exhibitions and public events",
+   "both": 48,
+   "jaccard": 0.049,
+   "lift": 0.92
+  },
+  {
+   "a": "Desk research or literature review",
+   "b": "Evaluation and feedback",
+   "both": 114,
+   "jaccard": 0.09,
+   "lift": 1.51
+  },
+  {
+   "a": "Desk research or literature review",
+   "b": "Quality assurance and monitoring",
+   "both": 60,
+   "jaccard": 0.08,
+   "lift": 1.62
+  },
+  {
+   "a": "Desk research or literature review",
+   "b": "Project management and partner meetings",
+   "both": 62,
+   "jaccard": 0.059,
+   "lift": 1.09
+  },
+  {
+   "a": "Curriculum or course design",
+   "b": "Toolkit, handbook or guidelines",
+   "both": 581,
+   "jaccard": 0.267,
+   "lift": 1.18
+  },
+  {
+   "a": "Curriculum or course design",
+   "b": "Online platform, app or website",
+   "both": 301,
+   "jaccard": 0.162,
+   "lift": 1.2
+  },
+  {
+   "a": "Curriculum or course design",
+   "b": "E-learning or online course",
+   "both": 481,
+   "jaccard": 0.256,
+   "lift": 1.46
+  },
+  {
+   "a": "Curriculum or course design",
+   "b": "Open educational resources",
+   "both": 138,
+   "jaccard": 0.083,
+   "lift": 1.35
+  },
+  {
+   "a": "Curriculum or course design",
+   "b": "Games and gamification",
+   "both": 127,
+   "jaccard": 0.075,
+   "lift": 1.15
+  },
+  {
+   "a": "Curriculum or course design",
+   "b": "Videos, podcasts or multimedia",
+   "both": 416,
+   "jaccard": 0.186,
+   "lift": 0.92
+  },
+  {
+   "a": "Curriculum or course design",
+   "b": "Policy paper or recommendations",
+   "both": 81,
+   "jaccard": 0.05,
+   "lift": 1.22
+  },
+  {
+   "a": "Curriculum or course design",
+   "b": "Competence framework or certification",
+   "both": 173,
+   "jaccard": 0.103,
+   "lift": 1.36
+  },
+  {
+   "a": "Curriculum or course design",
+   "b": "Workshops",
+   "both": 508,
+   "jaccard": 0.216,
+   "lift": 0.95
+  },
+  {
+   "a": "Curriculum or course design",
+   "b": "Training courses and seminars",
+   "both": 570,
+   "jaccard": 0.265,
+   "lift": 1.2
+  },
+  {
+   "a": "Curriculum or course design",
+   "b": "Student or staff exchange, mobility",
+   "both": 475,
+   "jaccard": 0.2,
+   "lift": 0.89
+  },
+  {
+   "a": "Curriculum or course design",
+   "b": "Summer school, camp or youth exchange",
+   "both": 57,
+   "jaccard": 0.035,
+   "lift": 0.96
+  },
+  {
+   "a": "Curriculum or course design",
+   "b": "Mentoring or coaching",
+   "both": 145,
+   "jaccard": 0.084,
+   "lift": 1.09
+  },
+  {
+   "a": "Curriculum or course design",
+   "b": "Peer learning and exchange of practice",
+   "both": 245,
+   "jaccard": 0.131,
+   "lift": 1.04
+  },
+  {
+   "a": "Curriculum or course design",
+   "b": "Study visits",
+   "both": 68,
+   "jaccard": 0.041,
+   "lift": 0.87
+  },
+  {
+   "a": "Curriculum or course design",
+   "b": "Hackathon or competition",
+   "both": 132,
+   "jaccard": 0.076,
+   "lift": 0.99
+  },
+  {
+   "a": "Curriculum or course design",
+   "b": "Pilot or testing with users",
+   "both": 520,
+   "jaccard": 0.267,
+   "lift": 1.39
+  },
+  {
+   "a": "Curriculum or course design",
+   "b": "Multiplier events",
+   "both": 423,
+   "jaccard": 0.222,
+   "lift": 1.33
+  },
+  {
+   "a": "Curriculum or course design",
+   "b": "Conferences and info days",
+   "both": 416,
+   "jaccard": 0.21,
+   "lift": 1.2
+  },
+  {
+   "a": "Curriculum or course design",
+   "b": "Website and social media",
+   "both": 556,
+   "jaccard": 0.241,
+   "lift": 1.04
+  },
+  {
+   "a": "Curriculum or course design",
+   "b": "Publications and articles",
+   "both": 428,
+   "jaccard": 0.199,
+   "lift": 1.01
+  },
+  {
+   "a": "Curriculum or course design",
+   "b": "Exhibitions and public events",
+   "both": 270,
+   "jaccard": 0.132,
+   "lift": 0.86
+  },
+  {
+   "a": "Curriculum or course design",
+   "b": "Networking and partnerships",
+   "both": 161,
+   "jaccard": 0.091,
+   "lift": 1.05
+  },
+  {
+   "a": "Curriculum or course design",
+   "b": "Evaluation and feedback",
+   "both": 525,
+   "jaccard": 0.245,
+   "lift": 1.15
+  },
+  {
+   "a": "Curriculum or course design",
+   "b": "Quality assurance and monitoring",
+   "both": 282,
+   "jaccard": 0.155,
+   "lift": 1.26
+  },
+  {
+   "a": "Curriculum or course design",
+   "b": "Project management and partner meetings",
+   "both": 370,
+   "jaccard": 0.183,
+   "lift": 1.07
+  },
+  {
+   "a": "Toolkit, handbook or guidelines",
+   "b": "Online platform, app or website",
+   "both": 262,
+   "jaccard": 0.166,
+   "lift": 1.32
+  },
+  {
+   "a": "Toolkit, handbook or guidelines",
+   "b": "E-learning or online course",
+   "both": 345,
+   "jaccard": 0.205,
+   "lift": 1.32
+  },
+  {
+   "a": "Toolkit, handbook or guidelines",
+   "b": "Open educational resources",
+   "both": 105,
+   "jaccard": 0.077,
+   "lift": 1.31
+  },
+  {
+   "a": "Toolkit, handbook or guidelines",
+   "b": "Games and gamification",
+   "both": 102,
+   "jaccard": 0.074,
+   "lift": 1.18
+  },
+  {
+   "a": "Toolkit, handbook or guidelines",
+   "b": "Videos, podcasts or multimedia",
+   "both": 358,
+   "jaccard": 0.182,
+   "lift": 1.01
+  },
+  {
+   "a": "Toolkit, handbook or guidelines",
+   "b": "Policy paper or recommendations",
+   "both": 88,
+   "jaccard": 0.068,
+   "lift": 1.69
+  },
+  {
+   "a": "Toolkit, handbook or guidelines",
+   "b": "Competence framework or certification",
+   "both": 124,
+   "jaccard": 0.088,
+   "lift": 1.23
+  },
+  {
+   "a": "Toolkit, handbook or guidelines",
+   "b": "Workshops",
+   "both": 446,
+   "jaccard": 0.213,
+   "lift": 1.06
+  },
+  {
+   "a": "Toolkit, handbook or guidelines",
+   "b": "Training courses and seminars",
+   "both": 454,
+   "jaccard": 0.234,
+   "lift": 1.21
+  },
+  {
+   "a": "Toolkit, handbook or guidelines",
+   "b": "Student or staff exchange, mobility",
+   "both": 342,
+   "jaccard": 0.157,
+   "lift": 0.82
+  },
+  {
+   "a": "Toolkit, handbook or guidelines",
+   "b": "Summer school, camp or youth exchange",
+   "both": 60,
+   "jaccard": 0.046,
+   "lift": 1.28
+  },
+  {
+   "a": "Toolkit, handbook or guidelines",
+   "b": "Mentoring or coaching",
+   "both": 146,
+   "jaccard": 0.104,
+   "lift": 1.39
+  },
+  {
+   "a": "Toolkit, handbook or guidelines",
+   "b": "Peer learning and exchange of practice",
+   "both": 175,
+   "jaccard": 0.108,
+   "lift": 0.95
+  },
+  {
+   "a": "Toolkit, handbook or guidelines",
+   "b": "Study visits",
+   "both": 69,
+   "jaccard": 0.051,
+   "lift": 1.12
+  },
+  {
+   "a": "Toolkit, handbook or guidelines",
+   "b": "Hackathon or competition",
+   "both": 79,
+   "jaccard": 0.054,
+   "lift": 0.75
+  },
+  {
+   "a": "Toolkit, handbook or guidelines",
+   "b": "Pilot or testing with users",
+   "both": 453,
+   "jaccard": 0.269,
+   "lift": 1.54
+  },
+  {
+   "a": "Toolkit, handbook or guidelines",
+   "b": "Multiplier events",
+   "both": 400,
+   "jaccard": 0.25,
+   "lift": 1.6
+  },
+  {
+   "a": "Toolkit, handbook or guidelines",
+   "b": "Conferences and info days",
+   "both": 356,
+   "jaccard": 0.208,
+   "lift": 1.31
+  },
+  {
+   "a": "Toolkit, handbook or guidelines",
+   "b": "Website and social media",
+   "both": 460,
+   "jaccard": 0.222,
+   "lift": 1.09
+  },
+  {
+   "a": "Toolkit, handbook or guidelines",
+   "b": "Publications and articles",
+   "both": 365,
+   "jaccard": 0.193,
+   "lift": 1.1
+  },
+  {
+   "a": "Toolkit, handbook or guidelines",
+   "b": "Exhibitions and public events",
+   "both": 242,
+   "jaccard": 0.138,
+   "lift": 0.98
+  },
+  {
+   "a": "Toolkit, handbook or guidelines",
+   "b": "Networking and partnerships",
+   "both": 142,
+   "jaccard": 0.098,
+   "lift": 1.18
+  },
+  {
+   "a": "Toolkit, handbook or guidelines",
+   "b": "Evaluation and feedback",
+   "both": 451,
+   "jaccard": 0.239,
+   "lift": 1.26
+  },
+  {
+   "a": "Toolkit, handbook or guidelines",
+   "b": "Quality assurance and monitoring",
+   "both": 241,
+   "jaccard": 0.158,
+   "lift": 1.36
+  },
+  {
+   "a": "Toolkit, handbook or guidelines",
+   "b": "Project management and partner meetings",
+   "both": 337,
+   "jaccard": 0.195,
+   "lift": 1.24
+  },
+  {
+   "a": "Online platform, app or website",
+   "b": "E-learning or online course",
+   "both": 208,
+   "jaccard": 0.17,
+   "lift": 1.57
+  },
+  {
+   "a": "Online platform, app or website",
+   "b": "Open educational resources",
+   "both": 52,
+   "jaccard": 0.064,
+   "lift": 1.27
+  },
+  {
+   "a": "Online platform, app or website",
+   "b": "Games and gamification",
+   "both": 61,
+   "jaccard": 0.074,
+   "lift": 1.38
+  },
+  {
+   "a": "Online platform, app or website",
+   "b": "Videos, podcasts or multimedia",
+   "both": 194,
+   "jaccard": 0.126,
+   "lift": 1.08
+  },
+  {
+   "a": "Online platform, app or website",
+   "b": "Competence framework or certification",
+   "both": 55,
+   "jaccard": 0.063,
+   "lift": 1.08
+  },
+  {
+   "a": "Online platform, app or website",
+   "b": "Workshops",
+   "both": 200,
+   "jaccard": 0.115,
+   "lift": 0.93
+  },
+  {
+   "a": "Online platform, app or website",
+   "b": "Training courses and seminars",
+   "both": 226,
+   "jaccard": 0.144,
+   "lift": 1.18
+  },
+  {
+   "a": "Online platform, app or website",
+   "b": "Student or staff exchange, mobility",
+   "both": 178,
+   "jaccard": 0.102,
+   "lift": 0.84
+  },
+  {
+   "a": "Online platform, app or website",
+   "b": "Mentoring or coaching",
+   "both": 76,
+   "jaccard": 0.087,
+   "lift": 1.42
+  },
+  {
+   "a": "Online platform, app or website",
+   "b": "Peer learning and exchange of practice",
+   "both": 102,
+   "jaccard": 0.093,
+   "lift": 1.08
+  },
+  {
+   "a": "Online platform, app or website",
+   "b": "Hackathon or competition",
+   "both": 47,
+   "jaccard": 0.052,
+   "lift": 0.88
+  },
+  {
+   "a": "Online platform, app or website",
+   "b": "Pilot or testing with users",
+   "both": 211,
+   "jaccard": 0.159,
+   "lift": 1.41
+  },
+  {
+   "a": "Online platform, app or website",
+   "b": "Multiplier events",
+   "both": 217,
+   "jaccard": 0.183,
+   "lift": 1.71
+  },
+  {
+   "a": "Online platform, app or website",
+   "b": "Conferences and info days",
+   "both": 166,
+   "jaccard": 0.127,
+   "lift": 1.2
+  },
+  {
+   "a": "Online platform, app or website",
+   "b": "Website and social media",
+   "both": 257,
+   "jaccard": 0.153,
+   "lift": 1.2
+  },
+  {
+   "a": "Online platform, app or website",
+   "b": "Publications and articles",
+   "both": 188,
+   "jaccard": 0.128,
+   "lift": 1.11
+  },
+  {
+   "a": "Online platform, app or website",
+   "b": "Exhibitions and public events",
+   "both": 127,
+   "jaccard": 0.1,
+   "lift": 1.01
+  },
+  {
+   "a": "Online platform, app or website",
+   "b": "Networking and partnerships",
+   "both": 97,
+   "jaccard": 0.108,
+   "lift": 1.58
+  },
+  {
+   "a": "Online platform, app or website",
+   "b": "Evaluation and feedback",
+   "both": 212,
+   "jaccard": 0.139,
+   "lift": 1.16
+  },
+  {
+   "a": "Online platform, app or website",
+   "b": "Quality assurance and monitoring",
+   "both": 132,
+   "jaccard": 0.127,
+   "lift": 1.47
+  },
+  {
+   "a": "Online platform, app or website",
+   "b": "Project management and partner meetings",
+   "both": 190,
+   "jaccard": 0.148,
+   "lift": 1.37
+  },
+  {
+   "a": "E-learning or online course",
+   "b": "Open educational resources",
+   "both": 103,
+   "jaccard": 0.107,
+   "lift": 1.92
+  },
+  {
+   "a": "E-learning or online course",
+   "b": "Games and gamification",
+   "both": 69,
+   "jaccard": 0.068,
+   "lift": 1.19
+  },
+  {
+   "a": "E-learning or online course",
+   "b": "Videos, podcasts or multimedia",
+   "both": 243,
+   "jaccard": 0.145,
+   "lift": 1.02
+  },
+  {
+   "a": "E-learning or online course",
+   "b": "Policy paper or recommendations",
+   "both": 49,
+   "jaccard": 0.053,
+   "lift": 1.4
+  },
+  {
+   "a": "E-learning or online course",
+   "b": "Competence framework or certification",
+   "both": 110,
+   "jaccard": 0.108,
+   "lift": 1.64
+  },
+  {
+   "a": "E-learning or online course",
+   "b": "Workshops",
+   "both": 259,
+   "jaccard": 0.138,
+   "lift": 0.92
+  },
+  {
+   "a": "E-learning or online course",
+   "b": "Training courses and seminars",
+   "both": 351,
+   "jaccard": 0.214,
+   "lift": 1.4
+  },
+  {
+   "a": "E-learning or online course",
+   "b": "Student or staff exchange, mobility",
+   "both": 224,
+   "jaccard": 0.118,
+   "lift": 0.8
+  },
+  {
+   "a": "E-learning or online course",
+   "b": "Mentoring or coaching",
+   "both": 101,
+   "jaccard": 0.097,
+   "lift": 1.43
+  },
+  {
+   "a": "E-learning or online course",
+   "b": "Peer learning and exchange of practice",
+   "both": 117,
+   "jaccard": 0.092,
+   "lift": 0.95
+  },
+  {
+   "a": "E-learning or online course",
+   "b": "Hackathon or competition",
+   "both": 65,
+   "jaccard": 0.06,
+   "lift": 0.93
+  },
+  {
+   "a": "E-learning or online course",
+   "b": "Pilot or testing with users",
+   "both": 318,
+   "jaccard": 0.224,
+   "lift": 1.61
+  },
+  {
+   "a": "E-learning or online course",
+   "b": "Multiplier events",
+   "both": 296,
+   "jaccard": 0.228,
+   "lift": 1.77
+  },
+  {
+   "a": "E-learning or online course",
+   "b": "Conferences and info days",
+   "both": 254,
+   "jaccard": 0.18,
+   "lift": 1.39
+  },
+  {
+   "a": "E-learning or online course",
+   "b": "Website and social media",
+   "both": 314,
+   "jaccard": 0.173,
+   "lift": 1.11
+  },
+  {
+   "a": "E-learning or online course",
+   "b": "Publications and articles",
+   "both": 244,
+   "jaccard": 0.152,
+   "lift": 1.1
+  },
+  {
+   "a": "E-learning or online course",
+   "b": "Exhibitions and public events",
+   "both": 144,
+   "jaccard": 0.1,
+   "lift": 0.87
+  },
+  {
+   "a": "E-learning or online course",
+   "b": "Networking and partnerships",
+   "both": 97,
+   "jaccard": 0.089,
+   "lift": 1.2
+  },
+  {
+   "a": "E-learning or online course",
+   "b": "Evaluation and feedback",
+   "both": 315,
+   "jaccard": 0.194,
+   "lift": 1.31
+  },
+  {
+   "a": "E-learning or online course",
+   "b": "Quality assurance and monitoring",
+   "both": 155,
+   "jaccard": 0.128,
+   "lift": 1.31
+  },
+  {
+   "a": "E-learning or online course",
+   "b": "Project management and partner meetings",
+   "both": 238,
+   "jaccard": 0.167,
+   "lift": 1.31
+  },
+  {
+   "a": "Open educational resources",
+   "b": "Videos, podcasts or multimedia",
+   "both": 74,
+   "jaccard": 0.058,
+   "lift": 1.01
+  },
+  {
+   "a": "Open educational resources",
+   "b": "Workshops",
+   "both": 72,
+   "jaccard": 0.048,
+   "lift": 0.83
+  },
+  {
+   "a": "Open educational resources",
+   "b": "Training courses and seminars",
+   "both": 91,
+   "jaccard": 0.068,
+   "lift": 1.17
+  },
+  {
+   "a": "Open educational resources",
+   "b": "Student or staff exchange, mobility",
+   "both": 77,
+   "jaccard": 0.052,
+   "lift": 0.89
+  },
+  {
+   "a": "Open educational resources",
+   "b": "Peer learning and exchange of practice",
+   "both": 46,
+   "jaccard": 0.059,
+   "lift": 1.21
+  },
+  {
+   "a": "Open educational resources",
+   "b": "Pilot or testing with users",
+   "both": 98,
+   "jaccard": 0.091,
+   "lift": 1.61
+  },
+  {
+   "a": "Open educational resources",
+   "b": "Multiplier events",
+   "both": 97,
+   "jaccard": 0.104,
+   "lift": 1.88
+  },
+  {
+   "a": "Open educational resources",
+   "b": "Conferences and info days",
+   "both": 74,
+   "jaccard": 0.072,
+   "lift": 1.32
+  },
+  {
+   "a": "Open educational resources",
+   "b": "Website and social media",
+   "both": 105,
+   "jaccard": 0.072,
+   "lift": 1.21
+  },
+  {
+   "a": "Open educational resources",
+   "b": "Publications and articles",
+   "both": 72,
+   "jaccard": 0.059,
+   "lift": 1.05
+  },
+  {
+   "a": "Open educational resources",
+   "b": "Evaluation and feedback",
+   "both": 84,
+   "jaccard": 0.065,
+   "lift": 1.13
+  },
+  {
+   "a": "Open educational resources",
+   "b": "Quality assurance and monitoring",
+   "both": 58,
+   "jaccard": 0.078,
+   "lift": 1.59
+  },
+  {
+   "a": "Open educational resources",
+   "b": "Project management and partner meetings",
+   "both": 61,
+   "jaccard": 0.059,
+   "lift": 1.09
+  },
+  {
+   "a": "Games and gamification",
+   "b": "Videos, podcasts or multimedia",
+   "both": 110,
+   "jaccard": 0.087,
+   "lift": 1.39
+  },
+  {
+   "a": "Games and gamification",
+   "b": "Workshops",
+   "both": 99,
+   "jaccard": 0.066,
+   "lift": 1.05
+  },
+  {
+   "a": "Games and gamification",
+   "b": "Training courses and seminars",
+   "both": 77,
+   "jaccard": 0.056,
+   "lift": 0.92
+  },
+  {
+   "a": "Games and gamification",
+   "b": "Student or staff exchange, mobility",
+   "both": 102,
+   "jaccard": 0.069,
+   "lift": 1.09
+  },
+  {
+   "a": "Games and gamification",
+   "b": "Hackathon or competition",
+   "both": 44,
+   "jaccard": 0.079,
+   "lift": 1.88
+  },
+  {
+   "a": "Games and gamification",
+   "b": "Pilot or testing with users",
+   "both": 91,
+   "jaccard": 0.083,
+   "lift": 1.39
+  },
+  {
+   "a": "Games and gamification",
+   "b": "Multiplier events",
+   "both": 70,
+   "jaccard": 0.071,
+   "lift": 1.26
+  },
+  {
+   "a": "Games and gamification",
+   "b": "Conferences and info days",
+   "both": 69,
+   "jaccard": 0.066,
+   "lift": 1.14
+  },
+  {
+   "a": "Games and gamification",
+   "b": "Website and social media",
+   "both": 113,
+   "jaccard": 0.077,
+   "lift": 1.2
+  },
+  {
+   "a": "Games and gamification",
+   "b": "Publications and articles",
+   "both": 82,
+   "jaccard": 0.067,
+   "lift": 1.11
+  },
+  {
+   "a": "Games and gamification",
+   "b": "Exhibitions and public events",
+   "both": 52,
+   "jaccard": 0.052,
+   "lift": 0.94
+  },
+  {
+   "a": "Games and gamification",
+   "b": "Evaluation and feedback",
+   "both": 97,
+   "jaccard": 0.075,
+   "lift": 1.21
+  },
+  {
+   "a": "Games and gamification",
+   "b": "Quality assurance and monitoring",
+   "both": 43,
+   "jaccard": 0.055,
+   "lift": 1.09
+  },
+  {
+   "a": "Games and gamification",
+   "b": "Project management and partner meetings",
+   "both": 61,
+   "jaccard": 0.057,
+   "lift": 1.01
+  },
+  {
+   "a": "Videos, podcasts or multimedia",
+   "b": "Competence framework or certification",
+   "both": 88,
+   "jaccard": 0.066,
+   "lift": 0.96
+  },
+  {
+   "a": "Videos, podcasts or multimedia",
+   "b": "Workshops",
+   "both": 464,
+   "jaccard": 0.236,
+   "lift": 1.21
+  },
+  {
+   "a": "Videos, podcasts or multimedia",
+   "b": "Training courses and seminars",
+   "both": 355,
+   "jaccard": 0.184,
+   "lift": 1.04
+  },
+  {
+   "a": "Videos, podcasts or multimedia",
+   "b": "Student or staff exchange, mobility",
+   "both": 464,
+   "jaccard": 0.237,
+   "lift": 1.22
+  },
+  {
+   "a": "Videos, podcasts or multimedia",
+   "b": "Summer school, camp or youth exchange",
+   "both": 49,
+   "jaccard": 0.041,
+   "lift": 1.14
+  },
+  {
+   "a": "Videos, podcasts or multimedia",
+   "b": "Mentoring or coaching",
+   "both": 85,
+   "jaccard": 0.063,
+   "lift": 0.89
+  },
+  {
+   "a": "Videos, podcasts or multimedia",
+   "b": "Peer learning and exchange of practice",
+   "both": 180,
+   "jaccard": 0.119,
+   "lift": 1.07
+  },
+  {
+   "a": "Videos, podcasts or multimedia",
+   "b": "Study visits",
+   "both": 63,
+   "jaccard": 0.051,
+   "lift": 1.13
+  },
+  {
+   "a": "Videos, podcasts or multimedia",
+   "b": "Hackathon or competition",
+   "both": 114,
+   "jaccard": 0.086,
+   "lift": 1.19
+  },
+  {
+   "a": "Videos, podcasts or multimedia",
+   "b": "Pilot or testing with users",
+   "both": 228,
+   "jaccard": 0.127,
+   "lift": 0.85
+  },
+  {
+   "a": "Videos, podcasts or multimedia",
+   "b": "Multiplier events",
+   "both": 254,
+   "jaccard": 0.155,
+   "lift": 1.11
+  },
+  {
+   "a": "Videos, podcasts or multimedia",
+   "b": "Conferences and info days",
+   "both": 300,
+   "jaccard": 0.181,
+   "lift": 1.21
+  },
+  {
+   "a": "Videos, podcasts or multimedia",
+   "b": "Website and social media",
+   "both": 562,
+   "jaccard": 0.302,
+   "lift": 1.46
+  },
+  {
+   "a": "Videos, podcasts or multimedia",
+   "b": "Publications and articles",
+   "both": 428,
+   "jaccard": 0.249,
+   "lift": 1.41
+  },
+  {
+   "a": "Videos, podcasts or multimedia",
+   "b": "Exhibitions and public events",
+   "both": 312,
+   "jaccard": 0.198,
+   "lift": 1.38
+  },
+  {
+   "a": "Videos, podcasts or multimedia",
+   "b": "Networking and partnerships",
+   "both": 104,
+   "jaccard": 0.075,
+   "lift": 0.95
+  },
+  {
+   "a": "Videos, podcasts or multimedia",
+   "b": "Evaluation and feedback",
+   "both": 374,
+   "jaccard": 0.201,
+   "lift": 1.14
+  },
+  {
+   "a": "Videos, podcasts or multimedia",
+   "b": "Quality assurance and monitoring",
+   "both": 183,
+   "jaccard": 0.124,
+   "lift": 1.14
+  },
+  {
+   "a": "Videos, podcasts or multimedia",
+   "b": "Project management and partner meetings",
+   "both": 304,
+   "jaccard": 0.184,
+   "lift": 1.23
+  },
+  {
+   "a": "Policy paper or recommendations",
+   "b": "Workshops",
+   "both": 45,
+   "jaccard": 0.031,
+   "lift": 0.8
+  },
+  {
+   "a": "Policy paper or recommendations",
+   "b": "Training courses and seminars",
+   "both": 62,
+   "jaccard": 0.049,
+   "lift": 1.23
+  },
+  {
+   "a": "Policy paper or recommendations",
+   "b": "Pilot or testing with users",
+   "both": 65,
+   "jaccard": 0.064,
+   "lift": 1.65
+  },
+  {
+   "a": "Policy paper or recommendations",
+   "b": "Multiplier events",
+   "both": 53,
+   "jaccard": 0.059,
+   "lift": 1.58
+  },
+  {
+   "a": "Policy paper or recommendations",
+   "b": "Conferences and info days",
+   "both": 48,
+   "jaccard": 0.05,
+   "lift": 1.32
+  },
+  {
+   "a": "Policy paper or recommendations",
+   "b": "Website and social media",
+   "both": 45,
+   "jaccard": 0.031,
+   "lift": 0.8
+  },
+  {
+   "a": "Policy paper or recommendations",
+   "b": "Publications and articles",
+   "both": 50,
+   "jaccard": 0.043,
+   "lift": 1.12
+  },
+  {
+   "a": "Policy paper or recommendations",
+   "b": "Exhibitions and public events",
+   "both": 47,
+   "jaccard": 0.053,
+   "lift": 1.42
+  },
+  {
+   "a": "Policy paper or recommendations",
+   "b": "Evaluation and feedback",
+   "both": 56,
+   "jaccard": 0.046,
+   "lift": 1.16
+  },
+  {
+   "a": "Competence framework or certification",
+   "b": "Workshops",
+   "both": 102,
+   "jaccard": 0.067,
+   "lift": 0.94
+  },
+  {
+   "a": "Competence framework or certification",
+   "b": "Training courses and seminars",
+   "both": 100,
+   "jaccard": 0.072,
+   "lift": 1.03
+  },
+  {
+   "a": "Competence framework or certification",
+   "b": "Student or staff exchange, mobility",
+   "both": 108,
+   "jaccard": 0.071,
+   "lift": 1.0
+  },
+  {
+   "a": "Competence framework or certification",
+   "b": "Peer learning and exchange of practice",
+   "both": 43,
+   "jaccard": 0.051,
+   "lift": 0.9
+  },
+  {
+   "a": "Competence framework or certification",
+   "b": "Pilot or testing with users",
+   "both": 118,
+   "jaccard": 0.106,
+   "lift": 1.55
+  },
+  {
+   "a": "Competence framework or certification",
+   "b": "Multiplier events",
+   "both": 89,
+   "jaccard": 0.088,
+   "lift": 1.38
+  },
+  {
+   "a": "Competence framework or certification",
+   "b": "Conferences and info days",
+   "both": 88,
+   "jaccard": 0.082,
+   "lift": 1.25
+  },
+  {
+   "a": "Competence framework or certification",
+   "b": "Website and social media",
+   "both": 130,
+   "jaccard": 0.087,
+   "lift": 1.2
+  },
+  {
+   "a": "Competence framework or certification",
+   "b": "Publications and articles",
+   "both": 92,
+   "jaccard": 0.073,
+   "lift": 1.07
+  },
+  {
+   "a": "Competence framework or certification",
+   "b": "Exhibitions and public events",
+   "both": 64,
+   "jaccard": 0.062,
+   "lift": 1.0
+  },
+  {
+   "a": "Competence framework or certification",
+   "b": "Evaluation and feedback",
+   "both": 132,
+   "jaccard": 0.101,
+   "lift": 1.42
+  },
+  {
+   "a": "Competence framework or certification",
+   "b": "Quality assurance and monitoring",
+   "both": 78,
+   "jaccard": 0.099,
+   "lift": 1.71
+  },
+  {
+   "a": "Competence framework or certification",
+   "b": "Project management and partner meetings",
+   "both": 72,
+   "jaccard": 0.066,
+   "lift": 1.02
+  },
+  {
+   "a": "Workshops",
+   "b": "Training courses and seminars",
+   "both": 450,
+   "jaccard": 0.22,
+   "lift": 1.1
+  },
+  {
+   "a": "Workshops",
+   "b": "Student or staff exchange, mobility",
+   "both": 540,
+   "jaccard": 0.259,
+   "lift": 1.19
+  },
+  {
+   "a": "Workshops",
+   "b": "Summer school, camp or youth exchange",
+   "both": 58,
+   "jaccard": 0.041,
+   "lift": 1.14
+  },
+  {
+   "a": "Workshops",
+   "b": "Mentoring or coaching",
+   "both": 113,
+   "jaccard": 0.074,
+   "lift": 0.99
+  },
+  {
+   "a": "Workshops",
+   "b": "Peer learning and exchange of practice",
+   "both": 227,
+   "jaccard": 0.136,
+   "lift": 1.13
+  },
+  {
+   "a": "Workshops",
+   "b": "Study visits",
+   "both": 100,
+   "jaccard": 0.071,
+   "lift": 1.5
+  },
+  {
+   "a": "Workshops",
+   "b": "Hackathon or competition",
+   "both": 149,
+   "jaccard": 0.099,
+   "lift": 1.31
+  },
+  {
+   "a": "Workshops",
+   "b": "Pilot or testing with users",
+   "both": 296,
+   "jaccard": 0.152,
+   "lift": 0.93
+  },
+  {
+   "a": "Workshops",
+   "b": "Multiplier events",
+   "both": 264,
+   "jaccard": 0.144,
+   "lift": 0.97
+  },
+  {
+   "a": "Workshops",
+   "b": "Conferences and info days",
+   "both": 384,
+   "jaccard": 0.215,
+   "lift": 1.3
+  },
+  {
+   "a": "Workshops",
+   "b": "Website and social media",
+   "both": 549,
+   "jaccard": 0.263,
+   "lift": 1.2
+  },
+  {
+   "a": "Workshops",
+   "b": "Publications and articles",
+   "both": 441,
+   "jaccard": 0.23,
+   "lift": 1.22
+  },
+  {
+   "a": "Workshops",
+   "b": "Exhibitions and public events",
+   "both": 368,
+   "jaccard": 0.213,
+   "lift": 1.37
+  },
+  {
+   "a": "Workshops",
+   "b": "Networking and partnerships",
+   "both": 137,
+   "jaccard": 0.088,
+   "lift": 1.05
+  },
+  {
+   "a": "Workshops",
+   "b": "Evaluation and feedback",
+   "both": 438,
+   "jaccard": 0.219,
+   "lift": 1.12
+  },
+  {
+   "a": "Workshops",
+   "b": "Quality assurance and monitoring",
+   "both": 194,
+   "jaccard": 0.116,
+   "lift": 1.01
+  },
+  {
+   "a": "Workshops",
+   "b": "Project management and partner meetings",
+   "both": 337,
+   "jaccard": 0.184,
+   "lift": 1.14
+  },
+  {
+   "a": "Training courses and seminars",
+   "b": "Student or staff exchange, mobility",
+   "both": 489,
+   "jaccard": 0.245,
+   "lift": 1.21
+  },
+  {
+   "a": "Training courses and seminars",
+   "b": "Summer school, camp or youth exchange",
+   "both": 67,
+   "jaccard": 0.053,
+   "lift": 1.48
+  },
+  {
+   "a": "Training courses and seminars",
+   "b": "Mentoring or coaching",
+   "both": 104,
+   "jaccard": 0.074,
+   "lift": 1.02
+  },
+  {
+   "a": "Training courses and seminars",
+   "b": "Peer learning and exchange of practice",
+   "both": 208,
+   "jaccard": 0.135,
+   "lift": 1.17
+  },
+  {
+   "a": "Training courses and seminars",
+   "b": "Study visits",
+   "both": 67,
+   "jaccard": 0.052,
+   "lift": 1.13
+  },
+  {
+   "a": "Training courses and seminars",
+   "b": "Hackathon or competition",
+   "both": 103,
+   "jaccard": 0.074,
+   "lift": 1.02
+  },
+  {
+   "a": "Training courses and seminars",
+   "b": "Pilot or testing with users",
+   "both": 337,
+   "jaccard": 0.192,
+   "lift": 1.18
+  },
+  {
+   "a": "Training courses and seminars",
+   "b": "Multiplier events",
+   "both": 370,
+   "jaccard": 0.233,
+   "lift": 1.53
+  },
+  {
+   "a": "Training courses and seminars",
+   "b": "Conferences and info days",
+   "both": 325,
+   "jaccard": 0.191,
+   "lift": 1.24
+  },
+  {
+   "a": "Training courses and seminars",
+   "b": "Website and social media",
+   "both": 479,
+   "jaccard": 0.238,
+   "lift": 1.18
+  },
+  {
+   "a": "Training courses and seminars",
+   "b": "Publications and articles",
+   "both": 362,
+   "jaccard": 0.195,
+   "lift": 1.13
+  },
+  {
+   "a": "Training courses and seminars",
+   "b": "Exhibitions and public events",
+   "both": 254,
+   "jaccard": 0.15,
+   "lift": 1.06
+  },
+  {
+   "a": "Training courses and seminars",
+   "b": "Networking and partnerships",
+   "both": 140,
+   "jaccard": 0.099,
+   "lift": 1.2
+  },
+  {
+   "a": "Training courses and seminars",
+   "b": "Evaluation and feedback",
+   "both": 420,
+   "jaccard": 0.224,
+   "lift": 1.21
+  },
+  {
+   "a": "Training courses and seminars",
+   "b": "Quality assurance and monitoring",
+   "both": 207,
+   "jaccard": 0.136,
+   "lift": 1.21
+  },
+  {
+   "a": "Training courses and seminars",
+   "b": "Project management and partner meetings",
+   "both": 361,
+   "jaccard": 0.217,
+   "lift": 1.37
+  },
+  {
+   "a": "Student or staff exchange, mobility",
+   "b": "Summer school, camp or youth exchange",
+   "both": 68,
+   "jaccard": 0.049,
+   "lift": 1.34
+  },
+  {
+   "a": "Student or staff exchange, mobility",
+   "b": "Mentoring or coaching",
+   "both": 103,
+   "jaccard": 0.067,
+   "lift": 0.91
+  },
+  {
+   "a": "Student or staff exchange, mobility",
+   "b": "Peer learning and exchange of practice",
+   "both": 253,
+   "jaccard": 0.155,
+   "lift": 1.27
+  },
+  {
+   "a": "Student or staff exchange, mobility",
+   "b": "Study visits",
+   "both": 72,
+   "jaccard": 0.05,
+   "lift": 1.09
+  },
+  {
+   "a": "Student or staff exchange, mobility",
+   "b": "Hackathon or competition",
+   "both": 163,
+   "jaccard": 0.111,
+   "lift": 1.44
+  },
+  {
+   "a": "Student or staff exchange, mobility",
+   "b": "Pilot or testing with users",
+   "both": 223,
+   "jaccard": 0.111,
+   "lift": 0.7
+  },
+  {
+   "a": "Student or staff exchange, mobility",
+   "b": "Multiplier events",
+   "both": 287,
+   "jaccard": 0.159,
+   "lift": 1.07
+  },
+  {
+   "a": "Student or staff exchange, mobility",
+   "b": "Conferences and info days",
+   "both": 312,
+   "jaccard": 0.169,
+   "lift": 1.07
+  },
+  {
+   "a": "Student or staff exchange, mobility",
+   "b": "Website and social media",
+   "both": 530,
+   "jaccard": 0.253,
+   "lift": 1.17
+  },
+  {
+   "a": "Student or staff exchange, mobility",
+   "b": "Publications and articles",
+   "both": 431,
+   "jaccard": 0.225,
+   "lift": 1.21
+  },
+  {
+   "a": "Student or staff exchange, mobility",
+   "b": "Exhibitions and public events",
+   "both": 308,
+   "jaccard": 0.173,
+   "lift": 1.15
+  },
+  {
+   "a": "Student or staff exchange, mobility",
+   "b": "Networking and partnerships",
+   "both": 133,
+   "jaccard": 0.086,
+   "lift": 1.03
+  },
+  {
+   "a": "Student or staff exchange, mobility",
+   "b": "Evaluation and feedback",
+   "both": 394,
+   "jaccard": 0.193,
+   "lift": 1.02
+  },
+  {
+   "a": "Student or staff exchange, mobility",
+   "b": "Quality assurance and monitoring",
+   "both": 198,
+   "jaccard": 0.119,
+   "lift": 1.04
+  },
+  {
+   "a": "Student or staff exchange, mobility",
+   "b": "Project management and partner meetings",
+   "both": 370,
+   "jaccard": 0.207,
+   "lift": 1.26
+  },
+  {
+   "a": "Summer school, camp or youth exchange",
+   "b": "Multiplier events",
+   "both": 44,
+   "jaccard": 0.05,
+   "lift": 1.46
+  },
+  {
+   "a": "Summer school, camp or youth exchange",
+   "b": "Conferences and info days",
+   "both": 47,
+   "jaccard": 0.049,
+   "lift": 1.43
+  },
+  {
+   "a": "Summer school, camp or youth exchange",
+   "b": "Website and social media",
+   "both": 53,
+   "jaccard": 0.038,
+   "lift": 1.04
+  },
+  {
+   "a": "Summer school, camp or youth exchange",
+   "b": "Publications and articles",
+   "both": 43,
+   "jaccard": 0.038,
+   "lift": 1.07
+  },
+  {
+   "a": "Summer school, camp or youth exchange",
+   "b": "Evaluation and feedback",
+   "both": 52,
+   "jaccard": 0.043,
+   "lift": 1.2
+  },
+  {
+   "a": "Summer school, camp or youth exchange",
+   "b": "Project management and partner meetings",
+   "both": 43,
+   "jaccard": 0.045,
+   "lift": 1.31
+  },
+  {
+   "a": "Mentoring or coaching",
+   "b": "Peer learning and exchange of practice",
+   "both": 58,
+   "jaccard": 0.068,
+   "lift": 1.16
+  },
+  {
+   "a": "Mentoring or coaching",
+   "b": "Pilot or testing with users",
+   "both": 105,
+   "jaccard": 0.092,
+   "lift": 1.32
+  },
+  {
+   "a": "Mentoring or coaching",
+   "b": "Multiplier events",
+   "both": 88,
+   "jaccard": 0.086,
+   "lift": 1.3
+  },
+  {
+   "a": "Mentoring or coaching",
+   "b": "Conferences and info days",
+   "both": 94,
+   "jaccard": 0.087,
+   "lift": 1.28
+  },
+  {
+   "a": "Mentoring or coaching",
+   "b": "Website and social media",
+   "both": 120,
+   "jaccard": 0.079,
+   "lift": 1.05
+  },
+  {
+   "a": "Mentoring or coaching",
+   "b": "Publications and articles",
+   "both": 85,
+   "jaccard": 0.066,
+   "lift": 0.95
+  },
+  {
+   "a": "Mentoring or coaching",
+   "b": "Exhibitions and public events",
+   "both": 72,
+   "jaccard": 0.07,
+   "lift": 1.07
+  },
+  {
+   "a": "Mentoring or coaching",
+   "b": "Networking and partnerships",
+   "both": 58,
+   "jaccard": 0.09,
+   "lift": 1.78
+  },
+  {
+   "a": "Mentoring or coaching",
+   "b": "Evaluation and feedback",
+   "both": 118,
+   "jaccard": 0.088,
+   "lift": 1.21
+  },
+  {
+   "a": "Mentoring or coaching",
+   "b": "Quality assurance and monitoring",
+   "both": 56,
+   "jaccard": 0.068,
+   "lift": 1.17
+  },
+  {
+   "a": "Mentoring or coaching",
+   "b": "Project management and partner meetings",
+   "both": 88,
+   "jaccard": 0.081,
+   "lift": 1.2
+  },
+  {
+   "a": "Peer learning and exchange of practice",
+   "b": "Study visits",
+   "both": 52,
+   "jaccard": 0.072,
+   "lift": 1.78
+  },
+  {
+   "a": "Peer learning and exchange of practice",
+   "b": "Hackathon or competition",
+   "both": 61,
+   "jaccard": 0.072,
+   "lift": 1.22
+  },
+  {
+   "a": "Peer learning and exchange of practice",
+   "b": "Pilot or testing with users",
+   "both": 129,
+   "jaccard": 0.094,
+   "lift": 0.92
+  },
+  {
+   "a": "Peer learning and exchange of practice",
+   "b": "Multiplier events",
+   "both": 122,
+   "jaccard": 0.099,
+   "lift": 1.03
+  },
+  {
+   "a": "Peer learning and exchange of practice",
+   "b": "Conferences and info days",
+   "both": 176,
+   "jaccard": 0.14,
+   "lift": 1.36
+  },
+  {
+   "a": "Peer learning and exchange of practice",
+   "b": "Website and social media",
+   "both": 203,
+   "jaccard": 0.12,
+   "lift": 1.01
+  },
+  {
+   "a": "Peer learning and exchange of practice",
+   "b": "Publications and articles",
+   "both": 174,
+   "jaccard": 0.121,
+   "lift": 1.1
+  },
+  {
+   "a": "Peer learning and exchange of practice",
+   "b": "Exhibitions and public events",
+   "both": 136,
+   "jaccard": 0.112,
+   "lift": 1.15
+  },
+  {
+   "a": "Peer learning and exchange of practice",
+   "b": "Networking and partnerships",
+   "both": 92,
+   "jaccard": 0.107,
+   "lift": 1.61
+  },
+  {
+   "a": "Peer learning and exchange of practice",
+   "b": "Evaluation and feedback",
+   "both": 183,
+   "jaccard": 0.121,
+   "lift": 1.07
+  },
+  {
+   "a": "Peer learning and exchange of practice",
+   "b": "Quality assurance and monitoring",
+   "both": 98,
+   "jaccard": 0.095,
+   "lift": 1.17
+  },
+  {
+   "a": "Peer learning and exchange of practice",
+   "b": "Project management and partner meetings",
+   "both": 174,
+   "jaccard": 0.139,
+   "lift": 1.35
+  },
+  {
+   "a": "Study visits",
+   "b": "Conferences and info days",
+   "both": 57,
+   "jaccard": 0.058,
+   "lift": 1.33
+  },
+  {
+   "a": "Study visits",
+   "b": "Website and social media",
+   "both": 54,
+   "jaccard": 0.037,
+   "lift": 0.81
+  },
+  {
+   "a": "Study visits",
+   "b": "Publications and articles",
+   "both": 48,
+   "jaccard": 0.041,
+   "lift": 0.92
+  },
+  {
+   "a": "Study visits",
+   "b": "Exhibitions and public events",
+   "both": 48,
+   "jaccard": 0.052,
+   "lift": 1.23
+  },
+  {
+   "a": "Study visits",
+   "b": "Evaluation and feedback",
+   "both": 42,
+   "jaccard": 0.033,
+   "lift": 0.74
+  },
+  {
+   "a": "Study visits",
+   "b": "Project management and partner meetings",
+   "both": 50,
+   "jaccard": 0.05,
+   "lift": 1.16
+  },
+  {
+   "a": "Hackathon or competition",
+   "b": "Pilot or testing with users",
+   "both": 55,
+   "jaccard": 0.046,
+   "lift": 0.69
+  },
+  {
+   "a": "Hackathon or competition",
+   "b": "Multiplier events",
+   "both": 61,
+   "jaccard": 0.058,
+   "lift": 0.9
+  },
+  {
+   "a": "Hackathon or competition",
+   "b": "Conferences and info days",
+   "both": 77,
+   "jaccard": 0.07,
+   "lift": 1.05
+  },
+  {
+   "a": "Hackathon or competition",
+   "b": "Website and social media",
+   "both": 150,
+   "jaccard": 0.1,
+   "lift": 1.32
+  },
+  {
+   "a": "Hackathon or competition",
+   "b": "Publications and articles",
+   "both": 108,
+   "jaccard": 0.086,
+   "lift": 1.21
+  },
+  {
+   "a": "Hackathon or competition",
+   "b": "Exhibitions and public events",
+   "both": 111,
+   "jaccard": 0.112,
+   "lift": 1.66
+  },
+  {
+   "a": "Hackathon or competition",
+   "b": "Evaluation and feedback",
+   "both": 99,
+   "jaccard": 0.073,
+   "lift": 1.02
+  },
+  {
+   "a": "Hackathon or competition",
+   "b": "Quality assurance and monitoring",
+   "both": 41,
+   "jaccard": 0.049,
+   "lift": 0.86
+  },
+  {
+   "a": "Hackathon or competition",
+   "b": "Project management and partner meetings",
+   "both": 81,
+   "jaccard": 0.074,
+   "lift": 1.1
+  },
+  {
+   "a": "Pilot or testing with users",
+   "b": "Multiplier events",
+   "both": 339,
+   "jaccard": 0.249,
+   "lift": 1.79
+  },
+  {
+   "a": "Pilot or testing with users",
+   "b": "Conferences and info days",
+   "both": 257,
+   "jaccard": 0.17,
+   "lift": 1.25
+  },
+  {
+   "a": "Pilot or testing with users",
+   "b": "Website and social media",
+   "both": 316,
+   "jaccard": 0.164,
+   "lift": 0.99
+  },
+  {
+   "a": "Pilot or testing with users",
+   "b": "Publications and articles",
+   "both": 235,
+   "jaccard": 0.136,
+   "lift": 0.93
+  },
+  {
+   "a": "Pilot or testing with users",
+   "b": "Exhibitions and public events",
+   "both": 124,
+   "jaccard": 0.079,
+   "lift": 0.66
+  },
+  {
+   "a": "Pilot or testing with users",
+   "b": "Networking and partnerships",
+   "both": 116,
+   "jaccard": 0.098,
+   "lift": 1.27
+  },
+  {
+   "a": "Pilot or testing with users",
+   "b": "Evaluation and feedback",
+   "both": 400,
+   "jaccard": 0.243,
+   "lift": 1.47
+  },
+  {
+   "a": "Pilot or testing with users",
+   "b": "Quality assurance and monitoring",
+   "both": 203,
+   "jaccard": 0.16,
+   "lift": 1.52
+  },
+  {
+   "a": "Pilot or testing with users",
+   "b": "Project management and partner meetings",
+   "both": 249,
+   "jaccard": 0.163,
+   "lift": 1.21
+  },
+  {
+   "a": "Multiplier events",
+   "b": "Conferences and info days",
+   "both": 265,
+   "jaccard": 0.194,
+   "lift": 1.51
+  },
+  {
+   "a": "Multiplier events",
+   "b": "Website and social media",
+   "both": 360,
+   "jaccard": 0.207,
+   "lift": 1.33
+  },
+  {
+   "a": "Multiplier events",
+   "b": "Publications and articles",
+   "both": 263,
+   "jaccard": 0.169,
+   "lift": 1.23
+  },
+  {
+   "a": "Multiplier events",
+   "b": "Exhibitions and public events",
+   "both": 141,
+   "jaccard": 0.1,
+   "lift": 0.89
+  },
+  {
+   "a": "Multiplier events",
+   "b": "Networking and partnerships",
+   "both": 106,
+   "jaccard": 0.101,
+   "lift": 1.37
+  },
+  {
+   "a": "Multiplier events",
+   "b": "Evaluation and feedback",
+   "both": 322,
+   "jaccard": 0.203,
+   "lift": 1.39
+  },
+  {
+   "a": "Multiplier events",
+   "b": "Quality assurance and monitoring",
+   "both": 194,
+   "jaccard": 0.17,
+   "lift": 1.71
+  },
+  {
+   "a": "Multiplier events",
+   "b": "Project management and partner meetings",
+   "both": 348,
+   "jaccard": 0.271,
+   "lift": 1.99
+  },
+  {
+   "a": "Conferences and info days",
+   "b": "Website and social media",
+   "both": 380,
+   "jaccard": 0.213,
+   "lift": 1.29
+  },
+  {
+   "a": "Conferences and info days",
+   "b": "Publications and articles",
+   "both": 336,
+   "jaccard": 0.216,
+   "lift": 1.45
+  },
+  {
+   "a": "Conferences and info days",
+   "b": "Exhibitions and public events",
+   "both": 229,
+   "jaccard": 0.164,
+   "lift": 1.32
+  },
+  {
+   "a": "Conferences and info days",
+   "b": "Networking and partnerships",
+   "both": 116,
+   "jaccard": 0.104,
+   "lift": 1.38
+  },
+  {
+   "a": "Conferences and info days",
+   "b": "Evaluation and feedback",
+   "both": 307,
+   "jaccard": 0.184,
+   "lift": 1.22
+  },
+  {
+   "a": "Conferences and info days",
+   "b": "Quality assurance and monitoring",
+   "both": 160,
+   "jaccard": 0.129,
+   "lift": 1.29
+  },
+  {
+   "a": "Conferences and info days",
+   "b": "Project management and partner meetings",
+   "both": 282,
+   "jaccard": 0.199,
+   "lift": 1.48
+  },
+  {
+   "a": "Website and social media",
+   "b": "Publications and articles",
+   "both": 578,
+   "jaccard": 0.325,
+   "lift": 1.61
+  },
+  {
+   "a": "Website and social media",
+   "b": "Exhibitions and public events",
+   "both": 343,
+   "jaccard": 0.196,
+   "lift": 1.28
+  },
+  {
+   "a": "Website and social media",
+   "b": "Networking and partnerships",
+   "both": 148,
+   "jaccard": 0.096,
+   "lift": 1.13
+  },
+  {
+   "a": "Website and social media",
+   "b": "Evaluation and feedback",
+   "both": 503,
+   "jaccard": 0.26,
+   "lift": 1.29
+  },
+  {
+   "a": "Website and social media",
+   "b": "Quality assurance and monitoring",
+   "both": 282,
+   "jaccard": 0.178,
+   "lift": 1.47
+  },
+  {
+   "a": "Website and social media",
+   "b": "Project management and partner meetings",
+   "both": 421,
+   "jaccard": 0.241,
+   "lift": 1.43
+  },
+  {
+   "a": "Publications and articles",
+   "b": "Exhibitions and public events",
+   "both": 254,
+   "jaccard": 0.163,
+   "lift": 1.2
+  },
+  {
+   "a": "Publications and articles",
+   "b": "Networking and partnerships",
+   "both": 106,
+   "jaccard": 0.081,
+   "lift": 1.03
+  },
+  {
+   "a": "Publications and articles",
+   "b": "Evaluation and feedback",
+   "both": 386,
+   "jaccard": 0.217,
+   "lift": 1.26
+  },
+  {
+   "a": "Publications and articles",
+   "b": "Quality assurance and monitoring",
+   "both": 197,
+   "jaccard": 0.141,
+   "lift": 1.3
+  },
+  {
+   "a": "Publications and articles",
+   "b": "Project management and partner meetings",
+   "both": 302,
+   "jaccard": 0.19,
+   "lift": 1.3
+  },
+  {
+   "a": "Exhibitions and public events",
+   "b": "Networking and partnerships",
+   "both": 84,
+   "jaccard": 0.079,
+   "lift": 1.09
+  },
+  {
+   "a": "Exhibitions and public events",
+   "b": "Evaluation and feedback",
+   "both": 222,
+   "jaccard": 0.132,
+   "lift": 0.97
+  },
+  {
+   "a": "Exhibitions and public events",
+   "b": "Quality assurance and monitoring",
+   "both": 105,
+   "jaccard": 0.086,
+   "lift": 0.93
+  },
+  {
+   "a": "Exhibitions and public events",
+   "b": "Project management and partner meetings",
+   "both": 205,
+   "jaccard": 0.144,
+   "lift": 1.18
+  },
+  {
+   "a": "Networking and partnerships",
+   "b": "Evaluation and feedback",
+   "both": 119,
+   "jaccard": 0.086,
+   "lift": 1.07
+  },
+  {
+   "a": "Networking and partnerships",
+   "b": "Quality assurance and monitoring",
+   "both": 71,
+   "jaccard": 0.083,
+   "lift": 1.3
+  },
+  {
+   "a": "Networking and partnerships",
+   "b": "Project management and partner meetings",
+   "both": 101,
+   "jaccard": 0.09,
+   "lift": 1.2
+  },
+  {
+   "a": "Evaluation and feedback",
+   "b": "Quality assurance and monitoring",
+   "both": 310,
+   "jaccard": 0.227,
+   "lift": 1.9
+  },
+  {
+   "a": "Evaluation and feedback",
+   "b": "Project management and partner meetings",
+   "both": 358,
+   "jaccard": 0.222,
+   "lift": 1.42
+  },
+  {
+   "a": "Quality assurance and monitoring",
+   "b": "Project management and partner meetings",
+   "both": 212,
+   "jaccard": 0.178,
+   "lift": 1.71
+  }
+ ]
+}

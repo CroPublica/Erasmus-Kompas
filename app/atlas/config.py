@@ -68,6 +68,8 @@ def make_chat_model(role: str, profile: Optional[str] = None):
         extra = {"num_ctx": spec.num_ctx} if spec.num_ctx else {}
         if spec.think is not None:
             extra["reasoning"] = spec.think
+        # keep models in GPU memory between questions (default Ollama unloads after 5 minutes, and a reload costs seconds)
+        extra["keep_alive"] = os.environ.get("ATLAS_KEEP_ALIVE", "30m")
         return ChatOllama(model=spec.model, base_url=_ollama_url(spec), temperature=spec.temperature, **extra)
     from langchain_openai import ChatOpenAI
     return ChatOpenAI(model=spec.model, base_url=spec.base_url, temperature=spec.temperature,

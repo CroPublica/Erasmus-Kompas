@@ -20,6 +20,9 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from common import connect  # noqa: E402
 
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+from atlas.tools import Toolbox  # noqa: E402
+
 OUT = Path(__file__).resolve().parent.parent / "site" / "src" / "data"
 
 
@@ -56,6 +59,7 @@ def main():
                           from participation x join project p using(project_id) order by p.call_year desc, p.project_id"""):
         parts.setdefault(r["org_id"], []).append(r)
 
+    classes = dict(con.execute("select eu_org_type, org_class from org_class_map").fetchall())
     index, full = [], {}
     for oid, byp in per.items():
         o = orgs.get(oid)
@@ -65,8 +69,11 @@ def main():
         plist = parts.get(oid, [])
         cc = Counter(c for p in plist for c in set((p["countries"] or "").split(",")) if c and c != "HR")
         top = sorted(topics.get(oid, []), reverse=True)[:8]
+        p1, p2 = byp.get("2014-2020", {}), byp.get("2021-2027", {})
         index.append({"id": oid, "name": o["name"], "town": o["town"], "county": o["county"], "type": o["eu_org_type"],
-                      "projects": tot.get("projects", 0), "coordinated": tot.get("coordinated", 0)})
+                      "cls": classes.get(o["eu_org_type"]),
+                      "projects": tot.get("projects", 0), "coordinated": tot.get("coordinated", 0),
+                      "p1": p1.get("projects", 0), "p2": p2.get("projects", 0), "c1": p1.get("coordinated", 0), "c2": p2.get("coordinated", 0)})
         full[oid] = {
             **o, "periods": byp,
             "good_practice": sum(1 for p in plist if p["good_practice"]),
@@ -127,6 +134,52 @@ def main():
         if r["county"] in counties:
             counties[r["county"]]["coverage"].append({k: r[k] for k in r if k != "county"})
     write("counties.json", list(counties.values()))
+
+    # ---- national overview (same figures the Ask tools give)
+    tb = Toolbox()
+    nat = {"periods": {}, "countries": {}}
+    for per in ("all", "2014-2020", "2021-2027"):
+        r = tb.national_stats(per).rows[0]
+        nat["periods"][per] = {k: r[k] for k in ("projects", "coordinated", "eu_ka2_projects", "share_of_eu_ka2_projects", "value_involved_eur", "central_projects")}
+        nat["periods"][per]["classes"] = r["coordinating_organisation_classes"]
+    for per in ("2014-2020", "2021-2027"):
+        rows_ = tb.country_stats(per, limit=15).rows
+        nat["countries"][per] = rows_
+    write("national.json", nat)
+
+    # ---- project index for the search page (titles, not summaries: the whole file is sent to the browser)
+    pidx = rows(con, "select project_id id, title, call_year as yr, period, action_type as type_, status, good_practice as gp, countries, grant_not_comparable ncomp from project order by call_year desc, project_id")
+    topics_of = {}
+    for r in rows(con, "select project_id, topic from project_topic"):
+        topics_of.setdefault(r["project_id"], []).append(r["topic"])
+    for r in pidx:
+        r["countries"] = [c for c in (r["countries"] or "").split(",") if c]
+        r["topics"] = topics_of.get(r["id"], [])
+        r["gp"] = bool(r["gp"])
+        del r["ncomp"]
+    (OUT.parent.parent / "public" / "projects.json").write_text(json.dumps(pidx, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
+    print(f"  projects.json (public) {(OUT.parent.parent / 'public' / 'projects.json').stat().st_size / 1024:6.0f} KB")
+
+    # ---- topics over time: the labels as the source gives them for each period (no crosswalk); only names that occur in both
+    # topic lists are continuous across the 2020/2021 break
+    years = list(range(2014, 2027))
+    per_year, seen = {y: 0 for y in years}, {}
+    for yr, per, raw in con.execute("select call_year, period, topics_raw from project where topics_raw is not null").fetchall():
+        names = {x.strip() for x in raw.split(";") if x.strip()}
+        if not names or yr not in per_year:
+            continue
+        per_year[yr] += 1
+        for nme in names:
+            d = seen.setdefault(nme, {"counts": {}, "periods": set()})
+            d["counts"][yr] = d["counts"].get(yr, 0) + 1
+            d["periods"].add(per)
+    tops = []
+    for nme, d in seen.items():
+        old, new = "2014-2020" in d["periods"], "2021-2027" in d["periods"]
+        tops.append({"name": nme, "scope": "both" if old and new else "old" if old else "new",
+                     "counts": {str(y): d["counts"].get(y, 0) for y in years}, "total": sum(d["counts"].values())})
+    tops.sort(key=lambda t: (-t["total"], t["name"]))
+    write("topics_by_year.json", {"years": years, "projects_with_topics": {str(y): per_year[y] for y in years}, "topics": tops})
 
     n_proj, n_coord = con.execute("select count(*), sum(hr_coordinated::int) from project").fetchone()
     write("meta.json", {"generated": date.today().isoformat(), "projects": n_proj, "coordinated": int(n_coord),

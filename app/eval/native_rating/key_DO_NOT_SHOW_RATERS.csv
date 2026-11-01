@@ -1,0 +1,57 @@
+item,system,question_id
+R01,polish gemma4-31b q8,C02
+R02,code,C04
+R03,polish gemma4-31b q8,A09
+R04,polish qwen3.5-9b q8,A07
+R05,polish qwen3.5-9b q8,A04
+R06,polish gemma4-31b q8,A10
+R07,free gemma4-8b,C01
+R08,polish gemma4-31b q8,B11
+R09,free qwen3.5-9b,C02
+R10,free gemma4-31b,A02
+R11,free gemma4-31b,C01
+R12,free qwen2.5-3b,B12
+R13,free qwen3.5-9b,I05
+R14,free gemma4-8b,B09
+R15,polish qwen3.5-9b q8,B03
+R16,free qwen2.5-3b,B08
+R17,free gemma4-31b,C06
+R18,polish qwen3.5-9b q8,A10
+R19,free qwen2.5-3b,H01
+R20,polish qwen3.5-9b q8,I04
+R21,free gemma4-8b,A06
+R22,free gemma4-31b,A05
+R23,free qwen3.5-9b,I01
+R24,code,A02
+R25,free qwen3.5-9b,A04
+R26,free gemma4-e4b,I02
+R27,free qwen2.5-3b,A05
+R28,polish gemma4-31b q8,B02
+R29,code,C06
+R30,polish gemma4-31b q8,C06
+R31,polish qwen3.5-9b q8,C02
+R32,code,B08
+R33,free gemma4-8b,H12
+R34,free gemma4-e4b,H01
+R35,free gemma4-31b,I01
+R36,free gemma4-31b,B12
+R37,free qwen2.5-3b,B02
+R38,free qwen3.5-9b,H11
+R39,free qwen3.5-9b,C06
+R40,polish gemma4-31b q8,B09
+R41,polish qwen3.5-9b q8,C03
+R42,free gemma4-e4b,B11
+R43,free qwen2.5-3b,I05
+R44,code,I05
+R45,code,C07
+R46,free gemma4-e4b,I03
+R47,free gemma4-8b,B08
+R48,free gemma4-e4b,B01
+R49,free gemma4-8b,A09
+R50,free qwen3.5-9b,A09
+R51,free qwen2.5-3b,B04
+R52,free gemma4-e4b,A01
+R53,code,C03
+R54,free gemma4-e4b,B09
+R55,free gemma4-31b,A06
+R56,free gemma4-8b,I01
