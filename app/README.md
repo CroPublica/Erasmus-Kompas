@@ -115,6 +115,14 @@ upload the folder and serve `404.html` for missing pages. The exported data cont
 `deploy/nginx.conf` sets caching (hashed assets for a year, pages revalidated) and a strict content-security policy.
 Needs Node >= 22.23.4 (the script checks). The browser tests also need `cd site && npx playwright install chromium` once.
 
+### Demo on this PC
+
+```
+./demo.sh            # site + Ask API on http://127.0.0.1:8080 (--lan for the local network, --rebuild to rebuild first)
+```
+
+Other hosting options (static host, container, no GPU): `HOSTING.md`.
+
 ### Ask (question answering), first version
 
 ```
