@@ -130,11 +130,11 @@ def detect_language(text: str) -> str:
 CONCEPT_WORDS = re.compile(r"najčešć\w* (metod|pristup|aktivnost|rezultat|ishod|ciljn|problem|izazov)|najcesc\w* (metod|pristup|aktivnost|rezultat|ishod|ciljn|problem|izazov)|"
                            r"most (common|frequent)\w* (method|approach|activit|output|result|target|problem|challenge)|common (method|approach|activit|output|target|problem)|"
                            r"tipičn\w* projekt|typical project|što (se )?(može )?očekivati|what (can|to|should) (you |one |someone )?expect|od nule|from scratch|"
-                           r"koje (metode|pristupe|aktivnosti)|which (methods|approaches|activities)|što rade projekti|what do projects do|"
+                           r"koje (metode|pristupe|aktivnosti|probleme|izazove)|which (methods|approaches|activities|problems|challenges|outputs)|što rade projekti|what do projects do|"
                            r"skupin\w* (pojmova|tema)|groups of (concepts|themes)|clusters?\b|"
                            r"primjer\w* dobre prakse|examples? of good practice|glavn\w+ tem|main (themes|topics)|prevladava|promijeni\w* (se )?tem|tem\w* (su se )?promijeni\w*|how (have )?(the )?(themes|topics|methods|approaches)|"
                            r"najpovezaniji|most connected|connect(s)? the most|kroz vrijeme|over time|trend")
-COMMON_WORDS = re.compile(r"glavn\w+ tem|prevladava|main (themes|topics)|najčešć|najcesc|most (common|frequent)|common|usually|obično|tipičn|typical|uobičajen|očekivati|expect|od nule|from scratch|početnik|beginner")
+COMMON_WORDS = re.compile(r"glavn\w+ tem|prevladava|main (themes|topics)|najčešć|najcesc|most (common|frequent|often)|common|usually|obično|tipičn|typical|uobičajen|očekivati|expect|od nule|from scratch|početnik|beginner")
 EXPECT_WORDS = re.compile(r"očekivati|expect|od nule|from scratch|početnik|beginner|tipičn\w* projekt|typical project")
 TREND_WORDS = re.compile(r"promijeni|changed|kroz vrijeme|over time|trend|rast\w+|growing|nestaj|fading|declin")
 CONNECT_WORDS = re.compile(r"najpovezaniji|most connected|connect(s)? the most|povezuje|bridge")

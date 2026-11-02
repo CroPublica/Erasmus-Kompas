@@ -165,6 +165,9 @@ def test_concepts_route_answers_from_the_concept_tools(tb):
     assert "tools=['common_concepts']" in " ".join(r["trace"]) and "radionice" in r["answer"]
     r = a.ask("Which groups of concepts occur together in KA2 projects?")
     assert "community_overview" in " ".join(r["trace"]) and "projects" in r["answer"] and "projekata" not in r["answer"]
+    for q in ("Which problems do KA2 projects address most often?", "Koje probleme KA2 projekti najčešće rješavaju?"):   # the example questions on the Ask page
+        r = a.ask(q)
+        assert "tools=['common_concepts']" in " ".join(r["trace"]) and "problem" in r["answer"].lower() and "problem-based" not in r["answer"]
     r = a.ask("Što znamo o vršnjačkom nasilju u projektima?")
     assert "concept_profile" in " ".join(r["trace"]) and "donja granica" in r["answer"]
 

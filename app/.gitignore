@@ -15,6 +15,7 @@ site/node_modules/
 site/dist/
 site/.astro/
 site/src/data/orgs_full.json
+site/src/data/projects_full.json
 # eval/shots/
 data/esc_cache.json
 data/esc_queries.json
