@@ -8,7 +8,7 @@ set -euo pipefail
 cd "$(dirname "$0")/.."
 export PATH="$HOME/.local/opt/node/bin:$PATH"
 NAME=ka2-atlas
-api_stop()  { pkill -f "uvicorn atlas.api" || true; }
+api_stop()  { pkill -f "[u]vicorn atlas.api" || true; }
 api_start() { ATLAS_TRUST_PROXY=1 nohup .venv/bin/uvicorn atlas.api:app --host 127.0.0.1 --port 8000 >> data/api.log 2>&1 & }
 site_stop() { docker rm -f "$NAME" >/dev/null 2>&1 || true; }
 site_start() {
@@ -20,8 +20,8 @@ case "${1:-}" in
   start)   api_stop; api_start; site_stop; site_start ;;
   restart) ./build_site.sh --docker; api_stop; api_start; site_stop; site_start ;;
   stop)    site_stop; api_stop ;;
-  status)  docker ps --filter "name=$NAME" --format "site: {{.Status}}"; pgrep -f "uvicorn atlas.api" >/dev/null && echo "api: running" || echo "api: stopped"
-           pgrep -f "cloudflared tunnel" >/dev/null && echo "tunnel: running" || echo "tunnel: not running"; exit 0 ;;
+  status)  docker ps --filter "name=$NAME" --format "site: {{.Status}}"; pgrep -f "[u]vicorn atlas.api" >/dev/null && echo "api: running" || echo "api: stopped"
+           pgrep -x cloudflared >/dev/null && echo "tunnel: running" || echo "tunnel: not running"; exit 0 ;;
   *) sed -n 2,7p "$0"; exit 2 ;;
 esac
 sleep 3; "$0" status
