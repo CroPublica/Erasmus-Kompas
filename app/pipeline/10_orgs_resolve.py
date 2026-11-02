@@ -21,6 +21,7 @@ sub-units whose names differ (score < 99) are treated as different organisations
 Human decisions, read on every run:
   data/review/org_aliases.csv    alias,target      alias = a name as written; target = org id (OID-/MZO-/MBU-/H-) or a name+postcode
                                                     in the form 'normalised name|postcode'; maps the alias to that organisation
+  data/review/org_oids.csv       org_id,eu_oid,...  EU organisation IDs found by hand for organisations that tablica 4 does not list (column eu_oid)
   data/review/org_decisions.csv  mention_key,org_id,decision,note     decision = merge | separate; mention_key = 'normalised name|postcode'
 
 Usage: python pipeline/10_orgs_resolve.py
@@ -33,7 +34,7 @@ from collections import Counter, defaultdict
 from rapidfuzz import fuzz
 
 from common import APP_DIR, connect
-from names import norm_name, norm_place, parse_address, strip_place
+from names import display_name, he_canon, norm_name, norm_place, parse_address, strip_place
 
 AUTO, REVIEW = 95, 88          # fuzzy thresholds (token_sort_ratio on normalised names)
 REVIEW_DIR = APP_DIR / "data" / "review"
@@ -84,12 +85,12 @@ def main():
             if nid in inst:                              # school listed in both the primary and the secondary register
                 inst[nid]["kinds"].add(kind)
                 continue
-            inst[nid] = dict(id=nid, name=" ".join(d["Naziv"].split()), kinds={kind}, postcode=pc, place=d.get("Mjesto"),
+            inst[nid] = dict(id=nid, name=display_name(" ".join(d["Naziv"].split())), kinds={kind}, postcode=pc, place=d.get("Mjesto"),
                              county=place_county.get(pc), school_code=code, mbu=None, founder=d.get("Osnivač"),
                              parent=None, itype=d.get("TipUstanove"))
     for rec in con.execute('select mbu, NazivUstanove, Mjesto, VrstaUstanove, NadredjenaUstanova from stg_registry_higher').fetchall():
         mbu, name, town, vt, parent = rec
-        inst[f"MBU-{mbu}"] = dict(id=f"MBU-{mbu}", name=" ".join(name.split()), kinds={"higher_education"}, postcode=None,
+        inst[f"MBU-{mbu}"] = dict(id=f"MBU-{mbu}", name=display_name(" ".join(name.split())), kinds={"higher_education"}, postcode=None,
                                   place=town and town.title(), county=None, school_code=None, mbu=mbu, founder=None,
                                   parent=parent, itype=vt)
 
@@ -118,12 +119,38 @@ def main():
         hit = by_name_pc.get((n, i["postcode"])) if i["postcode"] else None
         if hit and len(hit) == 1:
             orgs[hit[0]].registry_key = i["id"]
+            orgs[hit[0]].name = i["name"]    # registry spelling (with diacritics) beats the EU export's
             i["org_id"] = hit[0]
         else:
             o = Org(i["id"], i["name"], i["postcode"], i["place"], kind=",".join(sorted(i["kinds"])),
                     registry_key=i["id"], anchored=True)
             register(o)
             i["org_id"] = o.id
+    # higher-education registry entries have no postcode, so name+postcode never links them. Link them by name + town instead:
+    # an MBU entry whose key matches exactly one other organisation (e.g. one known from tablica 4) is that organisation's registry
+    # entry; otherwise it stays an organisation of its own. Mentions are matched against the same key below (method 6).
+    he_index = defaultdict(list)                                 # (he_canon, town) -> [org id]
+    for oid_, o in orgs.items():
+        k = he_canon(o.name, o.place) if o.place else None
+        if k and not oid_.startswith("MBU-"):
+            he_index[(k, norm_place(o.place))].append(oid_)
+    he_unified = []
+    for oid_ in [i for i in orgs if i.startswith("MBU-")]:
+        o = orgs[oid_]
+        k = he_canon(o.name, o.place) if o.place else None
+        hits = he_index.get((k, norm_place(o.place))) if k else None
+        if hits and len(set(hits)) == 1:
+            twin = orgs[hits[0]]
+            twin.registry_key = oid_
+            twin.name = o.name
+            he_unified.append((oid_, o.name, twin.id))
+            by_name_place[(o.norm, norm_place(o.place))].remove(oid_)
+            for i in inst.values():
+                if i["id"] == oid_:
+                    i["org_id"] = twin.id
+            del orgs[oid_]
+        elif k:
+            he_index[(k, norm_place(o.place))].append(oid_)
     n_anchor = len(orgs)
 
     # ---------------------------------------------------------------- human input
@@ -186,6 +213,11 @@ def main():
                         if hits and len(set(hits)) == 1 and (mkey, hits[0]) not in barred:
                             target = (hits[0], method, 100)
                             break
+        if target is None and norm and place and (mkey, "he") not in barred:      # 6: higher-education name + town (registry has no postcode)
+            k = he_canon(sample["org_name"], sample["place_raw"])
+            hits = he_index.get((k, place)) if k else None
+            if hits and len(set(hits)) == 1 and (mkey, hits[0]) not in barred:
+                target = (hits[0], "6 higher-ed name+town", 100)
         if target is None and norm:                                   # 4: fuzzy within the same postcode
             best = (0, None)
             for oid in set(candidates_same_postcode(norm, pc, place)):
@@ -234,7 +266,8 @@ def main():
     con.execute("drop table if exists organisation")
     con.execute("create table organisation(org_id varchar, name varchar, postcode varchar, town varchar, county varchar, "
                 "eu_org_type varchar, register_kind varchar, oid varchar, registry_key varchar, identity_basis varchar, "
-                "n_mentions integer, n_name_variants integer)")
+                "n_mentions integer, n_name_variants integer, eu_oid varchar)")
+    extra_oid = {r["org_id"]: r["eu_oid"].strip() for r in read_csv_rows(REVIEW_DIR / "org_oids.csv")}   # OIDs looked up by hand for organisations tablica 4 does not list
     rows = []
     for oid in sorted(used):
         o = orgs[oid]
@@ -244,8 +277,8 @@ def main():
         basis = "OID" if o.oid else ("registry" if o.registry_key else "name+postcode hash")
         rows.append((oid, o.name, pc, o.place, place_county.get(pc), types.most_common(1)[0][0] if types else None,
                      o.kind if o.registry_key else None, o.oid, o.registry_key, basis, sum(o.mentions.values()),
-                     len({norm_name(n) for n, _ in o.mentions})))
-    con.executemany("insert into organisation values (?,?,?,?,?,?,?,?,?,?,?,?)", rows)
+                     len({norm_name(n) for n, _ in o.mentions}), o.oid or extra_oid.get(oid)))
+    con.executemany("insert into organisation values (?,?,?,?,?,?,?,?,?,?,?,?,?)", rows)
 
     con.execute("drop table if exists org_alias")
     con.execute("create table org_alias(org_id varchar, name_raw varchar, address_raw varchar, n integer)")
@@ -273,6 +306,18 @@ def main():
           f"({sum(1 for o in used if orgs[o].anchored):,} anchored in a registry or tablica 4, "
           f"{sum(1 for o in used if not orgs[o].anchored):,} new)")
     print("appearances by match method:", dict(methods))
+    with open(APP_DIR / "data" / "higher_ed_links_to_check.csv", "w", encoding="utf-8", newline="") as f:
+        w = csv.writer(f)
+        w.writerow(["kind", "name_as_written_in_EU_export", "linked_to_org_id", "linked_org_name", "appearances", "projects"])
+        for oid_, nm, twin in he_unified:
+            w.writerow(["registry entry joined to existing organisation", nm, twin, orgs[twin].name, "", ""])
+        seen = defaultdict(lambda: [set(), 0])
+        for a in apps:
+            if a["link_method"] == "6 higher-ed name+town":
+                seen[(a["org_name"], a["org_id"])][0].add(a["project_id"]); seen[(a["org_name"], a["org_id"])][1] += 1
+        for (nm, oid_), (pr, n) in sorted(seen.items(), key=lambda kv: kv[0][1]):
+            w.writerow(["mention linked by name + town", nm, oid_, orgs[oid_].name, n, len(pr)])
+    print(f"higher-education links: {len(he_unified)} registry entries joined, {len(seen)} spellings linked -> data/higher_ed_links_to_check.csv")
     print(f"review queue: {len(queue)} pairs covering {sum(q['n_mentions'] for q in queue)} appearances -> data/review_queue.csv")
     print(f"institutions: {len(inst):,} ({con.execute('select count(*) from institution where org_id is not null').fetchone()[0]} with a KA2 organisation)")
     con.close()

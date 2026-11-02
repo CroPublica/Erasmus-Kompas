@@ -1,0 +1,2343 @@
+{"concept_id": "tar00000", "hr": "učitelji"}
+{"concept_id": "tar00001", "hr": "studenti"}
+{"concept_id": "app00000", "hr": "istraživanje ili procjena potreba"}
+{"concept_id": "tar00003", "hr": "mladi"}
+{"concept_id": "tar00002", "hr": "radnici s mladima"}
+{"concept_id": "app00001", "hr": "radionice"}
+{"concept_id": "tar00005", "hr": "odgojitelji"}
+{"concept_id": "tar00004", "hr": "roditelji"}
+{"concept_id": "app00003", "hr": "obuka za trenera"}
+{"concept_id": "tar00006", "hr": "nastavnici srednjih škola"}
+{"concept_id": "app00002", "hr": "vršničko učenje"}
+{"concept_id": "app00004", "hr": "multiplikacijski događaji"}
+{"concept_id": "app00006", "hr": "razmjena praksi"}
+{"concept_id": "app00007", "hr": "transnacionalni projektni sastanci"}
+{"concept_id": "out00000", "hr": "web stranica projekta"}
+{"concept_id": "tar00018", "hr": "dionici"}
+{"concept_id": "tar00010", "hr": "treneri"}
+{"concept_id": "app00005", "hr": "eksperijencijalno učenje"}
+{"concept_id": "tar00009", "hr": "lokalne zajednice"}
+{"concept_id": "app00008", "hr": "mobilnosti i razmjene studenata"}
+{"concept_id": "tar00008", "hr": "učenici srednjih škola"}
+{"concept_id": "tar00007", "hr": "mladi s manje mogućnosti"}
+{"concept_id": "app00009", "hr": "su-kreacija"}
+{"concept_id": "tar00012", "hr": "školsko osoblje"}
+{"concept_id": "app00010", "hr": "mentorstvo"}
+{"concept_id": "app00011", "hr": "aktivnosti širenja rezultata"}
+{"concept_id": "tar00011", "hr": "učitelji osnovnih škola"}
+{"concept_id": "tar00021", "hr": "djeca"}
+{"concept_id": "tar00024", "hr": "članovi lokalne zajednice"}
+{"concept_id": "tar00014", "hr": "učenici"}
+{"concept_id": "tar00017", "hr": "donositelji politika"}
+{"concept_id": "tar00037", "hr": "građani"}
+{"concept_id": "tar00022", "hr": "odrasli polaznici"}
+{"concept_id": "tar00016", "hr": "šira javnost"}
+{"concept_id": "tar00015", "hr": "učenici osnovnih škola"}
+{"concept_id": "app00012", "hr": "pilot sesije"}
+{"concept_id": "app00090", "hr": "strukovno usavršavanje učitelja"}
+{"concept_id": "tar00030", "hr": "volonteri"}
+{"concept_id": "tar00013", "hr": "obitelji"}
+{"concept_id": "tar00020", "hr": "izbjeglice"}
+{"concept_id": "tar00032", "hr": "učenici iz ugroženih skupina"}
+{"concept_id": "app00014", "hr": "diseminacijski događaji"}
+{"concept_id": "app00013", "hr": "analiza potreba"}
+{"concept_id": "tar00047", "hr": "učitelji iz partnerskih škola"}
+{"concept_id": "tar00027", "hr": "migranti"}
+{"concept_id": "tar00033", "hr": "odrasle osobe"}
+{"concept_id": "out00001", "hr": "projektni logotip"}
+{"concept_id": "app00043", "hr": "osposobljavanje mladih radnika"}
+{"concept_id": "tar00019", "hr": "škole"}
+{"concept_id": "tar00050", "hr": "poduzetnici"}
+{"concept_id": "tar00023", "hr": "lokalna tijela vlasti"}
+{"concept_id": "tar00026", "hr": "visokoškolske ustanove"}
+{"concept_id": "tar00056", "hr": "stručnjaci"}
+{"concept_id": "tar00061", "hr": "studenti visokoobrazovnih ustanova"}
+{"concept_id": "app00017", "hr": "kratkotrajni zajednički događaji osposobljavanja osoblja"}
+{"concept_id": "app00027", "hr": "edukacijske sesije"}
+{"concept_id": "tar00025", "hr": "učenici s manje mogućnosti"}
+{"concept_id": "app00018", "hr": "mobilnosti i razmjene osoblja"}
+{"concept_id": "tar00046", "hr": "učenici s posebnim potrebama"}
+{"concept_id": "app00015", "hr": "studijski posjeti"}
+{"concept_id": "tar00028", "hr": "donositelji politika"}
+{"concept_id": "tar00054", "hr": "donositelji odluka"}
+{"concept_id": "app00021", "hr": "webinari"}
+{"concept_id": "app00030", "hr": "učenje temeljeno na projektima"}
+{"concept_id": "tar00029", "hr": "nevladine organizacije"}
+{"concept_id": "app00020", "hr": "završna konferencija"}
+{"concept_id": "tar00057", "hr": "osobe s invaliditetom"}
+{"concept_id": "app00024", "hr": "seminari"}
+{"concept_id": "app00029", "hr": "izrada kurikuluma"}
+{"concept_id": "app00023", "hr": "uvodni sastanak"}
+{"concept_id": "tar00058", "hr": "partnerske organizacije"}
+{"concept_id": "tar00038", "hr": "mladi"}
+{"concept_id": "tar00043", "hr": "obrazovne ustanove"}
+{"concept_id": "app00016", "hr": "učenje kroz rad"}
+{"concept_id": "tar00031", "hr": "učenici iz Hrvatske"}
+{"concept_id": "app00032", "hr": "online sastanci"}
+{"concept_id": "tar00034", "hr": "poslodavci"}
+{"concept_id": "tar00036", "hr": "istraživači"}
+{"concept_id": "tar00075", "hr": "stručnjaci"}
+{"concept_id": "tar00041", "hr": "učenici srednjih škola"}
+{"concept_id": "app00039", "hr": "tečajevi osposobljavanja"}
+{"concept_id": "tar00035", "hr": "učenici stručnog obrazovanja i obuke"}
+{"concept_id": "tar00119", "hr": "učenici u stručnom obrazovanju i obuci"}
+{"concept_id": "app00031", "hr": "fokus grupe"}
+{"concept_id": "app00063", "hr": "istraživanje"}
+{"concept_id": "tar00040", "hr": "organizacije mladih"}
+{"concept_id": "pro00000", "hr": "rano napuštanje školovanja"}
+{"concept_id": "app00019", "hr": "gamifikacija"}
+{"concept_id": "app00025", "hr": "kratkotrajne razmjene skupina učenika"}
+{"concept_id": "app00064", "hr": "konferencije"}
+{"concept_id": "app00052", "hr": "neformalno obrazovanje"}
+{"concept_id": "app00058", "hr": "prezentacije"}
+{"concept_id": "app00104", "hr": "istraživanje i procjena potreba putem anketa"}
+{"concept_id": "tar00042", "hr": "organizacije mladih"}
+{"concept_id": "app00038", "hr": "mješovito učenje"}
+{"concept_id": "app00067", "hr": "transnacionalni sastanci partnera"}
+{"concept_id": "tar00044", "hr": "tvrtke"}
+{"concept_id": "tar00059", "hr": "mentori"}
+{"concept_id": "tar00082", "hr": "učenici stručnih škola"}
+{"concept_id": "app00028", "hr": "eTwinning suradnja"}
+{"concept_id": "tar00068", "hr": "sudionici"}
+{"concept_id": "tar00102", "hr": "učenici partnerskih škola"}
+{"concept_id": "app00026", "hr": "predavanja"}
+{"concept_id": "out00003", "hr": "videozapisi"}
+{"concept_id": "tar00039", "hr": "pružatelji stručnog obrazovanja i obuke"}
+{"concept_id": "app00033", "hr": "kooperativno učenje"}
+{"concept_id": "app00075", "hr": "kampanje podizanja svijesti"}
+{"concept_id": "app00112", "hr": "produkcija videozapisa"}
+{"concept_id": "out00021", "hr": "povećana motivacija učenika"}
+{"concept_id": "app00089", "hr": "igranje uloga"}
+{"concept_id": "app00037", "hr": "međunarodni sastanci projekta"}
+{"concept_id": "out00002", "hr": "plakati"}
+{"concept_id": "tar00048", "hr": "školske zajednice"}
+{"concept_id": "app00022", "hr": "uradničko istraživanje"}
+{"concept_id": "app00034", "hr": "mobilnosti i razmjene nastavnika"}
+{"concept_id": "app00054", "hr": "diseminacija rezultata projekta"}
+{"concept_id": "app00081", "hr": "grukov rad"}
+{"concept_id": "app00085", "hr": "učenje temeljeno na problemima"}
+{"concept_id": "app00096", "hr": "diseminacija putem društvenih mreža"}
+{"concept_id": "tar00045", "hr": "sveučilišta"}
+{"concept_id": "app00047", "hr": "izložbe"}
+{"concept_id": "app00056", "hr": "razvoj e-learning platforme"}
+{"concept_id": "app00093", "hr": "zajedničko osposobljavanje osoblja"}
+{"concept_id": "out00004", "hr": "unaprijeđene vještine engleskog jezika učenika"}
+{"concept_id": "out00006", "hr": "brošure"}
+{"concept_id": "out00019", "hr": "prezentacije"}
+{"concept_id": "tar00072", "hr": "obitelji učenika"}
+{"concept_id": "app00060", "hr": "kampanje na društvenim mrežama"}
+{"concept_id": "out00005", "hr": "plan širenja rezultata"}
+{"concept_id": "pro00009", "hr": "visoke stope nezaposlenosti mladih"}
+{"concept_id": "app00040", "hr": "rasprave"}
+{"concept_id": "app00044", "hr": "obuka formatora (LTTA)"}
+{"concept_id": "app00055", "hr": "suizrada obrazovnih materijala"}
+{"concept_id": "app00071", "hr": "pilotno testiranje"}
+{"concept_id": "app00135", "hr": "razvoj online platforme"}
+{"concept_id": "tar00049", "hr": "djevojke"}
+{"concept_id": "tar00051", "hr": "MSP"}
+{"concept_id": "tar00088", "hr": "praktičari"}
+{"concept_id": "tar00090", "hr": "žene"}
+{"concept_id": "app00118", "hr": "razmjena dobrih praksi"}
+{"concept_id": "app00119", "hr": "kratkotrajne razmjene studenata"}
+{"concept_id": "tar00052", "hr": "poljoprivrednici"}
+{"concept_id": "tar00067", "hr": "imigranti"}
+{"concept_id": "app00048", "hr": "promatranje rada (job shadowing)"}
+{"concept_id": "tar00062", "hr": "učenici osnovnih škola"}
+{"concept_id": "tar00192", "hr": "diplomiran"}
+{"concept_id": "app00035", "hr": "prijevod materijala na više jezika"}
+{"concept_id": "app00046", "hr": "intervjui"}
+{"concept_id": "app00053", "hr": "međunarodna konferencija"}
+{"concept_id": "app00059", "hr": "upravljanje projektom"}
+{"concept_id": "app00084", "hr": "obuka odgojitelja"}
+{"concept_id": "app00102", "hr": "razvoj otvorenih obrazovnih resursa"}
+{"concept_id": "app00103", "hr": "razmjena dobrih praksi među partnerima"}
+{"concept_id": "out00007", "hr": "planovi lekcija"}
+{"concept_id": "tar00055", "hr": "mladi vođe"}
+{"concept_id": "tar00144", "hr": "menadžeri"}
+{"concept_id": "app00036", "hr": "izrada web stranice projekta"}
+{"concept_id": "out00045", "hr": "unaprijeđene komunikacijske vještine učenika"}
+{"concept_id": "tar00065", "hr": "starije osobe"}
+{"concept_id": "tar00076", "hr": "poduzeća"}
+{"concept_id": "tar00154", "hr": "partnerske organizacije"}
+{"concept_id": "tar00179", "hr": "nastavnici stručnih škola"}
+{"concept_id": "pro00001", "hr": "klimatske promjene"}
+{"concept_id": "pro00003", "hr": "nezaposlenost mladih"}
+{"concept_id": "app00088", "hr": "ankete"}
+{"concept_id": "app00111", "hr": "online pelatihan"}
+{"concept_id": "tar00053", "hr": "tražitelji azila"}
+{"concept_id": "tar00105", "hr": "akademici"}
+{"concept_id": "tar00140", "hr": "stručnjaci za obrazovanje"}
+{"concept_id": "app00108", "hr": "pripovijedanje"}
+{"concept_id": "tar00124", "hr": "facilitatori"}
+{"concept_id": "pro00004", "hr": "socijalna isključenost"}
+{"concept_id": "app00041", "hr": "virtualni sastanci"}
+{"concept_id": "app00045", "hr": "transnacionalna suradnja"}
+{"concept_id": "app00091", "hr": "neformalno učenje"}
+{"concept_id": "app00098", "hr": "aktivnosti izgradnje kapaciteta"}
+{"concept_id": "out00014", "hr": "web stranica projekta"}
+{"concept_id": "out00015", "hr": "e-learning platforma"}
+{"concept_id": "out00044", "hr": "povećano samopouzdanje učenika"}
+{"concept_id": "tar00077", "hr": "profesori"}
+{"concept_id": "tar00078", "hr": "nastavno osoblje"}
+{"concept_id": "tar00080", "hr": "školski administratori"}
+{"concept_id": "tar00101", "hr": "nastavnici visokog obrazovanja"}
+{"concept_id": "app00049", "hr": "razmjena mladih"}
+{"concept_id": "app00062", "hr": "multiplikacijski događaji u partnerskim zemljama"}
+{"concept_id": "out00011", "hr": "Facebook stranica"}
+{"concept_id": "tar00110", "hr": "ravnatelji škola"}
+{"concept_id": "tar00121", "hr": "inženjeri"}
+{"concept_id": "app00050", "hr": "pregled literature"}
+{"concept_id": "app00051", "hr": "učenje temeljeno na igri"}
+{"concept_id": "app00069", "hr": "umrežavanje"}
+{"concept_id": "app00076", "hr": "aktivnosti osposobljavanja"}
+{"concept_id": "app00099", "hr": "suradnja putem eTwinning platforme"}
+{"concept_id": "app00183", "hr": "online tečajevi"}
+{"concept_id": "app00358", "hr": "razvoj digitalne platforme"}
+{"concept_id": "tar00064", "hr": "socijalni radnici"}
+{"concept_id": "tar00069", "hr": "starije osobe"}
+{"concept_id": "tar00104", "hr": "umjetnici"}
+{"concept_id": "tar00120", "hr": "aktivisti"}
+{"concept_id": "tar00222", "hr": "nastavnici stručnog obrazovanja"}
+{"concept_id": "pro00002", "hr": "ograničeno uključivanje učenika iz ugroženih skupina"}
+{"concept_id": "app00042", "hr": "aktivnosti na otvorenom"}
+{"concept_id": "app00079", "hr": "međunarodne mobilnosti"}
+{"concept_id": "app00101", "hr": "izrada otvorenih obrazovnih resursa"}
+{"concept_id": "app00117", "hr": "učenje temeljeno na istraživanju"}
+{"concept_id": "app00209", "hr": "razmjena iskustava"}
+{"concept_id": "app00303", "hr": "izrada priručnika"}
+{"concept_id": "tar00060", "hr": "učenici iz Španjolske"}
+{"concept_id": "tar00063", "hr": "ravnatelji škola"}
+{"concept_id": "tar00074", "hr": "učenici stručnog obrazovanja i usavršavanja"}
+{"concept_id": "tar00087", "hr": "mladi"}
+{"concept_id": "tar00092", "hr": "predavači"}
+{"concept_id": "tar00097", "hr": "projektni partneri"}
+{"concept_id": "tar00106", "hr": "poduzeća"}
+{"concept_id": "tar00200", "hr": "organizacije"}
+{"concept_id": "tar00215", "hr": "osoblje visokog obrazovanja"}
+{"concept_id": "pro00007", "hr": "visoke stope ranog napuštanja školovanja"}
+{"concept_id": "pro00021", "hr": "potreba za poboljšanjem vještina engleskog jezika učenika"}
+{"concept_id": "app00057", "hr": "debate"}
+{"concept_id": "app00061", "hr": "korištenje eTwinning platforme"}
+{"concept_id": "app00070", "hr": "natjecanja"}
+{"concept_id": "app00074", "hr": "evaluacijski sastanak"}
+{"concept_id": "app00122", "hr": "integrirano učenje sadržaja i jezika (CLIL)"}
+{"concept_id": "out00039", "hr": "obrazovni materijali"}
+{"concept_id": "out00091", "hr": "poboljšane IKT vještine"}
+{"concept_id": "tar00086", "hr": "zaposlenici"}
+{"concept_id": "tar00089", "hr": "javna tijela"}
+{"concept_id": "tar00094", "hr": "psiholozi"}
+{"concept_id": "tar00098", "hr": "sveučilišno osoblje"}
+{"concept_id": "tar00103", "hr": "mladi iz ugroženih skupina"}
+{"concept_id": "tar00108", "hr": "školska zajednica"}
+{"concept_id": "tar00117", "hr": "pružatelji obrazovanja odraslih"}
+{"concept_id": "tar00130", "hr": "obrazovna zajednica"}
+{"concept_id": "tar00161", "hr": "tutori"}
+{"concept_id": "tar00226", "hr": "savjetnici"}
+{"concept_id": "app00068", "hr": "aktivnosti osposobljavanja edukatora (LTT)"}
+{"concept_id": "app00083", "hr": "razmjena znanja"}
+{"concept_id": "app00087", "hr": "razvoj modula za osposobljavanje"}
+{"concept_id": "app00094", "hr": "uključivanje dionika"}
+{"concept_id": "app00109", "hr": "breinstorming"}
+{"concept_id": "app00205", "hr": "razmjena najboljih praksi"}
+{"concept_id": "app00234", "hr": "diseminacija putem konferencija"}
+{"concept_id": "out00008", "hr": "eTwinning projekt"}
+{"concept_id": "out00009", "hr": "preporuke za politike"}
+{"concept_id": "out00020", "hr": "unaprijeđene vještine stranih jezika učenika"}
+{"concept_id": "out00022", "hr": "unaprijeđene vještine kritičkog razmišljanja učenika"}
+{"concept_id": "tar00066", "hr": "tinejdžeri"}
+{"concept_id": "tar00071", "hr": "učenici iz Italije"}
+{"concept_id": "tar00084", "hr": "učenici s poteškoćama u učenju"}
+{"concept_id": "tar00142", "hr": "djeca s posebnim potrebama"}
+{"concept_id": "tar00255", "hr": "učitelji sudionujućih škola"}
+{"concept_id": "tar00287", "hr": "učenici u dobi od 14 do 18 godina"}
+{"concept_id": "app00077", "hr": "upotreba digitalnih alata"}
+{"concept_id": "app00078", "hr": "kolaborativno učenje"}
+{"concept_id": "app00086", "hr": "intervjui s dionicima"}
+{"concept_id": "app00105", "hr": "igre"}
+{"concept_id": "app00121", "hr": "izrada platforme za e-učenje"}
+{"concept_id": "app00126", "hr": "dizajnersko razmišljanje"}
+{"concept_id": "app00521", "hr": "izrada vodiča"}
+{"concept_id": "out00013", "hr": "bilteni"}
+{"concept_id": "out00018", "hr": "letci"}
+{"concept_id": "out00042", "hr": "otvoreni obrazovni resursi"}
+{"concept_id": "out00071", "hr": "priručnik"}
+{"concept_id": "tar00070", "hr": "buduće generacije"}
+{"concept_id": "tar00073", "hr": "učenici iz Poljske"}
+{"concept_id": "tar00079", "hr": "stručnjaci za stručno osposobljavanje"}
+{"concept_id": "tar00083", "hr": "organizacije civilnog društva"}
+{"concept_id": "tar00230", "hr": "udruge"}
+{"concept_id": "app00129", "hr": "izrada kurikuluma"}
+{"concept_id": "app00146", "hr": "učenje na otvorenom"}
+{"concept_id": "app00162", "hr": "razvoj materijala za učenje"}
+{"concept_id": "app00163", "hr": "razvoj materijala za osposobljavanje"}
+{"concept_id": "app00359", "hr": "razvoj programa osposobljavanja"}
+{"concept_id": "out00010", "hr": "smanjene stope ranog napuštanja školovanja"}
+{"concept_id": "out00043", "hr": "unaprijeđene digitalne vještine sudionika"}
+{"concept_id": "tar00081", "hr": "učenici iz Portugala"}
+{"concept_id": "tar00149", "hr": "šira zajednica"}
+{"concept_id": "tar00159", "hr": "NEET-ovi (osobe koje nisu u obrazovanju, zaposlenju ili osposobljavanju)"}
+{"concept_id": "tar00169", "hr": "odrasle osobe s niskim razinom kvalifikacija"}
+{"concept_id": "tar00236", "hr": "lokalne samouprave"}
+{"concept_id": "pro00006", "hr": "diskriminacija"}
+{"concept_id": "app00066", "hr": "transnacionalna suradnja"}
+{"concept_id": "app00073", "hr": "vršnjačko obrazovanje"}
+{"concept_id": "app00092", "hr": "fizičke mobilnosti"}
+{"concept_id": "app00123", "hr": "upotreba IKT-a"}
+{"concept_id": "app00124", "hr": "terenska putovanja"}
+{"concept_id": "app00149", "hr": "evaluacijske aktivnosti"}
+{"concept_id": "app00150", "hr": "sastanci uživo"}
+{"concept_id": "app00165", "hr": "aktivnosti učenja, poučavanja i osposobljavanja"}
+{"concept_id": "app00198", "hr": "produkcija podcasta"}
+{"concept_id": "app00203", "hr": "događaji za osposobljavanje osoblja"}
+{"concept_id": "out00012", "hr": "materijali za širenje rezultata"}
+{"concept_id": "out00156", "hr": "program obuke"}
+{"concept_id": "tar00095", "hr": "općine"}
+{"concept_id": "tar00096", "hr": "mladi Europljani"}
+{"concept_id": "tar00111", "hr": "ugroženi mladi"}
+{"concept_id": "tar00113", "hr": "srednjoškolski nastavnici"}
+{"concept_id": "tar00116", "hr": "obrazovni tijela"}
+{"concept_id": "tar00135", "hr": "nezaposlene osobe"}
+{"concept_id": "tar00136", "hr": "ranjive skupine"}
+{"concept_id": "tar00137", "hr": "lokalne institucije"}
+{"concept_id": "tar00162", "hr": "polaznici"}
+{"concept_id": "tar00170", "hr": "učenici u dobi od 12 do 15 godina"}
+{"concept_id": "tar00195", "hr": "stručnjaci"}
+{"concept_id": "tar00249", "hr": "predavači na visokom obrazovanju"}
+{"concept_id": "tar00251", "hr": "mladi iz ruralnih područja"}
+{"concept_id": "pro00005", "hr": "niska medijska pismenost među mladima"}
+{"concept_id": "pro00013", "hr": "nedostatak vještina kritičkog razmišljanja"}
+{"concept_id": "app00065", "hr": "virtualna mobilnost"}
+{"concept_id": "app00072", "hr": "SWOT analiza"}
+{"concept_id": "app00080", "hr": "prijevod materijala na jezike partnera"}
+{"concept_id": "app00082", "hr": "lokalne aktivnosti"}
+{"concept_id": "app00116", "hr": "koordinacijski sastanci"}
+{"concept_id": "app00133", "hr": "međunarodna suradnja"}
+{"concept_id": "app00160", "hr": "razvoj digitalnih alata"}
+{"concept_id": "app00174", "hr": "mentorstvo"}
+{"concept_id": "app00193", "hr": "sportske aktivnosti"}
+{"concept_id": "app00228", "hr": "izrada digitalne platforme"}
+{"concept_id": "app00306", "hr": "izrada priručnika"}
+{"concept_id": "app00378", "hr": "vršnjačko učenje i razmjena praksi"}
+{"concept_id": "out00016", "hr": "logotip"}
+{"concept_id": "out00026", "hr": "poboljšane vještine timskog rada učenika"}
+{"concept_id": "out00030", "hr": "knjižice"}
+{"concept_id": "out00036", "hr": "izvještaj o evaluaciji"}
+{"concept_id": "out00047", "hr": "povećana ekološka svijest učenika"}
+{"concept_id": "out00295", "hr": "poboljšane jezične vještine nastavnika i učenika"}
+{"concept_id": "tar00085", "hr": "turisti"}
+{"concept_id": "tar00091", "hr": "treneri"}
+{"concept_id": "tar00093", "hr": "adolescenti"}
+{"concept_id": "tar00100", "hr": "učenici srednjih škola"}
+{"concept_id": "tar00109", "hr": "uprava škola"}
+{"concept_id": "tar00118", "hr": "mladi s manje mogućnosti"}
+{"concept_id": "tar00129", "hr": "koordinatori projekta"}
+{"concept_id": "tar00145", "hr": "manjine"}
+{"concept_id": "tar00158", "hr": "organizacije civilnog društva"}
+{"concept_id": "tar00381", "hr": "budući stručnjaci"}
+{"concept_id": "pro00016", "hr": "vršnjačko nasilje u školama"}
+{"concept_id": "pro00023", "hr": "niska ekološka svijest"}
+{"concept_id": "app00106", "hr": "timski rad"}
+{"concept_id": "app00130", "hr": "kulturne razmjene"}
+{"concept_id": "app00164", "hr": "razvoj mobilne aplikacije"}
+{"concept_id": "app00214", "hr": "prijevod materijala"}
+{"concept_id": "app00322", "hr": "izrada online platforme"}
+{"concept_id": "app00498", "hr": "prikupljanje povratnih informacija"}
+{"concept_id": "out00027", "hr": "poboljšane komunikacijske vještine sudionika"}
+{"concept_id": "out00033", "hr": "projektni blog"}
+{"concept_id": "out00037", "hr": "mobilna aplikacija"}
+{"concept_id": "out00051", "hr": "izložbe"}
+{"concept_id": "out00059", "hr": "priručnik za nastavnike"}
+{"concept_id": "out00067", "hr": "poboljšane poduzetničke vještine učenika"}
+{"concept_id": "out00251", "hr": "poboljšane vještine rješavanja problema kod učenika"}
+{"concept_id": "tar00131", "hr": "strukovne škole"}
+{"concept_id": "tar00143", "hr": "učenici s rizikom od ranog napuštanja školovanja"}
+{"concept_id": "tar00156", "hr": "učenici iz ruralnih područja"}
+{"concept_id": "tar00188", "hr": "pružatelji strukovnog obrazovanja i osposobljavanja"}
+{"concept_id": "tar00242", "hr": "djeca u nepovoljnom položaju"}
+{"concept_id": "tar00247", "hr": "nastavnici engleskog jezika"}
+{"concept_id": "tar00307", "hr": "predstavnici poslovnog sektora"}
+{"concept_id": "pro00018", "hr": "socijalna isključenost mladih"}
+{"concept_id": "pro00040", "hr": "niska motivacija učenika"}
+{"concept_id": "app00095", "hr": "međunarodna suradnja"}
+{"concept_id": "app00100", "hr": "izrada obrazovnih materijala"}
+{"concept_id": "app00155", "hr": "obuka fasilitatora"}
+{"concept_id": "app00169", "hr": "coaching"}
+{"concept_id": "app00182", "hr": "vršnjačko poučavanje"}
+{"concept_id": "app00185", "hr": "ljetne škole"}
+{"concept_id": "app00213", "hr": "aktivnosti za izgradnju tima"}
+{"concept_id": "app00215", "hr": "diseminacija putem web stranice"}
+{"concept_id": "app00232", "hr": "razvoj e-learning modula"}
+{"concept_id": "app00247", "hr": "razmjena iskustava između partnera"}
+{"concept_id": "app00250", "hr": "razvoj masovnog otvorenog online tečaja (MOOC)"}
+{"concept_id": "app00289", "hr": "aktivnosti učenja"}
+{"concept_id": "app00290", "hr": "pilotne aktivnosti"}
+{"concept_id": "app00334", "hr": "izrada digitalnog sadržaja"}
+{"concept_id": "app00373", "hr": "razvoj okvira kompetencija"}
+{"concept_id": "app00457", "hr": "radionice za roditelje"}
+{"concept_id": "app00461", "hr": "mobilnost studenata"}
+{"concept_id": "app00477", "hr": "kolaborativni rad"}
+{"concept_id": "app00480", "hr": "eTwinning projekti"}
+{"concept_id": "app01877", "hr": "izrada priručnika"}
+{"concept_id": "app03032", "hr": "izrada smjernica"}
+{"concept_id": "out00017", "hr": "izvještaji"}
+{"concept_id": "out00024", "hr": "članci"}
+{"concept_id": "out00056", "hr": "vodič za nastavnike"}
+{"concept_id": "out00062", "hr": "unaprijeđene jezične vještine"}
+{"concept_id": "out00100", "hr": "povećana ekološka svijest"}
+{"concept_id": "tar00099", "hr": "studenti iz Turske"}
+{"concept_id": "tar00107", "hr": "bake i djedovi"}
+{"concept_id": "tar00125", "hr": "starije osobe"}
+{"concept_id": "tar00128", "hr": "partneri iz industrije"}
+{"concept_id": "tar00134", "hr": "pedagoški kadar"}
+{"concept_id": "tar00146", "hr": "pedagogi"}
+{"concept_id": "tar00152", "hr": "marginalizirane skupine"}
+{"concept_id": "tar00194", "hr": "političari"}
+{"concept_id": "tar00199", "hr": "lokalno stanovništvo"}
+{"concept_id": "tar00201", "hr": "STEM nastavnici"}
+{"concept_id": "tar00216", "hr": "ranjivi mladi"}
+{"concept_id": "tar00219", "hr": "osobe s posebnim potrebama"}
+{"concept_id": "tar00220", "hr": "učenici s posebnim potrebama"}
+{"concept_id": "tar00223", "hr": "roditelji sudionika"}
+{"concept_id": "tar00227", "hr": "vlade"}
+{"concept_id": "tar00234", "hr": "europski mladi"}
+{"concept_id": "tar00315", "hr": "mala i srednja poduzeća"}
+{"concept_id": "tar00374", "hr": "učenici u dobi od 11 do 15 godina"}
+{"concept_id": "pro00014", "hr": "nedostatak poduzetničkih vještina kod učenika"}
+{"concept_id": "app00134", "hr": "transnacionalni događaji za osposobljavanje"}
+{"concept_id": "app00138", "hr": "transnacionalne aktivnosti učenja"}
+{"concept_id": "app00139", "hr": "su-kreiranje obrazovnih resursa"}
+{"concept_id": "app00143", "hr": "posjeti školama"}
+{"concept_id": "app00152", "hr": "međunarodni treninzi"}
+{"concept_id": "app00167", "hr": "mobilnosti učenika i razmjene između partnerskih zemalja"}
+{"concept_id": "app00184", "hr": "upitnici"}
+{"concept_id": "app00188", "hr": "mješovita mobilnost"}
+{"concept_id": "app00199", "hr": "evaluacijski sastanci"}
+{"concept_id": "app00207", "hr": "radionice za širenje rezultata"}
+{"concept_id": "app00235", "hr": "mobilnosti između partnerskih škola"}
+{"concept_id": "app00240", "hr": "radionice za učenike i nastavnike"}
+{"concept_id": "app00241", "hr": "razvoj alata za samoprocjenu"}
+{"concept_id": "app00251", "hr": "timski rad"}
+{"concept_id": "app00316", "hr": "znanstvene publikacije"}
+{"concept_id": "app00326", "hr": "praćenje i evaluacija"}
+{"concept_id": "app00470", "hr": "mikro-potvrde"}
+{"concept_id": "app00546", "hr": "međunarodna radionica"}
+{"concept_id": "app00628", "hr": "radionice za obrazovanje trenera"}
+{"concept_id": "app01019", "hr": "pilot tečajevi"}
+{"concept_id": "out00023", "hr": "fotografije"}
+{"concept_id": "out00038", "hr": "TwinSpace platforma"}
+{"concept_id": "out00040", "hr": "vodič dobrih praksi"}
+{"concept_id": "out00050", "hr": "kalendar"}
+{"concept_id": "out00066", "hr": "unaprijeđene digitalne kompetencije učenika"}
+{"concept_id": "out00068", "hr": "unaprijeđene IKT vještine učenika i nastavnika"}
+{"concept_id": "tar00112", "hr": "javne ustanove"}
+{"concept_id": "tar00114", "hr": "učenici iz Francuske"}
+{"concept_id": "tar00115", "hr": "učenici iz Grčke"}
+{"concept_id": "tar00123", "hr": "multiplikatori"}
+{"concept_id": "tar00126", "hr": "socijalni partneri"}
+{"concept_id": "tar00138", "hr": "marginalizirane skupine"}
+{"concept_id": "tar00150", "hr": "pružatelji usluga osposobljavanja"}
+{"concept_id": "tar00167", "hr": "mlade osobe"}
+{"concept_id": "tar00206", "hr": "budući nastavnici"}
+{"concept_id": "tar00212", "hr": "osoblje za obrazovanje odraslih"}
+{"concept_id": "tar00221", "hr": "organizacije sudionice"}
+{"concept_id": "tar00246", "hr": "mladi u Hrvatskoj"}
+{"concept_id": "tar00253", "hr": "partneri iz različitih zemalja"}
+{"concept_id": "tar00254", "hr": "studenti iz različitih zemalja"}
+{"concept_id": "tar00257", "hr": "učenici u strukovnom obrazovanju i osposobljavanju"}
+{"concept_id": "tar00304", "hr": "nastavnici u obrazovanju odraslih"}
+{"concept_id": "tar00470", "hr": "ambasadori"}
+{"concept_id": "pro00008", "hr": "cyberbullying"}
+{"concept_id": "pro00019", "hr": "nedostatak motivacije među studentima"}
+{"concept_id": "pro00025", "hr": "visoke stope nezaposlenosti među mladima"}
+{"concept_id": "pro00026", "hr": "nedostatak ekološke svijesti među studentima"}
+{"concept_id": "pro00028", "hr": "zagađenje"}
+{"concept_id": "pro00082", "hr": "nedovoljne digitalne vještine"}
+{"concept_id": "app00097", "hr": "aktivnosti podizanja svijesti"}
+{"concept_id": "app00110", "hr": "kulturni posjeti"}
+{"concept_id": "app00127", "hr": "dramske aktivnosti"}
+{"concept_id": "app00144", "hr": "akcijsko istraživanje"}
+{"concept_id": "app00158", "hr": "aktivnosti sadnje stabala"}
+{"concept_id": "app00216", "hr": "mobilnost युवा radnika"}
+{"concept_id": "app00226", "hr": "izrada digitalnih resursa"}
+{"concept_id": "app00227", "hr": "evaluacija rezultata projekta"}
+{"concept_id": "app00237", "hr": "razvoj e-learning tečaja"}
+{"concept_id": "app00265", "hr": "online učenje"}
+{"concept_id": "app00293", "hr": "razvoj priručnika"}
+{"concept_id": "app00340", "hr": "suradnja između partnera"}
+{"concept_id": "app00368", "hr": "izgradnja kapaciteta za mlade radnike"}
+{"concept_id": "app00379", "hr": "razmjena iskustava između nastavnika"}
+{"concept_id": "app00400", "hr": "zagovaranje"}
+{"concept_id": "app00502", "hr": "učenje na radnom mjestu"}
+{"concept_id": "app00542", "hr": "seminari za širenje rezultata"}
+{"concept_id": "app01858", "hr": "razmjena studenata"}
+{"concept_id": "out00025", "hr": "multiplikacijski događaji"}
+{"concept_id": "out00057", "hr": "materijali za osposobljavanje"}
+{"concept_id": "out00063", "hr": "Facebook grupa za projekt"}
+{"concept_id": "out00231", "hr": "poboljšana motivacija među studentima"}
+{"concept_id": "tar00122", "hr": "skrbnici"}
+{"concept_id": "tar00127", "hr": "obrazovno osoblje"}
+{"concept_id": "tar00147", "hr": "nastavnici IKT-a"}
+{"concept_id": "tar00151", "hr": "marginalizirane skupine"}
+{"concept_id": "tar00155", "hr": "podzastupljene skupine"}
+{"concept_id": "tar00157", "hr": "učitelji osnovne škole"}
+{"concept_id": "tar00164", "hr": "knjižničari"}
+{"concept_id": "tar00168", "hr": "osoblje vrtića"}
+{"concept_id": "tar00178", "hr": "učitelji specialnog obrazovanja"}
+{"concept_id": "tar00182", "hr": "roditelji predškolske djece"}
+{"concept_id": "tar00184", "hr": "učenici s poteškoćama u učenju"}
+{"concept_id": "tar00196", "hr": "tehničari"}
+{"concept_id": "tar00198", "hr": "lokalni akteri"}
+{"concept_id": "tar00204", "hr": "osobe s invaliditetom"}
+{"concept_id": "tar00214", "hr": "stručnjaci za turizam"}
+{"concept_id": "tar00229", "hr": "mladi NEET-ovi"}
+{"concept_id": "tar00238", "hr": "gospodarske komore"}
+{"concept_id": "tar00268", "hr": "ruralna mladost"}
+{"concept_id": "tar00281", "hr": "nezaposle odrasle osobe"}
+{"concept_id": "tar00288", "hr": "učenici u dobi od 15 do 19 godina"}
+{"concept_id": "tar00289", "hr": "ranjivi učenici"}
+{"concept_id": "tar00291", "hr": "ugroženi učenici"}
+{"concept_id": "tar00301", "hr": "praktičari rada s mladima"}
+{"concept_id": "tar00313", "hr": "učitelji uključeni u projekt"}
+{"concept_id": "tar00359", "hr": "europski učitelji"}
+{"concept_id": "tar00425", "hr": "učitelji osnovnih i srednjih škola"}
+{"concept_id": "tar00614", "hr": "partnerski sveučilišta"}
+{"concept_id": "pro00012", "hr": "ksenofobija"}
+{"concept_id": "pro00034", "hr": "socijalna izolacija"}
+{"concept_id": "app00120", "hr": "metodologija obrnutog učenja"}
+{"concept_id": "app00125", "hr": "studije slučaja"}
+{"concept_id": "app00154", "hr": "metoda obrnutog učenja"}
+{"concept_id": "app00191", "hr": "online kampanje"}
+{"concept_id": "app00208", "hr": "ekološki obrazovanje"}
+{"concept_id": "app00210", "hr": "transnacionalne radionice"}
+{"concept_id": "app00230", "hr": "vršnjačko učenje među partnerima"}
+{"concept_id": "app00249", "hr": "razmjena dobrih praksi između organizacija"}
+{"concept_id": "app00253", "hr": "simulacije"}
+{"concept_id": "app00255", "hr": "posjeti muzejima"}
+{"concept_id": "app00256", "hr": "umjetničke aktivnosti"}
+{"concept_id": "app00270", "hr": "plesne aktivnosti"}
+{"concept_id": "app00274", "hr": "obrazovne igre"}
+{"concept_id": "app00276", "hr": "neformalno učenje"}
+{"concept_id": "app00296", "hr": "angažman zajednice"}
+{"concept_id": "app00311", "hr": "participatorni pristup"}
+{"concept_id": "app00337", "hr": "rad u međunarodnim timovima"}
+{"concept_id": "app00346", "hr": "izrada materijala za osposobljavanje"}
+{"concept_id": "app00381", "hr": "multiplikacijski događaji za širenje rezultata"}
+{"concept_id": "app00386", "hr": "međunarodna konferencija za širenje rezultata"}
+{"concept_id": "app00389", "hr": "nacionalni multiplikacijski događaji za širenje rezultata"}
+{"concept_id": "app00420", "hr": "promatranja"}
+{"concept_id": "app00519", "hr": "osposobljavanje studenata"}
+{"concept_id": "app00722", "hr": "razvoj programa osposobljavanja"}
+{"concept_id": "app00745", "hr": "razvoj inovativnog kurikuluma"}
+{"concept_id": "app00784", "hr": "međunarodna suradnja između škola"}
+{"concept_id": "app01502", "hr": "izrada vodiča"}
+{"concept_id": "out00041", "hr": "platforma za online učenje"}
+{"concept_id": "out00048", "hr": "e-knjiga"}
+{"concept_id": "out00069", "hr": "unaprijeđene vještine stranih jezika sudionika"}
+{"concept_id": "out00073", "hr": "podcasti"}
+{"concept_id": "out00128", "hr": "radionice"}
+{"concept_id": "out00138", "hr": "certifikati"}
+{"concept_id": "out00152", "hr": "alati za procjenu"}
+{"concept_id": "out00208", "hr": "videozapisi koje su izradili studenti"}
+{"concept_id": "out00224", "hr": "web stranica projekta sa svim rezultatima"}
+{"concept_id": "out00261", "hr": "unaprijeđene jezične kompetencije studenata"}
+{"concept_id": "out00298", "hr": "unaprijeđene poduzetničke vještine sudionika"}
+{"concept_id": "out10007", "hr": "povećana motivacija za učenje stranih jezika"}
+{"concept_id": "tar00132", "hr": "šira javnost"}
+{"concept_id": "tar00133", "hr": "aktivni građani"}
+{"concept_id": "tar00139", "hr": "studenti iz Rumunjske"}
+{"concept_id": "tar00141", "hr": "obrazovne zajednice"}
+{"concept_id": "tar00153", "hr": "administrativno osoblje"}
+{"concept_id": "tar00172", "hr": "predstavnici medija"}
+{"concept_id": "tar00175", "hr": "mladi s invaliditetom"}
+{"concept_id": "tar00177", "hr": "učenici osnovne škole"}
+{"concept_id": "tar00181", "hr": "ustanove za obrazovanje odraslih"}
+{"concept_id": "tar00183", "hr": "odrasle osobe s manje mogućnosti"}
+{"concept_id": "tar00187", "hr": "studenti s intelektualnim invaliditetom"}
+{"concept_id": "tar00191", "hr": "akademijska zajednica"}
+{"concept_id": "tar00205", "hr": "članovi fakulteta"}
+{"concept_id": "tar00209", "hr": "izravni partneri"}
+{"concept_id": "tar00213", "hr": "učitelji iz Hrvatske"}
+{"concept_id": "tar00233", "hr": "mladi radnici"}
+{"concept_id": "tar00239", "hr": "članovi projektnog tima"}
+{"concept_id": "tar00248", "hr": "učenici u partnerskim školama"}
+{"concept_id": "tar00259", "hr": "dizajneri"}
+{"concept_id": "tar00275", "hr": "članovi društva"}
+{"concept_id": "tar00286", "hr": "lokalne organizacije"}
+{"concept_id": "tar00312", "hr": "studenti s ekonomskim poteškoćama"}
+{"concept_id": "tar00316", "hr": "učenici srednjih škola u dobi od 15 do 18 godina"}
+{"concept_id": "tar00403", "hr": "edukatori u obrazovanju odraslih"}
+{"concept_id": "tar00408", "hr": "učitelji u partnerskim zemljama"}
+{"concept_id": "tar00467", "hr": "terapeuti"}
+{"concept_id": "tar00518", "hr": "budući građani"}
+{"concept_id": "tar00903", "hr": "kreativci"}
+{"concept_id": "pro00010", "hr": "nezaposlenost mladih"}
+{"concept_id": "pro00031", "hr": "polarizacija"}
+{"concept_id": "pro00044", "hr": "socijalna izolacija mladih"}
+{"concept_id": "pro00054", "hr": "govor mržnje"}
+{"concept_id": "pro00199", "hr": "nejednakosti"}
+{"concept_id": "pro01363", "hr": "potreba za unapređenjem digitalnih kompetencija"}
+{"concept_id": "app00113", "hr": "mješovite mobilnosti"}
+{"concept_id": "app00115", "hr": "aktivnosti mobilnosti"}
+{"concept_id": "app00132", "hr": "praksama mindfulnessa"}
+{"concept_id": "app00137", "hr": "studijski posjeti partnerskim zemljama"}
+{"concept_id": "app00145", "hr": "CLIL metodologija"}
+{"concept_id": "app00153", "hr": "komunikacijske aktivnosti"}
+{"concept_id": "app00157", "hr": "transnacionalne mobilnosti"}
+{"concept_id": "app00172", "hr": "e-učenje"}
+{"concept_id": "app00177", "hr": "lokalni događaji"}
+{"concept_id": "app00194", "hr": "virtualne razmjene"}
+{"concept_id": "app00204", "hr": "mežukulturna razmjena"}
+{"concept_id": "app00222", "hr": "aktivnosti kreativnog pisanja"}
+{"concept_id": "app00233", "hr": "izrada nastavnih materijala"}
+{"concept_id": "app00242", "hr": "izrada preporuka za politike"}
+{"concept_id": "app00288", "hr": "virtualne aktivnosti"}
+{"concept_id": "app00295", "hr": "posjeti tvrtkama"}
+{"concept_id": "app00312", "hr": "promocija putem društvenih mreža"}
+{"concept_id": "app00318", "hr": "učenje temeljeno na izazovima"}
+{"concept_id": "app00333", "hr": "radionice za mlade"}
+{"concept_id": "app00356", "hr": "izrada web stranice projekta"}
+{"concept_id": "app00367", "hr": "razmjena iskustava među partnerima"}
+{"concept_id": "app00375", "hr": "redoviti online koordinacijski sastanci"}
+{"concept_id": "app00383", "hr": "prezentacija na međunarodnim konferencijama"}
+{"concept_id": "app00390", "hr": "vršnjačko učenje putem razmjene iskustava"}
+{"concept_id": "app00392", "hr": "vršnjačko učenje putem međunarodne suradnje"}
+{"concept_id": "app00427", "hr": "online anketa"}
+{"concept_id": "app00473", "hr": "Osiguravanje kvalitete"}
+{"concept_id": "app00525", "hr": "oblično osposobljavanje"}
+{"concept_id": "app00563", "hr": "distribucija newslettera"}
+{"concept_id": "app00582", "hr": "izrada planova lekcija"}
+{"concept_id": "app00611", "hr": "provedba pilot faze"}
+{"concept_id": "app00617", "hr": "radionice za izgradnju kapaciteta"}
+{"concept_id": "app00781", "hr": "razvoj metodološkog okvira"}
+{"concept_id": "app00791", "hr": "diseminacija putem web stranica i društvenih mreža"}
+{"concept_id": "app00882", "hr": "vježbe"}
+{"concept_id": "app01922", "hr": "online diseminacija"}
+{"concept_id": "app07020", "hr": "aktivnosti učenja i poučavanja (LTTA)"}
+{"concept_id": "app07486", "hr": "razmjena praksi među nastavnicima"}
+{"concept_id": "out00054", "hr": "završna konferencija"}
+{"concept_id": "out00058", "hr": "završno izvješće o projektu"}
+{"concept_id": "out00072", "hr": "kuharica"}
+{"concept_id": "out00095", "hr": "plan upravljanja kvalitetom"}
+{"concept_id": "out00101", "hr": "poboljšana kreativnost učenika"}
+{"concept_id": "out00106", "hr": "poboljšane jezične vještine učenika"}
+{"concept_id": "out00160", "hr": "mikro-potvrde"}
+{"concept_id": "out00181", "hr": "promotivni materijali"}
+{"concept_id": "out00281", "hr": "poboljšane profesionalne kompetencije nastavnika"}
+{"concept_id": "out00305", "hr": "poboljšana digitalna kompetencija učenika i nastavnika"}
+{"concept_id": "tar00148", "hr": "zaposlenici"}
+{"concept_id": "tar00160", "hr": "NEET mladi"}
+{"concept_id": "tar00163", "hr": "arhitekti"}
+{"concept_id": "tar00165", "hr": "znanstvenici"}
+{"concept_id": "tar00166", "hr": "doktorandi"}
+{"concept_id": "tar00174", "hr": "ugroženi učenici"}
+{"concept_id": "tar00176", "hr": "predstavnici industrije"}
+{"concept_id": "tar00186", "hr": "sudionici s manje mogućnosti"}
+{"concept_id": "tar00190", "hr": "medicinske sestre"}
+{"concept_id": "tar00193", "hr": "instruktori"}
+{"concept_id": "tar00208", "hr": "vođa zajednice"}
+{"concept_id": "tar00231", "hr": "projektni tim"}
+{"concept_id": "tar00235", "hr": "lokalni stanovnici"}
+{"concept_id": "tar00237", "hr": "aktivni nastavnici"}
+{"concept_id": "tar00250", "hr": "stručnjaci za mentalno zdravlje"}
+{"concept_id": "tar00261", "hr": "ministarstva"}
+{"concept_id": "tar00269", "hr": "osoblje muzeja"}
+{"concept_id": "tar00274", "hr": "STEM edukatori"}
+{"concept_id": "tar00293", "hr": "partnerske institucije"}
+{"concept_id": "tar00303", "hr": "dionici javnog sektora"}
+{"concept_id": "tar00306", "hr": "učenici s rizikom od isključenja"}
+{"concept_id": "tar00309", "hr": "predstavnici lokalne samouprave"}
+{"concept_id": "tar00396", "hr": "nastavnici stranih jezika"}
+{"concept_id": "tar00555", "hr": "ranjive odrasle osobe"}
+{"concept_id": "tar00566", "hr": "marginalizirani mladi"}
+{"concept_id": "tar00593", "hr": "učenici u dobi od 14 do 17 godina"}
+{"concept_id": "tar00621", "hr": "žene u ruralnim područjima"}
+{"concept_id": "pro00017", "hr": "eko-anksioznost među mladima"}
+{"concept_id": "pro00020", "hr": "nisko samopouzdanje među učenicima"}
+{"concept_id": "pro00022", "hr": "siromaštvo"}
+{"concept_id": "pro00039", "hr": "nepovoljan položaj učenika"}
+{"concept_id": "pro00048", "hr": "ograničene vještine stranih jezika među učenicima"}
+{"concept_id": "pro00076", "hr": "niska kvaliteta rada s mladima"}
+{"concept_id": "app00107", "hr": "umjetnička terapija"}
+{"concept_id": "app00114", "hr": "virtualne mobilnosti"}
+{"concept_id": "app00151", "hr": "metodologije temeljene na IKT-u"}
+{"concept_id": "app00156", "hr": "transnacionalna konferencija"}
+{"concept_id": "app00159", "hr": "interdisciplinarni pristup"}
+{"concept_id": "app00170", "hr": "natjecanja"}
+{"concept_id": "app00173", "hr": "hackathons"}
+{"concept_id": "app00181", "hr": "mapiranje potreba"}
+{"concept_id": "app00189", "hr": "natjecanje za logo"}
+{"concept_id": "app00190", "hr": "glazbene aktivnosti"}
+{"concept_id": "app00200", "hr": "javni nastupi"}
+{"concept_id": "app00201", "hr": "praktične aktivnosti"}
+{"concept_id": "app00206", "hr": "metode aktivnog učenja"}
+{"concept_id": "app00211", "hr": "eTwinning suradnja"}
+{"concept_id": "app00218", "hr": "program za edukaciju edukatora"}
+{"concept_id": "app00220", "hr": "izvannastavne aktivnosti"}
+{"concept_id": "app00221", "hr": "međugeneracijsko učenje"}
+{"concept_id": "app00223", "hr": "izrada planova lekcija"}
+{"concept_id": "app00224", "hr": "učenje kroz iskustvo"}
+{"concept_id": "app00229", "hr": "stvaranje europske mreže"}
+{"concept_id": "app00236", "hr": "stvaranje zajednice prakse"}
+{"concept_id": "app00238", "hr": "razvoj intelektualnih rezultata"}
+{"concept_id": "app00243", "hr": "formuliranje preporuka za politike"}
+{"concept_id": "app00246", "hr": "osnivanje zajednice prakse"}
+{"concept_id": "app00248", "hr": "razmjena dobrih praksi između škola"}
+{"concept_id": "app00252", "hr": "eksperimenti"}
+{"concept_id": "app00254", "hr": "vršnjačka podrška"}
+{"concept_id": "app00259", "hr": "pilot programi"}
+{"concept_id": "app00268", "hr": "zajednički događaji"}
+{"concept_id": "app00280", "hr": "online konferencija"}
+{"concept_id": "app00282", "hr": "obuke za učitelje"}
+{"concept_id": "app00286", "hr": "neformalne metode"}
+{"concept_id": "app00294", "hr": "mobilnosti za osposobljavanje"}
+{"concept_id": "app00301", "hr": "sastanci dionika"}
+{"concept_id": "app00309", "hr": "međunarodna mobilnost"}
+{"concept_id": "app00317", "hr": "volonterske aktivnosti"}
+{"concept_id": "app00339", "hr": "prikupljanje dobrih praksi"}
+{"concept_id": "app00342", "hr": "metodologija učenja kroz služenje"}
+{"concept_id": "app00343", "hr": "kolaborativno rješavanje problema"}
+{"concept_id": "app00363", "hr": "razvoj obrazovnih modula"}
+{"concept_id": "app00371", "hr": "istraživanje potreba putem fokus grupa"}
+{"concept_id": "app00376", "hr": "diseminacija putem društvenih mreža"}
+{"concept_id": "app00409", "hr": "izrada filmova"}
+{"concept_id": "app00424", "hr": "improvizacija"}
+{"concept_id": "app00451", "hr": "uzajamno učenje"}
+{"concept_id": "app00468", "hr": "procjena utjecaja"}
+{"concept_id": "app00511", "hr": "učenje kroz poučavanje"}
+{"concept_id": "app00541", "hr": "izrada smjernica"}
+{"concept_id": "app00558", "hr": "obuka digitalnim vještinama"}
+{"concept_id": "app00596", "hr": "produkcija kratkih filmova"}
+{"concept_id": "app00786", "hr": "razmjena iskustava i dobrih praksi"}
+{"concept_id": "app01026", "hr": "samostalno učenje"}
+{"concept_id": "app01146", "hr": "prikupljanje podataka"}
+{"concept_id": "app01534", "hr": "posjeti institucijama"}
+{"concept_id": "app01546", "hr": "razmjene mobilnosti"}
+{"concept_id": "app01575", "hr": "promocijski videozapisi"}
+{"concept_id": "app01616", "hr": "obuka volontera"}
+{"concept_id": "app02257", "hr": "izrada priručnika"}
+{"concept_id": "app02988", "hr": "kolaborativni razvoj"}
+{"concept_id": "app03052", "hr": "razmjene između škola"}
+{"concept_id": "app05209", "hr": "mobilnosti u partnerske zemlje"}
+{"concept_id": "app06456", "hr": "razvoj nastavnog kurikuluma"}
+{"concept_id": "out00032", "hr": "radni listovi"}
+{"concept_id": "out00035", "hr": "projektni časopis"}
+{"concept_id": "out00046", "hr": "ojačan europski identitet među studentima"}
+{"concept_id": "out00052", "hr": "projektni plakat"}
+{"concept_id": "out00053", "hr": "upitnici"}
+{"concept_id": "out00061", "hr": "plan osiguravanja kvalitete"}
+{"concept_id": "out00070", "hr": "priručnik"}
+{"concept_id": "out00081", "hr": "e-časopis"}
+{"concept_id": "out00084", "hr": "izvještaj o istraživanju"}
+{"concept_id": "out00088", "hr": "obrasci za evaluaciju"}
+{"concept_id": "out00092", "hr": "plan održivosti"}
+{"concept_id": "out00102", "hr": "poboljšana zapošljivost studenata"}
+{"concept_id": "out00108", "hr": "povećana digitalna pismenost među studentima"}
+{"concept_id": "out00110", "hr": "poboljšane vještine engleskog jezika učenika"}
+{"concept_id": "out00153", "hr": "digitalna platforma"}
+{"concept_id": "out00167", "hr": "poboljšane IT vještine"}
+{"concept_id": "out00243", "hr": "poboljšane socijalne vještine među studentima"}
+{"concept_id": "out00246", "hr": "poboljšane digitalne vještine među studentima"}
+{"concept_id": "out00287", "hr": "povećane vještine engleskog jezika sudionika"}
+{"concept_id": "out00346", "hr": "vodiči"}
+{"concept_id": "out00400", "hr": "materijali"}
+{"concept_id": "out00670", "hr": "eTwinning prostor"}
+{"concept_id": "out08419", "hr": "poboljšane digitalne kompetencije sudionika"}
+{"concept_id": "tar00171", "hr": "studenti iz Latvije"}
+{"concept_id": "tar00173", "hr": "studenti iz Njemačke"}
+{"concept_id": "tar00180", "hr": "nastavnici tjelesnog odgoja"}
+{"concept_id": "tar00185", "hr": "visokoškolske ustanove"}
+{"concept_id": "tar00203", "hr": "mladi učenici"}
+{"concept_id": "tar00207", "hr": "ustanove stručnog obrazovanja i usavršavanja"}
+{"concept_id": "tar00218", "hr": "roditelji male djece"}
+{"concept_id": "tar00225", "hr": "osoblje visokoškolskih ustanova"}
+{"concept_id": "tar00232", "hr": "javna tijela"}
+{"concept_id": "tar00256", "hr": "ekonomski ugroženi studenti"}
+{"concept_id": "tar00266", "hr": "novinari"}
+{"concept_id": "tar00278", "hr": "raznoliki učenici"}
+{"concept_id": "tar00285", "hr": "obrazovni voditelji"}
+{"concept_id": "tar00290", "hr": "djeca s autizmom"}
+{"concept_id": "tar00308", "hr": "učenici srednje škole"}
+{"concept_id": "tar00314", "hr": "mladi koji se suočavaju s nezaposlenošću"}
+{"concept_id": "tar00324", "hr": "sportaši"}
+{"concept_id": "tar00330", "hr": "kolege"}
+{"concept_id": "tar00334", "hr": "ravnatelji"}
+{"concept_id": "tar00339", "hr": "domaćinske obitelji"}
+{"concept_id": "tar00351", "hr": "europske škole"}
+{"concept_id": "tar00354", "hr": "ravnatelji škola"}
+{"concept_id": "tar00392", "hr": "učenici osnovnih škola"}
+{"concept_id": "tar00410", "hr": "nastavnici različitih predmeta"}
+{"concept_id": "tar00412", "hr": "učenici s rizikom od napuštanja školovanja"}
+{"concept_id": "tar00443", "hr": "mreže"}
+{"concept_id": "tar00590", "hr": "učenici u dobi od 10 do 15 godina"}
+{"concept_id": "tar00659", "hr": "učenici u dobi od 11 do 14 godina"}
+{"concept_id": "tar00661", "hr": "učenici u dobi od 15 do 18 godina"}
+{"concept_id": "tar00725", "hr": "mlade osobe u dobi od 18 do 30 godina"}
+{"concept_id": "tar00839", "hr": "organizacije koje rade s mladima"}
+{"concept_id": "tar03524", "hr": "učenici u partnerskim zemljama"}
+{"concept_id": "pro00011", "hr": "rasizam"}
+{"concept_id": "pro00015", "hr": "potreba za nadogradnjom vještina i metoda poučavanja edukatora"}
+{"concept_id": "pro00024", "hr": "potreba za razvojem poduzetničkih vještina"}
+{"concept_id": "pro00037", "hr": "ograničena socijalna inkluzija"}
+{"concept_id": "pro00042", "hr": "nisko samopoštovanje među učenicima"}
+{"concept_id": "pro00046", "hr": "stigma oko problema mentalnog zdravlja"}
+{"concept_id": "pro00050", "hr": "ograničena inkluzija učenika s posebnim potrebama"}
+{"concept_id": "pro00114", "hr": "potreba za poboljšanjem IKT vještina učenika"}
+{"concept_id": "pro00156", "hr": "potreba za poboljšanjem komunikacijskih vještina na engleskom jeziku"}
+{"concept_id": "pro01657", "hr": "potreba za inovativnim metodama poučavanja"}
+{"concept_id": "pro02745", "hr": "potreba za poboljšanim vještinama stranih jezika"}
+{"concept_id": "app00128", "hr": "dramske tehnike"}
+{"concept_id": "app00131", "hr": "praktične aktivnosti"}
+{"concept_id": "app00136", "hr": "vršnjačko učenje među radnicima s mladima"}
+{"concept_id": "app00141", "hr": "terenski posjeti"}
+{"concept_id": "app00142", "hr": "analiza nedostataka"}
+{"concept_id": "app00147", "hr": "evaluacija utjecaja"}
+{"concept_id": "app00148", "hr": "online suradnja"}
+{"concept_id": "app00161", "hr": "transnacionalni sastanak projekta"}
+{"concept_id": "app00187", "hr": "eksperimentiranje"}
+{"concept_id": "app00197", "hr": "neformalno obrazovanje"}
+{"concept_id": "app00231", "hr": "online sastanci partnera"}
+{"concept_id": "app00244", "hr": "organizacija transnacionalnih sastanaka"}
+{"concept_id": "app00262", "hr": "mapiranje vještina"}
+{"concept_id": "app00266", "hr": "pilotni treninzi"}
+{"concept_id": "app00269", "hr": "izrada plakata"}
+{"concept_id": "app00271", "hr": "grukovne aktivnosti"}
+{"concept_id": "app00275", "hr": "sesije povratnih informacija"}
+{"concept_id": "app00308", "hr": "mežukulturno učenje"}
+{"concept_id": "app00313", "hr": "posjeti sveučilištima"}
+{"concept_id": "app00314", "hr": "organizacija konferencije"}
+{"concept_id": "app00325", "hr": "izrada karte najboljih praksi"}
+{"concept_id": "app00330", "hr": "aktivnosti rješavanja problema"}
+{"concept_id": "app00336", "hr": "interdisciplinarne aktivnosti"}
+{"concept_id": "app00345", "hr": "izrada nastavnih materijala"}
+{"concept_id": "app00349", "hr": "suradnja sa sveučilištima"}
+{"concept_id": "app00352", "hr": "transnacionalna aktivnost osposobljavanja"}
+{"concept_id": "app00360", "hr": "multiplikacijski događaji u svakoj zemlji"}
+{"concept_id": "app00393", "hr": "prijevod materijala na nacionalne jezike"}
+{"concept_id": "app00412", "hr": "vršnjačka recenzija"}
+{"concept_id": "app00441", "hr": "sadnja stabala"}
+{"concept_id": "app00458", "hr": "produkcija videozapisa"}
+{"concept_id": "app00483", "hr": "prijenos znanja"}
+{"concept_id": "app00484", "hr": "učenje kroz djelovanje"}
+{"concept_id": "app00485", "hr": "vršnjačka suradnja"}
+{"concept_id": "app00489", "hr": "obrazovanje u području robotike"}
+{"concept_id": "app00491", "hr": "objavljivanje članaka"}
+{"concept_id": "app00517", "hr": "trening mekih vještina"}
+{"concept_id": "app00533", "hr": "sastanci projektnog tima"}
+{"concept_id": "app00566", "hr": "vršnjačke aktivnosti"}
+{"concept_id": "app00579", "hr": "kolaborativne aktivnosti"}
+{"concept_id": "app00598", "hr": "pristup usmjeren na studenta"}
+{"concept_id": "app00607", "hr": "međunarodna partnerstva"}
+{"concept_id": "app00635", "hr": "razvoj digitalnih resursa"}
+{"concept_id": "app00639", "hr": "međunarodni događaj osposobljavanja"}
+{"concept_id": "app00643", "hr": "su-kreiranje najboljih praksi"}
+{"concept_id": "app00645", "hr": "izrada digitalnih materijala"}
+{"concept_id": "app00659", "hr": "sastanci međunarodnih partnera"}
+{"concept_id": "app00707", "hr": "istraživanje potreba putem questionnairea"}
+{"concept_id": "app00719", "hr": "provedba anketa za procjenu potreba"}
+{"concept_id": "app00735", "hr": "procjena potreba putem questionnairea"}
+{"concept_id": "app00766", "hr": "usavršavanje odraslih edukatora"}
+{"concept_id": "app00771", "hr": "transnacionalni koordinacijski sastanci"}
+{"concept_id": "app00772", "hr": "upotreba otvorenih obrazovnih resursa (OER)"}
+{"concept_id": "app00823", "hr": "prijevod resursa na više jezika"}
+{"concept_id": "app00850", "hr": "kodiranje"}
+{"concept_id": "app01264", "hr": "završna evaluacija"}
+{"concept_id": "app01313", "hr": "mobilnost nastavnika"}
+{"concept_id": "app02137", "hr": "uspostava mreže"}
+{"concept_id": "app03014", "hr": "interdisciplinarni pristup"}
+{"concept_id": "app03475", "hr": "komunikacija putem društvenih mreža"}
+{"concept_id": "app03923", "hr": "izrada modula za osposobljavanje"}
+{"concept_id": "app04181", "hr": "upotreba IKT alata u poučavanju"}
+{"concept_id": "app06173", "hr": "pilot implementacije osposobljavanja"}
+{"concept_id": "app07581", "hr": "mobilnosti za učenike i nastavnike"}
+{"concept_id": "out00031", "hr": "društvena igra"}
+{"concept_id": "out00034", "hr": "priopnice za medije"}
+{"concept_id": "out00049", "hr": "letci"}
+{"concept_id": "out00060", "hr": "računi na društvenim mrežama"}
+{"concept_id": "out00086", "hr": "tečaj osposobljavanja"}
+{"concept_id": "out00090", "hr": "projektni priručnik"}
+{"concept_id": "out00094", "hr": "Europass certifikati"}
+{"concept_id": "out00105", "hr": "videozapisi koji dokumentiraju projektne aktivnosti"}
+{"concept_id": "out00107", "hr": "kanali društvenih mreža za širenje rezultata"}
+{"concept_id": "out00109", "hr": "unaprijeđene digitalne kompetencije nastavnika"}
+{"concept_id": "out00111", "hr": "povećano samopouzdanje sudionika"}
+{"concept_id": "out00112", "hr": "unaprijeđene digitalne vještine nastavnika i učenika"}
+{"concept_id": "out00118", "hr": "igre"}
+{"concept_id": "out00134", "hr": "kratki film"}
+{"concept_id": "out00137", "hr": "studije slučaja"}
+{"concept_id": "out00140", "hr": "digitalna knjiga"}
+{"concept_id": "out00180", "hr": "izvještaj o analizi potreba"}
+{"concept_id": "out00186", "hr": "kampanja na društvenim mrežama"}
+{"concept_id": "out00202", "hr": "alat za radnike s mladima"}
+{"concept_id": "out00206", "hr": "priručnik za radnike s mladima"}
+{"concept_id": "out00210", "hr": "unaprijeđena kulturna svijest"}
+{"concept_id": "out00218", "hr": "unaprijeđene IKT vještine učenika"}
+{"concept_id": "out00227", "hr": "prezentacije koje su izradili učenici"}
+{"concept_id": "out00237", "hr": "unaprijeđene digitalne vještine za nastavnike"}
+{"concept_id": "out00269", "hr": "povećane socijalne vještine sudionika"}
+{"concept_id": "out00273", "hr": "unaprijeđene vještine timskog rada sudionika"}
+{"concept_id": "out00288", "hr": "unaprijeđena međukulturna kompetencija učenika"}
+{"concept_id": "out00294", "hr": "unaprijeđene vještine kritičkog razmišljanja sudionika"}
+{"concept_id": "out00336", "hr": "glazba"}
+{"concept_id": "out00522", "hr": "digitalni alati"}
+{"concept_id": "out06898", "hr": "unaprijeđene međukulturne vještine učenika"}
+{"concept_id": "tar00189", "hr": "dječaci"}
+{"concept_id": "tar00197", "hr": "ravnatelji"}
+{"concept_id": "tar00202", "hr": "državni službenici"}
+{"concept_id": "tar00210", "hr": "predškolski učitelji"}
+{"concept_id": "tar00211", "hr": "aktori civilnog društva"}
+{"concept_id": "tar00217", "hr": "odgojitelji"}
+{"concept_id": "tar00224", "hr": "učenici s posebnim obrazovnim potrebama"}
+{"concept_id": "tar00252", "hr": "učenici s manje mogućnosti"}
+{"concept_id": "tar00263", "hr": "mladježne nevladine organizacije"}
+{"concept_id": "tar00282", "hr": "mlade generacije"}
+{"concept_id": "tar00284", "hr": "škole u Hrvatskoj"}
+{"concept_id": "tar00294", "hr": "studenti pedagogije i učiteljskih studija"}
+{"concept_id": "tar00296", "hr": "učenici s autizmom"}
+{"concept_id": "tar00302", "hr": "marginalizirani mladi"}
+{"concept_id": "tar00335", "hr": "tražitelji posla"}
+{"concept_id": "tar00375", "hr": "učenici u dobi od 13 do 16 godina"}
+{"concept_id": "tar00391", "hr": "organizacije zajednice"}
+{"concept_id": "tar00393", "hr": "treneri za obrazovanje odraslih"}
+{"concept_id": "tar00399", "hr": "mladi diljem Europe"}
+{"concept_id": "tar00402", "hr": "organizacije sudionice"}
+{"concept_id": "tar00407", "hr": "učenici osnovnog obrazovanja"}
+{"concept_id": "tar00414", "hr": "učenici migrantskog podrijetla"}
+{"concept_id": "tar00424", "hr": "mladi koji su u riziku od društvene isključenosti"}
+{"concept_id": "tar00429", "hr": "nastavnici u visokim obrazovnim ustanovama"}
+{"concept_id": "tar00436", "hr": "vodiči"}
+{"concept_id": "tar00449", "hr": "krajnji korisnici"}
+{"concept_id": "tar00460", "hr": "savjetnici"}
+{"concept_id": "tar00549", "hr": "europski partneri"}
+{"concept_id": "tar00605", "hr": "osobe koje su rano napustile školovanje"}
+{"concept_id": "tar00704", "hr": "učenici u dobi od 11 do 16 godina"}
+{"concept_id": "tar00706", "hr": "nastavnici i treneri stručnog obrazovanja"}
+{"concept_id": "tar00736", "hr": "nastavnici iz drugih škola"}
+{"concept_id": "tar00749", "hr": "učenici u dobi od 14 do 19 godina"}
+{"concept_id": "tar00793", "hr": "nastavnici partnerskih škola"}
+{"concept_id": "tar00803", "hr": "učenici različitog podrijetla"}
+{"concept_id": "tar00817", "hr": "zaposlenici partnerskih ustanova"}
+{"concept_id": "tar00842", "hr": "učenici različitog kulturnog podrijetla"}
+{"concept_id": "tar01212", "hr": "turistički sektor"}
+{"concept_id": "tar01305", "hr": "specijalne škole"}
+{"concept_id": "tar01486", "hr": "europski studenti"}
+{"concept_id": "tar02007", "hr": "mladi u riziku"}
+{"concept_id": "tar05806", "hr": "učenici osnovnih ili srednjih škola"}
+{"concept_id": "tar07529", "hr": "učenici iz različitih socio-ekonomskih skupina"}
+{"concept_id": "pro00027", "hr": "nedostatak ekološke svijesti među mladima"}
+{"concept_id": "pro00030", "hr": "stereotipi"}
+{"concept_id": "pro00035", "hr": "gubitak bioraznolikosti"}
+{"concept_id": "pro00043", "hr": "niska zapošljivost mladih"}
+{"concept_id": "pro00055", "hr": "netolerancija"}
+{"concept_id": "pro00056", "hr": "napuštanje školovanja"}
+{"concept_id": "pro00058", "hr": "rodna nejednakost"}
+{"concept_id": "pro00069", "hr": "vršnjačko nasilje među učenicima"}
+{"concept_id": "pro00084", "hr": "nedostatak komunikacijskih vještina"}
+{"concept_id": "pro00106", "hr": "nedostatak inovativnih metoda poučavanja"}
+{"concept_id": "pro00112", "hr": "nedovoljne vještine stranih jezika"}
+{"concept_id": "pro00135", "hr": "nedostatak svijesti o klimatskim promjenama"}
+{"concept_id": "pro01064", "hr": "potreba za poticanjem kritičkog razmišljanja"}
+{"concept_id": "app00140", "hr": "informacijski dani"}
+{"concept_id": "app00166", "hr": "vršnjačko učenje putem multiplikacijskih događanja"}
+{"concept_id": "app00171", "hr": "terenski rad"}
+{"concept_id": "app00175", "hr": "CLIL metoda"}
+{"concept_id": "app00179", "hr": "terenske studije"}
+{"concept_id": "app00180", "hr": "glazbena terapija"}
+{"concept_id": "app00192", "hr": "obrazovni putovanja"}
+{"concept_id": "app00196", "hr": "digitalne inovacije"}
+{"concept_id": "app00212", "hr": "mobilnosti i razmjene"}
+{"concept_id": "app00219", "hr": "radionice kreativnog pisanja"}
+{"concept_id": "app00239", "hr": "transnacionalni sastanci za nastavnike"}
+{"concept_id": "app00258", "hr": "lokalne sesije"}
+{"concept_id": "app00260", "hr": "pilot projekti"}
+{"concept_id": "app00261", "hr": "praktičan rad"}
+{"concept_id": "app00272", "hr": "panel rasprava"}
+{"concept_id": "app00273", "hr": "videokonferencije"}
+{"concept_id": "app00277", "hr": "uvodni sastanci"}
+{"concept_id": "app00279", "hr": "online aktivnosti"}
+{"concept_id": "app00281", "hr": "obrazovanje na otvorenom"}
+{"concept_id": "app00284", "hr": "obrazovni posjeti"}
+{"concept_id": "app00292", "hr": "učenje temeljeno na zadacima"}
+{"concept_id": "app00299", "hr": "pripremni sastanci"}
+{"concept_id": "app00305", "hr": "multiplikacijski događaji"}
+{"concept_id": "app00307", "hr": "sastanci za širenje rezultata"}
+{"concept_id": "app00319", "hr": "projekti građanske znanosti"}
+{"concept_id": "app00324", "hr": "natjec za logo za učenike"}
+{"concept_id": "app00327", "hr": "analiza dobrih praksi"}
+{"concept_id": "app00329", "hr": "interdisciplinarno učenje"}
+{"concept_id": "app00335", "hr": "vježbe kritičkog razmišljanja"}
+{"concept_id": "app00338", "hr": "radionice za radnike s mladima"}
+{"concept_id": "app00347", "hr": "fokus grupe s mladima"}
+{"concept_id": "app00353", "hr": "mješovita mobilnost mladih"}
+{"concept_id": "app00354", "hr": "izrada mobilne aplikacije"}
+{"concept_id": "app00357", "hr": "izrada promotivnih materijala"}
+{"concept_id": "app00362", "hr": "suizrada obrazovnog sadržaja"}
+{"concept_id": "app00365", "hr": "multiplikacijski događaji za razmjenu rezultata"}
+{"concept_id": "app00369", "hr": "razvoj metodologije osposobljavanja"}
+{"concept_id": "app00372", "hr": "izrada obrazovnih materijala"}
+{"concept_id": "app00374", "hr": "širenje putem eTwinning platforme"}
+{"concept_id": "app00387", "hr": "međunarodne mobilnosti učenika i nastavnika"}
+{"concept_id": "app00388", "hr": "multiplikacijski događaji za promicanje rezultata projekta"}
+{"concept_id": "app00391", "hr": "izrada masovnih otvorenih online tečajeva (MOOC)"}
+{"concept_id": "app00397", "hr": "mobilnosti učenika i razmjene između partnerskih škola"}
+{"concept_id": "app00398", "hr": "drama"}
+{"concept_id": "app00405", "hr": "webquestovi"}
+{"concept_id": "app00416", "hr": "turniri"}
+{"concept_id": "app00422", "hr": "završni sastanak"}
+{"concept_id": "app00445", "hr": "umjetničke aktivnosti"}
+{"concept_id": "app00455", "hr": "okrenuto učenje"}
+{"concept_id": "app00459", "hr": "promotivni događaji"}
+{"concept_id": "app00466", "hr": "izrada MOOC-ova"}
+{"concept_id": "app00467", "hr": "holistički pristup"}
+{"concept_id": "app00478", "hr": "izgradnja zajednice"}
+{"concept_id": "app00479", "hr": "izrada stripova"}
+{"concept_id": "app00510", "hr": "međunarodni događaji"}
+{"concept_id": "app00512", "hr": "multiplikacijske radionice"}
+{"concept_id": "app00522", "hr": "izrada digitalnih alata"}
+{"concept_id": "app00528", "hr": "aktivnosti praćenja"}
+{"concept_id": "app00540", "hr": "razvoj studija slučaja"}
+{"concept_id": "app00549", "hr": "nacionalno širenje rezultata"}
+{"concept_id": "app00555", "hr": "transnacionalna mobilnost"}
+{"concept_id": "app00559", "hr": "kampanje širenja rezultata"}
+{"concept_id": "app00562", "hr": "obuka za medijsku pismenost"}
+{"concept_id": "app00573", "hr": "suradnja u Twinspaceu"}
+{"concept_id": "app00584", "hr": "diseminacija rezultata"}
+{"concept_id": "app00591", "hr": "obuka za digitalnu pismenost"}
+{"concept_id": "app00604", "hr": "izrada modula za obuku"}
+{"concept_id": "app00606", "hr": "interdisciplinarno poučavanje"}
+{"concept_id": "app00680", "hr": "fokus grupe s radnicima s mladima"}
+{"concept_id": "app00691", "hr": "rad u međunarodnim grupama"}
+{"concept_id": "app00708", "hr": "online kampanja podizanja svijesti"}
+{"concept_id": "app00709", "hr": "organizacija fotoizložbi"}
+{"concept_id": "app00764", "hr": "produkcija videa za podizanje svijesti"}
+{"concept_id": "app00768", "hr": "vršnjačko učenje putem razmjene partnera"}
+{"concept_id": "app00777", "hr": "obuka trenera za edukatore odraslih"}
+{"concept_id": "app00794", "hr": "vršnjačko učenje putem zajednice prakse"}
+{"concept_id": "app00803", "hr": "korištenje eTwinning Twinspacea za suradnju"}
+{"concept_id": "app00805", "hr": "aktivnosti učenja i poučavanja za nastavnike"}
+{"concept_id": "app00808", "hr": "diseminacija putem biltena i društvenih mreža"}
+{"concept_id": "app00827", "hr": "organizacija multiplikacijskih događaja za diseminaciju"}
+{"concept_id": "app00840", "hr": "istraživanje i procjena potreba putem questionnairea i intervjua"}
+{"concept_id": "app01016", "hr": "vršnjačka razmjena"}
+{"concept_id": "app01042", "hr": "montaža videa"}
+{"concept_id": "app01184", "hr": "učenjski događaji"}
+{"concept_id": "app01189", "hr": "izrada priručnika"}
+{"concept_id": "app01234", "hr": "snimanje videa"}
+{"concept_id": "app01257", "hr": "digitalna kampanja"}
+{"concept_id": "app01329", "hr": "testiranje radionica"}
+{"concept_id": "app01380", "hr": "praktično učenje"}
+{"concept_id": "app01496", "hr": "razvoj tečaja"}
+{"concept_id": "app01573", "hr": "projektna konferencija"}
+{"concept_id": "app01636", "hr": "provedba ankete"}
+{"concept_id": "app01895", "hr": "interaktivno učenje"}
+{"concept_id": "app02204", "hr": "obuka za partnere"}
+{"concept_id": "app02308", "hr": "suradnja s industrijom"}
+{"concept_id": "app02418", "hr": "testiranje i validacija"}
+{"concept_id": "app02738", "hr": "izrada web platforme"}
+{"concept_id": "app02757", "hr": "integracija digitalnih alata"}
+{"concept_id": "app02837", "hr": "online sastanci putem Zooma"}
+{"concept_id": "app02937", "hr": "transnacionalni grupni rad"}
+{"concept_id": "app03112", "hr": "istraživanje potreba putem ankete"}
+{"concept_id": "app03215", "hr": "obuka za Web 2.0 alate"}
+{"concept_id": "app03828", "hr": "obuke za radnike s mladima"}
+{"concept_id": "app04161", "hr": "obuka za poduzetništvo"}
+{"concept_id": "app04168", "hr": "obuka sveučilišnog osoblja"}
+{"concept_id": "app04967", "hr": "radionice za usavršavanje nastavnika"}
+{"concept_id": "app05072", "hr": "izrada obrazovnih materijala"}
+{"concept_id": "app05318", "hr": "kratkotrajna mobilnost studenata"}
+{"concept_id": "app06958", "hr": "razmjena dobrih nastavnih praksi"}
+{"concept_id": "app07429", "hr": "razvoj interaktivnih platformi"}
+{"concept_id": "app07482", "hr": "razmjena iskustava o najboljim praksama"}
+{"concept_id": "app07848", "hr": "su-kreiranje sadržaja među partnerima"}
+{"concept_id": "out00028", "hr": "filmovi"}
+{"concept_id": "out00029", "hr": "ankete"}
+{"concept_id": "out00055", "hr": "projektna početna stranica"}
+{"concept_id": "out00064", "hr": "unaprijeđene digitalne vještine nastavnika"}
+{"concept_id": "out00074", "hr": "majice"}
+{"concept_id": "out00075", "hr": "web stranica"}
+{"concept_id": "out00076", "hr": "webinari"}
+{"concept_id": "out00098", "hr": "priručnik za edukatore"}
+{"concept_id": "out00099", "hr": "unaprijeđene vještine kritičkog razmišljanja"}
+{"concept_id": "out00133", "hr": "intervjui"}
+{"concept_id": "out00147", "hr": "eTwinning stranica"}
+{"concept_id": "out00155", "hr": "projektna brošura"}
+{"concept_id": "out00159", "hr": "e-learning tečaj"}
+{"concept_id": "out00193", "hr": "video o projektu"}
+{"concept_id": "out00203", "hr": "web stranica za širenje rezultata"}
+{"concept_id": "out00204", "hr": "digitalni obrazovni materijali"}
+{"concept_id": "out00217", "hr": "fotografije koje dokumentiraju projekt"}
+{"concept_id": "out00225", "hr": "unaprijeđene digitalne vještine studenata"}
+{"concept_id": "out00226", "hr": "masovni otvoreni online tečaj (MOOC)"}
+{"concept_id": "out00250", "hr": "razvijene digitalne vještine među studentima"}
+{"concept_id": "out00277", "hr": "unaprijeđene vještine engleskog jezika nastavnika"}
+{"concept_id": "out00290", "hr": "unaprijeđene međukulturne vještine među sudionicima"}
+{"concept_id": "out00297", "hr": "povećana motivacija studenata za učenje matematike"}
+{"concept_id": "out00309", "hr": "povećana kulturna svijest među studentima i nastavnicima"}
+{"concept_id": "out00363", "hr": "seminar"}
+{"concept_id": "out00366", "hr": "alatnica"}
+{"concept_id": "out00424", "hr": "portfelji"}
+{"concept_id": "out00493", "hr": "pilot izvještaj"}
+{"concept_id": "out00504", "hr": "studentski blog"}
+{"concept_id": "out00581", "hr": "digitalne vještine"}
+{"concept_id": "out00762", "hr": "alati za evaluaciju"}
+{"concept_id": "out01140", "hr": "diseminacijski događaji"}
+{"concept_id": "out01315", "hr": "resursi otvorenog pristupa"}
+{"concept_id": "out01756", "hr": "moduli za osposobljavanje nastavnika"}
+{"concept_id": "out04837", "hr": "unaprijeđene ključne kompetencije učenika"}
+{"concept_id": "out05129", "hr": "razvijene jezične vještine učenika"}
+{"concept_id": "out05635", "hr": "unaprijeđeni akademski rezultati učenika"}
+{"concept_id": "out06241", "hr": "ojačana suradnja među partnerima"}
+{"concept_id": "out07013", "hr": "povećan osjećaj pripadnosti učenika"}
+{"concept_id": "out09852", "hr": "razvoj kritičkog razmišljanja kod učenika"}
+{"concept_id": "tar00228", "hr": "Rome"}
+{"concept_id": "tar00240", "hr": "kulturne ustanove"}
+{"concept_id": "tar00241", "hr": "učenici iz Finske"}
+{"concept_id": "tar00243", "hr": "učenici iz Bugarske"}
+{"concept_id": "tar00244", "hr": "učenici iz Slovenije"}
+{"concept_id": "tar00245", "hr": "učenici iz Litve"}
+{"concept_id": "tar00260", "hr": "pomorci"}
+{"concept_id": "tar00262", "hr": "NEET mladi"}
+{"concept_id": "tar00264", "hr": "savjetnici"}
+{"concept_id": "tar00273", "hr": "lokalni partneri"}
+{"concept_id": "tar00276", "hr": "tehničko osoblje"}
+{"concept_id": "tar00277", "hr": "zajedničke skupine"}
+{"concept_id": "tar00279", "hr": "lokalno stanovništvo"}
+{"concept_id": "tar00283", "hr": "školske vlasti"}
+{"concept_id": "tar00297", "hr": "prateći nastavnici"}
+{"concept_id": "tar00299", "hr": "javne uprave"}
+{"concept_id": "tar00300", "hr": "marginalizirani mladi"}
+{"concept_id": "tar00305", "hr": "organizacije za obrazovanje odraslih"}
+{"concept_id": "tar00317", "hr": "djeca u ranoj edukaciji"}
+{"concept_id": "tar00321", "hr": "liječnici"}
+{"concept_id": "tar00323", "hr": "društvo"}
+{"concept_id": "tar00340", "hr": "romački učenici"}
+{"concept_id": "tar00341", "hr": "poduporno osoblje"}
+{"concept_id": "tar00345", "hr": "samohrane majke"}
+{"concept_id": "tar00353", "hr": "studenti sestrinstva"}
+{"concept_id": "tar00357", "hr": "poslovni partneri"}
+{"concept_id": "tar00373", "hr": "učenici u dobi od 10 do 14 godina"}
+{"concept_id": "tar00377", "hr": "pomoćnici u nastavi"}
+{"concept_id": "tar00384", "hr": "studenti arhitekture"}
+{"concept_id": "tar00388", "hr": "predstavnici mladih"}
+{"concept_id": "tar00404", "hr": "predstavnici općina"}
+{"concept_id": "tar00409", "hr": "nevladine organizacije"}
+{"concept_id": "tar00440", "hr": "agencije"}
+{"concept_id": "tar00519", "hr": "učitelji njemačkog jezika"}
+{"concept_id": "tar00526", "hr": "manjinske skupine"}
+{"concept_id": "tar00545", "hr": "studenti poslovnih studija"}
+{"concept_id": "tar00567", "hr": "predškolski učenici"}
+{"concept_id": "tar00591", "hr": "učenici u dobi od 12 do 14 godina"}
+{"concept_id": "tar00592", "hr": "učenici u dobi od 13 do 18 godina"}
+{"concept_id": "tar00608", "hr": "budući poduzetnici"}
+{"concept_id": "tar00660", "hr": "učenici u dobi od 12 do 18 godina"}
+{"concept_id": "tar00688", "hr": "učenici srednje škole"}
+{"concept_id": "tar00694", "hr": "osobe sa oštećenjem vida"}
+{"concept_id": "tar00700", "hr": "studenti visokog obrazovanja"}
+{"concept_id": "tar00713", "hr": "stručnjaci koji rade s mladima"}
+{"concept_id": "tar00723", "hr": "dionici rada s mladima"}
+{"concept_id": "tar00747", "hr": "multikulturalne skupine učenika"}
+{"concept_id": "tar00752", "hr": "učenici u formalnom obrazovanju"}
+{"concept_id": "tar00753", "hr": "nastavnici stručnog obrazovanja"}
+{"concept_id": "tar00763", "hr": "odgojitelji koji rade sa starijima"}
+{"concept_id": "tar00774", "hr": "predstavnici lokalne zajednice"}
+{"concept_id": "tar00788", "hr": "dionici u partnerskim zemljama"}
+{"concept_id": "tar00796", "hr": "učitelji predškolske djece"}
+{"concept_id": "tar00808", "hr": "predstavnici lokalnih zajednica"}
+{"concept_id": "tar00833", "hr": "nastavnici učenika s posebnim potrebama"}
+{"concept_id": "tar00847", "hr": "treneri u stručnom obrazovanju i osposobljavanju"}
+{"concept_id": "tar00849", "hr": "ustanove stručnog obrazovanja i osposobljavanja"}
+{"concept_id": "tar00941", "hr": "developeri"}
+{"concept_id": "tar01548", "hr": "pružatelji usluga"}
+{"concept_id": "tar01840", "hr": "učenici u dobi od 12 do 16 godina"}
+{"concept_id": "tar02376", "hr": "učenici općih škola"}
+{"concept_id": "tar02487", "hr": "mlade osobe u dobi od 18 do 25 godina"}
+{"concept_id": "tar02900", "hr": "predavači na visokom obrazovanju"}
+{"concept_id": "tar02965", "hr": "dionici diljem Europe"}
+{"concept_id": "tar03135", "hr": "učenici iz cijele Europe"}
+{"concept_id": "tar04326", "hr": "učenici različitih etničkih pripadnosti"}
+{"concept_id": "pro00032", "hr": "dezinformacije"}
+{"concept_id": "pro00033", "hr": "globalno zagrijavanje"}
+{"concept_id": "pro00041", "hr": "potreba za razvojem socijalnih vještina"}
+{"concept_id": "pro00045", "hr": "nedostatak inkluzivnih obrazovnih praksi"}
+{"concept_id": "pro00052", "hr": "ograničeno uključivanje mladih s manje mogućnosti"}
+{"concept_id": "pro00067", "hr": "nedostatak digitalnih vještina"}
+{"concept_id": "pro00075", "hr": "visoke stope napuštanja škole"}
+{"concept_id": "pro00085", "hr": "predrasude među mladima"}
+{"concept_id": "pro00086", "hr": "potreba za poboljšanjem zapošljivosti"}
+{"concept_id": "pro00094", "hr": "nedostatak samopouzdanja kod učenika"}
+{"concept_id": "pro00098", "hr": "nedostatak priznanja za rad s mladima"}
+{"concept_id": "pro00104", "hr": "velik broj mladih koji rano napuštaju školovanje"}
+{"concept_id": "pro00109", "hr": "potreba za razvojem vještina 21. stoljeća"}
+{"concept_id": "pro00126", "hr": "niska ekološka svijest kod učenika"}
+{"concept_id": "pro00130", "hr": "potreba za razvojem vještina kritičkog razmišljanja"}
+{"concept_id": "pro00141", "hr": "potreba za razvojem poduzetničkih kompetencija"}
+{"concept_id": "pro00148", "hr": "ograničene vještine kritičkog razmišljanja kod učenika"}
+{"concept_id": "pro00150", "hr": "nedostatak međukulturnih kompetencija kod učenika"}
+{"concept_id": "pro00152", "hr": "nedostatak poduzetničkih vještina kod mladih"}
+{"concept_id": "pro00175", "hr": "nasilje"}
+{"concept_id": "pro00182", "hr": "usamljenost"}
+{"concept_id": "pro00266", "hr": "nedostatak uključivanja"}
+{"concept_id": "pro00828", "hr": "niska razina građanskog angažmana"}
+{"concept_id": "pro01004", "hr": "nedovoljne digitalne kompetencije"}
+{"concept_id": "pro01072", "hr": "potreba za nadogradnjom metoda poučavanja"}
+{"concept_id": "pro01108", "hr": "neodržive navike potrošnje"}
+{"concept_id": "pro01815", "hr": "niska digitalna kompetencija među nastavnicima"}
+{"concept_id": "pro01862", "hr": "potreba za poboljšanjem jezične kompetencije"}
+{"concept_id": "pro02487", "hr": "potreba za razvojem digitalnih vještina učenika"}
+{"concept_id": "pro02720", "hr": "niska motivacija za učenje stranih jezika"}
+{"concept_id": "pro02924", "hr": "nedostatak vještina rješavanja problema kod učenika"}
+{"concept_id": "pro02981", "hr": "niska motivacija učenika za učenje znanosti"}
+{"concept_id": "pro03546", "hr": "potreba za digitalnom transformacijom u obrazovanju"}
+{"concept_id": "pro04108", "hr": "nedostatak razumijevanja klimatskih promjena"}
+{"concept_id": "pro05091", "hr": "nedostatak međukulturnih kompetencija kod mladih"}
+{"concept_id": "pro05531", "hr": "niska digitalna kompetencija među učenicima i nastavnicima"}
+{"concept_id": "app00168", "hr": "kvizovi"}
+{"concept_id": "app00176", "hr": "laboratoriji politika"}
+{"concept_id": "app00178", "hr": "okrugli stolovi"}
+{"concept_id": "app00186", "hr": "kulturni događaji"}
+{"concept_id": "app00195", "hr": "pristup odozdo prema gore"}
+{"concept_id": "app00202", "hr": "restorativne prakse"}
+{"concept_id": "app00217", "hr": "konzultacije s dionicima"}
+{"concept_id": "app00225", "hr": "prikupljanje najboljih praksi"}
+{"concept_id": "app00245", "hr": "multiplier događaji u više zemalja"}
+{"concept_id": "app00263", "hr": "STEM obrazovanje"}
+{"concept_id": "app00278", "hr": "lokalne inicijative"}
+{"concept_id": "app00283", "hr": "aktivnosti kuhanja"}
+{"concept_id": "app00285", "hr": "inkluzivni pristup"}
+{"concept_id": "app00291", "hr": "aktivnosti robotike"}
+{"concept_id": "app00298", "hr": "učenje temeljeno na glazbi"}
+{"concept_id": "app00302", "hr": "upotreba Web 2.0 alata"}
+{"concept_id": "app00320", "hr": "suradnja s roditeljima"}
+{"concept_id": "app00328", "hr": "međusektorska suradnja"}
+{"concept_id": "app00331", "hr": "osposobljavanje nastavnog osoblja"}
+{"concept_id": "app00332", "hr": "transdisciplinarni pristup"}
+{"concept_id": "app00341", "hr": "promicanje rezultata projekta"}
+{"concept_id": "app00355", "hr": "izrada intelektualnih rezultata"}
+{"concept_id": "app00364", "hr": "završna konferencija za širenje rezultata"}
+{"concept_id": "app00370", "hr": "završna konferencija za predstavljanje rezultata"}
+{"concept_id": "app00380", "hr": "razmjena ideja, praksi i metoda"}
+{"concept_id": "app00385", "hr": "događaji za širenje rezultata u više zemalja"}
+{"concept_id": "app00396", "hr": "vršnjačko učenje studenata iz različitih zemalja"}
+{"concept_id": "app00399", "hr": "sajmovi"}
+{"concept_id": "app00401", "hr": "koncerti"}
+{"concept_id": "app00404", "hr": "vršnjački rad"}
+{"concept_id": "app00411", "hr": "stazaže"}
+{"concept_id": "app00428", "hr": "vršnjački coaching"}
+{"concept_id": "app00430", "hr": "pilot akcije"}
+{"concept_id": "app00444", "hr": "izrada priručnika"}
+{"concept_id": "app00452", "hr": "nacionalni događaji"}
+{"concept_id": "app00456", "hr": "online obrazovanje"}
+{"concept_id": "app00460", "hr": "STEAM aktivnosti"}
+{"concept_id": "app00475", "hr": "radionica animacije"}
+{"concept_id": "app00476", "hr": "radionica zajedničkog dizajna"}
+{"concept_id": "app00488", "hr": "upravljanje kvalitetom"}
+{"concept_id": "app00492", "hr": "umjetničke aktivnosti"}
+{"concept_id": "app00496", "hr": "događaji u okviru Erasmus dana"}
+{"concept_id": "app00497", "hr": "vanjska evaluacija"}
+{"concept_id": "app00505", "hr": "izrada digitalnog centra"}
+{"concept_id": "app00520", "hr": "validacijske radionice"}
+{"concept_id": "app00527", "hr": "lokalne radionice za mlade"}
+{"concept_id": "app00531", "hr": "participativne metode"}
+{"concept_id": "app00535", "hr": "aktivnosti refleksije"}
+{"concept_id": "app00545", "hr": "međunarodni dijalog"}
+{"concept_id": "app00550", "hr": "radionice ravnika"}
+{"concept_id": "app00551", "hr": "aktivnosti programiranja"}
+{"concept_id": "app00553", "hr": "podučavanje temeljeno na projektima"}
+{"concept_id": "app00565", "hr": "programi mentorskog rada ravnika"}
+{"concept_id": "app00577", "hr": "događaji za podizanje svijesti"}
+{"concept_id": "app00580", "hr": "izrada društvene igre"}
+{"concept_id": "app00581", "hr": "izrada akcijskih planova"}
+{"concept_id": "app00586", "hr": "mežukulturne aktivnosti"}
+{"concept_id": "app00590", "hr": "obuka sudionika"}
+{"concept_id": "app00605", "hr": "rasprostranjivanje praksi"}
+{"concept_id": "app00621", "hr": "podizanje svijesti zajednice"}
+{"concept_id": "app00624", "hr": "izrada video vodiča"}
+{"concept_id": "app00627", "hr": "aktivnosti usmjerene na učenike"}
+{"concept_id": "app00631", "hr": "izrada interaktivnih karata"}
+{"concept_id": "app00632", "hr": "izrada vizualnih materijala"}
+{"concept_id": "app00640", "hr": "transnacionalna analiza potreba"}
+{"concept_id": "app00641", "hr": "komunikacija putem WhatsApp grupe"}
+{"concept_id": "app00646", "hr": "razvoj digitalnih vještina"}
+{"concept_id": "app00654", "hr": "izgradnja kapaciteta za nastavnike"}
+{"concept_id": "app00658", "hr": "razvoj vještina timskog rada"}
+{"concept_id": "app00662", "hr": "organizacija natječaja za logo"}
+{"concept_id": "app00663", "hr": "pilotiranje materijala za učenje"}
+{"concept_id": "app00665", "hr": "kontrola kvalitete i praćenje"}
+{"concept_id": "app00670", "hr": "izrada virtualnih izložbi"}
+{"concept_id": "app00677", "hr": "razvoj zajedničkog kurikuluma"}
+{"concept_id": "app00678", "hr": "izrada priručnika za obuku"}
+{"concept_id": "app00682", "hr": "sastanci s lokalnim vlastima"}
+{"concept_id": "app00688", "hr": "kratkotrajna mobilnost nastavnika"}
+{"concept_id": "app00689", "hr": "transnacionalne razmjene partnera"}
+{"concept_id": "app00690", "hr": "transnacionalne obuke"}
+{"concept_id": "app00711", "hr": "pilotiranje obrazovnih resursa"}
+{"concept_id": "app00712", "hr": "obuka za profesionalni razvoj"}
+{"concept_id": "app00721", "hr": "izrada preporuka za politike"}
+{"concept_id": "app00733", "hr": "razmjena znanja između partnera"}
+{"concept_id": "app00754", "hr": "procjena potreba putem fokus grupa"}
+{"concept_id": "app00757", "hr": "mobilnosti učenika u druge zemlje"}
+{"concept_id": "app00758", "hr": "mobilnosti učenika u partnerske škole"}
+{"concept_id": "app00760", "hr": "razvoj vještina stranih jezika"}
+{"concept_id": "app00761", "hr": "razvoj modula za online učenje"}
+{"concept_id": "app00770", "hr": "studijski posjeti za razmjenu dobrih praksi"}
+{"concept_id": "app00800", "hr": "vršnjačko učenje putem međunarodnih sastanaka"}
+{"concept_id": "app00817", "hr": "stalni profesionalni razvoj nastavnika"}
+{"concept_id": "app00825", "hr": "aktivnosti širenja za promicanje rezultata projekta"}
+{"concept_id": "app00828", "hr": "integracija rezultata projekta u školske kurikulume"}
+{"concept_id": "app00836", "hr": "multiplikacijski događaji uključujući konferencije i nacionalne događaje"}
+{"concept_id": "app00867", "hr": "bootcamp"}
+{"concept_id": "app00870", "hr": "dijalog"}
+{"concept_id": "app00894", "hr": "izleti"}
+{"concept_id": "app00989", "hr": "analiza podataka"}
+{"concept_id": "app01158", "hr": "razmjena e-pošte"}
+{"concept_id": "app01199", "hr": "online sesije"}
+{"concept_id": "app01209", "hr": "javni nastup"}
+{"concept_id": "app01210", "hr": "razmjene učenika"}
+{"concept_id": "app01236", "hr": "posjeti lokacijama"}
+{"concept_id": "app01273", "hr": "zajedničke aktivnosti"}
+{"concept_id": "app01287", "hr": "program mobilnosti"}
+{"concept_id": "app01331", "hr": "mobilnosti mladih"}
+{"concept_id": "app01392", "hr": "celoživotno učenje"}
+{"concept_id": "app01460", "hr": "aktivnost osposobljavanja"}
+{"concept_id": "app01525", "hr": "igre za učenje"}
+{"concept_id": "app01643", "hr": "izrada kvizova"}
+{"concept_id": "app01709", "hr": "praćenje napretka"}
+{"concept_id": "app01777", "hr": "osposobljavanje odraslih"}
+{"concept_id": "app01836", "hr": "razvoj MOOC tečajeva"}
+{"concept_id": "app01889", "hr": "informativna kampanja"}
+{"concept_id": "app01911", "hr": "trening mindfulnessa"}
+{"concept_id": "app01919", "hr": "identifikacija potreba"}
+{"concept_id": "app01930", "hr": "izgradnja partnerstava"}
+{"concept_id": "app01950", "hr": "promotivna kampanja"}
+{"concept_id": "app02189", "hr": "trening socijalnih vještina"}
+{"concept_id": "app02199", "hr": "testiranje s partnerima"}
+{"concept_id": "app02274", "hr": "strategija širenja"}
+{"concept_id": "app02285", "hr": "evaluacija osposobljavanja"}
+{"concept_id": "app02477", "hr": "su-dizajniranje programa"}
+{"concept_id": "app02635", "hr": "socijalno poduzetništvo"}
+{"concept_id": "app02938", "hr": "transnacionalno umrežavanje"}
+{"concept_id": "app02941", "hr": "upotreba proširene stvarnosti"}
+{"concept_id": "app02957", "hr": "razvoj web platforme"}
+{"concept_id": "app03113", "hr": "umrežavanje među partnerima"}
+{"concept_id": "app03137", "hr": "pilotiranje modula za osposobljavanje"}
+{"concept_id": "app03209", "hr": "obuka za digitalne alate"}
+{"concept_id": "app03255", "hr": "suradnja sa školama"}
+{"concept_id": "app03275", "hr": "izrada digitalne knjige"}
+{"concept_id": "app03308", "hr": "izrada priručnika"}
+{"concept_id": "app03311", "hr": "razvoj novih metoda"}
+{"concept_id": "app03416", "hr": "multidisciplinarni pristup"}
+{"concept_id": "app03440", "hr": "pilotiranje programa osposobljavanja"}
+{"concept_id": "app03457", "hr": "istraživanje najboljih praksi"}
+{"concept_id": "app03472", "hr": "kratkotrajni događaji osposobljavanja"}
+{"concept_id": "app03482", "hr": "jačanje partnerstava"}
+{"concept_id": "app03578", "hr": "suradnja s partnerima"}
+{"concept_id": "app03601", "hr": "izrada Facebook stranice"}
+{"concept_id": "app03690", "hr": "inovativne metode poučavanja"}
+{"concept_id": "app03724", "hr": "masovni otvoreni online tečajevi"}
+{"concept_id": "app03917", "hr": "izrada alata za procjenu"}
+{"concept_id": "app03936", "hr": "izrada programa osposobljavanja"}
+{"concept_id": "app03959", "hr": "razvoj digitalnog učenja"}
+{"concept_id": "app04298", "hr": "provođenje modula za osposobljavanje"}
+{"concept_id": "app04299", "hr": "provođenje online tečaja"}
+{"concept_id": "app04743", "hr": "održavanje transnacionalnih sastanaka"}
+{"concept_id": "app05352", "hr": "testiranje i pilotiranje tečajeva"}
+{"concept_id": "app05815", "hr": "transnacionalni sastanci uživo"}
+{"concept_id": "app06006", "hr": "razvoj transverzalnih vještina"}
+{"concept_id": "app06361", "hr": "zajednički rad škola"}
+{"concept_id": "app06470", "hr": "diseminacija putem online platformi"}
+{"concept_id": "app06910", "hr": "razvoj konceptualnog okvira"}
+{"concept_id": "app07424", "hr": "razvoj obrazovnog programa"}
+{"concept_id": "app08409", "hr": "suizrada materijala sa studentima"}
+{"concept_id": "app08588", "hr": "razmjena dobrih praksi i metoda"}
+{"concept_id": "app10199", "hr": "razvoj sustava za upravljanje učenjem"}
+{"concept_id": "app11638", "hr": "istraživanje potreba i procjena izazova"}
+{"concept_id": "app12130", "hr": "razmjena dobrih praksi između zemalja"}
+{"concept_id": "out00065", "hr": "smanjen rizik od ranog napuštanja školovanja"}
+{"concept_id": "out00078", "hr": "priručnik"}
+{"concept_id": "out00080", "hr": "e-brošura"}
+{"concept_id": "out00082", "hr": "projektna pjesma"}
+{"concept_id": "out00085", "hr": "vodič za trenerه"}
+{"concept_id": "out00093", "hr": "instrukcijski videozapisi"}
+{"concept_id": "out00104", "hr": "materijali za osposobljavanje radnika s mladima"}
+{"concept_id": "out00132", "hr": "rječnik"}
+{"concept_id": "out00142", "hr": "publikacije"}
+{"concept_id": "out00144", "hr": "4 biltena"}
+{"concept_id": "out00148", "hr": "međutimski izvještaj"}
+{"concept_id": "out00151", "hr": "Moodle platforma"}
+{"concept_id": "out00172", "hr": "kampanje podizanja svijesti"}
+{"concept_id": "out00177", "hr": "vodič za implementaciju"}
+{"concept_id": "out00184", "hr": "e-knjiga projekta"}
+{"concept_id": "out00191", "hr": "poboljšana školska klima"}
+{"concept_id": "out00194", "hr": "knjižnica digitalnih resursa"}
+{"concept_id": "out00197", "hr": "metodološki okvir"}
+{"concept_id": "out00200", "hr": "promovirana socijalna inkluzija"}
+{"concept_id": "out00205", "hr": "razmjena dobrih praksi"}
+{"concept_id": "out00214", "hr": "poboljšane digitalne kompetencije"}
+{"concept_id": "out00236", "hr": "YouTube kanal za sadržaje projekta"}
+{"concept_id": "out00240", "hr": "nove tehnike poučavanja za nastavnike"}
+{"concept_id": "out00248", "hr": "smanjen broj učenika koji rano napuštaju školovanje"}
+{"concept_id": "out00265", "hr": "razvijene socijalne vještine među sudionicima"}
+{"concept_id": "out00282", "hr": "povećana ekološka svijest među učenicima"}
+{"concept_id": "out00283", "hr": "povećana tolerancija i empatija među učenicima"}
+{"concept_id": "out00296", "hr": "poboljšano samopoštovanje među sudionicima"}
+{"concept_id": "out00300", "hr": "poboljšana svijest o okolišu među sudionicima"}
+{"concept_id": "out00307", "hr": "povećana tolerancija i razumijevanje između kultura"}
+{"concept_id": "out00313", "hr": "povećano međukulturalno razumijevanje među sudionicima"}
+{"concept_id": "out00378", "hr": "časopis"}
+{"concept_id": "out00403", "hr": "razglednice"}
+{"concept_id": "out00414", "hr": "kurikulum"}
+{"concept_id": "out00508", "hr": "web platforma"}
+{"concept_id": "out00606", "hr": "online tečajevi"}
+{"concept_id": "out00686", "hr": "alat za praćenje"}
+{"concept_id": "out00748", "hr": "digitalni sadržaji"}
+{"concept_id": "out00782", "hr": "online resursi"}
+{"concept_id": "out00839", "hr": "vodič za roditelje"}
+{"concept_id": "out00863", "hr": "znanstveni radovi"}
+{"concept_id": "out00891", "hr": "aktivno građanstvo"}
+{"concept_id": "out00905", "hr": "komparativni izvještaj"}
+{"concept_id": "out01027", "hr": "eTwinning TwinSpace"}
+{"concept_id": "out01132", "hr": "okvir kompetencija"}
+{"concept_id": "out01141", "hr": "izvještaj o širenju rezultata"}
+{"concept_id": "out01342", "hr": "održive prakse"}
+{"concept_id": "out01551", "hr": "višejezični rječnik"}
+{"concept_id": "out01694", "hr": "unaprijeđene ključne kompetencije"}
+{"concept_id": "out01728", "hr": "dokument s preporukama"}
+{"concept_id": "out01766", "hr": "videozapisi za širenje rezultata"}
+{"concept_id": "out02053", "hr": "unaprijeđene vodstvene vještine"}
+{"concept_id": "out02401", "hr": "članci u lokalnim novinama"}
+{"concept_id": "out02491", "hr": "povećan angažman učenika"}
+{"concept_id": "out03173", "hr": "povećana kreativnost učenika"}
+{"concept_id": "out03205", "hr": "poboljšano zdravlje sudionika"}
+{"concept_id": "out03781", "hr": "povećana motivacija za učenjem"}
+{"concept_id": "out04130", "hr": "poboljšano samopouzdanje učenika"}
+{"concept_id": "out04341", "hr": "aktivno sudjelovanje učenika"}
+{"concept_id": "out04844", "hr": "poboljšane govorne vještine učenika"}
+{"concept_id": "out04847", "hr": "poboljšane nastavne vještine nastavnika"}
+{"concept_id": "out04952", "hr": "stručni razvoj nastavnika"}
+{"concept_id": "out05647", "hr": "poboljšana zapošljivost mladih"}
+{"concept_id": "out06077", "hr": "poboljšane socijalne kompetencije učenika"}
+{"concept_id": "out06521", "hr": "povećana kulturna svijest učenika"}
+{"concept_id": "out09890", "hr": "unaprijeđene digitalne kompetencije sudionika"}
+{"concept_id": "out09991", "hr": "povećana kulturna svijest sudionika"}
+{"concept_id": "out10447", "hr": "poboljšana komunikacija na engleskom jeziku među učenicima"}
+{"concept_id": "tar00258", "hr": "mediji"}
+{"concept_id": "tar00265", "hr": "frilanseri"}
+{"concept_id": "tar00267", "hr": "ljeczarnici"}
+{"concept_id": "tar00270", "hr": "partneri iz nevladinih organizacija"}
+{"concept_id": "tar00271", "hr": "predškoljci"}
+{"concept_id": "tar00272", "hr": "nutricionisti"}
+{"concept_id": "tar00280", "hr": "studenti pedagogije"}
+{"concept_id": "tar00292", "hr": "stručnjaci iz muzeja"}
+{"concept_id": "tar00295", "hr": "studenti iz Švedske"}
+{"concept_id": "tar00298", "hr": "istraživačke ustanove"}
+{"concept_id": "tar00310", "hr": "studenti koji se suočavaju s društvenim preprekama"}
+{"concept_id": "tar00311", "hr": "studenti iz različitih kultura"}
+{"concept_id": "tar00322", "hr": "muzeji"}
+{"concept_id": "tar00326", "hr": "potrošači"}
+{"concept_id": "tar00329", "hr": "pčelarstvo"}
+{"concept_id": "tar00332", "hr": "inspektori"}
+{"concept_id": "tar00336", "hr": "akademici"}
+{"concept_id": "tar00337", "hr": "upravitelji MSP-a"}
+{"concept_id": "tar00350", "hr": "kulturni radnici"}
+{"concept_id": "tar00352", "hr": "upravno osoblje"}
+{"concept_id": "tar00355", "hr": "centri za osposobljavanje"}
+{"concept_id": "tar00361", "hr": "ruralne zajednice"}
+{"concept_id": "tar00363", "hr": "organizacije za stručno osposobljavanje"}
+{"concept_id": "tar00365", "hr": "partneri iz zajednice"}
+{"concept_id": "tar00367", "hr": "učenici u dobi od 6 do 12 godina"}
+{"concept_id": "tar00370", "hr": "predškolska djeca"}
+{"concept_id": "tar00372", "hr": "školski koordinatori"}
+{"concept_id": "tar00376", "hr": "učenici u dobi od 14 do 16 godina"}
+{"concept_id": "tar00380", "hr": "iskusni nastavnici"}
+{"concept_id": "tar00382", "hr": "regionalna tijela"}
+{"concept_id": "tar00385", "hr": "partneri iz Hrvatske"}
+{"concept_id": "tar00387", "hr": "nastavnici geografije"}
+{"concept_id": "tar00389", "hr": "korisnici psihijatrijske skrbi"}
+{"concept_id": "tar00390", "hr": "nastavnici iz cijele Europe"}
+{"concept_id": "tar00398", "hr": "organizacije trećeg sektora"}
+{"concept_id": "tar00400", "hr": "mladi socijalni poduzetnici"}
+{"concept_id": "tar00406", "hr": "osobe s invaliditetom"}
+{"concept_id": "tar00413", "hr": "učenici iz Češke"}
+{"concept_id": "tar00416", "hr": "organizacije civilnog društva"}
+{"concept_id": "tar00418", "hr": "učenici iz šest europskih zemalja"}
+{"concept_id": "tar00421", "hr": "učenici s ekonomskim poteškoćama"}
+{"concept_id": "tar00426", "hr": "sudionici iz ugroženih skupina"}
+{"concept_id": "tar00427", "hr": "mladi iz različitih europskih zemalja"}
+{"concept_id": "tar00428", "hr": "akademsko osoblje u visokim obrazovnim ustanovama"}
+{"concept_id": "tar00444", "hr": "pacijenti"}
+{"concept_id": "tar00451", "hr": "skrbnici"}
+{"concept_id": "tar00455", "hr": "osuđenici"}
+{"concept_id": "tar00456", "hr": "start-upovi"}
+{"concept_id": "tar00476", "hr": "osoblje hotela"}
+{"concept_id": "tar00489", "hr": "lgbtiq+ mladi"}
+{"concept_id": "tar00498", "hr": "mladi vođe"}
+{"concept_id": "tar00505", "hr": "budući vođe"}
+{"concept_id": "tar00513", "hr": "savjetnici za karijeru"}
+{"concept_id": "tar00523", "hr": "lokalne tvrtke"}
+{"concept_id": "tar00529", "hr": "nove generacije"}
+{"concept_id": "tar00546", "hr": "hrvatski učenici"}
+{"concept_id": "tar00579", "hr": "mladinske udruge"}
+{"concept_id": "tar00594", "hr": "učenici u dobi od 16 do 19 godina"}
+{"concept_id": "tar00606", "hr": "obrazovni menadžeri"}
+{"concept_id": "tar00607", "hr": "poduzetnice"}
+{"concept_id": "tar00620", "hr": "nepratena maloljetna osoba"}
+{"concept_id": "tar00631", "hr": "europske institucije"}
+{"concept_id": "tar00636", "hr": "studenti master studija"}
+{"concept_id": "tar00642", "hr": "relevantne institucije"}
+{"concept_id": "tar00645", "hr": "studenti iz Ukrajine"}
+{"concept_id": "tar00647", "hr": "obrazovne ustanove"}
+{"concept_id": "tar00652", "hr": "stručnjaci za kulturu"}
+{"concept_id": "tar00654", "hr": "međunarodni partneri"}
+{"concept_id": "tar00665", "hr": "nezaposlene osobe"}
+{"concept_id": "tar00670", "hr": "mladi u Srbiji"}
+{"concept_id": "tar00690", "hr": "nastavnici društvenih znanosti"}
+{"concept_id": "tar00701", "hr": "organizacije iz Europe"}
+{"concept_id": "tar00730", "hr": "mikro i mala poduzeća"}
+{"concept_id": "tar00744", "hr": "međunarodne studentske skupine"}
+{"concept_id": "tar00750", "hr": "učenici njemačkih škola"}
+{"concept_id": "tar00759", "hr": "sudionici multiplikacijskih događaja"}
+{"concept_id": "tar00770", "hr": "nastavnici u pratnji učenika"}
+{"concept_id": "tar00777", "hr": "odgojitelji iz partnerskih zemalja"}
+{"concept_id": "tar00784", "hr": "učenici s manje mogućnosti"}
+{"concept_id": "tar00794", "hr": "organizacije koje uključuju volontere"}
+{"concept_id": "tar00797", "hr": "učenici različitih dobne skupina"}
+{"concept_id": "tar00798", "hr": "učenici iz ugroženih skupina"}
+{"concept_id": "tar00810", "hr": "učenici srednjih škola u Hrvatskoj"}
+{"concept_id": "tar00814", "hr": "mladi s oštećenjem vida"}
+{"concept_id": "tar00816", "hr": "odrasle osobe s intelektualnim invaliditetom"}
+{"concept_id": "tar00820", "hr": "mladi različitog podrijetla"}
+{"concept_id": "tar00821", "hr": "obrazovne ustanove diljem Europe"}
+{"concept_id": "tar00822", "hr": "predstavnici javnih ustanova"}
+{"concept_id": "tar00826", "hr": "učenici s obrazovnim poteškoćama"}
+{"concept_id": "tar00848", "hr": "odgojitelji u strukovnom obrazovanju i osposobljavanju"}
+{"concept_id": "tar00850", "hr": "odgojitelji koji rade s osobama s invaliditetom"}
+{"concept_id": "tar00852", "hr": "učenici koji uče engleski kao strani jezik"}
+{"concept_id": "tar00856", "hr": "učenici s manje mogućnosti zbog ekonomskih prepreka"}
+{"concept_id": "tar01150", "hr": "članovi obitelji"}
+{"concept_id": "tar01308", "hr": "nastavnici umjetnosti"}
+{"concept_id": "tar01743", "hr": "ugrožene žene"}
+{"concept_id": "tar01798", "hr": "obitelji s niskim prihodcima"}
+{"concept_id": "tar01898", "hr": "ugrožene odrasle osobe"}
+{"concept_id": "tar01971", "hr": "sektorske organizacije"}
+{"concept_id": "tar02045", "hr": "stručnjaci za obrazovanje"}
+{"concept_id": "tar02132", "hr": "studentske organizacije"}
+{"concept_id": "tar02159", "hr": "članovi vijeća mladih"}
+{"concept_id": "tar02188", "hr": "različite skupine studenata"}
+{"concept_id": "tar02280", "hr": "predstavnici škola"}
+{"concept_id": "tar02572", "hr": "nastavnici nižeg srednjeg obrazovanja"}
+{"concept_id": "tar02653", "hr": "nepovoljno pozicionirani učenici"}
+{"concept_id": "tar02909", "hr": "učenici s invaliditetom"}
+{"concept_id": "tar03525", "hr": "studenti u ruralnim zajednicama"}
+{"concept_id": "tar04717", "hr": "stručnjaci koji rade s obiteljima"}
+{"concept_id": "tar04745", "hr": "dionici stručnog osposobljavanja"}
+{"concept_id": "pro00029", "hr": "ovisnosti"}
+{"concept_id": "pro00036", "hr": "loša mentalna dobrobit"}
+{"concept_id": "pro00038", "hr": "visoka razina bacanja hrane"}
+{"concept_id": "pro00047", "hr": "nedovoljna digitalna pismenost učenika"}
+{"concept_id": "pro00049", "hr": "nedovoljne digitalne kompetencije učenika"}
+{"concept_id": "pro00051", "hr": "nedostatak poduzetničkog duha među mladima"}
+{"concept_id": "pro00060", "hr": "ovisnost o kockanju"}
+{"concept_id": "pro00065", "hr": "izloženost lažnim vijestima"}
+{"concept_id": "pro00066", "hr": "otežano učenje"}
+{"concept_id": "pro00072", "hr": "nedostatak studentske autonomije"}
+{"concept_id": "pro00074", "hr": "niski akademski uspjeh"}
+{"concept_id": "pro00080", "hr": "nedostatak aktivnog građanstva"}
+{"concept_id": "pro00087", "hr": "jaz između obrazovanja i rada"}
+{"concept_id": "pro00091", "hr": "niske digitalne vještine učenika"}
+{"concept_id": "pro00093", "hr": "manjak resursa na otocima"}
+{"concept_id": "pro00100", "hr": "potreba za unapređenjem vještina suradnje"}
+{"concept_id": "pro00102", "hr": "sedentarni način života među studentima"}
+{"concept_id": "pro00105", "hr": "nedostatak ekološke svijesti"}
+{"concept_id": "pro00107", "hr": "niski građanski angažman studenata"}
+{"concept_id": "pro00116", "hr": "prekomjerna potrošnja prirodnih resursa"}
+{"concept_id": "pro00117", "hr": "nedostatak vještina računalnog razmišljanja"}
+{"concept_id": "pro00121", "hr": "niska motivacija studenata za učenje njemačkog jezika"}
+{"concept_id": "pro00122", "hr": "potreba za razvojem emocionalne inteligencije"}
+{"concept_id": "pro00123", "hr": "rano napuštanje školovanja među mladima"}
+{"concept_id": "pro00125", "hr": "nisko akademsko postignuće studenata"}
+{"concept_id": "pro00132", "hr": "nedostatak ranog obrazovanja o održivosti"}
+{"concept_id": "pro00133", "hr": "nisko sudjelovanje djevojaka u STEM područjima"}
+{"concept_id": "pro00143", "hr": "potreba za unapređenjem socijalnih kompetencija učenika"}
+{"concept_id": "pro00178", "hr": "predrasude"}
+{"concept_id": "pro00180", "hr": "ekstremizmi"}
+{"concept_id": "pro00195", "hr": "bacanje hrane"}
+{"concept_id": "pro00209", "hr": "vršnjačko nasilje"}
+{"concept_id": "pro00228", "hr": "manjak vode"}
+{"concept_id": "pro00281", "hr": "nedostatak IKT vještina"}
+{"concept_id": "pro00282", "hr": "niska medijska pismenost"}
+{"concept_id": "pro00285", "hr": "potreba za uključivanjem"}
+{"concept_id": "pro00324", "hr": "niska društvena inkluzija"}
+{"concept_id": "pro00347", "hr": "nasilje utemeljeno na rodu"}
+{"concept_id": "pro00357", "hr": "niska poh frequência u školi"}
+{"concept_id": "pro00372", "hr": "ekološki problemi"}
+{"concept_id": "pro00379", "hr": "nedostatak zdravih navika"}
+{"concept_id": "pro00423", "hr": "potreba za digitalnim vještinama"}
+{"concept_id": "pro00435", "hr": "rizik od napuštanja školovanja"}
+{"concept_id": "pro00556", "hr": "niska empatija među učenicima"}
+{"concept_id": "pro00610", "hr": "nedostatak empatije kod učenika"}
+{"concept_id": "pro00621", "hr": "niska motivacija za učenjem"}
+{"concept_id": "pro00812", "hr": "nedostatak kreativnosti kod učenika"}
+{"concept_id": "pro00830", "hr": "nisko samopoštovanje kod djece"}
+{"concept_id": "pro00898", "hr": "nedostatak poduzetničkih vještina"}
+{"concept_id": "pro00934", "hr": "potreba za unapređenjem vještina timskog rada"}
+{"concept_id": "pro00972", "hr": "slab osjećaj europskog identiteta"}
+{"concept_id": "pro01051", "hr": "potreba za ekološkom sviješću"}
+{"concept_id": "pro01059", "hr": "potreba za razvojem digitalne pismenosti"}
+{"concept_id": "pro01068", "hr": "potreba za poboljšanjem metoda poučavanja"}
+{"concept_id": "pro01157", "hr": "nedostatak socijalnih vještina kod učenika"}
+{"concept_id": "pro01283", "hr": "visoka stopa nezaposlenosti mladih"}
+{"concept_id": "pro01368", "hr": "potreba za modernizacijom metoda poučavanja"}
+{"concept_id": "pro01478", "hr": "niska digitalna pismenost među učenicima"}
+{"concept_id": "pro01600", "hr": "nedovoljne jezične vještine učenika"}
+{"concept_id": "pro01814", "hr": "niska digitalna kompetencija među učenicima"}
+{"concept_id": "pro01831", "hr": "slab osjećaj pripadnosti među učenicima"}
+{"concept_id": "pro02072", "hr": "potreba za jačanjem digitalnih kompetencija"}
+{"concept_id": "pro02221", "hr": "niski građanski angažman mladih"}
+{"concept_id": "pro02499", "hr": "potreba za poboljšanjem digitalnih vještina učenika"}
+{"concept_id": "pro02516", "hr": "potreba za nadogradnjom digitalnih vještina nastavnika"}
+{"concept_id": "pro02809", "hr": "rizik od ranog napuštanja školovanja među učenicima"}
+{"concept_id": "pro02901", "hr": "nedovoljne digitalne vještine među učenicima"}
+{"concept_id": "pro02982", "hr": "niska tolerancija prema kulturnim razlikama"}
+{"concept_id": "pro03321", "hr": "potreba za poboljšanjem kompetencija u stranim jezicima"}
+{"concept_id": "pro03576", "hr": "potreba za povećanjem motivacije učenika za učenje"}
+{"concept_id": "pro04186", "hr": "potreba za osobnim i profesionalnim razvojem"}
+{"concept_id": "pro04354", "hr": "nedovoljne vještine 21. stoljeća kod učenika"}
+{"concept_id": "pro04359", "hr": "nedovoljne digitalne kompetencije nastavnika"}
+{"concept_id": "pro04369", "hr": "nedovoljne vještine kritičkog razmišljanja učenika"}
+{"concept_id": "pro05033", "hr": "nedovoljne digitalne kompetencije mladih"}
+{"concept_id": "pro05794", "hr": "nedovoljne IKT vještine kod učenika i nastavnika"}
+{"concept_id": "pro05833", "hr": "nedostatak demokratskog sudjelovanja mladih"}
+{"concept_id": "pro08512", "hr": "potreba za razvojem poduzetničkih sposobnosti kod mladih"}
+{"concept_id": "app00257", "hr": "DACUM analiza"}
+{"concept_id": "app00264", "hr": "dizajn web stranice"}
+{"concept_id": "app00267", "hr": "akcije čišćenja"}
+{"concept_id": "app00287", "hr": "kazališne aktivnosti"}
+{"concept_id": "app00297", "hr": "praktična iskustva"}
+{"concept_id": "app00300", "hr": "kvalitativno istraživanje"}
+{"concept_id": "app00304", "hr": "metoda žive knjižnice"}
+{"concept_id": "app00310", "hr": "aktivnosti mindfulnessa"}
+{"concept_id": "app00315", "hr": "participativni obrazovni pristup"}
+{"concept_id": "app00321", "hr": "prekogranična suradnja"}
+{"concept_id": "app00323", "hr": "korištenje digitalnih platformi"}
+{"concept_id": "app00344", "hr": "online samostalno učenje"}
+{"concept_id": "app00348", "hr": "studijski posjeti za radnike s mladima"}
+{"concept_id": "app00350", "hr": "modernizacija studijskih programa"}
+{"concept_id": "app00351", "hr": "studijski posjeti u druge zemlje"}
+{"concept_id": "app00361", "hr": "pilot sesije u partnerskim školama"}
+{"concept_id": "app00366", "hr": "radionice za profesionalni razvoj"}
+{"concept_id": "app00377", "hr": "čitanje i rasprava o odabranim knjigama"}
+{"concept_id": "app00382", "hr": "diseminacijski događaji u partnerskim zemljama"}
+{"concept_id": "app00384", "hr": "komunikacija i diseminacija rezultata"}
+{"concept_id": "app00394", "hr": "intenzivni programi za studente visokoobrazovnih ustanova"}
+{"concept_id": "app00395", "hr": "aktivno sudjelovanje na nastavi različitih predmeta"}
+{"concept_id": "app00403", "hr": "rad u paru"}
+{"concept_id": "app00406", "hr": "terenski rad"}
+{"concept_id": "app00414", "hr": "posjeti lokacijama"}
+{"concept_id": "app00415", "hr": "studijska putovanja"}
+{"concept_id": "app00423", "hr": "forum kazalište"}
+{"concept_id": "app00426", "hr": "online događaji"}
+{"concept_id": "app00433", "hr": "korištenje Kahoota"}
+{"concept_id": "app00437", "hr": "stručne ankete"}
+{"concept_id": "app00438", "hr": "medijski outreach"}
+{"concept_id": "app00439", "hr": "priroda kao terapija"}
+{"concept_id": "app00442", "hr": "istraživačka faza"}
+{"concept_id": "app00443", "hr": "serious gaming"}
+{"concept_id": "app00448", "hr": "izvještaji po državama"}
+{"concept_id": "app00450", "hr": "analiza utjecaja"}
+{"concept_id": "app00454", "hr": "digitalni sastanci"}
+{"concept_id": "app00464", "hr": "proces zajedničkog dizajniranja"}
+{"concept_id": "app00465", "hr": "aktivnosti zajednice"}
+{"concept_id": "app00469", "hr": "jezični trening"}
+{"concept_id": "app00471", "hr": "fizička mobilnost"}
+{"concept_id": "app00482", "hr": "forum na eTwinningu"}
+{"concept_id": "app00486", "hr": "pilot primjene"}
+{"concept_id": "app00487", "hr": "praktično učenje"}
+{"concept_id": "app00493", "hr": "analiza studija slučaja"}
+{"concept_id": "app00494", "hr": "kreativno izražavanje"}
+{"concept_id": "app00500", "hr": "evaluacije procesa"}
+{"concept_id": "app00503", "hr": "slaganje glazbe"}
+{"concept_id": "app00504", "hr": "digitalne sobe za bijeg"}
+{"concept_id": "app00507", "hr": "aktivnosti vrtlarstva"}
+{"concept_id": "app00508", "hr": "institucionalni posjeti"}
+{"concept_id": "app00509", "hr": "instrukcijski dizajn"}
+{"concept_id": "app00514", "hr": "pripremni sastanci"}
+{"concept_id": "app00515", "hr": "aktivnosti recikliranja"}
+{"concept_id": "app00518", "hr": "razvoj strategije"}
+{"concept_id": "app00523", "hr": "aktivnosti širenja rezultata"}
+{"concept_id": "app00524", "hr": "eksperimentalno učenje"}
+{"concept_id": "app00526", "hr": "interni recenzijski postupci"}
+{"concept_id": "app00530", "hr": "multiplikacijske aktivnosti"}
+{"concept_id": "app00532", "hr": "personalizirano učenje"}
+{"concept_id": "app00537", "hr": "validacija rezultata"}
+{"concept_id": "app00538", "hr": "pisanje dramskih scenarija"}
+{"concept_id": "app00543", "hr": "razvoj IKT vještina"}
+{"concept_id": "app00548", "hr": "tehnike mindfulnessa"}
+{"concept_id": "app00554", "hr": "promotivne aktivnosti"}
+{"concept_id": "app00556", "hr": "aktivne metode poučavanja"}
+{"concept_id": "app00560", "hr": "izrada Facebook grupe"}
+{"concept_id": "app00567", "hr": "rad na razvoju politika"}
+{"concept_id": "app00568", "hr": "izrada e-knjige"}
+{"concept_id": "app00570", "hr": "sastanci upravljačkog tijela"}
+{"concept_id": "app00572", "hr": "kazališne predstave"}
+{"concept_id": "app00576", "hr": "upotreba multimedijskih alata"}
+{"concept_id": "app00578", "hr": "metodologija benchmarkinga"}
+{"concept_id": "app00583", "hr": "digitalne metode učenja"}
+{"concept_id": "app00585", "hr": "strategije širenja rezultata"}
+{"concept_id": "app00593", "hr": "učenje stranih jezika"}
+{"concept_id": "app00602", "hr": "projekti društveno korisnih radova"}
+{"concept_id": "app00603", "hr": "prekogranična suradnja"}
+{"concept_id": "app00613", "hr": "smještaj kod domaćinskih obitelji"}
+{"concept_id": "app00615", "hr": "upotreba metode pripovijedanja"}
+{"concept_id": "app00616", "hr": "obuke za izgradnju kapaciteta"}
+{"concept_id": "app00625", "hr": "izrada studija slučaja"}
+{"concept_id": "app00626", "hr": "priprema planova lekcija"}
+{"concept_id": "app00637", "hr": "gamificirano iskustvo učenja"}
+{"concept_id": "app00638", "hr": "praksa inkluzivne pedagogije"}
+{"concept_id": "app00647", "hr": "implementacija živih laboratorija"}
+{"concept_id": "app00650", "hr": "aktivnosti zajednice prakse"}
+{"concept_id": "app00651", "hr": "aktivnosti za uključivanje studenata"}
+{"concept_id": "app00652", "hr": "upotreba tehnologije 3D tiska"}
+{"concept_id": "app00655", "hr": "izrada e-tečajeva"}
+{"concept_id": "app00656", "hr": "izrada obrazovnih videozapisa"}
+{"concept_id": "app00660", "hr": "dugotrajni nastavni zadatci"}
+{"concept_id": "app00664", "hr": "objavljivanje znanstvenih radova"}
+{"concept_id": "app00667", "hr": "webinari za razmjenu znanja"}
+{"concept_id": "app00671", "hr": "kreativne radionice za studente"}
+{"concept_id": "app00673", "hr": "dizajn međupredmetnih projekata"}
+{"concept_id": "app00674", "hr": "aktivnosti kulturne integracije"}
+{"concept_id": "app00675", "hr": "prikupljanje podataka putem anketa"}
+{"concept_id": "app00679", "hr": "izrada preporuka za politike"}
+{"concept_id": "app00681", "hr": "međunarodne grupne rasprave"}
+{"concept_id": "app00685", "hr": "vršnjačko učenje tijekom mobilnosti"}
+{"concept_id": "app00692", "hr": "su-kreiranje obrazovnih alata"}
+{"concept_id": "app00693", "hr": "su-kreiranje projektnih materijala"}
+{"concept_id": "app00694", "hr": "izrada instrukcijskih videozapisa"}
+{"concept_id": "app00697", "hr": "širenje putem EPALE platforme"}
+{"concept_id": "app00701", "hr": "kratkotrajne zajedničke obuke osoblja"}
+{"concept_id": "app00702", "hr": "upotreba društvenih mreža u obrazovanju"}
+{"concept_id": "app00704", "hr": "izrada PowerPoint prezentacija"}
+{"concept_id": "app00705", "hr": "razvoj obrazovnih videozapisa"}
+{"concept_id": "app00706", "hr": "integracija u školske kurikulume"}
+{"concept_id": "app00716", "hr": "događaji za obuku formatora (LTT)"}
+{"concept_id": "app00717", "hr": "transnacionalni upravljački sastanci"}
+{"concept_id": "app00718", "hr": "mješovita mobilnost odraslih učenika"}
+{"concept_id": "app00720", "hr": "konferencijska prezentacija rezultata"}
+{"concept_id": "app00726", "hr": "trening nenasilne komunikacije"}
+{"concept_id": "app00727", "hr": "organizacija kreativnih radionica"}
+{"concept_id": "app00728", "hr": "izgradnja kapaciteta za organizacije"}
+{"concept_id": "app00729", "hr": "suizrada obrazovnih programa"}
+{"concept_id": "app00731", "hr": "izrada instrukcijskih videozapisa"}
+{"concept_id": "app00734", "hr": "analiza potreba u partnerskim zemljama"}
+{"concept_id": "app00736", "hr": "pilotno testiranje materijala za osposobljavanje"}
+{"concept_id": "app00738", "hr": "obuka voditelja projekata (TPM)"}
+{"concept_id": "app00740", "hr": "suizrada resursa od strane partnera"}
+{"concept_id": "app00741", "hr": "suradnja s lokalnim organizacijama"}
+{"concept_id": "app00744", "hr": "izrada plana održivosti"}
+{"concept_id": "app00749", "hr": "okrugli stolovi s ekspertima"}
+{"concept_id": "app00750", "hr": "upotreba alata umjetne inteligencije"}
+{"concept_id": "app00752", "hr": "međunarodne mobilnosti za studente"}
+{"concept_id": "app00753", "hr": "međunarodne mobilnosti za nastavnike"}
+{"concept_id": "app00759", "hr": "mobilnosti za obuku trenera (LTT)"}
+{"concept_id": "app00762", "hr": "integracija umjetne inteligencije"}
+{"concept_id": "app00763", "hr": "sudjelovanje u nacionalnim natjecanjima"}
+{"concept_id": "app00782", "hr": "razmjena iskustava između zemalja"}
+{"concept_id": "app00790", "hr": "aktivnosti širenja s uključenim dionicima"}
+{"concept_id": "app00796", "hr": "transnacionalna suradnja između škola"}
+{"concept_id": "app00797", "hr": "izrada pristupačnog digitalnog repozitorija"}
+{"concept_id": "app00799", "hr": "razmjene mobilnosti između partnerskih zemalja"}
+{"concept_id": "app00802", "hr": "prijenos dobrih praksi između zemalja"}
+{"concept_id": "app00804", "hr": "virtualni sastanci zbog ograničenja pandemije"}
+{"concept_id": "app00807", "hr": "prijevod rezultata na jezike partnera"}
+{"concept_id": "app00812", "hr": "prijevod sadržaja na više jezika"}
+{"concept_id": "app00813", "hr": "razvoj višejezične platforme za učenje"}
+{"concept_id": "app00820", "hr": "integracija aktivnosti u školski kurikulum"}
+{"concept_id": "app00832", "hr": "širenje putem multiplikacijskih događanja i konferencija"}
+{"concept_id": "app00835", "hr": "usklađenost s ciljevima održivog razvoja Ujedinjenih naroda"}
+{"concept_id": "app00837", "hr": "upotreba eTwinning platforme za komunikaciju i širenje"}
+{"concept_id": "app00839", "hr": "razmjena praksi između partnera iz različitih zemalja"}
+{"concept_id": "app00845", "hr": "MOOC"}
+{"concept_id": "app00848", "hr": "gluma"}
+{"concept_id": "app00857", "hr": "dnevnici"}
+{"concept_id": "app00873", "hr": "slikanje"}
+{"concept_id": "app00874", "hr": "planiranje"}
+{"concept_id": "app00878", "hr": "knjižni klub"}
+{"concept_id": "app00884", "hr": "IKT alati"}
+{"concept_id": "app00888", "hr": "simpozij"}
+{"concept_id": "app00890", "hr": "izazovi"}
+{"concept_id": "app00902", "hr": "meditacija"}
+{"concept_id": "app00907", "hr": "mladski kamp"}
+{"concept_id": "app00917", "hr": "završni događaj"}
+{"concept_id": "app00949", "hr": "facilitacija"}
+{"concept_id": "app00964", "hr": "pilot događaji"}
+{"concept_id": "app00979", "hr": "certifikacija"}
+{"concept_id": "app01022", "hr": "uloga modela"}
+{"concept_id": "app01056", "hr": "posjeti tvrtkama"}
+{"concept_id": "app01089", "hr": "mikroučenje"}
+{"concept_id": "app01109", "hr": "pisanje izvještaja"}
+{"concept_id": "app01135", "hr": "mješoviti tečajevi"}
+{"concept_id": "app01145", "hr": "izrada videozapisa"}
+{"concept_id": "app01180", "hr": "zajedničke kampanje"}
+{"concept_id": "app01252", "hr": "kooperativni rad"}
+{"concept_id": "app01260", "hr": "eTwinning događaji"}
+{"concept_id": "app01275", "hr": "mobilnost učenika"}
+{"concept_id": "app01281", "hr": "medijske aktivnosti"}
+{"concept_id": "app01284", "hr": "središnji sastanak"}
+{"concept_id": "app01291", "hr": "online promocija"}
+{"concept_id": "app01293", "hr": "interakcija vršnjaka"}
+{"concept_id": "app01307", "hr": "metode istraživanja"}
+{"concept_id": "app01310", "hr": "sportski obrazovanje"}
+{"concept_id": "app01367", "hr": "eTwinning razmjena"}
+{"concept_id": "app01368", "hr": "europski festival"}
+{"concept_id": "app01379", "hr": "praktični pristup"}
+{"concept_id": "app01422", "hr": "sastanci s roditeljima"}
+{"concept_id": "app01425", "hr": "fizički sastanci"}
+{"concept_id": "app01426", "hr": "pilotiranje alata"}
+{"concept_id": "app01436", "hr": "snimljene sesije"}
+{"concept_id": "app01447", "hr": "zajednička refleksija"}
+{"concept_id": "app01464", "hr": "obučavajući sastanci"}
+{"concept_id": "app01469", "hr": "virtualni učionica"}
+{"concept_id": "app01480", "hr": "učenje temeljeno na umjetnosti"}
+{"concept_id": "app01501", "hr": "izrada e-knjiga"}
+{"concept_id": "app01515", "hr": "aktivnosti crtanja"}
+{"concept_id": "app01540", "hr": "analitika učenja"}
+{"concept_id": "app01574", "hr": "praćenje projekta"}
+{"concept_id": "app01587", "hr": "aktivnosti pjevanja"}
+{"concept_id": "app01613", "hr": "videokonferencije"}
+{"concept_id": "app01622", "hr": "youth debate klubovi"}
+{"concept_id": "app01682", "hr": "inovativni trening"}
+{"concept_id": "app01694", "hr": "trening leadershipa"}
+{"concept_id": "app01706", "hr": "mobilnost u Hrvatsku"}
+{"concept_id": "app01737", "hr": "produkcijski trening"}
+{"concept_id": "app01793", "hr": "trening temeljen na radu"}
+{"concept_id": "app01798", "hr": "aktivno sudjelovanje"}
+{"concept_id": "app01855", "hr": "eTwinning aktivnosti"}
+{"concept_id": "app01873", "hr": "poticanje kreativnosti"}
+{"concept_id": "app01896", "hr": "interaktivne sesije"}
+{"concept_id": "app01921", "hr": "online komunikacija"}
+{"concept_id": "app01949", "hr": "natjecaj za logo projekta"}
+{"concept_id": "app01970", "hr": "strukturirani dijalozi"}
+{"concept_id": "app01984", "hr": "korištenje aplikacija za učenje"}
+{"concept_id": "app01987", "hr": "korištenje Kahoot kvizova"}
+{"concept_id": "app01991", "hr": "upravljanje volonterima"}
+{"concept_id": "app02016", "hr": "kolaborativno pisanje"}
+{"concept_id": "app02018", "hr": "uključenost zajednice"}
+{"concept_id": "app02058", "hr": "digitalno širenje rezultata"}
+{"concept_id": "app02078", "hr": "eksperijencijalni trening"}
+{"concept_id": "app02079", "hr": "sesije uživo"}
+{"concept_id": "app02099", "hr": "upotreba IKT-a u poučavanju"}
+{"concept_id": "app02127", "hr": "sastanci sa stručnjacima"}
+{"concept_id": "app02129", "hr": "mobilnosti u Hrvatskoj"}
+{"concept_id": "app02154", "hr": "peer-to-peer pristup"}
+{"concept_id": "app02192", "hr": "strukturirano upravljanje"}
+{"concept_id": "app02260", "hr": "integracija u kurikulum"}
+{"concept_id": "app02262", "hr": "dizajniranje logotipa projekta"}
+{"concept_id": "app02295", "hr": "istraživanje dobre prakse"}
+{"concept_id": "app02312", "hr": "interaktivne aktivnosti"}
+{"concept_id": "app02315", "hr": "međunarodna razmjena"}
+{"concept_id": "app02338", "hr": "modularne jedinice učenja"}
+{"concept_id": "app02341", "hr": "multiplikacijske konferencije"}
+{"concept_id": "app02347", "hr": "objavljivanje newslettera"}
+{"concept_id": "app02356", "hr": "participativno učenje"}
+{"concept_id": "app02368", "hr": "pilotiranje kurikuluma"}
+{"concept_id": "app02379", "hr": "izrada knjižica"}
+{"concept_id": "app02457", "hr": "obuka akademskog osoblja"}
+{"concept_id": "app02459", "hr": "izrada akcijskog plana"}
+{"concept_id": "app02475", "hr": "su-dizajn kurikuluma"}
+{"concept_id": "app02476", "hr": "su-dizajn okvirnih dokumenata"}
+{"concept_id": "app02492", "hr": "izrada e-priručnika"}
+{"concept_id": "app02523", "hr": "proslave Dana Europe"}
+{"concept_id": "app02615", "hr": "izrada web stranice"}
+{"concept_id": "app02657", "hr": "događaj za obuku trenera"}
+{"concept_id": "app02659", "hr": "obuka iz programiranja"}
+{"concept_id": "app02732", "hr": "izrada infografika"}
+{"concept_id": "app02752", "hr": "izrada udžbenika"}
+{"concept_id": "app02770", "hr": "ekološke aktivnosti"}
+{"concept_id": "app02775", "hr": "izravna interakcija"}
+{"concept_id": "app02830", "hr": "multikulturalne aktivnosti"}
+{"concept_id": "app02876", "hr": "upitnik za roditelje"}
+{"concept_id": "app02882", "hr": "redoviti sastanci partnera"}
+{"concept_id": "app02959", "hr": "provođenje radionica"}
+{"concept_id": "app03035", "hr": "razvoj digitalnih igara"}
+{"concept_id": "app03079", "hr": "intersektorska suradnja"}
+{"concept_id": "app03104", "hr": "mobilnost između partnera"}
+{"concept_id": "app03127", "hr": "uspostava partnerstva"}
+{"concept_id": "app03208", "hr": "obuka za ciljanu skupinu"}
+{"concept_id": "app03217", "hr": "transnacionalno partnerstvo"}
+{"concept_id": "app03250", "hr": "sesije za izgradnju kapaciteta"}
+{"concept_id": "app03251", "hr": "obuka za izgradnju kapaciteta"}
+{"concept_id": "app03267", "hr": "suradnja s tvrtkama"}
+{"concept_id": "app03286", "hr": "izrada školskih vrtova"}
+{"concept_id": "app03317", "hr": "diseminacija putem webinara"}
+{"concept_id": "app03376", "hr": "interdisciplinarni projekti"}
+{"concept_id": "app03384", "hr": "intervjuiranje poduzetnika"}
+{"concept_id": "app03389", "hr": "lansiranje digitalne platforme"}
+{"concept_id": "app03439", "hr": "pilot radionice za odrasle"}
+{"concept_id": "app03463", "hr": "videoprezentacije škola"}
+{"concept_id": "app03497", "hr": "testiranje u stvarnim učionicama"}
+{"concept_id": "app03523", "hr": "upotreba alata za obrazovanje"}
+{"concept_id": "app03535", "hr": "praksa upravljanja otpadom"}
+{"concept_id": "app03559", "hr": "prezentacije najboljih praksi"}
+{"concept_id": "app03721", "hr": "upravljanje i koordinacija"}
+{"concept_id": "app03793", "hr": "partnerstvo za školsku razmjenu"}
+{"concept_id": "app03804", "hr": "mobilnost osoblja za osposobljavanje"}
+{"concept_id": "app03832", "hr": "osposobljavanje za transverzalne vještine"}
+{"concept_id": "app03951", "hr": "razvoj metodologija"}
+{"concept_id": "app03964", "hr": "diseminacija putem videozapisa"}
+{"concept_id": "app04009", "hr": "provedba tečaja"}
+{"concept_id": "app04197", "hr": "radionice za lokalne nastavnike"}
+{"concept_id": "app04288", "hr": "izrada virtualnih tvrtki"}
+{"concept_id": "app04319", "hr": "razvoj alata za učenje"}
+{"concept_id": "app04491", "hr": "kratkotrajne mobilnosti nastavnika"}
+{"concept_id": "app04517", "hr": "metodologija obučavaj-obučavatelja"}
+{"concept_id": "app04524", "hr": "sesije osposobljavanja za stručnjake"}
+{"concept_id": "app04561", "hr": "radionice za učenike"}
+{"concept_id": "app04638", "hr": "izrada didaktičkih materijala"}
+{"concept_id": "app04640", "hr": "izrada e-learning modula"}
+{"concept_id": "app04644", "hr": "izrada materijala za učenje"}
+{"concept_id": "app04691", "hr": "razvoj strateških planova"}
+{"concept_id": "app04735", "hr": "komunikacija na stranim jezicima"}
+{"concept_id": "app04865", "hr": "objavljivanje rezultata projekta"}
+{"concept_id": "app04892", "hr": "kratkotrajne aktivnosti učenja"}
+{"concept_id": "app04897", "hr": "razvoj vještina za studente"}
+{"concept_id": "app05048", "hr": "izrada obrazovnih priručnika"}
+{"concept_id": "app05052", "hr": "izrada interaktivnih tečajeva"}
+{"concept_id": "app05086", "hr": "razvoj paketa za osposobljavanje"}
+{"concept_id": "app05171", "hr": "interdisciplinarna suradnja"}
+{"concept_id": "app05355", "hr": "teorijsko-praktične radionice"}
+{"concept_id": "app05405", "hr": "radionice za osposobljavanje odgojitelja"}
+{"concept_id": "app05513", "hr": "stvaranje zajednica za učenje"}
+{"concept_id": "app05532", "hr": "izrada obrazovnog programa"}
+{"concept_id": "app05613", "hr": "identifikacija najboljih praksi"}
+{"concept_id": "app05636", "hr": "razmjena znanja među partnerima"}
+{"concept_id": "app05689", "hr": "online tečajevi za radnike s mladima"}
+{"concept_id": "app05861", "hr": "razmjena mladih za vršnjačko učenje"}
+{"concept_id": "app05988", "hr": "razvoj didaktičkih materijala"}
+{"concept_id": "app06121", "hr": "mobilnosti učenika i nastavnika"}
+{"concept_id": "app06124", "hr": "praćenje putem questionnairea"}
+{"concept_id": "app06305", "hr": "korištenje digitalnih alata za suradnju"}
+{"concept_id": "app06345", "hr": "izgradnja kapaciteta organizacija"}
+{"concept_id": "app06348", "hr": "su-kreiranje aktivnosti učenja"}
+{"concept_id": "app06433", "hr": "razvoj matrice kompetencija"}
+{"concept_id": "app06467", "hr": "diseminacija putem publikacija"}
+{"concept_id": "app06480", "hr": "radionice o zaštiti okoliša"}
+{"concept_id": "app06483", "hr": "izrada web-stranice projekta"}
+{"concept_id": "app06493", "hr": "razmjena primjera dobre prakse"}
+{"concept_id": "app06494", "hr": "seminar o razmjeni dobrih praksi"}
+{"concept_id": "app06589", "hr": "istraživanje potreba i prikupljanje podataka"}
+{"concept_id": "app06738", "hr": "transnacionalna edukacija edukatora"}
+{"concept_id": "app06864", "hr": "stvaranje zajednica prakse"}
+{"concept_id": "app06913", "hr": "razvoj obrazovnih priručnika"}
+{"concept_id": "app07159", "hr": "dijeljenje praksi među partnerima"}
+{"concept_id": "app07205", "hr": "edukacija edukatora (LTT sastanci)"}
+{"concept_id": "app07227", "hr": "upotreba engleskog jezika kao zajedničkog jezika"}
+{"concept_id": "app07358", "hr": "izrada platforme za online učenje"}
+{"concept_id": "app07420", "hr": "razvoj otvorenog online tečaja"}
+{"concept_id": "app07502", "hr": "završna konferencija za dijeljenje rezultata"}
+{"concept_id": "app07717", "hr": "studentske mobilnosti između zemalja"}
+{"concept_id": "app07730", "hr": "osposobljavanje nastavnika o novim tehnologijama"}
+{"concept_id": "app07788", "hr": "virtualne aktivnosti učenja i poučavanja"}
+{"concept_id": "app07871", "hr": "komparativna analiza među zemljama"}
+{"concept_id": "app07969", "hr": "razvoj portala za online učenje"}
+{"concept_id": "app07977", "hr": "diseminacija putem web-stranice projekta"}
+{"concept_id": "app08743", "hr": "vršnjačko učenje putem projektnih sastanaka"}
+{"concept_id": "app08924", "hr": "radionice o razmjeni dobrih praksi"}
+{"concept_id": "app09029", "hr": "izrada online alata za samoocjenjivanje"}
+{"concept_id": "app09192", "hr": "međunarodna mobilnost za mlade"}
+{"concept_id": "app09225", "hr": "izrada preporuka za donositelje politika"}
+{"concept_id": "app09634", "hr": "razvoj online tečaja osposobljavanja"}
+{"concept_id": "app09979", "hr": "testiranje materijala putem pilot sesija"}
+{"concept_id": "app11437", "hr": "razvoj otvorene obrazovne platforme"}
+{"concept_id": "app11921", "hr": "izgradnja transnacionalnog strateškog partnerstva"}
+{"concept_id": "app13387", "hr": "istraživanje potreba i procjena ciljanih skupina"}
+{"concept_id": "app13979", "hr": "aktivnost učenja, poučavanja i osposobljavanja (LTTA)"}
+{"concept_id": "app14104", "hr": "objavljivanje otvorenih obrazovnih resursa (OER)"}
+{"concept_id": "app14570", "hr": "organizacija multiplikacijskih događanja na konferencijama"}
+{"concept_id": "app15105", "hr": "istraživanje potreba i procjena putem promatranja"}
+{"concept_id": "app15649", "hr": "istraživanje potreba i procjena tržišta rada"}
+{"concept_id": "app15898", "hr": "suradnja sa školama iz različitih zemalja"}
+{"concept_id": "app16200", "hr": "procjena potreba putem upitnika i anketa"}
+{"concept_id": "app18008", "hr": "primjena principa univerzalnog dizajna za učenje"}
+{"concept_id": "app18248", "hr": "integracija formalnog, neformalnog i neformalnog učenja"}
+{"concept_id": "app20318", "hr": "razvoj inspirativnog, inovativnog i suvremenog priručnika"}
+{"concept_id": "app22907", "hr": "aktivnosti širenja rezultata na lokalnoj, nacionalnoj i međunarodnoj razini"}
+{"concept_id": "out00077", "hr": "2 e-knjige"}
+{"concept_id": "out00079", "hr": "web stranice"}
+{"concept_id": "out00083", "hr": "digitalne priče"}
+{"concept_id": "out00087", "hr": "YouTube kanal"}
+{"concept_id": "out00089", "hr": "projektni kalendar"}
+{"concept_id": "out00096", "hr": "međunarodna konferencija"}
+{"concept_id": "out00097", "hr": "program za osposobljavanje nastavnika"}
+{"concept_id": "out00103", "hr": "povećana svijest među dionicima"}
+{"concept_id": "out00113", "hr": "poboljšane komunikacijske vještine korištenjem engleskog jezika"}
+{"concept_id": "out00115", "hr": "karte"}
+{"concept_id": "out00117", "hr": "e-knjiga"}
+{"concept_id": "out00122", "hr": "scenariji"}
+{"concept_id": "out00123", "hr": "crtirji"}
+{"concept_id": "out00127", "hr": "plan rada"}
+{"concept_id": "out00131", "hr": "strip"}
+{"concept_id": "out00135", "hr": "akcijski plan"}
+{"concept_id": "out00141", "hr": "infografike"}
+{"concept_id": "out00146", "hr": "plan obuke"}
+{"concept_id": "out00149", "hr": "projektni kutak"}
+{"concept_id": "out00150", "hr": "projektna maskota"}
+{"concept_id": "out00154", "hr": "Erasmus+ kutci"}
+{"concept_id": "out00158", "hr": "paket za širenje rezultata"}
+{"concept_id": "out00161", "hr": "pedagoški vodič"}
+{"concept_id": "out00163", "hr": "web stranice škola"}
+{"concept_id": "out00165", "hr": "plesni nastupi"}
+{"concept_id": "out00170", "hr": "materijali za radionice"}
+{"concept_id": "out00171", "hr": "4 multiplikacijska događaja"}
+{"concept_id": "out00173", "hr": "digitalna soba za bijeg"}
+{"concept_id": "out00174", "hr": "izvještaj o analizi nedostataka"}
+{"concept_id": "out00175", "hr": "interaktivna web stranica"}
+{"concept_id": "out00178", "hr": "metodološki vodič"}
+{"concept_id": "out00187", "hr": "komunikacijska strategija"}
+{"concept_id": "out00190", "hr": "poboljšana medijska pismenost"}
+{"concept_id": "out00192", "hr": "plan upravljanja projektom"}
+{"concept_id": "out00195", "hr": "eTwinning projektni prostor"}
+{"concept_id": "out00211", "hr": "kurikulum za mlade radnike"}
+{"concept_id": "out00215", "hr": "brošure koje su izradili učenici"}
+{"concept_id": "out00222", "hr": "promoviran međukulturni dijalog"}
+{"concept_id": "out00228", "hr": "smanjen broj učenika koji napuštaju školovanje"}
+{"concept_id": "out00229", "hr": "smanjenje ranog napuštanja školovanja"}
+{"concept_id": "out00230", "hr": "videozapisi izrađeni tijekom projekta"}
+{"concept_id": "out00232", "hr": "povećane kompetencije nastavnika"}
+{"concept_id": "out00234", "hr": "poboljšane navike čitanja učenika"}
+{"concept_id": "out00241", "hr": "smanjene predrasude među sudionicima"}
+{"concept_id": "out00242", "hr": "poboljšana digitalna pismenost učenika"}
+{"concept_id": "out00249", "hr": "program obuke za odrasle edukatore"}
+{"concept_id": "out00253", "hr": "YouTube kanal kreiran za projekt"}
+{"concept_id": "out00254", "hr": "CD-ovi lokalnih tradicionalnih pjesama i glazbe"}
+{"concept_id": "out00255", "hr": "poboljšane komunikacijske vještine na engleskom jeziku"}
+{"concept_id": "out00256", "hr": "poboljšane matematičke vještine učenika"}
+{"concept_id": "out00257", "hr": "poboljšane vještine prezentiranja učenika"}
+{"concept_id": "out00258", "hr": "poboljšana pismenost čitanja među učenicima"}
+{"concept_id": "out00260", "hr": "poboljšane digitalne vještine odraslih polaznika"}
+{"concept_id": "out00275", "hr": "povećana europska svijest među učenicima"}
+{"concept_id": "out00276", "hr": "poboljšana digitalna pismenost među sudionicima"}
+{"concept_id": "out00280", "hr": "razvijene komunikacijske vještine među učenicima"}
+{"concept_id": "out00289", "hr": "poboljšane vještine zapošljivosti među sudionicima"}
+{"concept_id": "out00292", "hr": "ojačana suradnja između partnerskih škola"}
+{"concept_id": "out00299", "hr": "poboljšane vještine stranih jezika odraslih polaznika"}
+{"concept_id": "out00301", "hr": "program stručnog usavršavanja za stručnjake u području stručnog obrazovanja i obuke"}
+{"concept_id": "out00308", "hr": "povećana tolerancija prema društvenim i kulturnim razlikama"}
+{"concept_id": "out00310", "hr": "poboljšana kompetencija engleskog jezika među sudionicima"}
+{"concept_id": "out00317", "hr": "ojačan organizacijski kapacitet partnerskih organizacija"}
+{"concept_id": "out00321", "hr": "povećana svijest o problemima okoliša među učenicima i nastavnicima"}
+{"concept_id": "out00325", "hr": "DVD-ovi"}
+{"concept_id": "out00327", "hr": "predstava"}
+{"concept_id": "out00344", "hr": "drame"}
+{"concept_id": "out00351", "hr": "baneri"}
+{"concept_id": "out00353", "hr": "dnevnici"}
+{"concept_id": "out00364", "hr": "priče"}
+{"concept_id": "out00370", "hr": "umjetnička djela"}
+{"concept_id": "out00384", "hr": "udžbenik"}
+{"concept_id": "out00443", "hr": "digitalno čvorište"}
+{"concept_id": "out00496", "hr": "sažetak politika"}
+{"concept_id": "out00497", "hr": "dokument o politikama"}
+{"concept_id": "out00523", "hr": "dokumentarni filmovi"}
+{"concept_id": "out00542", "hr": "posađena stabla"}
+{"concept_id": "out00605", "hr": "online knjižica"}
+{"concept_id": "out00613", "hr": "projektna himna"}
+{"concept_id": "out00614", "hr": "projektni baner"}
+{"concept_id": "out00637", "hr": "video predavanja"}
+{"concept_id": "out00752", "hr": "dokumentarni film"}
+{"concept_id": "out00790", "hr": "nastavni moduli"}
+{"concept_id": "out00792", "hr": "priručnik za trenerه"}
+{"concept_id": "out00834", "hr": "vodič za fasilitatore"}
+{"concept_id": "out00852", "hr": "online konferencija"}
+{"concept_id": "out01023", "hr": "obrazovni moduli"}
+{"concept_id": "out01126", "hr": "vodiči za najbolje prakse"}
+{"concept_id": "out01148", "hr": "obrazovna platforma"}
+{"concept_id": "out01180", "hr": "priručnik za odgojitelje"}
+{"concept_id": "out01247", "hr": "izvještaj o najboljim praksama"}
+{"concept_id": "out01255", "hr": "zajednica prakse"}
+{"concept_id": "out01377", "hr": "baza podataka najboljih praksi"}
+{"concept_id": "out01522", "hr": "eTwinning suradnja"}
+{"concept_id": "out01532", "hr": "smjernice za nastavnike"}
+{"concept_id": "out01557", "hr": "nova mreža partnera"}
+{"concept_id": "out01560", "hr": "online projektna platforma"}
+{"concept_id": "out01594", "hr": "alati za radnike s mladima"}
+{"concept_id": "out01720", "hr": "otvoreno središte online resursa"}
+{"concept_id": "out01844", "hr": "primjeri dobre prakse"}
+{"concept_id": "out01889", "hr": "metodološke smjernice"}
+{"concept_id": "out01963", "hr": "TwinSpace za projekt"}
+{"concept_id": "out02127", "hr": "razvijena empatija učenika"}
+{"concept_id": "out02273", "hr": "poboljšana kvaliteta škola"}
+{"concept_id": "out02275", "hr": "poboljšan uspjeh škola"}
+{"concept_id": "out02326", "hr": "osjećaj europske pripadnosti"}
+{"concept_id": "out02407", "hr": "knjižica o tradicionalnim igrama"}
+{"concept_id": "out02419", "hr": "zbirka dobrih praksi"}
+{"concept_id": "out02450", "hr": "povećano samopoštovanje učenika"}
+{"concept_id": "out02573", "hr": "ojačana mreža partnera"}
+{"concept_id": "out02792", "hr": "smanjen broj ranog napuštanja školovanja"}
+{"concept_id": "out02903", "hr": "razvijene međukulturne vještine"}
+{"concept_id": "out02956", "hr": "poboljšana kvaliteta rada s mladima"}
+{"concept_id": "out03206", "hr": "poboljšane jezične kompetencije"}
+{"concept_id": "out03212", "hr": "poboljšana dobrobit nastavnika"}
+{"concept_id": "out03304", "hr": "kratki filmovi koje su izradili učenici"}
+{"concept_id": "out03317", "hr": "povećano samopoštovanje učenika"}
+{"concept_id": "out03433", "hr": "diseminacija rezultata projekta"}
+{"concept_id": "out03501", "hr": "poboljšana motivacija učenika"}
+{"concept_id": "out03599", "hr": "ojačane kompetencije nastavnika"}
+{"concept_id": "out04065", "hr": "povećani kapaciteti radnika s mladima"}
+{"concept_id": "out04147", "hr": "internacionalizacija škole"}
+{"concept_id": "out04381", "hr": "razvijene socijalne vještine učenika"}
+{"concept_id": "out04418", "hr": "povećan građanski angažman učenika"}
+{"concept_id": "out04472", "hr": "poboljšana zapošljivost diplomiranih studenata"}
+{"concept_id": "out04483", "hr": "poboljšane vještine timskog rada učenika"}
+{"concept_id": "out04789", "hr": "poboljšane jezične vještine nastavnika"}
+{"concept_id": "out04839", "hr": "poboljšano tjelesno zdravlje učenika"}
+{"concept_id": "out04857", "hr": "povećane vještine čitanja učenika"}
+{"concept_id": "out05343", "hr": "prezentacije koje su izradili sudionici"}
+{"concept_id": "out05599", "hr": "izložbe s rezultatima projekta"}
+{"concept_id": "out05673", "hr": "povišena razina digitalnih kompetencija"}
+{"concept_id": "out05814", "hr": "poboljšane profesionalne vještine nastavnika"}
+{"concept_id": "out06008", "hr": "poboljšane jezične vještine učenika"}
+{"concept_id": "out06419", "hr": "poboljšane digitalne kompetencije nastavnika"}
+{"concept_id": "out06478", "hr": "poboljšane vještine 21. stoljeća kod učenika"}
+{"concept_id": "out06519", "hr": "povećane kompetencije radnika s mladima"}
+{"concept_id": "out06738", "hr": "TwinSpace platforma za razmjenu materijala"}
+{"concept_id": "out06899", "hr": "poboljšane vještine za učenike i nastavnike"}
+{"concept_id": "out06900", "hr": "poboljšane profesionalne kompetencije nastavnika"}
+{"concept_id": "out06901", "hr": "poboljšani profesionalni razvoj nastavnika"}
+{"concept_id": "out06985", "hr": "poboljšani profesionalni razvoj nastavnika"}
+{"concept_id": "out06986", "hr": "poboljšane nastavne kompetencije nastavnika"}
+{"concept_id": "out07417", "hr": "poboljšani akademski uspjesi učenika"}
+{"concept_id": "out07961", "hr": "poboljšane socijalne kompetencije sudionika"}
+{"concept_id": "out08097", "hr": "web stranica projekta s rezultatima i aktivnostima"}
+{"concept_id": "out08144", "hr": "ojačan profesionalni profil nastavnika"}
+{"concept_id": "out08418", "hr": "poboljšane komunikacijske vještine među nastavnicima"}
+{"concept_id": "out08655", "hr": "stranice na društvenim mrežama Facebook i Instagram"}
+{"concept_id": "out09378", "hr": "povećana europska svijest među sudionicima"}
+{"concept_id": "out10462", "hr": "poboljšana razina poznavanja jezika među sudionicima"}
+{"concept_id": "out10712", "hr": "ojačane komunikacijske vještine među učenicima"}
+{"concept_id": "out12116", "hr": "poboljšane poduzetničke kompetencije među učenicima"}
+{"concept_id": "out14884", "hr": "poboljšane jezične kompetencije učenika i nastavnika"}
+{"concept_id": "out17504", "hr": "poboljšane sposobnosti engleskog jezika za učenike i nastavnike"}
+{"concept_id": "tar00318", "hr": "visokoškolske ustanove"}
+{"concept_id": "tar00319", "hr": "kuhari"}
+{"concept_id": "tar00320", "hr": "starije osobe"}
+{"concept_id": "tar00325", "hr": "babice"}
+{"concept_id": "tar00327", "hr": "ribari"}
+{"concept_id": "tar00328", "hr": "zatvorenici"}
+{"concept_id": "tar00331", "hr": "kućanstva"}
+{"concept_id": "tar00333", "hr": "načela"}
+{"concept_id": "tar00338", "hr": "nositelji promjena"}
+{"concept_id": "tar00342", "hr": "veterinari"}
+{"concept_id": "tar00343", "hr": "svijet rada"}
+{"concept_id": "tar00344", "hr": "mladi u riziku"}
+{"concept_id": "tar00346", "hr": "osobe bez doma"}
+{"concept_id": "tar00347", "hr": "stanovnici gradova"}
+{"concept_id": "tar00348", "hr": "mladi inženjeri"}
+{"concept_id": "tar00349", "hr": "dizajneri tečajeva"}
+{"concept_id": "tar00356", "hr": "ranjivi mladi"}
+{"concept_id": "tar00358", "hr": "studenti s invaliditetom"}
+{"concept_id": "tar00360", "hr": "razmjenjeni studenti"}
+{"concept_id": "tar00362", "hr": "ruralno stanovništvo"}
+{"concept_id": "tar00364", "hr": "poslovna zajednica"}
+{"concept_id": "tar00366", "hr": "stručnjaci za rano obrazovanje i odgoj"}
+{"concept_id": "tar00368", "hr": "neformalni njegovatelji"}
+{"concept_id": "tar00369", "hr": "migrantske zajednice"}
+{"concept_id": "tar00371", "hr": "istraživački instituti"}
+{"concept_id": "tar00378", "hr": "mlađe generacije"}
+{"concept_id": "tar00379", "hr": "odgojitelji i nastavnici u Hrvatskoj"}
+{"concept_id": "tar00383", "hr": "studenti iz Norveške"}
+{"concept_id": "tar00386", "hr": "studenti iz Mađarske"}
+{"concept_id": "tar00394", "hr": "nastavnici osnovnih škola"}
+{"concept_id": "tar00395", "hr": "obrazovne organizacije"}
+{"concept_id": "tar00397", "hr": "politički predstavnici"}
+{"concept_id": "tar00401", "hr": "ostale relevantne dionice"}
+{"concept_id": "tar00405", "hr": "odgojitelji odraslih i zajednice"}
+{"concept_id": "tar00411", "hr": "socijalno ugroženi studenti"}
+{"concept_id": "tar00415", "hr": "mladi bez invaliditeta"}
+{"concept_id": "tar00417", "hr": "upravitelji malih europskih otoka"}
+{"concept_id": "tar00419", "hr": "mladi u riziku od napuštanja školovanja"}
+{"concept_id": "tar00420", "hr": "nevladine organizacije (NVO)"}
+{"concept_id": "tar00422", "hr": "osobe s intelektualnim invaliditetom"}
+{"concept_id": "tar00423", "hr": "partnerske organizacije koje rade s mladima"}
+{"concept_id": "tar00430", "hr": "obitelji studenata s posebnim obrazovnim potrebama"}
+{"concept_id": "tar00437", "hr": "hoteli"}
+{"concept_id": "tar00442", "hr": "kustosi"}
+{"concept_id": "tar00447", "hr": "obrtnici"}
+{"concept_id": "tar00457", "hr": "radna snaga"}
+{"concept_id": "tar00463", "hr": "inkubatori"}
+{"concept_id": "tar00468", "hr": "mladi Romi"}
+{"concept_id": "tar00473", "hr": "gluhe osobe"}
+{"concept_id": "tar00482", "hr": "generacija Z"}
+{"concept_id": "tar00486", "hr": "vršnjački lideri"}
+{"concept_id": "tar00490", "hr": "korisnici knjižnica"}
+{"concept_id": "tar00500", "hr": "dječaci i djevojčice"}
+{"concept_id": "tar00503", "hr": "odgojitelji u ranoj edukaciji i brizi"}
+{"concept_id": "tar00508", "hr": "školski djelatnici"}
+{"concept_id": "tar00510", "hr": "urbanistički planeri"}
+{"concept_id": "tar00512", "hr": "odrasle osobe starije od 50 godina"}
+{"concept_id": "tar00514", "hr": "digitalni urođenici"}
+{"concept_id": "tar00516", "hr": "nastavnici etike"}
+{"concept_id": "tar00525", "hr": "lokalna društva"}
+{"concept_id": "tar00527", "hr": "mobilni studenti"}
+{"concept_id": "tar00528", "hr": "posjetitelji muzeja"}
+{"concept_id": "tar00537", "hr": "istraživački centri"}
+{"concept_id": "tar00538", "hr": "šire društvo"}
+{"concept_id": "tar00542", "hr": "akademski partneri"}
+{"concept_id": "tar00544", "hr": "šira zajednica"}
+{"concept_id": "tar00558", "hr": "kulturni medijatori"}
+{"concept_id": "tar00559", "hr": "kulturni djelatnici"}
+{"concept_id": "tar00560", "hr": "europska zajednica"}
+{"concept_id": "tar00561", "hr": "europska poduzeća"}
+{"concept_id": "tar00565", "hr": "zainteresirane strane"}
+{"concept_id": "tar00576", "hr": "edukacijske tvrtke"}
+{"concept_id": "tar00583", "hr": "multikulturalni timovi"}
+{"concept_id": "tar00585", "hr": "susjedne škole"}
+{"concept_id": "tar00586", "hr": "predstavnici nevladinih organizacija"}
+{"concept_id": "tar00587", "hr": "ostale lokalne škole"}
+{"concept_id": "tar00589", "hr": "stručna javnost"}
+{"concept_id": "tar00596", "hr": "nezaposleni građani"}
+{"concept_id": "tar00597", "hr": "sveučilišni startupi"}
+{"concept_id": "tar00598", "hr": "studenti veterine"}
+{"concept_id": "tar00599", "hr": "ranjiva djeca"}
+{"concept_id": "tar00602", "hr": "organizatori zajednice"}
+{"concept_id": "tar00603", "hr": "osobe s invaliditetom"}
+{"concept_id": "tar00612", "hr": "dugotrajni volonteri"}
+{"concept_id": "tar00613", "hr": "nacionalna tijela"}
+{"concept_id": "tar00615", "hr": "timovi osnovnih škola"}
+{"concept_id": "tar00616", "hr": "profesionalni vozači"}
+{"concept_id": "tar00618", "hr": "učitelji iz Poljske"}
+{"concept_id": "tar00622", "hr": "mladi vršnjački edukatori"}
+{"concept_id": "tar00624", "hr": "djeca iz Hrvatske"}
+{"concept_id": "tar00625", "hr": "zajednice u Europi"}
+{"concept_id": "tar00632", "hr": "djevojčice i mlade žene"}
+{"concept_id": "tar00638", "hr": "općinska tijela"}
+{"concept_id": "tar00649", "hr": "nezaposli mladi"}
+{"concept_id": "tar00653", "hr": "obrazovne ustanove"}
+{"concept_id": "tar00656", "hr": "pomorski stručnjaci"}
+{"concept_id": "tar00672", "hr": "različite društvene skupine"}
+{"concept_id": "tar00673", "hr": "edukatori diljem Europe"}
+{"concept_id": "tar00675", "hr": "neurodivergentni studenti"}
+{"concept_id": "tar00680", "hr": "poduporne ustanove"}
+{"concept_id": "tar00682", "hr": "članovi lokalne samouprave"}
+{"concept_id": "tar00685", "hr": "neprofitne organizacije"}
+{"concept_id": "tar00687", "hr": "tvrtke privatnog sektora"}
+{"concept_id": "tar00691", "hr": "društveno isključene skupine"}
+{"concept_id": "tar00692", "hr": "poduporne organizacije"}
+{"concept_id": "tar00693", "hr": "nastavnici tehnologije (IT)"}
+{"concept_id": "tar00695", "hr": "mladi u Sloveniji"}
+{"concept_id": "tar00697", "hr": "odrasle osobe s posebnim potrebama"}
+{"concept_id": "tar00698", "hr": "nastavnici informatičkih znanosti"}
+{"concept_id": "tar00699", "hr": "osobe u nepovoljnom položaju"}
+{"concept_id": "tar00705", "hr": "učenici tehničkih škola"}
+{"concept_id": "tar00708", "hr": "djeca dobi od 0 do 6 godina"}
+{"concept_id": "tar00710", "hr": "upravitelji kulturne baštine"}
+{"concept_id": "tar00711", "hr": "zaposlenici europskih MSP-a"}
+{"concept_id": "tar00716", "hr": "učenici općeg obrazovanja"}
+{"concept_id": "tar00720", "hr": "sudionujućes univerziteti"}
+{"concept_id": "tar00721", "hr": "učitelji osnovnog obrazovanja"}
+{"concept_id": "tar00726", "hr": "radnici s mladima iz Hrvatske"}
+{"concept_id": "tar00729", "hr": "osoblje kulturnih ustanova"}
+{"concept_id": "tar00731", "hr": "ostala europska sveučilišta"}
+{"concept_id": "tar00732", "hr": "partneri iz drugih škola"}
+{"concept_id": "tar00734", "hr": "učenici u osnovnom obrazovanju"}
+{"concept_id": "tar00735", "hr": "dionici u ruralnim područjima"}
+{"concept_id": "tar00739", "hr": "radnici s mladima diljem Europe"}
+{"concept_id": "tar00740", "hr": "sudionici obrazovanja odraslih"}
+{"concept_id": "tar00741", "hr": "dionici iz poslovnog sektora"}
+{"concept_id": "tar00745", "hr": "dionici lokalne zajednice"}
+{"concept_id": "tar00751", "hr": "učenici iz poljskih škola"}
+{"concept_id": "tar00754", "hr": "organizacije za obrazovanje odraslih"}
+{"concept_id": "tar00755", "hr": "praktičari obrazovanja odraslih"}
+{"concept_id": "tar00756", "hr": "praktičari profesionalnog usmjeravanja"}
+{"concept_id": "tar00761", "hr": "učenici sa zdravstvenim problemima"}
+{"concept_id": "tar00762", "hr": "učitelji i nastavnici gimnazija"}
+{"concept_id": "tar00766", "hr": "pružatelji neformalnog obrazovanja"}
+{"concept_id": "tar00778", "hr": "dugotrajno nezaposlene osobe"}
+{"concept_id": "tar00779", "hr": "roditelji djece u vrtićima"}
+{"concept_id": "tar00780", "hr": "dionici u sektoru mladih"}
+{"concept_id": "tar00781", "hr": "odrasle osobe s niskom razinom obrazovanja"}
+{"concept_id": "tar00782", "hr": "djeca s manje mogućnosti"}
+{"concept_id": "tar00783", "hr": "edukatori u neformalnom obrazovanju"}
+{"concept_id": "tar00785", "hr": "roditelji djece sudionika"}
+{"concept_id": "tar00787", "hr": "učenici s poteškoćama u učenju"}
+{"concept_id": "tar00789", "hr": "učenici iz nacionalnih manjina"}
+{"concept_id": "tar00792", "hr": "učenici s mentalnim invaliditetom"}
+{"concept_id": "tar00800", "hr": "nastavnici i učitelji partnerskih ustanova"}
+{"concept_id": "tar00809", "hr": "učenici srednjih škola u dobi od 16 do 18 godina"}
+{"concept_id": "tar00813", "hr": "mladi koji se suočavaju sa socijalnom isključenošću"}
+{"concept_id": "tar00824", "hr": "učenici koji se suočavaju s geografskim preprekama"}
+{"concept_id": "tar00825", "hr": "učenici iz drugih europskih zemalja"}
+{"concept_id": "tar00827", "hr": "nastavnici i učitelji iz pet različitih zemalja"}
+{"concept_id": "tar00832", "hr": "mladinski radnici partnerskih organizacija"}
+{"concept_id": "tar00838", "hr": "učenici s posebnim obrazovnim potrebama"}
+{"concept_id": "tar00851", "hr": "učenici iz pet različitih europskih zemalja"}
+{"concept_id": "tar00854", "hr": "nastavnici srednjih škola u strukovnom obrazovanju"}
+{"concept_id": "tar00875", "hr": "skauti"}
+{"concept_id": "tar00883", "hr": "domorodci"}
+{"concept_id": "tar00909", "hr": "fakulteti"}
+{"concept_id": "tar00918", "hr": "knjižnice"}
+{"concept_id": "tar00922", "hr": "glazbenici"}
+{"concept_id": "tar00923", "hr": "novopridošli"}
+{"concept_id": "tar00928", "hr": "osoblje MSP-a"}
+{"concept_id": "tar00932", "hr": "osoblje VET-a"}
+{"concept_id": "tar00973", "hr": "EU partneri"}
+{"concept_id": "tar00995", "hr": "ostalo osoblje"}
+{"concept_id": "tar01052", "hr": "partnerstva"}
+{"concept_id": "tar01059", "hr": "sportski klubovi"}
+{"concept_id": "tar01065", "hr": "voditelji stručnog obrazovanja i obuke"}
+{"concept_id": "tar01107", "hr": "romačka djeca"}
+{"concept_id": "tar01197", "hr": "ruralni partneri"}
+{"concept_id": "tar01198", "hr": "učitelji u ruralnim područjima"}
+{"concept_id": "tar01258", "hr": "budući treneri"}
+{"concept_id": "tar01365", "hr": "budući inženjeri"}
+{"concept_id": "tar01385", "hr": "učenici migranti"}
+{"concept_id": "tar01558", "hr": "talentirani učenici"}
+{"concept_id": "tar01579", "hr": "mladi u Sloveniji"}
+{"concept_id": "tar01597", "hr": "članovi konzorcija"}
+{"concept_id": "tar01627", "hr": "učenici srednjih škola"}
+{"concept_id": "tar01645", "hr": "osobe s niskim razinom vještina"}
+{"concept_id": "tar01658", "hr": "osoblje partnerskih nevladinih organizacija"}
+{"concept_id": "tar01660", "hr": "osobe s autizmom"}
+{"concept_id": "tar01708", "hr": "volonteri u nevladinim organizacijama"}
+{"concept_id": "tar01776", "hr": "studenti zdravstvenog smjera"}
+{"concept_id": "tar01795", "hr": "učenici španjolskog jezika"}
+{"concept_id": "tar01803", "hr": "marginalizirane odrasle osobe"}
+{"concept_id": "tar01833", "hr": "socijalne ustanove"}
+{"concept_id": "tar01933", "hr": "nisko kvalificirane odrasle osobe"}
+{"concept_id": "tar01997", "hr": "članovi sveučilišta"}
+{"concept_id": "tar01998", "hr": "sveučilišni savezi"}
+{"concept_id": "tar02181", "hr": "kulturni djelatnici"}
+{"concept_id": "tar02244", "hr": "učitelji osnovnih škola"}
+{"concept_id": "tar02290", "hr": "učenici od 11 do 17 godina"}
+{"concept_id": "tar02310", "hr": "nezaposlene mlade žene"}
+{"concept_id": "tar02348", "hr": "djeca od 3 do 6 godina"}
+{"concept_id": "tar02500", "hr": "voditelji obrazovanja odraslih"}
+{"concept_id": "tar02588", "hr": "ostali učenici u školi"}
+{"concept_id": "tar02673", "hr": "odrasli učenici u Hrvatskoj"}
+{"concept_id": "tar02782", "hr": "osobe s niskim obrazovanjem"}
+{"concept_id": "tar02785", "hr": "donositelji politika na razini EU"}
+{"concept_id": "tar02945", "hr": "učenici od 10 do 14 godina"}
+{"concept_id": "tar02946", "hr": "učenici od 6 do 15 godina"}
+{"concept_id": "tar03077", "hr": "dugotrajno nezaposlene osobe"}
+{"concept_id": "tar03106", "hr": "dionici privatnog sektora"}
+{"concept_id": "tar03109", "hr": "stručnjaci za rad s mladima"}
+{"concept_id": "tar03213", "hr": "djeca s cerebralnom paralizom"}
+{"concept_id": "tar03379", "hr": "donositelji politika obrazovanja odraslih"}
+{"concept_id": "tar03381", "hr": "odrasle osobe različitog podrijetla"}
+{"concept_id": "tar03483", "hr": "predstavnici javnog sektora"}
+{"concept_id": "tar03639", "hr": "studenti medicine"}
+{"concept_id": "tar03911", "hr": "učenici strukovnih programa"}
+{"concept_id": "tar03921", "hr": "studenti s ekonomskim problemima"}
+{"concept_id": "tar03937", "hr": "stavljenici u stručnom osposobljavanju"}
+{"concept_id": "tar03953", "hr": "mladi u Sjevernoj Makedoniji"}
+{"concept_id": "tar04110", "hr": "studenti uključeni u projekt"}
+{"concept_id": "tar04530", "hr": "učenici u riziku od napuštanja školovanja"}
+{"concept_id": "tar04739", "hr": "mala i srednja poduzeća (MSP)"}
+{"concept_id": "tar04762", "hr": "učenici nižih srednjih škola"}
+{"concept_id": "tar04815", "hr": "mladi na Zapadnom Balkanu"}
+{"concept_id": "tar04876", "hr": "obitelji osoba s invaliditetom"}
+{"concept_id": "tar04933", "hr": "sudionici strukovnog obrazovanja"}
+{"concept_id": "tar05042", "hr": "mladi iz različitih kultura"}
+{"concept_id": "tar06065", "hr": "mladi iz sudionika država"}
+{"concept_id": "tar06429", "hr": "mladi zainteresirani za poduzetništvo"}
+{"concept_id": "tar06601", "hr": "mladi zainteresirani za kulturnu baštinu"}
+{"concept_id": "tar06687", "hr": "praktičari nematerijalne kulturne baštine"}
+{"concept_id": "tar07172", "hr": "visokoškolske ustanove na Zapadnom Balkanu"}
+{"concept_id": "tar07581", "hr": "negovatelji osoba s intelektualnim invaliditetom"}
+{"concept_id": "tar08764", "hr": "stručnjaci koji rade s osobama s intelektualnim invaliditetom"}

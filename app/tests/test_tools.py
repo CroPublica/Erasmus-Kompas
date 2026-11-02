@@ -67,7 +67,7 @@ def test_dubrovnik_neretva_county(tb):                             # B12, B13, A
         assert (r["organisations"], r["projects_involved"], r["projects_coordinated"]) == (33, 151, 17), name
         assert round(r["grants_coordinated_eur"] / 1e6, 2) == 3.72
     assert tb.county_stats("Dubrovnik županija").rows[0]["county"] == "Dubrovačko-neretvanska"
-    assert tb.top_organisations("Dubrovačko-neretvanska").rows[0]["org_name"] == "SVEUCILISTE U DUBROVNIKU"
+    assert tb.top_organisations("Dubrovačko-neretvanska").rows[0]["org_name"] == "Sveučilište u Dubrovniku"
 
 
 def test_zagreb_is_not_zagrebacka(tb):
@@ -96,7 +96,7 @@ def test_coverage_filters_change_the_answer(tb):
 
 def test_similar_organisations_same_county_same_kind(tb):          # A08
     names = [x["name"] for x in tb.similar_organisations("MZO-19-049-502").rows]
-    assert names[0] == "SREDNJA ŠKOLA METKOVIĆ" and len(names) == 4
+    assert names[0] == "Srednja škola Metković" and len(names) == 4
 
 
 def test_bad_arguments_are_reported_not_raised(tb):

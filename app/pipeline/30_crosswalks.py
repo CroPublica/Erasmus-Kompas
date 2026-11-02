@@ -122,7 +122,7 @@ def main():
 
     n_ident = sum(1 for k in pairs if k[0] == k[1])
     print(f"topics: {len(new_topics)} current, {len(old_topics)} old ({n_ident} identical names, "
-          f"{len(pairs) - n_ident} proposed mappings, none reviewed by a person)")
+          f"{len(pairs) - n_ident} proposed mappings, {sum(1 for k, v in pairs.items() if k[0] != k[1] and v[1] == 'true')} of them reviewed by a person)")
     print(f"organisation types: {len(types)} -> classes {sorted({c for _, c in rows})}")
     print(f"action types: {len(actions)} (period, name) pairs -> families {sorted({o[2] for o in out})}")
     low = con.execute("select count(*) from topic_map where confidence = 'low'").fetchone()[0]

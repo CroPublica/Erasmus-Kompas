@@ -150,12 +150,12 @@ await test('overview: national figures, period switch, country ranking', async (
 await test('organisation list: sort, period filter, coordinators only', async () => {
   const p = await open('/en/organisations/');
   const firstName = async () => p.locator('#rows tr:not([hidden]) td a').first().innerText();
-  assert.match(await firstName(), /SVEUCILISTE U ZAGREBU/i);
+  assert.match(await firstName(), /Sveučilište u Zagrebu/i);
   await p.selectOption('#o', 'n'); const byName = await firstName();
-  assert.notEqual(byName, 'SVEUCILISTE U ZAGREBU'); await p.selectOption('#o', 'p');
+  assert.notEqual(byName, 'Sveučilište u Zagrebu'); await p.selectOption('#o', 'p');
   const all = await p.locator('#rows tr:not([hidden])').count();
   await p.selectOption('#p', '1'); const first = Number((await p.locator('#rows tr:not([hidden]) .pj').first().innerText()).replace(/\D/g, ''));
-  assert.equal(first, 91);                                   // SVEUCILISTE U ZAGREBU, 2014-2020
+  assert.equal(first, 91);                                   // Sveučilište u Zagrebu, 2014-2020
   await p.check('#co'); const coord = await p.locator('#rows tr:not([hidden])').evaluateAll((r) => r.every((x) => Number(x.querySelector('.cd').textContent.replace(/\D/g, '')) > 0));
   assert.ok(coord);
   await p.selectOption('#k', 'ngo'); assert.ok((await p.locator('#rows tr:not([hidden])').count()) < all);

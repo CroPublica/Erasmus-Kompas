@@ -86,3 +86,47 @@ def parse_address(address):
     pc = m.group(1).replace(" ", "")
     tail = address[m.end():].strip(" ,;-")
     return pc, (tail or None)
+
+
+_GENERIC = {"škola", "škole", "škola.", "vrtić", "gimnazija", "učilište", "centar", "dom", "fakultet", "akademija", "učenički", "obrtnička"}
+_SMALL = {"i", "u", "za", "na", "s", "sa", "od", "do", "pri", "iz", "po", "o", "te", "a", "uz", "kod", "ili"}
+_KEEP_UPPER = {"OŠ", "SŠ", "PŠ", "DV", "DOO", "D.O.O.", "JU", "RH", "EU", "ICT", "IT", "HR", "UNESCO"}
+_ROMAN = re.compile(r"^[IVXL]+\.?$")
+
+
+def display_name(name):
+    """Reading case for a name the registry writes in capitals ('I. OSNOVNA ŠKOLA ČAKOVEC' -> 'I. Osnovna škola Čakovec'): first word
+    and every other word capitalised except small words and generic institution words. Proper names cannot be told apart, so
+    this is a readable default, not a guess at the official spelling. Names that already have lower case letters are unchanged."""
+    if not name or name != name.upper() or not any(c.isalpha() for c in name):
+        return name
+    out = []
+    for i, w in enumerate(name.split()):
+        if i > 0 and w == "I":                       # the word 'i' (and), not a Roman numeral
+            out.append("i")
+        elif w in _KEEP_UPPER or _ROMAN.match(w):
+            out.append(w)
+        elif i > 0 and (w.lower() in _SMALL or w.lower() in _GENERIC):
+            out.append(w.lower())
+        else:
+            out.append("-".join(part[:1].upper() + part[1:].lower() for part in w.split("-")))
+    return " ".join(out)
+
+
+HIGHER_ED = re.compile(r"fakultet|sveucilis|veucilis|akademij|visoka skola|odjel|odsjek")
+_HE_STOP = {"u", "i", "na", "za", "s", "sa", "od", "do", "pri", "iz", "po", "o", "te", "a"}
+
+
+def he_canon(name, town):
+    """Key for matching a higher-education institution written in different ways ('Pomorski fakultet, Rijeka' / 'POMORSKI FAKULTET U
+    RIJECI' / 'Sveučilište u Rijeci, Pomorski fakultet'): the sorted significant words of the normalised name without the town (also in
+    its locative form: rijeci, zagrebu) and, when other words remain, without 'sveuciliste'. None when the name is not a higher-education one."""
+    n = norm_name(name)
+    t = norm_place(town)
+    if not n or not t or not HIGHER_ED.search(n):
+        return None
+    t4 = t[:4]
+    words = [w for w in re.findall(r"[a-z0-9]+", n) if w not in _HE_STOP and not (len(t4) >= 4 and w.startswith(t4))]
+    if len(words) > 1:
+        words = [w for w in words if w != "sveuciliste"]
+    return " ".join(sorted(words)) or None

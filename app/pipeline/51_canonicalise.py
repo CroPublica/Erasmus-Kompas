@@ -83,12 +83,15 @@ def leader_clusters(units, vectors, tau, ok=None):
     """units: [(phrase, count)] sorted by count desc; vectors: unit-length rows aligned with units. Returns [(leader index, [member indices])].
     `ok(leader_phrase, phrase, sim)` can veto a merge; the next most similar leader is tried."""
     leaders, members = [], []
-    L = np.zeros((0, vectors.shape[1])) if len(vectors) else None
+    n, d = (vectors.shape if len(vectors) else (0, 0))
+    L = np.zeros((min(n, 1024), d), dtype=np.float32)            # leader vectors; grown by doubling, never copied per leader
+    vectors = vectors.astype(np.float32, copy=False)
     for i, v in enumerate(vectors):
-        if len(leaders):
-            sim = L @ v
+        if leaders:
+            sim = L[:len(leaders)] @ v
             joined = False
-            for j in np.argsort(-sim)[:5]:
+            top = np.argpartition(-sim, min(5, len(sim)) - 1)[:5] if len(sim) > 5 else np.arange(len(sim))
+            for j in top[np.argsort(-sim[top])]:
                 if sim[j] < tau:
                     break
                 if ok is None or ok(units[leaders[j]][0], units[i][0], float(sim[j])):
@@ -97,9 +100,11 @@ def leader_clusters(units, vectors, tau, ok=None):
                     break
             if joined:
                 continue
+        if len(leaders) == len(L):
+            L = np.vstack([L, np.zeros_like(L)])
+        L[len(leaders)] = v
         leaders.append(i)
         members.append([i])
-        L = np.vstack([L, v]) if len(leaders) > 1 else v[None, :]
     return list(zip(leaders, members))
 
 
@@ -140,6 +145,37 @@ def build(mentions, embed, tau):
     return concepts, pmap
 
 
+def bulk_insert(con, table, rows):
+    """executemany runs one statement per row (about 300,000 rows here took half an hour); a CSV copy takes seconds."""
+    import tempfile
+    with tempfile.NamedTemporaryFile("w", suffix=".csv", newline="", encoding="utf-8", delete=False) as f:
+        csv.writer(f).writerows(rows)
+    try:
+        con.execute(f"insert into {table} select * from read_csv('{f.name}', header=false, all_varchar=false, nullstr='')")
+    finally:
+        Path(f.name).unlink()
+
+
+THEME_KINDS = {"approach": 0.75, "target_group": 0.75}   # problems and outputs are worded too specifically: attaching them was wrong too often
+THEME_SEED_MIN = 5                                        # a theme is a concept used by at least this many projects
+
+
+def attach_themes(concepts, stat, embed):
+    """-> rows (kind, concept_id, theme_id, similarity): each concept used by fewer than THEME_SEED_MIN projects points at the most similar
+    frequent concept of its kind, when the similarity reaches the kind's threshold. The concept itself is never changed."""
+    rows = []
+    for kind, thr in THEME_KINDS.items():
+        have = [(cid, c) for (k, cid), c in concepts.items() if k == kind and (k, cid) in stat]
+        seeds = [(cid, c) for cid, c in have if len(stat[(kind, cid)]["proj"]) >= THEME_SEED_MIN]
+        rest = [(cid, c) for cid, c in have if len(stat[(kind, cid)]["proj"]) < THEME_SEED_MIN]
+        S, R = embed([c["label_en"] for _, c in seeds]), embed([c["label_en"] for _, c in rest])
+        for lo in range(0, len(rest), 2000):
+            sc = R[lo:lo + 2000] @ S.T
+            j, b = sc.argmax(1), sc.max(1)
+            rows += [(kind, rest[lo + i][0], seeds[j[i]][0], round(float(b[i]), 4)) for i in range(len(j)) if b[i] >= thr]
+    return rows
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--tag", default="qwen3.5:9b-q8_0|v2")
@@ -152,11 +188,20 @@ def main():
     print(f"{len(mentions):,} mentions from {len(projects):,} projects ({a.tag})")
     emb = make_embeddings()
 
+    cache_file = APP_DIR / "data" / "concept_embedding_cache.npz"          # phrase -> vector, so a re-run with another tau is quick
+    cache = {}
+    if cache_file.exists():
+        z = np.load(cache_file, allow_pickle=False)
+        cache = dict(zip(z["phrases"].tolist(), z["vectors"]))
+
     def embed(texts):
-        out = []
-        for i in range(0, len(texts), 256):
-            out += emb.embed_documents(texts[i:i + 256])
-        v = np.array(out)
+        todo = [t for t in dict.fromkeys(texts) if t not in cache]
+        for i in range(0, len(todo), 256):
+            for t, v in zip(todo[i:i + 256], emb.embed_documents(todo[i:i + 256])):
+                cache[t] = np.asarray(v, dtype=np.float32)
+        if todo:
+            np.savez(cache_file, phrases=np.array(list(cache)), vectors=np.array(list(cache.values())))
+        v = np.array([cache[t] for t in texts])
         return v / np.linalg.norm(v, axis=1, keepdims=True)
 
     concepts, pmap = build(mentions, embed, a.tau)
@@ -185,13 +230,16 @@ def main():
             pc[(pid, cid)][1][status] += 1
     con = connect()
     con.execute("create or replace table concept(concept_id varchar, kind varchar, label_en varchar, n_projects integer, n_mentions integer, generic_share double)")
-    con.executemany("insert into concept values (?,?,?,?,?,?)", [
+    bulk_insert(con, "concept", [
         (c["concept_id"], kind, c["label_en"], len(stat[(kind, cid)]["proj"]), stat[(kind, cid)]["n"], stat[(kind, cid)]["gen"] / max(stat[(kind, cid)]["n"], 1))
         for (kind, cid), c in concepts.items() if (kind, cid) in stat])
     con.execute("create or replace table concept_map(kind varchar, phrase varchar, concept_id varchar)")
-    con.executemany("insert into concept_map values (?,?,?)", [(k, ph, cid) for (k, ph), cid in pmap.items()])
+    bulk_insert(con, "concept_map", [(k, ph, cid) for (k, ph), cid in pmap.items()])
     con.execute("create or replace table project_concept(project_id varchar, concept_id varchar, n_mentions integer, status varchar)")
-    con.executemany("insert into project_concept values (?,?,?,?)", [(pid, cid, n, (st.most_common(1)[0][0] if st else None)) for (pid, cid), (n, st) in pc.items()])
+    bulk_insert(con, "project_concept", [(pid, cid, n, (st.most_common(1)[0][0] if st else "")) for (pid, cid), (n, st) in pc.items()])
+    con.execute("create or replace table concept_theme(kind varchar, concept_id varchar, theme_id varchar, similarity double)")
+    bulk_insert(con, "concept_theme", attach_themes(concepts, stat, embed))
+    print("  concept_theme:", con.execute("select kind, count(*) from concept_theme group by 1 order by 1").fetchall())
     con.close()
     HR_REVIEW.parent.mkdir(parents=True, exist_ok=True)
     old = {}

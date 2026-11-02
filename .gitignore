@@ -227,3 +227,4 @@ EDA/Data/*
 
 # macOS
 .DS_Store
+app/data/concept_embedding_cache.npz
