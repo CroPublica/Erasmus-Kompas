@@ -142,3 +142,52 @@ def test_many_threads_can_use_one_toolbox_at_once(tb):                  # found 
                                      tb.coverage("Zagrebačka").rows[1]["schools"]), names))
     assert {o[1] for o in out} == {3830} and {o[2] for o in out} == {69}
     assert sorted({o[0] for o in out}) == [12, 19, 22, 34]
+
+
+# ---------------------------------------------------------------- concepts (steps 51, 52, 60)
+def test_search_concepts_finds_croatian_and_english_names(tb):
+    en = tb.search_concepts("early school leaving")
+    hr = tb.search_concepts("rano napuštanje školovanja")
+    assert en.rows and hr.rows
+    assert "early school leaving" in en.rows[0]["label_en"].lower()
+    assert any("school leaving" in x["label_en"].lower() for x in hr.rows)
+    assert tb.search_concepts("kakvo je vrijeme").rows == []
+
+
+def test_concept_profile_numbers_are_consistent(tb):
+    node = tb.search_concepts("peer learning", "approach").rows[0]["node_id"]
+    p = tb.concept_profile(node)
+    r = p.rows[0]
+    assert r["n_projects"] == r["n_2014_2020"] + r["n_2021_2027"]
+    assert 0 <= r["good_practice_low"] <= r["good_practice_rate"] <= r["good_practice_high"] <= 1
+    assert 1 <= len(r["examples"]) <= 3 and all(c in p.citations for c in [f"project:{x['project_id']}" for x in r["examples"]])
+    assert tb.concept_profile("nope").notes == ["unknown concept"]
+
+
+def test_common_concepts_are_sorted_and_bad_arguments_reported(tb):
+    rows = tb.common_concepts("approach", "all", 5).rows
+    assert len(rows) == 5 and [x["projects"] for x in rows] == sorted((x["projects"] for x in rows), reverse=True)
+    assert all(0 < x["share"] <= 1 for x in rows)
+    assert tb.common_concepts("nonsense").notes == ["bad argument"]
+    assert tb.common_concepts("approach", "1999").notes == ["unknown period"]
+
+
+def test_community_overview_lists_reportable_communities_only(tb):
+    rows = tb.community_overview().rows
+    assert rows and all(r["n_projects"] >= 20 for r in rows)
+    assert tb.community_overview("C99").notes[0] == "no such community"
+
+
+def test_concept_trends_split_growing_and_fading(tb):
+    r = tb.concept_trends("approach", 4)
+    assert {x["trend"] for x in r.rows} == {"growing", "fading"}
+    for x in r.rows:
+        hi, lo = ("share_2021_2027", "share_2014_2020") if x["trend"] == "growing" else ("share_2014_2020", "share_2021_2027")
+        assert x[hi] >= 1.5 * x[lo]
+    assert tb.concept_trends("nonsense").notes == ["bad argument"]
+
+
+def test_connected_concepts_report_neighbours_and_bridging_groups(tb):
+    r = tb.connected_concepts(5)
+    assert {x["measure"] for x in r.rows} == {"neighbours", "groups"}
+    assert all(x["neighbours"] >= 1 for x in r.rows)

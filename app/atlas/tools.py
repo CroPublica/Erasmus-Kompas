@@ -10,7 +10,9 @@ community_summary, concept_card, concept_centrality), success_rate (tablica 8/9)
 """
 from __future__ import annotations
 
+import json
 import math
+import re
 import threading
 from dataclasses import dataclass, field
 from pathlib import Path
@@ -63,6 +65,23 @@ def _tok_match(a: str, b: str) -> bool:
         return True
     short, long_ = (a, b) if len(a) <= len(b) else (b, a)
     return len(short) >= 5 and long_.startswith(short) and len(long_) - len(short) <= 3
+
+
+def _prefix_match(a: str, b: str) -> bool:
+    """Same word or the same word plus a short ending (pismenost / pismenosti); a changed ending (uporaba / uporabi) is not enough."""
+    short, long_ = (a, b) if len(a) <= len(b) else (b, a)
+    return a == b or (len(short) >= 5 and long_.startswith(short) and len(long_) - len(short) <= 2)
+
+
+def _stem_match(a: str, b: str) -> bool:
+    """Croatian/English word forms that differ only in the last letters (nasilje / nasilju, skill / skills): same stem of the first n-2 letters."""
+    if a == b:
+        return True
+    short, long_ = (a, b) if len(a) <= len(b) else (b, a)
+    if len(short) >= 4 and long_.startswith(short) and len(long_) - len(short) <= 2:        # rano / ranom, skill / skills
+        return True
+    sa, sb = (a[:-2] if len(a) >= 6 else a), (b[:-2] if len(b) >= 6 else b)
+    return sa == sb
 
 
 class Toolbox:
@@ -390,6 +409,158 @@ class Toolbox:
         res.notes.append("keyword match only; summaries are in the language they were submitted in")
         return res
 
+    # ------------------------------------------------------------------ concepts (steps 51, 52, 60)
+    _CONCEPT_STOP = {"koji", "koje", "koja", "kakve", "kakvi", "koliko", "projekti", "projekata", "projekte", "projekt", "erasmus", "ka2", "najcesce", "cesto",
+                     "what", "which", "projects", "project", "how", "many", "about", "with", "used", "most", "common", "commonly", "usually", "that", "does",
+                     "kako", "sto", "gdje", "tipicni", "tipicne", "tipican", "uobicajeni", "uobicajene", "metode", "metoda", "aktivnosti", "rezultati", "ciljne", "skupine", "pristupi", "pristup", "koriste", "koristi", "rade", "problemi", "znamo", "approaches", "approach", "outputs", "target", "groups", "know", "tell", "methods", "activities", "results", "pristupili", "proizveli", "navedi", "primjere", "primjeri", "postoji", "hrvatski", "hrvatskim", "hrvatske", "sudionicima", "sudjeluju", "rjesavanje", "rjesavaju", "kojim", "bave", "najcesce", "zajedno", "examples", "example", "croatian", "croatia", "address", "produce", "dobre", "prakse", "practice", "good", "ponovnoj", "ovim", "ovom", "ovih", "ovog"}
+
+    def search_concepts(self, text: str, kind: Optional[str] = None, limit: int = 5) -> ToolResult:
+        """Concepts (approaches, target groups, outputs, problems) and EU topics whose English or Croatian name matches the words of `text`."""
+        res = ToolResult("search_concepts", {"text": text, "kind": kind, "limit": limit})
+        words = [w for w in re.findall(r"[a-z0-9]+", _fold(text)) if len(w) >= 4 and w not in self._CONCEPT_STOP]
+        if not words:
+            res.notes.append("no searchable words")
+            return res
+        rows = self._rows("select n.node_id, n.kind, n.label_en, l.label_hr, n.n_projects from graph_node n left join concept_label l using(node_id)"
+                          + (" where n.kind = ?" if kind else ""), [kind] if kind else [])
+        tokset = [set(re.findall(r"[a-z0-9]+", _fold(r["label_en"]))) | set(re.findall(r"[a-z0-9]+", _fold(r["label_hr"] or ""))) for r in rows]
+        vocab = set().union(*tokset) if tokset else set()
+        kept = [w for w in words if any(_stem_match(w, t) for t in vocab)]        # words no concept name contains are noise ("znamo", "tell")
+        lone_guess = len(kept) == 1 and len(words) > 1                              # one word left out of several: only an exact word counts, not a similar ending
+        words = kept
+        if not words:
+            res.notes.append("no concept matches those words")
+            return res
+        df = {w: sum(1 for toks in tokset if any(_stem_match(w, t) for t in toks)) for w in words}     # in how many concept names each word occurs
+        scored = []
+        for r, toks in zip(rows, tokset):
+            matched = [w for w in words if any((_prefix_match(w, t) if lone_guess else _stem_match(w, t)) for t in toks)]
+            hit = len(matched)
+            if len(words) <= 2:        # every specific word must match; a word that occurs in many concept names ("obrazovanje") may be missing
+                ok = hit >= 1 and all(w in matched or df[w] > 20 for w in words)
+            else:
+                ok = hit >= 2 and hit / len(words) >= 0.3
+            if ok:
+                scored.append((hit / len(words), r["n_projects"], r))
+        scored.sort(key=lambda x: (-x[0], -x[1]))
+        res.rows = [x[2] for x in scored[:limit]]
+        res.citations = [f"concept:{r['node_id']}" for r in res.rows]
+        if not res.rows:
+            res.notes.append("no concept matches those words")
+        return res
+
+    def _node_projects(self, node_id: str) -> list[str]:
+        if node_id.startswith("TOP:"):
+            return [r["project_id"] for r in self._rows("select project_id from project_topic where topic = ?", [node_id[4:]])]
+        return [r["project_id"] for r in self._rows(
+            "select distinct pc.project_id from project_concept pc left join concept_theme t using(concept_id) where coalesce(t.theme_id, pc.concept_id) = ?", [node_id])]
+
+    def concept_profile(self, node_id: str, focus: Optional[str] = None) -> ToolResult:
+        """One concept: how many projects use it, by period, the share of good-practice projects against all projects, the community it belongs
+        to, the concepts that most often occur in the same projects (by kind), and example projects."""
+        res = ToolResult("concept_profile", {"node_id": node_id, "focus": focus})
+        n = self._rows("select n.*, l.label_hr from graph_node n left join concept_label l using(node_id) where n.node_id = ?", [node_id])
+        if not n:
+            res.notes.append("unknown concept")
+            return res
+        n = n[0]
+        total = self._rows("select count(distinct project_id) c from project_concept")[0]["c"]
+        gp_all = self._rows("select avg(good_practice::int) a from project where project_id in (select project_id from project_concept)")[0]["a"]
+        rel = self._rows("""select o.node_id, o.kind, o.label_en, l.label_hr, e.n_projects together, e.lift, e.cosine from graph_edge e
+                            join graph_node o on o.node_id = case when e.a = ? then e.b else e.a end left join concept_label l on l.node_id = o.node_id
+                            where e.a = ? or e.b = ? order by e.cosine desc""", [node_id, node_id, node_id])
+        related = {}
+        for kd in ("target_group", "approach", "output", "problem", "topic"):
+            related[kd] = [{k: (round(v, 2) if isinstance(v, float) else v) for k, v in r.items() if k != "kind" and k != "cosine"} for r in rel if r["kind"] == kd][:(6 if kd == focus else 4)]
+        pids = self._node_projects(node_id)
+        ex = self._rows(f"select project_id, call_year, title from project where project_id in ({','.join('?' * len(pids))}) order by good_practice desc, results_available desc, call_year desc limit 3", pids) if pids else []
+        comm = self._rows("select community_id, label_en, n_projects, reportable from community where community_id = ?", [n["community_id"]]) if n["community_id"] else []
+        res.rows = [{"node_id": node_id, "kind": n["kind"], "label_en": n["label_en"], "label_hr": n["label_hr"], "n_projects": n["n_projects"],
+                     "share_of_projects": n["n_projects"] / total, "n_2014_2020": n["n_2014_2020"], "n_2021_2027": n["n_2021_2027"],
+                     "good_practice": n["good_practice"], "good_practice_rate": n["gp_rate"], "good_practice_low": n["gp_lo"], "good_practice_high": n["gp_hi"],
+                     "good_practice_rate_all": gp_all, "community": comm[0] if comm else None, "related": related, "examples": ex}]
+        res.citations = [f"concept:{node_id}"] + [f"project:{x['project_id']}" for x in ex]
+        res.notes += ["concepts were extracted from project summaries by a language model, so counts are lower bounds and wording varies",
+                      "'together' means the same projects, not cause and effect; good practice is the EU's label, not a measure of success of this method"]
+        return res
+
+    def common_concepts(self, kind: str = "approach", period: str = "all", limit: int = 8) -> ToolResult:
+        """The concepts of one kind used by most projects (nationally, or in one period)."""
+        res = ToolResult("common_concepts", {"kind": kind, "period": period, "limit": limit})
+        if kind not in ("approach", "target_group", "output", "problem", "topic"):
+            res.notes.append("bad argument")
+            return res
+        col = {"all": "n_projects", "2014-2020": "n_2014_2020", "2021-2027": "n_2021_2027"}.get(period)
+        if not col:
+            res.notes.append("unknown period")
+            return res
+        total = self._rows("select count(distinct project_id) c from project_concept" if period == "all" else
+                           "select count(distinct pc.project_id) c from project_concept pc join project p using(project_id) where p.period = ?", [] if period == "all" else [period])[0]["c"]
+        res.rows = self._rows(f"select n.node_id, n.label_en, l.label_hr, n.{col} projects, n.{col} * 1.0 / {int(total)} share from graph_node n left join concept_label l using(node_id) "
+                              f"where n.kind = ? and n.{col} > 0 order by n.{col} desc, n.label_en limit {int(limit)}", [kind])
+        res.citations = [f"concept:{r['node_id']}" for r in res.rows]
+        res.notes += [f"share = projects using the concept / {total} projects with extracted concepts",
+                      "concepts were extracted from project summaries by a language model, so counts are lower bounds and wording varies"]
+        return res
+
+    def community_overview(self, community_id: Optional[str] = None) -> ToolResult:
+        """The groups of concepts that tend to occur in the same projects: the larger ones with their typical approaches, target groups, outputs and topics."""
+        res = ToolResult("community_overview", {"community_id": community_id})
+        rows = self._rows("select * from community where reportable" + (" and community_id = ?" if community_id else "") + " order by n_projects desc", [community_id] if community_id else [])
+        for r in rows:
+            prof = json.loads(r.pop("profile"))
+            r.update({k: prof[k][:3] for k in ("top_approach", "top_target_group", "top_output", "top_topic")})
+            r["families"] = prof["families"]
+        hr = {r["label_en"]: r["label_hr"] for r in self._rows("select n.label_en, l.label_hr from graph_node n join concept_label l using(node_id)")}
+        for r in rows:
+            for k in ("top_approach", "top_target_group", "top_output", "top_topic"):
+                r[k + "_hr"] = [hr.get(x, x) for x in r[k]]
+        res.rows = rows[: (1 if community_id else 6)]
+        if not res.rows:
+            res.notes.append("no such community")
+        res.notes.append("a community is a group of concepts that often occur in the same projects; it is found by a graph algorithm and is not an official category; a project can match several")
+        return res
+
+    def concept_trends(self, kind: str = "approach", limit: int = 6) -> ToolResult:
+        """Concepts of one kind whose share of projects grew or fell between 2014-2020 and 2021-2027 by at least 1.5 times (each used by 10+ projects in the stronger period)."""
+        res = ToolResult("concept_trends", {"kind": kind, "limit": limit})
+        if kind not in ("approach", "target_group", "output", "problem", "topic"):
+            res.notes.append("bad argument")
+            return res
+        per = {r["period"]: r["c"] for r in self._rows("select p.period, count(distinct pc.project_id) c from project_concept pc join project p using(project_id) group by 1")}
+        p1, p2 = per.get("2014-2020", 0), per.get("2021-2027", 0)
+        rows = self._rows("select n.node_id, n.label_en, l.label_hr, n.n_2014_2020 n1, n.n_2021_2027 n2 from graph_node n left join concept_label l using(node_id) where n.kind = ? and n.n_projects >= 20", [kind])
+        for r in rows:
+            r["share_2014_2020"], r["share_2021_2027"] = r["n1"] / p1, r["n2"] / p2
+        up = sorted((r for r in rows if r["n2"] >= 10 and r["share_2021_2027"] >= 1.5 * r["share_2014_2020"]), key=lambda r: -r["n2"])[:limit]
+        down = sorted((r for r in rows if r["n1"] >= 10 and r["share_2014_2020"] >= 1.5 * r["share_2021_2027"]), key=lambda r: -r["n1"])[:limit]
+        res.rows = [{**r, "trend": "growing"} for r in up] + [{**r, "trend": "fading"} for r in down]
+        res.citations = [f"concept:{r['node_id']}" for r in res.rows]
+        res.notes += ["share = projects using the concept / projects of that period with extracted concepts",
+                      "part of a change can come from the call design (for example school exchange partnerships were mainly a 2014-2020 action type), not from the field",
+                      "concepts were extracted from project summaries by a language model, so counts are lower bounds"]
+        if not res.rows:
+            res.notes.append("no change of that size")
+        return res
+
+    def connected_concepts(self, limit: int = 8) -> ToolResult:
+        """The concepts that occur together with the most other concepts, and those whose neighbours lie in the most different groups of concepts (bridges)."""
+        res = ToolResult("connected_concepts", {"limit": limit})
+        rows = self._rows(f"""with e as (select a node, b other from graph_edge union all select b, a from graph_edge)
+                              select n.node_id, n.kind, n.label_en, l.label_hr, n.n_projects, count(*) neighbours, count(distinct o.community_id) filter (where o.community_id <> '') groups
+                              from e join graph_node n on n.node_id = e.node join graph_node o on o.node_id = e.other left join concept_label l on l.node_id = n.node_id
+                              group by 1, 2, 3, 4, 5 order by neighbours desc limit {int(limit)}""")
+        bridges = self._rows(f"""with e as (select a node, b other from graph_edge union all select b, a from graph_edge)
+                              select n.node_id, n.kind, n.label_en, l.label_hr, n.n_projects, count(*) neighbours, count(distinct o.community_id) filter (where o.community_id <> '') groups
+                              from e join graph_node n on n.node_id = e.node join graph_node o on o.node_id = e.other left join concept_label l on l.node_id = n.node_id
+                              where n.kind <> 'topic' group by 1, 2, 3, 4, 5 having count(*) >= 20 order by groups desc, neighbours desc limit {int(limit)}""")
+        res.rows = [{**r, "measure": "neighbours"} for r in rows] + [{**r, "measure": "groups"} for r in bridges]
+        res.citations = [f"concept:{r['node_id']}" for r in res.rows]
+        res.notes += ["neighbours = other concepts that occur in the same projects more often than chance; groups = how many different groups of concepts those neighbours belong to",
+                      "popular concepts have many neighbours because they appear in many projects"]
+        return res
+
 
 TOOLS = ["find_organisation", "organisation_profile", "similar_organisations", "county_stats", "top_organisations",
-         "national_stats", "country_stats", "coverage", "search_projects", "success_rate"]
+         "national_stats", "country_stats", "coverage", "search_projects", "success_rate",
+         "search_concepts", "concept_profile", "common_concepts", "community_overview", "concept_trends", "connected_concepts"]

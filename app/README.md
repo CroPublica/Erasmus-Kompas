@@ -49,7 +49,7 @@ cd app
 ```
 
 Useful variants: `--raw-dir /path/to/data`, `--only 00` (one step), `--from 10` (that step and later), `--check`
-(only the checks), `--llm` (also run the LLM steps 50+, which are skipped by default), `--strict` (checks that are not built yet count as failures). `./run_pipeline.sh --help` lists them.
+(only the checks), `--llm` (also run the LLM steps 50, 51 and 52, which take hours and are skipped by default; step 60 runs when the concept tables exist), `--strict` (checks that are not built yet count as failures). `./run_pipeline.sh --help` lists them.
 Output: `data/atlas.duckdb` (rebuilt each time, not committed). Human review decisions go in `data/review/` (committed).
 
 | Step | File | What it does | State |
@@ -57,14 +57,16 @@ Output: `data/atlas.duckdb` (rebuilt each time, not committed). Human review dec
 | 00 | `pipeline/00_load_raw.py` | raw files → `stg_*` tables in DuckDB, all text, nothing cleaned | done (about 7 s) |
 | 05 | `pipeline/05_hr_appearances.py` | one row per Croatian organisation in a KA2 project (4,389), unpivoted from the 100 partner slots | done |
 | 07 | `pipeline/07_places.py` | postcode → town and county by majority vote; stored overrides in `data/review/place_overrides.csv` | done |
-| 10 | `pipeline/10_orgs_resolve.py` | resolves Croatian organisations (anchors: tablica 4 OIDs and registries; fuzzy within a postcode; stored aliases and decisions in `data/review/`); builds `organisation`, `participation`, `institution`; writes `data/review_queue.csv` | done |
-| 30 | `pipeline/30_crosswalks.py` | topic map 2014–2020 → 2021–2027 (`data/review/topic_crosswalk.csv`, proposed, not reviewed), organisation classes, action families | done |
+| 10 | `pipeline/10_orgs_resolve.py` | resolves Croatian organisations (anchors: tablica 4 OIDs and registries; fuzzy within a postcode; higher-education registry entries linked by name + town; stored aliases, decisions and hand-found OIDs in `data/review/`); registry spelling replaces the EU export's; builds `organisation`, `participation`, `institution`; writes `data/review_queue.csv` and `data/higher_ed_links_to_check.csv` | done |
+| 30 | `pipeline/30_crosswalks.py` | topic map 2014–2020 → 2021–2027 (`data/review/topic_crosswalk.csv`, reviewed by the owner), organisation classes, action families | done |
 | 40 | `pipeline/40_build_tables.py` | `project`, `project_topic`, and the views `v_org_ka2`, `v_county_ka2`, `v_coverage`, `v_hr_participation` | done |
-| 50 | `pipeline/50_extract_concepts.py` | LLM extraction of problems, target groups, approaches, outputs with evidence quotes; cache in `data/extraction_cache.jsonl`; `--limit N` for tests | written, tested on 6 projects; full run pending |
-| — | `eval/gold/` | gold-set batches of proposed extractions for human review (`make_batch.py`, `read_gold.py`, `batch_01.md`); scores step 50 | batch 1 under review |
+| 50 | `pipeline/50_extract_concepts.py` | LLM extraction of problems, target groups, approaches, outputs with evidence quotes; cache in `data/extraction_cache.jsonl`; `--limit N` for tests | done: full run 2026-11-01/02 (Qwen 3.5 9B Q8, prompt v2; 113,850 items, 3,795 projects, about 14 h) |
+| — | `eval/gold/` | gold-set batches of proposed extractions for human review (`make_batch.py`, `read_gold.py`, `batch_01.md`); scores step 50 | batch 1 reviewed (25 projects) |
 | 35 | `pipeline/35_applications.py` | applications received and projects contracted per call year and sector (tablica 3 and 9) | done |
-| 51 | `pipeline/51_canonicalise.py` | merge near-duplicate concepts (embeddings with guards); tables `concept`, `concept_map`, `project_concept`; Croatian label list for review | written and tested on partial data; runs after the full extraction |
-| 60, 70 | graph analysis, site export | communities, static JSON per page | not started |
+| 51 | `pipeline/51_canonicalise.py` | merge near-duplicate concepts (embeddings with guards); tables `concept`, `concept_map`, `project_concept`; Croatian label list for review | done at tau 0.80: tables `concept`, `concept_map`, `project_concept`, `concept_theme` (near-synonyms of frequent approaches and target groups point at the frequent concept); embeddings cached in `data/concept_embedding_cache.npz` |
+| 52 | `pipeline/52_label_concepts_hr.py` | Croatian names for the 2,343 concepts used by 3 or more projects (gemma4:31b, draft); `--load-only` copies the CSV, reviewed wording first, into the table `concept_label`; review workbook `data/review/KA2_Atlas_concept_labels_hr.xlsx` | drafted; owner review pending |
+| 60 | `pipeline/60_graph.py` | concept graph (frequent concepts + EU topics), Leiden communities, project → community; tables `graph_node`, `graph_edge`, `community`, `project_community` | done (24 communities, 19 with ≥ 20 projects) |
+| 70 | `pipeline/70_export_site.py` | static JSON per page in `site/src/data/` (organisations, places, projects, topics over time, graph) | done |
 | 99 | `pipeline/99_validate.py` | regression checks from the plan | done (7 checks) |
 
 Checks today (`./run_pipeline.sh --check`): 1, 2, 3, 5 and 7 pass. **4** fails by one project (151 projects involve
@@ -79,7 +81,17 @@ projects, tablica 5 counts 2,111; no county is over, so rows are missing, not mi
 - National project IDs sometimes carry trailing spaces or lack a hyphen (e.g. `2024-2-HR01-KA210-ADU000280988`); steps normalise them.
 - The KA2 CSVs have 621 columns (up to 100 partners per project); the `.xls` used in the EDA stopped at 38 partners. For Croatian appearances this makes no difference (none sit in slots above 38).
 
+## Ask: what it can answer
+
+Questions in Croatian or English, answered from the data with sources and written by code from the tool results (`ATLAS_ANSWER_MODE=template`, the default).
+Organisations, counties, the national picture, school coverage, success rates of applications, country ranking, most active organisations, project search, and
+(from the concept layer) the most common approaches, target groups, outputs and problems, what projects do about a given problem or theme, what to expect in a typical
+project, and which groups of concepts occur together. Tools: `find_organisation`, `organisation_profile`, `similar_organisations`, `county_stats`, `top_organisations`,
+`national_stats`, `country_stats`, `coverage`, `search_projects`, `success_rate`, `search_concepts`, `concept_profile`, `common_concepts`, `community_overview` (`atlas/tools.py`).
+
 ## Website (Phase 1, started)
+
+Pages (each in Croatian and English): coverage map, overview, projects (search), topics over time, **methods** (what projects do, share per period, growing and fading approaches), **explore graph** (concept search and groups of concepts), organisations, places, Ask.
 
 ```
 export PATH=~/.local/opt/node/bin:$PATH      # Node >= 22.23.4 (see LOG.md)
@@ -91,7 +103,7 @@ cd site && npm install && npm run build      # static site in site/dist (npm run
 
 ```
 ./build_site.sh                    # export data from DuckDB, build site/dist (static files, no server needed)
-./build_site.sh --test             # ... and run the 21 browser tests
+./build_site.sh --test             # ... and run the 23 browser tests
 SITE_BASE=/atlas ./build_site.sh   # site served under a sub-path (also SITE_URL=https://example.org for canonical links)
 ./build_site.sh --docker           # ... and build a container image (deploy/Dockerfile: nginx, port 8080, security headers)
 docker run --rm -p 8080:8080 ka2-atlas

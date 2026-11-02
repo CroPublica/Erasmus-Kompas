@@ -18,6 +18,9 @@ ROUTE_OK = {"lookup": {"organisation", "county", "top_organisations"}, "statisti
             "coverage": {"coverage"}, "refuse": None, "limits": None}
 
 
+CONCEPT_GROUPS = {"concept_search", "global_themes", "explain"}         # answered by the concept tools (path questions need a shortest-path tool: not built)
+
+
 def variants(x: str) -> list[str]:
     """An expected string in the forms an answer may use (3.830 / 3,830; 29,4 / 29.4)."""
     v = {x, x.replace(".", ","), x.replace(",", "."), x.replace(".", " "), x.replace(",", " "), x.replace(".", "\u00a0")}
@@ -67,7 +70,7 @@ def main():
     results, skipped = [], []
     for q in qs:
         need = set(q["tools"])
-        buildable = need <= set(TOOLS) and q["route"] not in ("local", "global", "path", "explain")
+        buildable = (need <= set(TOOLS) and q["route"] not in ("local", "global", "path", "explain")) or q["group"] in CONCEPT_GROUPS
         if not buildable and q["answerable"]:
             skipped.append((q["id"], sorted(need - set(TOOLS)) or q["route"])); continue
         t0 = time.time()
@@ -76,9 +79,11 @@ def main():
         text = strip_acc(r["answer"])
         miss = [e for e in (q["expected"] or []) if not any(strip_acc(v) in text for v in variants(e))]
         checks = {
-            "route": True if ROUTE_OK.get(q["route"], 1) is None else r["route"] in ROUTE_OK.get(q["route"], {r["route"]}),
+            "route": r["route"] in ("concepts", "project_search") if q["group"] in CONCEPT_GROUPS else
+                     True if ROUTE_OK.get(q["route"], 1) is None else r["route"] in ROUTE_OK.get(q["route"], {r["route"]}),
             "facts": not miss if q["expected"] else None,
             "language": detect_language(r["answer"]) == q["lang"] if len(r["answer"]) > 40 else True,
+            "answered": (not re.search(r"nema dokaza|no evidence", text) and not r["answer"].startswith("Na to pitanje")) if q["group"] in CONCEPT_GROUPS and q["answerable"] else None,
             "refusal": (r["route"] in ("out_of_scope", "limits") or bool(re.search(r"nema dokaza|no evidence|ne mogu|can.t answer|nije u podacima|not in the data|nema ka2|has not taken part", text))) if not q["answerable"] else None,
         }
         results.append({"id": q["id"], "question": q["question"], "route": r["route"], "answer": r["answer"], "checks": checks,
@@ -87,7 +92,7 @@ def main():
         v = [x["checks"][k] for x in results if x["checks"][k] is not None]
         return f"{sum(v)}/{len(v)}"
     print(f"graded {len(results)} questions, skipped {len(skipped)} (concept tools / success_rate not built)")
-    print(f"route {rate('route')} | facts {rate('facts')} | language {rate('language')} | refusal {rate('refusal')} | "
+    print(f"route {rate('route')} | facts {rate('facts')} | language {rate('language')} | refusal {rate('refusal')} | concept questions answered {rate('answered')} | "
           f"median {sorted(x['seconds'] for x in results)[len(results) // 2]} s")
     for x in results:
         bad = [k for k, v in x["checks"].items() if v is False]

@@ -55,6 +55,7 @@ h2 { font-size: 1.4rem; margin: 0 0 6px; }
 .two { grid-template-columns: minmax(0, 2fr) minmax(0, 1fr); align-items: start; }
 .two-eq { grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); align-items: start; }
 @media (max-width: 860px) { .two, .two-eq { grid-template-columns: minmax(0, 1fr); } }
+.three { grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); align-items: start; }
 .grid > * { min-width: 0; }
 
 .chips { display: flex; gap: 8px; flex-wrap: wrap; }

@@ -10,7 +10,8 @@ QS = ["Koliko je KA2 projekata imala Gimnazija Metković?", "Koliko organizacija
       "Koliki postotak osnovnih i srednjih škola sudjeluje u KA2?", "Kolika je bila stopa prolaznosti KA2 prijava u Hrvatskoj 2023.?",
       "Which country coordinates the most KA2 projects?", "How many KA2 projects does the University of Dubrovnik have?",
       "Koliko KA2 projekata ima Sveučilište u Splitu?", "Je li Zagrebačka županija ispod očekivanja?", "Koja hrvatska organizacija ima najviše projekata?",
-      "Koliko je KA2 projekata s hrvatskim sudionicima bilo 2014.–2020.?"]
+      "Koliko je KA2 projekata s hrvatskim sudionicima bilo 2014.–2020.?",
+      "Koje su najčešće metode u KA2 projektima?", "What do projects do about early school leaving?", "Which groups of concepts occur together?"]
 
 
 def one(url, q):

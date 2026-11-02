@@ -90,7 +90,7 @@ await test('no horizontal scroll at phone width', async () => {
 });
 await test('accessibility (axe: wcag2a/aa) has no violations', async () => {
   const bad = [];
-  for (const path of ['/en/', '/hr/', '/en/organisations/', '/en/organisations/mzo-19-049-502/', '/en/places/zagrebacka/', '/en/places/', '/en/ask/', '/hr/ask/', '/en/overview/', '/hr/overview/', '/en/projects/', '/en/topics/', '/hr/topics/']) {
+  for (const path of ['/en/', '/hr/', '/en/organisations/', '/en/organisations/mzo-19-049-502/', '/en/places/zagrebacka/', '/en/places/', '/en/ask/', '/hr/ask/', '/en/methods/', '/hr/methods/', '/en/graph/', '/hr/graph/', '/en/overview/', '/hr/overview/', '/en/projects/', '/en/topics/', '/hr/topics/']) {
     const p = await open(path); await p.addScriptTag({ path: axePath });
     const r = await p.evaluate(() => axe.run(document, { runOnly: ['wcag2a', 'wcag2aa'] }));
     for (const v of r.violations) bad.push(`${path} ${v.id} (${v.nodes.length}): ${v.nodes[0].target}`);
@@ -188,6 +188,34 @@ await test('topics over time: lines, the 2021 break, limits, data table', async 
   const extra = p.locator('#picker input[type=checkbox]:not(:checked)').first(); await extra.check({ force: true }).catch(() => {});
   assert.equal(await p.locator('#legend li').count(), 8);
   await p.fill('#tf', 'zzzz'); assert.equal(await p.locator('#picker label.chk:visible').count(), 0);
+});
+await test('methods: typical project, views, filter', async () => {
+  const p = await open('/en/methods/');
+  assert.equal(await p.locator('section.card ol li').count(), 18);
+  const all = await p.locator('#mtable tbody tr:not([hidden])').count(); assert.ok(all >= 100, `rows ${all}`);
+  await p.click('#views button[data-view="growing"]');
+  const growing = await p.locator('#mtable tbody tr:not([hidden])').count(); assert.ok(growing > 0 && growing < all);
+  assert.match(await p.locator('#viewnote').innerText(), /1\.5 times/);
+  await p.click('#views button[data-view="rare"]');
+  assert.ok(await p.locator('#mtable tbody tr:not([hidden])').count() > 100);
+  await p.click('#views button[data-view="all"]'); await p.fill('#mf', 'peer learning');
+  assert.ok(await p.locator('#mtable tbody tr:not([hidden])').count() >= 1);
+  await p.fill('#mf', 'zzzzzz'); assert.equal(await p.locator('#none').isVisible(), true);
+  const h = await open('/hr/methods/'); assert.match(await h.locator('h1').innerText(), /Metode/); assert.match(await h.locator('#mtable tbody tr:not([hidden]) td').first().innerText(), /[a-zčćšžđ]/i);
+});
+await test('graph: groups listed, concept search shows what goes with it', async () => {
+  const p = await open('/en/graph/');
+  assert.ok(await p.locator('details.card').count() >= 15);
+  await p.fill('#cs', 'bullying'); assert.ok(await p.locator('#cres li').count() >= 1);
+  await p.locator('#cres button').first().click();
+  assert.equal(await p.locator('#cbody').isVisible(), true);
+  assert.match(await p.locator('#cbody').innerText(), /most often in the same projects/i);
+  const before = await p.locator('#cbody h3').innerText();
+  await p.locator('#cbody button[data-i]').first().click();
+  assert.notEqual(await p.locator('#cbody h3').innerText(), before);
+  await p.fill('#cs', 'qqqqq'); assert.equal(await p.locator('#cnone').isVisible(), true);
+  const d = await open('/en/graph/#app00002'); assert.match(await d.locator('#cbody h3').innerText(), /peer learning/i);        // link from an Ask answer
+  const h = await open('/hr/graph/'); await h.fill('#cs', 'nasilj'); assert.ok(await h.locator('#cres li').count() >= 1);
 });
 await test('no console errors', async () => assert.deepEqual(errors, []));
 await browser.close(); stop();

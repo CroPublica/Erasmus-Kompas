@@ -190,6 +190,27 @@ def main():
     tops.sort(key=lambda t: (-t["total"], t["name"]))
     write("topics_by_year.json", {"years": years, "projects_with_topics": {str(y): per_year[y] for y in years}, "topics": tops})
 
+    # ---- concepts: the graph page and the methods page (steps 51, 52, 60). Nodes are indexed in the edge list to keep the file small.
+    if con.execute("select count(*) from information_schema.tables where table_name = 'graph_node'").fetchone()[0]:
+        tot = con.execute("select count(distinct project_id) from project_concept").fetchone()[0]
+        per = dict(con.execute("select p.period, count(distinct pc.project_id) from project_concept pc join project p using(project_id) group by 1").fetchall())
+        gp_all = con.execute("select avg(good_practice::int) from project where project_id in (select project_id from project_concept)").fetchone()[0]
+        hr_of = dict(con.execute("select node_id, label_hr from concept_label").fetchall())
+        gn = con.execute("select node_id, kind, label_en, n_projects, n_2014_2020, n_2021_2027, good_practice, gp_lo, gp_hi, community_id from graph_node "
+                         "order by n_projects desc, node_id").fetchall()
+        index_of = {r[0]: i for i, r in enumerate(gn)}
+        comms = []
+        for r in rows(con, "select * from community where reportable order by n_projects desc"):
+            prof = json.loads(r.pop("profile"))
+            hr_by_en = {x[2]: hr_of.get(x[0]) for x in gn}
+            comms.append({"id": r["community_id"], "n": r["n_projects"], "share": r["share"], "p1": r["n_2014_2020"], "p2": r["n_2021_2027"], "gp": r["good_practice"],
+                          "gp_lo": r["gp_lo"], "gp_hi": r["gp_hi"], "grant": r["median_grant"], "families": prof["families"],
+                          **{k: [[x, hr_by_en.get(x)] for x in prof[k]] for k in ("top_approach", "top_target_group", "top_output", "top_problem", "top_topic")}})
+        write("graph.json", {"projects": tot, "p1": per.get("2014-2020", 0), "p2": per.get("2021-2027", 0), "gp_rate_all": gp_all, "communities": comms,
+                             "nodes": [[r[0], r[1], r[2], hr_of.get(r[0]), r[3], r[4], r[5], r[6], round(r[7], 3), round(r[8], 3), r[9] or ""] for r in gn],
+                             "edges": [[index_of[a], index_of[b], n, round(l, 1)] for a, b, n, l in con.execute(
+                                 "select a, b, n_projects, lift from graph_edge where a in (select node_id from graph_node) order by cosine desc").fetchall()]})
+
     n_proj, n_coord = con.execute("select count(*), sum(hr_coordinated::int) from project").fetchone()
     write("meta.json", {"generated": date.today().isoformat(), "projects": n_proj, "coordinated": int(n_coord),
                         "organisations": len(index), "counties": len(counties),

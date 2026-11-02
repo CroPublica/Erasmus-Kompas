@@ -350,3 +350,12 @@ You mentioned features for later but haven't listed them yet, so these are propo
 - **EU-wide project pages:** the export carries a link to each project's page on the Erasmus+ Project Results Platform, so project pages link there (no separate pages are built for the ~43,000 KA2 projects without a Croatian participant).
 - **Croatian labels:** drafted for review in a shared document (topics, website text); the owner reviews. Draft files: `data/review/topic_labels_hr.csv`, `data/review/ui_strings_hr.csv`.
 - **E-mail addresses:** not published.
+
+## Status 2026-11-02
+
+Phases 0, 0b, 1, 2 and 3 are built; Phase 4 (Ask) covers organisations, counties, national figures, coverage, success rates, country ranking, project search and the concept layer.
+- Extraction: full run done (Qwen 3.5 9B Q8, prompt v2). Gold set: recall 97 % approaches, 96 % outputs, 86 % problems, 84 % target groups on 8 closely checked projects.
+- Concepts: step 51 at tau 0.80 plus `concept_theme` (approaches and target groups only; problems and outputs are worded too specifically to attach). Step 52 drafts Croatian names; the owner reviews them.
+- Graph: step 60 with Leiden at resolution 2.0 (24 communities, 19 with at least 20 projects). Site pages /methods/ and /graph/. Ask tools `search_concepts`, `concept_profile`, `common_concepts`, `community_overview`.
+- Owner decisions recorded: Croatian labels and the topic crosswalk reviewed; school matches (51) all correct; OIDs of six organisations supplied by hand; higher-education registry entries linked by name + town.
+- Open: concept label review, native-speaker rating (decides the default answer mode), `org_decisions.csv` verification, hosting, commits, real screen-reader test.

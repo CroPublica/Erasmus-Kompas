@@ -50,7 +50,7 @@ Choose exactly one route:
 - country_ranking: which country coordinates most / where Croatia ranks among countries
 - top_organisations: the most active organisations (nationally or in a county)
 - project_search: find projects about a topic given in plain words (give the topic words in 'topic')
-- concepts: problems, solutions, approaches, themes, connections between concepts
+- concepts: the content of projects: most common methods, approaches, target groups, outputs or problems; what projects do about a problem or theme; what to expect in a typical project; groups of related concepts
 - out_of_scope: anything else (other programmes, weather, opinions, personal data about people, forecasts)
 period: "2014-2020" or "2021-2027" only if the question names that period (2021-2026 means 2021-2027), otherwise "all".
 role: "coordinator" only if the question is about coordinating.
@@ -68,6 +68,8 @@ Examples (the answer is always one JSON object):
 "Koja zemlja najčešće koordinira KA2 projekte u EU?" -> {"route": "country_ranking"}
 "Koja hrvatska organizacija ima najviše projekata?" -> {"route": "top_organisations"}
 "Koji projekti rješavaju nedostatak digitalnih vještina u Slavoniji?" -> {"route": "concepts"}
+"Koje su najčešće metode u KA2 projektima?" -> {"route": "concepts"}
+"What do projects do about early school leaving?" -> {"route": "concepts"}
 "Pokaži projekte o robotici" -> {"route": "project_search", "topic": "robotika"}
 "Kakvo će biti vrijeme sutra?" -> {"route": "out_of_scope"}"""
 
@@ -125,6 +127,20 @@ def detect_language(text: str) -> str:
     return "hr" if hr >= en and hr > 0 else ("hr" if not text.strip() else "en")
 
 
+CONCEPT_WORDS = re.compile(r"najčešć\w* (metod|pristup|aktivnost|rezultat|ishod|ciljn|problem|izazov)|najcesc\w* (metod|pristup|aktivnost|rezultat|ishod|ciljn|problem|izazov)|"
+                           r"most (common|frequent)\w* (method|approach|activit|output|result|target|problem|challenge)|common (method|approach|activit|output|target|problem)|"
+                           r"tipičn\w* projekt|typical project|što (se )?(može )?očekivati|what (can|to|should) (you |one |someone )?expect|od nule|from scratch|"
+                           r"koje (metode|pristupe|aktivnosti)|which (methods|approaches|activities)|što rade projekti|what do projects do|"
+                           r"skupin\w* (pojmova|tema)|groups of (concepts|themes)|clusters?\b|"
+                           r"primjer\w* dobre prakse|examples? of good practice|glavn\w+ tem|main (themes|topics)|prevladava|promijeni\w* (se )?tem|tem\w* (su se )?promijeni\w*|how (have )?(the )?(themes|topics|methods|approaches)|"
+                           r"najpovezaniji|most connected|connect(s)? the most|kroz vrijeme|over time|trend")
+COMMON_WORDS = re.compile(r"glavn\w+ tem|prevladava|main (themes|topics)|najčešć|najcesc|most (common|frequent)|common|usually|obično|tipičn|typical|uobičajen|očekivati|expect|od nule|from scratch|početnik|beginner")
+EXPECT_WORDS = re.compile(r"očekivati|expect|od nule|from scratch|početnik|beginner|tipičn\w* projekt|typical project")
+TREND_WORDS = re.compile(r"promijeni|changed|kroz vrijeme|over time|trend|rast\w+|growing|nestaj|fading|declin")
+CONNECT_WORDS = re.compile(r"najpovezaniji|most connected|connect(s)? the most|povezuje|bridge")
+COMMUNITY_WORDS = re.compile(r"skupin\w* (pojmova|tema)|groups of (concepts|themes)|clusters?\b|vrste projekata|types of projects")
+KIND_WORDS = [("topic", re.compile(r"glavn\w+ tem|\btem[aeui]\b|themes?|topics?")), ("target_group", re.compile(r"ciljn\w* skupin|target group|za koga|for whom")), ("output", re.compile(r"rezultat|ishod|proizvod|output|result|deliverable")),
+              ("problem", re.compile(r"problem|izazov|potreb|challenge|\bneeds?\b")), ("approach", re.compile(r"pristup|metod|aktivnost|approach|method|activit|što rade|what do projects do"))]
 SUCCESS_WORDS = re.compile(r"prolaznost|stopa (uspje|odobr)|uspje\w* prijav|success rate|pass rate|prijava (je )?(odobren|podnesen)|applications? (were|was)? ?(received|submitted|approved)|broj prijava|zaprimljen|podnesen\w* prijav|prijava podneseno")
 
 
@@ -150,6 +166,8 @@ def enrich_plan(plan: dict, question: str, tb) -> dict:
         plan["route"] = "out_of_scope"
     elif SUCCESS_WORDS.search(q):
         plan["route"] = "success"
+    elif CONCEPT_WORDS.search(q):
+        plan["route"] = "concepts"
     elif re.search(r"\bka\s?1\b|\bka\s?3\b|mobilnost", q):
         plan["route"] = "limits"
     elif re.search(r"koja zemlja|koje zemlje|na kojem je mjestu|which country|which countries|\brank", q):
@@ -163,7 +181,7 @@ def enrich_plan(plan: dict, question: str, tb) -> dict:
         plan["county"] = tb.resolve_county(question)
     elif plan["route"] == "county" and school_words:
         plan["route"] = "coverage"
-    elif plan["route"] == "concepts" and not re.search(r"projekt|škol|skol|erasmus|ka2|organiz|tem[aeu]\b|problem|vještin|vjestin|digital|project|school|theme|skill|educat|obrazov|učenik|nastavn|sustav|partner", q):
+    elif plan["route"] == "concepts" and not re.search(r"projekt|škol|skol|erasmus|ka2|organiz|tem[aeu]\b|problem|vještin|vjestin|digital|project|school|theme|skill|educat|obrazov|učenik|nastavn|sustav|partner|teacher|student|pupil|youth|learner|učitelj|mladi|učenic|roditelj|parent|inclusion|uključi|bullying|nasilj|methods?\b|metod|approach|pristup", q):
         plan["route"] = "out_of_scope"
     if plan.get("school_type", "both") == "both":
         if re.search(r"vrti[ćc]|kindergarten|preschool", q):
@@ -398,7 +416,80 @@ def template_answer(lang: str, route: str, results: list[dict]) -> str:
         return "; ".join(f"{x['org_name']}: {f(x['projects'])}" for x in rows)
     if t == "search_projects":
         return "; ".join(x["title"] for x in results[-1]["rows"][:5])
+    if t in ("common_concepts", "concept_profile", "community_overview", "search_concepts", "concept_trends", "connected_concepts"):
+        return _concept_answer(lang, results)
     return "Nema dokaza u podacima za ovo pitanje." if hr else "No evidence found in the data for this question."
+
+
+KIND_NAMES = {"approach": ("pristupi i aktivnosti", "approaches and activities"), "target_group": ("ciljne skupine", "target groups"), "output": ("rezultati", "outputs"),
+              "problem": ("problemi", "problems"), "topic": ("teme EU programa", "EU programme topics")}
+CONCEPT_CAVEAT = {"hr": "Pojmovi su izdvojeni jezičnim modelom iz sažetaka projekata, pa su brojevi donja granica; zajedničko pojavljivanje u istim projektima ne znači uzrok.",
+                  "en": "The concepts were extracted from project summaries by a language model, so the counts are lower bounds; occurring in the same projects does not mean cause and effect."}
+
+
+def _concept_answer(lang: str, results: list[dict]) -> str:
+    hr = lang == "hr"
+    f = lambda x, d=0: _fmt(lang, x, d)
+    name = lambda x: (x.get("label_hr") or x["label_en"]) if hr else x["label_en"]
+    commons = [x for x in results if x["tool"] == "common_concepts" and x["rows"]]
+    if commons:
+        parts = []
+        for c in commons:
+            kn = KIND_NAMES[c["args"]["kind"]][0 if hr else 1]
+            items = "; ".join(f"{name(x)} ({f(x['projects'])}, {f(x['share'] * 100)} %)" for x in c["rows"])
+            parts.append(f"{kn[:1].upper() + kn[1:]}: {items}.")
+        head = "Najčešće u KA2 projektima s hrvatskim sudionikom (broj projekata, udio): " if hr else "Most common in KA2 projects with a Croatian participant (projects, share): "
+        return head + " ".join(parts) + " " + CONCEPT_CAVEAT[lang]
+    last = next(x for x in reversed(results) if x["rows"])
+    if last["tool"] == "concept_trends":
+        pc = lambda r, k: f(r[k] * 100)
+        def part(tr):
+            rs = [r for r in last["rows"] if r["trend"] == tr]
+            return "; ".join(f"{name(r)} ({pc(r, 'share_2014_2020')} % → {pc(r, 'share_2021_2027')} %)" for r in rs)
+        up, down = part("growing"), part("fading")
+        kn = KIND_NAMES[last["args"]["kind"]][0 if hr else 1]
+        if hr:
+            return (f"{kn[:1].upper() + kn[1:]} — udio projekata 2014.–2020. → 2021.–2026. Rastu: {up or 'nema'}. Slabe: {down or 'nema'}. "
+                    "Dio promjene dolazi iz vrste poziva (npr. školska razmjena uglavnom je do 2020.), a ne iz struke. " + CONCEPT_CAVEAT[lang])
+        return (f"{kn[:1].upper() + kn[1:]} — share of projects 2014–2020 → 2021–2026. Growing: {up or 'none'}. Fading: {down or 'none'}. "
+                "Part of the change comes from the call design (for example school exchange was mainly an action of 2014–2020), not from the field. " + CONCEPT_CAVEAT[lang])
+    if last["tool"] == "connected_concepts":
+        nb = "; ".join(f"{name(r)} ({f(r['neighbours'])})" for r in last["rows"] if r["measure"] == "neighbours")
+        br = "; ".join(f"{name(r)} ({f(r['groups'])})" for r in last["rows"] if r["measure"] == "groups")
+        if hr:
+            return f"Pojmovi koji se javljaju uz najviše drugih pojmova (broj): {nb}. Pojmovi čiji susjedi pripadaju najviše različitih skupina (broj skupina): {br}. Popularni pojmovi imaju mnogo susjeda jer su u mnogo projekata. " + CONCEPT_CAVEAT[lang]
+        return f"Concepts that occur with the most other concepts (count): {nb}. Concepts whose neighbours lie in the most different groups (number of groups): {br}. Popular concepts have many neighbours because they are in many projects. " + CONCEPT_CAVEAT[lang]
+    if last["tool"] == "community_overview":
+        items = []
+        for r in last["rows"][:4]:
+            k = lambda key: ", ".join(r[key + ("_hr" if hr else "")][:2])
+            items.append(f"{r['community_id']}: {f(r['n_projects'])} {hr_plural(r['n_projects'], 'projekt', 'projekta', 'projekata') if hr else 'projects'} ({f(r['share'] * 100)} %); "
+                         + (f"ciljne skupine {k('top_target_group')}; pristupi {k('top_approach')}" if hr else f"target groups {k('top_target_group')}; approaches {k('top_approach')}"))
+        return ((f"Skupine pojmova koji se često javljaju u istim projektima: " if hr else "Groups of concepts that often occur in the same projects: ") + "; ".join(items) + ". " + CONCEPT_CAVEAT[lang])
+    if last["tool"] == "concept_profile":
+        r = last["rows"][0]
+        kn = {"approach": ("pristup", "approach"), "target_group": ("ciljna skupina", "target group"), "output": ("rezultat", "output"),
+              "problem": ("problem", "problem"), "topic": ("tema EU programa", "EU topic")}[r["kind"]][0 if hr else 1]
+        rel = []
+        focus = last["args"].get("focus")
+        for kd in sorted(("target_group", "approach", "output", "problem", "topic"), key=lambda k: k != focus):
+            items = [name(x) for x in r["related"].get(kd, [])[:(5 if kd == focus else 3)]]
+            if items:
+                rel.append(f"{KIND_NAMES[kd][0 if hr else 1]}: {', '.join(items)}")
+        ex = "; ".join(f"{x['title'][:80]} ({x['call_year']})" for x in r["examples"][:2])
+        if hr:
+            s = (f"{name(r)} ({kn}): {f(r['n_projects'])} {hr_plural(r['n_projects'], 'projekt', 'projekta', 'projekata')} ({f(r['n_2014_2020'])} u 2014.–2020., {f(r['n_2021_2027'])} u 2021.–2026.). "
+                 f"Oznaku dobre prakse ima {f(r['good_practice'])} od njih ({f(r['good_practice_rate'] * 100)} %; među svim projektima {f(r['good_practice_rate_all'] * 100)} %). ")
+            s += ("Najčešće u istim projektima: " + "; ".join(rel) + ". ") if rel else ""
+            s += (f"Primjeri: {ex}. " if ex else "")
+        else:
+            s = (f"{name(r)} ({kn}): {f(r['n_projects'])} projects ({f(r['n_2014_2020'])} in 2014–2020, {f(r['n_2021_2027'])} in 2021–2026). "
+                 f"{f(r['good_practice'])} of them carry the good-practice label ({f(r['good_practice_rate'] * 100)} %; among all projects {f(r['good_practice_rate_all'] * 100)} %). ")
+            s += ("Most often in the same projects: " + "; ".join(rel) + ". ") if rel else ""
+            s += (f"Examples: {ex}. " if ex else "")
+        return s + CONCEPT_CAVEAT[lang]
+    items = "; ".join(name(x) for x in last["rows"][:5])
+    return (f"Pronašao sam pojmove: {items}." if hr else f"I found these concepts: {items}.")
 
 
 # ---------------------------------------------------------------------------------------------------- the graph
@@ -484,15 +575,38 @@ class Asker:
                 plan.update(route="organisation", follow_up=True)
         if plan is not None and plan["route"] == "organisation" and not plan.get("organisation") and not s.get("last_org_id") \
                 and not self.tb.find_organisation_in_text(s["question"]).rows:
-            plan["route"] = "national"                    # "organisation" with no organisation named anywhere: a national question phrased with "those"
+            county = self.tb.resolve_county(s["question"])      # "organisation" with no organisation named anywhere: a county question if a county is named, else a national one
+            plan["route"], plan["county"] = ("county", county) if county else ("national", plan.get("county"))
         if plan is None or plan["route"] == "out_of_scope":
             return {"plan": plan or {"route": "out_of_scope"}, "results": [], "done": True, "answer": REFUSAL[s["lang"]], "trace": s["trace"] + ["refused"]}
         if plan["route"] == "limits":
             return {"plan": plan, "results": [], "done": True, "answer": LIMITS[s["lang"]], "trace": s["trace"] + ["limits"]}
-        if plan["route"] == "concepts":
-            return {"plan": plan, "results": [], "done": True, "answer": NOT_BUILT[s["lang"]], "trace": s["trace"] + ["concepts not built"]}
         r = plan["route"]
         tb = self.tb
+        if r == "concepts":
+            q = s["question"].lower()
+            kind = next((k for k, rx in KIND_WORDS if rx.search(q)), None)
+            if CONNECT_WORDS.search(q):
+                results.append(tb.connected_concepts())
+            elif TREND_WORDS.search(q):
+                results.append(tb.concept_trends(kind or "approach"))
+            elif COMMUNITY_WORDS.search(q):
+                results.append(tb.community_overview())
+            elif COMMON_WORDS.search(q):
+                for kd in (("approach", "output", "target_group") if EXPECT_WORDS.search(q) and not kind else (kind or "approach",)):
+                    results.append(tb.common_concepts(kd, plan["period"], 6 if EXPECT_WORDS.search(q) and not kind else 8))
+            else:
+                found = tb.search_concepts(s["question"])
+                results.append(found)
+                if found.rows:
+                    results.append(tb.concept_profile(found.rows[0]["node_id"], kind))
+            used = [x.as_dict() for x in results]
+            out = {"plan": plan, "results": used, "trace": s["trace"] + [f"tools={[x['tool'] for x in used]}"]}
+            if self.mode == "polish":
+                out["draft"] = template_answer(s["lang"], r, used)
+            if self.mode == "template" or not any(x["rows"] for x in used):
+                out.update(done=True, answer=template_answer(s["lang"], r, used), trace=out["trace"] + ["template answer"])
+            return out
         if r == "organisation":
             org_id = None
             if plan["follow_up"] and s.get("last_org_id") and not plan["organisation"]:
@@ -526,6 +640,10 @@ class Asker:
             results.append(tb.top_organisations(plan["county"], plan["period"]))
         elif r == "project_search" and plan["topic"]:
             results.append(tb.search_projects(plan["topic"], plan["period"]))
+            if not results[-1].rows:                      # no keyword hit (summaries are mostly English): try the concept names, which also exist in Croatian
+                found = tb.search_concepts(plan["topic"])
+                if found.rows:
+                    results.append(tb.concept_profile(found.rows[0]["node_id"]))
         used = [x.as_dict() for x in results]
         out = {"plan": plan, "results": used, "trace": s["trace"] + [f"tools={[x['tool'] for x in used]}"]}
         if self.mode == "polish":

@@ -27,4 +27,14 @@ await test('a refusal is a refusal, not an answer', async () => {
   const p = await page('/hr/ask/'); const t = await ask(p, 'Tko je ravnatelj Gimnazije Metković?'); assert.match(t, /ne mogu odgovoriti/i);
 });
 await test('no script errors', async () => assert.deepEqual(errs, []));
+await test('concept question: most common methods, caveat and a link that opens the graph', async () => {
+  const p = await page('/hr/ask/'); const t = await ask(p, 'Koje su najčešće metode u KA2 projektima?');
+  assert.ok(t.includes('radionice') && t.includes('donja granica'), t);
+  const link = p.locator('#out a.pill').first(); assert.match(await link.getAttribute('href'), /\/hr\/graph\/#/);
+  await link.click(); await p.locator('#cbody h3').waitFor({ timeout: 10000 });
+});
+await test('concept question in English: what projects do about a problem', async () => {
+  const p = await page('/en/ask/'); const t = await ask(p, 'What do projects do about early school leaving?');
+  assert.match(t, /early school leaving/i); assert.match(t, /lower bounds/);
+});
 await b.close(); console.log(`\n${ok} passed, ${bad} failed`); process.exit(bad ? 1 : 0);

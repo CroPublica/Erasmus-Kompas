@@ -5,7 +5,8 @@ reviewed Croatian topic names as a glossary so the same terms are used the same 
 data/concept_labels_hr_cache.jsonl (resumable). Rows that already have a label_hr_reviewed are left alone.
 This is a draft for the owner to review, not a final text.
 
-Usage: python pipeline/52_label_concepts_hr.py [--profile gemma31b_q8] [--limit N] [--batch 40]
+Usage: python pipeline/52_label_concepts_hr.py [--profile gemma31b_q8] [--limit N] [--batch 40] [--load-only]
+--load-only copies the CSV (reviewed wording first, else the draft) into the table concept_label; run it again after the owner's review.
 """
 import argparse
 import csv
@@ -16,7 +17,9 @@ import urllib.request
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+sys.path.insert(0, str(Path(__file__).resolve().parent))
 from atlas.config import load_profile, _ollama_url  # noqa: E402
+from common import connect  # noqa: E402
 
 APP = Path(__file__).resolve().parent.parent
 LABELS = APP / "data" / "review" / "concept_labels_hr.csv"
@@ -47,12 +50,28 @@ def ask(url, model, system, user, num_ctx):
         return json.loads(json.loads(r.read())["message"]["content"])
 
 
+def load_into_db():
+    """Table concept_label(node_id, label_hr): the owner's reviewed wording, else the draft; EU topics are named 'TOP:<English name>'."""
+    out = [(r["concept_id"], r["label_hr_reviewed"].strip() or r["label_hr_draft"].strip()) for r in csv.DictReader(open(LABELS, encoding="utf-8"))]
+    out += [("TOP:" + r["topic"], r["label_hr_reviewed"].strip() or r["label_hr_draft"].strip()) for r in csv.DictReader(open(TOPICS, encoding="utf-8"))]
+    out = [x for x in out if x[1]]
+    con = connect()
+    con.execute("create or replace table concept_label(node_id varchar, label_hr varchar)")
+    con.executemany("insert into concept_label values (?,?)", out)         # about 2,400 rows
+    con.close()
+    print(f"concept_label: {len(out)} Croatian names in the database")
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--profile", default="gemma31b_q8")
     ap.add_argument("--limit", type=int, default=0)
     ap.add_argument("--batch", type=int, default=40)
+    ap.add_argument("--load-only", action="store_true", help="only copy the names in the CSV into the database table concept_label")
     a = ap.parse_args()
+    if a.load_only:
+        load_into_db()
+        return
     spec = load_profile(a.profile)["translation"]
     url = _ollama_url(spec)
     rows = list(csv.DictReader(open(LABELS, encoding="utf-8")))
@@ -91,6 +110,7 @@ def main():
         w.writeheader()
         w.writerows(rows)
     print(f"drafted {sum(1 for r in rows if r['label_hr_draft'])} of {len(rows)} -> {LABELS.name}")
+    load_into_db()
 
 
 if __name__ == "__main__":

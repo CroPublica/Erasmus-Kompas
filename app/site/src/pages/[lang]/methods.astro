@@ -1,0 +1,107 @@
+---
+import Base from '../../layouts/Base.astro';
+import g from '../../data/graph.json';
+import { LANGS, t, num, pct, type Lang } from '../../lib/i18n';
+import { ct } from '../../lib/conceptText';
+export const getStaticPaths = () => LANGS.map((lang) => ({ params: { lang } }));
+const lang = Astro.params.lang as Lang;
+const s = t(lang);
+const c = ct(lang);
+type N = [string, string, string, string | null, number, number, number, number, number, number, string];
+const nodes = g.nodes as unknown as N[];
+const name = (n: N) => (lang === 'hr' && n[3] ? n[3] : n[2]);
+const top = (kind: string, k = 6) => nodes.filter((n) => n[1] === kind).slice(0, k);
+const base = g.gp_rate_all;
+const share = (n: number, tot: number) => (tot ? n / tot : 0);
+const rows = nodes.filter((n) => n[1] === 'approach').map((n) => {
+  const s1 = share(n[5], g.p1), s2 = share(n[6], g.p2);
+  const view = n[6] >= 10 && s2 >= 1.5 * s1 ? 'growing' : n[5] >= 10 && s1 >= 1.5 * s2 ? 'fading' : '';
+  const vs = n[8] > base ? 'above' : n[9] < base ? 'below' : 'unclear';
+  return { n, s1, s2, view, vs, label: name(n) };
+});
+const views = [['all', c.vAll, c.vAllNote], ['growing', c.vGrowing, c.vGrowingNote], ['fading', c.vFading, c.vFadingNote], ['rare', c.vRare, c.vRareNote]] as const;
+const vsText: Record<string, string> = { above: c.gpAbove, below: c.gpBelow, unclear: c.gpUnclear };
+---
+<Base lang={lang} title={c.mTitle} path="/methods/" active="methods" description={c.mLead}>
+  <div class="kicker">{c.mKicker}</div>
+  <h1>{c.mTitle}</h1>
+  <p class="lead">{c.mLead}</p>
+  <p class="lead" style="font-size:.9rem;margin-top:8px">{c.mCaveat}</p>
+
+  <h2 style="margin-top:28px">{c.mTypical}</h2>
+  <p class="lead">{c.mTypicalLead}</p>
+  <div class="grid three" style="margin-top:12px">
+    {[['approach', c.mApproaches], ['output', c.mOutputs], ['target_group', c.mTargets]].map(([k, label]) => (
+      <section class="card">
+        <h3>{label}</h3>
+        <ol style="padding-left:20px;margin:10px 0 0">
+          {top(k as string).map((n) => <li style="margin-bottom:6px">{name(n)} <span class="mono">· {num(lang, n[4])} · {pct(lang, n[4] / g.projects, 0)} %</span></li>)}
+        </ol>
+      </section>
+    ))}
+  </div>
+
+  <h2 style="margin-top:32px">{c.mTableTitle}</h2>
+  <div class="seg-group">
+    <div><div class="kicker">{c.mView}</div>
+      <div class="seg" role="group" aria-label={c.mView} style="margin-top:8px" id="views">
+        {views.map(([v, label], i) => <button type="button" data-view={v} aria-pressed={i === 0 ? 'true' : 'false'}>{label}</button>)}
+      </div></div>
+  </div>
+  <p class="lead" id="viewnote" style="font-size:.9rem;margin-top:10px" aria-live="polite">{c.vAllNote}</p>
+  <label class="sr" for="mf">{c.mFilter}</label>
+  <input id="mf" type="search" placeholder={c.mFilter} style="width:100%;max-width:420px;margin:10px 0" />
+  <p class="lead" id="count" aria-live="polite" style="font-size:.9rem"></p>
+  <div style="overflow-x:auto">
+    <table id="mtable">
+      <thead><tr><th>{c.cMethod}</th><th class="num">{c.cProjects}</th><th class="num">{c.cShare} {c.cShare1}</th><th class="num">{c.cShare} {c.cShare2}</th><th class="num">{c.cGp}</th><th>{c.cGpVs}</th></tr></thead>
+      <tbody>
+        {rows.map((r) => (
+          <tr data-n={`${r.n[2]} ${r.n[3] ?? ''}`.toLowerCase()} data-total={r.n[4]} data-view={r.view} hidden={r.n[4] < 20}>
+            <td>{r.label}</td>
+            <td class="num">{num(lang, r.n[4])}</td>
+            <td class="num">{pct(lang, r.s1, 1)} %</td>
+            <td class="num">{pct(lang, r.s2, 1)} %</td>
+            <td class="num">{num(lang, r.n[7])} ({pct(lang, r.n[7] / r.n[4], 0)} %; {pct(lang, r.n[8], 0)}–{pct(lang, r.n[9], 0)})</td>
+            <td>{vsText[r.vs]}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+  <p class="lead" style="font-size:.85rem;margin-top:10px">{c.gpAll}: {pct(lang, base, 0)} %</p>
+  <p class="lead" id="none" hidden>{c.mNone}</p>
+</Base>
+<script>
+  const rows = Array.from(document.querySelectorAll<HTMLTableRowElement>('#mtable tbody tr'));
+  const input = document.getElementById('mf') as HTMLInputElement;
+  const note = document.getElementById('viewnote')!;
+  const count = document.getElementById('count')!;
+  const none = document.getElementById('none')!;
+  const lang = document.documentElement.lang;
+  const notes: Record<string, string> = JSON.parse(document.getElementById('view-notes')!.textContent!);
+  const fold = (x: string) => x.normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/đ/g, 'd').toLowerCase();
+  let view = 'all';
+  function apply() {
+    const q = fold(input.value.trim());
+    let shown = 0;
+    for (const r of rows) {
+      const total = Number(r.dataset.total);
+      const inView = view === 'all' ? total >= 20 : view === 'rare' ? total < 20 : r.dataset.view === view;
+      const ok = inView && (!q || fold(r.dataset.n!).includes(q));
+      r.hidden = !ok;
+      if (ok) shown++;
+    }
+    count.textContent = lang === 'hr' ? `${shown} ${shown % 10 === 1 && shown % 100 !== 11 ? 'pristup' : 'pristupa'}` : `${shown} approaches`;
+    none.hidden = shown > 0;
+    note.textContent = notes[view];
+  }
+  document.querySelectorAll<HTMLButtonElement>('#views button').forEach((b) => b.addEventListener('click', () => {
+    view = b.dataset.view!;
+    document.querySelectorAll('#views button').forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
+    apply();
+  }));
+  input.addEventListener('input', apply);
+  apply();
+</script>
+<script type="application/json" id="view-notes" set:html={JSON.stringify(Object.fromEntries(views.map(([v, , n]) => [v, n])))}></script>

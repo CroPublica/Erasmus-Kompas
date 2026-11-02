@@ -34,6 +34,7 @@ const api = import.meta.env.PUBLIC_ASK_API || '/api/ask';
   const esc = (x: string) => x.replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]!));
   function link(c: string) {
     const [kind, id] = [c.slice(0, c.indexOf(':')), c.slice(c.indexOf(':') + 1)];
+    if (kind === 'concept') return { href: `${d.base}/${lang}/graph/#${encodeURIComponent(id)}`, text: `${lang === 'hr' ? 'pojam' : 'concept'} ${id.replace(/^TOP:/, '')}` };
     const path = kind === 'org' ? 'organisations' : kind === 'project' ? 'projects' : 'places';
     return { href: `${d.base}/${lang}/${path}/${slug(id)}/`, text: kind === 'org' ? id.replace(/^(OID|MZO)-/, '') : kind === 'county' ? id : id };
   }

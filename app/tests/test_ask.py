@@ -157,3 +157,33 @@ def test_verifier_flags_cannot_determine_claims_when_data_exists(tb):
     assert verify_answer("Iz sažetka nije moguće izdvojiti ukupan broj projekata.", res, "hr")
     assert verify_answer("It is not possible to determine the number of projects.", res, "en")
     assert verify_answer("3.830 KA2 projekata ima hrvatskog sudionika.", res, "hr") == []
+
+
+def test_concepts_route_answers_from_the_concept_tools(tb):
+    a = asker(tb, FakeRouter(route="concepts"))
+    r = a.ask("Koje su najčešće metode u KA2 projektima?")
+    assert "tools=['common_concepts']" in " ".join(r["trace"]) and "radionice" in r["answer"]
+    r = a.ask("Which groups of concepts occur together in KA2 projects?")
+    assert "community_overview" in " ".join(r["trace"]) and "projects" in r["answer"] and "projekata" not in r["answer"]
+    r = a.ask("Što znamo o vršnjačkom nasilju u projektima?")
+    assert "concept_profile" in " ".join(r["trace"]) and "donja granica" in r["answer"]
+
+
+def test_concepts_route_without_a_match_says_there_is_no_evidence(tb):
+    r = asker(tb, FakeRouter(route="concepts")).ask("Kakvi su projekti o kvantnom računanju u vrtićima?")
+    assert r["answer"].startswith("Nema dokaza")
+
+
+def test_organisation_route_without_a_name_but_with_a_county_becomes_a_county_question(tb):
+    r = asker(tb, FakeRouter(route="organisation")).ask("Koliko iznose KA2 potpore za projekte koje koordiniraju organizacije iz Dubrovačko-neretvanske županije?")
+    assert r["plan"]["route"] == "county" and "3,72" in r["answer"].replace(".", ",") or "3.719.625" in r["answer"] or "3,72" in r["answer"]
+
+
+def test_trend_and_connection_questions_use_their_tools(tb):
+    a = asker(tb, FakeRouter(route="concepts"))
+    r = a.ask("Kako su se teme promijenile između 2014.–2020. i 2021.–2026.?")
+    assert "concept_trends" in " ".join(r["trace"]) and "Rastu" in r["answer"]
+    r = a.ask("Which concepts connect the most different themes?")
+    assert "connected_concepts" in " ".join(r["trace"]) and "neighbours" in r["answer"]
+    r = a.ask("What are the main clusters of themes in KA2 projects with Croatian participants?")
+    assert "community_overview" in " ".join(r["trace"])
