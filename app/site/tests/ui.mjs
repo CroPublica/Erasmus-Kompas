@@ -133,8 +133,8 @@ await test('ask page: busy, rate limit and failure are shown, example questions 
   await p.route('**/api/ask', (route) => route.fulfill({ status: code, json: {} }));
   await p.fill('#q', 'test'); await p.click('#go'); await p.locator('#out .warn').waitFor();
   assert.match(await p.locator('#out').innerText(), /Previše pitanja/);
-  code = 503; await p.click('#go'); await p.waitForFunction(() => /zauzeta/.test(document.getElementById('out').innerText));
-  code = 500; await p.click('#go'); await p.waitForFunction(() => /pošlo po zlu/.test(document.getElementById('out').innerText));
+  code = 503; await p.fill('#q', 'test'); await p.click('#go'); await p.waitForFunction(() => /zauzeta/.test(document.getElementById('out').innerText));
+  code = 500; await p.fill('#q', 'test'); await p.click('#go'); await p.waitForFunction(() => /pošlo po zlu/.test(document.getElementById('out').innerText));
   await p.locator('.ex').first().click(); assert.ok((await p.inputValue('#q')).length > 10);
 });
 await test('overview: national figures, period switch, country ranking', async () => {
@@ -241,6 +241,18 @@ await test('graph network: groups -> concepts, breadcrumbs, keyboard, phone widt
   assert.equal(await m.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth), true);   // no sideways scroll on a phone
   assert.match(await m.locator('.gv-live').innerText(), /19 skupina/);
 });
+await test('graph network: linkable group, show more, zoom', async () => {
+  const p = await open('/en/graph/#group-C01'); await p.waitForSelector('.gv-node');
+  assert.match(await p.locator('.gv-crumbs').innerText(), /Group:/);                       // a group link opens that group
+  const n1 = await p.locator('.gv-node').count();
+  await p.locator('.gv-more').click(); await p.waitForTimeout(300);
+  assert.ok(await p.locator('.gv-node').count() > n1);                                     // more concepts per kind
+  const before = await p.locator('.gv-zoom').getAttribute('transform');
+  await p.locator('.gv-zoombar button').first().click();
+  assert.notEqual(await p.locator('.gv-zoom').getAttribute('transform'), before);
+  assert.match(page_hash(await p.url()), /group-C01/);                                      // the address follows the view
+});
+function page_hash(u) { return u.split('#')[1] || ''; }
 await test('no console errors', async () => assert.deepEqual(errors, []));
 await browser.close(); stop();
 console.log(`\n${passed} passed, ${failed} failed`); process.exit(failed ? 1 : 0);

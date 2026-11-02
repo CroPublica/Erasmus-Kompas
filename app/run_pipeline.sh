@@ -6,7 +6,7 @@
 #   ./run_pipeline.sh --only 00               run just one step (by its number), no checks
 #   ./run_pipeline.sh --from 10               run steps 20 and later, then the checks
 #   ./run_pipeline.sh --strict                checks that are "NOT BUILT" yet count as failures
-#   ./run_pipeline.sh --llm                   also run the LLM steps 50, 51 and 52 (hours, needs Ollama); steps 60 and 70 run when the concept tables exist
+#   ./run_pipeline.sh --llm                   also run the LLM steps 50, 51, 52 and 61 (hours, needs Ollama); steps 60 and 70 run when the concept tables exist
 #   ./run_pipeline.sh --check                 only run the checks (pipeline/99_validate.py)
 #
 # Steps are the numbered files in pipeline/ (00_load_raw.py, 05_..., 07_..., 10_...); 99_validate.py always runs last.
@@ -54,6 +54,11 @@ if [ "$CHECK_ONLY" = 0 ]; then
     # the graph needs the concept tables from step 51; without them skip it (the tables survive a rebuild from step 10, but not from step 00)
     if [ -z "$ONLY" ] && [ "$n" = 60 ] && ! $PY -c "import duckdb,sys; c=duckdb.connect('data/atlas.duckdb',read_only=True); sys.exit(0 if c.execute(\"select count(*) from information_schema.tables where table_name='concept_theme'\").fetchone()[0] else 1)" 2>/dev/null; then
       echo "skipping step 60 (no concept tables yet: run steps 50 and 51 with --llm)"; continue
+    fi
+    # step 61 drafts group names with the model (--llm or --only 61); otherwise it only loads the reviewed names that are already in data/review
+    if [ -z "$ONLY" ] && [ "$n" = 61 ] && [ "$LLM" = 0 ]; then
+      [ -f data/review/community_names.csv ] && { printf '\n=== step 61 (load names)\n'; $PY "$f" --load-only; } || echo "skipping step 61 (no names yet: run with --llm)"
+      continue
     fi
     [ -n "$FROM" ] && [ "$n" -lt "$FROM" ] && continue
     printf '\n=== step %s: %s\n' "$n" "$(basename "$f")"

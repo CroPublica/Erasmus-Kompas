@@ -154,6 +154,14 @@ def test_search_concepts_finds_croatian_and_english_names(tb):
     assert tb.search_concepts("kakvo je vrijeme").rows == []
 
 
+def test_search_concepts_by_meaning_when_the_words_differ(tb):
+    r = tb.search_concepts("rani prekid školovanja")          # no concept is worded like this
+    if not r.rows:
+        pytest.skip("concept_vec or the embedding model is not available here")
+    assert r.args.get("by_meaning") and "early school leaving" in " ".join(x["label_en"].lower() for x in r.rows)
+    assert tb.search_concepts("recept za palačinke").rows == []        # nothing close in meaning: still no answer
+
+
 def test_concept_profile_numbers_are_consistent(tb):
     node = tb.search_concepts("peer learning", "approach").rows[0]["node_id"]
     p = tb.concept_profile(node)

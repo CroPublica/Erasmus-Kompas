@@ -8,7 +8,8 @@ Writes  graph_node         one row per node (with its community): a frequent con
 
 A concept used by fewer projects is counted under its theme (concept_theme) when it has one, so near-synonyms add up.
 Edges only say "occur in the same projects"; they are not causal and not a recommendation.
-Usage: python pipeline/60_graph.py [--resolution 2.0] [--min-projects 5] [--dry]
+Also writes concept_vec(node_id, vec): the embedding of each concept's name (from the step 51 cache), used by Ask for questions worded differently.
+Usage: python pipeline/60_graph.py [--resolution 2.0] [--min-projects 5] [--dry] [--vectors-only]
 """
 import argparse
 import csv
@@ -52,6 +53,21 @@ def bulk_insert(con, table, rows):
         Path(f.name).unlink()
 
 
+def write_vectors(con):
+    """concept_vec: the name embedding of every graph concept (EU topics are searched by their names, so they have none)."""
+    cache = Path(__file__).resolve().parent.parent / "data" / "concept_embedding_cache.npz"
+    if not cache.exists():
+        print("concept_vec: data/concept_embedding_cache.npz not found, skipped (run step 51 first)")
+        return
+    d = np.load(cache, allow_pickle=True)
+    at = {p: i for i, p in enumerate(d["phrases"])}
+    vectors = d["vectors"]                                       # read the file once: every d["vectors"] access would load it all again
+    rows = [(n, l) for n, l in con.execute("select node_id, label_en from graph_node where node_id not like 'TOP:%'").fetchall() if l in at]
+    con.execute("create or replace table concept_vec(node_id varchar, vec float[])")
+    con.executemany("insert into concept_vec values (?, ?)", [(n, vectors[at[l]].astype(float).tolist()) for n, l in rows])
+    print(f"concept_vec: {len(rows)} concept name vectors")
+
+
 def load(con, min_projects):
     projects = {r[0]: dict(period=r[1], year=r[2], gp=bool(r[3]), grant=r[4], family=r[5], scale=r[6]) for r in con.execute(
         "select project_id, period, call_year, good_practice, grant_eur, family, scale from project").fetchall()}
@@ -83,7 +99,12 @@ def main():
     ap.add_argument("--resolution", type=float, default=2.0)
     ap.add_argument("--min-projects", type=int, default=MIN_PROJECTS)
     ap.add_argument("--dry", action="store_true")
+    ap.add_argument("--vectors-only", action="store_true", help="only (re)write concept_vec, keep the graph as it is")
     a = ap.parse_args()
+    if a.vectors_only:
+        con = connect()
+        write_vectors(con)
+        return
     con = connect(read_only=a.dry)
     projects, inc, nodes, kinds, labels = load(con, a.min_projects)
     pids = sorted(projects)
@@ -187,6 +208,7 @@ def main():
     con.execute("create or replace table project_community(project_id varchar, community_id varchar, overlap integer)")
     bulk_insert(con, "project_community", [(p, c, k) for p, (c, k) in pc.items()])
     print(f"\nwrote graph_node {len(nodes)}, graph_edge {len(edges)}, community {len(comms)}, project_community {len(pc)}")
+    write_vectors(con)
 
 
 if __name__ == "__main__":

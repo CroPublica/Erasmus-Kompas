@@ -209,10 +209,12 @@ def main():
                          "order by n_projects desc, node_id").fetchall()
         index_of = {r[0]: i for i, r in enumerate(gn)}
         comms = []
+        names = {r[0]: [r[1], r[2]] for r in con.execute("select community_id, label_en, label_hr from community_name").fetchall()} \
+            if con.execute("select count(*) from information_schema.tables where table_name = 'community_name'").fetchone()[0] else {}   # step 61, reviewed by the owner
         for r in rows(con, "select * from community where reportable order by n_projects desc"):
             prof = json.loads(r.pop("profile"))
             hr_by_en = {x[2]: hr_of.get(x[0]) for x in gn}
-            comms.append({"id": r["community_id"], "n": r["n_projects"], "share": r["share"], "p1": r["n_2014_2020"], "p2": r["n_2021_2027"], "gp": r["good_practice"],
+            comms.append({"id": r["community_id"], "name": names.get(r["community_id"]), "n": r["n_projects"], "share": r["share"], "p1": r["n_2014_2020"], "p2": r["n_2021_2027"], "gp": r["good_practice"],
                           "gp_lo": r["gp_lo"], "gp_hi": r["gp_hi"], "grant": r["median_grant"], "families": prof["families"],
                           **{k: [[x, hr_by_en.get(x)] for x in prof[k]] for k in ("top_approach", "top_target_group", "top_output", "top_problem", "top_topic")}})
         write("graph.json", {"projects": tot, "p1": per.get("2014-2020", 0), "p2": per.get("2021-2027", 0), "gp_rate_all": gp_all, "communities": comms,

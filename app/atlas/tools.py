@@ -89,6 +89,9 @@ class Toolbox:
         self.con = duckdb.connect(str(db_path or DB_PATH), read_only=True)
         self._local = threading.local()                  # one cursor per thread: a DuckDB connection refuses overlapping calls
         self._names: Optional[list[tuple[str, str, Optional[str], str]]] = None
+        self._sem: Any = None                            # concept name vectors, loaded on first use: (ids, matrix) or False when not available
+        self._embed: Any = None
+        self._qvec: dict[str, Any] = {}
         self._counties = {r[0]: r[1] for r in self._cur().execute("select stem, label from county").fetchall()}
 
     # ------------------------------------------------------------------ helpers
@@ -414,23 +417,70 @@ class Toolbox:
                      "what", "which", "projects", "project", "how", "many", "about", "with", "used", "most", "common", "commonly", "usually", "that", "does",
                      "kako", "sto", "gdje", "tipicni", "tipicne", "tipican", "uobicajeni", "uobicajene", "metode", "metoda", "aktivnosti", "rezultati", "ciljne", "skupine", "pristupi", "pristup", "koriste", "koristi", "rade", "problemi", "znamo", "approaches", "approach", "outputs", "target", "groups", "know", "tell", "methods", "activities", "results", "pristupili", "proizveli", "navedi", "primjere", "primjeri", "postoji", "hrvatski", "hrvatskim", "hrvatske", "sudionicima", "sudjeluju", "rjesavanje", "rjesavaju", "kojim", "bave", "najcesce", "zajedno", "examples", "example", "croatian", "croatia", "address", "produce", "dobre", "prakse", "practice", "good", "ponovnoj", "ovim", "ovom", "ovih", "ovog"}
 
+    SEM_MIN, SEM_BAND = 0.67, 0.05      # a concept must be this close in meaning, and within SEM_BAND of the best one (checked on Croatian and English questions)
+
+    def _semantic(self, text: str, kind: Optional[str], limit: int) -> list[dict]:
+        """Concepts whose name is close in meaning to `text` (embedding search over concept_vec); [] when the vectors or the embedding model are not available."""
+        import numpy as np
+        if self._sem is None:
+            try:
+                got = self._cur().execute("select node_id, vec from concept_vec").fetchall()
+                m = np.array([g[1] for g in got], dtype=np.float32)
+                self._sem = ([g[0] for g in got], m / np.linalg.norm(m, axis=1, keepdims=True)) if len(got) else False
+            except Exception:
+                self._sem = False
+        if not self._sem:
+            return []
+        words = [w for w in re.findall(r"\w+", text.lower()) if _fold(w) not in self._CONCEPT_STOP and len(w) >= 3]
+        text = " ".join(words) if words else text                # the topic words only: a whole question ("how many projects deal with ...") dilutes the meaning
+        key = text.strip().lower()
+        if key not in self._qvec:
+            try:
+                if self._embed is None:
+                    from atlas.config import make_embeddings
+                    self._embed = make_embeddings()
+                v = np.array(self._embed.embed_query(text), dtype=np.float32)
+                self._qvec[key] = v / np.linalg.norm(v)
+            except Exception:
+                return []                                  # no embedding model on this machine: the word search alone
+            if len(self._qvec) > 500:
+                self._qvec.pop(next(iter(self._qvec)))
+        ids, mat = self._sem
+        sim = mat @ self._qvec[key]
+        order = np.argsort(-sim)
+        info = {r["node_id"]: r for r in self._rows("select n.node_id, n.kind, n.label_en, l.label_hr, n.n_projects from graph_node n left join concept_label l using(node_id)")}
+        out = []
+        for i in order[:40]:
+            r = info.get(ids[i])
+            if not r or (kind and r["kind"] != kind):
+                continue
+            if not out and sim[i] < self.SEM_MIN:
+                break
+            if sim[i] < out[0]["similarity"] - self.SEM_BAND if out else False:
+                break
+            out.append({**r, "similarity": round(float(sim[i]), 2)})
+            if len(out) >= limit:
+                break
+        return out
+
     def search_concepts(self, text: str, kind: Optional[str] = None, limit: int = 5) -> ToolResult:
         """Concepts (approaches, target groups, outputs, problems) and EU topics whose English or Croatian name matches the words of `text`."""
         res = ToolResult("search_concepts", {"text": text, "kind": kind, "limit": limit})
         words = [w for w in re.findall(r"[a-z0-9]+", _fold(text)) if len(w) >= 4 and w not in self._CONCEPT_STOP]
         if not words:
             res.notes.append("no searchable words")
-            return res
+            return self._by_meaning(res, text, kind, limit)
         rows = self._rows("select n.node_id, n.kind, n.label_en, l.label_hr, n.n_projects from graph_node n left join concept_label l using(node_id)"
                           + (" where n.kind = ?" if kind else ""), [kind] if kind else [])
         tokset = [set(re.findall(r"[a-z0-9]+", _fold(r["label_en"]))) | set(re.findall(r"[a-z0-9]+", _fold(r["label_hr"] or ""))) for r in rows]
         vocab = set().union(*tokset) if tokset else set()
+        n_asked = len(words)
         kept = [w for w in words if any(_stem_match(w, t) for t in vocab)]        # words no concept name contains are noise ("znamo", "tell")
         lone_guess = len(kept) == 1 and len(words) > 1                              # one word left out of several: only an exact word counts, not a similar ending
         words = kept
         if not words:
             res.notes.append("no concept matches those words")
-            return res
+            return self._by_meaning(res, text, kind, limit)
         df = {w: sum(1 for toks in tokset if any(_stem_match(w, t) for t in toks)) for w in words}     # in how many concept names each word occurs
         scored = []
         for r, toks in zip(rows, tokset):
@@ -443,10 +493,23 @@ class Toolbox:
             if ok:
                 scored.append((hit / len(words), r["n_projects"], r))
         scored.sort(key=lambda x: (-x[0], -x[1]))
+        if scored and (scored[0][0] < 1.0 or lone_guess or len(kept) < n_asked):          # only some of the words matched: a concept close in meaning is the better answer if there is one
+            by_meaning = self._by_meaning(ToolResult("search_concepts", dict(res.args)), text, kind, limit)
+            if by_meaning.rows:
+                return by_meaning
         res.rows = [x[2] for x in scored[:limit]]
         res.citations = [f"concept:{r['node_id']}" for r in res.rows]
         if not res.rows:
             res.notes.append("no concept matches those words")
+            return self._by_meaning(res, text, kind, limit)
+        return res
+
+    def _by_meaning(self, res: "ToolResult", text: str, kind: Optional[str], limit: int) -> "ToolResult":
+        res.rows = self._semantic(text, kind, limit)
+        if res.rows:
+            res.notes = ["matched by meaning, not by the words of the question"]
+            res.args["by_meaning"] = True
+            res.citations = [f"concept:{r['node_id']}" for r in res.rows]
         return res
 
     def _node_projects(self, node_id: str) -> list[str]:

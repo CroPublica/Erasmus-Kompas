@@ -8,7 +8,7 @@ const lang = Astro.params.lang as Lang;
 const s = t(lang);
 const c = ct(lang);
 const pick = (a: [string, string | null] | undefined) => (a ? (lang === 'hr' && a[1] ? a[1] : a[0]) : '');
-const title = (k: any) => [k.top_approach[0], k.top_target_group[0], k.top_topic[0]].filter(Boolean).slice(0, 2).map(pick).join(' · ');
+const title = (k: any) => (k.name && (lang === 'hr' ? k.name[1] || k.name[0] : k.name[0])) || [k.top_approach[0], k.top_target_group[0], k.top_topic[0]].filter(Boolean).slice(0, 2).map(pick).join(' · ');
 const lists = [['top_approach', 'approach'], ['top_target_group', 'target_group'], ['top_output', 'output'], ['top_problem', 'problem'], ['top_topic', 'topic']] as const;
 ---
 <Base lang={lang} title={c.gTitle} path="/graph/" active="graph" description={c.gLead}>
@@ -117,6 +117,7 @@ const lists = [['top_approach', 'approach'], ['top_target_group', 'target_group'
   input.addEventListener('input', find);
   function fromHash() {                                    // links from Ask answers: /graph/#<concept id>
     const id = decodeURIComponent(location.hash.slice(1));
+    if (id.startsWith('group-')) { view.group(id.slice(6)); return; }
     const i = nodes.findIndex((n) => n[0] === id);
     if (i >= 0) go(i);
   }

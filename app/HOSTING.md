@@ -102,3 +102,16 @@ sudo cloudflared service install                          # starts at boot
 the API limits size, rate per visitor and concurrency; Ollama and the API listen on 127.0.0.1 only, so they cannot be reached directly.
 To stop sharing: Ctrl+C the quick tunnel, or `docker rm -f ka2-atlas`. Change the password by running `deploy/make_password.sh` again and restarting the container.
 The password is a shared one; it keeps casual visitors out but is not a user system. Do not reuse a password you use elsewhere.
+
+## Start by itself after a reboot
+
+The site container restarts with Docker (`--restart unless-stopped`). For the API and the tunnel:
+
+```
+deploy/install_services.sh            # systemd user services ka2-api and ka2-tunnel (no root); --remove undoes it
+sudo loginctl enable-linger $USER     # once: start them at boot without logging in
+deploy/public_demo.sh status          # exit code 0 only when site, API and tunnel all run (usable from cron)
+deploy/public_demo.sh url             # the tunnel's current https address (a quick tunnel gets a new one at each start)
+```
+
+Stop a tunnel started by hand before installing, or you will have two. With a named tunnel (own domain) the address does not change.

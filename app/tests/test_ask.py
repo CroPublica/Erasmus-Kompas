@@ -172,6 +172,21 @@ def test_concepts_route_answers_from_the_concept_tools(tb):
     assert "concept_profile" in " ".join(r["trace"]) and "donja granica" in r["answer"]
 
 
+def test_list_questions_narrowed_by_a_concept_use_that_concept(tb):
+    a = asker(tb, FakeRouter(route="concepts"))
+    r = a.ask("Which approaches work best for students with fewer opportunities?")           # the qualifier must not be dropped
+    assert "tools=['search_concepts', 'concept_profile']" in " ".join(r["trace"]) and "students with fewer opportunities" in r["answer"]
+    r = a.ask("Koji se pristupi najčešće koriste za rad s učenicima s manje mogućnosti?")
+    assert "concept_profile" in " ".join(r["trace"]) and "manje mogućnosti" in r["answer"]
+    r = a.ask("Koje su najčešće metode u KA2 projektima?")                                    # nothing to narrow: the overall list
+    assert "tools=['common_concepts']" in " ".join(r["trace"])
+
+
+def test_unknown_qualifier_is_said_not_ignored(tb):
+    r = asker(tb, FakeRouter(route="concepts")).ask("Most common approaches for zzyzx widgets in projects")
+    assert "common_concepts" in " ".join(r["trace"]) and "zzyzx" in r["answer"] and "overall list" in r["answer"]
+
+
 def test_concepts_route_without_a_match_says_there_is_no_evidence(tb):
     r = asker(tb, FakeRouter(route="concepts")).ask("Kakvi su projekti o kvantnom računanju u vrtićima?")
     assert r["answer"].startswith("Nema dokaza")

@@ -144,6 +144,21 @@ KIND_WORDS = [("topic", re.compile(r"glavn\w+ tem|\btem[aeui]\b|themes?|topics?"
 SUCCESS_WORDS = re.compile(r"prolaznost|stopa (uspje|odobr)|uspje\w* prijav|success rate|pass rate|prijava (je )?(odobren|podnesen)|applications? (were|was)? ?(received|submitted|approved)|broj prijava|zaprimljen|podnesen\w* prijav|prijava podneseno")
 
 
+_QUAL_DROP = re.compile(r"\b(ka\s?2|erasmus\+?|projek\w*|projects?|rad|radu|programm?e?\w*|koji|koje|koja|koju|kojih|su|se|je|što|sto|what|which|are|is|do|does|the|of|in|on|at|by|with|and|to|how|work|works|best|used|use|koriste|koristi|koriste|najbolje|rješava\w*|rjesava\w*|rješavaju|solve\w*|address\w*|rade|radi|hrvatsk\w*|croatia\w*|croatian)\b|[?.,!;:\"“”„]")
+
+
+def concept_qualifier(question: str) -> str:
+    """What a list question is narrowed to, e.g. 'students with fewer opportunities' in 'Which approaches work for students with fewer opportunities?'.
+    The generic words (the kind asked for, 'most common', 'projects', 'KA2') are removed; what remains is looked up as a concept."""
+    q = question.lower()
+    for rx in (CONCEPT_WORDS, COMMON_WORDS, *[r for _, r in KIND_WORDS]):
+        q = rx.sub(" ", q)
+    q = _QUAL_DROP.sub(" ", q)
+    words = [w for w in q.split() if len(w) > 2 or w in ("za", "o")]
+    words = [w for w in words if w not in ("za", "o", "pri", "kod", "oko", "for", "about", "from", "into")]
+    return " ".join(words)
+
+
 def enrich_plan(plan: dict, question: str, tb) -> dict:
     """Fill arguments the small router often drops, from the question text itself (never overrides a value it gave)."""
     q = question.lower()
@@ -428,6 +443,13 @@ CONCEPT_CAVEAT = {"hr": "Pojmovi su izdvojeni jezičnim modelom iz sažetaka pro
 
 
 def _concept_answer(lang: str, results: list[dict]) -> str:
+    text = _concept_answer_core(lang, results)
+    if any(x["tool"] == "search_concepts" and x["args"].get("by_meaning") and x["rows"] for x in results):    # the closest concept by meaning, not by wording
+        text = ("Nisam našao pojam s istim riječima; najbliži po značenju je ovaj. " if lang == "hr" else "No concept uses those words; this is the closest one by meaning. ") + text
+    return text
+
+
+def _concept_answer_core(lang: str, results: list[dict]) -> str:
     hr = lang == "hr"
     f = lambda x, d=0: _fmt(lang, x, d)
     name = lambda x: (x.get("label_hr") or x["label_en"]) if hr else x["label_en"]
@@ -439,6 +461,9 @@ def _concept_answer(lang: str, results: list[dict]) -> str:
             items = "; ".join(f"{name(x)} ({f(x['projects'])}, {f(x['share'] * 100)} %)" for x in c["rows"])
             parts.append(f"{kn[:1].upper() + kn[1:]}: {items}.")
         head = "Najčešće u KA2 projektima s hrvatskim sudionikom (broj projekata, udio): " if hr else "Most common in KA2 projects with a Croatian participant (projects, share): "
+        miss = commons[0]["args"].get("qualifier_not_found")
+        if miss:
+            head = (f"Nisam našao pojam koji odgovara „{miss}”, pa pokazujem opću ljestvicu. " if hr else f"I found no concept matching “{miss}”, so this is the overall list. ") + head
         return head + " ".join(parts) + " " + CONCEPT_CAVEAT[lang]
     last = next(x for x in reversed(results) if x["rows"])
     if last["tool"] == "concept_trends":
@@ -592,9 +617,15 @@ class Asker:
                 results.append(tb.concept_trends(kind or "approach"))
             elif COMMUNITY_WORDS.search(q):
                 results.append(tb.community_overview())
+            elif COMMON_WORDS.search(q) and not EXPECT_WORDS.search(q) and (qual := concept_qualifier(s["question"])) and (found := tb.search_concepts(qual)).rows and kind != "topic":
+                results.append(found)                                          # "which approaches work for X": what goes with X, of the kind asked for
+                results.append(tb.concept_profile(found.rows[0]["node_id"], kind or "approach"))
             elif COMMON_WORDS.search(q):
+                qual = "" if EXPECT_WORDS.search(q) or kind == "topic" else concept_qualifier(s["question"])
                 for kd in (("approach", "output", "target_group") if EXPECT_WORDS.search(q) and not kind else (kind or "approach",)):
                     results.append(tb.common_concepts(kd, plan["period"], 6 if EXPECT_WORDS.search(q) and not kind else 8))
+                    if qual:
+                        results[-1].args["qualifier_not_found"] = qual
             else:
                 found = tb.search_concepts(s["question"])
                 results.append(found)

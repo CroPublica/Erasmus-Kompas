@@ -10,13 +10,19 @@ const api = import.meta.env.PUBLIC_ASK_API || '/api/ask';
   <div class="kicker">{s.nav.ask}</div>
   <h1>{s.askTitle}</h1>
   <p class="lead">{s.askLead}</p>
-  <form id="ask-form" class="toolbar" style="margin-top:20px">
+  <form id="ask-form" class="composer" style="margin-top:22px">
     <label for="q" class="sr">{s.askQ}</label>
-    <input id="q" type="text" maxlength="500" placeholder={s.askPh} style="flex:1;min-width:min(100%,320px)" autocomplete="off" required />
-    <button class="btn" type="submit" id="go" style="background:var(--accent);color:var(--accent-ink);border-color:var(--accent)">{s.askBtn}</button>
+    <div class="composer-box">
+      <textarea id="q" rows="1" maxlength="500" placeholder={s.askPh} autocomplete="off" enterkeyhint="send" required></textarea>
+      <button class="send" type="submit" id="go" aria-label={s.askBtn} title={s.askBtn}>
+        <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M12 19V5M5.5 11.5 12 5l6.5 6.5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+    </div>
+    <div class="composer-foot"><span>{s.askHint}</span><span id="qcount" aria-hidden="true"></span></div>
   </form>
-  <div class="chips" style="margin-bottom:18px" aria-label={s.askExamples}>
-    {s.examples.map((e: string) => <button type="button" class="pill ex" style="cursor:pointer;min-height:44px">{e}</button>)}
+  <div class="suggest" aria-label={s.askExamples}>
+    <span class="kicker">{s.askExamples}</span>
+    {s.examples.map((e: string) => <button type="button" class="pill ex">{e}</button>)}
   </div>
   <div id="out" aria-live="polite" data-api={api} data-base={import.meta.env.BASE_URL.replace(/\/$/, '')}
     data-working={s.askWorking} data-busy={s.askBusy} data-err={s.askErr} data-limit={s.askLimit} data-unverified={s.askUnverified}
@@ -39,24 +45,30 @@ const api = import.meta.env.PUBLIC_ASK_API || '/api/ask';
     return { href: `${d.base}/${lang}/${path}/${slug(id)}/`, text: kind === 'org' ? id.replace(/^(OID|MZO)-/, '') : kind === 'county' ? id : id };
   }
   async function ask(q: string) {
-    out.innerHTML = `<p class="lead">${esc(d.working!)}</p>`;
+    const you = `<div class="you"><p>${esc(q)}</p></div>`;
+    out.innerHTML = `${you}<div class="typing" role="status"><span></span><span></span><span></span><b class="sr">${esc(d.working!)}</b></div>`;
+    out.scrollIntoView({ block: 'nearest', behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
     try {
       const r = await fetch(d.api!, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ question: q, last_org_id: lastOrg }) });
-      if (r.status === 429) { out.innerHTML = `<p class="warn">${esc(d.limit!)}</p>`; return; }
-      if (r.status === 503) { out.innerHTML = `<p class="warn">${esc(d.busy!)}</p>`; return; }
+      if (r.status === 429) { out.innerHTML = `${you}<p class="warn">${esc(d.limit!)}</p>`; return; }
+      if (r.status === 503) { out.innerHTML = `${you}<p class="warn">${esc(d.busy!)}</p>`; return; }
       if (!r.ok) throw new Error(String(r.status));
       const a = await r.json();
       lastOrg = a.last_org_id || lastOrg;
       const chips = (a.citations as string[]).map((c) => { const l = link(c); return `<a class="pill" href="${l.href}">${esc(l.text)}</a>`; }).join(' ');
       const tools = (a.tools as any[]).map((t) => `<li><span class="mono">${esc(t.tool)}</span> ${esc(JSON.stringify(t.args))}${t.notes.length ? `<br><small>${esc(t.notes.join(' · '))}</small>` : ''}</li>`).join('');
-      out.innerHTML = `<section class="card"><p style="font-size:1.15rem;max-width:70ch;margin:0 0 12px">${esc(a.answer)}</p>
+      out.innerHTML = `${you}<section class="card answer"><p class="answer-text">${esc(a.answer)}</p>
         ${a.fallback ? `<p class="lead" style="font-size:.85rem">${esc(d.unverified!)}</p>` : ''}
-        ${chips ? `<p><strong>${esc(d.sources!)}:</strong> ${chips}</p>` : ''}
+        ${chips ? `<p class="sources"><strong>${esc(d.sources!)}</strong> ${chips}</p>` : ''}
         <details><summary>${esc(d.how!)}</summary><p class="lead">${esc(d.route!)}: <span class="mono">${esc(a.route || '')}</span></p><p class="lead">${esc(d.tools!)}:</p><ul>${tools || '–'}</ul></details></section>`;
     } catch {
-      out.innerHTML = `<p class="warn">${esc(d.err!)}</p>`;
+      out.innerHTML = `${you}<p class="warn">${esc(d.err!)}</p>`;
     }
   }
-  form.addEventListener('submit', (e) => { e.preventDefault(); const q = input.value.trim(); if (q) ask(q); });
-  document.querySelectorAll<HTMLElement>('.ex').forEach((b) => b.addEventListener('click', () => { input.value = b.textContent || ''; ask(input.value); }));
+  const count = document.getElementById('qcount')!;
+  const grow = () => { input.style.height = 'auto'; input.style.height = Math.min(input.scrollHeight, 180) + 'px'; count.textContent = input.value.length > 400 ? `${input.value.length}/500` : ''; };
+  input.addEventListener('input', grow);
+  input.addEventListener('keydown', (e) => { if (e.key === 'Enter' && !e.shiftKey && !e.isComposing) { e.preventDefault(); form.requestSubmit(); } });
+  form.addEventListener('submit', (e) => { e.preventDefault(); const q = input.value.trim(); if (q) { ask(q); input.value = ''; grow(); } });
+  document.querySelectorAll<HTMLElement>('.ex').forEach((b) => b.addEventListener('click', () => { input.value = b.textContent || ''; grow(); ask(input.value); }));
 </script>

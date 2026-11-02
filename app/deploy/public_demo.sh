@@ -3,7 +3,8 @@
 #   deploy/public_demo.sh start      start the API and the site container (needs deploy/htpasswd: deploy/make_password.sh <user> [password])
 #   deploy/public_demo.sh restart    after a change: rebuild the site image from the current data/code, restart the container and the API
 #   deploy/public_demo.sh stop       stop both (the tunnel then shows an error page; close it with Ctrl+C in its terminal)
-#   deploy/public_demo.sh status
+#   deploy/public_demo.sh status     (exit code 0 only when site, API and tunnel are all running: usable from cron)
+#   deploy/public_demo.sh url        the current https address of the tunnel (from the log of the systemd service, see deploy/install_services.sh)
 set -euo pipefail
 cd "$(dirname "$0")/.."
 export PATH="$HOME/.local/opt/node/bin:$PATH"
@@ -20,8 +21,13 @@ case "${1:-}" in
   start)   api_stop; api_start; site_stop; site_start ;;
   restart) ./build_site.sh --docker; api_stop; api_start; site_stop; site_start ;;
   stop)    site_stop; api_stop ;;
-  status)  docker ps --filter "name=$NAME" --format "site: {{.Status}}"; pgrep -f "[u]vicorn atlas.api" >/dev/null && echo "api: running" || echo "api: stopped"
-           pgrep -x cloudflared >/dev/null && echo "tunnel: running" || echo "tunnel: not running"; exit 0 ;;
+  status)  bad=0
+           up=$(docker ps --filter "name=$NAME" --format "{{.Status}}"); [ -n "$up" ] && echo "site: $up" || { echo "site: stopped"; bad=1; }
+           pgrep -f "[u]vicorn atlas.api" >/dev/null && echo "api: running" || { echo "api: stopped"; bad=1; }
+           pgrep -x cloudflared >/dev/null && echo "tunnel: running" || { echo "tunnel: not running"; bad=1; }
+           exit $bad ;;
+  url)     u=$(journalctl --user -u ka2-tunnel --no-pager 2>/dev/null | grep -o 'https://[a-z0-9-]*\.trycloudflare\.com' | tail -1)
+           [ -n "$u" ] && echo "$u" || echo "no address found (start the tunnel by hand: cloudflared tunnel --url http://127.0.0.1:8080)"; exit 0 ;;
   *) sed -n 2,7p "$0"; exit 2 ;;
 esac
-sleep 3; "$0" status
+sleep 3; "$0" status || true

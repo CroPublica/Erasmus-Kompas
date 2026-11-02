@@ -66,6 +66,7 @@ Output: `data/atlas.duckdb` (rebuilt each time, not committed). Human review dec
 | 51 | `pipeline/51_canonicalise.py` | merge near-duplicate concepts (embeddings with guards); tables `concept`, `concept_map`, `project_concept`; Croatian label list for review | done at tau 0.80: tables `concept`, `concept_map`, `project_concept`, `concept_theme` (near-synonyms of frequent approaches and target groups point at the frequent concept); embeddings cached in `data/concept_embedding_cache.npz` |
 | 52 | `pipeline/52_label_concepts_hr.py` | Croatian names for the 2,343 concepts used by 3 or more projects (gemma4:31b, draft); `--load-only` copies the CSV, reviewed wording first, into the table `concept_label`; review workbook `data/review/KA2_Atlas_concept_labels_hr.xlsx` | drafted; owner review pending |
 | 60 | `pipeline/60_graph.py` | concept graph (frequent concepts + EU topics), Leiden communities, project → community; tables `graph_node`, `graph_edge`, `community`, `project_community` | done (24 communities, 19 with ≥ 20 projects) |
+| 61 | `pipeline/61_name_communities.py` | short names for the concept groups (gemma4:31b draft, `data/review/community_names.csv`, owner reviews); table `community_name`; without `--llm` the pipeline only loads the CSV; a group whose content changed after a new step 60 loses its name until redrafted | drafted; owner review pending |
 | 70 | `pipeline/70_export_site.py` | static JSON per page in `site/src/data/` (organisations, places, projects, topics over time, graph) | done |
 | 99 | `pipeline/99_validate.py` | regression checks from the plan | done (7 checks) |
 
@@ -83,6 +84,8 @@ projects, tablica 5 counts 2,111; no county is over, so rows are missing, not mi
 
 ## Ask: what it can answer
 
+Concept questions ("which approaches work for students with fewer opportunities") are narrowed to the concept they name; a concept worded differently from the question is found by meaning (embedding search over `concept_vec`, written by step 60; needs the embedding model, otherwise only the word match is used and the answer says so when it had to guess).
+
 Questions in Croatian or English, answered from the data with sources and written by code from the tool results (`ATLAS_ANSWER_MODE=template`, the default).
 Organisations, counties, the national picture, school coverage, success rates of applications, country ranking, most active organisations, project search, and
 (from the concept layer) the most common approaches, target groups, outputs and problems, what projects do about a given problem or theme, what to expect in a typical
@@ -91,7 +94,7 @@ project, and which groups of concepts occur together. Tools: `find_organisation`
 
 ## Website (Phase 1, started)
 
-Pages (each in Croatian and English): coverage map, overview, projects (search), topics over time, **methods** (what projects do, share per period, growing and fading approaches), **explore graph** (concept search and groups of concepts), organisations, places, Ask.
+Pages (each in Croatian and English): coverage map, overview, projects (search), topics over time, **methods** (what projects do, share per period, growing and fading approaches), **explore graph** (an interactive network: groups of concepts, then one group, then what goes with one concept; zoom, drag, keyboard, linkable with `#group-C01` or `#<concept id>`), organisations, places, Ask.
 
 ```
 export PATH=~/.local/opt/node/bin:$PATH      # Node >= 22.23.4 (see LOG.md)
@@ -121,7 +124,7 @@ Needs Node >= 22.23.4 (the script checks). The browser tests also need `cd site 
 ./demo.sh            # site + Ask API on http://127.0.0.1:8080 (--lan for the local network, --rebuild to rebuild first)
 ```
 
-Other hosting options (static host, container, no GPU): `HOSTING.md`.
+Other hosting options (static host, container, no GPU, public address with password through a Cloudflare tunnel, starting at boot): `HOSTING.md`. Control script for the public demo: `deploy/public_demo.sh start|restart|stop|status|url`.
 
 ### Ask (question answering), first version
 

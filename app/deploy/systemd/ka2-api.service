@@ -1,0 +1,13 @@
+[Unit]
+Description=KA2 Atlas Ask API (localhost only)
+After=network-online.target
+
+[Service]
+WorkingDirectory=@APP@
+Environment=ATLAS_TRUST_PROXY=1
+ExecStart=@APP@/.venv/bin/uvicorn atlas.api:app --host 127.0.0.1 --port 8000
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=default.target
