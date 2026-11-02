@@ -19,3 +19,5 @@ site/src/data/orgs_full.json
 data/esc_cache.json
 data/esc_queries.json
 eval/data/
+deploy/htpasswd
+data/api.log

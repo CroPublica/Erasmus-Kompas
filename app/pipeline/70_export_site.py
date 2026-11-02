@@ -12,6 +12,7 @@ Output
   projects_full.json  per-project page data (summary, countries, topics, Croatian participants)
 """
 import json
+import re
 import sys
 from collections import Counter
 from datetime import date
@@ -37,6 +38,14 @@ def topic_labels_hr():
     import csv
     with open(Path(__file__).resolve().parent.parent / "data" / "review" / "topic_labels_hr.csv", encoding="utf-8", newline="") as f:
         return {r["topic"]: (r["label_hr_reviewed"].strip() or r["label_hr_draft"].strip()) for r in csv.DictReader(f)}
+
+
+EMAIL = re.compile(r"[A-Za-z0-9._%+-]+@[A-Za-z0-9-]+(?:\.[A-Za-z0-9-]+)+")
+
+
+def scrub(text):
+    """E-mail addresses are not published (owner decision, 2026-10-29); applicants sometimes write one into their summary."""
+    return EMAIL.sub("[e-mail removed]", text) if text else text
 
 
 def write(name, obj):
@@ -126,7 +135,7 @@ def main():
     projs = {}
     for r in rows(con, "select project_id, period, call_year, action_type, family, title, summary, status, grant_eur, grant_not_comparable, "
                        "good_practice, results_available, management, countries, results_card_url, project_website from project"):
-        projs[r["project_id"]] = {**r, "countries": [c for c in (r["countries"] or "").split(",") if c],
+        projs[r["project_id"]] = {**r, "summary": scrub(r["summary"]), "countries": [c for c in (r["countries"] or "").split(",") if c],
                                   "topics": pt.get(r["project_id"], []), "hr": hp.get(r["project_id"], [])}
     write("projects_full.json", projs)
 

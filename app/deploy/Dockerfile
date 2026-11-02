@@ -13,7 +13,7 @@ RUN npx astro build
 FROM nginxinc/nginx-unprivileged:1.27-alpine
 # nginx.conf is a template: the official image fills in ${ASK_API_URL} at start (only variables starting with ASK_)
 COPY deploy/nginx.conf /etc/nginx/templates/default.conf.template
-ENV ASK_API_URL=http://127.0.0.1:8000 NGINX_ENVSUBST_FILTER=^ASK_
+ENV ASK_API_URL=http://127.0.0.1:8000 ASK_AUTH=off NGINX_ENVSUBST_FILTER=^ASK_
 COPY deploy/security_headers.inc /etc/nginx/conf.d/security_headers.inc
 COPY --from=build /site/dist /usr/share/nginx/html
 EXPOSE 8080

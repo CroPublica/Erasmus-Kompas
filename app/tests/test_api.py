@@ -34,6 +34,23 @@ def test_rate_limit(monkeypatch):
     assert codes == [200, 200, 200, 429, 429]
 
 
+def test_rate_limit_per_client_behind_proxy(monkeypatch):
+    monkeypatch.setattr(api, "RATE_LIMIT", 2)
+    monkeypatch.setattr(api, "TRUST_PROXY", True)
+    c = client(client=("127.0.0.1", 5000))
+    def post(ip):
+        return c.post("/ask", json={"question": "a"}, headers={"X-Forwarded-For": f"6.6.6.6, {ip}"}).status_code
+    assert [post("1.1.1.1"), post("1.1.1.1"), post("1.1.1.1"), post("2.2.2.2")] == [200, 200, 429, 200]   # a spoofed first entry changes nothing
+
+
+def test_forwarded_header_ignored_unless_trusted(monkeypatch):
+    monkeypatch.setattr(api, "RATE_LIMIT", 1)
+    c = client(client=("8.8.8.8", 5000))
+    monkeypatch.setattr(api, "TRUST_PROXY", True)
+    codes = [c.post("/ask", json={"question": "a"}, headers={"X-Forwarded-For": f"9.9.9.{i}"}).status_code for i in range(2)]
+    assert codes == [200, 429]                                    # public peer: header not believed
+
+
 def test_no_internal_fields_leak():
     r = client().post("/ask", json={"question": "a"}).json()
     assert set(r) == {"answer", "lang", "route", "citations", "tools", "verified", "fallback", "last_org_id"}

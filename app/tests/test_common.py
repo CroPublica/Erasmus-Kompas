@@ -18,3 +18,15 @@ def test_find_raw_fails_when_ambiguous_or_missing(tmp_path, monkeypatch):
         common.find_raw("a*.csv")
     with pytest.raises(FileNotFoundError):
         common.find_raw("zzz*.csv")
+
+
+def test_export_scrubs_email_addresses():
+    import importlib.util, sys
+    from pathlib import Path
+    sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "pipeline"))
+    spec = importlib.util.spec_from_file_location("export70", Path(__file__).resolve().parent.parent / "pipeline" / "70_export_site.py")
+    m = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(m)
+    assert m.scrub("Write to erasmus.zena@gmail.com or a_b@x.hr.") == "Write to [e-mail removed] or [e-mail removed]."
+    assert m.scrub("src=c_uq4j@group.calendar.google.com&x") == "src=[e-mail removed]&x"
+    assert m.scrub(None) is None and m.scrub("no address here") == "no address here"

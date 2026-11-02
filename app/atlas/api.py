@@ -10,6 +10,7 @@ Safeguards (plan section 5, Safety): request size cap, per-client rate limit, at
 from __future__ import annotations
 
 import asyncio
+import ipaddress
 import logging
 import os
 import time
@@ -26,6 +27,22 @@ log = logging.getLogger("atlas.api")
 MAX_QUESTION_CHARS = int(os.environ.get("ATLAS_MAX_QUESTION_CHARS", "500"))
 RATE_LIMIT = int(os.environ.get("ATLAS_RATE_LIMIT_PER_MIN", "20"))
 QUEUE_WAIT_S = float(os.environ.get("ATLAS_QUEUE_WAIT_S", "20"))
+# Behind nginx or a tunnel every request comes from the proxy. With ATLAS_TRUST_PROXY=1 the client is taken from the last
+# X-Forwarded-For entry (the one the proxy itself added), but only when the direct peer is a loopback or private address.
+TRUST_PROXY = os.environ.get("ATLAS_TRUST_PROXY") == "1"
+
+
+def client_id(request: Request) -> str:
+    peer = request.client.host if request.client else "unknown"
+    if TRUST_PROXY:
+        try:
+            ip = ipaddress.ip_address(peer)
+        except ValueError:
+            return peer
+        fwd = request.headers.get("x-forwarded-for", "").split(",")[-1].strip()
+        if fwd and (ip.is_loopback or ip.is_private):
+            return fwd
+    return peer
 
 
 class AskRequest(BaseModel):
@@ -48,7 +65,7 @@ def create_app(asker: Optional[Asker] = None) -> FastAPI:
 
     @app.post("/ask")
     async def ask(req: AskRequest, request: Request):
-        client = request.client.host if request.client else "unknown"
+        client = client_id(request)
         now = time.time()
         q = state["hits"][client]
         while q and now - q[0] > 60:
