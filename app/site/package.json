@@ -13,7 +13,8 @@
     "test:ui": "node tests/ui.mjs"
   },
   "dependencies": {
-    "astro": "^7.4.4"
+    "astro": "^7.4.4",
+    "d3-force": "3.0.0"
   },
   "devDependencies": {
     "axe-core": "^4.14.0",

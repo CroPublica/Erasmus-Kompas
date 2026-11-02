@@ -217,6 +217,30 @@ await test('graph: groups listed, concept search shows what goes with it', async
   const d = await open('/en/graph/#app00002'); assert.match(await d.locator('#cbody h3').innerText(), /peer learning/i);        // link from an Ask answer
   const h = await open('/hr/graph/'); await h.fill('#cs', 'nasilj'); assert.ok(await h.locator('#cres li').count() >= 1);
 });
+await test('graph network: groups -> concepts, breadcrumbs, keyboard, phone width', async () => {
+  const p = await open('/en/graph/');
+  await p.waitForSelector('.gv-node');
+  assert.equal(await p.locator('.gv-node').count(), 19);                                  // one bubble per group
+  await p.locator('.gv-node').first().click();
+  assert.match(await p.locator('.gv-crumbs').innerText(), /All groups\s*›\s*Group:/);
+  assert.ok(await p.locator('.gv-node').count() >= 10);
+  assert.ok(await p.locator('.gv-sector').count() >= 3);                                  // one sector label per kind
+  await p.locator('.gv-node').nth(2).click();                                             // a concept: network re-centres on it
+  await p.waitForSelector('.gv-node.center');
+  assert.equal(await p.locator('.gv-node.center').count(), 1);
+  assert.equal(await p.locator('#cbody').isVisible(), true);
+  const name = await p.locator('#cbody h3').innerText();
+  assert.ok((await p.locator('.gv-crumbs .gv-here').innerText()).startsWith(name.slice(0, 20)));
+  await p.locator('.gv-node:not(.center)').first().focus(); await p.keyboard.press('Enter');   // keyboard works like a click
+  assert.notEqual(await p.locator('#cbody h3').innerText(), name);
+  await p.locator('.gv-crumbs button', { hasText: 'All groups' }).click();
+  assert.equal(await p.locator('.gv-node').count(), 19);
+  assert.equal(await p.locator('#cbody').isVisible(), false);
+  assert.match(await p.locator('.gv-live').innerText(), /19 groups/);
+  const m = await open('/hr/graph/', 390); await m.waitForSelector('.gv-node');
+  assert.equal(await m.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth), true);   // no sideways scroll on a phone
+  assert.match(await m.locator('.gv-live').innerText(), /19 skupina/);
+});
 await test('no console errors', async () => assert.deepEqual(errors, []));
 await browser.close(); stop();
 console.log(`\n${passed} passed, ${failed} failed`); process.exit(failed ? 1 : 0);

@@ -17,20 +17,19 @@ const lists = [['top_approach', 'approach'], ['top_target_group', 'target_group'
   <p class="lead">{c.gLead}</p>
   <p class="lead" style="font-size:.9rem;margin-top:8px">{c.gCaveat}</p>
 
-  <h2 style="margin-top:28px">{c.gPick}</h2>
-  <div class="grid two-eq" style="margin-top:10px">
-    <section class="card">
-      <label for="cs">{c.gSearch}</label>
-      <input id="cs" type="search" autocomplete="off" style="width:100%;margin:8px 0" aria-controls="cres" />
-      <ul id="cres" style="list-style:none;padding:0;margin:0;max-height:360px;overflow:auto"></ul>
-      <p class="lead" id="cnone" hidden>{c.gNoMatch}</p>
-    </section>
-    <section class="card" id="cpanel" aria-live="polite">
-      <div class="kicker">{c.gSelected}</div>
-      <p class="lead" id="chint">{c.gSearch}</p>
-      <div id="cbody" hidden></div>
-    </section>
-  </div>
+  <h2 style="margin-top:28px">{c.gExplore}</h2>
+  <section class="card" style="margin-top:10px">
+    <label for="cs">{c.gSearch}</label>
+    <input id="cs" type="search" autocomplete="off" style="width:100%;margin:8px 0" aria-controls="cres" />
+    <ul id="cres" style="list-style:none;padding:0;margin:0 0 8px;max-height:220px;overflow:auto"></ul>
+    <p class="lead" id="cnone" hidden>{c.gNoMatch}</p>
+    <div id="gv"></div>
+  </section>
+  <section class="card" id="cpanel" aria-live="polite" style="margin-top:12px">
+    <div class="kicker">{c.gSelected}</div>
+    <p class="lead" id="chint">{c.gSearch}</p>
+    <div id="cbody" hidden></div>
+  </section>
 
   <h2 style="margin-top:32px">{c.gGroups}</h2>
   <p class="lead">{c.gGroupsLead}</p>
@@ -57,6 +56,7 @@ const lists = [['top_approach', 'approach'], ['top_target_group', 'target_group'
 <script>
   import g from '../../data/graph.json';
   import { ct } from '../../lib/conceptText';
+  import { mountGraph } from '../../lib/graphView';
   const lang = (document.documentElement.lang === 'hr' ? 'hr' : 'en') as 'hr' | 'en';
   const c = ct(lang);
   type N = [string, string, string, string | null, number, number, number, number, number, number, string];
@@ -74,6 +74,8 @@ const lists = [['top_approach', 'approach'], ['top_target_group', 'target_group'
       neigh.get(x)!.push([y, n, cos]);
     }
   }
+  const view = mountGraph({ root: document.getElementById('gv')!, g, lang, t: c as any, onConcept: (i) => show(i), onNone: () => { body.hidden = true; hint.hidden = false; } });
+  const go = (i: number) => { show(i); view.focus(i); };
   const input = document.getElementById('cs') as HTMLInputElement;
   const res = document.getElementById('cres') as HTMLUListElement;
   const none = document.getElementById('cnone')!;
@@ -96,7 +98,7 @@ const lists = [['top_approach', 'approach'], ['top_target_group', 'target_group'
       ${comm ? `<p class="lead" style="font-size:.9rem;margin:0 0 8px">${c.gGroup}: ${esc([comm.top_approach[0], comm.top_target_group[0], comm.top_topic[0]].filter(Boolean).slice(0, 2).map((a: any) => (lang === 'hr' && a[1] ? a[1] : a[0])).join(' · '))}</p>` : ''}
       <div style="margin-top:8px"><div class="kicker" style="margin-bottom:6px">${c.gGoes}</div>${groups}</div>`;
     body.hidden = false; hint.hidden = true;
-    body.querySelectorAll<HTMLButtonElement>('button[data-i]').forEach((b) => b.addEventListener('click', () => { show(Number(b.dataset.i)); document.getElementById('cpanel')!.scrollIntoView({ block: 'nearest' }); }));
+    body.querySelectorAll<HTMLButtonElement>('button[data-i]').forEach((b) => b.addEventListener('click', () => go(Number(b.dataset.i))));
   }
   function find() {
     const q = fold(input.value.trim());
@@ -107,7 +109,7 @@ const lists = [['top_approach', 'approach'], ['top_target_group', 'target_group'
     for (const i of hits) {
       const li = document.createElement('li');
       li.innerHTML = `<button type="button" class="linkish" data-i="${i}">${esc(name(nodes[i]))}</button> <span class="mono">· ${(c.gKindOne as Record<string, string>)[nodes[i][1]]} · ${nf.format(nodes[i][4])}</span>`;
-      li.querySelector('button')!.addEventListener('click', () => show(i));
+      li.querySelector('button')!.addEventListener('click', () => go(i));
       res.append(li);
     }
     none.hidden = hits.length > 0;
@@ -116,7 +118,7 @@ const lists = [['top_approach', 'approach'], ['top_target_group', 'target_group'
   function fromHash() {                                    // links from Ask answers: /graph/#<concept id>
     const id = decodeURIComponent(location.hash.slice(1));
     const i = nodes.findIndex((n) => n[0] === id);
-    if (i >= 0) show(i);
+    if (i >= 0) go(i);
   }
   window.addEventListener('hashchange', fromHash);
   fromHash();
