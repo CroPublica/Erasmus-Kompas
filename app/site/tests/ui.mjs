@@ -102,10 +102,10 @@ await test('keyboard: skip link moves focus to main; selecting a tile keeps focu
   assert.equal(await p.evaluate(() => document.activeElement.id), 'main');
   await p.focus('.tile[data-county="Istarska"]'); await p.keyboard.press('Enter');
   assert.equal(await p.evaluate(() => document.activeElement.dataset.county), 'Istarska');
-  await p.focus('#rank a[href*="/places/zadarska/"]'); await p.keyboard.press('Enter');                      // the county name in the ranking is a link to the county page
+  assert.equal(await p.locator('#rank').isVisible(), false);                                              // the ranking is hidden for now (showRanking in index.astro)
+  assert.equal(await p.locator('h2', { hasText: 'By county' }).isVisible(), true);                    // only the county map shows
+  await p.locator('.tile[data-county="Zadarska"]').click(); await p.locator('#sel-open').click();           // the county page is reached from the selected-county strip
   await p.waitForURL(/places\/zadarska\//);
-  const q = await open('/en/'); await q.locator('#rank .rank[data-rank="Istarska"] .range').click();          // the rest of the row selects the county on the map
-  assert.equal(await q.locator('#selected').isVisible(), true);
 });
 await test('keyboard: search results reachable with arrows, Escape returns to the box', async () => {
   const p = await open('/en/'); await p.focus('#gs'); await p.keyboard.type('metkov'); await p.locator('#gs-res a').first().waitFor();
