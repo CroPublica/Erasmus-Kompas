@@ -87,17 +87,20 @@ def check_4(con):
     n, c, k = org_projects(con, "o.county = 'Dubrovačko-neretvanska'")
     grants = con.execute("""select sum(g) from (select distinct p.project_id, p.project_grant_eur g from participation p
         join organisation o using (org_id) where o.county = 'Dubrovačko-neretvanska' and p.role = 'coordinator')""").fetchone()[0] or 0
-    ok = (n, c) == (150, 17) and round(grants / 1e6, 2) == 3.72
+    ok = (n, c) == (151, 17) and round(grants / 1e6, 2) == 3.72
     return (PASS if ok else FAIL), (f"{n} projects involved, {c} coordinated, grants coordinated EUR {grants:,.0f}, {k} organisations "
-                                    f"(want 150 / 17 / 3.72M; screenshot shows 33 organisations)")
+                                    f"(want 151 / 17 / 3.72M, 33 organisations; the first prototype showed 150, the owner accepted 151 on 2026-11-03: every EU export row with a county postcode gives 151)")
 
 
-COUNTY_TOLERANCE = 3   # "within a few per county" (BUILD_PLAN §4): at most this many projects apart
+COUNTY_TOLERANCE = 3   # per county, reported only
+TOTAL_TOLERANCE = 0.03  # owner decision 2026-11-03: the national list may be short of the county summary by up to 3 % in total
 
 
 @needs("place", "county", "stg_na_projects_2014_2020")
 def check_6(con):
-    """Tablica 1 projects placed in counties by postcode, against the county counts printed in tablica 5."""
+    """Tablica 1 projects placed in counties by postcode, against the county counts printed in tablica 5. The national list has about 50 projects
+    fewer than the summary (rows missing, none misplaced: no county is over its count). It passes while the total gap stays within 3 %; the
+    counties further off are listed for information."""
     rows = con.execute("""
         with mine as (
           select p.county, count(*) n from stg_na_projects_2014_2020 s
@@ -107,11 +110,13 @@ def check_6(con):
     total_t5 = sum(r[1] for r in rows)
     total_mine = sum(r[2] for r in rows)
     off = sorted((r for r in rows if abs(r[3]) > COUNTY_TOLERANCE), key=lambda r: r[3])
-    detail = (f"{total_mine:,} projects placed vs {total_t5:,} in tablica 5 (shortfall {total_t5 - total_mine}); "
+    over = [r for r in rows if r[3] > COUNTY_TOLERANCE]
+    gap = (total_t5 - total_mine) / total_t5 if total_t5 else 1
+    detail = (f"{total_mine:,} projects placed vs {total_t5:,} in tablica 5 (shortfall {total_t5 - total_mine}, {gap:.1%}; allowed {TOTAL_TOLERANCE:.0%}); "
               f"{len(rows) - len(off)} of {len(rows)} counties within {COUNTY_TOLERANCE}")
     if off:
-        detail += "; off: " + ", ".join(f"{r[0]} {r[3]:+d}" for r in off)
-    return (FAIL if off else PASS), detail
+        detail += "; further off: " + ", ".join(f"{r[0]} {r[3]:+d}" for r in off)
+    return (PASS if gap <= TOTAL_TOLERANCE and not over else FAIL), detail
 
 
 def check_7(con):
@@ -129,7 +134,7 @@ CHECKS = [
     ("1  HR projects: 3,830 involved, 606 coordinated   [staging]", check_1),
     ("2  Gimnazija Metković: 22 projects, 1 coordinated", check_2),
     ("3  Sveučilište u Dubrovniku: 34 projects", check_3),
-    ("4  Dubrovačko-neretvanska: 150 / 17 / EUR 3.72M", check_4),
+    ("4  Dubrovačko-neretvanska: 151 / 17 / EUR 3.72M", check_4),
     ("5  Tablica 7 KA2 grants = EU export: 139 of 139   [staging]", check_5),
     ("6  Tablica 1 by postcode ~ tablica 5 county counts", check_6),
     ("7  HR appearances in KA2: 4,389 (252+2,053, 354+1,730)   [staging]", check_7),

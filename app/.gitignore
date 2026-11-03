@@ -22,3 +22,4 @@ data/esc_queries.json
 eval/data/
 deploy/htpasswd
 data/api.log
+data/tunnel.log

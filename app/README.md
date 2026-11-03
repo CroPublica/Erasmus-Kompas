@@ -70,10 +70,13 @@ Output: `data/atlas.duckdb` (rebuilt each time, not committed). Human review dec
 | 70 | `pipeline/70_export_site.py` | static JSON per page in `site/src/data/` (organisations, places, projects, topics over time, graph) | done |
 | 99 | `pipeline/99_validate.py` | regression checks from the plan | done (7 checks) |
 
-Checks today (`./run_pipeline.sh --check`): 1, 2, 3, 5 and 7 pass. **4** fails by one project (151 projects involve
-Dubrovačko-neretvanska, 150 wanted; everything else about it matches). **6** fails: tablica 1 projects placed by postcode
-match tablica 5 within 3 in 19 of 21 counties, Zagrebačka is 16 short and Brodsko-posavska 6 short (the list has 2,058
-projects, tablica 5 counts 2,111; no county is over, so rows are missing, not misplaced). Details and history in `LOG.md`.
+Checks (`./run_pipeline.sh --check`): all 7 pass. **4** expects 151 projects for Dubrovačko-neretvanska (the first prototype showed 150; the owner
+accepted 151 on 2026-11-03, because every EU export row with a postcode in the county gives 151: three older participants write the postcode as
+"20 000"). **6** passes while the national project list (tablica 1, 2,061 projects placed) is at most 3 % short of the county summary (tablica 5,
+2,111): it is 50 short (2.4 %), mostly Zagrebačka (15) and Brodsko-posavska (6); no county is over its count, so projects are missing from the list,
+not misplaced. Tablica 1 is only used to learn which town goes with which postcode and as this cross-check; the headline numbers come from the EU exports.
+**NGO count:** 168 NGOs coordinated 2021–2027 projects by organisation class = 154 typed NGO in the EU export + 6 whose blank type is filled from
+other records of the same organisation + 8 European civil-society organisations (footnote on the overview page and in the Ask answer). Details and history in `LOG.md`.
 
 ### Known gaps in the raw files
 

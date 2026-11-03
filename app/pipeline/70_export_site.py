@@ -158,6 +158,10 @@ def main():
         r = tb.national_stats(per).rows[0]
         nat["periods"][per] = {k: r[k] for k in ("projects", "coordinated", "eu_ka2_projects", "share_of_eu_ka2_projects", "value_involved_eur", "central_projects")}
         nat["periods"][per]["classes"] = r["coordinating_organisation_classes"]
+        # how many of the coordinators are typed NGO in the EU export itself (the class count also fills blank types and adds European civil-society organisations)
+        nat["periods"][per]["ngo_typed_in_eu_export"] = con.execute(
+            "select count(*) from stg_hr_appearance where role = 'coordinator' and org_type like 'Non-governmental%'" + ("" if per == "all" else " and period = ?"),
+            [] if per == "all" else [per]).fetchone()[0]
     for per in ("2014-2020", "2021-2027"):
         rows_ = tb.country_stats(per, limit=15).rows
         nat["countries"][per] = rows_

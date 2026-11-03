@@ -383,6 +383,9 @@ def template_answer(lang: str, route: str, results: list[dict]) -> str:
     if t == "national_stats":
         cls = r.get("coordinating_organisation_classes", [])[:4]
         ctext = ", ".join(f"{CLASS_NAMES.get(x['org_class'], (x['org_class'],) * 2)[0 if hr else 1]} {f(x['projects_coordinated'])}" for x in cls)
+        if any(x["org_class"] == "ngo" for x in cls):      # the class is wider than what the EU export types as NGO (no numbers here: the verifier checks every number against the tool output)
+            ctext += (". Nevladine organizacije uključuju organizacije kojima je prazna vrsta dopunjena iz drugih zapisa i europske organizacije civilnog društva" if hr else
+                      ". Non-governmental organisations include organisations whose blank type was filled from other records and European civil-society organisations")
         return (f"{f(r['projects'])} KA2 {hr_plural(r['projects'], 'projekt', 'projekta', 'projekata')} ima hrvatskog sudionika ({f(r['projects_2014_2020'])} u 2014.–2020., {f(r['projects_2021_2027'])} u 2021.–2026.), a {f(r['coordinated'])} ih koordinira hrvatska organizacija ({f(r['share_of_eu_ka2_projects'] * 100, 1)} % svih KA2 projekata u EU). Koordiniraju najčešće: {ctext}."
                 if hr else f"{f(r['projects'])} KA2 projects have a Croatian participant ({f(r['projects_2014_2020'])} in 2014–2020, {f(r['projects_2021_2027'])} in 2021–2026) and {f(r['coordinated'])} are coordinated from Croatia ({f(r['share_of_eu_ka2_projects'] * 100, 1)} % of all EU KA2 projects). Most frequent coordinators: {ctext}.")
     if t == "coverage":

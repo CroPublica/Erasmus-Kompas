@@ -32,6 +32,7 @@ const cp = ['2014-2020', '2021-2027'] as const;
           {d.classes.map((c: any) => (
             <div class="barrow" style="grid-template-columns:14em 1fr 3em"><span>{s.classNames[c.org_class] ?? c.org_class}</span><span class="track"><i style={`width:${(c.projects_coordinated / d.classes[0].projects_coordinated) * 100}%`}></i></span><span class="mono" style="text-align:right">{num(lang, c.projects_coordinated)}</span></div>
           ))}
+          {d.classes.some((c: any) => c.org_class === 'ngo') && <p class="lead" style="font-size:.85rem;margin-top:10px">{s.ovWhoNote(num(lang, d.classes.find((c: any) => c.org_class === 'ngo').projects_coordinated), num(lang, d.ngo_typed_in_eu_export))}</p>}
         </section>
         {(cp as readonly string[]).includes(v) && (() => {
           const rows = (nat as any).countries[v]; const hr = rows.find((r: any) => r.country === 'HR');
