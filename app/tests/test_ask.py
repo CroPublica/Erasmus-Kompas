@@ -205,3 +205,12 @@ def test_trend_and_connection_questions_use_their_tools(tb):
     assert "connected_concepts" in " ".join(r["trace"]) and "neighbours" in r["answer"]
     r = a.ask("What are the main clusters of themes in KA2 projects with Croatian participants?")
     assert "community_overview" in " ".join(r["trace"])
+
+
+def test_yes_no_questions_start_with_yes_or_no(tb):
+    a = asker(tb, FakeRouter(route="organisation", organisation="Gimnazija Metković"))
+    assert a.ask("Je li Gimnazija Metković ikada koordinirala KA2 projekt?")["answer"].startswith("Da. ")
+    assert a.ask("Has Gimnazija Metković ever coordinated a KA2 project?")["answer"].startswith("Yes. ")
+    assert not a.ask("Koliko projekata ima Gimnazija Metković?")["answer"].startswith(("Da", "Ne"))        # not a yes/no question
+    a2 = asker(tb, FakeRouter(route="organisation", organisation="Gimnazija Dubrovnik"))
+    assert a2.ask("Je li Gimnazija Dubrovnik sudjelovala u nekom KA2 projektu od 2014.?")["answer"].startswith("Ne. ")

@@ -129,6 +129,14 @@ def main():
     pt = {}
     for r in rows(con, "select project_id, topic from project_topic"):
         pt.setdefault(r["project_id"], []).append(r["topic"])
+    pcon = {}                                      # project -> a few of its graph concepts (the specific ones used by 5+ projects), for links into the graph page
+    if con.execute("select count(*) from information_schema.tables where table_name = 'graph_node'").fetchone()[0]:
+        picked = {}
+        for r in rows(con, """select pc.project_id, n.node_id, n.kind, n.n_projects from project_concept pc left join concept_theme th using (concept_id)
+                              join graph_node n on n.node_id = coalesce(th.theme_id, pc.concept_id) where n.kind <> 'topic' group by all"""):
+            picked.setdefault(r["project_id"], {}).setdefault(r["kind"], []).append((r["n_projects"], r["node_id"]))
+        for pid, kinds in picked.items():
+            pcon[pid] = [nid for kd in ("approach", "target_group", "output", "problem") for _, nid in sorted(kinds.get(kd, []))[:2]]
     hp = {}
     for r in rows(con, "select x.project_id, x.org_id, o.name, x.role from participation x join organisation o using (org_id) order by x.role desc, o.name"):
         hp.setdefault(r["project_id"], []).append({"id": r["org_id"], "name": r["name"], "role": r["role"]})
@@ -136,7 +144,7 @@ def main():
     for r in rows(con, "select project_id, period, call_year, action_type, family, title, summary, status, grant_eur, grant_not_comparable, "
                        "good_practice, results_available, management, countries, results_card_url, project_website from project"):
         projs[r["project_id"]] = {**r, "summary": scrub(r["summary"]), "countries": [c for c in (r["countries"] or "").split(",") if c],
-                                  "topics": pt.get(r["project_id"], []), "hr": hp.get(r["project_id"], [])}
+                                  "topics": pt.get(r["project_id"], []), "concepts": pcon.get(r["project_id"], []), "hr": hp.get(r["project_id"], [])}
     write("projects_full.json", projs)
 
     # ---- counties
@@ -225,6 +233,19 @@ def main():
                              "nodes": [[r[0], r[1], r[2], hr_of.get(r[0]), r[3], r[4], r[5], r[6], round(r[7], 3), round(r[8], 3), r[9] or ""] for r in gn],
                              "edges": [[index_of[a], index_of[b], n, round(l, 1)] for a, b, n, l in con.execute(
                                  "select a, b, n_projects, lift from graph_edge where a in (select node_id from graph_node) order by cosine desc").fetchall()]})
+
+        # the Croatian organisations with the most projects on each graph concept (top 5), for the concept panel; counts are projects per organisation
+        top_orgs = {}
+        for r in con.execute("""
+                with m as (select coalesce(th.theme_id, pc.concept_id) node_id, pc.project_id from project_concept pc left join concept_theme th using (concept_id)
+                           union select 'TOP:' || topic, project_id from project_topic),
+                c as (select m.node_id, x.org_id, count(distinct m.project_id) n from m join participation x using (project_id)
+                      where m.node_id in (select node_id from graph_node) group by all),
+                r as (select c.*, o.name, row_number() over (partition by c.node_id order by c.n desc, o.name) k, count(*) over (partition by c.node_id) norg from c join organisation o using (org_id))
+                select node_id, org_id, name, n, norg from r where k <= 5 order by node_id, k""").fetchall():
+            e = top_orgs.setdefault(r[0], {"n": r[4], "top": []})            # n = how many different organisations; top = the five with most projects
+            e["top"].append([r[1], r[2], r[3]])
+        write("concept_orgs.json", top_orgs)
 
     n_proj, n_coord = con.execute("select count(*), sum(hr_coordinated::int) from project").fetchone()
     write("meta.json", {"generated": date.today().isoformat(), "projects": n_proj, "coordinated": int(n_coord),

@@ -23,7 +23,7 @@ const lists = [['top_approach', 'approach'], ['top_target_group', 'target_group'
     <input id="cs" type="search" autocomplete="off" style="width:100%;margin:8px 0" aria-controls="cres" />
     <ul id="cres" style="list-style:none;padding:0;margin:0 0 8px;max-height:220px;overflow:auto"></ul>
     <p class="lead" id="cnone" hidden>{c.gNoMatch}</p>
-    <div id="gv"></div>
+    <div id="gv" data-base={import.meta.env.BASE_URL.replace(/\/$/, '')}></div>
   </section>
   <section class="card" id="cpanel" aria-live="polite" style="margin-top:12px">
     <div class="kicker">{c.gSelected}</div>
@@ -57,6 +57,8 @@ const lists = [['top_approach', 'approach'], ['top_target_group', 'target_group'
   import g from '../../data/graph.json';
   import { ct } from '../../lib/conceptText';
   import { mountGraph } from '../../lib/graphView';
+  import topOrgs from '../../data/concept_orgs.json';
+  import { slug } from '../../lib/i18n';
   const lang = (document.documentElement.lang === 'hr' ? 'hr' : 'en') as 'hr' | 'en';
   const c = ct(lang);
   type N = [string, string, string, string | null, number, number, number, number, number, number, string];
@@ -87,6 +89,12 @@ const lists = [['top_approach', 'approach'], ['top_target_group', 'target_group'
     const rel = (neigh.get(i) ?? []).sort((p, q) => q[2] - p[2]);
     const comm = (g.communities as any[]).find((k) => k.id === n[10]);
     const kinds = (c.gKinds as Record<string, string>);
+    const base = document.getElementById('gv')!.dataset.base ?? '';
+    const entry = (topOrgs as Record<string, { n: number; top: [string, string, number][] }>)[n[0]];
+    const orgs = (entry?.top ?? []).filter((o) => o[2] >= 2);                       // five organisations with one project each would be an arbitrary five
+    const plural = (k: number) => lang === 'hr' ? (k % 10 === 1 && k % 100 !== 11 ? 'projekt' : k % 10 >= 2 && k % 10 <= 4 && (k % 100 < 12 || k % 100 > 14) ? 'projekta' : 'projekata') : (k === 1 ? 'project' : 'projects');
+    const orgsHtml = orgs.length ? `<div style="margin:10px 0"><div class="kicker" style="margin-bottom:6px">${c.gOrgs}</div><ul style="padding-left:18px;margin:6px 0">${orgs.map((o) => `<li><a href="${base}/${lang}/organisations/${slug(o[0])}/">${esc(o[1])}</a> <span class="mono">· ${nf.format(o[2])} ${plural(o[2])}</span></li>`).join('')}</ul><p class="lead" style="font-size:.8rem;margin:0">${c.gOrgsNote}</p></div>`
+      : entry && entry.n > 1 ? `<p class="lead" style="font-size:.9rem;margin:10px 0">${(c as any).gOrgsFlat(entry.n)}</p>` : '';
     const groups = ['target_group', 'approach', 'output', 'problem', 'topic'].map((kd) => {
       const items = rel.filter((r) => nodes[r[0]][1] === kd).slice(0, 5);
       return items.length ? `<div><div class="kicker">${kinds[kd]}</div><ul style="padding-left:18px;margin:6px 0 10px">${items.map((r) =>
@@ -96,6 +104,7 @@ const lists = [['top_approach', 'approach'], ['top_target_group', 'target_group'
       <p class="lead" style="margin:0 0 8px">${(c.gKindOne as Record<string, string>)[n[1]]} · ${nf.format(n[4])} ${c.gProjects} (${pc(n[4] / g.projects)} %)</p>
       <p class="lead" style="font-size:.9rem;margin:0 0 8px">${c.gPeriods}: 2014–2020 ${nf.format(n[5])} · 2021–2027 ${nf.format(n[6])} · ${c.gGp}: ${nf.format(n[7])} (${pc(n[7] / n[4])} %; ${pc(n[8])}–${pc(n[9])}; ${pc(g.gp_rate_all)} % ${lang === 'hr' ? 'svi projekti' : 'all projects'})</p>
       ${comm ? `<p class="lead" style="font-size:.9rem;margin:0 0 8px">${c.gGroup}: ${esc([comm.top_approach[0], comm.top_target_group[0], comm.top_topic[0]].filter(Boolean).slice(0, 2).map((a: any) => (lang === 'hr' && a[1] ? a[1] : a[0])).join(' · '))}</p>` : ''}
+      ${orgsHtml}
       <div style="margin-top:8px"><div class="kicker" style="margin-bottom:6px">${c.gGoes}</div>${groups}</div>`;
     body.hidden = false; hint.hidden = true;
     body.querySelectorAll<HTMLButtonElement>('button[data-i]').forEach((b) => b.addEventListener('click', () => go(Number(b.dataset.i))));

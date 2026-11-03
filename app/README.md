@@ -1,4 +1,4 @@
-# KA2 Atlas (app)
+# Erasmus+ Kompas (app)
 
 Public website on Croatian participation in Erasmus+ KA2 partnerships, 2014–2026.
 

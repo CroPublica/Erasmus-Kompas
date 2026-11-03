@@ -1,6 +1,7 @@
 ---
 import Base from '../../../layouts/Base.astro';
 import projects from '../../../data/projects_full.json';
+import graph from '../../../data/graph.json';
 import { LANGS, t, num, eur, slug, topicName, type Lang } from '../../../lib/i18n';
 import { country } from '../../../lib/countries';
 
@@ -11,6 +12,7 @@ const { p } = Astro.props as { p: any };
 const s = t(lang);
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const coord = p.countries[0];
+const nodeName = new Map((graph.nodes as any[]).map((n) => [n[0], lang === 'hr' && n[3] ? n[3] : n[2]]));
 ---
 <Base lang={lang} title={p.title} path={`/projects/${slug(p.project_id)}/`} active="orgs">
   <div class="kicker">{s.projectKicker} · {p.project_id}</div>
@@ -51,6 +53,13 @@ const coord = p.countries[0];
         <h2>{s.topicsLbl}</h2>
         {p.topics.length ? p.topics.map((x: string) => <span class="tag">{topicName(lang, x)}</span>) : <p class="lead">{s.noTopics}</p>}
       </section>
+      {(p.concepts ?? []).length > 0 && (
+        <section class="card">
+          <h2>{s.conceptsLbl}</h2>
+          <p>{(p.concepts as string[]).filter((id) => nodeName.has(id)).map((id) => <a class="pill" style="text-decoration:none;margin:0 6px 6px 0" href={`${base}/${lang}/graph/#${encodeURIComponent(id)}`}>{nodeName.get(id)}</a>)}</p>
+          <p class="lead" style="font-size:.85rem">{s.conceptsNote}</p>
+        </section>
+      )}
     </div>
   </div>
 </Base>

@@ -16,7 +16,7 @@ api_start() { ATLAS_TRUST_PROXY=1 nohup .venv/bin/uvicorn atlas.api:app --host 1
 site_stop() { docker rm -f "$NAME" >/dev/null 2>&1 || true; }
 site_start() {
   [ -f deploy/htpasswd ] || { echo "deploy/htpasswd missing: run deploy/make_password.sh <user> first"; exit 1; }
-  docker run -d --restart unless-stopped --name "$NAME" --network host -e ASK_AUTH='"KA2 Atlas demo"' \
+  docker run -d --restart unless-stopped --name "$NAME" --network host -e ASK_AUTH='"Erasmus+ Kompas demo"' \
     -v "$PWD/deploy/htpasswd:/etc/nginx/htpasswd:ro" ka2-atlas >/dev/null
 }
 case "${1:-}" in

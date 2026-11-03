@@ -1,4 +1,4 @@
-# Hosting KA2 Atlas
+# Hosting Erasmus+ Kompas
 
 The site is plain static files (`site/dist`). Only the **Ask** page needs a server: a small Python API (`atlas.api`) that calls
 a local model through Ollama. Everything else works without it. Pick the lowest option that is enough.
@@ -65,7 +65,7 @@ ATLAS_TRUST_PROXY=1 .venv/bin/uvicorn atlas.api:app --host 127.0.0.1 --port 8000
 deploy/make_password.sh demo            # prints the generated password (or: deploy/make_password.sh demo 'your-password')
 ./build_site.sh --docker
 docker run -d --restart unless-stopped --name ka2-atlas --network host \
-  -e ASK_AUTH='"KA2 Atlas demo"' -v "$PWD/deploy/htpasswd:/etc/nginx/htpasswd:ro" ka2-atlas
+  -e ASK_AUTH='"Erasmus+ Kompas demo"' -v "$PWD/deploy/htpasswd:/etc/nginx/htpasswd:ro" ka2-atlas
 ```
 The site is now at `http://127.0.0.1:8080` and asks for the user name and password (the whole site and `/api/`).
 `--network host` lets the container reach the API on 127.0.0.1:8000 without further settings. Test: opening it without the password gives 401.

@@ -102,8 +102,10 @@ await test('keyboard: skip link moves focus to main; selecting a tile keeps focu
   assert.equal(await p.evaluate(() => document.activeElement.id), 'main');
   await p.focus('.tile[data-county="Istarska"]'); await p.keyboard.press('Enter');
   assert.equal(await p.evaluate(() => document.activeElement.dataset.county), 'Istarska');
-  await p.focus('#rank [data-county="Zadarska"]'); await p.keyboard.press('Enter');
-  assert.equal(await p.evaluate(() => document.activeElement.dataset.county), 'Zadarska');
+  await p.focus('#rank a[href*="/places/zadarska/"]'); await p.keyboard.press('Enter');                      // the county name in the ranking is a link to the county page
+  await p.waitForURL(/places\/zadarska\//);
+  const q = await open('/en/'); await q.locator('#rank .rank[data-rank="Istarska"] .range').click();          // the rest of the row selects the county on the map
+  assert.equal(await q.locator('#selected').isVisible(), true);
 });
 await test('keyboard: search results reachable with arrows, Escape returns to the box', async () => {
   const p = await open('/en/'); await p.focus('#gs'); await p.keyboard.type('metkov'); await p.locator('#gs-res a').first().waitFor();
@@ -215,6 +217,8 @@ await test('graph: groups listed, concept search shows what goes with it', async
   assert.notEqual(await p.locator('#cbody h3').innerText(), before);
   await p.fill('#cs', 'qqqqq'); assert.equal(await p.locator('#cnone').isVisible(), true);
   const d = await open('/en/graph/#app00002'); assert.match(await d.locator('#cbody h3').innerText(), /peer learning/i);        // link from an Ask answer
+  assert.ok(await d.locator('#cbody a[href*="/organisations/"]').count() >= 2);   // Croatian organisations with most projects on this concept (only organisations with 2+ projects)
+  assert.match(await d.locator('#cbody').innerText(), /Croatian organisations with most projects/i);
   const h = await open('/hr/graph/'); await h.fill('#cs', 'nasilj'); assert.ok(await h.locator('#cres li').count() >= 1);
 });
 await test('graph network: groups -> concepts, breadcrumbs, keyboard, phone width', async () => {

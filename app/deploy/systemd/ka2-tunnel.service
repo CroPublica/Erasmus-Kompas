@@ -1,5 +1,5 @@
 [Unit]
-Description=KA2 Atlas Cloudflare quick tunnel (a new https address at every start: see deploy/public_demo.sh url)
+Description=Erasmus+ Kompas Cloudflare quick tunnel (a new https address at every start: see deploy/public_demo.sh url)
 After=network-online.target
 
 [Service]

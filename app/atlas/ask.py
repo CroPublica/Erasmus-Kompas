@@ -159,6 +159,26 @@ def concept_qualifier(question: str) -> str:
     return " ".join(words)
 
 
+YES_NO_Q = re.compile(r"^\W*(je li|jesu li|da li|ima li|imaju li|has|have|did|does|do|is|are|was|were)\b", re.I)
+COORD_Q = re.compile(r"koordin|coordinat", re.I)
+
+
+def yes_no_lead(question: str, lang: str, results: list[dict]) -> str:
+    """'Da. ' / 'Ne. ' for a yes/no question about one organisation (taking part, coordinating), read from the tool results; '' when it is not that kind of question.
+    The raters of the answer sheet asked for it: a yes/no question should be answered yes or no first."""
+    if not YES_NO_Q.search(question or ""):
+        return ""
+    yes, no = ("Da. ", "Ne. ") if lang == "hr" else ("Yes. ", "No. ")
+    prof = next((x for x in results if x["tool"] == "organisation_profile" and x["rows"]), None)
+    if prof:
+        r = prof["rows"][0]
+        return yes if (r["coordinated"] if COORD_Q.search(question) else r["projects"]) else no
+    found = next((x for x in results if x["tool"] == "find_organisation" and x["rows"] and not any("ambiguous" in n for n in x["notes"])), None)
+    if found and found["rows"][0].get("projects", 1) == 0:
+        return no
+    return ""
+
+
 def enrich_plan(plan: dict, question: str, tb) -> dict:
     """Fill arguments the small router often drops, from the question text itself (never overrides a value it gave)."""
     q = question.lower()
@@ -732,7 +752,9 @@ class Asker:
                 if c not in cites:
                     cites.append(c)
         org = next((r["args"].get("org_id") for r in results if r["tool"] == "organisation_profile"), None)
-        return {"answer": s["answer"], "lang": s["lang"], "route": (s.get("plan") or {}).get("route"), "plan": s.get("plan"),
+        lead = yes_no_lead(question, s["lang"], results) if (s.get("plan") or {}).get("route") == "organisation" else ""
+        answer = s["answer"] if not lead or re.match(r"\s*(da|ne|yes|no)\b", s["answer"], re.I) else lead + s["answer"]
+        return {"answer": answer, "lang": s["lang"], "route": (s.get("plan") or {}).get("route"), "plan": s.get("plan"),
                 "tools": [{"tool": r["tool"], "args": r["args"], "notes": r["notes"]} for r in results],
                 "citations": cites[:12], "verified": not s.get("problems") and not s.get("fallback"),
                 "fallback": bool(s.get("fallback")), "problems": s.get("problems", []), "last_org_id": org or last_org_id,

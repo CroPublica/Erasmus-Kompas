@@ -88,6 +88,7 @@ const groups = [
     }
   }
   document.addEventListener('click', (e) => {
+    if ((e.target as HTMLElement).closest('#rank a[href]')) return;          // the county name in the ranking is a link to its page; the rest of the row selects the county on the map
     const el = (e.target as HTMLElement).closest<HTMLElement>('#filters button, [data-county]');
     if (!el) return;
     const from = el.closest('#rank') ? '#rank' : el.closest('#tiles') ? '#tiles' : '';

@@ -88,6 +88,7 @@ td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
 .legend i { width: 22px; height: 14px; display: inline-block; }
 
 .rank { display: grid; grid-template-columns: minmax(8em, 1.3fr) 3fr 4.5em 4em; gap: 8px; align-items: center; padding: 7px 0; border-bottom: 1px solid var(--line); font-size: .9rem; }
+.rank[data-county] { cursor: pointer; }
 .rank.head { font-family: ui-monospace, Menlo, monospace; font-size: .7rem; letter-spacing: .06em; color: var(--muted); border-bottom: 1px solid var(--ink); }
 .rank[aria-selected='true'] { background: var(--warm-bg); }
 .rank .n { text-align: right; font-variant-numeric: tabular-nums; }

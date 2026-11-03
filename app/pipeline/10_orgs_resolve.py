@@ -271,6 +271,11 @@ def main():
     for i in inst.values():                       # a faculty is shown with its university (owner decision 2026-11-03); matching above used the plain names
         if "higher_education" in i["kinds"] and i.get("parent") and i.get("org_id") in orgs:
             orgs[i["org_id"]].name = with_university(i["name"], i["parent"], i["place"])
+    for o in orgs.values():                       # 'Gimnazija METKOVIĆ' -> 'Gimnazija Metković': the town written in capitals inside an otherwise normal name
+        if o.place and o.name != o.name.upper():
+            town = " ".join(o.place.split())
+            if len(town) >= 4 and town.upper() != town.lower():
+                o.name = re.sub(rf"(?<![\wČĆŽŠĐ]){re.escape(town.upper())}(?![\wČĆŽŠĐ])", town.title(), o.name)
     rows = []
     for oid in sorted(used):
         o = orgs[oid]

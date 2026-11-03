@@ -51,7 +51,7 @@ class AskRequest(BaseModel):
 
 
 def create_app(asker: Optional[Asker] = None) -> FastAPI:
-    app = FastAPI(title="KA2 Atlas Ask", docs_url=None, redoc_url=None)
+    app = FastAPI(title="Erasmus+ Kompas Ask", docs_url=None, redoc_url=None)
     state = {"asker": asker, "sem": None, "hits": defaultdict(deque)}
 
     def get_asker() -> Asker:
