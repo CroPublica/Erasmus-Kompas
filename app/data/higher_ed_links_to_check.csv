@@ -1,17 +1,17 @@
 kind,name_as_written_in_EU_export,linked_to_org_id,linked_org_name,appearances,projects
-registry entry joined to existing organisation,"Arhitektonski fakultet, Zagreb",OID-E10143814,"Arhitektonski fakultet, Zagreb",,
-registry entry joined to existing organisation,"Medicinski fakultet, Rijeka",OID-E10208811,"Medicinski fakultet, Rijeka",,
+registry entry joined to existing organisation,"Arhitektonski fakultet, Zagreb",OID-E10143814,"Sveučilište u Zagrebu, Arhitektonski fakultet",,
+registry entry joined to existing organisation,"Medicinski fakultet, Rijeka",OID-E10208811,"Sveučilište u Rijeci, Medicinski fakultet",,
 registry entry joined to existing organisation,"Hrvatsko katoličko sveučilište, Zagreb",OID-E10203023,"Hrvatsko katoličko sveučilište, Zagreb",,
-registry entry joined to existing organisation,"Filozofski fakultet, Zagreb",OID-E10207341,"Filozofski fakultet, Zagreb",,
+registry entry joined to existing organisation,"Filozofski fakultet, Zagreb",OID-E10207341,"Sveučilište u Zagrebu, Filozofski fakultet",,
 registry entry joined to existing organisation,"Visoka škola za sigurnost s pravom javnosti, Zagreb",OID-E10123748,"Visoka škola za sigurnost s pravom javnosti, Zagreb",,
 registry entry joined to existing organisation,Sveučilište u Splitu,OID-E10208520,Sveučilište u Splitu,,
 registry entry joined to existing organisation,Sveučilište u Zagrebu,OID-E10209270,Sveučilište u Zagrebu,,
 registry entry joined to existing organisation,Sveučilište u Rijeci,OID-E10195716,Sveučilište u Rijeci,,
 registry entry joined to existing organisation,Sveučilište Josipa Jurja Strossmayera u Osijeku,OID-E10167599,Sveučilište Josipa Jurja Strossmayera u Osijeku,,
-registry entry joined to existing organisation,Filozofski fakultet u Splitu,OID-E10139869,Filozofski fakultet u Splitu,,
-registry entry joined to existing organisation,"Građevinski fakultet, Zagreb",OID-E10203556,"Građevinski fakultet, Zagreb",,
-registry entry joined to existing organisation,"Fakultet strojarstva i brodogradnje, Zagreb",OID-E10191039,"Fakultet strojarstva i brodogradnje, Zagreb",,
-registry entry joined to existing organisation,"Učiteljski fakultet, Zagreb",OID-E10205463,"Učiteljski fakultet, Zagreb",,
+registry entry joined to existing organisation,Filozofski fakultet u Splitu,OID-E10139869,"Sveučilište u Splitu, Filozofski fakultet",,
+registry entry joined to existing organisation,"Građevinski fakultet, Zagreb",OID-E10203556,"Sveučilište u Zagrebu, Građevinski fakultet",,
+registry entry joined to existing organisation,"Fakultet strojarstva i brodogradnje, Zagreb",OID-E10191039,"Sveučilište u Zagrebu, Fakultet strojarstva i brodogradnje",,
+registry entry joined to existing organisation,"Učiteljski fakultet, Zagreb",OID-E10205463,"Sveučilište u Zagrebu, Učiteljski fakultet",,
 registry entry joined to existing organisation,"Sveučilište VERN, Zagreb",OID-E10172114,"Sveučilište VERN, Zagreb",,
 registry entry joined to existing organisation,Sveučilište u Slavonskom Brodu,OID-E10105279,Sveučilište u Slavonskom Brodu,,
 registry entry joined to existing organisation,Sveučilište u Zadru,OID-E10182730,Sveučilište u Zadru,,
@@ -21,24 +21,24 @@ registry entry joined to existing organisation,"Visoka škola za informacijske t
 registry entry joined to existing organisation,Sveučilište Jurja Dobrile u Puli,OID-E10156363,Sveučilište Jurja Dobrile u Puli,,
 registry entry joined to existing organisation,"Visoka škola za menadžment i dizajn Aspira, Split",OID-E10083370,"Visoka škola za menadžment i dizajn Aspira, Split",,
 registry entry joined to existing organisation,"Sveučilište Sjever, Koprivnica",OID-E10196566,"Sveučilište Sjever, Koprivnica",,
-registry entry joined to existing organisation,"Filozofski fakultet, Rijeka",OID-E10204352,"Filozofski fakultet, Rijeka",,
-registry entry joined to existing organisation,"Fakultet političkih znanosti, Zagreb",OID-E10120114,"Fakultet političkih znanosti, Zagreb",,
-registry entry joined to existing organisation,"Fakultet elektrotehnike i računarstva, Zagreb",OID-E10208938,"Fakultet elektrotehnike i računarstva, Zagreb",,
-mention linked by name + town,SVEUCILISTE U ZAGREBU MEDICINSKI FAKULTET,MBU-108,"Medicinski fakultet, Zagreb",3,3
-mention linked by name + town,POMORSKI FAKULTET U RIJECI,MBU-112,"Pomorski fakultet, Rijeka",5,5
-mention linked by name + town,"SVEUCILISTE U RIJECI, POMORSKI FAKULTET",MBU-112,"Pomorski fakultet, Rijeka",2,2
-mention linked by name + town,"SVEUCILISTE U RIJECI, GRADEVINSKI FAKULTET U RIJECI",MBU-114,"Građevinski fakultet, Rijeka",1,1
-mention linked by name + town,"SVEUCILISTE U RIJECI, PRAVNI FAKULTET",MBU-115,"Pravni fakultet, Rijeka",1,1
-mention linked by name + town,"Sveuciliste u Zagreb, GRAFICKI FAKULTET",MBU-128,"Grafički fakultet, Zagreb",1,1
-mention linked by name + town,SVEUCILISTE U ZAGREBU EDUKACIJSKO-REHABILITACIJSKI FAKULTET,MBU-13,"Edukacijsko-rehabilitacijski fakultet, Zagreb",7,7
-mention linked by name + town,SVEUCILISTE U ZAGREBU FAKULTET PROMETNIH ZNANOSTI,MBU-135,"Fakultet prometnih znanosti, Zagreb",3,3
-mention linked by name + town,SVEUCILISTE U ZAGREBU AGRONOMSKI FAKULTET,MBU-178,"Agronomski fakultet, Zagreb",5,5
-mention linked by name + town,SVEUCILISTE U ZAGREBU RUDARSKO-GEOLOSKO-NAFTNI FAKULTET,MBU-195,"Rudarsko-geološko-naftni fakultet, Zagreb",1,1
-mention linked by name + town,Sveuciliste u Zagrebu Akademija dramske umjetnosti,MBU-264,"Akademija dramske umjetnosti, Zagreb",1,1
-mention linked by name + town,"SVEUCILISTE U RIJECI, UCITELJSKI FAKULTET U RIJECI",MBU-299,"Učiteljski fakultet, Rijeka",1,1
-mention linked by name + town,"Sveuciliste u Rijeci, Fakultet zdravstvenih studija",MBU-351,"Fakultet zdravstvenih studija, Rijeka",1,1
-mention linked by name + town,SVEUCILISTE U RIJECI FAKULTET ZDRAVSTVENIH STUDIJA,MBU-351,"Fakultet zdravstvenih studija, Rijeka",1,1
-mention linked by name + town,SVEUCILISTE U ZAGREBU - PRAVNI FAKULTET,MBU-66,"Pravni fakultet, Zagreb",2,2
-mention linked by name + town,SVEUCILISTE U RIJECI-TEHNICKI FAKULTET,MBU-69,"Tehnički fakultet, Rijeka",3,3
-mention linked by name + town,SVEUCILISTE U ZAGREBU - GEODETSKI FAKULTET,MBU-7,"Geodetski fakultet, Zagreb",2,2
-mention linked by name + town,SVEUCILISTE U RIJECI EKONOMSKI FAKULTET,MBU-81,"Ekonomski fakultet, Rijeka",1,1
+registry entry joined to existing organisation,"Filozofski fakultet, Rijeka",OID-E10204352,"Sveučilište u Rijeci, Filozofski fakultet",,
+registry entry joined to existing organisation,"Fakultet političkih znanosti, Zagreb",OID-E10120114,"Sveučilište u Zagrebu, Fakultet političkih znanosti",,
+registry entry joined to existing organisation,"Fakultet elektrotehnike i računarstva, Zagreb",OID-E10208938,"Sveučilište u Zagrebu, Fakultet elektrotehnike i računarstva",,
+mention linked by name + town,SVEUCILISTE U ZAGREBU MEDICINSKI FAKULTET,MBU-108,"Sveučilište u Zagrebu, Medicinski fakultet",3,3
+mention linked by name + town,POMORSKI FAKULTET U RIJECI,MBU-112,"Sveučilište u Rijeci, Pomorski fakultet",5,5
+mention linked by name + town,"SVEUCILISTE U RIJECI, POMORSKI FAKULTET",MBU-112,"Sveučilište u Rijeci, Pomorski fakultet",2,2
+mention linked by name + town,"SVEUCILISTE U RIJECI, GRADEVINSKI FAKULTET U RIJECI",MBU-114,"Sveučilište u Rijeci, Građevinski fakultet",1,1
+mention linked by name + town,"SVEUCILISTE U RIJECI, PRAVNI FAKULTET",MBU-115,"Sveučilište u Rijeci, Pravni fakultet",1,1
+mention linked by name + town,"Sveuciliste u Zagreb, GRAFICKI FAKULTET",MBU-128,"Sveučilište u Zagrebu, Grafički fakultet",1,1
+mention linked by name + town,SVEUCILISTE U ZAGREBU EDUKACIJSKO-REHABILITACIJSKI FAKULTET,MBU-13,"Sveučilište u Zagrebu, Edukacijsko-rehabilitacijski fakultet",7,7
+mention linked by name + town,SVEUCILISTE U ZAGREBU FAKULTET PROMETNIH ZNANOSTI,MBU-135,"Sveučilište u Zagrebu, Fakultet prometnih znanosti",3,3
+mention linked by name + town,SVEUCILISTE U ZAGREBU AGRONOMSKI FAKULTET,MBU-178,"Sveučilište u Zagrebu, Agronomski fakultet",5,5
+mention linked by name + town,SVEUCILISTE U ZAGREBU RUDARSKO-GEOLOSKO-NAFTNI FAKULTET,MBU-195,"Sveučilište u Zagrebu, Rudarsko-geološko-naftni fakultet",1,1
+mention linked by name + town,Sveuciliste u Zagrebu Akademija dramske umjetnosti,MBU-264,"Sveučilište u Zagrebu, Akademija dramske umjetnosti",1,1
+mention linked by name + town,"SVEUCILISTE U RIJECI, UCITELJSKI FAKULTET U RIJECI",MBU-299,"Sveučilište u Rijeci, Učiteljski fakultet",1,1
+mention linked by name + town,"Sveuciliste u Rijeci, Fakultet zdravstvenih studija",MBU-351,"Sveučilište u Rijeci, Fakultet zdravstvenih studija",1,1
+mention linked by name + town,SVEUCILISTE U RIJECI FAKULTET ZDRAVSTVENIH STUDIJA,MBU-351,"Sveučilište u Rijeci, Fakultet zdravstvenih studija",1,1
+mention linked by name + town,SVEUCILISTE U ZAGREBU - PRAVNI FAKULTET,MBU-66,"Sveučilište u Zagrebu, Pravni fakultet",2,2
+mention linked by name + town,SVEUCILISTE U RIJECI-TEHNICKI FAKULTET,MBU-69,"Sveučilište u Rijeci, Tehnički fakultet",3,3
+mention linked by name + town,SVEUCILISTE U ZAGREBU - GEODETSKI FAKULTET,MBU-7,"Sveučilište u Zagrebu, Geodetski fakultet",2,2
+mention linked by name + town,SVEUCILISTE U RIJECI EKONOMSKI FAKULTET,MBU-81,"Sveučilište u Rijeci, Ekonomski fakultet",1,1

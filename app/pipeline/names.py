@@ -113,6 +113,23 @@ def display_name(name):
     return " ".join(out)
 
 
+def with_university(name, parent, town):
+    """'Medicinski fakultet, Zagreb' + parent 'Sveučilište u Zagrebu' -> 'Sveučilište u Zagrebu, Medicinski fakultet': a faculty or academy is shown
+    with the university it belongs to (the registry's parent institution), without its town. Names that already mention the parent, and entries
+    without a parent, are unchanged."""
+    name, parent = " ".join((name or "").split()), " ".join((parent or "").split())
+    if not name or not parent or norm_name(parent) == norm_name(name) or norm_name(parent) in (norm_name(name) or ""):
+        return name
+    t = norm_place(town)
+    if t:
+        stem = re.escape(strip_diacritics(t)[:4])
+        plain = strip_diacritics(name)
+        m = re.search(rf"(,\s*|\s+u\s+|\s+-\s*){stem}\w*\s*$", plain, re.I)       # ', Zagreb' / ' u Splitu'
+        if m:
+            name = name[:m.start()]
+    return f"{parent}, {name.strip(' ,')}"
+
+
 HIGHER_ED = re.compile(r"fakultet|sveucilis|veucilis|akademij|visoka skola|odjel|odsjek")
 _HE_STOP = {"u", "i", "na", "za", "s", "sa", "od", "do", "pri", "iz", "po", "o", "te", "a"}
 

@@ -34,7 +34,7 @@ from collections import Counter, defaultdict
 from rapidfuzz import fuzz
 
 from common import APP_DIR, connect
-from names import display_name, he_canon, norm_name, norm_place, parse_address, strip_place
+from names import display_name, he_canon, with_university, norm_name, norm_place, parse_address, strip_place
 
 AUTO, REVIEW = 95, 88          # fuzzy thresholds (token_sort_ratio on normalised names)
 REVIEW_DIR = APP_DIR / "data" / "review"
@@ -268,6 +268,9 @@ def main():
                 "eu_org_type varchar, register_kind varchar, oid varchar, registry_key varchar, identity_basis varchar, "
                 "n_mentions integer, n_name_variants integer, eu_oid varchar)")
     extra_oid = {r["org_id"]: r["eu_oid"].strip() for r in read_csv_rows(REVIEW_DIR / "org_oids.csv")}   # OIDs looked up by hand for organisations tablica 4 does not list
+    for i in inst.values():                       # a faculty is shown with its university (owner decision 2026-11-03); matching above used the plain names
+        if "higher_education" in i["kinds"] and i.get("parent") and i.get("org_id") in orgs:
+            orgs[i["org_id"]].name = with_university(i["name"], i["parent"], i["place"])
     rows = []
     for oid in sorted(used):
         o = orgs[oid]
