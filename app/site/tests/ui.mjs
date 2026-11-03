@@ -243,7 +243,7 @@ await test('graph network: groups -> concepts, breadcrumbs, keyboard, phone widt
   assert.match(await p.locator('.gv-live').innerText(), /19 groups/);
   const m = await open('/hr/graph/', 390); await m.waitForSelector('.gv-node');
   assert.equal(await m.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth), true);   // no sideways scroll on a phone
-  assert.match(await m.locator('.gv-live').innerText(), /19 skupina/);
+  assert.match(await m.locator('.gv-live').innerText(), /skupina pojmova: 19/);
 });
 await test('graph network: linkable group, show more, zoom', async () => {
   const p = await open('/en/graph/#group-C01'); await p.waitForSelector('.gv-node');
@@ -257,6 +257,23 @@ await test('graph network: linkable group, show more, zoom', async () => {
   assert.match(page_hash(await p.url()), /group-C01/);                                      // the address follows the view
 });
 function page_hash(u) { return u.split('#')[1] || ''; }
+await test('Croatian plural forms follow the number (1, 2-4, 5+)', async () => {
+  const form = (n) => (n % 10 === 1 && n % 100 !== 11 ? 0 : n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 12 || n % 100 > 14) ? 1 : 2);
+  const p = await open('/hr/');
+  const sums = await p.locator('.tile').evaluateAll((t) => t.map((x) => x.dataset.summary));
+  assert.ok(sums.length >= 21);
+  for (const m of sums) {                                                            // "41 od 104 škole sudjelovalo je": the noun after "od" is genitive
+    const mm = m.match(/od (\d+(?:\.\d+)*)\s(škol\w+)/); assert.ok(mm, `summary: ${m}`);
+    const [, n, noun] = mm;
+    assert.equal(noun, ['škole', 'škole', 'škola'][form(Number(n.replace('.', '')))], m);
+  }
+  const g = await open('/hr/graph/#app00002');                                       // "88 projekata", "5 projekata": never one fixed form
+  await g.locator('#cbody p').first().waitFor();
+  const t = await g.locator('#cbody p').first().innerText();
+  const km = t.match(/(\d+(?:\.\d+)*)\s(projek\w*)/); assert.ok(km, `panel: ${t}`);
+  const [, k, word] = km;
+  assert.equal(word, ['projekt', 'projekta', 'projekata'][form(Number(k.replace('.', '')))]);
+});
 await test('no console errors', async () => assert.deepEqual(errors, []));
 await browser.close(); stop();
 console.log(`\n${passed} passed, ${failed} failed`); process.exit(failed ? 1 : 0);

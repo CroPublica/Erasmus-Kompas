@@ -26,7 +26,7 @@ const api = import.meta.env.PUBLIC_ASK_API || '/api/ask';
   </div>
   <div id="out" aria-live="polite" data-api={api} data-base={import.meta.env.BASE_URL.replace(/\/$/, '')}
     data-working={s.askWorking} data-busy={s.askBusy} data-err={s.askErr} data-limit={s.askLimit} data-unverified={s.askUnverified}
-    data-sources={s.askSources} data-how={s.askHow} data-tools={s.askTools} data-route={s.askRoute}></div>
+    data-copy={s.askCopy} data-copied={s.askCopied} data-sources={s.askSources} data-how={s.askHow} data-tools={s.askTools} data-route={s.askRoute}></div>
 </Base>
 
 <script>
@@ -45,7 +45,9 @@ const api = import.meta.env.PUBLIC_ASK_API || '/api/ask';
     return { href: `${d.base}/${lang}/${path}/${slug(id)}/`, text: kind === 'org' ? id.replace(/^(OID|MZO)-/, '') : kind === 'county' ? id : id };
   }
   async function ask(q: string) {
-    const you = `<div class="you"><p>${esc(q)}</p></div>`;
+    const copyBtn = `<button type="button" class="copy" data-copy-text>${esc(d.copy!)}</button>`;
+    const you = `<div class="you"><button type="button" class="copy" data-copy-q aria-label="${esc(d.copy!)}">${esc(d.copy!)}</button><p>${esc(q)}</p></div>`;
+    out.dataset.q = q;
     out.innerHTML = `${you}<div class="typing" role="status"><span></span><span></span><span></span><b class="sr">${esc(d.working!)}</b></div>`;
     out.scrollIntoView({ block: 'nearest', behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
     try {
@@ -56,8 +58,8 @@ const api = import.meta.env.PUBLIC_ASK_API || '/api/ask';
       const a = await r.json();
       lastOrg = a.last_org_id || lastOrg;
       const chips = (a.citations as string[]).map((c) => { const l = link(c); return `<a class="pill" href="${l.href}">${esc(l.text)}</a>`; }).join(' ');
-      const tools = (a.tools as any[]).map((t) => `<li><span class="mono">${esc(t.tool)}</span> ${esc(JSON.stringify(t.args))}${t.notes.length ? `<br><small>${esc(t.notes.join(' · '))}</small>` : ''}</li>`).join('');
-      out.innerHTML = `${you}<section class="card answer"><p class="answer-text">${esc(a.answer)}</p>
+      const tools = (a.tools as any[]).map((t) => `<li><span class="mono">${esc(t.tool)}</span> ${esc(JSON.stringify(Object.fromEntries(Object.entries(t.args).filter(([, v]) => v !== null && v !== undefined))))}${t.notes.length ? `<br><small>${esc(t.notes.join(' · '))}</small>` : ''}</li>`).join('');
+      out.innerHTML = `${you}<section class="card answer"><p class="answer-text">${esc(a.answer)}</p><div class="answer-tools">${copyBtn}</div>
         ${a.fallback ? `<p class="lead" style="font-size:.85rem">${esc(d.unverified!)}</p>` : ''}
         ${chips ? `<p class="sources"><strong>${esc(d.sources!)}</strong> ${chips}</p>` : ''}
         <details><summary>${esc(d.how!)}</summary><p class="lead">${esc(d.route!)}: <span class="mono">${esc(a.route || '')}</span></p><p class="lead">${esc(d.tools!)}:</p><ul>${tools || '–'}</ul></details></section>`;
@@ -69,6 +71,12 @@ const api = import.meta.env.PUBLIC_ASK_API || '/api/ask';
   const grow = () => { input.style.height = 'auto'; input.style.height = Math.min(input.scrollHeight, 180) + 'px'; count.textContent = input.value.length > 400 ? `${input.value.length}/500` : ''; };
   input.addEventListener('input', grow);
   input.addEventListener('keydown', (e) => { if (e.key === 'Enter' && !e.shiftKey && !e.isComposing) { e.preventDefault(); form.requestSubmit(); } });
+  out.addEventListener('click', async (e) => {
+    const b = (e.target as HTMLElement).closest<HTMLElement>('[data-copy-q], [data-copy-text]');
+    if (!b) return;
+    const text = b.hasAttribute('data-copy-q') ? out.dataset.q || '' : out.querySelector('.answer-text')?.textContent || '';
+    try { await navigator.clipboard.writeText(text); b.textContent = d.copied!; setTimeout(() => (b.textContent = d.copy!), 1500); } catch { /* clipboard blocked: the text can still be selected */ }
+  });
   form.addEventListener('submit', (e) => { e.preventDefault(); const q = input.value.trim(); if (q) { ask(q); input.value = ''; grow(); } });
   document.querySelectorAll<HTMLElement>('.ex').forEach((b) => b.addEventListener('click', () => { input.value = b.textContent || ''; grow(); ask(input.value); }));
 </script>

@@ -214,3 +214,11 @@ def test_yes_no_questions_start_with_yes_or_no(tb):
     assert not a.ask("Koliko projekata ima Gimnazija Metković?")["answer"].startswith(("Da", "Ne"))        # not a yes/no question
     a2 = asker(tb, FakeRouter(route="organisation", organisation="Gimnazija Dubrovnik"))
     assert a2.ask("Je li Gimnazija Dubrovnik sudjelovala u nekom KA2 projektu od 2014.?")["answer"].startswith("Ne. ")
+
+
+def test_question_about_a_first_topic_gets_the_common_topics_and_says_why(tb):
+    a = asker(tb, FakeRouter(route="concepts"))
+    r = a.ask("what was the first topic of every erasmus+ project")
+    assert "common_concepts" in " ".join(r["trace"]) and "no “first” topic" in r["answer"] and r["verified"]
+    r = a.ask("Tell me about quantum entanglement in projects")
+    assert r["answer"].startswith("No evidence") and "Try a specific theme" in r["answer"]            # says what can be asked instead

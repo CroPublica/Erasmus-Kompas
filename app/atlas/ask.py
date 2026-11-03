@@ -364,6 +364,9 @@ def template_answer(lang: str, route: str, results: list[dict]) -> str:
     """Plain answer assembled by code from the first tool results; used when the model's answer cannot be verified."""
     hr = lang == "hr"
     if not results or not any(r["rows"] for r in results):
+        if route == "concepts":
+            return ("Nema dokaza u podacima za ovo pitanje. Pitajte o određenoj temi ili pojmu (npr. „rano napuštanje školovanja”), o najčešćim pristupima, rezultatima ili problemima, ili o tome što ide uz neki pojam." if hr else
+                    "No evidence found in the data for this question. Try a specific theme or concept (e.g. “early school leaving”), the most common approaches, outputs or problems, or what goes with a concept.")
         return "Nema dokaza u podacima za ovo pitanje." if hr else "No evidence found in the data for this question."
     last = next(x for x in reversed(results) if x["rows"])
     results = results[:results.index(last) + 1]
@@ -484,6 +487,9 @@ def _concept_answer_core(lang: str, results: list[dict]) -> str:
             items = "; ".join(f"{name(x)} ({f(x['projects'])}, {f(x['share'] * 100)} %)" for x in c["rows"])
             parts.append(f"{kn[:1].upper() + kn[1:]}: {items}.")
         head = "Najčešće u KA2 projektima s hrvatskim sudionikom (broj projekata, udio): " if hr else "Most common in KA2 projects with a Croatian participant (projects, share): "
+        if commons[0]["args"].get("topic_note"):
+            head = ("Podaci nemaju „prvu” temu projekta: svaki projekt ima jednu ili više tema EU programa. Najčešće teme (broj projekata, udio): " if hr else
+                    "The data has no “first” topic per project: each project has one or more EU programme topics. The most common topics (projects, share): ")
         miss = commons[0]["args"].get("qualifier_not_found")
         if miss:
             head = (f"Nisam našao pojam koji odgovara „{miss}”, pa pokazujem opću ljestvicu. " if hr else f"I found no concept matching “{miss}”, so this is the overall list. ") + head
@@ -651,8 +657,11 @@ class Asker:
                         results[-1].args["qualifier_not_found"] = qual
             else:
                 found = tb.search_concepts(s["question"])
+                if not found.rows and kind == "topic":                          # "what was the first topic of every project": the data has several EU topics per project, no first one
+                    found = tb.common_concepts("topic", plan["period"], 8)
+                    found.args["topic_note"] = True
                 results.append(found)
-                if found.rows:
+                if found.rows and found.tool == "search_concepts":
                     results.append(tb.concept_profile(found.rows[0]["node_id"], kind))
             used = [x.as_dict() for x in results]
             out = {"plan": plan, "results": used, "trace": s["trace"] + [f"tools={[x['tool'] for x in used]}"]}

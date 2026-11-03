@@ -22,7 +22,7 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
   <p class="lead" id="pmore" hidden>{s.pjMore}</p>
 </Base>
 <script>
-  import { slug } from '../../../lib/i18n';
+  import { slug, foundWord } from '../../../lib/i18n';
   import { country } from '../../../lib/countries';
   type P = { id: string; title: string; yr: number; period: string; type_: string; status: string; gp: boolean; countries: string[]; topics: string[] };
   const lang = document.documentElement.lang as 'hr' | 'en';
@@ -30,7 +30,6 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
   const $ = <T extends HTMLElement>(id: string) => document.getElementById(id) as T;
   const fold = (x: string) => x.normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/đ/g, 'd').toLowerCase();
   const none = lang === 'hr' ? 'Nijedan projekt ne odgovara ovim filtrima.' : 'No project matches these filters.';
-  const resultsWord = lang === 'hr' ? 'pronađenih projekata' : 'projects found';
   const gpWord = lang === 'hr' ? 'dobra praksa' : 'good practice';
   let data: P[] = [];
   const fmt = new Intl.NumberFormat(lang === 'hr' ? 'hr-HR' : 'en-GB');
@@ -39,7 +38,7 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
     const per = $<HTMLSelectElement>('pp').value, ty = $<HTMLSelectElement>('pt').value, co = $<HTMLSelectElement>('pc').value, gp = $<HTMLInputElement>('pg').checked;
     const hits = data.filter((p) => (!per || p.period === per) && (!ty || p.type_ === ty) && (!co || p.countries.includes(co)) && (!gp || p.gp)
       && words.every((w) => (p as any)._f.includes(w)));
-    $('pcount').textContent = `${fmt.format(hits.length)} ${resultsWord}`;
+    $('pcount').textContent = `${fmt.format(hits.length)} ${foundWord(lang, hits.length)}`;
     const ul = $('pres'); ul.innerHTML = '';
     for (const p of hits.slice(0, 100)) {
       const li = document.createElement('li'), a = document.createElement('a'), sm = document.createElement('small');

@@ -1,7 +1,7 @@
 ---
 import Base from '../../../layouts/Base.astro';
 import full from '../../../data/orgs_full.json';
-import { LANGS, t, num, eur, slug, topicName, type Lang } from '../../../lib/i18n';
+import { LANGS, t, num, eur, slug, topicName, projectWord, countryPartnerWord, type Lang } from '../../../lib/i18n';
 import { country } from '../../../lib/countries';
 
 export const getStaticPaths = () =>
@@ -42,7 +42,7 @@ const yy = (y: number) => `'${String(y).slice(2)}`;
     <div class="card kpi"><small>{s.grantsCoord}</small><div class="big">{eur(lang, all.grants_coordinated_eur)}</div>
       <small>{s.valueInvolved}: {eur(lang, all.value_involved_eur)}</small></div>
     <div class="card kpi"><small>{s.evidence}</small><div class="big">{num(lang, o.good_practice)} <span>{s.goodPractice}</span></div>
-      <small>{num(lang, o.countries.length)} {lang === 'hr' ? 'država partnera' : 'partner countries'}</small></div>
+      <small>{num(lang, o.countries.length)} {countryPartnerWord(lang, o.countries.length)}</small></div>
   </div>
 
   <div class="grid two" style="margin-top:18px">
@@ -108,7 +108,7 @@ const yy = (y: number) => `'${String(y).slice(2)}`;
           const inner = (<>
             <div class="kicker">{x.town}{x.same_town ? ` · ${s.sameTown}` : ''}</div>
             <h3>{x.name}</h3>
-            {x.projects > 0 ? <strong>{num(lang, x.projects)} {s.kaProjects}</strong> : <span class="warn">{s.noKa2}</span>}
+            {x.projects > 0 ? <strong>{num(lang, x.projects)} KA2 {projectWord(lang, x.projects)}</strong> : <span class="warn">{s.noKa2}</span>}
           </>);
           return link ? <a class="card simcard" href={link}>{inner}</a> : <div class="card simcard">{inner}</div>;
         })}
