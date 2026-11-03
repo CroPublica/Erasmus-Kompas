@@ -360,7 +360,7 @@ def template_answer(lang: str, route: str, results: list[dict]) -> str:
             s = (f"{r['name']} ({r['town']}): {f(r['projects'])} KA2 {hr_plural(r['projects'], 'projekt', 'projekta', 'projekata')} ({f(r['projects_2014_2020'])} u 2014.–2020., {f(r['projects_2021_2027'])} u 2021.–2026.), "
                  f"od toga {f(r['coordinated'])} kao koordinator" + (f" ({'; '.join(cp)})" if cp else "") + ". "
                  f"Potpore projekata koje koordinira: {f(r['grants_coordinated_eur'] or 0)} €; vrijednost svih projekata u kojima sudjeluje: {f(r['value_involved_eur'] or 0)} €."
-                 + (f" Najčešće surađuje s: {', '.join(cc)}." if cc else ""))
+                 + (f" Najčešće partnerske zemlje: {', '.join(cc)}." if cc else ""))
         else:
             s = (f"{r['name']} ({r['town']}): {f(r['projects'])} KA2 projects ({f(r['projects_2014_2020'])} in 2014–2020, {f(r['projects_2021_2027'])} in 2021–2026), "
                  f"{f(r['coordinated'])} as coordinator" + (f" ({'; '.join(cp)})" if cp else "") + ". "
