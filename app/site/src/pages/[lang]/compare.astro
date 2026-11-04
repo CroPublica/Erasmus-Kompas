@@ -1,0 +1,11 @@
+---
+import Base from '../../layouts/Base.astro';
+import EkView from '../../components/EkView.astro';
+import { LANGS, type Lang } from '../../lib/i18n';
+export const getStaticPaths = () => LANGS.map((lang) => ({ params: { lang } }));
+const lang = Astro.params.lang as Lang;
+const T = { hr: ['Usporedba županija', 'Usporedite županije međusobno.'], en: ['Compare counties', 'Compare counties with each other.'] }[lang];
+---
+<Base ek lang={lang} title={T[0]} path="/compare/" active="compare" description={T[1]}>
+  <EkView view="compare" lang={lang} />
+</Base>

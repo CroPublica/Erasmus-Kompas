@@ -1,0 +1,8 @@
+---
+// A page whose body is drawn by the v8 views (public/ek/ek.js): the Astro page gives the frame, the address and the language.
+import { ch } from '../lib/chrome';
+interface Props { view: string; lang: 'hr' | 'en'; arg?: string }
+const { view, lang, arg } = Astro.props;
+---
+<div id="view" class="ekview" data-view={view} data-arg={arg} aria-busy="true"><p class="lead">{ch(lang).loading}</p></div>
+<noscript><p class="note">JavaScript is needed to show this page. / Za prikaz ove stranice potreban je JavaScript.</p></noscript>

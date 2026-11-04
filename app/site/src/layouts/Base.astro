@@ -9,8 +9,8 @@ import { t, otherLang, type Lang } from '../lib/i18n';
 import { ch } from '../lib/chrome';
 import { NAV, ICON, findActive } from '../lib/nav';
 
-interface Props { lang: Lang; title: string; path: string; active?: string; description?: string; crumbs?: [string, string?][] }
-const { lang, title, path, active = '', description = '', crumbs } = Astro.props;
+interface Props { lang: Lang; title: string; path: string; active?: string; description?: string; crumbs?: [string, string?][]; landing?: boolean; ek?: boolean }
+const { lang, title, path, active = '', description = '', crumbs, landing = false, ek = false } = Astro.props;
 const s = t(lang), c = ch(lang);
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const href = (l: Lang, p = path) => `${base}/${l}${p || '/'}`;
@@ -21,7 +21,7 @@ const trail: [string, string?][] = crumbs ?? [
   ...(here.top && here.top.key !== 'home' ? [[here.top.label[lang], here.top.subs.length ? undefined : to(here.top.href)] as [string, string?]] : []),
   ...(here.sub ? [[here.sub.label[lang]] as [string]] : []),
 ];
-const isHome = here.top?.key === 'home' && !here.sub;
+const tabs = here.top && here.top.subs.length > 1 ? here.top.subs : [];
 ---
 <!doctype html>
 <html lang={lang}>
@@ -37,7 +37,7 @@ const isHome = here.top?.key === 'home' && !here.sub;
   <body data-base={base} data-scrollable={c.scrollable}>
     <a class="skip" href="#main">{s.skip}</a>
     <div class="layout">
-      <aside class="side" id="side" aria-label={c.menu}>
+      <aside class="side" id="side" aria-label={c.menu} translate="no">
         <div class="sidein">
           <div class="sidehead"><button type="button" id="sideclose" aria-label={c.closeMenu}><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
           <a class="brand" href={to('/')} aria-label={`Erasmus+ Kompas, ${s.nav.coverage}`}>
@@ -72,7 +72,7 @@ const isHome = here.top?.key === 'home' && !here.sub;
           <div class="askcard">
             <b>{c.askTitle}</b>
             <span>{c.askText}</span>
-            <a class="askbtn" href={to('/ask/')}>{c.askBtn}</a>
+            <button type="button" class="askbtn" id="side-ask">{c.askBtn}</button>
           </div>
           <p class="sidefoot">{c.notOfficial}</p>
         </div>
@@ -83,32 +83,51 @@ const isHome = here.top?.key === 'home' && !here.sub;
         <div class="topbar">
           <button class="tb" id="menu" type="button" aria-expanded="false" aria-controls="side" aria-label={c.menu}><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
           <a class="tbrand" href={to('/')}><Logo size={40} /><span>Erasmus+ Kompas</span></a>
-          <a class="tb ask" href={to('/ask/')} aria-label={c.assistant}><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h16v11H9l-5 4z"/></svg></a>
+          <button type="button" class="tb ask" id="tb-ask" aria-label={c.assistant}><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h16v11H9l-5 4z"/></svg></button>
         </div>
         <main id="main" tabindex="-1">
-          <div class="wrap page">
-            <div class="pagebar">
-              <nav class="crumbs" aria-label={c.path}>
-                <a href={to('/')}>{c.atlas}</a>
-                {trail.map(([l, h]) => (h ? <a href={h}>{l}</a> : <span aria-current={undefined}>{l}</span>))}
-              </nav>
-              <form class="gsearch" role="search" onsubmit="return false">
-                <svg class="gi" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
-                <label class="sr" for="gs">{c.searchLabel}</label>
-                <input id="gs" type="search" role="combobox" aria-autocomplete="list" placeholder={c.searchPh} autocomplete="off" aria-controls="gs-res" aria-expanded="false" />
-                <kbd aria-hidden="true">/</kbd>
-                <div class="gres" id="gs-res" hidden></div>
-              </form>
+          {landing ? <slot /> : (
+            <div class="wrap page">
+              <div class="pagebar">
+                <nav class="crumbs" aria-label={c.path}>
+                  <a href={to('/')}>{c.atlas}</a>
+                  {trail.map(([l, h]) => (h ? <a href={h}>{l}</a> : <span aria-current={undefined}>{l}</span>))}
+                </nav>
+                <form class="gsearch" role="search" onsubmit="return false">
+                  <svg class="gi" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+                  <label class="sr" for="gs">{c.searchLabel}</label>
+                  <input id="gs" type="search" role="combobox" aria-autocomplete="list" placeholder={c.searchPh} autocomplete="off" aria-controls="gs-res" aria-expanded="false" />
+                  <kbd aria-hidden="true">/</kbd>
+                  <div class="gres" id="gs-res" hidden></div>
+                </form>
+              </div>
+              {tabs.length > 0 && <nav class="tabs2" aria-label={here.top!.label[lang]}>{tabs.map((t) => <a href={to(t.href)} aria-current={here.sub?.key === t.key ? 'page' : undefined}>{t.label[lang]}</a>)}</nav>}
+              <div class={ek ? 'ekslot' : 'legacy'}><slot /></div>
             </div>
-            <slot />
-          </div>
+          )}
         </main>
       </div>
     </div>
-    <a class="edgetab" href={to('/ask/')}><span>{c.assistant}</span></a>
+    <section class="dock" id="dock" role="dialog" aria-labelledby="dock-title" aria-modal="false" translate="no">
+      <header class="dock-head">
+        <span class="avatar" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 40 40"><path d="M20 4l5 16-5 16-5-16z" fill="#ffd617"/><path d="M4 20l16-5 16 5-16 5z" fill="#fff"/></svg></span>
+        <h2 id="dock-title">{c.dockTitle}<small>{c.dockSub}</small></h2>
+        <button type="button" class="ic" id="dock-new" title={c.dockNew} aria-label={c.dockNew}><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></button>
+        <a class="ic" href={to('/ask/')} title={c.dockFull} aria-label={c.dockFull}><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4h6v6M20 4l-8 8M10 6H5v13h13v-5"/></svg></a>
+        <button type="button" class="ic" id="dock-close" title={c.dockClose} aria-label={c.dockClose}><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+      </header>
+      <div class="dock-ctx" id="dock-ctx"></div>
+      <div class="dock-log" id="dock-log" role="log" aria-live="polite"></div>
+      <form class="dock-form" id="dock-form">
+        <label class="sr" for="dock-q">{c.dockQ}</label>
+        <div class="composer"><textarea id="dock-q" rows="1" maxlength="500" placeholder={c.dockPh} required></textarea><button class="send" type="submit" id="dock-go" aria-label={c.dockSend}><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5.5 11.5L12 5l6.5 6.5"/></svg></button></div>
+        <small>{c.dockNote}</small>
+      </form>
+    </section>
+    <button class="edgetab" id="edgetab" type="button" aria-controls="dock" aria-expanded="false"><span>{c.assistant}</span></button>
     <div class="scrim" id="scrim" hidden></div>
 
-    <footer class="site">
+    <footer class="site" translate="no">
       <div class="finner">
         <div class="fcol fbrand">
           <a class="fb" href={to('/')}><Logo size={34} invert /><span>Erasmus+ Kompas</span></a>
@@ -144,6 +163,17 @@ const isHome = here.top?.key === 'home' && !here.sub;
 </html>
 <script>
   import { slug } from '../lib/i18n';
+  // ---- the views and the assistant of the v8 design run from one script; it loads once, when a page or a click needs it
+  const w = window as any;
+  w.EKLoad = w.EKLoad || (() => { let p: Promise<void> | null = null; return () => p ||= (async () => {
+    const b = document.body.dataset.base || '';
+    w.EK_ASK_API = `${b}/api/ask`;
+    w.__EK_D = await (await fetch(`${b}/ek/D.json`)).json();
+    await new Promise<void>((ok, bad) => { const sc = document.createElement('script'); sc.src = `${b}/ek/ek.js`; sc.onload = () => ok(); sc.onerror = () => bad(new Error('ek.js')); document.head.append(sc); });
+  })(); })();
+  const view = document.getElementById('view');
+  if (view?.dataset.view) w.EKLoad().then(() => w.EK.mount(view.dataset.view, view.dataset.arg)).catch(() => { view.innerHTML = '<p class="note">Error.</p>'; });
+  else ['edgetab', 'side-ask', 'tb-ask'].forEach((id) => document.getElementById(id)?.addEventListener('click', () => { if (!w.EK) w.EKLoad().then(() => w.EK.assistant().open()); }, { once: true }));
   // ---- menu drawer on small screens
   const body = document.body;
   const menu = document.getElementById('menu')!, scrim = document.getElementById('scrim')!;
@@ -166,7 +196,8 @@ const isHome = here.top?.key === 'home' && !here.sub;
   themeBtn.addEventListener('click', () => { const next = isDark() ? 'light' : 'dark'; document.documentElement.dataset.theme = next; try { localStorage.setItem('ek-theme', next); } catch { /* private mode */ } paintTheme(); });
   paintTheme();
   // ---- search in the top bar (organisations, from search.json)
-  const input = document.getElementById('gs') as HTMLInputElement;
+  const input = document.getElementById('gs') as HTMLInputElement | null;
+  if (input) {                                                          // the landing page has its own search inside the view
   const list = document.getElementById('gs-res') as HTMLDivElement;
   const lang = document.documentElement.lang;
   const base = body.dataset.base || '';
@@ -203,4 +234,5 @@ const isHome = here.top?.key === 'home' && !here.sub;
     const t = e.target as HTMLElement;
     if (e.key === '/' && !/INPUT|TEXTAREA|SELECT/.test(t.tagName) && !t.isContentEditable) { e.preventDefault(); input.focus(); }
   });
+  }
 </script>

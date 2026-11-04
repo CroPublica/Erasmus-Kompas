@@ -1,0 +1,5005 @@
+{
+"{N} mil. €": {
+"raw": "{N} mil. €",
+"where": "",
+"tags": [
+"#/drzave",
+"#/drzave [btn3]",
+"#/drzave [btn4]"
+]
+},
+"{E} ima {N} KA{N} projekata sa sudionikom iz županije ({N}. od {N}), od toga {N} koordiniranih. U projektima sudjeluje {N} organizacija, a vrijednost projekata je {N} mil. €.": {
+"raw": "{E} ima {N} KA{N} projekata sa sudionikom iz županije ({N}. od {N}), od toga {N} koordiniranih. U projektima sudjeluje {N} organizacija, a vrijednost projekata je {N} mil. €.",
+"where": "",
+"tags": [
+"#/drzave",
+"#/drzave [btn3]",
+"#/drzave [btn4]"
+]
+},
+"{N} November {N}": {
+"raw": "{N} November {N}",
+"where": "",
+"tags": [
+"#/drzave",
+"#/drzave [btn3]",
+"#/drzave [btn4]"
+]
+},
+"Italy": {
+"raw": "Italy",
+"where": "",
+"tags": [
+"#/drzave",
+"#/drzave [btn3]",
+"#/drzave [btn4]"
+]
+},
+"Spain": {
+"raw": "Spain",
+"where": "",
+"tags": [
+"#/drzave",
+"#/drzave [btn3]",
+"#/drzave [btn4]"
+]
+},
+"Greece": {
+"raw": "Greece",
+"where": "",
+"tags": [
+"#/drzave",
+"#/drzave [btn3]",
+"#/drzave [btn4]"
+]
+},
+"Poland": {
+"raw": "Poland",
+"where": "",
+"tags": [
+"#/drzave",
+"#/drzave [btn3]",
+"#/drzave [btn4]"
+]
+},
+"Türkiye": {
+"raw": "Türkiye",
+"where": "",
+"tags": [
+"#/drzave",
+"#/drzave [btn3]",
+"#/drzave [btn4]"
+]
+},
+"{N} država, najčešće Italy →": {
+"raw": "{N} država, najčešće Italy →",
+"where": "",
+"tags": [
+"#/drzave",
+"#/drzave [btn3]",
+"#/drzave [btn4]"
+]
+},
+"Split-Dalmatia County has {N} KA{N} projects with a participant from the county (rank {N} of {N}), of which {N} were coordinated from it. {N} organisations take part, and the projects are worth €{N}M.": {
+"raw": "Split-Dalmatia County has {N} KA{N} projects with a participant from the county (rank {N} of {N}), of which {N} were coordinated from it. {N} organisations take part, and the projects are worth €{N}M.",
+"where": "",
+"tags": [
+"#/drzave",
+"#/drzave [btn3]",
+"#/drzave [btn4]"
+]
+},
+"County page": {
+"raw": "County page",
+"where": "",
+"tags": [
+"#/drzave",
+"#/drzave [btn3]",
+"#/drzave [btn4]"
+]
+},
+"Compare counties": {
+"raw": "Compare counties",
+"where": "",
+"tags": [
+"#/drzave",
+"#/drzave [btn3]",
+"#/drzave [btn4]"
+]
+},
+"No rows to export": {
+"raw": "No rows to export",
+"where": "",
+"tags": [
+"#/drzave",
+"#/drzave [btn3]",
+"#/drzave [btn4]"
+]
+},
+"Germany": {
+"raw": "Germany",
+"where": "",
+"tags": [
+"#/drzave",
+"#/drzave [btn3]",
+"#/drzave [btn4]"
+]
+},
+"Romania": {
+"raw": "Romania",
+"where": "",
+"tags": [
+"#/drzave",
+"#/drzave [btn3]",
+"#/drzave [btn4]"
+]
+},
+"Slovenia": {
+"raw": "Slovenia",
+"where": "",
+"tags": [
+"#/drzave",
+"#/drzave [btn3]",
+"#/drzave [btn4]"
+]
+},
+"France": {
+"raw": "France",
+"where": "",
+"tags": [
+"#/drzave",
+"#/drzave [btn3]",
+"#/drzave [btn4]"
+]
+},
+"Bulgaria": {
+"raw": "Bulgaria",
+"where": "",
+"tags": [
+"#/drzave",
+"#/drzave [btn3]",
+"#/drzave [btn4]"
+]
+},
+"Belgium": {
+"raw": "Belgium",
+"where": "",
+"tags": [
+"#/drzave",
+"#/drzave [btn3]",
+"#/drzave [btn4]"
+]
+},
+"Netherlands": {
+"raw": "Netherlands",
+"where": "",
+"tags": [
+"#/drzave",
+"#/drzave [btn3]",
+"#/drzave [btn4]"
+]
+},
+"Czechia": {
+"raw": "Czechia",
+"where": "",
+"tags": [
+"#/drzave",
+"#/drzave [btn3]",
+"#/drzave [btn4]"
+]
+},
+"Hungary": {
+"raw": "Hungary",
+"where": "",
+"tags": [
+"#/drzave",
+"#/drzave [btn3]",
+"#/drzave [btn4]"
+]
+},
+"Austria": {
+"raw": "Austria",
+"where": "",
+"tags": [
+"#/drzave",
+"#/drzave [btn3]",
+"#/drzave [btn4]"
+]
+},
+"Croatia": {
+"raw": "Croatia",
+"where": "",
+"tags": [
+"#/drzave",
+"#/drzave [btn3]",
+"#/drzave [btn4]"
+]
+},
+"{N} rows matching the current filters": {
+"raw": "{N} rows matching the current filters",
+"where": "",
+"tags": [
+"#/drzave",
+"#/drzave [btn3]",
+"#/drzave [btn4]"
+]
+},
+"All sectors": {
+"raw": "All sectors",
+"where": "",
+"tags": [
+"#/drzave",
+"#/drzave [btn3]",
+"#/drzave [btn4]"
+]
+},
+"School education": {
+"raw": "School education",
+"where": "",
+"tags": [
+"#/drzave",
+"#/drzave [btn3]",
+"#/drzave [btn4]"
+]
+},
+"Vocational education and training (VET)": {
+"raw": "Vocational education and training (VET)",
+"where": "",
+"tags": [
+"#/drzave",
+"#/drzave [btn3]",
+"#/drzave [btn4]"
+]
+},
+"Higher education": {
+"raw": "Higher education",
+"where": "",
+"tags": [
+"#/drzave",
+"#/drzave [btn3]",
+"#/drzave [btn4]"
+]
+},
+"Adult education": {
+"raw": "Adult education",
+"where": "",
+"tags": [
+"#/drzave",
+"#/drzave [btn3]",
+"#/drzave [btn4]"
+]
+},
+"Youth": {
+"raw": "Youth",
+"where": "",
+"tags": [
+"#/drzave",
+"#/drzave [btn3]",
+"#/drzave [btn4]"
+]
+},
+"Other": {
+"raw": "Other",
+"where": "",
+"tags": [
+"#/drzave",
+"#/drzave [btn3]",
+"#/drzave [btn4]"
+]
+},
+"United Kingdom": {
+"raw": "United Kingdom",
+"where": "",
+"tags": [
+"#/drzave [btn5]",
+"#/drzave [btn19]"
+]
+},
+"Serbia": {
+"raw": "Serbia",
+"where": "",
+"tags": [
+"#/drzave [btn6]",
+"#/drzave [btn11]",
+"#/drzave [btn12]"
+]
+},
+"Lithuania": {
+"raw": "Lithuania",
+"where": "",
+"tags": [
+"#/drzave [btn8]",
+"#/drzave [btn19]",
+"#/drzave [in #view input[type=search] a]"
+]
+},
+"North Macedonia": {
+"raw": "North Macedonia",
+"where": "",
+"tags": [
+"#/drzave [btn12]",
+"#/drzave [btn19]"
+]
+},
+"Cyprus": {
+"raw": "Cyprus",
+"where": "",
+"tags": [
+"#/drzave [btn13]",
+"#/drzave [btn19]"
+]
+},
+"Preuzimanje": {
+"raw": "Preuzimanje",
+"where": "",
+"tags": [
+"#/drzave [btn16]",
+"#/drzave [btn17]",
+"#/drzave [btn18]"
+]
+},
+"redaka": {
+"raw": "redaka",
+"where": "",
+"tags": [
+"#/drzave [btn16]",
+"#/drzave [btn17]",
+"#/drzave [btn18]"
+]
+},
+"Preuzimanje CSV: {N} redaka": {
+"raw": "Preuzimanje CSV: {N} redaka",
+"where": "",
+"tags": [
+"#/drzave [btn16]"
+]
+},
+"Primijenjeni filteri": {
+"raw": "Primijenjeni filteri",
+"where": "",
+"tags": [
+"#/drzave [btn17]"
+]
+},
+"Broj redaka": {
+"raw": "Broj redaka",
+"where": "",
+"tags": [
+"#/drzave [btn17]"
+]
+},
+"Izvezeno": {
+"raw": "Izvezeno",
+"where": "",
+"tags": [
+"#/drzave [btn17]",
+"#/drzave [btn18]"
+]
+},
+"Izvor: Erasmus+ Kompas (erasmus-plus.ec.europa.eu, data.gov.hr, MZO). Neovisan projekt, nije službena stranica Europske komisije.": {
+"raw": "Izvor: Erasmus+ Kompas (erasmus-plus.ec.europa.eu, data.gov.hr, MZO). Neovisan projekt, nije službena stranica Europske komisije.",
+"where": "",
+"tags": [
+"#/drzave [btn17]",
+"#/drzave [btn18]"
+]
+},
+"Podaci": {
+"raw": "Podaci",
+"where": "",
+"tags": [
+"#/drzave [btn17]"
+]
+},
+"O izvozu": {
+"raw": "O izvozu",
+"where": "",
+"tags": [
+"#/drzave [btn17]"
+]
+},
+"Preuzimanje Excel: {N} redaka": {
+"raw": "Preuzimanje Excel: {N} redaka",
+"where": "",
+"tags": [
+"#/drzave [btn17]"
+]
+},
+"Stranica": {
+"raw": "Stranica",
+"where": "",
+"tags": [
+"#/drzave [btn18]"
+]
+},
+"Preuzimanje PDF: {N} redaka": {
+"raw": "Preuzimanje PDF: {N} redaka",
+"where": "",
+"tags": [
+"#/drzave [btn18]"
+]
+},
+"Slovakia": {
+"raw": "Slovakia",
+"where": "",
+"tags": [
+"#/drzave [btn19]"
+]
+},
+"Ireland": {
+"raw": "Ireland",
+"where": "",
+"tags": [
+"#/drzave [btn19]"
+]
+},
+"Latvia": {
+"raw": "Latvia",
+"where": "",
+"tags": [
+"#/drzave [btn19]"
+]
+},
+"Finland": {
+"raw": "Finland",
+"where": "",
+"tags": [
+"#/drzave [btn19]"
+]
+},
+"Estonia": {
+"raw": "Estonia",
+"where": "",
+"tags": [
+"#/drzave [btn19]"
+]
+},
+"Sweden": {
+"raw": "Sweden",
+"where": "",
+"tags": [
+"#/drzave [btn19]"
+]
+},
+"Sveučilište u Splitu": {
+"raw": "Sveučilište u Splitu",
+"where": "",
+"tags": [
+"#/mjesta/Splitsko-dalmatinska",
+"#/mjesta/Splitsko-dalmatinska [in #view input[type=search] a]",
+"#/mjesta/Splitsko-dalmatinska [in #view input[type=search] zzzzqq]"
+]
+},
+"SPLIT": {
+"raw": "SPLIT",
+"where": "",
+"tags": [
+"#/mjesta/Splitsko-dalmatinska",
+"#/mjesta/Splitsko-dalmatinska [in #view input[type=search] a]",
+"#/mjesta/Splitsko-dalmatinska [in #view input[type=search] zzzzqq]"
+]
+},
+"Turističko - Ugostiteljska Škola, Split": {
+"raw": "Turističko - Ugostiteljska Škola, Split",
+"where": "",
+"tags": [
+"#/mjesta/Splitsko-dalmatinska",
+"#/mjesta/Splitsko-dalmatinska [in #view input[type=search] a]",
+"#/mjesta/Splitsko-dalmatinska [in #view input[type=search] zzzzqq]"
+]
+},
+"Split": {
+"raw": "Split",
+"where": "",
+"tags": [
+"#/mjesta/Splitsko-dalmatinska",
+"#/mjesta/Splitsko-dalmatinska [in #view input[type=search] a]",
+"#/mjesta/Splitsko-dalmatinska [in #view input[type=search] zzzzqq]"
+]
+},
+"Uciliste JANTAR - ustanova za obrazovanje odraslih": {
+"raw": "Uciliste JANTAR - ustanova za obrazovanje odraslih",
+"where": "",
+"tags": [
+"#/mjesta/Splitsko-dalmatinska",
+"#/mjesta/Splitsko-dalmatinska [in #view input[type=search] a]",
+"#/mjesta/Splitsko-dalmatinska [in #view input[type=search] zzzzqq]"
+]
+},
+"Klesarska škola": {
+"raw": "Klesarska škola",
+"where": "",
+"tags": [
+"#/mjesta/Splitsko-dalmatinska",
+"#/mjesta/Splitsko-dalmatinska [in #view input[type=search] a]",
+"#/mjesta/Splitsko-dalmatinska [in #view input[type=search] zzzzqq]"
+]
+},
+"Pučišća": {
+"raw": "Pučišća",
+"where": "",
+"tags": [
+"#/mjesta/Splitsko-dalmatinska",
+"#/mjesta/Splitsko-dalmatinska [in #view input[type=search] a]",
+"#/mjesta/Splitsko-dalmatinska [in #view input[type=search] zzzzqq]"
+]
+},
+"Osnovna škola Josip Pupačić": {
+"raw": "Osnovna škola Josip Pupačić",
+"where": "",
+"tags": [
+"#/mjesta/Splitsko-dalmatinska",
+"#/mjesta/Splitsko-dalmatinska [in #view input[type=search] a]",
+"#/mjesta/Splitsko-dalmatinska [in #view input[type=search] zzzzqq]"
+]
+},
+"Omis": {
+"raw": "Omis",
+"where": "",
+"tags": [
+"#/mjesta/Splitsko-dalmatinska",
+"#/mjesta/Splitsko-dalmatinska [in #view input[type=search] a]",
+"#/mjesta/Splitsko-dalmatinska [in #view input[type=search] zzzzqq]"
+]
+},
+"Osnovna škola Vrgorac": {
+"raw": "Osnovna škola Vrgorac",
+"where": "",
+"tags": [
+"#/mjesta/Splitsko-dalmatinska",
+"#/mjesta/Splitsko-dalmatinska [in #view input[type=search] a]",
+"#/mjesta/Splitsko-dalmatinska [in #view input[type=search] zzzzqq]"
+]
+},
+"Vrgorac": {
+"raw": "Vrgorac",
+"where": "",
+"tags": [
+"#/mjesta/Splitsko-dalmatinska",
+"#/mjesta/Splitsko-dalmatinska [in #view input[type=search] a]",
+"#/mjesta/Splitsko-dalmatinska [in #view input[type=search] zzzzqq]"
+]
+},
+"Srednja škola Hvar": {
+"raw": "Srednja škola Hvar",
+"where": "",
+"tags": [
+"#/mjesta/Splitsko-dalmatinska",
+"#/mjesta/Splitsko-dalmatinska [in #view input[type=search] a]",
+"#/mjesta/Splitsko-dalmatinska [in #view input[type=search] zzzzqq]"
+]
+},
+"Hvar": {
+"raw": "Hvar",
+"where": "",
+"tags": [
+"#/mjesta/Splitsko-dalmatinska",
+"#/mjesta/Splitsko-dalmatinska [in #view input[type=search] a]",
+"#/mjesta/Splitsko-dalmatinska [in #view input[type=search] zzzzqq]"
+]
+},
+"Odred izvidjaca pomoraca Posejdon": {
+"raw": "Odred izvidjaca pomoraca Posejdon",
+"where": "",
+"tags": [
+"#/mjesta/Splitsko-dalmatinska",
+"#/mjesta/Splitsko-dalmatinska [in #view input[type=search] a]",
+"#/mjesta/Splitsko-dalmatinska [in #view input[type=search] zzzzqq]"
+]
+},
+"Srednja škola Bol": {
+"raw": "Srednja škola Bol",
+"where": "",
+"tags": [
+"#/mjesta/Splitsko-dalmatinska",
+"#/mjesta/Splitsko-dalmatinska [in #view input[type=search] a]",
+"#/mjesta/Splitsko-dalmatinska [in #view input[type=search] zzzzqq]"
+]
+},
+"Bol": {
+"raw": "Bol",
+"where": "",
+"tags": [
+"#/mjesta/Splitsko-dalmatinska",
+"#/mjesta/Splitsko-dalmatinska [in #view input[type=search] a]",
+"#/mjesta/Splitsko-dalmatinska [in #view input[type=search] zzzzqq]"
+]
+},
+"\"Culture Hub Croatia\" Platforma za edukaciju, kreativnost i poticanje razvoja kroz kulturu": {
+"raw": "\"Culture Hub Croatia\" Platforma za edukaciju, kreativnost i poticanje razvoja kroz kulturu",
+"where": "",
+"tags": [
+"#/mjesta/Splitsko-dalmatinska",
+"#/mjesta/Splitsko-dalmatinska [in #view input[type=search] a]",
+"#/mjesta/Splitsko-dalmatinska [in #view input[type=search] zzzzqq]"
+]
+},
+"New learning and teaching methods and approaches, {N} projects": {
+"raw": "New learning and teaching methods and approaches, {N} projects",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"New learning and teaching me": {
+"raw": "New learning and teaching me",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"teachers, {N} projects": {
+"raw": "teachers, {N} projects",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"teachers": {
+"raw": "teachers",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"Creating new, innovative or joint curricula or courses, {N} projects": {
+"raw": "Creating new, innovative or joint curricula or courses, {N} projects",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"Creating new, innovative or": {
+"raw": "Creating new, innovative or",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"Digital skills and competences, {N} projects": {
+"raw": "Digital skills and competences, {N} projects",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"Digital skills and competenc": {
+"raw": "Digital skills and competenc",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"Digital content, technologies and practices, {N} projects": {
+"raw": "Digital content, technologies and practices, {N} projects",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"Digital content, technologie": {
+"raw": "Digital content, technologie",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"Development of training courses, {N} projects": {
+"raw": "Development of training courses, {N} projects",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"Development of training cour": {
+"raw": "Development of training cour",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"students, {N} projects": {
+"raw": "students, {N} projects",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"students": {
+"raw": "students",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"Inclusion, promoting equality and non-discrimination, {N} projects": {
+"raw": "Inclusion, promoting equality and non-discrimination, {N} projects",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"Inclusion, promoting equalit": {
+"raw": "Inclusion, promoting equalit",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"Information and communication technologies (ICT), {N} projects": {
+"raw": "Information and communication technologies (ICT), {N} projects",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"Information and communicatio": {
+"raw": "Information and communicatio",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"needs research or assessment, {N} projects": {
+"raw": "needs research or assessment, {N} projects",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"needs research or assessment": {
+"raw": "needs research or assessment",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"workshops, {N} projects": {
+"raw": "workshops, {N} projects",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"workshops": {
+"raw": "workshops",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"Environment and climate change, {N} projects": {
+"raw": "Environment and climate change, {N} projects",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"Environment and climate chan": {
+"raw": "Environment and climate chan",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"young people, {N} projects": {
+"raw": "young people, {N} projects",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"youth workers, {N} projects": {
+"raw": "youth workers, {N} projects",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"educators, {N} projects": {
+"raw": "educators, {N} projects",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"Creativity, arts and culture, {N} projects": {
+"raw": "Creativity, arts and culture, {N} projects",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"Democracy and inclusive democratic participation, {N} projects": {
+"raw": "Democracy and inclusive democratic participation, {N} projects",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"training of trainers, {N} projects": {
+"raw": "training of trainers, {N} projects",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"peer learning, {N} projects": {
+"raw": "peer learning, {N} projects",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"parents, {N} projects": {
+"raw": "parents, {N} projects",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"Physical and mental health, well-being, {N} projects": {
+"raw": "Physical and mental health, well-being, {N} projects",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"European identity and values, {N} projects": {
+"raw": "European identity and values, {N} projects",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"multiplier events, {N} projects": {
+"raw": "multiplier events, {N} projects",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"Key competences development, {N} projects": {
+"raw": "Key competences development, {N} projects",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"exchange of practices, {N} projects": {
+"raw": "exchange of practices, {N} projects",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"secondary school teachers, {N} projects": {
+"raw": "secondary school teachers, {N} projects",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"stakeholders, {N} projects": {
+"raw": "stakeholders, {N} projects",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"transnational project meetings, {N} projects": {
+"raw": "transnational project meetings, {N} projects",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"Entrepreneurial learning - entrepreneurship education, {N} projects": {
+"raw": "Entrepreneurial learning - entrepreneurship education, {N} projects",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"Promotion of alternative forms of participation, {N} projects": {
+"raw": "Promotion of alternative forms of participation, {N} projects",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"Bridging intercultural, intergenerational and social divide, {N} projects": {
+"raw": "Bridging intercultural, intergenerational and social divide, {N} projects",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"Quality and innovation of youth work, {N} projects": {
+"raw": "Quality and innovation of youth work, {N} projects",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"Green skills, {N} projects": {
+"raw": "Green skills, {N} projects",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"Awareness about the European Union, {N} projects": {
+"raw": "Awareness about the European Union, {N} projects",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"experiential learning, {N} projects": {
+"raw": "experiential learning, {N} projects",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"Inclusion of marginalised young people, {N} projects": {
+"raw": "Inclusion of marginalised young people, {N} projects",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"Basic skills and key competences, {N} projects": {
+"raw": "Basic skills and key competences, {N} projects",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"Disabilities, {N} projects": {
+"raw": "Disabilities, {N} projects",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"trainers, {N} projects": {
+"raw": "trainers, {N} projects",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"International relations and development cooperation, {N} projects": {
+"raw": "International relations and development cooperation, {N} projects",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"local communities, {N} projects": {
+"raw": "local communities, {N} projects",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"co-creation, {N} projects": {
+"raw": "co-creation, {N} projects",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"project website, {N} projects": {
+"raw": "project website, {N} projects",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"Cultural heritage, {N} projects": {
+"raw": "Cultural heritage, {N} projects",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"young people with fewer opportunities, {N} projects": {
+"raw": "young people with fewer opportunities, {N} projects",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"mentoring, {N} projects": {
+"raw": "mentoring, {N} projects",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"Preventing early school leaving and failure in education, {N} projects": {
+"raw": "Preventing early school leaving and failure in education, {N} projects",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"Teaching and learning of foreign languages, {N} projects": {
+"raw": "Teaching and learning of foreign languages, {N} projects",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"co-creation of educational materials, {N} projects": {
+"raw": "co-creation of educational materials, {N} projects",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"dissemination activities, {N} projects": {
+"raw": "dissemination activities, {N} projects",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"Employability, {N} projects": {
+"raw": "Employability, {N} projects",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"student mobilities and exchanges, {N} projects": {
+"raw": "student mobilities and exchanges, {N} projects",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"Open and distance learning, {N} projects": {
+"raw": "Open and distance learning, {N} projects",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"Youth employability, {N} projects": {
+"raw": "Youth employability, {N} projects",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"students from disadvantaged backgrounds, {N} projects": {
+"raw": "students from disadvantaged backgrounds, {N} projects",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"needs research and assessment through surveys, {N} projects": {
+"raw": "needs research and assessment through surveys, {N} projects",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"secondary school students, {N} projects": {
+"raw": "secondary school students, {N} projects",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"Career guidance, {N} projects": {
+"raw": "Career guidance, {N} projects",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"pilot sessions, {N} projects": {
+"raw": "pilot sessions, {N} projects",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"cooperation between partners, {N} projects": {
+"raw": "cooperation between partners, {N} projects",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"Cooperation between educational institutions and business, {N} projects": {
+"raw": "Cooperation between educational institutions and business, {N} projects",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"needs analysis, {N} projects": {
+"raw": "needs analysis, {N} projects",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"Youth policy development, {N} projects": {
+"raw": "Youth policy development, {N} projects",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"Equal access and transition to labour market, {N} projects": {
+"raw": "Equal access and transition to labour market, {N} projects",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"Pedagogy and didactics, {N} projects": {
+"raw": "Pedagogy and didactics, {N} projects",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"Science, technology, engineering and mathematics (STEM), {N} projects": {
+"raw": "Science, technology, engineering and mathematics (STEM), {N} projects",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"school staff, {N} projects": {
+"raw": "school staff, {N} projects",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"Overcoming skills mismatch and addressing the needs of the labour market, {N} projects": {
+"raw": "Overcoming skills mismatch and addressing the needs of the labour market, {N} projects",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"creation of teaching materials, {N} projects": {
+"raw": "creation of teaching materials, {N} projects",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"Quality assurance, {N} projects": {
+"raw": "Quality assurance, {N} projects",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"teacher training, {N} projects": {
+"raw": "teacher training, {N} projects",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"local community members, {N} projects": {
+"raw": "local community members, {N} projects",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"Community development, {N} projects": {
+"raw": "Community development, {N} projects",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"dissemination of project results, {N} projects": {
+"raw": "dissemination of project results, {N} projects",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"dissemination events, {N} projects": {
+"raw": "dissemination events, {N} projects",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"primary school teachers, {N} projects": {
+"raw": "primary school teachers, {N} projects",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"adult learners, {N} projects": {
+"raw": "adult learners, {N} projects",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"creation of an e-learning platform, {N} projects": {
+"raw": "creation of an e-learning platform, {N} projects",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"volunteers, {N} projects": {
+"raw": "volunteers, {N} projects",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"policy makers, {N} projects": {
+"raw": "policy makers, {N} projects",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"students with fewer opportunities, {N} projects": {
+"raw": "students with fewer opportunities, {N} projects",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"online meetings, {N} projects": {
+"raw": "online meetings, {N} projects",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"children, {N} projects": {
+"raw": "children, {N} projects",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"Promoting gender equality, {N} projects": {
+"raw": "Promoting gender equality, {N} projects",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"collaboration with universities, {N} projects": {
+"raw": "collaboration with universities, {N} projects",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"entrepreneurs, {N} projects": {
+"raw": "entrepreneurs, {N} projects",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"professionals, {N} projects": {
+"raw": "professionals, {N} projects",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"short-term joint staff training events, {N} projects": {
+"raw": "short-term joint staff training events, {N} projects",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"training sessions, {N} projects": {
+"raw": "training sessions, {N} projects",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"students in higher education, {N} projects": {
+"raw": "students in higher education, {N} projects",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"pupils, {N} projects": {
+"raw": "pupils, {N} projects",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"teachers from partner schools, {N} projects": {
+"raw": "teachers from partner schools, {N} projects",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"training of youth workers, {N} projects": {
+"raw": "training of youth workers, {N} projects",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"blended learning, {N} projects": {
+"raw": "blended learning, {N} projects",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"pilot testing, {N} projects": {
+"raw": "pilot testing, {N} projects",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"Research and innovation, {N} projects": {
+"raw": "Research and innovation, {N} projects",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"primary school students, {N} projects": {
+"raw": "primary school students, {N} projects",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"creation of a project website, {N} projects": {
+"raw": "creation of a project website, {N} projects",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"citizens, {N} projects": {
+"raw": "citizens, {N} projects",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"Reception and integration of refugees and migrants, {N} projects": {
+"raw": "Reception and integration of refugees and migrants, {N} projects",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"international cooperation between schools, {N} projects": {
+"raw": "international cooperation between schools, {N} projects",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"curriculum development, {N} projects": {
+"raw": "curriculum development, {N} projects",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"families, {N} projects": {
+"raw": "families, {N} projects",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"general public, {N} projects": {
+"raw": "general public, {N} projects",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"adults, {N} projects": {
+"raw": "adults, {N} projects",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"development of an e-learning platform, {N} projects": {
+"raw": "development of an e-learning platform, {N} projects",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"presentations, {N} projects": {
+"raw": "presentations, {N} projects",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"online training, {N} projects": {
+"raw": "online training, {N} projects",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"workshops for students and teachers, {N} projects": {
+"raw": "workshops for students and teachers, {N} projects",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"students from croatia, {N} projects": {
+"raw": "students from croatia, {N} projects",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"students with learning difficulties, {N} projects": {
+"raw": "students with learning difficulties, {N} projects",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"higher education institutions, {N} projects": {
+"raw": "higher education institutions, {N} projects",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"Energy and resources, {N} projects": {
+"raw": "Energy and resources, {N} projects",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"project-based learning, {N} projects": {
+"raw": "project-based learning, {N} projects",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"migrants, {N} projects": {
+"raw": "migrants, {N} projects",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"educational institutions, {N} projects": {
+"raw": "educational institutions, {N} projects",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"final conference, {N} projects": {
+"raw": "final conference, {N} projects",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"development of an online platform, {N} projects": {
+"raw": "development of an online platform, {N} projects",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"development of innovative curriculum, {N} projects": {
+"raw": "development of innovative curriculum, {N} projects",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"use of ict tools in teaching, {N} projects": {
+"raw": "use of ict tools in teaching, {N} projects",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"Youth work quality and inclusion": {
+"raw": "Youth work quality and inclusion",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"dissemination events": {
+"raw": "dissemination events",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"training of youth workers": {
+"raw": "training of youth workers",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"non-formal education": {
+"raw": "non-formal education",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"study visits": {
+"raw": "study visits",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"trainings for youth workers": {
+"raw": "trainings for youth workers",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"young people": {
+"raw": "young people",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"youth workers": {
+"raw": "youth workers",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"young people with fewer opportunities": {
+"raw": "young people with fewer opportunities",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"volunteers": {
+"raw": "volunteers",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"young people from disadvantaged backgrounds": {
+"raw": "young people from disadvantaged backgrounds",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"training program": {
+"raw": "training program",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"online learning platform": {
+"raw": "online learning platform",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"handbook for youth workers": {
+"raw": "handbook for youth workers",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"toolkit for youth workers": {
+"raw": "toolkit for youth workers",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"social media campaign": {
+"raw": "social media campaign",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"high unemployment rates among young people": {
+"raw": "high unemployment rates among young people",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"unemployment among young people": {
+"raw": "unemployment among young people",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"low quality of youth work": {
+"raw": "low quality of youth work",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"eco-anxiety among young people": {
+"raw": "eco-anxiety among young people",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"limited social inclusion": {
+"raw": "limited social inclusion",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"Promotion of alternative forms of participation": {
+"raw": "Promotion of alternative forms of participation",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"Quality and innovation of youth work": {
+"raw": "Quality and innovation of youth work",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"Youth policy development": {
+"raw": "Youth policy development",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"Digital youth work": {
+"raw": "Digital youth work",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"Innovative teaching materials for higher education": {
+"raw": "Innovative teaching materials for higher education",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"creation of teaching materials": {
+"raw": "creation of teaching materials",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"collaboration with universities": {
+"raw": "collaboration with universities",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"blended learning": {
+"raw": "blended learning",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"online training": {
+"raw": "online training",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"creation of open educational resources": {
+"raw": "creation of open educational resources",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"students in higher education": {
+"raw": "students in higher education",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"higher education institutions": {
+"raw": "higher education institutions",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"universities": {
+"raw": "universities",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"future professionals": {
+"raw": "future professionals",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"teaching staff": {
+"raw": "teaching staff",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"open educational resources": {
+"raw": "open educational resources",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"assessment tools": {
+"raw": "assessment tools",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"New learning and teaching methods and approaches": {
+"raw": "New learning and teaching methods and approaches",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"Creating new, innovative or joint curricula or courses": {
+"raw": "Creating new, innovative or joint curricula or courses",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"Development of training courses": {
+"raw": "Development of training courses",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"Open and distance learning": {
+"raw": "Open and distance learning",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"Digital skills and ICT in education": {
+"raw": "Digital skills and ICT in education",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"short-term joint staff training events": {
+"raw": "short-term joint staff training events",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"workshops for students and teachers": {
+"raw": "workshops for students and teachers",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"use of ict tools in teaching": {
+"raw": "use of ict tools in teaching",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"collaborative learning": {
+"raw": "collaborative learning",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"interactive learning": {
+"raw": "interactive learning",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"students aged {N}-{N}": {
+"raw": "students aged {N}-{N}",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"students aged {N} to {N} years": {
+"raw": "students aged {N} to {N} years",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"secondary school students aged {N}-{N}": {
+"raw": "secondary school students aged {N}-{N}",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"teachers from other schools": {
+"raw": "teachers from other schools",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"students in secondary education": {
+"raw": "students in secondary education",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"increased student motivation": {
+"raw": "increased student motivation",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"facebook page": {
+"raw": "facebook page",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"improved foreign language skills of students": {
+"raw": "improved foreign language skills of students",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"improved digital skills of participants": {
+"raw": "improved digital skills of participants",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"improved language skills of teachers and students": {
+"raw": "improved language skills of teachers and students",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"need to improve digital competence": {
+"raw": "need to improve digital competence",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"Digital skills and competences": {
+"raw": "Digital skills and competences",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"Digital content, technologies and practices": {
+"raw": "Digital content, technologies and practices",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"Information and communication technologies (ICT)": {
+"raw": "Information and communication technologies (ICT)",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"Key competences development": {
+"raw": "Key competences development",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"Prevention of bullying and digital safety": {
+"raw": "Prevention of bullying and digital safety",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"seminars": {
+"raw": "seminars",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"virtual meetings": {
+"raw": "virtual meetings",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"exchange of experiences between teachers": {
+"raw": "exchange of experiences between teachers",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"creation of lesson plans": {
+"raw": "creation of lesson plans",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"cultural visits": {
+"raw": "cultural visits",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"parents": {
+"raw": "parents",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"school staff": {
+"raw": "school staff",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"families": {
+"raw": "families",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"educational materials": {
+"raw": "educational materials",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"evaluation forms": {
+"raw": "evaluation forms",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"videos documenting project activities": {
+"raw": "videos documenting project activities",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"increased sense of belonging for students": {
+"raw": "increased sense of belonging for students",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"improved academic results for students": {
+"raw": "improved academic results for students",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"bullying in schools": {
+"raw": "bullying in schools",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"insufficient digital skills": {
+"raw": "insufficient digital skills",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"cyberbullying": {
+"raw": "cyberbullying",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"low self-esteem among students": {
+"raw": "low self-esteem among students",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"lack of innovative teaching methods": {
+"raw": "lack of innovative teaching methods",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"Digital safety": {
+"raw": "Digital safety",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"Prevention of bullying": {
+"raw": "Prevention of bullying",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"Support for disadvantaged youth": {
+"raw": "Support for disadvantaged youth",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"training of trainers": {
+"raw": "training of trainers",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"peer learning": {
+"raw": "peer learning",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"exchange of practices": {
+"raw": "exchange of practices",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"disadvantaged youth": {
+"raw": "disadvantaged youth",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"participants with fewer opportunities": {
+"raw": "participants with fewer opportunities",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"society members": {
+"raw": "society members",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"counselors": {
+"raw": "counselors",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"evaluation report": {
+"raw": "evaluation report",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"handbook for teachers": {
+"raw": "handbook for teachers",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"improved communication skills among participants": {
+"raw": "improved communication skills among participants",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"videos created by students": {
+"raw": "videos created by students",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"improved foreign language skills of participants": {
+"raw": "improved foreign language skills of participants",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"social isolation": {
+"raw": "social isolation",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"poverty": {
+"raw": "poverty",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"need to improve students' ict skills": {
+"raw": "need to improve students' ict skills",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"bullying among students": {
+"raw": "bullying among students",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"Labour market skills and quality assurance": {
+"raw": "Labour market skills and quality assurance",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"needs analysis": {
+"raw": "needs analysis",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"dissemination of project results": {
+"raw": "dissemination of project results",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"creation of an e-learning platform": {
+"raw": "creation of an e-learning platform",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"pilot testing": {
+"raw": "pilot testing",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"curriculum development": {
+"raw": "curriculum development",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"stakeholders": {
+"raw": "stakeholders",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"policy makers": {
+"raw": "policy makers",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"professionals": {
+"raw": "professionals",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"educational institutions": {
+"raw": "educational institutions",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"experts": {
+"raw": "experts",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"e-learning platform": {
+"raw": "e-learning platform",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"policy recommendations": {
+"raw": "policy recommendations",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"mobile application": {
+"raw": "mobile application",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"multiplier events": {
+"raw": "multiplier events",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"promotional material": {
+"raw": "promotional material",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"Overcoming skills mismatch and addressing the needs of the labour market": {
+"raw": "Overcoming skills mismatch and addressing the needs of the labour market",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"Quality assurance": {
+"raw": "Quality assurance",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"Research and innovation": {
+"raw": "Research and innovation",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"Recognition, transparency, certification": {
+"raw": "Recognition, transparency, certification",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"Youth employability and entrepreneurship education": {
+"raw": "Youth employability and entrepreneurship education",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"needs research and assessment through surveys": {
+"raw": "needs research and assessment through surveys",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"visits to companies": {
+"raw": "visits to companies",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"sharing best practices": {
+"raw": "sharing best practices",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"study visits to partner countries": {
+"raw": "study visits to partner countries",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"exchange of experiences and good practices": {
+"raw": "exchange of experiences and good practices",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"entrepreneurs": {
+"raw": "entrepreneurs",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"employers": {
+"raw": "employers",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"companies": {
+"raw": "companies",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"young people facing unemployment": {
+"raw": "young people facing unemployment",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"unemployed people": {
+"raw": "unemployed people",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"research report": {
+"raw": "research report",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"project homepage": {
+"raw": "project homepage",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"high youth unemployment rates": {
+"raw": "high youth unemployment rates",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"youth unemployment": {
+"raw": "youth unemployment",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"social exclusion": {
+"raw": "social exclusion",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"social exclusion of young people": {
+"raw": "social exclusion of young people",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"lack of entrepreneurial skills among students": {
+"raw": "lack of entrepreneurial skills among students",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"Entrepreneurial learning - entrepreneurship education": {
+"raw": "Entrepreneurial learning - entrepreneurship education",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"Employability": {
+"raw": "Employability",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"Youth employability": {
+"raw": "Youth employability",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"Career guidance": {
+"raw": "Career guidance",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"Inclusion of people with disabilities": {
+"raw": "Inclusion of people with disabilities",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"peer learning through exchange of experiences": {
+"raw": "peer learning through exchange of experiences",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"dissemination via websites and social media": {
+"raw": "dissemination via websites and social media",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"creation of a european network": {
+"raw": "creation of a european network",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"multiplier events to share results": {
+"raw": "multiplier events to share results",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"art therapy": {
+"raw": "art therapy",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"people with disabilities": {
+"raw": "people with disabilities",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"students with special needs": {
+"raw": "students with special needs",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"students with learning disabilities": {
+"raw": "students with learning disabilities",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"children with special needs": {
+"raw": "children with special needs",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"disabled people": {
+"raw": "disabled people",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"xenophobia": {
+"raw": "xenophobia",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"social isolation among young people": {
+"raw": "social isolation among young people",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"stigma surrounding mental health issues": {
+"raw": "stigma surrounding mental health issues",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"Inclusion, promoting equality and non-discrimination": {
+"raw": "Inclusion, promoting equality and non-discrimination",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"Physical and mental health, well-being": {
+"raw": "Physical and mental health, well-being",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"Inclusion of marginalised young people": {
+"raw": "Inclusion of marginalised young people",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"Disabilities": {
+"raw": "Disabilities",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"Education and active ageing for adults": {
+"raw": "Education and active ageing for adults",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"creation of a project website": {
+"raw": "creation of a project website",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"training of educators": {
+"raw": "training of educators",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"creation of a handbook": {
+"raw": "creation of a handbook",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"exchange of experiences": {
+"raw": "exchange of experiences",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"international project meetings": {
+"raw": "international project meetings",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"educators": {
+"raw": "educators",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"adult learners": {
+"raw": "adult learners",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"adults": {
+"raw": "adults",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"partners from different countries": {
+"raw": "partners from different countries",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"educators working with seniors": {
+"raw": "educators working with seniors",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"podcasts": {
+"raw": "podcasts",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"e-learning course": {
+"raw": "e-learning course",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"Bridging intercultural, intergenerational and social divide": {
+"raw": "Bridging intercultural, intergenerational and social divide",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"Community development": {
+"raw": "Community development",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"Active ageing": {
+"raw": "Active ageing",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"Vocational training for rural entrepreneurship": {
+"raw": "Vocational training for rural entrepreneurship",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"development of training materials": {
+"raw": "development of training materials",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"multiplier events in partner countries": {
+"raw": "multiplier events in partner countries",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"exchange of experiences between partners": {
+"raw": "exchange of experiences between partners",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"creation of training modules": {
+"raw": "creation of training modules",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"pilot trainings": {
+"raw": "pilot trainings",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"trainers": {
+"raw": "trainers",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"students in vocational education and training": {
+"raw": "students in vocational education and training",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"vet students": {
+"raw": "vet students",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"managers": {
+"raw": "managers",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"mentors": {
+"raw": "mentors",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"improved employability of students": {
+"raw": "improved employability of students",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"Cooperation between educational institutions and business": {
+"raw": "Cooperation between educational institutions and business",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"Enterprise, industry, SMEs and entrepreneurship": {
+"raw": "Enterprise, industry, SMEs and entrepreneurship",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"Agriculture, forestry and fisheries": {
+"raw": "Agriculture, forestry and fisheries",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"Development of disadvantaged rural and urban areas": {
+"raw": "Development of disadvantaged rural and urban areas",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"Teacher training and primary education": {
+"raw": "Teacher training and primary education",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"teacher training": {
+"raw": "teacher training",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"training sessions": {
+"raw": "training sessions",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"co-creation of educational resources": {
+"raw": "co-creation of educational resources",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"exchange of practices among teachers": {
+"raw": "exchange of practices among teachers",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"international collaboration": {
+"raw": "international collaboration",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"primary school teachers": {
+"raw": "primary school teachers",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"children": {
+"raw": "children",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"pupils": {
+"raw": "pupils",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"primary school pupils": {
+"raw": "primary school pupils",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"students aged {N} to {N}": {
+"raw": "students aged {N} to {N}",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"guide for teachers": {
+"raw": "guide for teachers",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"improved digital skills among students": {
+"raw": "improved digital skills among students",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"improved english language skills of pupils": {
+"raw": "improved english language skills of pupils",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"Pedagogy and didactics": {
+"raw": "Pedagogy and didactics",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"Initial and continuous training for teachers, trainers and other education staff": {
+"raw": "Initial and continuous training for teachers, trainers and other education staff",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"Early childhood education and care": {
+"raw": "Early childhood education and care",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"Prevention of early school leaving": {
+"raw": "Prevention of early school leaving",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"exchange of good practices between schools": {
+"raw": "exchange of good practices between schools",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"exchange of students": {
+"raw": "exchange of students",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"learning and teaching activities for teachers": {
+"raw": "learning and teaching activities for teachers",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"learning by teaching": {
+"raw": "learning by teaching",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"extracurricular activities": {
+"raw": "extracurricular activities",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"students from disadvantaged backgrounds": {
+"raw": "students from disadvantaged backgrounds",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"students with fewer opportunities": {
+"raw": "students with fewer opportunities",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"students with learning difficulties": {
+"raw": "students with learning difficulties",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"students with economic obstacles": {
+"raw": "students with economic obstacles",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"families of students": {
+"raw": "families of students",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"increased self-confidence among students": {
+"raw": "increased self-confidence among students",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"reduced early school leaving rates": {
+"raw": "reduced early school leaving rates",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"improved teamwork skills among students": {
+"raw": "improved teamwork skills among students",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"enhanced digital literacy among students": {
+"raw": "enhanced digital literacy among students",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"early school leaving": {
+"raw": "early school leaving",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"limited inclusion of students from disadvantaged backgrounds": {
+"raw": "limited inclusion of students from disadvantaged backgrounds",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"high rates of early school leaving": {
+"raw": "high rates of early school leaving",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"low motivation among students": {
+"raw": "low motivation among students",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"lack of motivation among students": {
+"raw": "lack of motivation among students",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"Preventing early school leaving and failure in education": {
+"raw": "Preventing early school leaving and failure in education",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"Promotion of european values and democracy": {
+"raw": "Promotion of european values and democracy",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"mobilities for students and teachers": {
+"raw": "mobilities for students and teachers",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"film making": {
+"raw": "film making",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"creative writing workshops": {
+"raw": "creative writing workshops",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"use of etwinning twinspace for collaboration": {
+"raw": "use of etwinning twinspace for collaboration",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"learning by action": {
+"raw": "learning by action",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"citizens": {
+"raw": "citizens",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"wider community": {
+"raw": "wider community",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"young europeans": {
+"raw": "young europeans",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"local partners": {
+"raw": "local partners",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"non-governmental organizations": {
+"raw": "non-governmental organizations",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"improved language skills": {
+"raw": "improved language skills",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"improved motivation among students": {
+"raw": "improved motivation among students",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"project website with all results": {
+"raw": "project website with all results",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"discrimination": {
+"raw": "discrimination",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"low media literacy among young people": {
+"raw": "low media literacy among young people",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"inequalities": {
+"raw": "inequalities",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"hate speech": {
+"raw": "hate speech",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"polarisation": {
+"raw": "polarisation",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"Democracy and inclusive democratic participation": {
+"raw": "Democracy and inclusive democratic participation",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"European identity and values": {
+"raw": "European identity and values",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"Awareness about the European Union": {
+"raw": "Awareness about the European Union",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"Human rights and rule of law": {
+"raw": "Human rights and rule of law",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"International cooperation and student mobility": {
+"raw": "International cooperation and student mobility",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"peer learning through international cooperation": {
+"raw": "peer learning through international cooperation",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"collaborative work": {
+"raw": "collaborative work",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"mobilities between partner schools": {
+"raw": "mobilities between partner schools",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"secondary school students": {
+"raw": "secondary school students",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"primary school students": {
+"raw": "primary school students",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"students from croatia": {
+"raw": "students from croatia",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"vocational school students": {
+"raw": "vocational school students",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"teachers from croatia": {
+"raw": "teachers from croatia",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"improved language competences of students": {
+"raw": "improved language competences of students",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"games": {
+"raw": "games",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"International relations and development cooperation": {
+"raw": "International relations and development cooperation",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"Green transport and mobility": {
+"raw": "Green transport and mobility",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"Environmental education and climate awareness": {
+"raw": "Environmental education and climate awareness",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"transnational collaboration": {
+"raw": "transnational collaboration",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"awareness campaigns": {
+"raw": "awareness campaigns",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"outdoor activities": {
+"raw": "outdoor activities",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"training of trainers (ltt) activities": {
+"raw": "training of trainers (ltt) activities",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"mobility activities": {
+"raw": "mobility activities",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"future generations": {
+"raw": "future generations",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"students in formal education": {
+"raw": "students in formal education",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"european schools": {
+"raw": "european schools",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"lesson plans": {
+"raw": "lesson plans",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"increased environmental awareness": {
+"raw": "increased environmental awareness",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"worksheets": {
+"raw": "worksheets",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"improved cultural awareness among students and teachers": {
+"raw": "improved cultural awareness among students and teachers",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"climate change": {
+"raw": "climate change",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"low environmental awareness": {
+"raw": "low environmental awareness",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"pollution": {
+"raw": "pollution",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"biodiversity loss": {
+"raw": "biodiversity loss",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"lack of environmental awareness among young people": {
+"raw": "lack of environmental awareness among young people",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"Environment and climate change": {
+"raw": "Environment and climate change",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"Green skills": {
+"raw": "Green skills",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"Science, technology, engineering and mathematics (STEM)": {
+"raw": "Science, technology, engineering and mathematics (STEM)",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"Energy and resources": {
+"raw": "Energy and resources",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"English language and ICT skills development": {
+"raw": "English language and ICT skills development",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"presentations": {
+"raw": "presentations",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"workshops for teacher training": {
+"raw": "workshops for teacher training",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"learning activities": {
+"raw": "learning activities",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"producing videos": {
+"raw": "producing videos",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"discussions": {
+"raw": "discussions",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"local community members": {
+"raw": "local community members",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"teachers from partner schools": {
+"raw": "teachers from partner schools",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"students in partner schools": {
+"raw": "students in partner schools",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"students from different backgrounds": {
+"raw": "students from different backgrounds",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"school management": {
+"raw": "school management",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"improved english language skills of students": {
+"raw": "improved english language skills of students",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"improved ict skills": {
+"raw": "improved ict skills",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"facebook group for the project": {
+"raw": "facebook group for the project",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"need to improve students' english language skills": {
+"raw": "need to improve students' english language skills",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"Promoting gender equality and media literacy": {
+"raw": "Promoting gender equality and media literacy",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"transnational project meetings": {
+"raw": "transnational project meetings",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"dissemination activities": {
+"raw": "dissemination activities",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"cooperation between partners": {
+"raw": "cooperation between partners",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"webinars": {
+"raw": "webinars",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"women": {
+"raw": "women",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"girls": {
+"raw": "girls",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"disadvantaged groups": {
+"raw": "disadvantaged groups",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"project partners": {
+"raw": "project partners",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"staff members of partner institutions": {
+"raw": "staff members of partner institutions",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"dissemination plan": {
+"raw": "dissemination plan",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"quality management plan": {
+"raw": "quality management plan",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"sustainability plan": {
+"raw": "sustainability plan",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"quality assurance plan": {
+"raw": "quality assurance plan",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"gender inequality": {
+"raw": "gender inequality",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"Promoting gender equality": {
+"raw": "Promoting gender equality",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"Artificial Intelligence (AI) and data usage": {
+"raw": "Artificial Intelligence (AI) and data usage",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"Inter-regional cooperation": {
+"raw": "Inter-regional cooperation",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"Media literacy and tackling disinformation": {
+"raw": "Media literacy and tackling disinformation",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"Active learning methods for students": {
+"raw": "Active learning methods for students",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"project-based learning": {
+"raw": "project-based learning",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"gamification": {
+"raw": "gamification",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"game-based learning": {
+"raw": "game-based learning",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"learning by doing": {
+"raw": "learning by doing",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"cooperative learning": {
+"raw": "cooperative learning",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"local communities": {
+"raw": "local communities",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"local authorities": {
+"raw": "local authorities",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"ngos": {
+"raw": "ngos",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"european teachers": {
+"raw": "european teachers",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"project webpage": {
+"raw": "project webpage",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"exhibitions": {
+"raw": "exhibitions",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"flyers": {
+"raw": "flyers",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"Digital content and innovative teaching": {
+"raw": "Digital content and innovative teaching",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"creation of digital content": {
+"raw": "creation of digital content",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"online meetings via zoom": {
+"raw": "online meetings via zoom",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"educational trips": {
+"raw": "educational trips",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"educational visits": {
+"raw": "educational visits",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"learning events": {
+"raw": "learning events",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"project website": {
+"raw": "project website",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"project logo": {
+"raw": "project logo",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"videos": {
+"raw": "videos",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"posters": {
+"raw": "posters",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"need for innovative teaching methods": {
+"raw": "need for innovative teaching methods",
+"where": "",
+"tags": [
+"#/graf",
+"#/graf [btn3]",
+"#/graf [btn4]"
+]
+},
+"Equal access and transition to labour market": {
+"raw": "Equal access and transition to labour market",
+"where": "",
+"tags": [
+"#/graf [in #view input.field ab]"
+]
+},
+"online collaboration": {
+"raw": "online collaboration",
+"where": "",
+"tags": [
+"#/graf [in #view input.field ab]"
+]
+},
+"Zagreb": {
+"raw": "Zagreb",
+"where": "",
+"tags": [
+"#/organizacije/OID-E10209270",
+"#/organizacije/OID-E10209270 [btn0]",
+"#/organizacije/OID-E10209270 [btn1]"
+]
+},
+"Sveučilište u Zagrebu": {
+"raw": "Sveučilište u Zagrebu",
+"where": "",
+"tags": [
+"#/organizacije/OID-E10209270",
+"#/organizacije/OID-E10209270 [btn0]",
+"#/organizacije/OID-E10209270 [btn1]"
+]
+},
+"ZAGREB": {
+"raw": "ZAGREB",
+"where": "",
+"tags": [
+"#/organizacije/OID-E10209270",
+"#/organizacije/OID-E10209270 [btn0]",
+"#/organizacije/OID-E10209270 [btn1]"
+]
+},
+"SVEUCILISTE ALGEBRA BERNAYS": {
+"raw": "SVEUCILISTE ALGEBRA BERNAYS",
+"where": "",
+"tags": [
+"#/organizacije/OID-E10209270",
+"#/organizacije/OID-E10209270 [btn0]",
+"#/organizacije/OID-E10209270 [btn1]"
+]
+},
+"SVEUCILISTE ALGEBRA": {
+"raw": "SVEUCILISTE ALGEBRA",
+"where": "",
+"tags": [
+"#/organizacije/OID-E10209270",
+"#/organizacije/OID-E10209270 [btn0]",
+"#/organizacije/OID-E10209270 [btn1]"
+]
+},
+"Sveučilište u Zagrebu, Edukacijsko-rehabilitacijski fakultet": {
+"raw": "Sveučilište u Zagrebu, Edukacijsko-rehabilitacijski fakultet",
+"where": "",
+"tags": [
+"#/organizacije/OID-E10209270",
+"#/organizacije/OID-E10209270 [btn0]",
+"#/organizacije/OID-E10209270 [btn1]"
+]
+},
+"Sveučilište u Zagrebu, Fakultet strojarstva i brodogradnje": {
+"raw": "Sveučilište u Zagrebu, Fakultet strojarstva i brodogradnje",
+"where": "",
+"tags": [
+"#/organizacije/OID-E10209270",
+"#/organizacije/OID-E10209270 [btn0]",
+"#/organizacije/OID-E10209270 [btn1]"
+]
+}
+}

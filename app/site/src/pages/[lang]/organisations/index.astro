@@ -1,69 +1,11 @@
 ---
 import Base from '../../../layouts/Base.astro';
-import orgs from '../../../data/orgs.json';
-import { LANGS, t, num, slug, type Lang } from '../../../lib/i18n';
+import EkView from '../../../components/EkView.astro';
+import { LANGS, type Lang } from '../../../lib/i18n';
 export const getStaticPaths = () => LANGS.map((lang) => ({ params: { lang } }));
 const lang = Astro.params.lang as Lang;
-const s = t(lang);
-const base = import.meta.env.BASE_URL.replace(/\/$/, '');
-const counties = [...new Set(orgs.map((o) => o.county).filter(Boolean))].sort((a, b) => a!.localeCompare(b!, 'hr'));
-const classes = [...new Set(orgs.map((o) => o.cls).filter(Boolean))].sort((a, b) => (s.classNames[a!] ?? a!).localeCompare(s.classNames[b!] ?? b!, lang));
+const T = { hr: ['Organizacije', 'Organizacije u KA2 partnerstvima.'], en: ['Organisations', 'Organisations in KA2 partnerships.'] }[lang];
 ---
-<Base lang={lang} title={s.orgsTitle} path="/organisations/" active="orgs" description={s.orgsLead}>
-  <div class="kicker">{s.nav.orgs}</div>
-  <h1>{s.orgsTitle}</h1>
-  <p class="lead">{s.orgsLead}</p>
-  <div class="row-form" id="of">
-    <label for="q">{s.filter}<input id="q" type="search" placeholder={s.filter} style="min-width:min(100%,260px)" /></label>
-    <label for="c">{s.county}<select id="c"><option value="">{s.allCounties}</option>{counties.map((c) => <option value={c!}>{c}</option>)}</select></label>
-    <label for="k">{s.type}<select id="k"><option value="">{s.allTypes}</option>{classes.map((c) => <option value={c!}>{s.classNames[c!] ?? c}</option>)}</select></label>
-    <label for="p">{s.ovPeriod}<select id="p"><option value="">{s.anyPeriod}</option><option value="1">{s.p1}</option><option value="2">{s.p2}</option></select></label>
-    <label for="o">{s.sortBy}<select id="o"><option value="p">{s.sortProjects}</option><option value="c">{s.sortCoordinated}</option><option value="n">{s.sortName}</option></select></label>
-    <label class="chk"><input id="co" type="checkbox" /> {s.coordOnly}</label>
-  </div>
-  <p class="lead" id="count" aria-live="polite"></p>
-  <div class="card" style="overflow-x:auto">
-    <table>
-      <thead><tr><th>{s.name}</th><th>{s.town}</th><th>{s.county}</th><th class="num">{s.projects}</th><th class="num">{s.coordinated}</th></tr></thead>
-      <tbody id="rows">
-        {orgs.map((o) => (
-          <tr data-s={`${o.name} ${o.town ?? ''}`.toLowerCase()} data-c={o.county ?? ''} data-k={o.cls ?? ''} data-n={o.name}
-              data-p={o.projects} data-c0={o.coordinated} data-p1={o.p1} data-p2={o.p2} data-c1={o.c1} data-c2={o.c2}>
-            <td><a href={`${base}/${lang}/organisations/${slug(o.id)}/`}>{o.name}</a></td>
-            <td>{o.town ?? ''}</td><td>{o.county ?? ''}</td>
-            <td class="num pj">{num(lang, o.projects)}</td><td class="num cd">{num(lang, o.coordinated)}</td>
-          </tr>
-        ))}
-      </tbody>
-    </table>
-  </div>
+<Base ek lang={lang} title={T[0]} path="/organisations/" active="orgs" description={T[1]}>
+  <EkView view="organisations" lang={lang} />
 </Base>
-<script define:vars={{ shown: s.shown, lang }}>
-  const tbody = document.getElementById('rows');
-  const rows = Array.from(tbody.querySelectorAll('tr'));
-  const $ = (id) => document.getElementById(id);
-  const fmt = new Intl.NumberFormat(lang === 'hr' ? 'hr-HR' : 'en-GB');
-  const fold = (x) => x.normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/đ/g, 'd').toLowerCase();
-  for (const r of rows) r.dataset.f = fold(r.dataset.s);
-  function run() {
-    const needle = fold($('q').value.trim()), county = $('c').value, kind = $('k').value, per = $('p').value, sort = $('o').value, co = $('co').checked;
-    const val = (r) => ({ pj: Number(per ? r.dataset['p' + per] : r.dataset.p), cd: Number(per ? r.dataset['c' + per] : r.dataset.c0) });
-    let list = rows.filter((r) => {
-      const v = val(r);
-      return v.pj > 0 && (!co || v.cd > 0) && (!needle || r.dataset.f.includes(needle)) && (!county || r.dataset.c === county) && (!kind || r.dataset.k === kind);
-    });
-    list.sort((a, b) => {
-      const va = val(a), vb = val(b);
-      if (sort === 'n') return a.dataset.n.localeCompare(b.dataset.n, lang);
-      const d = sort === 'c' ? vb.cd - va.cd || vb.pj - va.pj : vb.pj - va.pj || vb.cd - va.cd;
-      return d || a.dataset.n.localeCompare(b.dataset.n, lang);
-    });
-    const keep = new Set(list.slice(0, 300));
-    rows.forEach((r) => (r.hidden = !keep.has(r)));
-    list.slice(0, 300).forEach((r) => { const v = val(r); r.querySelector('.pj').textContent = fmt.format(v.pj); r.querySelector('.cd').textContent = fmt.format(v.cd); tbody.append(r); });
-    $('count').textContent = `${Math.min(list.length, 300)} / ${list.length} ${shown}`;
-  }
-  document.getElementById('of').addEventListener('input', run);
-  document.getElementById('of').addEventListener('change', run);
-  run();
-</script>

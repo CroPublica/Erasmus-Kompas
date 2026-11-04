@@ -1,0 +1,7223 @@
+{
+"Preskoči na sadržaj": {
+"raw": "Preskoči na sadržaj",
+"where": "A.skip",
+"tags": [
+"#/",
+"#/ [details]",
+"#/ [btn0]"
+]
+},
+"Izbornik": {
+"raw": "Izbornik",
+"where": "@aria-label",
+"tags": [
+"#/",
+"#/ [details]",
+"#/ [btn0]"
+]
+},
+"Zatvori izbornik": {
+"raw": "Zatvori izbornik",
+"where": "@aria-label",
+"tags": [
+"#/",
+"#/ [details]",
+"#/ [btn0]"
+]
+},
+"Erasmus+ Kompas, početna stranica": {
+"raw": "Erasmus+ Kompas, početna stranica",
+"where": "@aria-label",
+"tags": [
+"#/",
+"#/ [details]",
+"#/ [btn0]"
+]
+},
+"Erasmus+ Kompas": {
+"raw": "Erasmus+ Kompas",
+"where": "A.",
+"tags": [
+"#/",
+"#/ [details]",
+"#/ [btn0]"
+]
+},
+"Atlas KA{N} partnerstava": {
+"raw": "Atlas KA2 partnerstava",
+"where": "A.",
+"tags": [
+"#/",
+"#/ [details]",
+"#/ [btn0]"
+]
+},
+"Jezik": {
+"raw": "Jezik",
+"where": "@aria-label",
+"tags": [
+"#/",
+"#/ [details]",
+"#/ [btn0]"
+]
+},
+"Glavna navigacija": {
+"raw": "Glavna navigacija",
+"where": "@aria-label",
+"tags": [
+"#/",
+"#/ [details]",
+"#/ [btn0]"
+]
+},
+"Početna": {
+"raw": "Početna",
+"where": "DIV.",
+"tags": [
+"#/",
+"#/ [details]",
+"#/ [btn0]"
+]
+},
+"Istraži": {
+"raw": "Istraži",
+"where": "@aria-label",
+"tags": [
+"#/",
+"#/ [details]",
+"#/ [btn0]"
+]
+},
+"Pregled": {
+"raw": "Pregled",
+"where": "DIV.",
+"tags": [
+"#/",
+"#/ [details]",
+"#/ [btn0]"
+]
+},
+"Županije": {
+"raw": "Županije",
+"where": "DIV.",
+"tags": [
+"#/",
+"#/ [details]",
+"#/ [btn0]"
+]
+},
+"Teme i metode": {
+"raw": "Teme i metode",
+"where": "DIV.",
+"tags": [
+"#/",
+"#/ [details]",
+"#/ [btn0]"
+]
+},
+"Pretraži": {
+"raw": "Pretraži",
+"where": "@aria-label",
+"tags": [
+"#/",
+"#/ [details]",
+"#/ [btn0]"
+]
+},
+"Projekti i organizacije": {
+"raw": "Projekti i organizacije",
+"where": "DIV.",
+"tags": [
+"#/",
+"#/ [details]",
+"#/ [btn0]"
+]
+},
+"Pitajte": {
+"raw": "Pitajte",
+"where": "@aria-label",
+"tags": [
+"#/",
+"#/ [details]",
+"#/ [btn0]"
+]
+},
+"Asistent": {
+"raw": "Asistent",
+"where": "DIV.",
+"tags": [
+"#/",
+"#/ [details]",
+"#/ [btn0]"
+]
+},
+"Informacije": {
+"raw": "Informacije",
+"where": "@aria-label",
+"tags": [
+"#/",
+"#/ [details]",
+"#/ [btn0]"
+]
+},
+"O podacima": {
+"raw": "O podacima",
+"where": "DIV.",
+"tags": [
+"#/",
+"#/ [details]",
+"#/ [btn0]"
+]
+},
+"Imate pitanje?": {
+"raw": "Imate pitanje?",
+"where": "DIV.",
+"tags": [
+"#/",
+"#/ [details]",
+"#/ [btn0]"
+]
+},
+"Asistent odgovara samo iz podataka atlasa i uz odgovor navodi izvore.": {
+"raw": "Asistent odgovara samo iz podataka atlasa i uz odgovor navodi izvore.",
+"where": "DIV.",
+"tags": [
+"#/",
+"#/ [details]",
+"#/ [btn0]"
+]
+},
+"Pitaj asistenta": {
+"raw": "Pitaj asistenta",
+"where": "BUTTON.",
+"tags": [
+"#/",
+"#/ [details]",
+"#/ [btn0]"
+]
+},
+"Neovisni projekt otvorenih podataka. Nije službena stranica Europske komisije.": {
+"raw": "Neovisni projekt otvorenih podataka. Nije službena stranica Europske komisije.",
+"where": "P.sidefoot",
+"tags": [
+"#/",
+"#/ [details]",
+"#/ [btn0]"
+]
+},
+"Otvori asistenta": {
+"raw": "Otvori asistenta",
+"where": "@aria-label",
+"tags": [
+"#/",
+"#/ [details]",
+"#/ [btn0]"
+]
+},
+"Erasmus+ KA{N} partnerstva · {N}–{N}": {
+"raw": "Erasmus+ KA2 partnerstva · 2014.–2026.",
+"where": "DIV.kicker on-dark",
+"tags": [
+"#/",
+"#/ [details]",
+"#/ [btn0]"
+]
+},
+"Gdje i s kim {E} surađuje kroz Erasmus+": {
+"raw": "Gdje i s kim Hrvatska surađuje kroz Erasmus+",
+"where": "DIV.",
+"tags": [
+"#/",
+"#/ [details]",
+"#/ [btn0]"
+]
+},
+"Otvoreni podaci o {N} partnerstava s hrvatskim sudionicima: tko ih koordinira, u kojim se županijama provode, s kojim državama i o kojim temama.": {
+"raw": "Otvoreni podaci o 3.830 partnerstava s hrvatskim sudionicima: tko ih koordinira, u kojim se županijama provode, s kojim državama i o kojim temama.",
+"where": "P.lead",
+"tags": [
+"#/",
+"#/ [details]",
+"#/ [btn0]"
+]
+},
+"Pretraži atlas": {
+"raw": "Pretraži atlas",
+"where": "LABEL.sr",
+"tags": [
+"#/",
+"#/ [details]",
+"#/ [btn0]"
+]
+},
+"Pretraži županije, organizacije, projekte…": {
+"raw": "Pretraži županije, organizacije, projekte…",
+"where": "@placeholder",
+"tags": [
+"#/",
+"#/ [details]",
+"#/ [btn0]"
+]
+},
+"Prečaci": {
+"raw": "Prečaci",
+"where": "DIV.",
+"tags": [
+"#/",
+"#/ [details]",
+"#/ [btn0]"
+]
+},
+"Karta županija": {
+"raw": "Karta županija",
+"where": "DIV.",
+"tags": [
+"#/",
+"#/ [details]",
+"#/ [btn0]"
+]
+},
+"Pokrivenost škola": {
+"raw": "Pokrivenost škola",
+"where": "DIV.",
+"tags": [
+"#/",
+"#/ [details]",
+"#/ [btn0]"
+]
+},
+"Partnerske države": {
+"raw": "Partnerske države",
+"where": "DIV.",
+"tags": [
+"#/",
+"#/ [details]",
+"#/ [btn0]"
+]
+},
+"Projekti": {
+"raw": "Projekti",
+"where": "DIV.",
+"tags": [
+"#/",
+"#/ [details]",
+"#/ [btn0]"
+]
+},
+"Otvori pregled": {
+"raw": "Otvori pregled",
+"where": "A.btn yellow",
+"tags": [
+"#/",
+"#/ [details]",
+"#/ [btn0]"
+]
+},
+"Ažurirano {N}. {N}. {N}. · {N} organizacija · {N} županija": {
+"raw": "Ažurirano 3. 11. 2026. · 1.501 organizacija · 21 županija",
+"where": "P.l-meta",
+"tags": [
+"#/",
+"#/ [details]",
+"#/ [btn0]"
+]
+},
+"{E} u brojkama": {
+"raw": "Hrvatska u brojkama",
+"where": "H2.l-h",
+"tags": [
+"#/",
+"#/ [details]",
+"#/ [btn0]"
+]
+},
+"Ključni pokazatelji za odabrano programsko razdoblje.": {
+"raw": "Ključni pokazatelji za odabrano programsko razdoblje.",
+"where": "P.l-sub",
+"tags": [
+"#/",
+"#/ [details]",
+"#/ [btn0]"
+]
+},
+"Razdoblje": {
+"raw": "Razdoblje",
+"where": "@aria-label",
+"tags": [
+"#/",
+"#/ [details]",
+"#/ [btn0]"
+]
+},
+"Projekata": {
+"raw": "Projekata",
+"where": "DIV.",
+"tags": [
+"#/",
+"#/ [details]",
+"#/ [btn0]"
+]
+},
+"KA{N} s hrvatskim sudionikom": {
+"raw": "KA2 s hrvatskim sudionikom",
+"where": "DIV.",
+"tags": [
+"#/",
+"#/ [details]",
+"#/ [btn0]"
+]
+},
+"Koordinirano": {
+"raw": "Koordinirano",
+"where": "DIV.",
+"tags": [
+"#/",
+"#/ [details]",
+"#/ [btn0]"
+]
+},
+"{N}% projekata": {
+"raw": "16 % projekata",
+"where": "DIV.",
+"tags": [
+"#/",
+"#/ [details]",
+"#/ [btn0]"
+]
+},
+"Vrijednost": {
+"raw": "Vrijednost",
+"where": "DIV.",
+"tags": [
+"#/",
+"#/ [details]",
+"#/ [btn0]"
+]
+},
+"{N} mil. €": {
+"raw": "952,7 mil. €",
+"where": "DIV.",
+"tags": [
+"#/",
+"#/ [details]",
+"#/ [btn0]"
+]
+},
+"svih tih projekata": {
+"raw": "svih tih projekata",
+"where": "DIV.",
+"tags": [
+"#/",
+"#/ [details]",
+"#/ [btn0]"
+]
+},
+"Udio u EU": {
+"raw": "Udio u EU",
+"where": "DIV.",
+"tags": [
+"#/",
+"#/ [details]",
+"#/ [btn0]"
+]
+},
+"od {N} KA{N} projekata": {
+"raw": "od 46.526 KA2 projekata",
+"where": "DIV.",
+"tags": [
+"#/",
+"#/ [details]",
+"#/ [btn0]"
+]
+},
+"Kroz godine": {
+"raw": "Kroz godine",
+"where": "H2.l-h",
+"tags": [
+"#/",
+"#/ [details]",
+"#/ [btn0]"
+]
+},
+"Koliko je KA{N} projekata s hrvatskim sudionikom odabrano po godini poziva.": {
+"raw": "Koliko je KA2 projekata s hrvatskim sudionikom odabrano po godini poziva.",
+"where": "P.l-sub",
+"tags": [
+"#/",
+"#/ [details]",
+"#/ [btn0]"
+]
+},
+"Podjela po sektoru i vrsti →": {
+"raw": "Podjela po sektoru i vrsti →",
+"where": "A.btn sm",
+"tags": [
+"#/",
+"#/ [details]",
+"#/ [btn0]"
+]
+},
+"Projekti po godini poziva": {
+"raw": "Projekti po godini poziva",
+"where": "@aria-label",
+"tags": [
+"#/",
+"#/ [details]",
+"#/ [btn0]"
+]
+},
+"{N}: {N} (godina još traje)": {
+"raw": "2026: 178 (godina još traje)",
+"where": "rect.[object SVGAnimatedString]",
+"tags": [
+"#/",
+"#/ [details]",
+"#/ [btn0]"
+]
+},
+"novi program od {N}.": {
+"raw": "novi program od 2021.",
+"where": "text.[object SVGAnimatedString]",
+"tags": [
+"#/",
+"#/ [details]",
+"#/ [btn0]"
+]
+},
+"godina s najviše projekata: {N}": {
+"raw": "godina s najviše projekata: 604",
+"where": "DIV.",
+"tags": [
+"#/",
+"#/ [details]",
+"#/ [btn0]"
+]
+},
+"projekata u programu {N}–{N} i dosad u programu {N}–{N}": {
+"raw": "projekata u programu 2014.–2020. i dosad u programu 2021.–2027.",
+"where": "DIV.",
+"tags": [
+"#/",
+"#/ [details]",
+"#/ [btn0]"
+]
+},
+"svih KA{N} projekata u EU ima hrvatskog partnera": {
+"raw": "svih KA2 projekata u EU ima hrvatskog partnera",
+"where": "DIV.",
+"tags": [
+"#/",
+"#/ [details]",
+"#/ [btn0]"
+]
+},
+"Županije s najviše projekata": {
+"raw": "Županije s najviše projekata",
+"where": "DIV.",
+"tags": [
+"#/",
+"#/ [details]",
+"#/ [btn0]"
+]
+},
+"KA{N} projekti sa sudionikom iz županije, {N}–{N}": {
+"raw": "KA2 projekti sa sudionikom iz županije, 2014.–2026.",
+"where": "P.lead",
+"tags": [
+"#/",
+"#/ [details]",
+"#/ [btn0]"
+]
+},
+"{N} od {N} županije": {
+"raw": "6 od 21 županije",
+"where": "DIV.",
+"tags": [
+"#/",
+"#/ [details]",
+"#/ [btn0]"
+]
+},
+"Karta i cijeli poredak →": {
+"raw": "Karta i cijeli poredak →",
+"where": "DIV.",
+"tags": [
+"#/",
+"#/ [details]",
+"#/ [btn0]"
+]
+},
+"Tko koordinira iz Hrvatske": {
+"raw": "Tko koordinira iz Hrvatske",
+"where": "DIV.",
+"tags": [
+"#/",
+"#/ [details]",
+"#/ [btn0]"
+]
+},
+"Koordinirani projekti po vrsti organizacije ({N} ukupno).": {
+"raw": "Koordinirani projekti po vrsti organizacije (606 ukupno).",
+"where": "P.lead",
+"tags": [
+"#/",
+"#/ [details]",
+"#/ [btn0]"
+]
+},
+"Pregled s filtrima →": {
+"raw": "Pregled s filtrima →",
+"where": "DIV.",
+"tags": [
+"#/",
+"#/ [details]",
+"#/ [btn0]"
+]
+},
+"S kojim državama surađujemo": {
+"raw": "S kojim državama surađujemo",
+"where": "DIV.",
+"tags": [
+"#/",
+"#/ [details]",
+"#/ [btn0]"
+]
+},
+"Broj zajedničkih projekata s organizacijama iz države.": {
+"raw": "Broj zajedničkih projekata s organizacijama iz države.",
+"where": "P.lead",
+"tags": [
+"#/",
+"#/ [details]",
+"#/ [btn0]"
+]
+},
+"Sve države →": {
+"raw": "Sve države →",
+"where": "DIV.",
+"tags": [
+"#/",
+"#/ [details]",
+"#/ [btn0]"
+]
+},
+"Što možete saznati": {
+"raw": "Što možete saznati",
+"where": "H2.l-h",
+"tags": [
+"#/",
+"#/ [details]",
+"#/ [btn0]"
+]
+},
+"Svaki odjeljak odgovara na jedno praktično pitanje.": {
+"raw": "Svaki odjeljak odgovara na jedno praktično pitanje.",
+"where": "P.l-sub",
+"tags": [
+"#/",
+"#/ [details]",
+"#/ [btn0]"
+]
+},
+"Koliko ima projekata i tko ih koordinira?": {
+"raw": "Koliko ima projekata i tko ih koordinira?",
+"where": "A.",
+"tags": [
+"#/",
+"#/ [details]",
+"#/ [btn0]"
+]
+},
+"Brojke, godišnji graf i poredak uz filtre.": {
+"raw": "Brojke, godišnji graf i poredak uz filtre.",
+"where": "A.",
+"tags": [
+"#/",
+"#/ [details]",
+"#/ [btn0]"
+]
+},
+"{N} projekata →": {
+"raw": "3.830 projekata →",
+"where": "SPAN.live",
+"tags": [
+"#/",
+"#/ [details]",
+"#/ [btn0]"
+]
+},
+"Gdje je aktivnost najgušća?": {
+"raw": "Gdje je aktivnost najgušća?",
+"where": "A.",
+"tags": [
+"#/",
+"#/ [details]",
+"#/ [btn0]"
+]
+},
+"Interaktivna karta i poredak županija.": {
+"raw": "Interaktivna karta i poredak županija.",
+"where": "A.",
+"tags": [
+"#/",
+"#/ [details]",
+"#/ [btn0]"
+]
+},
+"Najviše: {E}, {N} →": {
+"raw": "Najviše: Grad Zagreb, 1.445 →",
+"where": "SPAN.live",
+"tags": [
+"#/",
+"#/ [details]",
+"#/ [btn0]"
+]
+},
+"Sudjeluje li dovoljno škola u mojoj županiji?": {
+"raw": "Sudjeluje li dovoljno škola u mojoj županiji?",
+"where": "A.",
+"tags": [
+"#/",
+"#/ [details]",
+"#/ [btn0]"
+]
+},
+"Udio škola koje sudjeluju u KA{N} projektima.": {
+"raw": "Udio škola koje sudjeluju u KA2 projektima.",
+"where": "A.",
+"tags": [
+"#/",
+"#/ [details]",
+"#/ [btn0]"
+]
+},
+"{N}% škola na razini države →": {
+"raw": "33 % škola na razini države →",
+"where": "SPAN.live",
+"tags": [
+"#/",
+"#/ [details]",
+"#/ [btn0]"
+]
+},
+"S kim {E} surađuje?": {
+"raw": "S kim Hrvatska surađuje?",
+"where": "A.",
+"tags": [
+"#/",
+"#/ [details]",
+"#/ [btn0]"
+]
+},
+"Države s kojima dijelimo projekte.": {
+"raw": "Države s kojima dijelimo projekte.",
+"where": "A.",
+"tags": [
+"#/",
+"#/ [details]",
+"#/ [btn0]"
+]
+},
+"{N} država, najčešće {E} →": {
+"raw": "112 država, najčešće Italija →",
+"where": "SPAN.live",
+"tags": [
+"#/",
+"#/ [details]",
+"#/ [btn0]"
+]
+},
+"Raste li broj projekata?": {
+"raw": "Raste li broj projekata?",
+"where": "A.",
+"tags": [
+"#/",
+"#/ [details]",
+"#/ [btn0]"
+]
+},
+"Po godinama, sektoru i vrsti projekta.": {
+"raw": "Po godinama, sektoru i vrsti projekta.",
+"where": "A.",
+"tags": [
+"#/",
+"#/ [details]",
+"#/ [btn0]"
+]
+},
+"Vrhunac {N}.: {N} projekata →": {
+"raw": "Vrhunac 2020.: 604 projekata →",
+"where": "SPAN.live",
+"tags": [
+"#/",
+"#/ [details]",
+"#/ [btn0]"
+]
+},
+"Koji projekti postoje u mom sektoru?": {
+"raw": "Koji projekti postoje u mom sektoru?",
+"where": "A.",
+"tags": [
+"#/",
+"#/ [details]",
+"#/ [btn0]"
+]
+},
+"Pretraga po temi, sektoru, državi i statusu.": {
+"raw": "Pretraga po temi, sektoru, državi i statusu.",
+"where": "A.",
+"tags": [
+"#/",
+"#/ [details]",
+"#/ [btn0]"
+]
+},
+"{N} projekata u popisu →": {
+"raw": "3.830 projekata u popisu →",
+"where": "SPAN.live",
+"tags": [
+"#/",
+"#/ [details]",
+"#/ [btn0]"
+]
+},
+"Tko sve sudjeluje?": {
+"raw": "Tko sve sudjeluje?",
+"where": "A.",
+"tags": [
+"#/",
+"#/ [details]",
+"#/ [btn0]"
+]
+},
+"Pretraga po nazivu, mjestu i županiji.": {
+"raw": "Pretraga po nazivu, mjestu i županiji.",
+"where": "A.",
+"tags": [
+"#/",
+"#/ [details]",
+"#/ [btn0]"
+]
+},
+"{N} organizacija →": {
+"raw": "1.501 organizacija →",
+"where": "SPAN.live",
+"tags": [
+"#/",
+"#/ [details]",
+"#/ [btn0]"
+]
+},
+"Koje se teme šire, a koje nestaju?": {
+"raw": "Koje se teme šire, a koje nestaju?",
+"where": "A.",
+"tags": [
+"#/",
+"#/ [details]",
+"#/ [btn0]"
+]
+},
+"Teme kroz vrijeme, pristupi i mreža pojmova.": {
+"raw": "Teme kroz vrijeme, pristupi i mreža pojmova.",
+"where": "A.",
+"tags": [
+"#/",
+"#/ [details]",
+"#/ [btn0]"
+]
+},
+"{N} tema, {N} pojmova →": {
+"raw": "109 tema, 1.231 pojmova →",
+"where": "SPAN.live",
+"tags": [
+"#/",
+"#/ [details]",
+"#/ [btn0]"
+]
+},
+"Kako se razlikuju dvije županije?": {
+"raw": "Kako se razlikuju dvije županije?",
+"where": "A.",
+"tags": [
+"#/",
+"#/ [details]",
+"#/ [btn0]"
+]
+},
+"Do četiri županije jedna uz drugu.": {
+"raw": "Do četiri županije jedna uz drugu.",
+"where": "A.",
+"tags": [
+"#/",
+"#/ [details]",
+"#/ [btn0]"
+]
+},
+"Pet pokazatelja odjednom →": {
+"raw": "Pet pokazatelja odjednom →",
+"where": "SPAN.live",
+"tags": [
+"#/",
+"#/ [details]",
+"#/ [btn0]"
+]
+},
+"Imate pitanje o podacima?": {
+"raw": "Imate pitanje o podacima?",
+"where": "H2.l-h",
+"tags": [
+"#/",
+"#/ [details]",
+"#/ [btn0]"
+]
+},
+"Poseban asistent odgovara na pitanja o projektima, organizacijama, županijama i temama. Odgovara samo iz podataka atlasa i uz svaki odgovor navodi izvor.": {
+"raw": "Poseban asistent odgovara na pitanja o projektima, organizacijama, županijama i temama. Odgovara samo iz podataka atlasa i uz svaki odgovor navodi izvor.",
+"where": "P.l-sub",
+"tags": [
+"#/",
+"#/ [details]",
+"#/ [btn0]"
+]
+},
+"Pitanje": {
+"raw": "Pitanje",
+"where": "LABEL.sr",
+"tags": [
+"#/",
+"#/ [details]",
+"#/ [btn0]"
+]
+},
+"Npr. Koje županije imaju najviše projekata?": {
+"raw": "Npr. Koje županije imaju najviše projekata?",
+"where": "@placeholder",
+"tags": [
+"#/",
+"#/ [details]",
+"#/ [btn0]"
+]
+},
+"Pitaj": {
+"raw": "Pitaj",
+"where": "DIV.",
+"tags": [
+"#/",
+"#/ [details]",
+"#/ [btn0]"
+]
+},
+"Koje županije imaju najviše projekata?": {
+"raw": "Koje županije imaju najviše projekata?",
+"where": "DIV.",
+"tags": [
+"#/",
+"#/ [details]",
+"#/ [btn0]"
+]
+},
+"Tko koordinira najviše projekata?": {
+"raw": "Tko koordinira najviše projekata?",
+"where": "DIV.",
+"tags": [
+"#/",
+"#/ [details]",
+"#/ [btn0]"
+]
+},
+"S kojim državama {E} surađuje?": {
+"raw": "S kojim državama Hrvatska surađuje?",
+"where": "DIV.",
+"tags": [
+"#/",
+"#/ [details]",
+"#/ [btn0]"
+]
+},
+"{E} ima {N} KA{N} projekata sa sudionikom iz županije ({N}. od {N}), od toga {N} koordiniranih. U projektima sudjeluje {N} organizacija, a vrijednost projekata je {N} mil. €.": {
+"raw": "Splitsko-dalmatinska županija ima 320 KA2 projekata sa sudionikom iz županije (3. od 21), od toga 44 koordiniranih. U projektima sudjeluje 129 organizacija, a vrijednost projekata je 86,4 mil. €.",
+"where": "DIV.",
+"tags": [
+"#/",
+"#/ [details]",
+"#/ [btn0]"
+]
+},
+"Izvori:": {
+"raw": "Izvori:",
+"where": "DIV.srcrow",
+"tags": [
+"#/",
+"#/ [details]",
+"#/ [btn0]"
+]
+},
+"Stranica županije": {
+"raw": "Stranica županije",
+"where": "SPAN.pill blue",
+"tags": [
+"#/",
+"#/ [details]",
+"#/ [btn0]"
+]
+},
+"Usporedba županija": {
+"raw": "Usporedba županija",
+"where": "SPAN.pill blue",
+"tags": [
+"#/",
+"#/ [details]",
+"#/ [btn0]"
+]
+},
+"Odakle podaci": {
+"raw": "Odakle podaci",
+"where": "H2.l-h",
+"tags": [
+"#/",
+"#/ [details]",
+"#/ [btn0]"
+]
+},
+"Svi izvori su javni. Atlas ih povezuje i izračunava pokazatelje, ništa se ne unosi ručno.": {
+"raw": "Svi izvori su javni. Atlas ih povezuje i izračunava pokazatelje, ništa se ne unosi ručno.",
+"where": "P.l-sub",
+"tags": [
+"#/",
+"#/ [details]",
+"#/ [btn0]"
+]
+},
+"Izvori i ograničenja →": {
+"raw": "Izvori i ograničenja →",
+"where": "A.btn sm",
+"tags": [
+"#/",
+"#/ [details]",
+"#/ [btn0]"
+]
+},
+"Erasmus+ Project Results Platform": {
+"raw": "Erasmus+ Project Results Platform",
+"where": "ARTICLE.",
+"tags": [
+"#/",
+"#/ [details]",
+"#/ [btn0]"
+]
+},
+"Europska komisija": {
+"raw": "Europska komisija",
+"where": "ARTICLE.",
+"tags": [
+"#/",
+"#/ [details]",
+"#/ [btn0]"
+]
+},
+"KA{N} projekti {N}–{N} i {N}–{N}: naslovi, vrste, države i iznosi.": {
+"raw": "KA2 projekti 2014.–2020. i 2021.–2027.: naslovi, vrste, države i iznosi.",
+"where": "ARTICLE.",
+"tags": [
+"#/",
+"#/ [details]",
+"#/ [btn0]"
+]
+},
+"Portal otvorenih podataka": {
+"raw": "Portal otvorenih podataka",
+"where": "ARTICLE.",
+"tags": [
+"#/",
+"#/ [details]",
+"#/ [btn0]"
+]
+},
+"Agencija za mobilnost i programe EU": {
+"raw": "Agencija za mobilnost i programe EU",
+"where": "ARTICLE.",
+"tags": [
+"#/",
+"#/ [details]",
+"#/ [btn0]"
+]
+},
+"Hrvatski sudionici i organizacije u projektima.": {
+"raw": "Hrvatski sudionici i organizacije u projektima.",
+"where": "ARTICLE.",
+"tags": [
+"#/",
+"#/ [details]",
+"#/ [btn0]"
+]
+},
+"Registri škola": {
+"raw": "Registri škola",
+"where": "ARTICLE.",
+"tags": [
+"#/",
+"#/ [details]",
+"#/ [btn0]"
+]
+},
+"Popis škola po županijama, za izračun pokrivenosti.": {
+"raw": "Popis škola po županijama, za izračun pokrivenosti.",
+"where": "ARTICLE.",
+"tags": [
+"#/",
+"#/ [details]",
+"#/ [btn0]"
+]
+},
+"Kompas asistent": {
+"raw": "Kompas asistent",
+"where": "H2.",
+"tags": [
+"#/",
+"#/ [details]",
+"#/ [btn0]"
+]
+},
+"Odgovara samo iz podataka atlasa": {
+"raw": "Odgovara samo iz podataka atlasa",
+"where": "H2.",
+"tags": [
+"#/",
+"#/ [details]",
+"#/ [btn0]"
+]
+},
+"Novi razgovor": {
+"raw": "Novi razgovor",
+"where": "@aria-label",
+"tags": [
+"#/",
+"#/ [details]",
+"#/ [btn0]"
+]
+},
+"Otvori na cijeloj stranici": {
+"raw": "Otvori na cijeloj stranici",
+"where": "@aria-label",
+"tags": [
+"#/",
+"#/ [details]",
+"#/ [btn0]"
+]
+},
+"Zatvori asistenta": {
+"raw": "Zatvori asistenta",
+"where": "@aria-label",
+"tags": [
+"#/",
+"#/ [details]",
+"#/ [btn0]"
+]
+},
+"Zatvori": {
+"raw": "Zatvori",
+"where": "@title",
+"tags": [
+"#/",
+"#/ [details]",
+"#/ [btn0]"
+]
+},
+"Gledate:": {
+"raw": "Gledate:",
+"where": "SPAN.ctx",
+"tags": [
+"#/",
+"#/ [details]",
+"#/ [btn0]"
+]
+},
+"Što vas zanima?": {
+"raw": "Što vas zanima?",
+"where": "DIV.",
+"tags": [
+"#/",
+"#/ [details]",
+"#/ [btn0]"
+]
+},
+"Odgovaram na pitanja o projektima, organizacijama, županijama, državama i temama. Brojke računam iz podataka atlasa i uz odgovor navodim izvor.": {
+"raw": "Odgovaram na pitanja o projektima, organizacijama, županijama, državama i temama. Brojke računam iz podataka atlasa i uz odgovor navodim izvor.",
+"where": "DIV.",
+"tags": [
+"#/",
+"#/ [details]",
+"#/ [btn0]"
+]
+},
+"Koje su teme najčešće?": {
+"raw": "Koje su teme najčešće?",
+"where": "DIV.",
+"tags": [
+"#/",
+"#/ [details]",
+"#/ [btn0]"
+]
+},
+"Pitanje asistentu": {
+"raw": "Pitanje asistentu",
+"where": "LABEL.sr",
+"tags": [
+"#/",
+"#/ [details]",
+"#/ [btn0]"
+]
+},
+"Pošalji": {
+"raw": "Pošalji",
+"where": "@aria-label",
+"tags": [
+"#/",
+"#/ [details]",
+"#/ [btn0]"
+]
+},
+"Asistent može pogriješiti. Provjerite izvore ispod odgovora.": {
+"raw": "Asistent može pogriješiti. Provjerite izvore ispod odgovora.",
+"where": "FORM.",
+"tags": [
+"#/",
+"#/ [details]",
+"#/ [btn0]"
+]
+},
+"Atlas sudjelovanja Hrvatske u Erasmus+ KA{N} partnerstvima: tko ih koordinira, gdje se provode i koje teme biraju.": {
+"raw": "Atlas sudjelovanja Hrvatske u Erasmus+ KA2 partnerstvima: tko ih koordinira, gdje se provode i koje teme biraju.",
+"where": "DIV.",
+"tags": [
+"#/",
+"#/ [details]",
+"#/ [btn0]"
+]
+},
+"Izvori podataka": {
+"raw": "Izvori podataka",
+"where": "DIV.",
+"tags": [
+"#/",
+"#/ [details]",
+"#/ [btn0]"
+]
+},
+"Europska komisija. KA{N} projekti {N}–{N} i {N}–{N}": {
+"raw": "Europska komisija. KA2 projekti 2014.–2020. i 2021.–2027.",
+"where": "UL.",
+"tags": [
+"#/",
+"#/ [details]",
+"#/ [btn0]"
+]
+},
+"Portal otvorenih podataka (data.gov.hr)": {
+"raw": "Portal otvorenih podataka (data.gov.hr)",
+"where": "UL.",
+"tags": [
+"#/",
+"#/ [details]",
+"#/ [btn0]"
+]
+},
+"Agencija za mobilnost i programe EU. Hrvatski sudionici i organizacije.": {
+"raw": "Agencija za mobilnost i programe EU. Hrvatski sudionici i organizacije.",
+"where": "UL.",
+"tags": [
+"#/",
+"#/ [details]",
+"#/ [btn0]"
+]
+},
+"Registri škola, za izračun pokrivenosti po županijama.": {
+"raw": "Registri škola, za izračun pokrivenosti po županijama.",
+"where": "UL.",
+"tags": [
+"#/",
+"#/ [details]",
+"#/ [btn0]"
+]
+},
+"Ažurirano": {
+"raw": "Ažurirano",
+"where": "DL.",
+"tags": [
+"#/",
+"#/ [details]",
+"#/ [btn0]"
+]
+},
+"Obuhvat": {
+"raw": "Obuhvat",
+"where": "DL.",
+"tags": [
+"#/",
+"#/ [details]",
+"#/ [btn0]"
+]
+},
+"KA{N} partnerstva. KA{N} mobilnosti nisu uključene.": {
+"raw": "KA2 partnerstva. KA1 mobilnosti nisu uključene.",
+"where": "DL.",
+"tags": [
+"#/",
+"#/ [details]",
+"#/ [btn0]"
+]
+},
+"Izračun": {
+"raw": "Izračun",
+"where": "DL.",
+"tags": [
+"#/",
+"#/ [details]",
+"#/ [btn0]"
+]
+},
+"Udjeli škola su procjene jer se sudionici s registrom škola povezuju prema nazivu i poštanskom broju.": {
+"raw": "Udjeli škola su procjene jer se sudionici s registrom škola povezuju prema nazivu i poštanskom broju.",
+"where": "DL.",
+"tags": [
+"#/",
+"#/ [details]",
+"#/ [btn0]"
+]
+},
+"Atlas": {
+"raw": "Atlas",
+"where": "DIV.",
+"tags": [
+"#/",
+"#/ [details]",
+"#/ [btn0]"
+]
+},
+"Rječnik pojmova": {
+"raw": "Rječnik pojmova",
+"where": "UL.",
+"tags": [
+"#/",
+"#/ [details]",
+"#/ [btn0]"
+]
+},
+"Preuzimanje podataka": {
+"raw": "Preuzimanje podataka",
+"where": "UL.",
+"tags": [
+"#/",
+"#/ [details]",
+"#/ [btn0]"
+]
+},
+"Pristupačnost": {
+"raw": "Pristupačnost",
+"where": "UL.",
+"tags": [
+"#/",
+"#/ [details]",
+"#/ [btn0]"
+]
+},
+"Kontakt": {
+"raw": "Kontakt",
+"where": "UL.",
+"tags": [
+"#/",
+"#/ [details]",
+"#/ [btn0]"
+]
+},
+"Mapa stranice": {
+"raw": "Mapa stranice",
+"where": "UL.",
+"tags": [
+"#/",
+"#/ [details]",
+"#/ [btn0]"
+]
+},
+"Izvorni kod (GitHub)": {
+"raw": "Izvorni kod (GitHub)",
+"where": "UL.",
+"tags": [
+"#/",
+"#/ [details]",
+"#/ [btn0]"
+]
+},
+"Brojke su preuzete iz navedenih javnih izvora i izračunate u ovom projektu. Ovo je neovisan projekt i nije službena stranica Europske komisije ni Agencije za mobilnost i programe EU. Prototip sučelja: karta županija je shematska.": {
+"raw": "Brojke su preuzete iz navedenih javnih izvora i izračunate u ovom projektu. Ovo je neovisan projekt i nije službena stranica Europske komisije ni Agencije za mobilnost i programe EU. Prototip sučelja: karta županija je shematska.",
+"where": "DIV.",
+"tags": [
+"#/",
+"#/ [details]",
+"#/ [btn0]"
+]
+},
+"Tražim u podacima…": {
+"raw": "Tražim u podacima…",
+"where": "DIV.",
+"tags": [
+"#/ [btn5]",
+"#/ [btn6]",
+"#/ [btn7]"
+]
+},
+"Brojke, godišnji graf i poredak uz filtre": {
+"raw": "Brojke, godišnji graf i poredak uz filtre",
+"where": "DIV.",
+"tags": [
+"#/ [in #view input[type=search] a]",
+"#/pregled [in #view input[type=search] a]",
+"#/kronologija [in #view input[type=search] a]"
+]
+},
+"S kojim državama {E} najviše surađuje": {
+"raw": "S kojim državama Hrvatska najviše surađuje",
+"where": "DIV.",
+"tags": [
+"#/ [in #view input[type=search] a]",
+"#/pregled [in #view input[type=search] a]",
+"#/kronologija [in #view input[type=search] a]"
+]
+},
+"Interaktivna karta i poredak županija": {
+"raw": "Interaktivna karta i poredak županija",
+"where": "DIV.",
+"tags": [
+"#/ [in #view input[type=search] a]",
+"#/pregled [in #view input[type=search] a]",
+"#/kronologija [in #view input[type=search] a]"
+]
+},
+"Udio škola koje sudjeluju, po županijama": {
+"raw": "Udio škola koje sudjeluju, po županijama",
+"where": "DIV.",
+"tags": [
+"#/ [in #view input[type=search] a]",
+"#/pregled [in #view input[type=search] a]",
+"#/kronologija [in #view input[type=search] a]"
+]
+},
+"Pretraga projekata po temi, sektoru i državi": {
+"raw": "Pretraga projekata po temi, sektoru i državi",
+"where": "DIV.",
+"tags": [
+"#/ [in #view input[type=search] a]",
+"#/pregled [in #view input[type=search] a]",
+"#/kronologija [in #view input[type=search] a]"
+]
+},
+"Pitanja običnim jezikom, odgovori uz izvore": {
+"raw": "Pitanja običnim jezikom, odgovori uz izvore",
+"where": "DIV.",
+"tags": [
+"#/ [in #view input[type=search] a]",
+"#/pregled [in #view input[type=search] a]",
+"#/kronologija [in #view input[type=search] a]"
+]
+},
+"Svi projekti za „zzzzqq”": {
+"raw": "Svi projekti za „zzzzqq”",
+"where": "DIV.",
+"tags": [
+"#/ [in #view input[type=search] zzzzqq]",
+"#/pregled [in #view input[type=search] zzzzqq]",
+"#/kronologija [in #view input[type=search] zzzzqq]"
+]
+},
+"otvori popis s filterom": {
+"raw": "otvori popis s filterom",
+"where": "DIV.",
+"tags": [
+"#/ [in #view input[type=search] zzzzqq]",
+"#/pregled [in #view input[type=search] zzzzqq]",
+"#/kronologija [in #view input[type=search] zzzzqq]"
+]
+},
+"Pitaj asistenta: „zzzzqq”": {
+"raw": "Pitaj asistenta: „zzzzqq”",
+"where": "DIV.",
+"tags": [
+"#/ [in #view input[type=search] zzzzqq]",
+"#/pregled [in #view input[type=search] zzzzqq]",
+"#/kronologija [in #view input[type=search] zzzzqq]"
+]
+},
+"odgovor iz podataka atlasa": {
+"raw": "odgovor iz podataka atlasa",
+"where": "DIV.",
+"tags": [
+"#/ [in #view input[type=search] zzzzqq]",
+"#/pregled [in #view input[type=search] zzzzqq]",
+"#/kronologija [in #view input[type=search] zzzzqq]"
+]
+},
+"Putanja": {
+"raw": "Putanja",
+"where": "@aria-label",
+"tags": [
+"#/pregled",
+"#/pregled [details]",
+"#/pregled [btn3]"
+]
+},
+"Odjeljci": {
+"raw": "Odjeljci",
+"where": "@aria-label",
+"tags": [
+"#/pregled",
+"#/pregled [details]",
+"#/pregled [btn3]"
+]
+},
+"Kroz vrijeme": {
+"raw": "Kroz vrijeme",
+"where": "NAV.",
+"tags": [
+"#/pregled",
+"#/pregled [details]",
+"#/pregled [btn3]"
+]
+},
+"Istraži · Pregled": {
+"raw": "Istraži · Pregled",
+"where": "DIV.kicker",
+"tags": [
+"#/pregled",
+"#/pregled [details]",
+"#/pregled [btn3]"
+]
+},
+"Sudjelovanje Hrvatske u Erasmus+ KA{N} partnerstvima": {
+"raw": "Sudjelovanje Hrvatske u Erasmus+ KA2 partnerstvima",
+"where": "HEADER.",
+"tags": [
+"#/pregled",
+"#/pregled [details]",
+"#/pregled [btn3]"
+]
+},
+"Koliko ima projekata, tko ih koordinira i gdje su. Suzite prikaz razdobljem, sektorom, vrstom projekta ili županijom.": {
+"raw": "Koliko ima projekata, tko ih koordinira i gdje su. Suzite prikaz razdobljem, sektorom, vrstom projekta ili županijom.",
+"where": "P.lead",
+"tags": [
+"#/pregled",
+"#/pregled [details]",
+"#/pregled [btn3]"
+]
+},
+"Filteri": {
+"raw": "Filteri",
+"where": "BUTTON.",
+"tags": [
+"#/pregled",
+"#/pregled [details]",
+"#/pregled [btn3]"
+]
+},
+"Sektor": {
+"raw": "Sektor",
+"where": "SPAN.lab",
+"tags": [
+"#/pregled",
+"#/pregled [details]",
+"#/pregled [btn3]"
+]
+},
+"Svi sektori": {
+"raw": "Svi sektori",
+"where": "SELECT.",
+"tags": [
+"#/pregled",
+"#/pregled [details]",
+"#/pregled [btn3]"
+]
+},
+"Vrsta projekta": {
+"raw": "Vrsta projekta",
+"where": "SPAN.lab",
+"tags": [
+"#/pregled",
+"#/pregled [details]",
+"#/pregled [btn3]"
+]
+},
+"Sve vrste": {
+"raw": "Sve vrste",
+"where": "SELECT.",
+"tags": [
+"#/pregled",
+"#/pregled [details]",
+"#/pregled [btn3]"
+]
+},
+"Županija": {
+"raw": "Županija",
+"where": "SPAN.lab",
+"tags": [
+"#/pregled",
+"#/pregled [details]",
+"#/pregled [btn3]"
+]
+},
+"Sve županije": {
+"raw": "Sve županije",
+"where": "SELECT.",
+"tags": [
+"#/pregled",
+"#/pregled [details]",
+"#/pregled [btn3]"
+]
+},
+"Pretraži popis…": {
+"raw": "Pretraži popis…",
+"where": "@placeholder",
+"tags": [
+"#/pregled",
+"#/pregled [details]",
+"#/pregled [btn3]"
+]
+},
+"Pretraži popis": {
+"raw": "Pretraži popis",
+"where": "@aria-label",
+"tags": [
+"#/pregled",
+"#/pregled [details]",
+"#/pregled [btn3]"
+]
+},
+"Nema rezultata.": {
+"raw": "Nema rezultata.",
+"where": "P.popnone",
+"tags": [
+"#/pregled",
+"#/pregled [details]",
+"#/pregled [btn3]"
+]
+},
+"Poništi filtre": {
+"raw": "Poništi filtre",
+"where": "BUTTON.reset",
+"tags": [
+"#/pregled",
+"#/pregled [details]",
+"#/pregled [btn3]"
+]
+},
+"Prikaži rezultate": {
+"raw": "Prikaži rezultate",
+"where": "BUTTON.sheet-done",
+"tags": [
+"#/pregled",
+"#/pregled [details]",
+"#/pregled [btn3]"
+]
+},
+"Izvoz podataka": {
+"raw": "Izvoz podataka",
+"where": "B.",
+"tags": [
+"#/pregled",
+"#/pregled [details]",
+"#/pregled [btn3]"
+]
+},
+"{N} redaka prema trenutnim filterima": {
+"raw": "13 redaka prema trenutnim filterima",
+"where": "SPAN.xcount",
+"tags": [
+"#/pregled",
+"#/pregled [details]",
+"#/pregled [btn3]"
+]
+},
+"CSV": {
+"raw": "CSV",
+"where": "DIV.",
+"tags": [
+"#/pregled",
+"#/pregled [details]",
+"#/pregled [btn3]"
+]
+},
+"Za analizu i uvoz u druge alate": {
+"raw": "Za analizu i uvoz u druge alate",
+"where": "DIV.",
+"tags": [
+"#/pregled",
+"#/pregled [details]",
+"#/pregled [btn3]"
+]
+},
+"Excel": {
+"raw": "Excel",
+"where": "DIV.",
+"tags": [
+"#/pregled",
+"#/pregled [details]",
+"#/pregled [btn3]"
+]
+},
+"Tablica za izvješća (.xlsx)": {
+"raw": "Tablica za izvješća (.xlsx)",
+"where": "DIV.",
+"tags": [
+"#/pregled",
+"#/pregled [details]",
+"#/pregled [btn3]"
+]
+},
+"PDF": {
+"raw": "PDF",
+"where": "DIV.",
+"tags": [
+"#/pregled",
+"#/pregled [details]",
+"#/pregled [btn3]"
+]
+},
+"Pregledno izvješće za ispis": {
+"raw": "Pregledno izvješće za ispis",
+"where": "DIV.",
+"tags": [
+"#/pregled",
+"#/pregled [details]",
+"#/pregled [btn3]"
+]
+},
+"projekata": {
+"raw": "projekata",
+"where": "SPAN.cnt",
+"tags": [
+"#/pregled",
+"#/pregled [details]",
+"#/pregled [btn3]"
+]
+},
+"KA{N} projekata s hrvatskim sudionikom": {
+"raw": "KA2 projekata s hrvatskim sudionikom",
+"where": "H2.",
+"tags": [
+"#/pregled",
+"#/pregled [details]",
+"#/pregled [btn3]"
+]
+},
+"svih KA{N} projekata u EU ({N})": {
+"raw": "svih KA2 projekata u EU (46.526)",
+"where": "DIV.sub",
+"tags": [
+"#/pregled",
+"#/pregled [details]",
+"#/pregled [btn3]"
+]
+},
+"Koordinirano iz Hrvatske": {
+"raw": "Koordinirano iz Hrvatske",
+"where": "ARTICLE.",
+"tags": [
+"#/pregled",
+"#/pregled [details]",
+"#/pregled [btn3]"
+]
+},
+"{N}% tih projekata": {
+"raw": "15,8 % tih projekata",
+"where": "DIV.sub",
+"tags": [
+"#/pregled",
+"#/pregled [details]",
+"#/pregled [btn3]"
+]
+},
+"Vrijednost tih projekata": {
+"raw": "Vrijednost tih projekata",
+"where": "ARTICLE.",
+"tags": [
+"#/pregled",
+"#/pregled [details]",
+"#/pregled [btn3]"
+]
+},
+"{N}–{N}: {N} mil. € · {N}–{N}: {N} mil. €": {
+"raw": "2014.–2020.: 396 mil. € · 2021.–2027.: 556 mil. €",
+"where": "DIV.sub",
+"tags": [
+"#/pregled",
+"#/pregled [details]",
+"#/pregled [btn3]"
+]
+},
+"Broj KA{N} projekata s hrvatskim sudionikom po godini poziva. Prazan stupac označava godinu koja još traje.": {
+"raw": "Broj KA2 projekata s hrvatskim sudionikom po godini poziva. Prazan stupac označava godinu koja još traje.",
+"where": "P.lead",
+"tags": [
+"#/pregled",
+"#/pregled [details]",
+"#/pregled [btn3]"
+]
+},
+"Projekti koje koordiniraju hrvatske organizacije, po vrsti organizacije.": {
+"raw": "Projekti koje koordiniraju hrvatske organizacije, po vrsti organizacije.",
+"where": "P.lead",
+"tags": [
+"#/pregled",
+"#/pregled [details]",
+"#/pregled [btn3]"
+]
+},
+"Županije po broju projekata": {
+"raw": "Županije po broju projekata",
+"where": "ARTICLE.",
+"tags": [
+"#/pregled",
+"#/pregled [details]",
+"#/pregled [btn3]"
+]
+},
+"Projekti u kojima sudjeluje barem jedna organizacija iz županije. Kliknite županiju za filtriranje.": {
+"raw": "Projekti u kojima sudjeluje barem jedna organizacija iz županije. Kliknite županiju za filtriranje.",
+"where": "P.lead",
+"tags": [
+"#/pregled",
+"#/pregled [details]",
+"#/pregled [btn3]"
+]
+},
+"Prikaži svih {N}": {
+"raw": "Prikaži svih 21",
+"where": "BUTTON.linkish",
+"tags": [
+"#/pregled",
+"#/pregled [details]",
+"#/pregled [btn3]"
+]
+},
+"Otvori kartu županija →": {
+"raw": "Otvori kartu županija →",
+"where": "DIV.",
+"tags": [
+"#/pregled",
+"#/pregled [details]",
+"#/pregled [btn3]"
+]
+},
+"Koliko je projekata koordinirano iz Hrvatske?": {
+"raw": "Koliko je projekata koordinirano iz Hrvatske?",
+"where": "DIV.",
+"tags": [
+"#/pregled",
+"#/pregled [details]",
+"#/pregled [btn3]"
+]
+},
+"Kolika je ukupna vrijednost projekata?": {
+"raw": "Kolika je ukupna vrijednost projekata?",
+"where": "DIV.",
+"tags": [
+"#/pregled",
+"#/pregled [details]",
+"#/pregled [btn3]"
+]
+},
+"Koji sektor ima najviše projekata?": {
+"raw": "Koji sektor ima najviše projekata?",
+"where": "DIV.",
+"tags": [
+"#/pregled",
+"#/pregled [details]",
+"#/pregled [btn3]"
+]
+},
+"Vrijednost svih projekata u kojima sudjeluje": {
+"raw": "Vrijednost svih projekata u kojima sudjeluje",
+"where": "DIV.sub",
+"tags": [
+"#/pregled [btn5]",
+"#/pregled [btn6]",
+"#/pregled [btn23]"
+]
+},
+"Nije dostupno uz odabrani sektor ili vrstu projekta": {
+"raw": "Nije dostupno uz odabrani sektor ili vrstu projekta",
+"where": "@title",
+"tags": [
+"#/pregled [btn8]",
+"#/pregled [btn9]",
+"#/pregled [btn10]"
+]
+},
+"Ukloni filter: {E}": {
+"raw": "Ukloni filter: Školsko obrazovanje",
+"where": "@aria-label",
+"tags": [
+"#/pregled [btn8]",
+"#/pregled [btn9]",
+"#/pregled [btn10]"
+]
+},
+"{N}% svih hrvatskih KA{N} projekata": {
+"raw": "38,1 % svih hrvatskih KA2 projekata",
+"where": "DIV.sub",
+"tags": [
+"#/pregled [btn8]",
+"#/pregled [btn9]",
+"#/pregled [btn10]"
+]
+},
+"Nije dostupno po sektoru ili vrsti projekta": {
+"raw": "Nije dostupno po sektoru ili vrsti projekta",
+"where": "DIV.sub",
+"tags": [
+"#/pregled [btn8]",
+"#/pregled [btn9]",
+"#/pregled [btn10]"
+]
+},
+"Raspodjela po vrsti organizacije dostupna je samo za cijelu Hrvatsku. Poništite filtre županije, sektora i vrste projekta da je vidite.": {
+"raw": "Raspodjela po vrsti organizacije dostupna je samo za cijelu Hrvatsku. Poništite filtre županije, sektora i vrste projekta da je vidite.",
+"where": "DIV.empty",
+"tags": [
+"#/pregled [btn8]",
+"#/pregled [btn9]",
+"#/pregled [btn10]"
+]
+},
+"Podjela po županijama nije dostupna uz sektor ili vrstu projekta.": {
+"raw": "Podjela po županijama nije dostupna uz sektor ili vrstu projekta.",
+"where": "DIV.empty",
+"tags": [
+"#/pregled [btn8]",
+"#/pregled [btn9]",
+"#/pregled [btn10]"
+]
+},
+"{E}: sudjelovanje u Erasmus+ KA{N} partnerstvima": {
+"raw": "Bjelovarsko-bilogorska: sudjelovanje u Erasmus+ KA2 partnerstvima",
+"where": "HEADER.",
+"tags": [
+"#/pregled [btn23]",
+"#/pregled [btn24]",
+"#/pregled [btn25]"
+]
+},
+"Nije dostupno uz odabranu županiju": {
+"raw": "Nije dostupno uz odabranu županiju",
+"where": "@title",
+"tags": [
+"#/pregled [btn23]",
+"#/pregled [btn24]",
+"#/pregled [btn25]"
+]
+},
+"KA{N} projekata s sudionikom iz županije": {
+"raw": "KA2 projekata s sudionikom iz županije",
+"where": "H2.",
+"tags": [
+"#/pregled [btn23]",
+"#/pregled [btn24]",
+"#/pregled [btn25]"
+]
+},
+"{N} organizacija sudjeluje": {
+"raw": "20 organizacija sudjeluje",
+"where": "DIV.sub",
+"tags": [
+"#/pregled [btn23]",
+"#/pregled [btn24]",
+"#/pregled [btn25]"
+]
+},
+"Godišnji prikaz trenutno je dostupan samo za cijelu Hrvatsku. Poništite filter županije.": {
+"raw": "Godišnji prikaz trenutno je dostupan samo za cijelu Hrvatsku. Poništite filter županije.",
+"where": "DIV.empty",
+"tags": [
+"#/pregled [btn23]",
+"#/pregled [btn24]",
+"#/pregled [btn25]"
+]
+},
+"Prikaži samo prvih {N}": {
+"raw": "Prikaži samo prvih 8",
+"where": "BUTTON.linkish",
+"tags": [
+"#/pregled [btn57]"
+]
+},
+"Istraži · Kroz vrijeme": {
+"raw": "Istraži · Kroz vrijeme",
+"where": "DIV.kicker",
+"tags": [
+"#/kronologija",
+"#/kronologija [details]",
+"#/kronologija [btn3]"
+]
+},
+"Kako se broj projekata mijenjao": {
+"raw": "Kako se broj projekata mijenjao",
+"where": "HEADER.",
+"tags": [
+"#/kronologija",
+"#/kronologija [details]",
+"#/kronologija [btn3]"
+]
+},
+"Broj KA{N} projekata s hrvatskim sudionikom po godini poziva, podijeljen po sektoru ili vrsti projekta. Godina {N}. još traje.": {
+"raw": "Broj KA2 projekata s hrvatskim sudionikom po godini poziva, podijeljen po sektoru ili vrsti projekta. Godina 2026. još traje.",
+"where": "P.lead",
+"tags": [
+"#/kronologija",
+"#/kronologija [details]",
+"#/kronologija [btn3]"
+]
+},
+"Podijeli po": {
+"raw": "Podijeli po",
+"where": "SPAN.lab",
+"tags": [
+"#/kronologija",
+"#/kronologija [details]",
+"#/kronologija [btn3]"
+]
+},
+"Sektoru": {
+"raw": "Sektoru",
+"where": "DIV.",
+"tags": [
+"#/kronologija",
+"#/kronologija [details]",
+"#/kronologija [btn3]"
+]
+},
+"Vrsti projekta": {
+"raw": "Vrsti projekta",
+"where": "DIV.",
+"tags": [
+"#/kronologija",
+"#/kronologija [details]",
+"#/kronologija [btn3]"
+]
+},
+"Svaki stupac je jedna godina; boje su dijelovi po odabranoj podjeli.": {
+"raw": "Svaki stupac je jedna godina; boje su dijelovi po odabranoj podjeli.",
+"where": "P.lead",
+"tags": [
+"#/kronologija",
+"#/kronologija [details]",
+"#/kronologija [btn3]"
+]
+},
+"Projekti po godini i sektoru": {
+"raw": "Projekti po godini i sektoru",
+"where": "@aria-label",
+"tags": [
+"#/kronologija",
+"#/kronologija [details]",
+"#/kronologija [btn3]"
+]
+},
+"Udio po sektoru": {
+"raw": "Udio po sektoru",
+"where": "H2.",
+"tags": [
+"#/kronologija",
+"#/kronologija [details]",
+"#/kronologija [btn3]"
+]
+},
+"Ukupno {N}–{N}": {
+"raw": "Ukupno 2014.–2026.",
+"where": "P.lead",
+"tags": [
+"#/kronologija",
+"#/kronologija [details]",
+"#/kronologija [btn3]"
+]
+},
+"Što se uočava": {
+"raw": "Što se uočava",
+"where": "SECTION.",
+"tags": [
+"#/kronologija",
+"#/kronologija [details]",
+"#/kronologija [btn3]"
+]
+},
+"najzastupljeniji ({N}% svih projekata)": {
+"raw": "najzastupljeniji (38 % svih projekata)",
+"where": "DIV.",
+"tags": [
+"#/kronologija",
+"#/kronologija [details]",
+"#/kronologija [btn3]"
+]
+},
+"Tablica podataka": {
+"raw": "Tablica podataka",
+"where": "DETAILS.",
+"tags": [
+"#/kronologija",
+"#/kronologija [details]",
+"#/kronologija [btn3]"
+]
+},
+"Godina": {
+"raw": "Godina",
+"where": "TABLE.",
+"tags": [
+"#/kronologija",
+"#/kronologija [details]",
+"#/kronologija [btn3]"
+]
+},
+"Ukupno": {
+"raw": "Ukupno",
+"where": "TH.num",
+"tags": [
+"#/kronologija",
+"#/kronologija [details]",
+"#/kronologija [btn3]"
+]
+},
+"Projekti po godini i vrsti projekta": {
+"raw": "Projekti po godini i vrsti projekta",
+"where": "@aria-label",
+"tags": [
+"#/kronologija [btn5]"
+]
+},
+"Udio po vrsti projekta": {
+"raw": "Udio po vrsti projekta",
+"where": "H2.",
+"tags": [
+"#/kronologija [btn5]"
+]
+},
+"Istraži · Partnerske države": {
+"raw": "Istraži · Partnerske države",
+"where": "DIV.kicker",
+"tags": [
+"#/drzave",
+"#/drzave [details]",
+"#/drzave [btn3]"
+]
+},
+"S kojim državama {E} surađuje": {
+"raw": "S kojim državama Hrvatska surađuje",
+"where": "HEADER.",
+"tags": [
+"#/drzave",
+"#/drzave [details]",
+"#/drzave [btn3]"
+]
+},
+"Države čije su organizacije partneri u istim KA{N} projektima kao i hrvatske organizacije. Brojimo projekte, a ne organizacije.": {
+"raw": "Države čije su organizacije partneri u istim KA2 projektima kao i hrvatske organizacije. Brojimo projekte, a ne organizacije.",
+"where": "P.lead",
+"tags": [
+"#/drzave",
+"#/drzave [details]",
+"#/drzave [btn3]"
+]
+},
+"Država": {
+"raw": "Država",
+"where": "SPAN.lab",
+"tags": [
+"#/drzave",
+"#/drzave [details]",
+"#/drzave [btn3]"
+]
+},
+"Npr. {E}…": {
+"raw": "Npr. Italija…",
+"where": "@placeholder",
+"tags": [
+"#/drzave",
+"#/drzave [details]",
+"#/drzave [btn3]"
+]
+},
+"Zajednički projekti po državi": {
+"raw": "Zajednički projekti po državi",
+"where": "SECTION.",
+"tags": [
+"#/drzave",
+"#/drzave [details]",
+"#/drzave [btn3]"
+]
+},
+"{N} država. Brojke su projekti s hrvatskim sudionikom u kojima sudjeluje i organizacija iz navedene države.": {
+"raw": "112 država. Brojke su projekti s hrvatskim sudionikom u kojima sudjeluje i organizacija iz navedene države.",
+"where": "P.lead",
+"tags": [
+"#/drzave",
+"#/drzave [details]",
+"#/drzave [btn3]"
+]
+},
+"Prikaži još ({N})": {
+"raw": "Prikaži još (100)",
+"where": "BUTTON.more",
+"tags": [
+"#/drzave",
+"#/drzave [details]",
+"#/drzave [btn3]"
+]
+},
+"{E} među državama": {
+"raw": "Hrvatska među državama",
+"where": "SECTION.",
+"tags": [
+"#/drzave",
+"#/drzave [details]",
+"#/drzave [btn3]"
+]
+},
+"Projekti koje su koordinirale organizacije iz države, {N}–{N} (prvih {N} država).": {
+"raw": "Projekti koje su koordinirale organizacije iz države, 2021.–2027. (prvih 16 država).",
+"where": "P.lead",
+"tags": [
+"#/drzave",
+"#/drzave [details]",
+"#/drzave [btn3]"
+]
+},
+"Nema redaka za izvoz": {
+"raw": "Nema redaka za izvoz",
+"where": "SPAN.xcount",
+"tags": [
+"#/drzave [in #view input[type=search] zzzzqq]",
+"#/projekti [in #view input[type=search] zzzzqq]",
+"#/organizacije [in #view input[type=search] zzzzqq]"
+]
+},
+"Nijedna država ne odgovara pretrazi.": {
+"raw": "Nijedna država ne odgovara pretrazi.",
+"where": "DIV.empty",
+"tags": [
+"#/drzave [in #view input[type=search] zzzzqq]"
+]
+},
+"Prikaži još (-{N})": {
+"raw": "Prikaži još (-12)",
+"where": "BUTTON.more",
+"tags": [
+"#/drzave [in #view input[type=search] zzzzqq]"
+]
+},
+"Usporedba": {
+"raw": "Usporedba",
+"where": "NAV.",
+"tags": [
+"#/mjesta",
+"#/mjesta [details]",
+"#/mjesta [btn3]"
+]
+},
+"Istraži · Županije": {
+"raw": "Istraži · Županije",
+"where": "DIV.kicker",
+"tags": [
+"#/mjesta",
+"#/mjesta [details]",
+"#/mjesta [btn3]"
+]
+},
+"Županije u KA{N} partnerstvima": {
+"raw": "Županije u KA2 partnerstvima",
+"where": "HEADER.",
+"tags": [
+"#/mjesta",
+"#/mjesta [details]",
+"#/mjesta [btn3]"
+]
+},
+"Gdje su organizacije i projekti. Odaberite županiju na karti ili u poretku da vidite njezine brojke i najaktivnije organizacije.": {
+"raw": "Gdje su organizacije i projekti. Odaberite županiju na karti ili u poretku da vidite njezine brojke i najaktivnije organizacije.",
+"where": "P.lead",
+"tags": [
+"#/mjesta",
+"#/mjesta [details]",
+"#/mjesta [btn3]"
+]
+},
+"Prikaži": {
+"raw": "Prikaži",
+"where": "SPAN.lab",
+"tags": [
+"#/mjesta",
+"#/mjesta [details]",
+"#/mjesta [btn3]"
+]
+},
+"Karta županija. Odaberite županiju za pojedinosti.": {
+"raw": "Karta županija. Odaberite županiju za pojedinosti.",
+"where": "@aria-label",
+"tags": [
+"#/mjesta",
+"#/mjesta [details]",
+"#/mjesta [btn3]"
+]
+},
+"Zadržite pokazivač ili odaberite županiju na karti": {
+"raw": "Zadržite pokazivač ili odaberite županiju na karti",
+"where": "SPAN.hintx",
+"tags": [
+"#/mjesta",
+"#/mjesta [details]",
+"#/mjesta [btn3]"
+]
+},
+"do {N}": {
+"raw": "do 56",
+"where": "DIV.",
+"tags": [
+"#/mjesta",
+"#/mjesta [details]",
+"#/mjesta [btn3]"
+]
+},
+"više od {N}": {
+"raw": "više od 176",
+"where": "DIV.",
+"tags": [
+"#/mjesta",
+"#/mjesta [details]",
+"#/mjesta [btn3]"
+]
+},
+"Poredak županija": {
+"raw": "Poredak županija",
+"where": "SECTION.",
+"tags": [
+"#/mjesta",
+"#/mjesta [details]",
+"#/mjesta [btn3]"
+]
+},
+"Projekti, {N}–{N} Redak se može odabrati.": {
+"raw": "Projekti, 2014.–2026. Redak se može odabrati.",
+"where": "P.lead",
+"tags": [
+"#/mjesta",
+"#/mjesta [details]",
+"#/mjesta [btn3]"
+]
+},
+"Otvori stranicu županije": {
+"raw": "Otvori stranicu županije",
+"where": "A.btn primary",
+"tags": [
+"#/mjesta",
+"#/mjesta [details]",
+"#/mjesta [btn3]"
+]
+},
+"Koliko projekata ima {E}?": {
+"raw": "Koliko projekata ima Splitsko-dalmatinska županija?",
+"where": "DIV.",
+"tags": [
+"#/mjesta",
+"#/mjesta [details]",
+"#/mjesta [btn3]"
+]
+},
+"Koje županije imaju najbolju pokrivenost škola?": {
+"raw": "Koje županije imaju najbolju pokrivenost škola?",
+"where": "DIV.",
+"tags": [
+"#/mjesta",
+"#/mjesta [details]",
+"#/mjesta [btn3]"
+]
+},
+"Koordinirano, {N}–{N} Redak se može odabrati.": {
+"raw": "Koordinirano, 2014.–2026. Redak se može odabrati.",
+"where": "P.lead",
+"tags": [
+"#/mjesta [btn5]"
+]
+},
+"Organizacije, {N}–{N} Redak se može odabrati.": {
+"raw": "Organizacije, 2014.–2026. Redak se može odabrati.",
+"where": "P.lead",
+"tags": [
+"#/mjesta [btn6]"
+]
+},
+"Brojevi na karti su milijuni eura.": {
+"raw": "Brojevi na karti su milijuni eura.",
+"where": "SPAN.mapnote",
+"tags": [
+"#/mjesta [btn7]"
+]
+},
+"Vrijednost, {N}–{N} Redak se može odabrati.": {
+"raw": "Vrijednost, 2014.–2026. Redak se može odabrati.",
+"where": "P.lead",
+"tags": [
+"#/mjesta [btn7]"
+]
+},
+"{N} projekata, od toga {N} koordiniranih. {N} organizacija. Po odabranom prikazu je {N}. od {N} županija.": {
+"raw": "1.445 projekata, od toga 250 koordiniranih. 518 organizacija. Po odabranom prikazu je 1. od 21 županija.",
+"where": "P.",
+"tags": [
+"#/mjesta [btn15]",
+"#/mjesta [btn16]",
+"#/mjesta [btn17]"
+]
+},
+"Županije · Usporedba": {
+"raw": "Županije · Usporedba",
+"where": "DIV.kicker",
+"tags": [
+"#/usporedba",
+"#/usporedba [details]",
+"#/usporedba [btn3]"
+]
+},
+"Odaberite do četiri županije i usporedite ih po broju projekata, koordinacijama, organizacijama, vrijednosti i pokrivenosti škola.": {
+"raw": "Odaberite do četiri županije i usporedite ih po broju projekata, koordinacijama, organizacijama, vrijednosti i pokrivenosti škola.",
+"where": "P.lead",
+"tags": [
+"#/usporedba",
+"#/usporedba [details]",
+"#/usporedba [btn3]"
+]
+},
+"Odabir županija": {
+"raw": "Odabir županija",
+"where": "@aria-label",
+"tags": [
+"#/usporedba",
+"#/usporedba [details]",
+"#/usporedba [btn3]"
+]
+},
+"Dodaj županiju": {
+"raw": "Dodaj županiju",
+"where": "SPAN.lab",
+"tags": [
+"#/usporedba",
+"#/usporedba [details]",
+"#/usporedba [btn3]"
+]
+},
+"Odaberite županiju…": {
+"raw": "Odaberite županiju…",
+"where": "SELECT.",
+"tags": [
+"#/usporedba",
+"#/usporedba [details]",
+"#/usporedba [btn3]"
+]
+},
+"Odabrano (najviše {N})": {
+"raw": "Odabrano (najviše 4)",
+"where": "SPAN.lab",
+"tags": [
+"#/usporedba",
+"#/usporedba [details]",
+"#/usporedba [btn3]"
+]
+},
+"Ukloni: {E}": {
+"raw": "Ukloni: Grad Zagreb",
+"where": "@aria-label",
+"tags": [
+"#/usporedba",
+"#/usporedba [details]",
+"#/usporedba [btn3]"
+]
+},
+"Projekti sa sudionikom iz županije": {
+"raw": "Projekti sa sudionikom iz županije",
+"where": "SECTION.",
+"tags": [
+"#/usporedba",
+"#/usporedba [details]",
+"#/usporedba [btn3]"
+]
+},
+"Broj KA{N} projekata u kojima sudjeluje barem jedna organizacija iz županije.": {
+"raw": "Broj KA2 projekata u kojima sudjeluje barem jedna organizacija iz županije.",
+"where": "P.lead",
+"tags": [
+"#/usporedba",
+"#/usporedba [details]",
+"#/usporedba [btn3]"
+]
+},
+"Koordinirani projekti": {
+"raw": "Koordinirani projekti",
+"where": "SECTION.",
+"tags": [
+"#/usporedba",
+"#/usporedba [details]",
+"#/usporedba [btn3]"
+]
+},
+"Projekti koje je koordinirala organizacija iz županije.": {
+"raw": "Projekti koje je koordinirala organizacija iz županije.",
+"where": "P.lead",
+"tags": [
+"#/usporedba",
+"#/usporedba [details]",
+"#/usporedba [btn3]"
+]
+},
+"Broj različitih organizacija iz županije u projektima.": {
+"raw": "Broj različitih organizacija iz županije u projektima.",
+"where": "P.lead",
+"tags": [
+"#/usporedba",
+"#/usporedba [details]",
+"#/usporedba [btn3]"
+]
+},
+"Vrijednost projekata": {
+"raw": "Vrijednost projekata",
+"where": "SECTION.",
+"tags": [
+"#/usporedba",
+"#/usporedba [details]",
+"#/usporedba [btn3]"
+]
+},
+"Ukupna vrijednost projekata sa sudionikom iz županije.": {
+"raw": "Ukupna vrijednost projekata sa sudionikom iz županije.",
+"where": "P.lead",
+"tags": [
+"#/usporedba",
+"#/usporedba [details]",
+"#/usporedba [btn3]"
+]
+},
+"Pokrivenost osnovnih i srednjih škola": {
+"raw": "Pokrivenost osnovnih i srednjih škola",
+"where": "SECTION.",
+"tags": [
+"#/usporedba",
+"#/usporedba [details]",
+"#/usporedba [btn3]"
+]
+},
+"Udio škola koje su sudjelovale u barem jednom projektu.": {
+"raw": "Udio škola koje su sudjelovale u barem jednom projektu.",
+"where": "P.lead",
+"tags": [
+"#/usporedba",
+"#/usporedba [details]",
+"#/usporedba [btn3]"
+]
+},
+"Usporedna tablica": {
+"raw": "Usporedna tablica",
+"where": "H2.sh",
+"tags": [
+"#/usporedba",
+"#/usporedba [details]",
+"#/usporedba [btn3]"
+]
+},
+"Pokazatelj": {
+"raw": "Pokazatelj",
+"where": "TABLE.",
+"tags": [
+"#/usporedba",
+"#/usporedba [details]",
+"#/usporedba [btn3]"
+]
+},
+"Najviše četiri županije": {
+"raw": "Najviše četiri županije",
+"where": "SELECT.",
+"tags": [
+"#/usporedba [btn6]",
+"#/usporedba [btn7]",
+"#/usporedba [btn8]"
+]
+},
+"Županije · Pokrivenost škola": {
+"raw": "Županije · Pokrivenost škola",
+"where": "DIV.kicker",
+"tags": [
+"#/pokrivenost",
+"#/pokrivenost [details]",
+"#/pokrivenost [btn3]"
+]
+},
+"Koje škole sudjeluju?": {
+"raw": "Koje škole sudjeluju?",
+"where": "HEADER.",
+"tags": [
+"#/pokrivenost",
+"#/pokrivenost [details]",
+"#/pokrivenost [btn3]"
+]
+},
+"Udio osnovnih i srednjih škola u svakoj županiji koje su sudjelovale u barem jednom KA{N} partnerstvu, kao koordinator ili partner.": {
+"raw": "Udio osnovnih i srednjih škola u svakoj županiji koje su sudjelovale u barem jednom KA2 partnerstvu, kao koordinator ili partner.",
+"where": "P.lead",
+"tags": [
+"#/pokrivenost",
+"#/pokrivenost [details]",
+"#/pokrivenost [btn3]"
+]
+},
+"Ustanove": {
+"raw": "Ustanove",
+"where": "SPAN.lab",
+"tags": [
+"#/pokrivenost",
+"#/pokrivenost [details]",
+"#/pokrivenost [btn3]"
+]
+},
+"Osnovne + srednje": {
+"raw": "Osnovne + srednje",
+"where": "DIV.",
+"tags": [
+"#/pokrivenost",
+"#/pokrivenost [details]",
+"#/pokrivenost [btn3]"
+]
+},
+"Osnovne": {
+"raw": "Osnovne",
+"where": "DIV.",
+"tags": [
+"#/pokrivenost",
+"#/pokrivenost [details]",
+"#/pokrivenost [btn3]"
+]
+},
+"Srednje": {
+"raw": "Srednje",
+"where": "DIV.",
+"tags": [
+"#/pokrivenost",
+"#/pokrivenost [details]",
+"#/pokrivenost [btn3]"
+]
+},
+"Vrtići": {
+"raw": "Vrtići",
+"where": "DIV.",
+"tags": [
+"#/pokrivenost",
+"#/pokrivenost [details]",
+"#/pokrivenost [btn3]"
+]
+},
+"Uloga": {
+"raw": "Uloga",
+"where": "SPAN.lab",
+"tags": [
+"#/pokrivenost",
+"#/pokrivenost [details]",
+"#/pokrivenost [btn3]"
+]
+},
+"Bilo koja": {
+"raw": "Bilo koja",
+"where": "DIV.",
+"tags": [
+"#/pokrivenost",
+"#/pokrivenost [details]",
+"#/pokrivenost [btn3]"
+]
+},
+"Koordinator": {
+"raw": "Koordinator",
+"where": "DIV.",
+"tags": [
+"#/pokrivenost",
+"#/pokrivenost [details]",
+"#/pokrivenost [btn3]"
+]
+},
+"{N} od {N} ustanova na razini države sudjelovalo je u KA{N} projektima": {
+"raw": "450 od 1.356 ustanova na razini države sudjelovalo je u KA2 projektima",
+"where": "DIV.",
+"tags": [
+"#/pokrivenost",
+"#/pokrivenost [details]",
+"#/pokrivenost [btn3]"
+]
+},
+"Boja je udio škola koje sudjeluju. Zagreb je uvećan u kutu. Odaberite županiju za pojedinosti.": {
+"raw": "Boja je udio škola koje sudjeluju. Zagreb je uvećan u kutu. Odaberite županiju za pojedinosti.",
+"where": "P.lead",
+"tags": [
+"#/pokrivenost",
+"#/pokrivenost [details]",
+"#/pokrivenost [btn3]"
+]
+},
+"do {N}%": {
+"raw": "do 24 %",
+"where": "DIV.",
+"tags": [
+"#/pokrivenost",
+"#/pokrivenost [details]",
+"#/pokrivenost [btn3]"
+]
+},
+"više od {N}%": {
+"raw": "više od 39 %",
+"where": "DIV.",
+"tags": [
+"#/pokrivenost",
+"#/pokrivenost [details]",
+"#/pokrivenost [btn3]"
+]
+},
+"Udio škola po županiji": {
+"raw": "Udio škola po županiji",
+"where": "SECTION.",
+"tags": [
+"#/pokrivenost",
+"#/pokrivenost [details]",
+"#/pokrivenost [btn3]"
+]
+},
+"Koliki dio škola u županiji sudjeluje u KA{N} projektima. Redak se može odabrati.": {
+"raw": "Koliki dio škola u županiji sudjeluje u KA2 projektima. Redak se može odabrati.",
+"where": "P.lead",
+"tags": [
+"#/pokrivenost",
+"#/pokrivenost [details]",
+"#/pokrivenost [btn3]"
+]
+},
+"{N} od {N}": {
+"raw": "33 od 58",
+"where": "SPAN.",
+"tags": [
+"#/pokrivenost",
+"#/pokrivenost [details]",
+"#/pokrivenost [btn3]"
+]
+},
+"Metoda: sudionici KA{N} povezani su s registrom škola prema nazivu i poštanskom broju; to je procjena dok se podudaranja ne pregledaju. Udjeli su procjene. KA{N} mobilnost nije uključena.": {
+"raw": "Metoda: sudionici KA2 povezani su s registrom škola prema nazivu i poštanskom broju; to je procjena dok se podudaranja ne pregledaju. Udjeli su procjene. KA1 mobilnost nije uključena.",
+"where": "P.foot-note",
+"tags": [
+"#/pokrivenost",
+"#/pokrivenost [details]",
+"#/pokrivenost [btn3]"
+]
+},
+"{N} od {N} škola sudjelovalo je u KA{N} projektima ({N}%). Državni prosjek je {N}%.": {
+"raw": "33 od 58 škola sudjelovalo je u KA2 projektima (56,9 %). Državni prosjek je 33,2 %.",
+"where": "P.",
+"tags": [
+"#/pokrivenost [btn18]",
+"#/pokrivenost [btn19]",
+"#/pokrivenost [btn20]"
+]
+},
+"Breadcrumb": {
+"raw": "Breadcrumb",
+"where": "@aria-label",
+"tags": [
+"#/mjesta/Splitsko-dalmatinska",
+"#/mjesta/Splitsko-dalmatinska [details]",
+"#/mjesta/Splitsko-dalmatinska [in #view input[type=search] a]"
+]
+},
+"Županija · {N}. od {N} po broju projekata": {
+"raw": "Županija · 3. od 21 po broju projekata",
+"where": "DIV.kicker",
+"tags": [
+"#/mjesta/Splitsko-dalmatinska",
+"#/mjesta/Splitsko-dalmatinska [details]",
+"#/mjesta/Splitsko-dalmatinska [in #view input[type=search] a]"
+]
+},
+"Sudjelovanje organizacija iz županije u KA{N} partnerstvima, {N}–{N}": {
+"raw": "Sudjelovanje organizacija iz županije u KA2 partnerstvima, 2014.–2026.",
+"where": "P.lead",
+"tags": [
+"#/mjesta/Splitsko-dalmatinska",
+"#/mjesta/Splitsko-dalmatinska [details]",
+"#/mjesta/Splitsko-dalmatinska [in #view input[type=search] a]"
+]
+},
+"Organizacija": {
+"raw": "Organizacija",
+"where": "ARTICLE.",
+"tags": [
+"#/mjesta/Splitsko-dalmatinska",
+"#/mjesta/Splitsko-dalmatinska [details]",
+"#/mjesta/Splitsko-dalmatinska [in #view input[type=search] a]"
+]
+},
+"{N} + {N} po razdobljima": {
+"raw": "80 + 79 po razdobljima",
+"where": "ARTICLE.",
+"tags": [
+"#/mjesta/Splitsko-dalmatinska",
+"#/mjesta/Splitsko-dalmatinska [details]",
+"#/mjesta/Splitsko-dalmatinska [in #view input[type=search] a]"
+]
+},
+"Projekata sa sudionikom": {
+"raw": "Projekata sa sudionikom",
+"where": "ARTICLE.",
+"tags": [
+"#/mjesta/Splitsko-dalmatinska",
+"#/mjesta/Splitsko-dalmatinska [details]",
+"#/mjesta/Splitsko-dalmatinska [in #view input[type=search] a]"
+]
+},
+"Grantovi: {N} mil. €": {
+"raw": "Grantovi: 7,3 mil. €",
+"where": "ARTICLE.",
+"tags": [
+"#/mjesta/Splitsko-dalmatinska",
+"#/mjesta/Splitsko-dalmatinska [details]",
+"#/mjesta/Splitsko-dalmatinska [in #view input[type=search] a]"
+]
+},
+"svih projekata sa sudionikom": {
+"raw": "svih projekata sa sudionikom",
+"where": "ARTICLE.",
+"tags": [
+"#/mjesta/Splitsko-dalmatinska",
+"#/mjesta/Splitsko-dalmatinska [details]",
+"#/mjesta/Splitsko-dalmatinska [in #view input[type=search] a]"
+]
+},
+"Najaktivnije organizacije": {
+"raw": "Najaktivnije organizacije",
+"where": "SECTION.",
+"tags": [
+"#/mjesta/Splitsko-dalmatinska",
+"#/mjesta/Splitsko-dalmatinska [details]",
+"#/mjesta/Splitsko-dalmatinska [in #view input[type=search] a]"
+]
+},
+"Po broju KA{N} projekata. Odaberite organizaciju za pojedinosti.": {
+"raw": "Po broju KA2 projekata. Odaberite organizaciju za pojedinosti.",
+"where": "P.lead",
+"tags": [
+"#/mjesta/Splitsko-dalmatinska",
+"#/mjesta/Splitsko-dalmatinska [details]",
+"#/mjesta/Splitsko-dalmatinska [in #view input[type=search] a]"
+]
+},
+"{N} koord.": {
+"raw": "8 koord.",
+"where": "SPAN.",
+"tags": [
+"#/mjesta/Splitsko-dalmatinska",
+"#/mjesta/Splitsko-dalmatinska [details]",
+"#/mjesta/Splitsko-dalmatinska [in #view input[type=search] a]"
+]
+},
+"Sve organizacije u županiji →": {
+"raw": "Sve organizacije u županiji →",
+"where": "A.",
+"tags": [
+"#/mjesta/Splitsko-dalmatinska",
+"#/mjesta/Splitsko-dalmatinska [details]",
+"#/mjesta/Splitsko-dalmatinska [in #view input[type=search] a]"
+]
+},
+"Pokrivenost po vrsti škole": {
+"raw": "Pokrivenost po vrsti škole",
+"where": "SECTION.",
+"tags": [
+"#/mjesta/Splitsko-dalmatinska",
+"#/mjesta/Splitsko-dalmatinska [details]",
+"#/mjesta/Splitsko-dalmatinska [in #view input[type=search] a]"
+]
+},
+"Udio škola u županiji koje su sudjelovale u KA{N} projektima.": {
+"raw": "Udio škola u županiji koje su sudjelovale u KA2 projektima.",
+"where": "P.lead",
+"tags": [
+"#/mjesta/Splitsko-dalmatinska",
+"#/mjesta/Splitsko-dalmatinska [details]",
+"#/mjesta/Splitsko-dalmatinska [in #view input[type=search] a]"
+]
+},
+"Osnovne i srednje škole": {
+"raw": "Osnovne i srednje škole",
+"where": "SPAN.nm",
+"tags": [
+"#/mjesta/Splitsko-dalmatinska",
+"#/mjesta/Splitsko-dalmatinska [details]",
+"#/mjesta/Splitsko-dalmatinska [in #view input[type=search] a]"
+]
+},
+"Srednje škole": {
+"raw": "Srednje škole",
+"where": "SPAN.nm",
+"tags": [
+"#/mjesta/Splitsko-dalmatinska",
+"#/mjesta/Splitsko-dalmatinska [details]",
+"#/mjesta/Splitsko-dalmatinska [in #view input[type=search] a]"
+]
+},
+"Položaj": {
+"raw": "Položaj",
+"where": "SECTION.",
+"tags": [
+"#/mjesta/Splitsko-dalmatinska",
+"#/mjesta/Splitsko-dalmatinska [details]",
+"#/mjesta/Splitsko-dalmatinska [in #view input[type=search] a]"
+]
+},
+"Položaj županije na karti Hrvatske": {
+"raw": "Položaj županije na karti Hrvatske",
+"where": "@aria-label",
+"tags": [
+"#/mjesta/Splitsko-dalmatinska",
+"#/mjesta/Splitsko-dalmatinska [details]",
+"#/mjesta/Splitsko-dalmatinska [in #view input[type=search] a]"
+]
+},
+"Karta županija →": {
+"raw": "Karta županija →",
+"where": "DIV.",
+"tags": [
+"#/mjesta/Splitsko-dalmatinska",
+"#/mjesta/Splitsko-dalmatinska [details]",
+"#/mjesta/Splitsko-dalmatinska [in #view input[type=search] a]"
+]
+},
+"Po razdobljima": {
+"raw": "Po razdobljima",
+"where": "SECTION.",
+"tags": [
+"#/mjesta/Splitsko-dalmatinska",
+"#/mjesta/Splitsko-dalmatinska [details]",
+"#/mjesta/Splitsko-dalmatinska [in #view input[type=search] a]"
+]
+},
+"Projekti sa sudionikom iz županije.": {
+"raw": "Projekti sa sudionikom iz županije.",
+"where": "P.lead",
+"tags": [
+"#/mjesta/Splitsko-dalmatinska",
+"#/mjesta/Splitsko-dalmatinska [details]",
+"#/mjesta/Splitsko-dalmatinska [in #view input[type=search] a]"
+]
+},
+"Koordinirani projekti.": {
+"raw": "Koordinirani projekti.",
+"where": "P.lead",
+"tags": [
+"#/mjesta/Splitsko-dalmatinska",
+"#/mjesta/Splitsko-dalmatinska [details]",
+"#/mjesta/Splitsko-dalmatinska [in #view input[type=search] a]"
+]
+},
+"Usporedite s drugim županijama": {
+"raw": "Usporedite s drugim županijama",
+"where": "SECTION.",
+"tags": [
+"#/mjesta/Splitsko-dalmatinska",
+"#/mjesta/Splitsko-dalmatinska [details]",
+"#/mjesta/Splitsko-dalmatinska [in #view input[type=search] a]"
+]
+},
+"Postavite ovu županiju uz druge po svim pokazateljima.": {
+"raw": "Postavite ovu županiju uz druge po svim pokazateljima.",
+"where": "P.lead",
+"tags": [
+"#/mjesta/Splitsko-dalmatinska",
+"#/mjesta/Splitsko-dalmatinska [details]",
+"#/mjesta/Splitsko-dalmatinska [in #view input[type=search] a]"
+]
+},
+"Otvori usporedbu": {
+"raw": "Otvori usporedbu",
+"where": "A.btn primary",
+"tags": [
+"#/mjesta/Splitsko-dalmatinska",
+"#/mjesta/Splitsko-dalmatinska [details]",
+"#/mjesta/Splitsko-dalmatinska [in #view input[type=search] a]"
+]
+},
+"Teme kroz vrijeme": {
+"raw": "Teme kroz vrijeme",
+"where": "NAV.",
+"tags": [
+"#/teme",
+"#/teme [details]",
+"#/teme [btn3]"
+]
+},
+"Pristupi i ciljne skupine": {
+"raw": "Pristupi i ciljne skupine",
+"where": "NAV.",
+"tags": [
+"#/teme",
+"#/teme [details]",
+"#/teme [btn3]"
+]
+},
+"Mreža pojmova": {
+"raw": "Mreža pojmova",
+"where": "NAV.",
+"tags": [
+"#/teme",
+"#/teme [details]",
+"#/teme [btn3]"
+]
+},
+"Teme i metode · Teme kroz vrijeme": {
+"raw": "Teme i metode · Teme kroz vrijeme",
+"where": "DIV.kicker",
+"tags": [
+"#/teme",
+"#/teme [details]",
+"#/teme [btn3]"
+]
+},
+"Kako se mijenjaju teme": {
+"raw": "Kako se mijenjaju teme",
+"where": "HEADER.",
+"tags": [
+"#/teme",
+"#/teme [details]",
+"#/teme [btn3]"
+]
+},
+"Udio projekata s odabranom temom po godini poziva. Odaberite do osam tema.": {
+"raw": "Udio projekata s odabranom temom po godini poziva. Odaberite do osam tema.",
+"where": "P.lead",
+"tags": [
+"#/teme",
+"#/teme [details]",
+"#/teme [btn3]"
+]
+},
+"Popis tema promijenjen je {N}., pa se crte ne spajaju preko te granice.": {
+"raw": "Popis tema promijenjen je 2021., pa se crte ne spajaju preko te granice.",
+"where": "P.lead",
+"tags": [
+"#/teme",
+"#/teme [details]",
+"#/teme [btn3]"
+]
+},
+"Udio projekata s temom": {
+"raw": "Udio projekata s temom",
+"where": "SECTION.",
+"tags": [
+"#/teme",
+"#/teme [details]",
+"#/teme [btn3]"
+]
+},
+"Postotak projekata godine koji imaju odabranu temu.": {
+"raw": "Postotak projekata godine koji imaju odabranu temu.",
+"where": "P.lead",
+"tags": [
+"#/teme",
+"#/teme [details]",
+"#/teme [btn3]"
+]
+},
+"Udio projekata po temi i godini": {
+"raw": "Udio projekata po temi i godini",
+"where": "@aria-label",
+"tags": [
+"#/teme",
+"#/teme [details]",
+"#/teme [btn3]"
+]
+},
+"popis tema promijenjen": {
+"raw": "popis tema promijenjen",
+"where": "DIV.[object SVGAnimatedString]",
+"tags": [
+"#/teme",
+"#/teme [details]",
+"#/teme [btn3]"
+]
+},
+"Okoliš i klimatske promjene, {N}: {N}% ({N})": {
+"raw": "Okoliš i klimatske promjene, 2014: 4,4 % (5)",
+"where": "DIV.[object SVGAnimatedString]",
+"tags": [
+"#/teme",
+"#/teme [details]",
+"#/teme [btn3]"
+]
+},
+"Poduzetničko učenje – poduzetničko obrazovanje, {N}: {N}% ({N})": {
+"raw": "Poduzetničko učenje – poduzetničko obrazovanje, 2014: 15,0 % (17)",
+"where": "DIV.[object SVGAnimatedString]",
+"tags": [
+"#/teme",
+"#/teme [details]",
+"#/teme [btn3]"
+]
+},
+"Digitalne vještine i kompetencije, {N}: {N}% ({N})": {
+"raw": "Digitalne vještine i kompetencije, 2021: 19,5 % (74)",
+"where": "DIV.[object SVGAnimatedString]",
+"tags": [
+"#/teme",
+"#/teme [details]",
+"#/teme [btn3]"
+]
+},
+"Umjetna inteligencija (UI) i uporaba podataka, {N}: {N}% ({N})": {
+"raw": "Umjetna inteligencija (UI) i uporaba podataka, 2021: 0,0 % (0)",
+"where": "DIV.[object SVGAnimatedString]",
+"tags": [
+"#/teme",
+"#/teme [details]",
+"#/teme [btn3]"
+]
+},
+"ICT - new technologies - digital competences, {N}: {N}% ({N})": {
+"raw": "ICT - new technologies - digital competences, 2014: 21,2 % (24)",
+"where": "DIV.[object SVGAnimatedString]",
+"tags": [
+"#/teme",
+"#/teme [details]",
+"#/teme [btn3]"
+]
+},
+"(u oba popisa)": {
+"raw": "(u oba popisa)",
+"where": "SPAN.",
+"tags": [
+"#/teme",
+"#/teme [details]",
+"#/teme [btn3]"
+]
+},
+"(popis {N}–{N})": {
+"raw": "(popis 2021.–2027.)",
+"where": "SPAN.",
+"tags": [
+"#/teme",
+"#/teme [details]",
+"#/teme [btn3]"
+]
+},
+"Odaberite barem jednu temu.": {
+"raw": "Odaberite barem jednu temu.",
+"where": "P.lead small",
+"tags": [
+"#/teme",
+"#/teme [details]",
+"#/teme [btn3]"
+]
+},
+"{N}. je nepotpuna godina (prazna točka).": {
+"raw": "2026. je nepotpuna godina (prazna točka).",
+"where": "P.lead small",
+"tags": [
+"#/teme",
+"#/teme [details]",
+"#/teme [btn3]"
+]
+},
+"Odaberite teme": {
+"raw": "Odaberite teme",
+"where": "SECTION.",
+"tags": [
+"#/teme",
+"#/teme [details]",
+"#/teme [btn3]"
+]
+},
+"Najviše osam odjednom.": {
+"raw": "Najviše osam odjednom.",
+"where": "P.lead",
+"tags": [
+"#/teme",
+"#/teme [details]",
+"#/teme [btn3]"
+]
+},
+"Filtriraj teme": {
+"raw": "Filtriraj teme",
+"where": "LABEL.sr",
+"tags": [
+"#/teme",
+"#/teme [details]",
+"#/teme [btn3]"
+]
+},
+"Filtriraj teme…": {
+"raw": "Filtriraj teme…",
+"where": "@placeholder",
+"tags": [
+"#/teme",
+"#/teme [details]",
+"#/teme [btn3]"
+]
+},
+"U oba popisa": {
+"raw": "U oba popisa",
+"where": "DIV.",
+"tags": [
+"#/teme",
+"#/teme [details]",
+"#/teme [btn3]"
+]
+},
+"Popis {N}–{N}": {
+"raw": "Popis 2021.–2027.",
+"where": "DIV.",
+"tags": [
+"#/teme",
+"#/teme [details]",
+"#/teme [btn3]"
+]
+},
+"Sustavi praćenja osoba s kvalifikacijom": {
+"raw": "Sustavi praćenja osoba s kvalifikacijom",
+"where": "DIV.",
+"tags": [
+"#/teme",
+"#/teme [details]",
+"#/teme [btn3]"
+]
+},
+"Koliko je projekata bilo {N}.?": {
+"raw": "Koliko je projekata bilo 2023.?",
+"where": "DIV.",
+"tags": [
+"#/teme",
+"#/teme [details]",
+"#/teme [btn3]"
+]
+},
+"Teme i metode · Pristupi": {
+"raw": "Teme i metode · Pristupi",
+"where": "DIV.kicker",
+"tags": [
+"#/pristupi",
+"#/pristupi [details]",
+"#/pristupi [btn3]"
+]
+},
+"Pristupi, rezultati i ciljne skupine": {
+"raw": "Pristupi, rezultati i ciljne skupine",
+"where": "HEADER.",
+"tags": [
+"#/pristupi",
+"#/pristupi [details]",
+"#/pristupi [btn3]"
+]
+},
+"Što projekti tipično rade, za koga i što proizvode, izvučeno iz sažetaka projekata.": {
+"raw": "Što projekti tipično rade, za koga i što proizvode, izvučeno iz sažetaka projekata.",
+"where": "P.lead",
+"tags": [
+"#/pristupi",
+"#/pristupi [details]",
+"#/pristupi [btn3]"
+]
+},
+"Obrada je automatska, pa treba čitati obrasce, a ne točne brojke pojedinog pojma. Izvor podataka: Erasmus+ Project Results Platform, KA{N} exports {N}-{N} and {N}-{N}; Croatian Agency for Mobility and EU Programmes (data.gov.hr); Ministry of Science and Education school registers.": {
+"raw": "Obrada je automatska, pa treba čitati obrasce, a ne točne brojke pojedinog pojma. Izvor podataka: Erasmus+ Project Results Platform, KA2 exports 2014-2020 and 2021-2027; Croatian Agency for Mobility and EU Programmes (data.gov.hr); Ministry of Science and Education school registers.",
+"where": "DIV.note",
+"tags": [
+"#/pristupi",
+"#/pristupi [details]",
+"#/pristupi [btn3]"
+]
+},
+"Pristupi": {
+"raw": "Pristupi",
+"where": "SECTION.",
+"tags": [
+"#/pristupi",
+"#/pristupi [details]",
+"#/pristupi [btn3]"
+]
+},
+"Rezultati": {
+"raw": "Rezultati",
+"where": "SECTION.",
+"tags": [
+"#/pristupi",
+"#/pristupi [details]",
+"#/pristupi [btn3]"
+]
+},
+"Ciljne skupine": {
+"raw": "Ciljne skupine",
+"where": "SECTION.",
+"tags": [
+"#/pristupi",
+"#/pristupi [details]",
+"#/pristupi [btn3]"
+]
+},
+"Pretražite pristupe": {
+"raw": "Pretražite pristupe",
+"where": "H2.sh",
+"tags": [
+"#/pristupi",
+"#/pristupi [details]",
+"#/pristupi [btn3]"
+]
+},
+"Prikaz": {
+"raw": "Prikaz",
+"where": "SPAN.lab",
+"tags": [
+"#/pristupi",
+"#/pristupi [details]",
+"#/pristupi [btn3]"
+]
+},
+"Najčešći": {
+"raw": "Najčešći",
+"where": "DIV.",
+"tags": [
+"#/pristupi",
+"#/pristupi [details]",
+"#/pristupi [btn3]"
+]
+},
+"Rastu": {
+"raw": "Rastu",
+"where": "DIV.",
+"tags": [
+"#/pristupi",
+"#/pristupi [details]",
+"#/pristupi [btn3]"
+]
+},
+"Slabe": {
+"raw": "Slabe",
+"where": "DIV.",
+"tags": [
+"#/pristupi",
+"#/pristupi [details]",
+"#/pristupi [btn3]"
+]
+},
+"Rjeđi": {
+"raw": "Rjeđi",
+"where": "DIV.",
+"tags": [
+"#/pristupi",
+"#/pristupi [details]",
+"#/pristupi [btn3]"
+]
+},
+"Filtriraj": {
+"raw": "Filtriraj",
+"where": "SPAN.lab",
+"tags": [
+"#/pristupi",
+"#/pristupi [details]",
+"#/pristupi [btn3]"
+]
+},
+"Filtriraj pristupe…": {
+"raw": "Filtriraj pristupe…",
+"where": "@placeholder",
+"tags": [
+"#/pristupi",
+"#/pristupi [details]",
+"#/pristupi [btn3]"
+]
+},
+"Pristupi poredani po broju projekata.": {
+"raw": "Pristupi poredani po broju projekata.",
+"where": "P.summary",
+"tags": [
+"#/pristupi",
+"#/pristupi [details]",
+"#/pristupi [btn3]"
+]
+},
+"{N} / {N} prikazano": {
+"raw": "12 / 509 prikazano",
+"where": "P.summary",
+"tags": [
+"#/pristupi",
+"#/pristupi [details]",
+"#/pristupi [btn3]"
+]
+},
+"Pristup": {
+"raw": "Pristup",
+"where": "DIV.",
+"tags": [
+"#/pristupi",
+"#/pristupi [details]",
+"#/pristupi [btn3]"
+]
+},
+"Udio {N}–{N}": {
+"raw": "Udio 2014.–2020.",
+"where": "TH.num",
+"tags": [
+"#/pristupi",
+"#/pristupi [details]",
+"#/pristupi [btn3]"
+]
+},
+"Kretanje": {
+"raw": "Kretanje",
+"where": "DIV.",
+"tags": [
+"#/pristupi",
+"#/pristupi [details]",
+"#/pristupi [btn3]"
+]
+},
+"stabilno": {
+"raw": "stabilno",
+"where": "SPAN.pill",
+"tags": [
+"#/pristupi",
+"#/pristupi [details]",
+"#/pristupi [btn3]"
+]
+},
+"slabi": {
+"raw": "slabi",
+"where": "SPAN.pill warm",
+"tags": [
+"#/pristupi",
+"#/pristupi [details]",
+"#/pristupi [btn3]"
+]
+},
+"raste": {
+"raw": "raste",
+"where": "SPAN.pill green",
+"tags": [
+"#/pristupi",
+"#/pristupi [details]",
+"#/pristupi [btn3]"
+]
+},
+"Prikaži još": {
+"raw": "Prikaži još",
+"where": "BUTTON.more",
+"tags": [
+"#/pristupi",
+"#/pristupi [details]",
+"#/pristupi [btn3]"
+]
+},
+"Udio u {N}–{N} barem {N} puta veći nego u {N}–{N}": {
+"raw": "Udio u 2021.–2027. barem 1,5 puta veći nego u 2014.–2020.",
+"where": "P.summary",
+"tags": [
+"#/pristupi [btn5]",
+"#/pristupi [btn6]"
+]
+},
+"Pristupi s manje projekata.": {
+"raw": "Pristupi s manje projekata.",
+"where": "P.summary",
+"tags": [
+"#/pristupi [btn7]"
+]
+},
+"Teme i metode · Mreža pojmova": {
+"raw": "Teme i metode · Mreža pojmova",
+"where": "DIV.kicker",
+"tags": [
+"#/graf",
+"#/graf [details]",
+"#/graf [btn3]"
+]
+},
+"Pojmovi koji se u projektima pojavljuju zajedno: pristupi, ciljne skupine, rezultati, problemi i teme. Veći krug znači više projekata, a crta znači zajedničke projekte.": {
+"raw": "Pojmovi koji se u projektima pojavljuju zajedno: pristupi, ciljne skupine, rezultati, problemi i teme. Veći krug znači više projekata, a crta znači zajedničke projekte.",
+"where": "P.lead",
+"tags": [
+"#/graf",
+"#/graf [details]",
+"#/graf [btn3]"
+]
+},
+"Ovo su pojmovi izdvojeni iz sažetaka projekata automatskom obradom pa je to pregled obrazaca, a ne službena klasifikacija.": {
+"raw": "Ovo su pojmovi izdvojeni iz sažetaka projekata automatskom obradom pa je to pregled obrazaca, a ne službena klasifikacija.",
+"where": "DIV.note",
+"tags": [
+"#/graf",
+"#/graf [details]",
+"#/graf [btn3]"
+]
+},
+"Pretraži pojmove": {
+"raw": "Pretraži pojmove",
+"where": "LABEL.small",
+"tags": [
+"#/graf",
+"#/graf [details]",
+"#/graf [btn3]"
+]
+},
+"npr. učitelji, digitalne vještine…": {
+"raw": "npr. učitelji, digitalne vještine…",
+"where": "@placeholder",
+"tags": [
+"#/graf",
+"#/graf [details]",
+"#/graf [btn3]"
+]
+},
+"Ciljna skupina": {
+"raw": "Ciljna skupina",
+"where": "SPAN.gv-key",
+"tags": [
+"#/graf",
+"#/graf [details]",
+"#/graf [btn3]"
+]
+},
+"Rezultat": {
+"raw": "Rezultat",
+"where": "SPAN.gv-key",
+"tags": [
+"#/graf",
+"#/graf [details]",
+"#/graf [btn3]"
+]
+},
+"Problem": {
+"raw": "Problem",
+"where": "SPAN.gv-key",
+"tags": [
+"#/graf",
+"#/graf [details]",
+"#/graf [btn3]"
+]
+},
+"Tema": {
+"raw": "Tema",
+"where": "SPAN.gv-key",
+"tags": [
+"#/graf",
+"#/graf [details]",
+"#/graf [btn3]"
+]
+},
+"Mreža najčešćih pojmova": {
+"raw": "Mreža najčešćih pojmova",
+"where": "@aria-label",
+"tags": [
+"#/graf",
+"#/graf [details]",
+"#/graf [btn3]"
+]
+},
+"Nove metode i pristupi učenju i poučavanju, {N} projekata": {
+"raw": "Nove metode i pristupi učenju i poučavanju, 907 projekata",
+"where": "@aria-label",
+"tags": [
+"#/graf",
+"#/graf [details]",
+"#/graf [btn3]"
+]
+},
+"Nove metode i pristupi učenj": {
+"raw": "Nove metode i pristupi učenj",
+"where": "g.[object SVGAnimatedString]",
+"tags": [
+"#/graf",
+"#/graf [details]",
+"#/graf [btn3]"
+]
+},
+"učitelji, {N} projekata": {
+"raw": "učitelji, 875 projekata",
+"where": "@aria-label",
+"tags": [
+"#/graf",
+"#/graf [details]",
+"#/graf [btn3]"
+]
+},
+"Izrada novih, inovativnih ili zajedničkih kurikuluma ili tečajeva, {N} projekata": {
+"raw": "Izrada novih, inovativnih ili zajedničkih kurikuluma ili tečajeva, 873 projekata",
+"where": "@aria-label",
+"tags": [
+"#/graf",
+"#/graf [details]",
+"#/graf [btn3]"
+]
+},
+"Izrada novih, inovativnih il": {
+"raw": "Izrada novih, inovativnih il",
+"where": "g.[object SVGAnimatedString]",
+"tags": [
+"#/graf",
+"#/graf [details]",
+"#/graf [btn3]"
+]
+},
+"Digitalne vještine i kompetencije, {N} projekata": {
+"raw": "Digitalne vještine i kompetencije, 858 projekata",
+"where": "@aria-label",
+"tags": [
+"#/graf",
+"#/graf [details]",
+"#/graf [btn3]"
+]
+},
+"Digitalne vještine i kompete": {
+"raw": "Digitalne vještine i kompete",
+"where": "g.[object SVGAnimatedString]",
+"tags": [
+"#/graf",
+"#/graf [details]",
+"#/graf [btn3]"
+]
+},
+"Digitalni sadržaji, tehnologije i prakse, {N} projekata": {
+"raw": "Digitalni sadržaji, tehnologije i prakse, 831 projekata",
+"where": "@aria-label",
+"tags": [
+"#/graf",
+"#/graf [details]",
+"#/graf [btn3]"
+]
+},
+"Digitalni sadržaji, tehnolog": {
+"raw": "Digitalni sadržaji, tehnolog",
+"where": "g.[object SVGAnimatedString]",
+"tags": [
+"#/graf",
+"#/graf [details]",
+"#/graf [btn3]"
+]
+},
+"Razvoj tečajeva osposobljavanja, {N} projekata": {
+"raw": "Razvoj tečajeva osposobljavanja, 714 projekata",
+"where": "@aria-label",
+"tags": [
+"#/graf",
+"#/graf [details]",
+"#/graf [btn3]"
+]
+},
+"Razvoj tečajeva osposobljava": {
+"raw": "Razvoj tečajeva osposobljava",
+"where": "g.[object SVGAnimatedString]",
+"tags": [
+"#/graf",
+"#/graf [details]",
+"#/graf [btn3]"
+]
+},
+"studenti, {N} projekata": {
+"raw": "studenti, 680 projekata",
+"where": "@aria-label",
+"tags": [
+"#/graf",
+"#/graf [details]",
+"#/graf [btn3]"
+]
+},
+"Uključivanje, promicanje jednakosti i nediskriminacije, {N} projekata": {
+"raw": "Uključivanje, promicanje jednakosti i nediskriminacije, 614 projekata",
+"where": "@aria-label",
+"tags": [
+"#/graf",
+"#/graf [details]",
+"#/graf [btn3]"
+]
+},
+"Uključivanje, promicanje jed": {
+"raw": "Uključivanje, promicanje jed",
+"where": "g.[object SVGAnimatedString]",
+"tags": [
+"#/graf",
+"#/graf [details]",
+"#/graf [btn3]"
+]
+},
+"Informacijske i komunikacijske tehnologije (IKT), {N} projekata": {
+"raw": "Informacijske i komunikacijske tehnologije (IKT), 609 projekata",
+"where": "@aria-label",
+"tags": [
+"#/graf",
+"#/graf [details]",
+"#/graf [btn3]"
+]
+},
+"Informacijske i komunikacijs": {
+"raw": "Informacijske i komunikacijs",
+"where": "g.[object SVGAnimatedString]",
+"tags": [
+"#/graf",
+"#/graf [details]",
+"#/graf [btn3]"
+]
+},
+"istraživanje ili procjena potreba, {N} projekata": {
+"raw": "istraživanje ili procjena potreba, 575 projekata",
+"where": "@aria-label",
+"tags": [
+"#/graf",
+"#/graf [details]",
+"#/graf [btn3]"
+]
+},
+"istraživanje ili procjena po": {
+"raw": "istraživanje ili procjena po",
+"where": "g.[object SVGAnimatedString]",
+"tags": [
+"#/graf",
+"#/graf [details]",
+"#/graf [btn3]"
+]
+},
+"radionice, {N} projekata": {
+"raw": "radionice, 547 projekata",
+"where": "@aria-label",
+"tags": [
+"#/graf",
+"#/graf [details]",
+"#/graf [btn3]"
+]
+},
+"Okoliš i klimatske promjene, {N} projekata": {
+"raw": "Okoliš i klimatske promjene, 522 projekata",
+"where": "@aria-label",
+"tags": [
+"#/graf",
+"#/graf [details]",
+"#/graf [btn3]"
+]
+},
+"mladi, {N} projekata": {
+"raw": "mladi, 493 projekata",
+"where": "@aria-label",
+"tags": [
+"#/graf",
+"#/graf [details]",
+"#/graf [btn3]"
+]
+},
+"radnici s mladima, {N} projekata": {
+"raw": "radnici s mladima, 453 projekata",
+"where": "@aria-label",
+"tags": [
+"#/graf",
+"#/graf [details]",
+"#/graf [btn3]"
+]
+},
+"odgojitelji, {N} projekata": {
+"raw": "odgojitelji, 424 projekata",
+"where": "@aria-label",
+"tags": [
+"#/graf",
+"#/graf [details]",
+"#/graf [btn3]"
+]
+},
+"Kreativnost, umjetnost i kultura, {N} projekata": {
+"raw": "Kreativnost, umjetnost i kultura, 387 projekata",
+"where": "@aria-label",
+"tags": [
+"#/graf",
+"#/graf [details]",
+"#/graf [btn3]"
+]
+},
+"Demokracija i uključivo demokratsko sudjelovanje, {N} projekata": {
+"raw": "Demokracija i uključivo demokratsko sudjelovanje, 365 projekata",
+"where": "@aria-label",
+"tags": [
+"#/graf",
+"#/graf [details]",
+"#/graf [btn3]"
+]
+},
+"obuka za trenera, {N} projekata": {
+"raw": "obuka za trenera, 340 projekata",
+"where": "@aria-label",
+"tags": [
+"#/graf",
+"#/graf [details]",
+"#/graf [btn3]"
+]
+},
+"vršničko učenje, {N} projekata": {
+"raw": "vršničko učenje, 330 projekata",
+"where": "@aria-label",
+"tags": [
+"#/graf",
+"#/graf [details]",
+"#/graf [btn3]"
+]
+},
+"roditelji, {N} projekata": {
+"raw": "roditelji, 320 projekata",
+"where": "@aria-label",
+"tags": [
+"#/graf",
+"#/graf [details]",
+"#/graf [btn3]"
+]
+},
+"Tjelesno i mentalno zdravlje, dobrobit, {N} projekata": {
+"raw": "Tjelesno i mentalno zdravlje, dobrobit, 301 projekata",
+"where": "@aria-label",
+"tags": [
+"#/graf",
+"#/graf [details]",
+"#/graf [btn3]"
+]
+},
+"Europski identitet i vrijednosti, {N} projekata": {
+"raw": "Europski identitet i vrijednosti, 297 projekata",
+"where": "@aria-label",
+"tags": [
+"#/graf",
+"#/graf [details]",
+"#/graf [btn3]"
+]
+},
+"multiplikacijski događaji, {N} projekata": {
+"raw": "multiplikacijski događaji, 288 projekata",
+"where": "@aria-label",
+"tags": [
+"#/graf",
+"#/graf [details]",
+"#/graf [btn3]"
+]
+},
+"Razvoj ključnih kompetencija, {N} projekata": {
+"raw": "Razvoj ključnih kompetencija, 279 projekata",
+"where": "@aria-label",
+"tags": [
+"#/graf",
+"#/graf [details]",
+"#/graf [btn3]"
+]
+},
+"razmjena praksi, {N} projekata": {
+"raw": "razmjena praksi, 277 projekata",
+"where": "@aria-label",
+"tags": [
+"#/graf",
+"#/graf [details]",
+"#/graf [btn3]"
+]
+},
+"nastavnici srednjih škola, {N} projekata": {
+"raw": "nastavnici srednjih škola, 271 projekata",
+"where": "@aria-label",
+"tags": [
+"#/graf",
+"#/graf [details]",
+"#/graf [btn3]"
+]
+},
+"dionici, {N} projekata": {
+"raw": "dionici, 268 projekata",
+"where": "@aria-label",
+"tags": [
+"#/graf",
+"#/graf [details]",
+"#/graf [btn3]"
+]
+},
+"transnacionalni projektni sastanci, {N} projekata": {
+"raw": "transnacionalni projektni sastanci, 263 projekata",
+"where": "@aria-label",
+"tags": [
+"#/graf",
+"#/graf [details]",
+"#/graf [btn3]"
+]
+},
+"Poduzetničko učenje – poduzetničko obrazovanje, {N} projekata": {
+"raw": "Poduzetničko učenje – poduzetničko obrazovanje, 261 projekata",
+"where": "@aria-label",
+"tags": [
+"#/graf",
+"#/graf [details]",
+"#/graf [btn3]"
+]
+},
+"Promicanje alternativnih oblika sudjelovanja, {N} projekata": {
+"raw": "Promicanje alternativnih oblika sudjelovanja, 256 projekata",
+"where": "@aria-label",
+"tags": [
+"#/graf",
+"#/graf [details]",
+"#/graf [btn3]"
+]
+},
+"Premošćivanje međukulturnih, međugeneracijskih i društvenih razlika, {N} projekata": {
+"raw": "Premošćivanje međukulturnih, međugeneracijskih i društvenih razlika, 249 projekata",
+"where": "@aria-label",
+"tags": [
+"#/graf",
+"#/graf [details]",
+"#/graf [btn3]"
+]
+},
+"Kvaliteta i inovativnost rada s mladima, {N} projekata": {
+"raw": "Kvaliteta i inovativnost rada s mladima, 232 projekata",
+"where": "@aria-label",
+"tags": [
+"#/graf",
+"#/graf [details]",
+"#/graf [btn3]"
+]
+},
+"Zelene vještine, {N} projekata": {
+"raw": "Zelene vještine, 222 projekata",
+"where": "@aria-label",
+"tags": [
+"#/graf",
+"#/graf [details]",
+"#/graf [btn3]"
+]
+},
+"Svijest o Europskoj uniji, {N} projekata": {
+"raw": "Svijest o Europskoj uniji, 218 projekata",
+"where": "@aria-label",
+"tags": [
+"#/graf",
+"#/graf [details]",
+"#/graf [btn3]"
+]
+},
+"eksperijencijalno učenje, {N} projekata": {
+"raw": "eksperijencijalno učenje, 212 projekata",
+"where": "@aria-label",
+"tags": [
+"#/graf",
+"#/graf [details]",
+"#/graf [btn3]"
+]
+},
+"Uključivanje marginaliziranih mladih, {N} projekata": {
+"raw": "Uključivanje marginaliziranih mladih, 207 projekata",
+"where": "@aria-label",
+"tags": [
+"#/graf",
+"#/graf [details]",
+"#/graf [btn3]"
+]
+},
+"Osnovne vještine i ključne kompetencije, {N} projekata": {
+"raw": "Osnovne vještine i ključne kompetencije, 198 projekata",
+"where": "@aria-label",
+"tags": [
+"#/graf",
+"#/graf [details]",
+"#/graf [btn3]"
+]
+},
+"Osobe s invaliditetom, {N} projekata": {
+"raw": "Osobe s invaliditetom, 197 projekata",
+"where": "@aria-label",
+"tags": [
+"#/graf",
+"#/graf [details]",
+"#/graf [btn3]"
+]
+},
+"treneri, {N} projekata": {
+"raw": "treneri, 191 projekata",
+"where": "@aria-label",
+"tags": [
+"#/graf",
+"#/graf [details]",
+"#/graf [btn3]"
+]
+},
+"Međunarodni odnosi i razvojna suradnja, {N} projekata": {
+"raw": "Međunarodni odnosi i razvojna suradnja, 190 projekata",
+"where": "@aria-label",
+"tags": [
+"#/graf",
+"#/graf [details]",
+"#/graf [btn3]"
+]
+},
+"lokalne zajednice, {N} projekata": {
+"raw": "lokalne zajednice, 184 projekata",
+"where": "@aria-label",
+"tags": [
+"#/graf",
+"#/graf [details]",
+"#/graf [btn3]"
+]
+},
+"su-kreacija, {N} projekata": {
+"raw": "su-kreacija, 183 projekata",
+"where": "@aria-label",
+"tags": [
+"#/graf",
+"#/graf [details]",
+"#/graf [btn3]"
+]
+},
+"web stranica projekta, {N} projekata": {
+"raw": "web stranica projekta, 183 projekata",
+"where": "@aria-label",
+"tags": [
+"#/graf",
+"#/graf [details]",
+"#/graf [btn3]"
+]
+},
+"Kulturna baština, {N} projekata": {
+"raw": "Kulturna baština, 182 projekata",
+"where": "@aria-label",
+"tags": [
+"#/graf",
+"#/graf [details]",
+"#/graf [btn3]"
+]
+},
+"mladi s manje mogućnosti, {N} projekata": {
+"raw": "mladi s manje mogućnosti, 182 projekata",
+"where": "@aria-label",
+"tags": [
+"#/graf",
+"#/graf [details]",
+"#/graf [btn3]"
+]
+},
+"mentorstvo, {N} projekata": {
+"raw": "mentorstvo, 178 projekata",
+"where": "@aria-label",
+"tags": [
+"#/graf",
+"#/graf [details]",
+"#/graf [btn3]"
+]
+},
+"Sprječavanje ranog napuštanja školovanja i neuspjeha u obrazovanju, {N} projekata": {
+"raw": "Sprječavanje ranog napuštanja školovanja i neuspjeha u obrazovanju, 175 projekata",
+"where": "@aria-label",
+"tags": [
+"#/graf",
+"#/graf [details]",
+"#/graf [btn3]"
+]
+},
+"Poučavanje i učenje stranih jezika, {N} projekata": {
+"raw": "Poučavanje i učenje stranih jezika, 175 projekata",
+"where": "@aria-label",
+"tags": [
+"#/graf",
+"#/graf [details]",
+"#/graf [btn3]"
+]
+},
+"suizrada obrazovnih materijala, {N} projekata": {
+"raw": "suizrada obrazovnih materijala, 172 projekata",
+"where": "@aria-label",
+"tags": [
+"#/graf",
+"#/graf [details]",
+"#/graf [btn3]"
+]
+},
+"aktivnosti širenja rezultata, {N} projekata": {
+"raw": "aktivnosti širenja rezultata, 171 projekata",
+"where": "@aria-label",
+"tags": [
+"#/graf",
+"#/graf [details]",
+"#/graf [btn3]"
+]
+},
+"Zapošljivost, {N} projekata": {
+"raw": "Zapošljivost, 169 projekata",
+"where": "@aria-label",
+"tags": [
+"#/graf",
+"#/graf [details]",
+"#/graf [btn3]"
+]
+},
+"mobilnosti i razmjene studenata, {N} projekata": {
+"raw": "mobilnosti i razmjene studenata, 167 projekata",
+"where": "@aria-label",
+"tags": [
+"#/graf",
+"#/graf [details]",
+"#/graf [btn3]"
+]
+},
+"Otvoreno učenje i učenje na daljinu, {N} projekata": {
+"raw": "Otvoreno učenje i učenje na daljinu, 166 projekata",
+"where": "@aria-label",
+"tags": [
+"#/graf",
+"#/graf [details]",
+"#/graf [btn3]"
+]
+},
+"Zapošljivost mladih, {N} projekata": {
+"raw": "Zapošljivost mladih, 158 projekata",
+"where": "@aria-label",
+"tags": [
+"#/graf",
+"#/graf [details]",
+"#/graf [btn3]"
+]
+},
+"učenici iz ugroženih skupina, {N} projekata": {
+"raw": "učenici iz ugroženih skupina, 156 projekata",
+"where": "@aria-label",
+"tags": [
+"#/graf",
+"#/graf [details]",
+"#/graf [btn3]"
+]
+},
+"istraživanje i procjena potreba putem anketa, {N} projekata": {
+"raw": "istraživanje i procjena potreba putem anketa, 153 projekata",
+"where": "@aria-label",
+"tags": [
+"#/graf",
+"#/graf [details]",
+"#/graf [btn3]"
+]
+},
+"učenici srednjih škola, {N} projekata": {
+"raw": "učenici srednjih škola, 153 projekata",
+"where": "@aria-label",
+"tags": [
+"#/graf",
+"#/graf [details]",
+"#/graf [btn3]"
+]
+},
+"Profesionalno usmjeravanje, {N} projekata": {
+"raw": "Profesionalno usmjeravanje, 152 projekata",
+"where": "@aria-label",
+"tags": [
+"#/graf",
+"#/graf [details]",
+"#/graf [btn3]"
+]
+},
+"pilot sesije, {N} projekata": {
+"raw": "pilot sesije, 149 projekata",
+"where": "@aria-label",
+"tags": [
+"#/graf",
+"#/graf [details]",
+"#/graf [btn3]"
+]
+},
+"suradnja između partnera, {N} projekata": {
+"raw": "suradnja između partnera, 149 projekata",
+"where": "@aria-label",
+"tags": [
+"#/graf",
+"#/graf [details]",
+"#/graf [btn3]"
+]
+},
+"Suradnja obrazovnih ustanova i gospodarstva, {N} projekata": {
+"raw": "Suradnja obrazovnih ustanova i gospodarstva, 145 projekata",
+"where": "@aria-label",
+"tags": [
+"#/graf",
+"#/graf [details]",
+"#/graf [btn3]"
+]
+},
+"analiza potreba, {N} projekata": {
+"raw": "analiza potreba, 144 projekata",
+"where": "@aria-label",
+"tags": [
+"#/graf",
+"#/graf [details]",
+"#/graf [btn3]"
+]
+},
+"Razvoj politika za mlade, {N} projekata": {
+"raw": "Razvoj politika za mlade, 140 projekata",
+"where": "@aria-label",
+"tags": [
+"#/graf",
+"#/graf [details]",
+"#/graf [btn3]"
+]
+},
+"Jednak pristup tržištu rada i prijelaz na tržište rada, {N} projekata": {
+"raw": "Jednak pristup tržištu rada i prijelaz na tržište rada, 139 projekata",
+"where": "@aria-label",
+"tags": [
+"#/graf",
+"#/graf [details]",
+"#/graf [btn3]"
+]
+},
+"Pedagogija i didaktika, {N} projekata": {
+"raw": "Pedagogija i didaktika, 139 projekata",
+"where": "@aria-label",
+"tags": [
+"#/graf",
+"#/graf [details]",
+"#/graf [btn3]"
+]
+},
+"Znanost, tehnologija, inženjerstvo i matematika (STEM), {N} projekata": {
+"raw": "Znanost, tehnologija, inženjerstvo i matematika (STEM), 136 projekata",
+"where": "@aria-label",
+"tags": [
+"#/graf",
+"#/graf [details]",
+"#/graf [btn3]"
+]
+},
+"školsko osoblje, {N} projekata": {
+"raw": "školsko osoblje, 134 projekata",
+"where": "@aria-label",
+"tags": [
+"#/graf",
+"#/graf [details]",
+"#/graf [btn3]"
+]
+},
+"Nadvladavanje neusklađenosti ponuđenih i traženih vještina i odgovor na potrebe tržišta rada, {N} projekata": {
+"raw": "Nadvladavanje neusklađenosti ponuđenih i traženih vještina i odgovor na potrebe tržišta rada, 132 projekata",
+"where": "@aria-label",
+"tags": [
+"#/graf",
+"#/graf [details]",
+"#/graf [btn3]"
+]
+},
+"izrada nastavnih materijala, {N} projekata": {
+"raw": "izrada nastavnih materijala, 131 projekata",
+"where": "@aria-label",
+"tags": [
+"#/graf",
+"#/graf [details]",
+"#/graf [btn3]"
+]
+},
+"Osiguravanje kvalitete, {N} projekata": {
+"raw": "Osiguravanje kvalitete, 129 projekata",
+"where": "@aria-label",
+"tags": [
+"#/graf",
+"#/graf [details]",
+"#/graf [btn3]"
+]
+},
+"strukovno usavršavanje učitelja, {N} projekata": {
+"raw": "strukovno usavršavanje učitelja, 128 projekata",
+"where": "@aria-label",
+"tags": [
+"#/graf",
+"#/graf [details]",
+"#/graf [btn3]"
+]
+},
+"članovi lokalne zajednice, {N} projekata": {
+"raw": "članovi lokalne zajednice, 126 projekata",
+"where": "@aria-label",
+"tags": [
+"#/graf",
+"#/graf [details]",
+"#/graf [btn3]"
+]
+},
+"Razvoj zajednice, {N} projekata": {
+"raw": "Razvoj zajednice, 125 projekata",
+"where": "@aria-label",
+"tags": [
+"#/graf",
+"#/graf [details]",
+"#/graf [btn3]"
+]
+},
+"diseminacija rezultata projekta, {N} projekata": {
+"raw": "diseminacija rezultata projekta, 123 projekata",
+"where": "@aria-label",
+"tags": [
+"#/graf",
+"#/graf [details]",
+"#/graf [btn3]"
+]
+},
+"diseminacijski događaji, {N} projekata": {
+"raw": "diseminacijski događaji, 121 projekata",
+"where": "@aria-label",
+"tags": [
+"#/graf",
+"#/graf [details]",
+"#/graf [btn3]"
+]
+},
+"učitelji osnovnih škola, {N} projekata": {
+"raw": "učitelji osnovnih škola, 121 projekata",
+"where": "@aria-label",
+"tags": [
+"#/graf",
+"#/graf [details]",
+"#/graf [btn3]"
+]
+},
+"odrasli polaznici, {N} projekata": {
+"raw": "odrasli polaznici, 120 projekata",
+"where": "@aria-label",
+"tags": [
+"#/graf",
+"#/graf [details]",
+"#/graf [btn3]"
+]
+},
+"izrada platforme za e-učenje, {N} projekata": {
+"raw": "izrada platforme za e-učenje, 118 projekata",
+"where": "@aria-label",
+"tags": [
+"#/graf",
+"#/graf [details]",
+"#/graf [btn3]"
+]
+},
+"volonteri, {N} projekata": {
+"raw": "volonteri, 117 projekata",
+"where": "@aria-label",
+"tags": [
+"#/graf",
+"#/graf [details]",
+"#/graf [btn3]"
+]
+},
+"donositelji politika, {N} projekata": {
+"raw": "donositelji politika, 115 projekata",
+"where": "@aria-label",
+"tags": [
+"#/graf",
+"#/graf [details]",
+"#/graf [btn3]"
+]
+},
+"učenici s manje mogućnosti, {N} projekata": {
+"raw": "učenici s manje mogućnosti, 115 projekata",
+"where": "@aria-label",
+"tags": [
+"#/graf",
+"#/graf [details]",
+"#/graf [btn3]"
+]
+},
+"online sastanci, {N} projekata": {
+"raw": "online sastanci, 113 projekata",
+"where": "@aria-label",
+"tags": [
+"#/graf",
+"#/graf [details]",
+"#/graf [btn3]"
+]
+},
+"djeca, {N} projekata": {
+"raw": "djeca, 112 projekata",
+"where": "@aria-label",
+"tags": [
+"#/graf",
+"#/graf [details]",
+"#/graf [btn3]"
+]
+},
+"Promicanje rodne ravnopravnosti, {N} projekata": {
+"raw": "Promicanje rodne ravnopravnosti, 110 projekata",
+"where": "@aria-label",
+"tags": [
+"#/graf",
+"#/graf [details]",
+"#/graf [btn3]"
+]
+},
+"suradnja sa sveučilištima, {N} projekata": {
+"raw": "suradnja sa sveučilištima, 109 projekata",
+"where": "@aria-label",
+"tags": [
+"#/graf",
+"#/graf [details]",
+"#/graf [btn3]"
+]
+},
+"poduzetnici, {N} projekata": {
+"raw": "poduzetnici, 108 projekata",
+"where": "@aria-label",
+"tags": [
+"#/graf",
+"#/graf [details]",
+"#/graf [btn3]"
+]
+},
+"stručnjaci, {N} projekata": {
+"raw": "stručnjaci, 108 projekata",
+"where": "@aria-label",
+"tags": [
+"#/graf",
+"#/graf [details]",
+"#/graf [btn3]"
+]
+},
+"kratkotrajni zajednički događaji osposobljavanja osoblja, {N} projekata": {
+"raw": "kratkotrajni zajednički događaji osposobljavanja osoblja, 106 projekata",
+"where": "@aria-label",
+"tags": [
+"#/graf",
+"#/graf [details]",
+"#/graf [btn3]"
+]
+},
+"edukacijske sesije, {N} projekata": {
+"raw": "edukacijske sesije, 106 projekata",
+"where": "@aria-label",
+"tags": [
+"#/graf",
+"#/graf [details]",
+"#/graf [btn3]"
+]
+},
+"studenti visokoobrazovnih ustanova, {N} projekata": {
+"raw": "studenti visokoobrazovnih ustanova, 106 projekata",
+"where": "@aria-label",
+"tags": [
+"#/graf",
+"#/graf [details]",
+"#/graf [btn3]"
+]
+},
+"učenici, {N} projekata": {
+"raw": "učenici, 103 projekata",
+"where": "@aria-label",
+"tags": [
+"#/graf",
+"#/graf [details]",
+"#/graf [btn3]"
+]
+},
+"učitelji iz partnerskih škola, {N} projekata": {
+"raw": "učitelji iz partnerskih škola, 103 projekata",
+"where": "@aria-label",
+"tags": [
+"#/graf",
+"#/graf [details]",
+"#/graf [btn3]"
+]
+},
+"osposobljavanje mladih radnika, {N} projekata": {
+"raw": "osposobljavanje mladih radnika, 101 projekata",
+"where": "@aria-label",
+"tags": [
+"#/graf",
+"#/graf [details]",
+"#/graf [btn3]"
+]
+},
+"mješovito učenje, {N} projekata": {
+"raw": "mješovito učenje, 100 projekata",
+"where": "@aria-label",
+"tags": [
+"#/graf",
+"#/graf [details]",
+"#/graf [btn3]"
+]
+},
+"pilotno testiranje, {N} projekata": {
+"raw": "pilotno testiranje, 100 projekata",
+"where": "@aria-label",
+"tags": [
+"#/graf",
+"#/graf [details]",
+"#/graf [btn3]"
+]
+},
+"Istraživanje i inovacije, {N} projekata": {
+"raw": "Istraživanje i inovacije, 98 projekata",
+"where": "@aria-label",
+"tags": [
+"#/graf",
+"#/graf [details]",
+"#/graf [btn3]"
+]
+},
+"učenici osnovnih škola, {N} projekata": {
+"raw": "učenici osnovnih škola, 98 projekata",
+"where": "@aria-label",
+"tags": [
+"#/graf",
+"#/graf [details]",
+"#/graf [btn3]"
+]
+},
+"izrada web stranice projekta, {N} projekata": {
+"raw": "izrada web stranice projekta, 97 projekata",
+"where": "@aria-label",
+"tags": [
+"#/graf",
+"#/graf [details]",
+"#/graf [btn3]"
+]
+},
+"građani, {N} projekata": {
+"raw": "građani, 97 projekata",
+"where": "@aria-label",
+"tags": [
+"#/graf",
+"#/graf [details]",
+"#/graf [btn3]"
+]
+},
+"Prihvat i integracija izbjeglica i migranata, {N} projekata": {
+"raw": "Prihvat i integracija izbjeglica i migranata, 96 projekata",
+"where": "@aria-label",
+"tags": [
+"#/graf",
+"#/graf [details]",
+"#/graf [btn3]"
+]
+},
+"međunarodna suradnja između škola, {N} projekata": {
+"raw": "međunarodna suradnja između škola, 96 projekata",
+"where": "@aria-label",
+"tags": [
+"#/graf",
+"#/graf [details]",
+"#/graf [btn3]"
+]
+},
+"izrada kurikuluma, {N} projekata": {
+"raw": "izrada kurikuluma, 94 projekata",
+"where": "@aria-label",
+"tags": [
+"#/graf",
+"#/graf [details]",
+"#/graf [btn3]"
+]
+},
+"obitelji, {N} projekata": {
+"raw": "obitelji, 91 projekata",
+"where": "@aria-label",
+"tags": [
+"#/graf",
+"#/graf [details]",
+"#/graf [btn3]"
+]
+},
+"šira javnost, {N} projekata": {
+"raw": "šira javnost, 91 projekata",
+"where": "@aria-label",
+"tags": [
+"#/graf",
+"#/graf [details]",
+"#/graf [btn3]"
+]
+},
+"odrasle osobe, {N} projekata": {
+"raw": "odrasle osobe, 91 projekata",
+"where": "@aria-label",
+"tags": [
+"#/graf",
+"#/graf [details]",
+"#/graf [btn3]"
+]
+},
+"razvoj e-learning platforme, {N} projekata": {
+"raw": "razvoj e-learning platforme, 90 projekata",
+"where": "@aria-label",
+"tags": [
+"#/graf",
+"#/graf [details]",
+"#/graf [btn3]"
+]
+},
+"prezentacije, {N} projekata": {
+"raw": "prezentacije, 88 projekata",
+"where": "@aria-label",
+"tags": [
+"#/graf",
+"#/graf [details]",
+"#/graf [btn3]"
+]
+},
+"online pelatihan, {N} projekata": {
+"raw": "online pelatihan, 88 projekata",
+"where": "@aria-label",
+"tags": [
+"#/graf",
+"#/graf [details]",
+"#/graf [btn3]"
+]
+},
+"radionice za učenike i nastavnike, {N} projekata": {
+"raw": "radionice za učenike i nastavnike, 88 projekata",
+"where": "@aria-label",
+"tags": [
+"#/graf",
+"#/graf [details]",
+"#/graf [btn3]"
+]
+},
+"učenici iz Hrvatske, {N} projekata": {
+"raw": "učenici iz Hrvatske, 88 projekata",
+"where": "@aria-label",
+"tags": [
+"#/graf",
+"#/graf [details]",
+"#/graf [btn3]"
+]
+},
+"učenici s poteškoćama u učenju, {N} projekata": {
+"raw": "učenici s poteškoćama u učenju, 88 projekata",
+"where": "@aria-label",
+"tags": [
+"#/graf",
+"#/graf [details]",
+"#/graf [btn3]"
+]
+},
+"visokoškolske ustanove, {N} projekata": {
+"raw": "visokoškolske ustanove, 87 projekata",
+"where": "@aria-label",
+"tags": [
+"#/graf",
+"#/graf [details]",
+"#/graf [btn3]"
+]
+},
+"Energija i resursi, {N} projekata": {
+"raw": "Energija i resursi, 86 projekata",
+"where": "@aria-label",
+"tags": [
+"#/graf",
+"#/graf [details]",
+"#/graf [btn3]"
+]
+},
+"učenje temeljeno na projektima, {N} projekata": {
+"raw": "učenje temeljeno na projektima, 86 projekata",
+"where": "@aria-label",
+"tags": [
+"#/graf",
+"#/graf [details]",
+"#/graf [btn3]"
+]
+},
+"migranti, {N} projekata": {
+"raw": "migranti, 86 projekata",
+"where": "@aria-label",
+"tags": [
+"#/graf",
+"#/graf [details]",
+"#/graf [btn3]"
+]
+},
+"obrazovne ustanove, {N} projekata": {
+"raw": "obrazovne ustanove, 86 projekata",
+"where": "@aria-label",
+"tags": [
+"#/graf",
+"#/graf [details]",
+"#/graf [btn3]"
+]
+},
+"završna konferencija, {N} projekata": {
+"raw": "završna konferencija, 85 projekata",
+"where": "@aria-label",
+"tags": [
+"#/graf",
+"#/graf [details]",
+"#/graf [btn3]"
+]
+},
+"razvoj online platforme, {N} projekata": {
+"raw": "razvoj online platforme, 85 projekata",
+"where": "@aria-label",
+"tags": [
+"#/graf",
+"#/graf [details]",
+"#/graf [btn3]"
+]
+},
+"razvoj inovativnog kurikuluma, {N} projekata": {
+"raw": "razvoj inovativnog kurikuluma, 85 projekata",
+"where": "@aria-label",
+"tags": [
+"#/graf",
+"#/graf [details]",
+"#/graf [btn3]"
+]
+},
+"upotreba IKT alata u poučavanju, {N} projekata": {
+"raw": "upotreba IKT alata u poučavanju, 85 projekata",
+"where": "@aria-label",
+"tags": [
+"#/graf",
+"#/graf [details]",
+"#/graf [btn3]"
+]
+},
+"Prikazano je {N} najčešćih pojmova od {N}. Kliknite pojam za detalje.": {
+"raw": "Prikazano je 120 najčešćih pojmova od 1.231. Kliknite pojam za detalje.",
+"where": "P.lead small",
+"tags": [
+"#/graf",
+"#/graf [details]",
+"#/graf [btn3]"
+]
+},
+"Odabrani pojam": {
+"raw": "Odabrani pojam",
+"where": "DIV.kicker",
+"tags": [
+"#/graf",
+"#/graf [details]",
+"#/graf [btn3]"
+]
+},
+"Odaberite pojam u mreži ili ga potražite iznad.": {
+"raw": "Odaberite pojam u mreži ili ga potražite iznad.",
+"where": "P.lead",
+"tags": [
+"#/graf",
+"#/graf [details]",
+"#/graf [btn3]"
+]
+},
+"Skupine projekata ({N})": {
+"raw": "Skupine projekata (19)",
+"where": "DETAILS.",
+"tags": [
+"#/graf",
+"#/graf [details]",
+"#/graf [btn3]"
+]
+},
+"Projekti se prirodno grupiraju prema pojmovima koje dijele. Otvorite skupinu za detalje.": {
+"raw": "Projekti se prirodno grupiraju prema pojmovima koje dijele. Otvorite skupinu za detalje.",
+"where": "P.lead small",
+"tags": [
+"#/graf",
+"#/graf [details]",
+"#/graf [btn3]"
+]
+},
+"· {N} projekata ({N}%)": {
+"raw": "· 473 projekata (12 %)",
+"where": "SPAN.mono small",
+"tags": [
+"#/graf",
+"#/graf [details]",
+"#/graf [btn3]"
+]
+},
+"Problemi": {
+"raw": "Problemi",
+"where": "DIV.kicker",
+"tags": [
+"#/graf",
+"#/graf [details]",
+"#/graf [btn3]"
+]
+},
+"Teme": {
+"raw": "Teme",
+"where": "DIV.kicker",
+"tags": [
+"#/graf",
+"#/graf [details]",
+"#/graf [btn3]"
+]
+},
+"· Tema · {N}": {
+"raw": "· Tema · 218",
+"where": "SPAN.mono small",
+"tags": [
+"#/graf [in #view input.field ab]"
+]
+},
+"· Pristup · {N}": {
+"raw": "· Pristup · 109",
+"where": "SPAN.mono small",
+"tags": [
+"#/graf [in #view input.field ab]"
+]
+},
+"· Ciljna skupina · {N}": {
+"raw": "· Ciljna skupina · 80",
+"where": "SPAN.mono small",
+"tags": [
+"#/graf [in #view input.field ab]"
+]
+},
+"Pretraži · Projekti": {
+"raw": "Pretraži · Projekti",
+"where": "DIV.kicker",
+"tags": [
+"#/projekti",
+"#/projekti [details]",
+"#/projekti [btn2]"
+]
+},
+"KA{N} projekti": {
+"raw": "KA2 projekti",
+"where": "HEADER.",
+"tags": [
+"#/projekti",
+"#/projekti [details]",
+"#/projekti [btn2]"
+]
+},
+"Pretražite projekte s hrvatskim sudionikom i suzite ih po razdoblju, sektoru, vrsti, partnerskoj državi i statusu.": {
+"raw": "Pretražite projekte s hrvatskim sudionikom i suzite ih po razdoblju, sektoru, vrsti, partnerskoj državi i statusu.",
+"where": "P.lead",
+"tags": [
+"#/projekti",
+"#/projekti [details]",
+"#/projekti [btn2]"
+]
+},
+"Pretraga": {
+"raw": "Pretraga",
+"where": "SPAN.lab",
+"tags": [
+"#/projekti",
+"#/projekti [details]",
+"#/projekti [btn2]"
+]
+},
+"Naziv projekta…": {
+"raw": "Naziv projekta…",
+"where": "@placeholder",
+"tags": [
+"#/projekti",
+"#/projekti [details]",
+"#/projekti [btn2]"
+]
+},
+"Sva razdoblja": {
+"raw": "Sva razdoblja",
+"where": "SELECT.",
+"tags": [
+"#/projekti",
+"#/projekti [details]",
+"#/projekti [btn2]"
+]
+},
+"Partnerska država": {
+"raw": "Partnerska država",
+"where": "SPAN.lab",
+"tags": [
+"#/projekti",
+"#/projekti [details]",
+"#/projekti [btn2]"
+]
+},
+"Sve države": {
+"raw": "Sve države",
+"where": "SELECT.",
+"tags": [
+"#/projekti",
+"#/projekti [details]",
+"#/projekti [btn2]"
+]
+},
+"Hong Kong ({N})": {
+"raw": "Hong Kong (1)",
+"where": "SELECT.",
+"tags": [
+"#/projekti",
+"#/projekti [details]",
+"#/projekti [btn2]"
+]
+},
+"Hong Kong": {
+"raw": "Hong Kong",
+"where": "UL.",
+"tags": [
+"#/projekti",
+"#/projekti [details]",
+"#/projekti [btn2]"
+]
+},
+"Status": {
+"raw": "Status",
+"where": "SPAN.lab",
+"tags": [
+"#/projekti",
+"#/projekti [details]",
+"#/projekti [btn2]"
+]
+},
+"Svi statusi": {
+"raw": "Svi statusi",
+"where": "SELECT.",
+"tags": [
+"#/projekti",
+"#/projekti [details]",
+"#/projekti [btn2]"
+]
+},
+"Samo dobra praksa": {
+"raw": "Samo dobra praksa",
+"where": "LABEL.chk switch",
+"tags": [
+"#/projekti",
+"#/projekti [details]",
+"#/projekti [btn2]"
+]
+},
+"pronađenih projekata": {
+"raw": "pronađenih projekata",
+"where": "P.summary",
+"tags": [
+"#/projekti",
+"#/projekti [details]",
+"#/projekti [btn2]"
+]
+},
+"u tijeku": {
+"raw": "u tijeku",
+"where": "SPAN.pill warm",
+"tags": [
+"#/projekti",
+"#/projekti [details]",
+"#/projekti [btn2]"
+]
+},
+"Koje organizacije imaju najviše projekata?": {
+"raw": "Koje organizacije imaju najviše projekata?",
+"where": "DIV.",
+"tags": [
+"#/projekti",
+"#/projekti [details]",
+"#/projekti [btn2]"
+]
+},
+"Ukloni filter: {N}–{N}": {
+"raw": "Ukloni filter: 2014.–2020.",
+"where": "@aria-label",
+"tags": [
+"#/projekti [btn4]",
+"#/projekti [btn5]"
+]
+},
+"dobra praksa": {
+"raw": "dobra praksa",
+"where": "SPAN.pill green",
+"tags": [
+"#/projekti [btn4]",
+"#/projekti [btn16]",
+"#/projekti [btn17]"
+]
+},
+"The Art to Dance Community - an African Way of European Inclusion": {
+"raw": "The Art to Dance Community - an African Way of\nEuropean Inclusion",
+"where": "A.t",
+"tags": [
+"#/projekti [btn16]"
+]
+},
+"Ukloni filter: Hong Kong": {
+"raw": "Ukloni filter: Hong Kong",
+"where": "@aria-label",
+"tags": [
+"#/projekti [btn55]"
+]
+},
+"Ukloni filter: „a”": {
+"raw": "Ukloni filter: „a”",
+"where": "@aria-label",
+"tags": [
+"#/projekti [in #view input[type=search] a]"
+]
+},
+"Ukloni filter: „zzzzqq”": {
+"raw": "Ukloni filter: „zzzzqq”",
+"where": "@aria-label",
+"tags": [
+"#/projekti [in #view input[type=search] zzzzqq]"
+]
+},
+"„zzzzqq”": {
+"raw": "„zzzzqq”",
+"where": "BUTTON.chip",
+"tags": [
+"#/projekti [in #view input[type=search] zzzzqq]"
+]
+},
+"Nijedan projekt ne odgovara ovim filtrima.": {
+"raw": "Nijedan projekt ne odgovara ovim filtrima.",
+"where": "LI.empty",
+"tags": [
+"#/projekti [in #view input[type=search] zzzzqq]"
+]
+},
+"{N}-{N}-AT{N}-KA{N}-VET-{N}": {
+"raw": "2026-1-AT01-KA210-VET-000449326",
+"where": "NAV.",
+"tags": [
+"#/projekti/2026-1-AT01-KA210-VET-000449326",
+"#/projekti/2026-1-AT01-KA210-VET-000449326 [details]",
+"#/projekti/2026-1-AT01-KA210-VET-000449326 [in #view input[type=search] a]"
+]
+},
+"Projekt · {E}": {
+"raw": "Projekt · Mala partnerstva",
+"where": "DIV.kicker",
+"tags": [
+"#/projekti/2026-1-AT01-KA210-VET-000449326",
+"#/projekti/2026-1-AT01-KA210-VET-000449326 [details]",
+"#/projekti/2026-1-AT01-KA210-VET-000449326 [in #view input[type=search] a]"
+]
+},
+"Poziv {N}. · {E} · {E}": {
+"raw": "Poziv 2026. · Strukovno obrazovanje (VET) · U tijeku",
+"where": "P.lead",
+"tags": [
+"#/projekti/2026-1-AT01-KA210-VET-000449326",
+"#/projekti/2026-1-AT01-KA210-VET-000449326 [details]",
+"#/projekti/2026-1-AT01-KA210-VET-000449326 [in #view input[type=search] a]"
+]
+},
+"Osnovni podaci": {
+"raw": "Osnovni podaci",
+"where": "SECTION.",
+"tags": [
+"#/projekti/2026-1-AT01-KA210-VET-000449326",
+"#/projekti/2026-1-AT01-KA210-VET-000449326 [details]",
+"#/projekti/2026-1-AT01-KA210-VET-000449326 [in #view input[type=search] a]"
+]
+},
+"Oznaka projekta": {
+"raw": "Oznaka projekta",
+"where": "DL.",
+"tags": [
+"#/projekti/2026-1-AT01-KA210-VET-000449326",
+"#/projekti/2026-1-AT01-KA210-VET-000449326 [details]",
+"#/projekti/2026-1-AT01-KA210-VET-000449326 [in #view input[type=search] a]"
+]
+},
+"Godina poziva": {
+"raw": "Godina poziva",
+"where": "DL.",
+"tags": [
+"#/projekti/2026-1-AT01-KA210-VET-000449326",
+"#/projekti/2026-1-AT01-KA210-VET-000449326 [details]",
+"#/projekti/2026-1-AT01-KA210-VET-000449326 [in #view input[type=search] a]"
+]
+},
+"Programsko razdoblje": {
+"raw": "Programsko razdoblje",
+"where": "DL.",
+"tags": [
+"#/projekti/2026-1-AT01-KA210-VET-000449326",
+"#/projekti/2026-1-AT01-KA210-VET-000449326 [details]",
+"#/projekti/2026-1-AT01-KA210-VET-000449326 [in #view input[type=search] a]"
+]
+},
+"KA{N}": {
+"raw": "KA210",
+"where": "SPAN.pill",
+"tags": [
+"#/projekti/2026-1-AT01-KA210-VET-000449326",
+"#/projekti/2026-1-AT01-KA210-VET-000449326 [details]",
+"#/projekti/2026-1-AT01-KA210-VET-000449326 [in #view input[type=search] a]"
+]
+},
+"VET": {
+"raw": "VET",
+"where": "SPAN.pill",
+"tags": [
+"#/projekti/2026-1-AT01-KA210-VET-000449326",
+"#/projekti/2026-1-AT01-KA210-VET-000449326 [details]",
+"#/projekti/2026-1-AT01-KA210-VET-000449326 [in #view input[type=search] a]"
+]
+},
+"Vodeća država": {
+"raw": "Vodeća država",
+"where": "DL.",
+"tags": [
+"#/projekti/2026-1-AT01-KA210-VET-000449326",
+"#/projekti/2026-1-AT01-KA210-VET-000449326 [details]",
+"#/projekti/2026-1-AT01-KA210-VET-000449326 [in #view input[type=search] a]"
+]
+},
+"Dobra praksa": {
+"raw": "Dobra praksa",
+"where": "DL.",
+"tags": [
+"#/projekti/2026-1-AT01-KA210-VET-000449326",
+"#/projekti/2026-1-AT01-KA210-VET-000449326 [details]",
+"#/projekti/2026-1-AT01-KA210-VET-000449326 [in #view input[type=search] a]"
+]
+},
+"Nije označen": {
+"raw": "Nije označen",
+"where": "DL.",
+"tags": [
+"#/projekti/2026-1-AT01-KA210-VET-000449326",
+"#/projekti/2026-1-AT01-KA210-VET-000449326 [details]",
+"#/projekti/2026-1-AT01-KA210-VET-000449326 [in #view input[type=search] a]"
+]
+},
+"Sažetak projekta, popis sudionika i dodijeljeni iznos čitaju se iz datoteke": {
+"raw": "Sažetak projekta, popis sudionika i dodijeljeni iznos čitaju se iz datoteke",
+"where": "DIV.note",
+"tags": [
+"#/projekti/2026-1-AT01-KA210-VET-000449326",
+"#/projekti/2026-1-AT01-KA210-VET-000449326 [details]",
+"#/projekti/2026-1-AT01-KA210-VET-000449326 [in #view input[type=search] a]"
+]
+},
+"projects_full.json": {
+"raw": "projects_full.json",
+"where": "SPAN.mono",
+"tags": [
+"#/projekti/2026-1-AT01-KA210-VET-000449326",
+"#/projekti/2026-1-AT01-KA210-VET-000449326 [details]",
+"#/projekti/2026-1-AT01-KA210-VET-000449326 [in #view input[type=search] a]"
+]
+},
+", koja se generira u pipelineu i nije u ovom prototipu. Prikazani su podaci koji postoje u popisu projekata.": {
+"raw": ", koja se generira u pipelineu i nije u ovom prototipu. Prikazani su podaci koji postoje u popisu projekata.",
+"where": "DIV.note",
+"tags": [
+"#/projekti/2026-1-AT01-KA210-VET-000449326",
+"#/projekti/2026-1-AT01-KA210-VET-000449326 [details]",
+"#/projekti/2026-1-AT01-KA210-VET-000449326 [in #view input[type=search] a]"
+]
+},
+"Države u projektu": {
+"raw": "Države u projektu",
+"where": "SECTION.",
+"tags": [
+"#/projekti/2026-1-AT01-KA210-VET-000449326",
+"#/projekti/2026-1-AT01-KA210-VET-000449326 [details]",
+"#/projekti/2026-1-AT01-KA210-VET-000449326 [in #view input[type=search] a]"
+]
+},
+"{N} država, od toga {N} uz Hrvatsku.": {
+"raw": "3 država, od toga 2 uz Hrvatsku.",
+"where": "P.lead",
+"tags": [
+"#/projekti/2026-1-AT01-KA210-VET-000449326",
+"#/projekti/2026-1-AT01-KA210-VET-000449326 [details]",
+"#/projekti/2026-1-AT01-KA210-VET-000449326 [in #view input[type=search] a]"
+]
+},
+"Slični projekti": {
+"raw": "Slični projekti",
+"where": "SECTION.",
+"tags": [
+"#/projekti/2026-1-AT01-KA210-VET-000449326",
+"#/projekti/2026-1-AT01-KA210-VET-000449326 [details]",
+"#/projekti/2026-1-AT01-KA210-VET-000449326 [in #view input[type=search] a]"
+]
+},
+"Ista godina poziva i ista vrsta projekta.": {
+"raw": "Ista godina poziva i ista vrsta projekta.",
+"where": "P.lead",
+"tags": [
+"#/projekti/2026-1-AT01-KA210-VET-000449326",
+"#/projekti/2026-1-AT01-KA210-VET-000449326 [details]",
+"#/projekti/2026-1-AT01-KA210-VET-000449326 [in #view input[type=search] a]"
+]
+},
+"← Natrag na projekte": {
+"raw": "← Natrag na projekte",
+"where": "A.btn",
+"tags": [
+"#/projekti/2026-1-AT01-KA210-VET-000449326",
+"#/projekti/2026-1-AT01-KA210-VET-000449326 [details]",
+"#/projekti/2026-1-AT01-KA210-VET-000449326 [in #view input[type=search] a]"
+]
+},
+"Projekt": {
+"raw": "Projekt",
+"where": "SPAN.",
+"tags": [
+"#/projekti/2026-1-AT01-KA210-VET-000449326",
+"#/projekti/2026-1-AT01-KA210-VET-000449326 [details]",
+"#/projekti/2026-1-AT01-KA210-VET-000449326 [in #view input[type=search] a]"
+]
+},
+"Pretraži · Organizacije": {
+"raw": "Pretraži · Organizacije",
+"where": "DIV.kicker",
+"tags": [
+"#/organizacije",
+"#/organizacije [details]",
+"#/organizacije [btn2]"
+]
+},
+"Organizacije u KA{N} partnerstvima": {
+"raw": "Organizacije u KA2 partnerstvima",
+"where": "HEADER.",
+"tags": [
+"#/organizacije",
+"#/organizacije [details]",
+"#/organizacije [btn2]"
+]
+},
+"Pretražite hrvatske organizacije po nazivu ili mjestu i suzite ih po županiji i vrsti.": {
+"raw": "Pretražite hrvatske organizacije po nazivu ili mjestu i suzite ih po županiji i vrsti.",
+"where": "P.lead",
+"tags": [
+"#/organizacije",
+"#/organizacije [details]",
+"#/organizacije [btn2]"
+]
+},
+"Naziv ili mjesto…": {
+"raw": "Naziv ili mjesto…",
+"where": "@placeholder",
+"tags": [
+"#/organizacije",
+"#/organizacije [details]",
+"#/organizacije [btn2]"
+]
+},
+"Vrsta organizacije": {
+"raw": "Vrsta organizacije",
+"where": "SPAN.lab",
+"tags": [
+"#/organizacije",
+"#/organizacije [details]",
+"#/organizacije [btn2]"
+]
+},
+"culture": {
+"raw": "culture",
+"where": "SELECT.",
+"tags": [
+"#/organizacije",
+"#/organizacije [details]",
+"#/organizacije [btn2]"
+]
+},
+"sport": {
+"raw": "sport",
+"where": "SELECT.",
+"tags": [
+"#/organizacije",
+"#/organizacije [details]",
+"#/organizacije [btn2]"
+]
+},
+"Sva": {
+"raw": "Sva",
+"where": "DIV.",
+"tags": [
+"#/organizacije",
+"#/organizacije [details]",
+"#/organizacije [btn2]"
+]
+},
+"Poredak": {
+"raw": "Poredak",
+"where": "SPAN.lab",
+"tags": [
+"#/organizacije",
+"#/organizacije [details]",
+"#/organizacije [btn2]"
+]
+},
+"Po broju projekata": {
+"raw": "Po broju projekata",
+"where": "SELECT.",
+"tags": [
+"#/organizacije",
+"#/organizacije [details]",
+"#/organizacije [btn2]"
+]
+},
+"Po koordinacijama": {
+"raw": "Po koordinacijama",
+"where": "SELECT.",
+"tags": [
+"#/organizacije",
+"#/organizacije [details]",
+"#/organizacije [btn2]"
+]
+},
+"Po nazivu": {
+"raw": "Po nazivu",
+"where": "SELECT.",
+"tags": [
+"#/organizacije",
+"#/organizacije [details]",
+"#/organizacije [btn2]"
+]
+},
+"Samo koordinatori": {
+"raw": "Samo koordinatori",
+"where": "LABEL.chk switch",
+"tags": [
+"#/organizacije",
+"#/organizacije [details]",
+"#/organizacije [btn2]"
+]
+},
+"/ {N} prikazano": {
+"raw": "/ 1.501 prikazano",
+"where": "P.summary",
+"tags": [
+"#/organizacije",
+"#/organizacije [details]",
+"#/organizacije [btn2]"
+]
+},
+"Naziv": {
+"raw": "Naziv",
+"where": "DIV.",
+"tags": [
+"#/organizacije",
+"#/organizacije [details]",
+"#/organizacije [btn2]"
+]
+},
+"Mjesto": {
+"raw": "Mjesto",
+"where": "DIV.",
+"tags": [
+"#/organizacije",
+"#/organizacije [details]",
+"#/organizacije [btn2]"
+]
+},
+"Vrsta": {
+"raw": "Vrsta",
+"where": "DIV.",
+"tags": [
+"#/organizacije",
+"#/organizacije [details]",
+"#/organizacije [btn2]"
+]
+},
+"Organizacija · {E}": {
+"raw": "Organizacija · Visoka učilišta",
+"where": "DIV.kicker",
+"tags": [
+"#/organizacije/OID-E10209270",
+"#/organizacije/OID-E10209270 [details]",
+"#/organizacije/OID-E10209270 [btn0]"
+]
+},
+"Zagreb · {E}": {
+"raw": "Zagreb · Grad Zagreb",
+"where": "P.lead",
+"tags": [
+"#/organizacije/OID-E10209270",
+"#/organizacije/OID-E10209270 [details]",
+"#/organizacije/OID-E10209270 [btn0]"
+]
+},
+"KA{N} projekata, {N}–{N}": {
+"raw": "KA2 projekata, 2014.–2026.",
+"where": "ARTICLE.",
+"tags": [
+"#/organizacije/OID-E10209270",
+"#/organizacije/OID-E10209270 [details]",
+"#/organizacije/OID-E10209270 [btn0]"
+]
+},
+"koordinator": {
+"raw": "koordinator",
+"where": "DIV.",
+"tags": [
+"#/organizacije/OID-E10209270",
+"#/organizacije/OID-E10209270 [details]",
+"#/organizacije/OID-E10209270 [btn0]"
+]
+},
+"{N} kao partner": {
+"raw": "208 kao partner",
+"where": "ARTICLE.",
+"tags": [
+"#/organizacije/OID-E10209270",
+"#/organizacije/OID-E10209270 [details]",
+"#/organizacije/OID-E10209270 [btn0]"
+]
+},
+"Koordinacije po razdoblju": {
+"raw": "Koordinacije po razdoblju",
+"where": "ARTICLE.",
+"tags": [
+"#/organizacije/OID-E10209270",
+"#/organizacije/OID-E10209270 [details]",
+"#/organizacije/OID-E10209270 [btn0]"
+]
+},
+"Grantovi, dobra praksa": {
+"raw": "Grantovi, dobra praksa",
+"where": "ARTICLE.",
+"tags": [
+"#/organizacije/OID-E10209270",
+"#/organizacije/OID-E10209270 [details]",
+"#/organizacije/OID-E10209270 [btn0]"
+]
+},
+"Dolazi iz orgs_full.json": {
+"raw": "Dolazi iz orgs_full.json",
+"where": "ARTICLE.",
+"tags": [
+"#/organizacije/OID-E10209270",
+"#/organizacije/OID-E10209270 [details]",
+"#/organizacije/OID-E10209270 [btn0]"
+]
+},
+"Detaljni dijelovi (vremenska crta, popis projekata, partneri, teme) čitaju se iz": {
+"raw": "Detaljni dijelovi (vremenska crta, popis projekata, partneri, teme) čitaju se iz",
+"where": "DIV.note",
+"tags": [
+"#/organizacije/OID-E10209270",
+"#/organizacije/OID-E10209270 [details]",
+"#/organizacije/OID-E10209270 [btn0]"
+]
+},
+"orgs_full.json": {
+"raw": "orgs_full.json",
+"where": "SPAN.mono",
+"tags": [
+"#/organizacije/OID-E10209270",
+"#/organizacije/OID-E10209270 [details]",
+"#/organizacije/OID-E10209270 [btn0]"
+]
+},
+", koji se generira u pipelineu. Ispod je raspored; pun primjer vidi se na organizaciji „Gimnazija Metković”.": {
+"raw": ", koji se generira u pipelineu. Ispod je raspored; pun primjer vidi se na organizaciji „Gimnazija Metković”.",
+"where": "DIV.note",
+"tags": [
+"#/organizacije/OID-E10209270",
+"#/organizacije/OID-E10209270 [details]",
+"#/organizacije/OID-E10209270 [btn0]"
+]
+},
+"Sudjelovanje kroz vrijeme": {
+"raw": "Sudjelovanje kroz vrijeme",
+"where": "DIV.",
+"tags": [
+"#/organizacije/OID-E10209270",
+"#/organizacije/OID-E10209270 [details]",
+"#/organizacije/OID-E10209270 [btn0]"
+]
+},
+"Partner": {
+"raw": "Partner",
+"where": "DIV.",
+"tags": [
+"#/organizacije/OID-E10209270",
+"#/organizacije/OID-E10209270 [details]",
+"#/organizacije/OID-E10209270 [btn0]"
+]
+},
+"Izbor za {N}. još traje pa je zadnja godina nepotpuna. Granica razdoblja: popisi tema {N}–{N} i {N}–{N} razlikuju se.": {
+"raw": "Izbor za 2026. još traje pa je zadnja godina nepotpuna. Granica razdoblja: popisi tema 2014.–2020. i 2021.–2027. razlikuju se.",
+"where": "P.lead small",
+"tags": [
+"#/organizacije/OID-E10209270",
+"#/organizacije/OID-E10209270 [details]",
+"#/organizacije/OID-E10209270 [btn0]"
+]
+},
+"Svi {N}": {
+"raw": "Svi 241",
+"where": "DIV.",
+"tags": [
+"#/organizacije/OID-E10209270",
+"#/organizacije/OID-E10209270 [details]",
+"#/organizacije/OID-E10209270 [btn0]"
+]
+},
+"Koordinator {N}": {
+"raw": "Koordinator 33",
+"where": "DIV.",
+"tags": [
+"#/organizacije/OID-E10209270",
+"#/organizacije/OID-E10209270 [details]",
+"#/organizacije/OID-E10209270 [btn0]"
+]
+},
+"Partner {N}": {
+"raw": "Partner 208",
+"where": "DIV.",
+"tags": [
+"#/organizacije/OID-E10209270",
+"#/organizacije/OID-E10209270 [details]",
+"#/organizacije/OID-E10209270 [btn0]"
+]
+},
+"Vodi": {
+"raw": "Vodi",
+"where": "DIV.",
+"tags": [
+"#/organizacije/OID-E10209270",
+"#/organizacije/OID-E10209270 [details]",
+"#/organizacije/OID-E10209270 [btn0]"
+]
+},
+"Popis projekata organizacije dolazi iz datoteke orgs_full.json.": {
+"raw": "Popis projekata organizacije dolazi iz datoteke orgs_full.json.",
+"where": "DIV.empty",
+"tags": [
+"#/organizacije/OID-E10209270",
+"#/organizacije/OID-E10209270 [details]",
+"#/organizacije/OID-E10209270 [btn0]"
+]
+},
+"Najčešće surađuje s": {
+"raw": "Najčešće surađuje s",
+"where": "SECTION.",
+"tags": [
+"#/organizacije/OID-E10209270",
+"#/organizacije/OID-E10209270 [details]",
+"#/organizacije/OID-E10209270 [btn0]"
+]
+},
+"Države u zajedničkim projektima (broj projekata).": {
+"raw": "Države u zajedničkim projektima (broj projekata).",
+"where": "P.lead small",
+"tags": [
+"#/organizacije/OID-E10209270",
+"#/organizacije/OID-E10209270 [details]",
+"#/organizacije/OID-E10209270 [btn0]"
+]
+},
+"Popis partnerskih država dolazi iz datoteke orgs_full.json.": {
+"raw": "Popis partnerskih država dolazi iz datoteke orgs_full.json.",
+"where": "DIV.empty",
+"tags": [
+"#/organizacije/OID-E10209270",
+"#/organizacije/OID-E10209270 [details]",
+"#/organizacije/OID-E10209270 [btn0]"
+]
+},
+"Teme koje se ponavljaju": {
+"raw": "Teme koje se ponavljaju",
+"where": "SECTION.",
+"tags": [
+"#/organizacije/OID-E10209270",
+"#/organizacije/OID-E10209270 [details]",
+"#/organizacije/OID-E10209270 [btn0]"
+]
+},
+"Teme organizacije dolaze iz datoteke orgs_full.json.": {
+"raw": "Teme organizacije dolaze iz datoteke orgs_full.json.",
+"where": "DIV.empty",
+"tags": [
+"#/organizacije/OID-E10209270",
+"#/organizacije/OID-E10209270 [details]",
+"#/organizacije/OID-E10209270 [btn0]"
+]
+},
+"Slične organizacije": {
+"raw": "Slične organizacije",
+"where": "H2.sh",
+"tags": [
+"#/organizacije/OID-E10209270",
+"#/organizacije/OID-E10209270 [details]",
+"#/organizacije/OID-E10209270 [btn0]"
+]
+},
+"Ista vrsta organizacije u istoj županiji, po broju projekata.": {
+"raw": "Ista vrsta organizacije u istoj županiji, po broju projekata.",
+"where": "P.lead small",
+"tags": [
+"#/organizacije/OID-E10209270",
+"#/organizacije/OID-E10209270 [details]",
+"#/organizacije/OID-E10209270 [btn0]"
+]
+},
+"{N} KA{N} projekata": {
+"raw": "13 KA2 projekata",
+"where": "A.",
+"tags": [
+"#/organizacije/OID-E10209270",
+"#/organizacije/OID-E10209270 [details]",
+"#/organizacije/OID-E10209270 [btn0]"
+]
+},
+"Rijeka · {E}": {
+"raw": "Rijeka · Primorsko-goranska",
+"where": "P.lead",
+"tags": [
+"#/organizacije/OID-E10147426",
+"#/organizacije/OID-E10147426 [details]",
+"#/organizacije/OID-E10147426 [btn0]"
+]
+},
+"Pitajte · Asistent": {
+"raw": "Pitajte · Asistent",
+"where": "DIV.kicker",
+"tags": [
+"#/pitajte",
+"#/pitajte [details]",
+"#/pitajte [btn0]"
+]
+},
+"Asistent za pitanja o podacima": {
+"raw": "Asistent za pitanja o podacima",
+"where": "HEADER.",
+"tags": [
+"#/pitajte",
+"#/pitajte [details]",
+"#/pitajte [btn0]"
+]
+},
+"Poseban asistent koji odgovara na pitanja o ovim podacima: projektima, organizacijama, županijama, državama i temama. Odgovara samo iz podataka atlasa i uz svaki odgovor navodi izvore.": {
+"raw": "Poseban asistent koji odgovara na pitanja o ovim podacima: projektima, organizacijama, županijama, državama i temama. Odgovara samo iz podataka atlasa i uz svaki odgovor navodi izvore.",
+"where": "P.lead",
+"tags": [
+"#/pitajte",
+"#/pitajte [details]",
+"#/pitajte [btn0]"
+]
+},
+"Razgovor s asistentom": {
+"raw": "Razgovor s asistentom",
+"where": "@aria-label",
+"tags": [
+"#/pitajte",
+"#/pitajte [details]",
+"#/pitajte [btn0]"
+]
+},
+"Odgovara iz podataka atlasa, uz izvore": {
+"raw": "Odgovara iz podataka atlasa, uz izvore",
+"where": "DIV.",
+"tags": [
+"#/pitajte",
+"#/pitajte [details]",
+"#/pitajte [btn0]"
+]
+},
+"Što možete pitati": {
+"raw": "Što možete pitati",
+"where": "@aria-label",
+"tags": [
+"#/pitajte",
+"#/pitajte [details]",
+"#/pitajte [btn0]"
+]
+},
+"Države i teme": {
+"raw": "Države i teme",
+"where": "ASIDE.",
+"tags": [
+"#/pitajte",
+"#/pitajte [details]",
+"#/pitajte [btn0]"
+]
+},
+"Brojke i pojmovi": {
+"raw": "Brojke i pojmovi",
+"where": "ASIDE.",
+"tags": [
+"#/pitajte",
+"#/pitajte [details]",
+"#/pitajte [btn0]"
+]
+},
+"Što znači koordinator?": {
+"raw": "Što znači koordinator?",
+"where": "DIV.",
+"tags": [
+"#/pitajte",
+"#/pitajte [details]",
+"#/pitajte [btn0]"
+]
+},
+"Asistent ne zna ništa izvan ovih podataka i može pogriješiti. Provjerite izvore ispod odgovora.": {
+"raw": "Asistent ne zna ništa izvan ovih podataka i može pogriješiti. Provjerite izvore ispod odgovora.",
+"where": "P.small muted",
+"tags": [
+"#/pitajte",
+"#/pitajte [details]",
+"#/pitajte [btn0]"
+]
+},
+"O atlasu": {
+"raw": "O atlasu",
+"where": "NAV.",
+"tags": [
+"#/o-podacima",
+"#/o-podacima [details]",
+"#/o-podacima [in #view input[type=search] a]"
+]
+},
+"Rječnik": {
+"raw": "Rječnik",
+"where": "NAV.",
+"tags": [
+"#/o-podacima",
+"#/o-podacima [details]",
+"#/o-podacima [in #view input[type=search] a]"
+]
+},
+"Informacije · O podacima": {
+"raw": "Informacije · O podacima",
+"where": "DIV.kicker",
+"tags": [
+"#/o-podacima",
+"#/o-podacima [details]",
+"#/o-podacima [in #view input[type=search] a]"
+]
+},
+"Odakle podaci dolaze i što znače": {
+"raw": "Odakle podaci dolaze i što znače",
+"where": "HEADER.",
+"tags": [
+"#/o-podacima",
+"#/o-podacima [details]",
+"#/o-podacima [in #view input[type=search] a]"
+]
+},
+"Kratko objašnjenje izvora, obuhvata i ograničenja, da brojke možete čitati s razumijevanjem.": {
+"raw": "Kratko objašnjenje izvora, obuhvata i ograničenja, da brojke možete čitati s razumijevanjem.",
+"where": "P.lead",
+"tags": [
+"#/o-podacima",
+"#/o-podacima [details]",
+"#/o-podacima [in #view input[type=search] a]"
+]
+},
+"Što atlas prikazuje": {
+"raw": "Što atlas prikazuje",
+"where": "DIV.",
+"tags": [
+"#/o-podacima",
+"#/o-podacima [details]",
+"#/o-podacima [in #view input[type=search] a]"
+]
+},
+"KA{N} partnerstva Erasmus+ programa u kojima sudjeluje barem jedna hrvatska organizacija, od {N}. do {N}. godine. Trenutno je to {N} projekata, što je {N}% svih KA{N} projekata u EU. Podaci su ažurirani {N}. {N}. {N}.": {
+"raw": "KA2 partnerstva Erasmus+ programa u kojima sudjeluje barem jedna hrvatska organizacija, od 2014. do 2026. godine. Trenutno je to 3.830 projekata, što je 8,2 % svih KA2 projekata u EU. Podaci su ažurirani 3. 11. 2026.",
+"where": "DIV.",
+"tags": [
+"#/o-podacima",
+"#/o-podacima [details]",
+"#/o-podacima [in #view input[type=search] a]"
+]
+},
+"Izvori": {
+"raw": "Izvori",
+"where": "DIV.",
+"tags": [
+"#/o-podacima",
+"#/o-podacima [details]",
+"#/o-podacima [in #view input[type=search] a]"
+]
+},
+"Europska komisija. Skupovi podataka o KA{N} projektima za {N}–{N} i {N}–{N}": {
+"raw": "Europska komisija. Skupovi podataka o KA2 projektima za 2014.–2020. i 2021.–2027.",
+"where": "SPAN.small",
+"tags": [
+"#/o-podacima",
+"#/o-podacima [details]",
+"#/o-podacima [in #view input[type=search] a]"
+]
+},
+"Agencija za mobilnost i programe EU. Popisi projekata i organizacija.": {
+"raw": "Agencija za mobilnost i programe EU. Popisi projekata i organizacija.",
+"where": "SPAN.small",
+"tags": [
+"#/o-podacima",
+"#/o-podacima [details]",
+"#/o-podacima [in #view input[type=search] a]"
+]
+},
+"Što brojke ne obuhvaćaju": {
+"raw": "Što brojke ne obuhvaćaju",
+"where": "DIV.",
+"tags": [
+"#/o-podacima",
+"#/o-podacima [details]",
+"#/o-podacima [in #view input[type=search] a]"
+]
+},
+"Samo KA{N} projekte. KA{N} mobilnosti nisu uključene.": {
+"raw": "Samo KA2 projekte. KA1 mobilnosti nisu uključene.",
+"where": "DIV.",
+"tags": [
+"#/o-podacima",
+"#/o-podacima [details]",
+"#/o-podacima [in #view input[type=search] a]"
+]
+},
+"Odabir za {N}. još traje, pa je posljednja godina nepotpuna.": {
+"raw": "Odabir za 2026. još traje, pa je posljednja godina nepotpuna.",
+"where": "DIV.",
+"tags": [
+"#/o-podacima",
+"#/o-podacima [details]",
+"#/o-podacima [in #view input[type=search] a]"
+]
+},
+"Iznosi su okvirne potpore dodijeljene pri odabiru. Bilježe se po projektu i nisu podijeljeni među partnere.": {
+"raw": "Iznosi su okvirne potpore dodijeljene pri odabiru. Bilježe se po projektu i nisu podijeljeni među partnere.",
+"where": "DIV.",
+"tags": [
+"#/o-podacima",
+"#/o-podacima [details]",
+"#/o-podacima [in #view input[type=search] a]"
+]
+},
+"Škole iz projekata povezuju se s registrom škola prema nazivu i poštanskom broju, pa su udjeli pokrivenosti procjene.": {
+"raw": "Škole iz projekata povezuju se s registrom škola prema nazivu i poštanskom broju, pa su udjeli pokrivenosti procjene.",
+"where": "DIV.",
+"tags": [
+"#/o-podacima",
+"#/o-podacima [details]",
+"#/o-podacima [in #view input[type=search] a]"
+]
+},
+"Nacionalni popis projekata {N}–{N} ima {N} projekt, {N} manje od županijskog sažetka iste agencije ({N}). Brojke u atlasu dolaze iz izvoza EU-a i ne ovise o tom popisu.": {
+"raw": "Nacionalni popis projekata 2014.–2020. ima 2.061 projekt, 50 manje od županijskog sažetka iste agencije (2.111). Brojke u atlasu dolaze iz izvoza EU-a i ne ovise o tom popisu.",
+"where": "DIV.",
+"tags": [
+"#/o-podacima",
+"#/o-podacima [details]",
+"#/o-podacima [in #view input[type=search] a]"
+]
+},
+"Vrsta organizacije ponegdje je nadopunjena iz drugih zapisa iste organizacije.": {
+"raw": "Vrsta organizacije ponegdje je nadopunjena iz drugih zapisa iste organizacije.",
+"where": "DIV.",
+"tags": [
+"#/o-podacima",
+"#/o-podacima [details]",
+"#/o-podacima [in #view input[type=search] a]"
+]
+},
+"Teme, pristupi i pojmovi": {
+"raw": "Teme, pristupi i pojmovi",
+"where": "DIV.",
+"tags": [
+"#/o-podacima",
+"#/o-podacima [details]",
+"#/o-podacima [in #view input[type=search] a]"
+]
+},
+"Jezični model pročitao je sažetak svakog projekta i izdvojio pristupe, ciljne skupine, rezultate i probleme, a slični izrazi grupirani su po značenju. Brojevi su donja granica: projekt koji nešto radi, ali to ne spominje, nije izbrojen. Čitajte obrasce, a ne točne brojke pojedinog pojma. „Dobra praksa” je oznaka EU-a za projekte odabrane kao primjere.": {
+"raw": "Jezični model pročitao je sažetak svakog projekta i izdvojio pristupe, ciljne skupine, rezultate i probleme, a slični izrazi grupirani su po značenju. Brojevi su donja granica: projekt koji nešto radi, ali to ne spominje, nije izbrojen. Čitajte obrasce, a ne točne brojke pojedinog pojma. „Dobra praksa” je oznaka EU-a za projekte odabrane kao primjere.",
+"where": "DIV.",
+"tags": [
+"#/o-podacima",
+"#/o-podacima [details]",
+"#/o-podacima [in #view input[type=search] a]"
+]
+},
+"Kako se podaci osvježavaju": {
+"raw": "Kako se podaci osvježavaju",
+"where": "DIV.",
+"tags": [
+"#/o-podacima",
+"#/o-podacima [details]",
+"#/o-podacima [in #view input[type=search] a]"
+]
+},
+"Kad se u izvore dodaju novi projekti, obrada se ponovno pokrene i izračuna brojke, a stranica se izgradi iznova. Ništa se ne unosi ručno.": {
+"raw": "Kad se u izvore dodaju novi projekti, obrada se ponovno pokrene i izračuna brojke, a stranica se izgradi iznova. Ništa se ne unosi ručno.",
+"where": "DIV.",
+"tags": [
+"#/o-podacima",
+"#/o-podacima [details]",
+"#/o-podacima [in #view input[type=search] a]"
+]
+},
+"Odakle dolaze podaci?": {
+"raw": "Odakle dolaze podaci?",
+"where": "DIV.",
+"tags": [
+"#/o-podacima",
+"#/o-podacima [details]",
+"#/o-podacima [in #view input[type=search] a]"
+]
+},
+"Informacije · Rječnik": {
+"raw": "Informacije · Rječnik",
+"where": "DIV.kicker",
+"tags": [
+"#/rjecnik",
+"#/rjecnik [details]",
+"#/rjecnik [btn3]"
+]
+},
+"Kratka objašnjenja izraza koji se koriste u atlasu, da brojke možete čitati s razumijevanjem.": {
+"raw": "Kratka objašnjenja izraza koji se koriste u atlasu, da brojke možete čitati s razumijevanjem.",
+"where": "P.lead",
+"tags": [
+"#/rjecnik",
+"#/rjecnik [details]",
+"#/rjecnik [btn3]"
+]
+},
+"Npr. koordinator…": {
+"raw": "Npr. koordinator…",
+"where": "@placeholder",
+"tags": [
+"#/rjecnik",
+"#/rjecnik [details]",
+"#/rjecnik [btn3]"
+]
+},
+"KA{N} i KA{N}": {
+"raw": "KA1 i KA2",
+"where": "DIV.",
+"tags": [
+"#/rjecnik",
+"#/rjecnik [details]",
+"#/rjecnik [btn3]"
+]
+},
+"Ključne aktivnosti programa Erasmus+. KA{N} su mobilnosti pojedinaca (učenje u inozemstvu), a KA{N} suradnja organizacija i razmjena dobrih praksi kroz partnerstva. Ovaj atlas prikazuje samo KA{N}.": {
+"raw": "Ključne aktivnosti programa Erasmus+. KA1 su mobilnosti pojedinaca (učenje u inozemstvu), a KA2 suradnja organizacija i razmjena dobrih praksi kroz partnerstva. Ovaj atlas prikazuje samo KA2.",
+"where": "DIV.",
+"tags": [
+"#/rjecnik",
+"#/rjecnik [details]",
+"#/rjecnik [btn3]"
+]
+},
+"Partnerstvo": {
+"raw": "Partnerstvo",
+"where": "DIV.",
+"tags": [
+"#/rjecnik",
+"#/rjecnik [details]",
+"#/rjecnik [btn3]"
+]
+},
+"Projekt u kojem organizacije iz više država zajedno razvijaju rezultate, metode ili materijale. U podacima ga brojimo kao jedan projekt, bez obzira na broj partnera.": {
+"raw": "Projekt u kojem organizacije iz više država zajedno razvijaju rezultate, metode ili materijale. U podacima ga brojimo kao jedan projekt, bez obzira na broj partnera.",
+"where": "DIV.",
+"tags": [
+"#/rjecnik",
+"#/rjecnik [details]",
+"#/rjecnik [btn3]"
+]
+},
+"Vrsta KA{N} projekata u razdoblju {N}–{N} za organizacije koje žele razviti i podijeliti nove prakse, na europskoj razini.": {
+"raw": "Vrsta KA2 projekata u razdoblju 2021.–2027. za organizacije koje žele razviti i podijeliti nove prakse, na europskoj razini.",
+"where": "DIV.",
+"tags": [
+"#/rjecnik",
+"#/rjecnik [details]",
+"#/rjecnik [btn3]"
+]
+},
+"Jednostavnija i manja KA{N} partnerstva iz razdoblja {N}–{N}, namijenjena novim i manjim organizacijama.": {
+"raw": "Jednostavnija i manja KA2 partnerstva iz razdoblja 2021.–2027., namijenjena novim i manjim organizacijama.",
+"where": "DIV.",
+"tags": [
+"#/rjecnik",
+"#/rjecnik [details]",
+"#/rjecnik [btn3]"
+]
+},
+"Naziv za KA{N} partnerstva u razdoblju {N}–{N} Obuhvaćaju i razmjene škola, koje atlas prikazuje kao zasebnu vrstu.": {
+"raw": "Naziv za KA2 partnerstva u razdoblju 2014.–2020. Obuhvaćaju i razmjene škola, koje atlas prikazuje kao zasebnu vrstu.",
+"where": "DIV.",
+"tags": [
+"#/rjecnik",
+"#/rjecnik [details]",
+"#/rjecnik [btn3]"
+]
+},
+"Organizacija koja podnosi prijavu, vodi projekt i prima grant. {E} je koordinator kada je vodeća organizacija iz Hrvatske.": {
+"raw": "Organizacija koja podnosi prijavu, vodi projekt i prima grant. Hrvatska je koordinator kada je vodeća organizacija iz Hrvatske.",
+"where": "DIV.",
+"tags": [
+"#/rjecnik",
+"#/rjecnik [details]",
+"#/rjecnik [btn3]"
+]
+},
+"Organizacija koja sudjeluje u projektu koji netko drugi koordinira.": {
+"raw": "Organizacija koja sudjeluje u projektu koji netko drugi koordinira.",
+"where": "DIV.",
+"tags": [
+"#/rjecnik",
+"#/rjecnik [details]",
+"#/rjecnik [btn3]"
+]
+},
+"Projekt sa sudionikom iz županije": {
+"raw": "Projekt sa sudionikom iz županije",
+"where": "DIV.",
+"tags": [
+"#/rjecnik",
+"#/rjecnik [details]",
+"#/rjecnik [btn3]"
+]
+},
+"Projekt u kojem sudjeluje barem jedna organizacija iz te županije. Projekt s organizacijama iz dvije županije broji se u obje.": {
+"raw": "Projekt u kojem sudjeluje barem jedna organizacija iz te županije. Projekt s organizacijama iz dvije županije broji se u obje.",
+"where": "DIV.",
+"tags": [
+"#/rjecnik",
+"#/rjecnik [details]",
+"#/rjecnik [btn3]"
+]
+},
+"Dva višegodišnja financijska okvira programa: {N}–{N} i {N}–{N} Popisi tema i vrste projekata razlikuju se između njih, pa se neki grafovi ne spajaju preko {N}.": {
+"raw": "Dva višegodišnja financijska okvira programa: 2014.–2020. i 2021.–2027. Popisi tema i vrste projekata razlikuju se između njih, pa se neki grafovi ne spajaju preko 2021.",
+"where": "DIV.",
+"tags": [
+"#/rjecnik",
+"#/rjecnik [details]",
+"#/rjecnik [btn3]"
+]
+},
+"Godina natječaja na kojem je projekt odabran. Godina {N}. još traje, pa je u grafovima prikazana kao nepotpuna.": {
+"raw": "Godina natječaja na kojem je projekt odabran. Godina 2026. još traje, pa je u grafovima prikazana kao nepotpuna.",
+"where": "DIV.",
+"tags": [
+"#/rjecnik",
+"#/rjecnik [details]",
+"#/rjecnik [btn3]"
+]
+},
+"Oznaka koju Europska komisija dodjeljuje projektima izdvojenima kao primjeri. Nije ocjena kvalitete projekata bez te oznake.": {
+"raw": "Oznaka koju Europska komisija dodjeljuje projektima izdvojenima kao primjeri. Nije ocjena kvalitete projekata bez te oznake.",
+"where": "DIV.",
+"tags": [
+"#/rjecnik",
+"#/rjecnik [details]",
+"#/rjecnik [btn3]"
+]
+},
+"Okvirni iznos potpore dodijeljen projektu pri odabiru. Bilježi se po projektu i ne dijeli se među partnere.": {
+"raw": "Okvirni iznos potpore dodijeljen projektu pri odabiru. Bilježi se po projektu i ne dijeli se među partnere.",
+"where": "DIV.",
+"tags": [
+"#/rjecnik",
+"#/rjecnik [details]",
+"#/rjecnik [btn3]"
+]
+},
+"Udio osnovnih i srednjih škola u županiji koje su sudjelovale u barem jednom KA{N} projektu. Škole su s registrom povezane prema nazivu i poštanskom broju, pa je udio procjena.": {
+"raw": "Udio osnovnih i srednjih škola u županiji koje su sudjelovale u barem jednom KA2 projektu. Škole su s registrom povezane prema nazivu i poštanskom broju, pa je udio procjena.",
+"where": "DIV.",
+"tags": [
+"#/rjecnik",
+"#/rjecnik [details]",
+"#/rjecnik [btn3]"
+]
+},
+"Koliki dio svih KA{N} projekata u Europskoj uniji ima barem jednog hrvatskog partnera.": {
+"raw": "Koliki dio svih KA2 projekata u Europskoj uniji ima barem jednog hrvatskog partnera.",
+"where": "DIV.",
+"tags": [
+"#/rjecnik",
+"#/rjecnik [details]",
+"#/rjecnik [btn3]"
+]
+},
+"Prikaz pojmova koje je jezični model izdvojio iz sažetaka projekata (pristupi, ciljne skupine, rezultati, problemi, teme). Brojevi su donja granica, pa pokazuju obrasce, a ne točne brojke.": {
+"raw": "Prikaz pojmova koje je jezični model izdvojio iz sažetaka projekata (pristupi, ciljne skupine, rezultati, problemi, teme). Brojevi su donja granica, pa pokazuju obrasce, a ne točne brojke.",
+"where": "DIV.",
+"tags": [
+"#/rjecnik",
+"#/rjecnik [details]",
+"#/rjecnik [btn3]"
+]
+},
+"Nijedan pojam ne odgovara pretrazi.": {
+"raw": "Nijedan pojam ne odgovara pretrazi.",
+"where": "P.empty",
+"tags": [
+"#/rjecnik",
+"#/rjecnik [details]",
+"#/rjecnik [btn3]"
+]
+},
+"Informacije · Preuzimanje podataka": {
+"raw": "Informacije · Preuzimanje podataka",
+"where": "DIV.kicker",
+"tags": [
+"#/preuzimanje",
+"#/preuzimanje [details]",
+"#/preuzimanje [btn3]"
+]
+},
+"Preuzmite otvorene podatke": {
+"raw": "Preuzmite otvorene podatke",
+"where": "HEADER.",
+"tags": [
+"#/preuzimanje",
+"#/preuzimanje [details]",
+"#/preuzimanje [btn3]"
+]
+},
+"Skupovi podataka na kojima se temelji atlas. Preuzimanje u prototipu stvara CSV izravno iz podataka koje stranica već sadrži.": {
+"raw": "Skupovi podataka na kojima se temelji atlas. Preuzimanje u prototipu stvara CSV izravno iz podataka koje stranica već sadrži.",
+"where": "P.lead",
+"tags": [
+"#/preuzimanje",
+"#/preuzimanje [details]",
+"#/preuzimanje [btn3]"
+]
+},
+"{N} KA{N} projekata s hrvatskim sudionikom: oznaka, naslov, godina, razdoblje, sektor, vrsta, status, dobra praksa i države.": {
+"raw": "3.830 KA2 projekata s hrvatskim sudionikom: oznaka, naslov, godina, razdoblje, sektor, vrsta, status, dobra praksa i države.",
+"where": "DIV.",
+"tags": [
+"#/preuzimanje",
+"#/preuzimanje [details]",
+"#/preuzimanje [btn3]"
+]
+},
+"projekti.csv": {
+"raw": "projekti.csv",
+"where": "P.mono small",
+"tags": [
+"#/preuzimanje",
+"#/preuzimanje [details]",
+"#/preuzimanje [btn3]"
+]
+},
+"Preuzmi CSV": {
+"raw": "Preuzmi CSV",
+"where": "BUTTON.btn sm primary",
+"tags": [
+"#/preuzimanje",
+"#/preuzimanje [details]",
+"#/preuzimanje [btn3]"
+]
+},
+"{N} hrvatskih organizacija: mjesto, županija, vrsta, broj projekata i koordinacija po razdobljima.": {
+"raw": "1.501 hrvatskih organizacija: mjesto, županija, vrsta, broj projekata i koordinacija po razdobljima.",
+"where": "DIV.",
+"tags": [
+"#/preuzimanje",
+"#/preuzimanje [details]",
+"#/preuzimanje [btn3]"
+]
+},
+"organizacije.csv": {
+"raw": "organizacije.csv",
+"where": "P.mono small",
+"tags": [
+"#/preuzimanje",
+"#/preuzimanje [details]",
+"#/preuzimanje [btn3]"
+]
+},
+"Pokazatelji za {N} županiju po razdobljima: organizacije, projekti, koordinacije i vrijednost projekata.": {
+"raw": "Pokazatelji za 21 županiju po razdobljima: organizacije, projekti, koordinacije i vrijednost projekata.",
+"where": "DIV.",
+"tags": [
+"#/preuzimanje",
+"#/preuzimanje [details]",
+"#/preuzimanje [btn3]"
+]
+},
+"zupanije.csv": {
+"raw": "zupanije.csv",
+"where": "P.mono small",
+"tags": [
+"#/preuzimanje",
+"#/preuzimanje [details]",
+"#/preuzimanje [btn3]"
+]
+},
+"Projekti po godinama": {
+"raw": "Projekti po godinama",
+"where": "DIV.",
+"tags": [
+"#/preuzimanje",
+"#/preuzimanje [details]",
+"#/preuzimanje [btn3]"
+]
+},
+"Broj projekata po godini poziva, razdoblju, sektoru i vrsti projekta.": {
+"raw": "Broj projekata po godini poziva, razdoblju, sektoru i vrsti projekta.",
+"where": "DIV.",
+"tags": [
+"#/preuzimanje",
+"#/preuzimanje [details]",
+"#/preuzimanje [btn3]"
+]
+},
+"projekti-po-godinama.csv": {
+"raw": "projekti-po-godinama.csv",
+"where": "P.mono small",
+"tags": [
+"#/preuzimanje",
+"#/preuzimanje [details]",
+"#/preuzimanje [btn3]"
+]
+},
+"Kako koristiti podatke": {
+"raw": "Kako koristiti podatke",
+"where": "SECTION.",
+"tags": [
+"#/preuzimanje",
+"#/preuzimanje [details]",
+"#/preuzimanje [btn3]"
+]
+},
+"Navedite izvor: Erasmus+ Project Results Platform, Agencija za mobilnost i programe EU, Ministarstvo znanosti i obrazovanja.": {
+"raw": "Navedite izvor: Erasmus+ Project Results Platform, Agencija za mobilnost i programe EU, Ministarstvo znanosti i obrazovanja.",
+"where": "UL.",
+"tags": [
+"#/preuzimanje",
+"#/preuzimanje [details]",
+"#/preuzimanje [btn3]"
+]
+},
+"Provjerite uvjete korištenja u izvoru; atlas ne mijenja licence izvornih skupova.": {
+"raw": "Provjerite uvjete korištenja u izvoru; atlas ne mijenja licence izvornih skupova.",
+"where": "UL.",
+"tags": [
+"#/preuzimanje",
+"#/preuzimanje [details]",
+"#/preuzimanje [btn3]"
+]
+},
+"Pročitajte": {
+"raw": "Pročitajte",
+"where": "UL.",
+"tags": [
+"#/preuzimanje",
+"#/preuzimanje [details]",
+"#/preuzimanje [btn3]"
+]
+},
+"ograničenja podataka": {
+"raw": "ograničenja podataka",
+"where": "UL.",
+"tags": [
+"#/preuzimanje",
+"#/preuzimanje [details]",
+"#/preuzimanje [btn3]"
+]
+},
+"prije usporedbi.": {
+"raw": "prije usporedbi.",
+"where": "UL.",
+"tags": [
+"#/preuzimanje",
+"#/preuzimanje [details]",
+"#/preuzimanje [btn3]"
+]
+},
+"Za programere": {
+"raw": "Za programere",
+"where": "SECTION.",
+"tags": [
+"#/preuzimanje",
+"#/preuzimanje [details]",
+"#/preuzimanje [btn3]"
+]
+},
+"U pravoj aplikaciji isti su podaci dostupni kao JSON, a pitanja se šalju asistentu.": {
+"raw": "U pravoj aplikaciji isti su podaci dostupni kao JSON, a pitanja se šalju asistentu.",
+"where": "P.lead",
+"tags": [
+"#/preuzimanje",
+"#/preuzimanje [details]",
+"#/preuzimanje [btn3]"
+]
+},
+"Preuzeto ✓": {
+"raw": "Preuzeto ✓",
+"where": "BUTTON.btn sm primary",
+"tags": [
+"#/preuzimanje [btn3]",
+"#/preuzimanje [btn4]",
+"#/preuzimanje [btn5]"
+]
+},
+"Informacije · Pristupačnost": {
+"raw": "Informacije · Pristupačnost",
+"where": "DIV.kicker",
+"tags": [
+"#/pristupacnost",
+"#/pristupacnost [details]",
+"#/pristupacnost [in #view input[type=search] a]"
+]
+},
+"Izjava o pristupačnosti": {
+"raw": "Izjava o pristupačnosti",
+"where": "HEADER.",
+"tags": [
+"#/pristupacnost",
+"#/pristupacnost [details]",
+"#/pristupacnost [in #view input[type=search] a]"
+]
+},
+"Cilj je da atlas mogu koristiti svi, bez obzira na uređaj, vid, motoriku ili način rada s računalom.": {
+"raw": "Cilj je da atlas mogu koristiti svi, bez obzira na uređaj, vid, motoriku ili način rada s računalom.",
+"where": "P.lead",
+"tags": [
+"#/pristupacnost",
+"#/pristupacnost [details]",
+"#/pristupacnost [in #view input[type=search] a]"
+]
+},
+"Ciljana razina": {
+"raw": "Ciljana razina",
+"where": "DIV.",
+"tags": [
+"#/pristupacnost",
+"#/pristupacnost [details]",
+"#/pristupacnost [in #view input[type=search] a]"
+]
+},
+"Sučelje se izrađuje prema smjernicama WCAG {N}, razina AA. Neovisna provjera pristupačnosti još nije provedena, pa ovo opisuje cilj i provedene mjere, a ne potvrđenu sukladnost.": {
+"raw": "Sučelje se izrađuje prema smjernicama WCAG 2.1, razina AA. Neovisna provjera pristupačnosti još nije provedena, pa ovo opisuje cilj i provedene mjere, a ne potvrđenu sukladnost.",
+"where": "DIV.",
+"tags": [
+"#/pristupacnost",
+"#/pristupacnost [details]",
+"#/pristupacnost [in #view input[type=search] a]"
+]
+},
+"Što je napravljeno": {
+"raw": "Što je napravljeno",
+"where": "DIV.",
+"tags": [
+"#/pristupacnost",
+"#/pristupacnost [details]",
+"#/pristupacnost [in #view input[type=search] a]"
+]
+},
+"Cijelo sučelje može se koristiti tipkovnicom, uz jasno vidljiv žuti okvir fokusa.": {
+"raw": "Cijelo sučelje može se koristiti tipkovnicom, uz jasno vidljiv žuti okvir fokusa.",
+"where": "UL.",
+"tags": [
+"#/pristupacnost",
+"#/pristupacnost [details]",
+"#/pristupacnost [in #view input[type=search] a]"
+]
+},
+"Boje i kontrasti temelje se na paleti Europa Component Library; informacija se ne prenosi samo bojom.": {
+"raw": "Boje i kontrasti temelje se na paleti Europa Component Library; informacija se ne prenosi samo bojom.",
+"where": "UL.",
+"tags": [
+"#/pristupacnost",
+"#/pristupacnost [details]",
+"#/pristupacnost [in #view input[type=search] a]"
+]
+},
+"Svaki graf ima tekstualni ekvivalent: brojke uz stupce, popis ili tablicu podataka.": {
+"raw": "Svaki graf ima tekstualni ekvivalent: brojke uz stupce, popis ili tablicu podataka.",
+"where": "UL.",
+"tags": [
+"#/pristupacnost",
+"#/pristupacnost [details]",
+"#/pristupacnost [in #view input[type=search] a]"
+]
+},
+"Stranice imaju strukturu naslova i oznake područja (izbornik, glavni sadržaj, podnožje), a veza „Preskoči na sadržaj” prva je na stranici.": {
+"raw": "Stranice imaju strukturu naslova i oznake područja (izbornik, glavni sadržaj, podnožje), a veza „Preskoči na sadržaj” prva je na stranici.",
+"where": "UL.",
+"tags": [
+"#/pristupacnost",
+"#/pristupacnost [details]",
+"#/pristupacnost [in #view input[type=search] a]"
+]
+},
+"Raspored se prilagođava od {N} px do širokih zaslona i uvećanja teksta do {N}%.": {
+"raw": "Raspored se prilagođava od 320 px do širokih zaslona i uvećanja teksta do 200 %.",
+"where": "UL.",
+"tags": [
+"#/pristupacnost",
+"#/pristupacnost [details]",
+"#/pristupacnost [in #view input[type=search] a]"
+]
+},
+"Animacije se isključuju kada je u sustavu odabrano smanjeno kretanje.": {
+"raw": "Animacije se isključuju kada je u sustavu odabrano smanjeno kretanje.",
+"where": "UL.",
+"tags": [
+"#/pristupacnost",
+"#/pristupacnost [details]",
+"#/pristupacnost [in #view input[type=search] a]"
+]
+},
+"Poznata ograničenja": {
+"raw": "Poznata ograničenja",
+"where": "DIV.",
+"tags": [
+"#/pristupacnost",
+"#/pristupacnost [details]",
+"#/pristupacnost [in #view input[type=search] a]"
+]
+},
+"Karta županija je shematska i služi pregledu; isti podaci uvijek su dostupni u poretku pored karte.": {
+"raw": "Karta županija je shematska i služi pregledu; isti podaci uvijek su dostupni u poretku pored karte.",
+"where": "UL.",
+"tags": [
+"#/pristupacnost",
+"#/pristupacnost [details]",
+"#/pristupacnost [in #view input[type=search] a]"
+]
+},
+"Mreža pojmova je vizualni prikaz; za čitanje bez miša koristite pretragu pojmova iznad nje.": {
+"raw": "Mreža pojmova je vizualni prikaz; za čitanje bez miša koristite pretragu pojmova iznad nje.",
+"where": "UL.",
+"tags": [
+"#/pristupacnost",
+"#/pristupacnost [details]",
+"#/pristupacnost [in #view input[type=search] a]"
+]
+},
+"Pojmovi u mreži izdvojeni su automatski, pa naziv pojedinog pojma ne mora biti idealno lektoriran.": {
+"raw": "Pojmovi u mreži izdvojeni su automatski, pa naziv pojedinog pojma ne mora biti idealno lektoriran.",
+"where": "UL.",
+"tags": [
+"#/pristupacnost",
+"#/pristupacnost [details]",
+"#/pristupacnost [in #view input[type=search] a]"
+]
+},
+"Prijava problema": {
+"raw": "Prijava problema",
+"where": "DIV.",
+"tags": [
+"#/pristupacnost",
+"#/pristupacnost [details]",
+"#/pristupacnost [in #view input[type=search] a]"
+]
+},
+"Ako naiđete na prepreku, javite nam preko": {
+"raw": "Ako naiđete na prepreku, javite nam preko",
+"where": "DIV.",
+"tags": [
+"#/pristupacnost",
+"#/pristupacnost [details]",
+"#/pristupacnost [in #view input[type=search] a]"
+]
+},
+"obrasca za kontakt": {
+"raw": "obrasca za kontakt",
+"where": "DIV.",
+"tags": [
+"#/pristupacnost",
+"#/pristupacnost [details]",
+"#/pristupacnost [in #view input[type=search] a]"
+]
+},
+". Navedite stranicu, uređaj i pomoćnu tehnologiju ako je koristite.": {
+"raw": ". Navedite stranicu, uređaj i pomoćnu tehnologiju ako je koristite.",
+"where": "DIV.",
+"tags": [
+"#/pristupacnost",
+"#/pristupacnost [details]",
+"#/pristupacnost [in #view input[type=search] a]"
+]
+},
+"Informacije · Kontakt": {
+"raw": "Informacije · Kontakt",
+"where": "DIV.kicker",
+"tags": [
+"#/kontakt",
+"#/kontakt [details]",
+"#/kontakt [btn0]"
+]
+},
+"Kontakt i povratne informacije": {
+"raw": "Kontakt i povratne informacije",
+"where": "HEADER.",
+"tags": [
+"#/kontakt",
+"#/kontakt [details]",
+"#/kontakt [btn0]"
+]
+},
+"Prijavite grešku u podacima, predložite poboljšanje ili postavite pitanje o projektu.": {
+"raw": "Prijavite grešku u podacima, predložite poboljšanje ili postavite pitanje o projektu.",
+"where": "P.lead",
+"tags": [
+"#/kontakt",
+"#/kontakt [details]",
+"#/kontakt [btn0]"
+]
+},
+"Vrsta poruke": {
+"raw": "Vrsta poruke",
+"where": "DIV.",
+"tags": [
+"#/kontakt",
+"#/kontakt [details]",
+"#/kontakt [btn0]"
+]
+},
+"Greška u podacima": {
+"raw": "Greška u podacima",
+"where": "SELECT.",
+"tags": [
+"#/kontakt",
+"#/kontakt [details]",
+"#/kontakt [btn0]"
+]
+},
+"Prijedlog poboljšanja": {
+"raw": "Prijedlog poboljšanja",
+"where": "SELECT.",
+"tags": [
+"#/kontakt",
+"#/kontakt [details]",
+"#/kontakt [btn0]"
+]
+},
+"Suradnja": {
+"raw": "Suradnja",
+"where": "SELECT.",
+"tags": [
+"#/kontakt",
+"#/kontakt [details]",
+"#/kontakt [btn0]"
+]
+},
+"Poruka": {
+"raw": "Poruka",
+"where": "DIV.",
+"tags": [
+"#/kontakt",
+"#/kontakt [details]",
+"#/kontakt [btn0]"
+]
+},
+"E-pošta": {
+"raw": "E-pošta",
+"where": "DIV.",
+"tags": [
+"#/kontakt",
+"#/kontakt [details]",
+"#/kontakt [btn0]"
+]
+},
+"(nije obavezna, samo ako želite odgovor)": {
+"raw": "(nije obavezna, samo ako želite odgovor)",
+"where": "SPAN.muted",
+"tags": [
+"#/kontakt",
+"#/kontakt [details]",
+"#/kontakt [btn0]"
+]
+},
+"Pošalji poruku": {
+"raw": "Pošalji poruku",
+"where": "BUTTON.btn primary",
+"tags": [
+"#/kontakt",
+"#/kontakt [details]",
+"#/kontakt [btn0]"
+]
+},
+"Hvala.": {
+"raw": "Hvala.",
+"where": "DIV.",
+"tags": [
+"#/kontakt",
+"#/kontakt [details]",
+"#/kontakt [btn0]"
+]
+},
+"U ovom prototipu poruka se ne šalje nikamo. U pravoj aplikaciji stigla bi na adresu projekta i u popis zadataka na GitHubu.": {
+"raw": "U ovom prototipu poruka se ne šalje nikamo. U pravoj aplikaciji stigla bi na adresu projekta i u popis zadataka na GitHubu.",
+"where": "DIV.note",
+"tags": [
+"#/kontakt",
+"#/kontakt [details]",
+"#/kontakt [btn0]"
+]
+},
+"Drugi načini": {
+"raw": "Drugi načini",
+"where": "SECTION.",
+"tags": [
+"#/kontakt",
+"#/kontakt [details]",
+"#/kontakt [btn0]"
+]
+},
+"Prijava na GitHubu": {
+"raw": "Prijava na GitHubu",
+"where": "UL.",
+"tags": [
+"#/kontakt",
+"#/kontakt [details]",
+"#/kontakt [btn0]"
+]
+},
+"za greške i prijedloge s tehničkim detaljima.": {
+"raw": "za greške i prijedloge s tehničkim detaljima.",
+"where": "UL.",
+"tags": [
+"#/kontakt",
+"#/kontakt [details]",
+"#/kontakt [btn0]"
+]
+},
+"Pitajte asistenta": {
+"raw": "Pitajte asistenta",
+"where": "UL.",
+"tags": [
+"#/kontakt",
+"#/kontakt [details]",
+"#/kontakt [btn0]"
+]
+},
+"za brza pitanja o podacima.": {
+"raw": "za brza pitanja o podacima.",
+"where": "UL.",
+"tags": [
+"#/kontakt",
+"#/kontakt [details]",
+"#/kontakt [btn0]"
+]
+},
+"objašnjava većinu izraza u atlasu.": {
+"raw": "objašnjava većinu izraza u atlasu.",
+"where": "UL.",
+"tags": [
+"#/kontakt",
+"#/kontakt [details]",
+"#/kontakt [btn0]"
+]
+},
+"Upišite poruku.": {
+"raw": "Upišite poruku.",
+"where": "SMALL.muted",
+"tags": [
+"#/kontakt [btn0]"
+]
+},
+"Informacije · Mapa stranice": {
+"raw": "Informacije · Mapa stranice",
+"where": "DIV.kicker",
+"tags": [
+"#/mapa-stranice",
+"#/mapa-stranice [details]",
+"#/mapa-stranice [in #view input[type=search] a]"
+]
+},
+"Sve stranice atlasa": {
+"raw": "Sve stranice atlasa",
+"where": "HEADER.",
+"tags": [
+"#/mapa-stranice",
+"#/mapa-stranice [details]",
+"#/mapa-stranice [in #view input[type=search] a]"
+]
+},
+"Popis svih stranica prototipa, grupiran po odjeljcima.": {
+"raw": "Popis svih stranica prototipa, grupiran po odjeljcima.",
+"where": "P.lead",
+"tags": [
+"#/mapa-stranice",
+"#/mapa-stranice [details]",
+"#/mapa-stranice [in #view input[type=search] a]"
+]
+},
+"Početak": {
+"raw": "Početak",
+"where": "DIV.",
+"tags": [
+"#/mapa-stranice",
+"#/mapa-stranice [details]",
+"#/mapa-stranice [in #view input[type=search] a]"
+]
+},
+"Uvod u atlas, ključne brojke i poredak županija": {
+"raw": "Uvod u atlas, ključne brojke i poredak županija",
+"where": "DIV.",
+"tags": [
+"#/mapa-stranice",
+"#/mapa-stranice [details]",
+"#/mapa-stranice [in #view input[type=search] a]"
+]
+},
+"Broj projekata po godinama, sektoru i vrsti": {
+"raw": "Broj projekata po godinama, sektoru i vrsti",
+"where": "DIV.",
+"tags": [
+"#/mapa-stranice",
+"#/mapa-stranice [details]",
+"#/mapa-stranice [in #view input[type=search] a]"
+]
+},
+"Do četiri županije jedna uz drugu": {
+"raw": "Do četiri županije jedna uz drugu",
+"where": "DIV.",
+"tags": [
+"#/mapa-stranice",
+"#/mapa-stranice [details]",
+"#/mapa-stranice [in #view input[type=search] a]"
+]
+},
+"Detalj županije (primjer)": {
+"raw": "Detalj županije (primjer)",
+"where": "DIV.",
+"tags": [
+"#/mapa-stranice",
+"#/mapa-stranice [details]",
+"#/mapa-stranice [in #view input[type=search] a]"
+]
+},
+"Brojke, organizacije i pokrivenost jedne županije": {
+"raw": "Brojke, organizacije i pokrivenost jedne županije",
+"where": "DIV.",
+"tags": [
+"#/mapa-stranice",
+"#/mapa-stranice [details]",
+"#/mapa-stranice [in #view input[type=search] a]"
+]
+},
+"Udio tema u projektima po godini": {
+"raw": "Udio tema u projektima po godini",
+"where": "DIV.",
+"tags": [
+"#/mapa-stranice",
+"#/mapa-stranice [details]",
+"#/mapa-stranice [in #view input[type=search] a]"
+]
+},
+"Što projekti rade, za koga i što proizvode": {
+"raw": "Što projekti rade, za koga i što proizvode",
+"where": "DIV.",
+"tags": [
+"#/mapa-stranice",
+"#/mapa-stranice [details]",
+"#/mapa-stranice [in #view input[type=search] a]"
+]
+},
+"Pojmovi koji se pojavljuju zajedno u projektima": {
+"raw": "Pojmovi koji se pojavljuju zajedno u projektima",
+"where": "DIV.",
+"tags": [
+"#/mapa-stranice",
+"#/mapa-stranice [details]",
+"#/mapa-stranice [in #view input[type=search] a]"
+]
+},
+"Detalj projekta (primjer)": {
+"raw": "Detalj projekta (primjer)",
+"where": "DIV.",
+"tags": [
+"#/mapa-stranice",
+"#/mapa-stranice [details]",
+"#/mapa-stranice [in #view input[type=search] a]"
+]
+},
+"Osnovni podaci i države jednog projekta": {
+"raw": "Osnovni podaci i države jednog projekta",
+"where": "DIV.",
+"tags": [
+"#/mapa-stranice",
+"#/mapa-stranice [details]",
+"#/mapa-stranice [in #view input[type=search] a]"
+]
+},
+"Pretraga hrvatskih organizacija u KA{N} projektima": {
+"raw": "Pretraga hrvatskih organizacija u KA2 projektima",
+"where": "DIV.",
+"tags": [
+"#/mapa-stranice",
+"#/mapa-stranice [details]",
+"#/mapa-stranice [in #view input[type=search] a]"
+]
+},
+"Detalj organizacije (primjer)": {
+"raw": "Detalj organizacije (primjer)",
+"where": "DIV.",
+"tags": [
+"#/mapa-stranice",
+"#/mapa-stranice [details]",
+"#/mapa-stranice [in #view input[type=search] a]"
+]
+},
+"Sudjelovanje, projekti i partneri jedne organizacije": {
+"raw": "Sudjelovanje, projekti i partneri jedne organizacije",
+"where": "DIV.",
+"tags": [
+"#/mapa-stranice",
+"#/mapa-stranice [details]",
+"#/mapa-stranice [in #view input[type=search] a]"
+]
+},
+"Izvori, obuhvat i ograničenja": {
+"raw": "Izvori, obuhvat i ograničenja",
+"where": "DIV.",
+"tags": [
+"#/mapa-stranice",
+"#/mapa-stranice [details]",
+"#/mapa-stranice [in #view input[type=search] a]"
+]
+},
+"Objašnjenja stručnih izraza": {
+"raw": "Objašnjenja stručnih izraza",
+"where": "DIV.",
+"tags": [
+"#/mapa-stranice",
+"#/mapa-stranice [details]",
+"#/mapa-stranice [in #view input[type=search] a]"
+]
+},
+"Otvoreni skupovi podataka u CSV i JSON formatu": {
+"raw": "Otvoreni skupovi podataka u CSV i JSON formatu",
+"where": "DIV.",
+"tags": [
+"#/mapa-stranice",
+"#/mapa-stranice [details]",
+"#/mapa-stranice [in #view input[type=search] a]"
+]
+},
+"Izjava o pristupačnosti i poznata ograničenja": {
+"raw": "Izjava o pristupačnosti i poznata ograničenja",
+"where": "DIV.",
+"tags": [
+"#/mapa-stranice",
+"#/mapa-stranice [details]",
+"#/mapa-stranice [in #view input[type=search] a]"
+]
+},
+"Prijava greške u podacima, prijedlozi, pitanja": {
+"raw": "Prijava greške u podacima, prijedlozi, pitanja",
+"where": "DIV.",
+"tags": [
+"#/mapa-stranice",
+"#/mapa-stranice [details]",
+"#/mapa-stranice [in #view input[type=search] a]"
+]
+},
+"Popis svih stranica atlasa": {
+"raw": "Popis svih stranica atlasa",
+"where": "DIV.",
+"tags": [
+"#/mapa-stranice",
+"#/mapa-stranice [details]",
+"#/mapa-stranice [in #view input[type=search] a]"
+]
+},
+"Stranica nije pronađena": {
+"raw": "Stranica nije pronađena",
+"where": "NAV.",
+"tags": [
+"#/nepostoji",
+"#/nepostoji [details]",
+"#/nepostoji [in #view input[type=search] a]"
+]
+},
+"Adresa možda više ne postoji ili je pogrešno upisana. Probajte pretragu u izborniku ili otvorite jednu od ovih stranica.": {
+"raw": "Adresa možda više ne postoji ili je pogrešno upisana. Probajte pretragu u izborniku ili otvorite jednu od ovih stranica.",
+"where": "P.lead",
+"tags": [
+"#/nepostoji",
+"#/nepostoji [details]",
+"#/nepostoji [in #view input[type=search] a]"
+]
+},
+"Kako je izračunano": {
+"raw": "Kako je izračunano",
+"where": "DIV.",
+"tags": [
+"dock-answer",
+"pitajte-answers"
+]
+},
+"Prepoznata županija: {E}": {
+"raw": "Prepoznata županija: Splitsko-dalmatinska županija",
+"where": "DIV.",
+"tags": [
+"dock-answer",
+"pitajte-answers"
+]
+},
+"Tablica: pokazatelji županije, razdoblja {N}–{N} i {N}–{N}": {
+"raw": "Tablica: pokazatelji županije, razdoblja 2014.–2020. i 2021.–2027.",
+"where": "DIV.",
+"tags": [
+"dock-answer",
+"pitajte-answers"
+]
+},
+"Poredak po broju projekata sa sudionikom iz županije": {
+"raw": "Poredak po broju projekata sa sudionikom iz županije",
+"where": "DIV.",
+"tags": [
+"dock-answer",
+"pitajte-answers"
+]
+},
+"Najviše projekata koordiniraju nevladine organizacije ({N}), zatim visoka učilišta ({N}). Ukupno je {N} koordiniranih projekata.": {
+"raw": "Najviše projekata koordiniraju nevladine organizacije (225), zatim visoka učilišta (93). Ukupno je 606 koordiniranih projekata.",
+"where": "DIV.",
+"tags": [
+"dock-answer",
+"pitajte-answers"
+]
+},
+"Tema: koordinacija projekata": {
+"raw": "Tema: koordinacija projekata",
+"where": "DIV.",
+"tags": [
+"dock-answer",
+"pitajte-answers"
+]
+},
+"Tablica: vrste organizacija, razdoblje {N}–{N}": {
+"raw": "Tablica: vrste organizacija, razdoblje 2014.–2026.",
+"where": "DIV.",
+"tags": [
+"dock-answer",
+"pitajte-answers"
+]
+},
+"Poredak po broju koordiniranih projekata": {
+"raw": "Poredak po broju koordiniranih projekata",
+"where": "DIV.",
+"tags": [
+"dock-answer",
+"pitajte-answers"
+]
+},
+"Hrvatske organizacije najčešće dijele projekte s organizacijama iz: {E} ({N}), {E} ({N}), {E} ({N}). U razdoblju {N}–{N} {E} je {N}. po broju koordiniranih KA{N} projekata ({N}).": {
+"raw": "Hrvatske organizacije najčešće dijele projekte s organizacijama iz: Italija (1.500), Španjolska (1.229), Grčka (850). U razdoblju 2021.–2027. Hrvatska je 21. po broju koordiniranih KA2 projekata (354).",
+"where": "DIV.",
+"tags": [
+"dock-answer",
+"pitajte-answers"
+]
+},
+"Tema: partnerske države": {
+"raw": "Tema: partnerske države",
+"where": "DIV.",
+"tags": [
+"dock-answer",
+"pitajte-answers"
+]
+},
+"Tablica: popis projekata s državama sudionicima": {
+"raw": "Tablica: popis projekata s državama sudionicima",
+"where": "DIV.",
+"tags": [
+"dock-answer",
+"pitajte-answers"
+]
+},
+"Broj projekata po državi, bez Hrvatske": {
+"raw": "Broj projekata po državi, bez Hrvatske",
+"where": "DIV.",
+"tags": [
+"dock-answer",
+"pitajte-answers"
+]
+},
+"U projektima iz {N}. najčešće su teme: nove metode i pristupi učenju i poučavanju ({N}%), okoliš i klimatske promjene ({N}%), uključivanje, promicanje jednakosti i nediskriminacije ({N}%). Cijeli razvoj kroz godine vidi se u odjeljku Teme.": {
+"raw": "U projektima iz 2025. najčešće su teme: nove metode i pristupi učenju i poučavanju (22,2 %), okoliš i klimatske promjene (20,5 %), uključivanje, promicanje jednakosti i nediskriminacije (18,8 %). Cijeli razvoj kroz godine vidi se u odjeljku Teme.",
+"where": "DIV.",
+"tags": [
+"dock-answer",
+"pitajte-answers"
+]
+},
+"Tema: teme projekata": {
+"raw": "Tema: teme projekata",
+"where": "DIV.",
+"tags": [
+"dock-answer",
+"pitajte-answers"
+]
+},
+"Tablica: udio tema po godini, popis {N}–{N}": {
+"raw": "Tablica: udio tema po godini, popis 2021.–2027.",
+"where": "DIV.",
+"tags": [
+"dock-answer",
+"pitajte-answers"
+]
+},
+"Udio projekata godine {N}. s temom": {
+"raw": "Udio projekata godine 2025. s temom",
+"where": "DIV.",
+"tags": [
+"dock-answer",
+"pitajte-answers"
+]
+},
+"U godini poziva {N}. odabrano je {N} KA{N} projekata s hrvatskim sudionikom.": {
+"raw": "U godini poziva 2023. odabrano je 328 KA2 projekata s hrvatskim sudionikom.",
+"where": "DIV.",
+"tags": [
+"dock-answer"
+]
+},
+"Prepoznata godina: {N}": {
+"raw": "Prepoznata godina: 2023",
+"where": "DIV.",
+"tags": [
+"dock-answer"
+]
+},
+"Tablica: projekti po godini, sektoru i vrsti": {
+"raw": "Tablica: projekti po godini, sektoru i vrsti",
+"where": "DIV.",
+"tags": [
+"dock-answer"
+]
+},
+"Zbroj po sektoru za {N}.": {
+"raw": "Zbroj po sektoru za 2023.",
+"where": "DIV.",
+"tags": [
+"dock-answer"
+]
+},
+"Najviše projekata je u sektoru „{E}” ({N}), zatim „{E}” ({N}).": {
+"raw": "Najviše projekata je u sektoru „Školsko obrazovanje” (1.461), zatim „Mladi” (681).",
+"where": "DIV.",
+"tags": [
+"dock-answer"
+]
+},
+"Tema: sektori": {
+"raw": "Tema: sektori",
+"where": "DIV.",
+"tags": [
+"dock-answer"
+]
+},
+"Tablica: projekti po sektoru i godini": {
+"raw": "Tablica: projekti po sektoru i godini",
+"where": "DIV.",
+"tags": [
+"dock-answer"
+]
+},
+"Zbroj {N}–{N}": {
+"raw": "Zbroj 2014.–2026.",
+"where": "DIV.",
+"tags": [
+"dock-answer"
+]
+},
+"Ukupna vrijednost KA{N} projekata s hrvatskim sudionikom je {N} mil. €. Iznos je dodijeljen po projektu pri odabiru i nije podijeljen među partnere.": {
+"raw": "Ukupna vrijednost KA2 projekata s hrvatskim sudionikom je 952,7 mil. €. Iznos je dodijeljen po projektu pri odabiru i nije podijeljen među partnere.",
+"where": "DIV.",
+"tags": [
+"dock-answer"
+]
+},
+"Tema: vrijednost projekata": {
+"raw": "Tema: vrijednost projekata",
+"where": "DIV.",
+"tags": [
+"dock-answer"
+]
+},
+"Tablica: razdoblja, zbroj vrijednosti": {
+"raw": "Tablica: razdoblja, zbroj vrijednosti",
+"where": "DIV.",
+"tags": [
+"dock-answer"
+]
+},
+"Bez dijeljenja iznosa među partnere": {
+"raw": "Bez dijeljenja iznosa među partnere",
+"where": "DIV.",
+"tags": [
+"dock-answer"
+]
+},
+"Podaci dolaze iz tri javna izvora: Erasmus+ Project Results Platform (Europska komisija), portala data.gov.hr (Agencija za mobilnost i programe EU) i registara škola Ministarstva znanosti i obrazovanja. Atlas ih povezuje i izračunava pokazatelje, ništa se ne unosi ručno.": {
+"raw": "Podaci dolaze iz tri javna izvora: Erasmus+ Project Results Platform (Europska komisija), portala data.gov.hr (Agencija za mobilnost i programe EU) i registara škola Ministarstva znanosti i obrazovanja. Atlas ih povezuje i izračunava pokazatelje, ništa se ne unosi ručno.",
+"where": "DIV.",
+"tags": [
+"dock-answer"
+]
+},
+"Tema: izvori podataka": {
+"raw": "Tema: izvori podataka",
+"where": "DIV.",
+"tags": [
+"dock-answer"
+]
+},
+"Stranica: O podacima": {
+"raw": "Stranica: O podacima",
+"where": "DIV.",
+"tags": [
+"dock-answer"
+]
+},
+"Koordinator je organizacija koja podnosi prijavu, vodi projekt i prima grant; partner sudjeluje u projektu koji netko drugi koordinira. KA{N} je ključna aktivnost za suradnju organizacija kroz partnerstva. Ostale izraze objašnjava rječnik.": {
+"raw": "Koordinator je organizacija koja podnosi prijavu, vodi projekt i prima grant; partner sudjeluje u projektu koji netko drugi koordinira. KA2 je ključna aktivnost za suradnju organizacija kroz partnerstva. Ostale izraze objašnjava rječnik.",
+"where": "DIV.",
+"tags": [
+"dock-answer"
+]
+},
+"Tema: pojmovi": {
+"raw": "Tema: pojmovi",
+"where": "DIV.",
+"tags": [
+"dock-answer"
+]
+},
+"Stranica: Rječnik pojmova": {
+"raw": "Stranica: Rječnik pojmova",
+"where": "DIV.",
+"tags": [
+"dock-answer"
+]
+},
+"Najviše KA{N} projekata ima Sveučilište u Zagrebu ({N}), zatim Ustanova za obrazovanje odraslih Dante ({N}).": {
+"raw": "Najviše KA2 projekata ima Sveučilište u Zagrebu (241), zatim Ustanova za obrazovanje odraslih Dante (83).",
+"where": "DIV.",
+"tags": [
+"dock-answer"
+]
+},
+"Tema: organizacije": {
+"raw": "Tema: organizacije",
+"where": "DIV.",
+"tags": [
+"dock-answer"
+]
+},
+"Tablica: {N} hrvatskih organizacija": {
+"raw": "Tablica: 1.501 hrvatskih organizacija",
+"where": "DIV.",
+"tags": [
+"dock-answer"
+]
+},
+"Poredak po ukupnom broju projekata": {
+"raw": "Poredak po ukupnom broju projekata",
+"where": "DIV.",
+"tags": [
+"dock-answer"
+]
+},
+"blabla": {
+"raw": "blabla",
+"where": "DIV.msg you",
+"tags": [
+"dock-answer"
+]
+},
+"Na to pitanje u podacima atlasa nemam odgovor. Mogu odgovoriti o županijama, organizacijama, partnerskim državama, temama, sektorima, vrijednosti projekata i pokrivenosti škola. Probajte jedno od predloženih pitanja.": {
+"raw": "Na to pitanje u podacima atlasa nemam odgovor. Mogu odgovoriti o županijama, organizacijama, partnerskim državama, temama, sektorima, vrijednosti projekata i pokrivenosti škola. Probajte jedno od predloženih pitanja.",
+"where": "DIV.",
+"tags": [
+"dock-answer"
+]
+},
+"Pitanje nije prepoznato među temama atlasa": {
+"raw": "Pitanje nije prepoznato među temama atlasa",
+"where": "DIV.",
+"tags": [
+"dock-answer"
+]
+},
+"U godini poziva {N}. odabrano je {N} KA{N} projekata s hrvatskim sudionikom (godina još traje, pa je broj nepotpun).": {
+"raw": "U godini poziva 2026. odabrano je 178 KA2 projekata s hrvatskim sudionikom (godina još traje, pa je broj nepotpun).",
+"where": "DIV.",
+"tags": [
+"dock-answer"
+]
+},
+"{N} projekata": {
+"raw": "320 projekata",
+"where": "DIV.",
+"tags": [
+"search spl"
+]
+},
+"Svi projekti za „spl”": {
+"raw": "Svi projekti za „spl”",
+"where": "DIV.",
+"tags": [
+"search spl"
+]
+},
+"Pitaj asistenta: „spl”": {
+"raw": "Pitaj asistenta: „spl”",
+"where": "DIV.",
+"tags": [
+"search spl"
+]
+},
+"Svi projekti za „sve”": {
+"raw": "Svi projekti za „sve”",
+"where": "DIV.",
+"tags": [
+"search sve"
+]
+},
+"Pitaj asistenta: „sve”": {
+"raw": "Pitaj asistenta: „sve”",
+"where": "DIV.",
+"tags": [
+"search sve"
+]
+},
+"Svi projekti za „zzzz”": {
+"raw": "Svi projekti za „zzzz”",
+"where": "DIV.",
+"tags": [
+"search zzzz"
+]
+},
+"Pitaj asistenta: „zzzz”": {
+"raw": "Pitaj asistenta: „zzzz”",
+"where": "DIV.",
+"tags": [
+"search zzzz"
+]
+},
+"Svi projekti za „{N}”": {
+"raw": "Svi projekti za „2023”",
+"where": "DIV.",
+"tags": [
+"search 2023"
+]
+},
+"Pitaj asistenta: „{N}”": {
+"raw": "Pitaj asistenta: „2023”",
+"where": "DIV.",
+"tags": [
+"search 2023"
+]
+},
+"Svi projekti za „mla”": {
+"raw": "Svi projekti za „mla”",
+"where": "DIV.",
+"tags": [
+"search mla"
+]
+},
+"Pitaj asistenta: „mla”": {
+"raw": "Pitaj asistenta: „mla”",
+"where": "DIV.",
+"tags": [
+"search mla"
+]
+}
+}

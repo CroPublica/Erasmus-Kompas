@@ -1,0 +1,3942 @@
+{
+"{N} mil. €": {
+"raw": "{N} mil. €",
+"where": "",
+"tags": [
+"#/kronologija",
+"#/kronologija [btn3]",
+"#/kronologija [btn4]"
+]
+},
+"{E} ima {N} KA{N} projekata sa sudionikom iz županije ({N}. od {N}), od toga {N} koordiniranih. U projektima sudjeluje {N} organizacija, a vrijednost projekata je {N} mil. €.": {
+"raw": "{E} ima {N} KA{N} projekata sa sudionikom iz županije ({N}. od {N}), od toga {N} koordiniranih. U projektima sudjeluje {N} organizacija, a vrijednost projekata je {N} mil. €.",
+"where": "",
+"tags": [
+"#/kronologija",
+"#/kronologija [btn3]",
+"#/kronologija [btn4]"
+]
+},
+"{N} November {N}": {
+"raw": "{N} November {N}",
+"where": "",
+"tags": [
+"#/kronologija",
+"#/kronologija [btn3]",
+"#/kronologija [btn4]"
+]
+},
+"Italy": {
+"raw": "Italy",
+"where": "",
+"tags": [
+"#/kronologija",
+"#/kronologija [btn3]",
+"#/kronologija [btn4]"
+]
+},
+"Spain": {
+"raw": "Spain",
+"where": "",
+"tags": [
+"#/kronologija",
+"#/kronologija [btn3]",
+"#/kronologija [btn4]"
+]
+},
+"Greece": {
+"raw": "Greece",
+"where": "",
+"tags": [
+"#/kronologija",
+"#/kronologija [btn3]",
+"#/kronologija [btn4]"
+]
+},
+"Poland": {
+"raw": "Poland",
+"where": "",
+"tags": [
+"#/kronologija",
+"#/kronologija [btn3]",
+"#/kronologija [btn4]"
+]
+},
+"Türkiye": {
+"raw": "Türkiye",
+"where": "",
+"tags": [
+"#/kronologija",
+"#/kronologija [btn3]",
+"#/kronologija [btn4]"
+]
+},
+"{N} država, najčešće Italy →": {
+"raw": "{N} država, najčešće Italy →",
+"where": "",
+"tags": [
+"#/kronologija",
+"#/kronologija [btn3]",
+"#/kronologija [btn4]"
+]
+},
+"Split-Dalmatia County has {N} KA{N} projects with a participant from the county (rank {N} of {N}), of which {N} were coordinated from it. {N} organisations take part, and the projects are worth €{N}M.": {
+"raw": "Split-Dalmatia County has {N} KA{N} projects with a participant from the county (rank {N} of {N}), of which {N} were coordinated from it. {N} organisations take part, and the projects are worth €{N}M.",
+"where": "",
+"tags": [
+"#/kronologija",
+"#/kronologija [btn3]",
+"#/kronologija [btn4]"
+]
+},
+"County page": {
+"raw": "County page",
+"where": "",
+"tags": [
+"#/kronologija",
+"#/kronologija [btn3]",
+"#/kronologija [btn4]"
+]
+},
+"Compare counties": {
+"raw": "Compare counties",
+"where": "",
+"tags": [
+"#/kronologija",
+"#/kronologija [btn3]",
+"#/kronologija [btn4]"
+]
+},
+"{N} rows matching the current filters": {
+"raw": "{N} rows matching the current filters",
+"where": "",
+"tags": [
+"#/kronologija",
+"#/kronologija [btn3]",
+"#/kronologija [btn4]"
+]
+},
+"Preuzimanje": {
+"raw": "Preuzimanje",
+"where": "",
+"tags": [
+"#/kronologija [btn7]",
+"#/kronologija [btn8]",
+"#/kronologija [btn9]"
+]
+},
+"redaka": {
+"raw": "redaka",
+"where": "",
+"tags": [
+"#/kronologija [btn7]",
+"#/kronologija [btn8]",
+"#/kronologija [btn9]"
+]
+},
+"Preuzimanje CSV: {N} redaka": {
+"raw": "Preuzimanje CSV: {N} redaka",
+"where": "",
+"tags": [
+"#/kronologija [btn7]",
+"#/pokrivenost [btn15]",
+"#/organizacije [btn51]"
+]
+},
+"Primijenjeni filteri": {
+"raw": "Primijenjeni filteri",
+"where": "",
+"tags": [
+"#/kronologija [btn8]",
+"#/pokrivenost [btn16]",
+"#/organizacije [btn52]"
+]
+},
+"Broj redaka": {
+"raw": "Broj redaka",
+"where": "",
+"tags": [
+"#/kronologija [btn8]",
+"#/pokrivenost [btn16]",
+"#/organizacije [btn52]"
+]
+},
+"Izvezeno": {
+"raw": "Izvezeno",
+"where": "",
+"tags": [
+"#/kronologija [btn8]",
+"#/kronologija [btn9]",
+"#/pokrivenost [btn16]"
+]
+},
+"Izvor: Erasmus+ Kompas (erasmus-plus.ec.europa.eu, data.gov.hr, MZO). Neovisan projekt, nije službena stranica Europske komisije.": {
+"raw": "Izvor: Erasmus+ Kompas (erasmus-plus.ec.europa.eu, data.gov.hr, MZO). Neovisan projekt, nije službena stranica Europske komisije.",
+"where": "",
+"tags": [
+"#/kronologija [btn8]",
+"#/kronologija [btn9]",
+"#/pokrivenost [btn16]"
+]
+},
+"Podaci": {
+"raw": "Podaci",
+"where": "",
+"tags": [
+"#/kronologija [btn8]",
+"#/pokrivenost [btn16]",
+"#/organizacije [btn52]"
+]
+},
+"O izvozu": {
+"raw": "O izvozu",
+"where": "",
+"tags": [
+"#/kronologija [btn8]",
+"#/pokrivenost [btn16]",
+"#/organizacije [btn52]"
+]
+},
+"Preuzimanje Excel: {N} redaka": {
+"raw": "Preuzimanje Excel: {N} redaka",
+"where": "",
+"tags": [
+"#/kronologija [btn8]",
+"#/pokrivenost [btn16]",
+"#/organizacije [btn52]"
+]
+},
+"Stranica": {
+"raw": "Stranica",
+"where": "",
+"tags": [
+"#/kronologija [btn9]",
+"#/pokrivenost [btn17]",
+"#/organizacije [btn53]"
+]
+},
+"Preuzimanje PDF: {N} redaka": {
+"raw": "Preuzimanje PDF: {N} redaka",
+"where": "",
+"tags": [
+"#/kronologija [btn9]",
+"#/pokrivenost [btn17]",
+"#/organizacije [btn53]"
+]
+},
+"Zagreb": {
+"raw": "Zagreb",
+"where": "",
+"tags": [
+"#/pokrivenost",
+"#/pokrivenost [btn3]",
+"#/pokrivenost [btn4]"
+]
+},
+"needs research or assessment": {
+"raw": "needs research or assessment",
+"where": "",
+"tags": [
+"#/pristupi",
+"#/pristupi [btn3]",
+"#/pristupi [btn4]"
+]
+},
+"workshops": {
+"raw": "workshops",
+"where": "",
+"tags": [
+"#/pristupi",
+"#/pristupi [btn3]",
+"#/pristupi [btn4]"
+]
+},
+"training of trainers": {
+"raw": "training of trainers",
+"where": "",
+"tags": [
+"#/pristupi",
+"#/pristupi [btn3]",
+"#/pristupi [btn4]"
+]
+},
+"peer learning": {
+"raw": "peer learning",
+"where": "",
+"tags": [
+"#/pristupi",
+"#/pristupi [btn3]",
+"#/pristupi [btn4]"
+]
+},
+"multiplier events": {
+"raw": "multiplier events",
+"where": "",
+"tags": [
+"#/pristupi",
+"#/pristupi [btn3]",
+"#/pristupi [btn4]"
+]
+},
+"exchange of practices": {
+"raw": "exchange of practices",
+"where": "",
+"tags": [
+"#/pristupi",
+"#/pristupi [btn3]",
+"#/pristupi [btn4]"
+]
+},
+"project website": {
+"raw": "project website",
+"where": "",
+"tags": [
+"#/pristupi",
+"#/pristupi [btn3]",
+"#/pristupi [btn4]"
+]
+},
+"project logo": {
+"raw": "project logo",
+"where": "",
+"tags": [
+"#/pristupi",
+"#/pristupi [btn3]",
+"#/pristupi [btn4]"
+]
+},
+"videos": {
+"raw": "videos",
+"where": "",
+"tags": [
+"#/pristupi",
+"#/pristupi [btn3]",
+"#/pristupi [btn4]"
+]
+},
+"increased student motivation": {
+"raw": "increased student motivation",
+"where": "",
+"tags": [
+"#/pristupi",
+"#/pristupi [btn3]",
+"#/pristupi [btn4]"
+]
+},
+"posters": {
+"raw": "posters",
+"where": "",
+"tags": [
+"#/pristupi",
+"#/pristupi [btn3]",
+"#/pristupi [btn4]"
+]
+},
+"improved english language skills of students": {
+"raw": "improved english language skills of students",
+"where": "",
+"tags": [
+"#/pristupi",
+"#/pristupi [btn3]",
+"#/pristupi [btn4]"
+]
+},
+"teachers": {
+"raw": "teachers",
+"where": "",
+"tags": [
+"#/pristupi",
+"#/pristupi [btn3]",
+"#/pristupi [btn4]"
+]
+},
+"students": {
+"raw": "students",
+"where": "",
+"tags": [
+"#/pristupi",
+"#/pristupi [btn3]",
+"#/pristupi [btn4]"
+]
+},
+"young people": {
+"raw": "young people",
+"where": "",
+"tags": [
+"#/pristupi",
+"#/pristupi [btn3]",
+"#/pristupi [btn4]"
+]
+},
+"youth workers": {
+"raw": "youth workers",
+"where": "",
+"tags": [
+"#/pristupi",
+"#/pristupi [btn3]",
+"#/pristupi [btn4]"
+]
+},
+"educators": {
+"raw": "educators",
+"where": "",
+"tags": [
+"#/pristupi",
+"#/pristupi [btn3]",
+"#/pristupi [btn4]"
+]
+},
+"parents": {
+"raw": "parents",
+"where": "",
+"tags": [
+"#/pristupi",
+"#/pristupi [btn3]",
+"#/pristupi [btn4]"
+]
+},
+"transnational project meetings": {
+"raw": "transnational project meetings",
+"where": "",
+"tags": [
+"#/pristupi",
+"#/pristupi [btn3]",
+"#/pristupi [btn4]"
+]
+},
+"experiential learning": {
+"raw": "experiential learning",
+"where": "",
+"tags": [
+"#/pristupi",
+"#/pristupi [btn3]",
+"#/pristupi [btn4]"
+]
+},
+"co-creation": {
+"raw": "co-creation",
+"where": "",
+"tags": [
+"#/pristupi",
+"#/pristupi [btn3]",
+"#/pristupi [btn4]"
+]
+},
+"mentoring": {
+"raw": "mentoring",
+"where": "",
+"tags": [
+"#/pristupi",
+"#/pristupi [btn3]",
+"#/pristupi [btn4]"
+]
+},
+"co-creation of educational materials": {
+"raw": "co-creation of educational materials",
+"where": "",
+"tags": [
+"#/pristupi",
+"#/pristupi [btn3]",
+"#/pristupi [btn4]"
+]
+},
+"dissemination activities": {
+"raw": "dissemination activities",
+"where": "",
+"tags": [
+"#/pristupi",
+"#/pristupi [btn3]",
+"#/pristupi [btn4]"
+]
+},
+"pilot sessions": {
+"raw": "pilot sessions",
+"where": "",
+"tags": [
+"#/pristupi [btn5]",
+"#/pristupi [btn9]"
+]
+},
+"dissemination events": {
+"raw": "dissemination events",
+"where": "",
+"tags": [
+"#/pristupi [btn5]",
+"#/pristupi [btn9]"
+]
+},
+"training sessions": {
+"raw": "training sessions",
+"where": "",
+"tags": [
+"#/pristupi [btn5]",
+"#/pristupi [btn9]"
+]
+},
+"pilot testing": {
+"raw": "pilot testing",
+"where": "",
+"tags": [
+"#/pristupi [btn5]",
+"#/pristupi [btn9]"
+]
+},
+"curriculum development": {
+"raw": "curriculum development",
+"where": "",
+"tags": [
+"#/pristupi [btn5]",
+"#/pristupi [btn9]"
+]
+},
+"development of an e-learning platform": {
+"raw": "development of an e-learning platform",
+"where": "",
+"tags": [
+"#/pristupi [btn5]",
+"#/pristupi [btn9]"
+]
+},
+"online training": {
+"raw": "online training",
+"where": "",
+"tags": [
+"#/pristupi [btn5]",
+"#/pristupi [btn9]"
+]
+},
+"final conference": {
+"raw": "final conference",
+"where": "",
+"tags": [
+"#/pristupi [btn5]"
+]
+},
+"training of educators": {
+"raw": "training of educators",
+"where": "",
+"tags": [
+"#/pristupi [btn5]"
+]
+},
+"student mobilities and exchanges": {
+"raw": "student mobilities and exchanges",
+"where": "",
+"tags": [
+"#/pristupi [btn6]",
+"#/pristupi [btn9]",
+"#/pristupi [in #view input[type=search] a]"
+]
+},
+"short-term joint staff training events": {
+"raw": "short-term joint staff training events",
+"where": "",
+"tags": [
+"#/pristupi [btn6]",
+"#/pristupi [btn9]"
+]
+},
+"international cooperation between schools": {
+"raw": "international cooperation between schools",
+"where": "",
+"tags": [
+"#/pristupi [btn6]",
+"#/pristupi [btn9]"
+]
+},
+"presentations": {
+"raw": "presentations",
+"where": "",
+"tags": [
+"#/pristupi [btn6]",
+"#/pristupi [btn9]"
+]
+},
+"project-based learning": {
+"raw": "project-based learning",
+"where": "",
+"tags": [
+"#/pristupi [btn6]",
+"#/pristupi [btn9]"
+]
+},
+"development of innovative curriculum": {
+"raw": "development of innovative curriculum",
+"where": "",
+"tags": [
+"#/pristupi [btn6]"
+]
+},
+"use of ict tools in teaching": {
+"raw": "use of ict tools in teaching",
+"where": "",
+"tags": [
+"#/pristupi [btn6]"
+]
+},
+"exchange of good practices among partners": {
+"raw": "exchange of good practices among partners",
+"where": "",
+"tags": [
+"#/pristupi [btn6]"
+]
+},
+"peer learning between partners": {
+"raw": "peer learning between partners",
+"where": "",
+"tags": [
+"#/pristupi [btn6]"
+]
+},
+"exchange of practices among teachers": {
+"raw": "exchange of practices among teachers",
+"where": "",
+"tags": [
+"#/pristupi [btn6]"
+]
+},
+"transnational training events": {
+"raw": "transnational training events",
+"where": "",
+"tags": [
+"#/pristupi [btn7]"
+]
+},
+"coaching": {
+"raw": "coaching",
+"where": "",
+"tags": [
+"#/pristupi [btn7]"
+]
+},
+"e-twinning collaboration": {
+"raw": "e-twinning collaboration",
+"where": "",
+"tags": [
+"#/pristupi [btn7]"
+]
+},
+"creative writing workshops": {
+"raw": "creative writing workshops",
+"where": "",
+"tags": [
+"#/pristupi [btn7]"
+]
+},
+"student mobilities and exchanges between partner schools": {
+"raw": "student mobilities and exchanges between partner schools",
+"where": "",
+"tags": [
+"#/pristupi [btn7]"
+]
+},
+"online survey": {
+"raw": "online survey",
+"where": "",
+"tags": [
+"#/pristupi [btn7]"
+]
+},
+"creation of moocs": {
+"raw": "creation of moocs",
+"where": "",
+"tags": [
+"#/pristupi [btn7]"
+]
+},
+"dissemination campaigns": {
+"raw": "dissemination campaigns",
+"where": "",
+"tags": [
+"#/pristupi [btn7]"
+]
+},
+"pilot phase implementation": {
+"raw": "pilot phase implementation",
+"where": "",
+"tags": [
+"#/pristupi [btn7]"
+]
+},
+"in-service training for adult educators": {
+"raw": "in-service training for adult educators",
+"where": "",
+"tags": [
+"#/pristupi [btn7]"
+]
+},
+"training of university staff": {
+"raw": "training of university staff",
+"where": "",
+"tags": [
+"#/pristupi [btn7]"
+]
+},
+"peer education": {
+"raw": "peer education",
+"where": "",
+"tags": [
+"#/pristupi [btn7]"
+]
+},
+"needs research and assessment through surveys": {
+"raw": "needs research and assessment through surveys",
+"where": "",
+"tags": [
+"#/pristupi [btn9]",
+"#/pristupi [in #view input[type=search] a]"
+]
+},
+"cooperation between partners": {
+"raw": "cooperation between partners",
+"where": "",
+"tags": [
+"#/pristupi [btn9]",
+"#/pristupi [in #view input[type=search] a]"
+]
+},
+"needs analysis": {
+"raw": "needs analysis",
+"where": "",
+"tags": [
+"#/pristupi [btn9]"
+]
+},
+"creation of teaching materials": {
+"raw": "creation of teaching materials",
+"where": "",
+"tags": [
+"#/pristupi [btn9]"
+]
+},
+"teacher training": {
+"raw": "teacher training",
+"where": "",
+"tags": [
+"#/pristupi [btn9]"
+]
+},
+"dissemination of project results": {
+"raw": "dissemination of project results",
+"where": "",
+"tags": [
+"#/pristupi [btn9]"
+]
+},
+"creation of an e-learning platform": {
+"raw": "creation of an e-learning platform",
+"where": "",
+"tags": [
+"#/pristupi [btn9]"
+]
+},
+"online meetings": {
+"raw": "online meetings",
+"where": "",
+"tags": [
+"#/pristupi [btn9]"
+]
+},
+"collaboration with universities": {
+"raw": "collaboration with universities",
+"where": "",
+"tags": [
+"#/pristupi [btn9]"
+]
+},
+"training of youth workers": {
+"raw": "training of youth workers",
+"where": "",
+"tags": [
+"#/pristupi [btn9]"
+]
+},
+"blended learning": {
+"raw": "blended learning",
+"where": "",
+"tags": [
+"#/pristupi [btn9]"
+]
+},
+"creation of a project website": {
+"raw": "creation of a project website",
+"where": "",
+"tags": [
+"#/pristupi [btn9]"
+]
+},
+"workshops for students and teachers": {
+"raw": "workshops for students and teachers",
+"where": "",
+"tags": [
+"#/pristupi [btn9]"
+]
+},
+"No rows to export": {
+"raw": "No rows to export",
+"where": "",
+"tags": [
+"#/organizacije",
+"#/organizacije [btn2]",
+"#/organizacije [btn3]"
+]
+},
+"Sveučilište u Zagrebu": {
+"raw": "Sveučilište u Zagrebu",
+"where": "",
+"tags": [
+"#/organizacije",
+"#/organizacije [btn2]",
+"#/organizacije [btn3]"
+]
+},
+"Ustanova za obrazovanje odraslih Dante": {
+"raw": "Ustanova za obrazovanje odraslih Dante",
+"where": "",
+"tags": [
+"#/organizacije",
+"#/organizacije [btn2]",
+"#/organizacije [btn3]"
+]
+},
+"Rijeka": {
+"raw": "Rijeka",
+"where": "",
+"tags": [
+"#/organizacije",
+"#/organizacije [btn2]",
+"#/organizacije [btn3]"
+]
+},
+"Sveučilište u Rijeci": {
+"raw": "Sveučilište u Rijeci",
+"where": "",
+"tags": [
+"#/organizacije",
+"#/organizacije [btn2]",
+"#/organizacije [btn3]"
+]
+},
+"Sveučilište u Splitu": {
+"raw": "Sveučilište u Splitu",
+"where": "",
+"tags": [
+"#/organizacije",
+"#/organizacije [btn2]",
+"#/organizacije [btn3]"
+]
+},
+"SPLIT": {
+"raw": "SPLIT",
+"where": "",
+"tags": [
+"#/organizacije",
+"#/organizacije [btn2]",
+"#/organizacije [btn3]"
+]
+},
+"Sveučilište Josipa Jurja Strossmayera u Osijeku": {
+"raw": "Sveučilište Josipa Jurja Strossmayera u Osijeku",
+"where": "",
+"tags": [
+"#/organizacije",
+"#/organizacije [btn2]",
+"#/organizacije [btn3]"
+]
+},
+"Osijek": {
+"raw": "Osijek",
+"where": "",
+"tags": [
+"#/organizacije",
+"#/organizacije [btn2]",
+"#/organizacije [btn3]"
+]
+},
+"Sveučilište u Dubrovniku": {
+"raw": "Sveučilište u Dubrovniku",
+"where": "",
+"tags": [
+"#/organizacije",
+"#/organizacije [btn2]",
+"#/organizacije [btn3]"
+]
+},
+"Dubrovnik": {
+"raw": "Dubrovnik",
+"where": "",
+"tags": [
+"#/organizacije",
+"#/organizacije [btn2]",
+"#/organizacije [btn3]"
+]
+},
+"Udruga za unaprjedenje suvremenih zivotnih vjestina Ostvarenje": {
+"raw": "Udruga za unaprjedenje suvremenih zivotnih vjestina Ostvarenje",
+"where": "",
+"tags": [
+"#/organizacije",
+"#/organizacije [btn2]",
+"#/organizacije [btn3]"
+]
+},
+"ZAGREB": {
+"raw": "ZAGREB",
+"where": "",
+"tags": [
+"#/organizacije",
+"#/organizacije [btn2]",
+"#/organizacije [btn3]"
+]
+},
+"Pucko otvoreno uciliste Cakovec": {
+"raw": "Pucko otvoreno uciliste Cakovec",
+"where": "",
+"tags": [
+"#/organizacije",
+"#/organizacije [btn2]",
+"#/organizacije [btn3]"
+]
+},
+"Čakovec": {
+"raw": "Čakovec",
+"where": "",
+"tags": [
+"#/organizacije",
+"#/organizacije [btn2]",
+"#/organizacije [btn3]"
+]
+},
+"Callidus ustanova za obrazovanje odraslih": {
+"raw": "Callidus ustanova za obrazovanje odraslih",
+"where": "",
+"tags": [
+"#/organizacije",
+"#/organizacije [btn2]",
+"#/organizacije [btn3]"
+]
+},
+"Sveučilište u Zadru": {
+"raw": "Sveučilište u Zadru",
+"where": "",
+"tags": [
+"#/organizacije",
+"#/organizacije [btn2]",
+"#/organizacije [btn3]"
+]
+},
+"Zadar": {
+"raw": "Zadar",
+"where": "",
+"tags": [
+"#/organizacije",
+"#/organizacije [btn2]",
+"#/organizacije [btn3]"
+]
+},
+"Gimnazija Metković": {
+"raw": "Gimnazija Metković",
+"where": "",
+"tags": [
+"#/organizacije",
+"#/organizacije [btn2]",
+"#/organizacije [btn3]"
+]
+},
+"Metković": {
+"raw": "Metković",
+"where": "",
+"tags": [
+"#/organizacije",
+"#/organizacije [btn2]",
+"#/organizacije [btn3]"
+]
+},
+"CENTAR TEHNICKE KULTURE RIJEKA": {
+"raw": "CENTAR TEHNICKE KULTURE RIJEKA",
+"where": "",
+"tags": [
+"#/organizacije",
+"#/organizacije [btn2]",
+"#/organizacije [btn3]"
+]
+},
+"I. Osnovna škola Čakovec": {
+"raw": "I. Osnovna škola Čakovec",
+"where": "",
+"tags": [
+"#/organizacije",
+"#/organizacije [btn2]",
+"#/organizacije [btn3]"
+]
+},
+"VISOKA POSLOVNA SKOLA PAR": {
+"raw": "VISOKA POSLOVNA SKOLA PAR",
+"where": "",
+"tags": [
+"#/organizacije",
+"#/organizacije [btn2]",
+"#/organizacije [btn3]"
+]
+},
+"Srednja škola Metković": {
+"raw": "Srednja škola Metković",
+"where": "",
+"tags": [
+"#/organizacije",
+"#/organizacije [btn2]",
+"#/organizacije [btn3]"
+]
+},
+"Elektrostrojarska škola": {
+"raw": "Elektrostrojarska škola",
+"where": "",
+"tags": [
+"#/organizacije",
+"#/organizacije [btn2]",
+"#/organizacije [btn3]"
+]
+},
+"Varazdin": {
+"raw": "Varazdin",
+"where": "",
+"tags": [
+"#/organizacije",
+"#/organizacije [btn2]",
+"#/organizacije [btn3]"
+]
+},
+"Udruga za poticanje neformalnog obrazovanja, kritickog misljenja i filozofije u praksi Mala filozofija": {
+"raw": "Udruga za poticanje neformalnog obrazovanja, kritickog misljenja i filozofije u praksi Mala filozofija",
+"where": "",
+"tags": [
+"#/organizacije",
+"#/organizacije [btn2]",
+"#/organizacije [btn3]"
+]
+},
+"OBRTNICKO UCILISTE - USTANOVA ZA OBRAZOVANJE ODRASLIH": {
+"raw": "OBRTNICKO UCILISTE - USTANOVA ZA OBRAZOVANJE ODRASLIH",
+"where": "",
+"tags": [
+"#/organizacije",
+"#/organizacije [btn2]",
+"#/organizacije [btn3]"
+]
+},
+"PANNONIA CONSULTING D.O.O.": {
+"raw": "PANNONIA CONSULTING D.O.O.",
+"where": "",
+"tags": [
+"#/organizacije",
+"#/organizacije [btn2]",
+"#/organizacije [btn3]"
+]
+},
+"NOVA GRADIŠKA": {
+"raw": "NOVA GRADIŠKA",
+"where": "",
+"tags": [
+"#/organizacije",
+"#/organizacije [btn2]",
+"#/organizacije [btn3]"
+]
+},
+"SIRIUS - CENTAR ZA PSIHOLOSKO SAVJETOVANJE, EDUKACIJU I ISTRAZIVANJE": {
+"raw": "SIRIUS - CENTAR ZA PSIHOLOSKO SAVJETOVANJE, EDUKACIJU I ISTRAZIVANJE",
+"where": "",
+"tags": [
+"#/organizacije",
+"#/organizacije [btn2]",
+"#/organizacije [btn3]"
+]
+},
+"Veleuciliste u Sibeniku": {
+"raw": "Veleuciliste u Sibeniku",
+"where": "",
+"tags": [
+"#/organizacije",
+"#/organizacije [btn2]",
+"#/organizacije [btn3]"
+]
+},
+"Šibenik": {
+"raw": "Šibenik",
+"where": "",
+"tags": [
+"#/organizacije",
+"#/organizacije [btn2]",
+"#/organizacije [btn3]"
+]
+},
+"Agencija za ruralni razvoj Zadarske zupanije": {
+"raw": "Agencija za ruralni razvoj Zadarske zupanije",
+"where": "",
+"tags": [
+"#/organizacije",
+"#/organizacije [btn2]",
+"#/organizacije [btn3]"
+]
+},
+"FORUM ZA SLOBODU ODGOJA": {
+"raw": "FORUM ZA SLOBODU ODGOJA",
+"where": "",
+"tags": [
+"#/organizacije",
+"#/organizacije [btn2]",
+"#/organizacije [btn3]"
+]
+},
+"Srednja škola Ban Josip Jelačić": {
+"raw": "Srednja škola Ban Josip Jelačić",
+"where": "",
+"tags": [
+"#/organizacije",
+"#/organizacije [btn2]",
+"#/organizacije [btn3]"
+]
+},
+"Zapresic": {
+"raw": "Zapresic",
+"where": "",
+"tags": [
+"#/organizacije",
+"#/organizacije [btn2]",
+"#/organizacije [btn3]"
+]
+},
+"Uciliste Studium - ustanova za obrazovanje odraslih": {
+"raw": "Uciliste Studium - ustanova za obrazovanje odraslih",
+"where": "",
+"tags": [
+"#/organizacije",
+"#/organizacije [btn2]",
+"#/organizacije [btn3]"
+]
+},
+"Vukovar": {
+"raw": "Vukovar",
+"where": "",
+"tags": [
+"#/organizacije",
+"#/organizacije [btn2]",
+"#/organizacije [btn3]"
+]
+},
+"All counties": {
+"raw": "All counties",
+"where": "",
+"tags": [
+"#/organizacije",
+"#/organizacije [btn2]",
+"#/organizacije [btn3]"
+]
+},
+"Bjelovar-Bilogora": {
+"raw": "Bjelovar-Bilogora",
+"where": "",
+"tags": [
+"#/organizacije",
+"#/organizacije [btn2]",
+"#/organizacije [btn3]"
+]
+},
+"Brod-Posavina": {
+"raw": "Brod-Posavina",
+"where": "",
+"tags": [
+"#/organizacije",
+"#/organizacije [btn2]",
+"#/organizacije [btn3]"
+]
+},
+"Dubrovnik-Neretva": {
+"raw": "Dubrovnik-Neretva",
+"where": "",
+"tags": [
+"#/organizacije",
+"#/organizacije [btn2]",
+"#/organizacije [btn3]"
+]
+},
+"City of Zagreb": {
+"raw": "City of Zagreb",
+"where": "",
+"tags": [
+"#/organizacije",
+"#/organizacije [btn2]",
+"#/organizacije [btn3]"
+]
+},
+"Istria": {
+"raw": "Istria",
+"where": "",
+"tags": [
+"#/organizacije",
+"#/organizacije [btn2]",
+"#/organizacije [btn3]"
+]
+},
+"Karlovac": {
+"raw": "Karlovac",
+"where": "",
+"tags": [
+"#/organizacije",
+"#/organizacije [btn2]",
+"#/organizacije [btn3]"
+]
+},
+"Koprivnica-Križevci": {
+"raw": "Koprivnica-Križevci",
+"where": "",
+"tags": [
+"#/organizacije",
+"#/organizacije [btn2]",
+"#/organizacije [btn3]"
+]
+},
+"Krapina-Zagorje": {
+"raw": "Krapina-Zagorje",
+"where": "",
+"tags": [
+"#/organizacije",
+"#/organizacije [btn2]",
+"#/organizacije [btn3]"
+]
+},
+"Lika-Senj": {
+"raw": "Lika-Senj",
+"where": "",
+"tags": [
+"#/organizacije",
+"#/organizacije [btn2]",
+"#/organizacije [btn3]"
+]
+},
+"Međimurje": {
+"raw": "Međimurje",
+"where": "",
+"tags": [
+"#/organizacije",
+"#/organizacije [btn2]",
+"#/organizacije [btn3]"
+]
+},
+"Osijek-Baranja": {
+"raw": "Osijek-Baranja",
+"where": "",
+"tags": [
+"#/organizacije",
+"#/organizacije [btn2]",
+"#/organizacije [btn3]"
+]
+},
+"Požega-Slavonia": {
+"raw": "Požega-Slavonia",
+"where": "",
+"tags": [
+"#/organizacije",
+"#/organizacije [btn2]",
+"#/organizacije [btn3]"
+]
+},
+"Primorje-Gorski Kotar": {
+"raw": "Primorje-Gorski Kotar",
+"where": "",
+"tags": [
+"#/organizacije",
+"#/organizacije [btn2]",
+"#/organizacije [btn3]"
+]
+},
+"Šibenik-Knin": {
+"raw": "Šibenik-Knin",
+"where": "",
+"tags": [
+"#/organizacije",
+"#/organizacije [btn2]",
+"#/organizacije [btn3]"
+]
+},
+"Sisak-Moslavina": {
+"raw": "Sisak-Moslavina",
+"where": "",
+"tags": [
+"#/organizacije",
+"#/organizacije [btn2]",
+"#/organizacije [btn3]"
+]
+},
+"Split-Dalmatia": {
+"raw": "Split-Dalmatia",
+"where": "",
+"tags": [
+"#/organizacije",
+"#/organizacije [btn2]",
+"#/organizacije [btn3]"
+]
+},
+"Varaždin": {
+"raw": "Varaždin",
+"where": "",
+"tags": [
+"#/organizacije",
+"#/organizacije [btn2]",
+"#/organizacije [btn3]"
+]
+},
+"Virovitica-Podravina": {
+"raw": "Virovitica-Podravina",
+"where": "",
+"tags": [
+"#/organizacije",
+"#/organizacije [btn2]",
+"#/organizacije [btn3]"
+]
+},
+"Vukovar-Syrmia": {
+"raw": "Vukovar-Syrmia",
+"where": "",
+"tags": [
+"#/organizacije",
+"#/organizacije [btn2]",
+"#/organizacije [btn3]"
+]
+},
+"All types": {
+"raw": "All types",
+"where": "",
+"tags": [
+"#/organizacije",
+"#/organizacije [btn2]",
+"#/organizacije [btn3]"
+]
+},
+"Grammar and general secondary schools": {
+"raw": "Grammar and general secondary schools",
+"where": "",
+"tags": [
+"#/organizacije",
+"#/organizacije [btn2]",
+"#/organizacije [btn3]"
+]
+},
+"Research organisations": {
+"raw": "Research organisations",
+"where": "",
+"tags": [
+"#/organizacije",
+"#/organizacije [btn2]",
+"#/organizacije [btn3]"
+]
+},
+"Public bodies": {
+"raw": "Public bodies",
+"where": "",
+"tags": [
+"#/organizacije",
+"#/organizacije [btn2]",
+"#/organizacije [btn3]"
+]
+},
+"Culture": {
+"raw": "Culture",
+"where": "",
+"tags": [
+"#/organizacije",
+"#/organizacije [btn2]",
+"#/organizacije [btn3]"
+]
+},
+"Non-governmental organisations (NGOs)": {
+"raw": "Non-governmental organisations (NGOs)",
+"where": "",
+"tags": [
+"#/organizacije",
+"#/organizacije [btn2]",
+"#/organizacije [btn3]"
+]
+},
+"Adult education": {
+"raw": "Adult education",
+"where": "",
+"tags": [
+"#/organizacije",
+"#/organizacije [btn2]",
+"#/organizacije [btn3]"
+]
+},
+"Primary schools": {
+"raw": "Primary schools",
+"where": "",
+"tags": [
+"#/organizacije",
+"#/organizacije [btn2]",
+"#/organizacije [btn3]"
+]
+},
+"Other": {
+"raw": "Other",
+"where": "",
+"tags": [
+"#/organizacije",
+"#/organizacije [btn2]",
+"#/organizacije [btn3]"
+]
+},
+"Businesses (SMEs)": {
+"raw": "Businesses (SMEs)",
+"where": "",
+"tags": [
+"#/organizacije",
+"#/organizacije [btn2]",
+"#/organizacije [btn3]"
+]
+},
+"Pre-primary institutions": {
+"raw": "Pre-primary institutions",
+"where": "",
+"tags": [
+"#/organizacije",
+"#/organizacije [btn2]",
+"#/organizacije [btn3]"
+]
+},
+"Counselling": {
+"raw": "Counselling",
+"where": "",
+"tags": [
+"#/organizacije",
+"#/organizacije [btn2]",
+"#/organizacije [btn3]"
+]
+},
+"Vocational schools": {
+"raw": "Vocational schools",
+"where": "",
+"tags": [
+"#/organizacije",
+"#/organizacije [btn2]",
+"#/organizacije [btn3]"
+]
+},
+"Higher education institutions": {
+"raw": "Higher education institutions",
+"where": "",
+"tags": [
+"#/organizacije",
+"#/organizacije [btn2]",
+"#/organizacije [btn3]"
+]
+},
+"County": {
+"raw": "County",
+"where": "",
+"tags": [
+"#/organizacije",
+"#/organizacije [btn2]",
+"#/organizacije [btn3]"
+]
+},
+"Organisation type": {
+"raw": "Organisation type",
+"where": "",
+"tags": [
+"#/organizacije",
+"#/organizacije [btn2]",
+"#/organizacije [btn3]"
+]
+},
+"By number of projects": {
+"raw": "By number of projects",
+"where": "",
+"tags": [
+"#/organizacije",
+"#/organizacije [btn2]",
+"#/organizacije [btn3]"
+]
+},
+"By coordinations": {
+"raw": "By coordinations",
+"where": "",
+"tags": [
+"#/organizacije",
+"#/organizacije [btn2]",
+"#/organizacije [btn3]"
+]
+},
+"By name": {
+"raw": "By name",
+"where": "",
+"tags": [
+"#/organizacije",
+"#/organizacije [btn2]",
+"#/organizacije [btn3]"
+]
+},
+"Centar za Autizam": {
+"raw": "Centar za Autizam",
+"where": "",
+"tags": [
+"#/organizacije [btn28]",
+"#/organizacije [btn54]"
+]
+},
+"Srednja škola Mate Blažine Labin": {
+"raw": "Srednja škola Mate Blažine Labin",
+"where": "",
+"tags": [
+"#/organizacije [btn28]",
+"#/organizacije [btn43]"
+]
+},
+"Labin": {
+"raw": "Labin",
+"where": "",
+"tags": [
+"#/organizacije [btn28]",
+"#/organizacije [btn35]",
+"#/organizacije [btn43]"
+]
+},
+"Gimnazija Gospić": {
+"raw": "Gimnazija Gospić",
+"where": "",
+"tags": [
+"#/organizacije [btn28]",
+"#/organizacije [btn43]"
+]
+},
+"Gospić": {
+"raw": "Gospić",
+"where": "",
+"tags": [
+"#/organizacije [btn28]",
+"#/organizacije [btn43]"
+]
+},
+"Osnovna škola Pantovčak": {
+"raw": "Osnovna škola Pantovčak",
+"where": "",
+"tags": [
+"#/organizacije [btn28]",
+"#/organizacije [btn46]"
+]
+},
+"Druga gimnazija Varaždin": {
+"raw": "Druga gimnazija Varaždin",
+"where": "",
+"tags": [
+"#/organizacije [btn28]"
+]
+},
+"Srednja škola Isidora Kršnjavoga Našice": {
+"raw": "Srednja škola Isidora Kršnjavoga Našice",
+"where": "",
+"tags": [
+"#/organizacije [btn28]"
+]
+},
+"Našice": {
+"raw": "Našice",
+"where": "",
+"tags": [
+"#/organizacije [btn28]"
+]
+},
+"Srednja škola Hvar": {
+"raw": "Srednja škola Hvar",
+"where": "",
+"tags": [
+"#/organizacije [btn28]"
+]
+},
+"Hvar": {
+"raw": "Hvar",
+"where": "",
+"tags": [
+"#/organizacije [btn28]"
+]
+},
+"Gimnazija \"\" Fran Galović\"\" Koprivnica": {
+"raw": "Gimnazija \"\" Fran Galović\"\" Koprivnica",
+"where": "",
+"tags": [
+"#/organizacije [btn28]"
+]
+},
+"Koprivnica": {
+"raw": "Koprivnica",
+"where": "",
+"tags": [
+"#/organizacije [btn28]",
+"#/organizacije [btn33]",
+"#/organizacije [btn38]"
+]
+},
+"Gimnazija Josipa Slavenskog Čakovec": {
+"raw": "Gimnazija Josipa Slavenskog Čakovec",
+"where": "",
+"tags": [
+"#/organizacije [btn28]"
+]
+},
+"Tehnička škola i prirodoslovna gimnazija Ruđera Boškovića": {
+"raw": "Tehnička škola i prirodoslovna gimnazija Ruđera Boškovića",
+"where": "",
+"tags": [
+"#/organizacije [btn28]"
+]
+},
+"V. gimnazija, Zagreb": {
+"raw": "V. gimnazija, Zagreb",
+"where": "",
+"tags": [
+"#/organizacije [btn28]"
+]
+},
+"Prva gimnazija Varaždin": {
+"raw": "Prva gimnazija Varaždin",
+"where": "",
+"tags": [
+"#/organizacije [btn28]"
+]
+},
+"Prva Sušačka {E} gimnazija u Rijeci": {
+"raw": "Prva Sušačka {E} gimnazija u Rijeci",
+"where": "",
+"tags": [
+"#/organizacije [btn28]"
+]
+},
+"Srednja škola Bol": {
+"raw": "Srednja škola Bol",
+"where": "",
+"tags": [
+"#/organizacije [btn28]"
+]
+},
+"Bol": {
+"raw": "Bol",
+"where": "",
+"tags": [
+"#/organizacije [btn28]"
+]
+},
+"I. Gimnazija Osijek": {
+"raw": "I. Gimnazija Osijek",
+"where": "",
+"tags": [
+"#/organizacije [btn28]",
+"#/organizacije [btn46]"
+]
+},
+"Srednja škola Ivanec": {
+"raw": "Srednja škola Ivanec",
+"where": "",
+"tags": [
+"#/organizacije [btn28]"
+]
+},
+"Ivanec": {
+"raw": "Ivanec",
+"where": "",
+"tags": [
+"#/organizacije [btn28]"
+]
+},
+"Osnovna škola Gornje Vrapče": {
+"raw": "Osnovna škola Gornje Vrapče",
+"where": "",
+"tags": [
+"#/organizacije [btn28]"
+]
+},
+"III. Gimnazija Osijek": {
+"raw": "III. Gimnazija Osijek",
+"where": "",
+"tags": [
+"#/organizacije [btn28]"
+]
+},
+"Gimnazija Vukovar": {
+"raw": "Gimnazija Vukovar",
+"where": "",
+"tags": [
+"#/organizacije [btn28]"
+]
+},
+"XV. gimnazija": {
+"raw": "XV. gimnazija",
+"where": "",
+"tags": [
+"#/organizacije [btn28]"
+]
+},
+"Gimnazija Pula": {
+"raw": "Gimnazija Pula",
+"where": "",
+"tags": [
+"#/organizacije [btn28]"
+]
+},
+"Pula": {
+"raw": "Pula",
+"where": "",
+"tags": [
+"#/organizacije [btn28]",
+"#/organizacije [btn29]",
+"#/organizacije [btn33]"
+]
+},
+"Osnovna škola ˝Bol˝": {
+"raw": "Osnovna škola ˝Bol˝",
+"where": "",
+"tags": [
+"#/organizacije [btn28]"
+]
+},
+"Split": {
+"raw": "Split",
+"where": "",
+"tags": [
+"#/organizacije [btn28]",
+"#/organizacije [btn29]",
+"#/organizacije [btn33]"
+]
+},
+"Škola za odgoj i obrazovanje - Pula": {
+"raw": "Škola za odgoj i obrazovanje - Pula",
+"where": "",
+"tags": [
+"#/organizacije [btn28]"
+]
+},
+"Institut za turizam": {
+"raw": "Institut za turizam",
+"where": "",
+"tags": [
+"#/organizacije [btn29]"
+]
+},
+"INSTITUT DRUSTVENIH ZNANOSTI IVO PILAR": {
+"raw": "INSTITUT DRUSTVENIH ZNANOSTI IVO PILAR",
+"where": "",
+"tags": [
+"#/organizacije [btn29]"
+]
+},
+"INSTITUT ZA RAZVOJ I MEDUNARODNE ODNOSE": {
+"raw": "INSTITUT ZA RAZVOJ I MEDUNARODNE ODNOSE",
+"where": "",
+"tags": [
+"#/organizacije [btn29]"
+]
+},
+"Institut za poljoprivredu i turizam": {
+"raw": "Institut za poljoprivredu i turizam",
+"where": "",
+"tags": [
+"#/organizacije [btn29]"
+]
+},
+"Porec": {
+"raw": "Porec",
+"where": "",
+"tags": [
+"#/organizacije [btn29]"
+]
+},
+"HRVATSKI SUMARSKI INSTITUT": {
+"raw": "HRVATSKI SUMARSKI INSTITUT",
+"where": "",
+"tags": [
+"#/organizacije [btn29]"
+]
+},
+"Jastrebarsko": {
+"raw": "Jastrebarsko",
+"where": "",
+"tags": [
+"#/organizacije [btn29]"
+]
+},
+"INSTITUT ZA DRUSTVENA ISTRAZIVANJA U ZAGREBU": {
+"raw": "INSTITUT ZA DRUSTVENA ISTRAZIVANJA U ZAGREBU",
+"where": "",
+"tags": [
+"#/organizacije [btn29]"
+]
+},
+"Slovacki centar za kulturu Nasice": {
+"raw": "Slovacki centar za kulturu Nasice",
+"where": "",
+"tags": [
+"#/organizacije [btn29]"
+]
+},
+"Na?ice": {
+"raw": "Na?ice",
+"where": "",
+"tags": [
+"#/organizacije [btn29]"
+]
+},
+"MEDITERANSKI INSTITUT ZA ISTRAZIVANJE ZIVOTA": {
+"raw": "MEDITERANSKI INSTITUT ZA ISTRAZIVANJE ZIVOTA",
+"where": "",
+"tags": [
+"#/organizacije [btn29]"
+]
+},
+"Arheološki muzej u Zagrebu": {
+"raw": "Arheološki muzej u Zagrebu",
+"where": "",
+"tags": [
+"#/organizacije [btn29]"
+]
+},
+"Institut za medicinska istrazivanja i medicinu rada": {
+"raw": "Institut za medicinska istrazivanja i medicinu rada",
+"where": "",
+"tags": [
+"#/organizacije [btn29]"
+]
+},
+"Development and Training Centre for the Metal Industry – Metal Centre Čakovec": {
+"raw": "Development and Training Centre for the Metal Industry – Metal Centre Čakovec",
+"where": "",
+"tags": [
+"#/organizacije [btn29]"
+]
+},
+"EKONOMSKI INSTITUT ZAGREB": {
+"raw": "EKONOMSKI INSTITUT ZAGREB",
+"where": "",
+"tags": [
+"#/organizacije [btn29]"
+]
+},
+"INSTITUT ZA ISTRAŽIVANJE MIGRACIJA IMIN": {
+"raw": "INSTITUT ZA ISTRAŽIVANJE MIGRACIJA IMIN",
+"where": "",
+"tags": [
+"#/organizacije [btn29]"
+]
+},
+"INSTITUT ZA OCEANOGRAFIJU I RIBARSTVO": {
+"raw": "INSTITUT ZA OCEANOGRAFIJU I RIBARSTVO",
+"where": "",
+"tags": [
+"#/organizacije [btn29]"
+]
+},
+"Institute for Research and Development of Innovations in Education EDUKRATIA": {
+"raw": "Institute for Research and Development of Innovations in Education EDUKRATIA",
+"where": "",
+"tags": [
+"#/organizacije [btn29]"
+]
+},
+"Dugopolje": {
+"raw": "Dugopolje",
+"where": "",
+"tags": [
+"#/organizacije [btn29]",
+"#/organizacije [btn36]"
+]
+},
+"Institute of Ethnology and Folklore Research": {
+"raw": "Institute of Ethnology and Folklore Research",
+"where": "",
+"tags": [
+"#/organizacije [btn29]"
+]
+},
+"Medunarodni centar za podvodnu arheologiju u Zadru": {
+"raw": "Medunarodni centar za podvodnu arheologiju u Zadru",
+"where": "",
+"tags": [
+"#/organizacije [btn29]"
+]
+},
+"POLJOPRIVREDNI INSTITUT OSIJEK": {
+"raw": "POLJOPRIVREDNI INSTITUT OSIJEK",
+"where": "",
+"tags": [
+"#/organizacije [btn29]"
+]
+},
+"OSIJEK": {
+"raw": "OSIJEK",
+"where": "",
+"tags": [
+"#/organizacije [btn29]"
+]
+},
+"Priority Actions Programme Regional Activity Centre": {
+"raw": "Priority Actions Programme Regional Activity Centre",
+"where": "",
+"tags": [
+"#/organizacije [btn29]"
+]
+},
+"Universal Research Institute UR": {
+"raw": "Universal Research Institute UR",
+"where": "",
+"tags": [
+"#/organizacije [btn29]"
+]
+},
+"USTANOVA CENTAR ZA ISTRAZIVANJE MATERIJALA ISTARSKE ZUPANIJE METRIS": {
+"raw": "USTANOVA CENTAR ZA ISTRAZIVANJE MATERIJALA ISTARSKE ZUPANIJE METRIS",
+"where": "",
+"tags": [
+"#/organizacije [btn29]"
+]
+},
+"Klinika za psihijatriju Vrapce": {
+"raw": "Klinika za psihijatriju Vrapce",
+"where": "",
+"tags": [
+"#/organizacije [btn30]",
+"#/organizacije [btn54]"
+]
+},
+"AGENCIJA ZA STRUKOVNO OBRAZOVANJE I OBRAZOVANJE ODRASLIH": {
+"raw": "AGENCIJA ZA STRUKOVNO OBRAZOVANJE I OBRAZOVANJE ODRASLIH",
+"where": "",
+"tags": [
+"#/organizacije [btn30]",
+"#/organizacije [btn47]",
+"#/organizacije [btn54]"
+]
+},
+"SVEUCILISTE U ZAGREBU SVEUCILISNI RACUNSKI CENTAR": {
+"raw": "SVEUCILISTE U ZAGREBU SVEUCILISNI RACUNSKI CENTAR",
+"where": "",
+"tags": [
+"#/organizacije [btn30]"
+]
+},
+"AGENCIJA ZA ODGOJ I OBRAZOVANJE": {
+"raw": "AGENCIJA ZA ODGOJ I OBRAZOVANJE",
+"where": "",
+"tags": [
+"#/organizacije [btn30]",
+"#/organizacije [btn47]"
+]
+},
+"VARAZDINSKA ZUPANIJA": {
+"raw": "VARAZDINSKA ZUPANIJA",
+"where": "",
+"tags": [
+"#/organizacije [btn30]"
+]
+},
+"VARAZDIN": {
+"raw": "VARAZDIN",
+"where": "",
+"tags": [
+"#/organizacije [btn30]",
+"#/organizacije [btn36]"
+]
+},
+"GRAD LUDBREG": {
+"raw": "GRAD LUDBREG",
+"where": "",
+"tags": [
+"#/organizacije [btn30]"
+]
+},
+"Ludbreg": {
+"raw": "Ludbreg",
+"where": "",
+"tags": [
+"#/organizacije [btn30]",
+"#/organizacije [btn36]",
+"#/organizacije [btn37]"
+]
+},
+"AGENCIJA ZA ZNANOST I VISOKO OBRAZOVANJE": {
+"raw": "AGENCIJA ZA ZNANOST I VISOKO OBRAZOVANJE",
+"where": "",
+"tags": [
+"#/organizacije [btn30]",
+"#/organizacije [btn47]"
+]
+},
+"Muzej Slavonije": {
+"raw": "Muzej Slavonije",
+"where": "",
+"tags": [
+"#/organizacije [btn30]"
+]
+},
+"Gradska knjiznica Rijeka": {
+"raw": "Gradska knjiznica Rijeka",
+"where": "",
+"tags": [
+"#/organizacije [btn30]"
+]
+},
+"Muzeji i galerije Konavala": {
+"raw": "Muzeji i galerije Konavala",
+"where": "",
+"tags": [
+"#/organizacije [btn30]"
+]
+},
+"Cavtat": {
+"raw": "Cavtat",
+"where": "",
+"tags": [
+"#/organizacije [btn30]"
+]
+},
+"Dom za odrasle osobe Turnic": {
+"raw": "Dom za odrasle osobe Turnic",
+"where": "",
+"tags": [
+"#/organizacije [btn30]"
+]
+},
+"GRAD ZADAR": {
+"raw": "GRAD ZADAR",
+"where": "",
+"tags": [
+"#/organizacije [btn30]"
+]
+},
+"HRVATSKI ZAVOD ZA ZAPOSLJAVANJE": {
+"raw": "HRVATSKI ZAVOD ZA ZAPOSLJAVANJE",
+"where": "",
+"tags": [
+"#/organizacije [btn30]"
+]
+},
+"{E} dom - Zagreb dnevni centar za rehabilitaciju djece i mladezi": {
+"raw": "{E} dom - Zagreb dnevni centar za rehabilitaciju djece i mladezi",
+"where": "",
+"tags": [
+"#/organizacije [btn30]"
+]
+},
+"Public cultural institution Fortress of Culture Šibenik": {
+"raw": "Public cultural institution Fortress of Culture Šibenik",
+"where": "",
+"tags": [
+"#/organizacije [btn30]"
+]
+},
+"Ucenicki dom Dora Pejacevic": {
+"raw": "Ucenicki dom Dora Pejacevic",
+"where": "",
+"tags": [
+"#/organizacije [btn30]"
+]
+},
+"HRVATSKA AKADEMSKA I ISTRAZIVACKA MREZA CARNET": {
+"raw": "HRVATSKA AKADEMSKA I ISTRAZIVACKA MREZA CARNET",
+"where": "",
+"tags": [
+"#/organizacije [btn30]"
+]
+},
+"NACIONALNA I SVEUCILISNA KNJIZNICA U ZAGREBU": {
+"raw": "NACIONALNA I SVEUCILISNA KNJIZNICA U ZAGREBU",
+"where": "",
+"tags": [
+"#/organizacije [btn30]"
+]
+},
+"{E} komora medicinskih sestara": {
+"raw": "{E} komora medicinskih sestara",
+"where": "",
+"tags": [
+"#/organizacije [btn30]"
+]
+},
+"Institut za kreativno obrazovanje (IKO)": {
+"raw": "Institut za kreativno obrazovanje (IKO)",
+"where": "",
+"tags": [
+"#/organizacije [btn30]"
+]
+},
+"Agencija za razvoj Zadarske zupanije ZADRA NOVA": {
+"raw": "Agencija za razvoj Zadarske zupanije ZADRA NOVA",
+"where": "",
+"tags": [
+"#/organizacije [btn30]",
+"#/organizacije [btn47]"
+]
+},
+"Centar za rehabilitaciju Rijeka": {
+"raw": "Centar za rehabilitaciju Rijeka",
+"where": "",
+"tags": [
+"#/organizacije [btn30]"
+]
+},
+"HP - {E} posta d.d.": {
+"raw": "HP - {E} posta d.d.",
+"where": "",
+"tags": [
+"#/organizacije [btn30]"
+]
+},
+"MINISTRY OF THE INTERIOR": {
+"raw": "MINISTRY OF THE INTERIOR",
+"where": "",
+"tags": [
+"#/organizacije [btn30]"
+]
+},
+"Gradska knjiznica Ivan Vidali": {
+"raw": "Gradska knjiznica Ivan Vidali",
+"where": "",
+"tags": [
+"#/organizacije [btn31]"
+]
+},
+"Korčula": {
+"raw": "Korčula",
+"where": "",
+"tags": [
+"#/organizacije [btn31]"
+]
+},
+"MREZA MLADIH HRVATSKE": {
+"raw": "MREZA MLADIH HRVATSKE",
+"where": "",
+"tags": [
+"#/organizacije [btn32]",
+"#/organizacije [btn48]",
+"#/organizacije [btn54]"
+]
+},
+"{E} edukacijska i razvojna mreza za evoluciju sporazumijevanja (HERMES)": {
+"raw": "{E} edukacijska i razvojna mreza za evoluciju sporazumijevanja (HERMES)",
+"where": "",
+"tags": [
+"#/organizacije [btn32]",
+"#/organizacije [btn44]",
+"#/organizacije [btn54]"
+]
+},
+"DKolektiv - organizacija za društveni razvoj": {
+"raw": "DKolektiv - organizacija za društveni razvoj",
+"where": "",
+"tags": [
+"#/organizacije [btn32]",
+"#/organizacije [btn54]"
+]
+},
+"Centar za Karijere Mladih Dubrovnik": {
+"raw": "Centar za Karijere Mladih Dubrovnik",
+"where": "",
+"tags": [
+"#/organizacije [btn32]",
+"#/organizacije [btn44]",
+"#/organizacije [btn54]"
+]
+},
+"Hrvatsko debatno drustvo": {
+"raw": "Hrvatsko debatno drustvo",
+"where": "",
+"tags": [
+"#/organizacije [btn32]",
+"#/organizacije [btn46]",
+"#/organizacije [btn54]"
+]
+},
+"Pučko otvoreno učilište 'Korak po korak'": {
+"raw": "Pučko otvoreno učilište 'Korak po korak'",
+"where": "",
+"tags": [
+"#/organizacije [btn32]",
+"#/organizacije [btn54]"
+]
+},
+"ZELENA AKCIJA": {
+"raw": "ZELENA AKCIJA",
+"where": "",
+"tags": [
+"#/organizacije [btn32]",
+"#/organizacije [btn54]"
+]
+},
+"EUROPSKI DOM SLAVONSKI BROD": {
+"raw": "EUROPSKI DOM SLAVONSKI BROD",
+"where": "",
+"tags": [
+"#/organizacije [btn32]",
+"#/organizacije [btn43]",
+"#/organizacije [btn54]"
+]
+},
+"Slavonski Brod": {
+"raw": "Slavonski Brod",
+"where": "",
+"tags": [
+"#/organizacije [btn32]",
+"#/organizacije [btn34]",
+"#/organizacije [btn40]"
+]
+},
+"INSTITUT ZA DRUSTVENO ODGOVORNO POSLOVANJE": {
+"raw": "INSTITUT ZA DRUSTVENO ODGOVORNO POSLOVANJE",
+"where": "",
+"tags": [
+"#/organizacije [btn32]",
+"#/organizacije [btn54]"
+]
+},
+"ACT GRUPA": {
+"raw": "ACT GRUPA",
+"where": "",
+"tags": [
+"#/organizacije [btn32]",
+"#/organizacije [btn47]"
+]
+},
+"CAKOVEC": {
+"raw": "CAKOVEC",
+"where": "",
+"tags": [
+"#/organizacije [btn32]",
+"#/organizacije [btn47]"
+]
+},
+"{E} udruga radnih terapeuta": {
+"raw": "{E} udruga radnih terapeuta",
+"where": "",
+"tags": [
+"#/organizacije [btn32]",
+"#/organizacije [btn43]"
+]
+},
+"Udruga roditelja \"Korak po korak\"": {
+"raw": "Udruga roditelja \"Korak po korak\"",
+"where": "",
+"tags": [
+"#/organizacije [btn32]"
+]
+},
+"Udruga za promicanje pozitivne afirmacije mladih u drustvu \"\"Impress\"\" Daruvar": {
+"raw": "Udruga za promicanje pozitivne afirmacije mladih u drustvu \"\"Impress\"\" Daruvar",
+"where": "",
+"tags": [
+"#/organizacije [btn32]"
+]
+},
+"Daruvar": {
+"raw": "Daruvar",
+"where": "",
+"tags": [
+"#/organizacije [btn32]",
+"#/organizacije [btn37]",
+"#/organizacije [btn40]"
+]
+},
+"INSTITUT ZA RAZVOJ OBRAZOVANJA": {
+"raw": "INSTITUT ZA RAZVOJ OBRAZOVANJA",
+"where": "",
+"tags": [
+"#/organizacije [btn32]"
+]
+},
+"Udruga za ekonomiju zajednistva": {
+"raw": "Udruga za ekonomiju zajednistva",
+"where": "",
+"tags": [
+"#/organizacije [btn32]"
+]
+},
+"Križevci": {
+"raw": "Križevci",
+"where": "",
+"tags": [
+"#/organizacije [btn32]"
+]
+},
+"Savez gluhih i nagluhih grada Zagreba": {
+"raw": "Savez gluhih i nagluhih grada Zagreba",
+"where": "",
+"tags": [
+"#/organizacije [btn32]",
+"#/organizacije [btn46]"
+]
+},
+"UDRUGA ZA PROMICANJE AKTIVNOG SUDJELOVANJA STUDIO B": {
+"raw": "UDRUGA ZA PROMICANJE AKTIVNOG SUDJELOVANJA STUDIO B",
+"where": "",
+"tags": [
+"#/organizacije [btn32]"
+]
+},
+"Staro Petrovo Selo": {
+"raw": "Staro Petrovo Selo",
+"where": "",
+"tags": [
+"#/organizacije [btn32]"
+]
+},
+"UDRUGA ZAŽELI": {
+"raw": "UDRUGA ZAŽELI",
+"where": "",
+"tags": [
+"#/organizacije [btn32]"
+]
+},
+"Zelena mreza aktivistickih grupa": {
+"raw": "Zelena mreza aktivistickih grupa",
+"where": "",
+"tags": [
+"#/organizacije [btn32]"
+]
+},
+"Dubranec": {
+"raw": "Dubranec",
+"where": "",
+"tags": [
+"#/organizacije [btn32]"
+]
+},
+"Udruga za poticanje razvoja ljudskih potencijala i kreativnosti - Prizma": {
+"raw": "Udruga za poticanje razvoja ljudskih potencijala i kreativnosti - Prizma",
+"where": "",
+"tags": [
+"#/organizacije [btn32]"
+]
+},
+"Gračac": {
+"raw": "Gračac",
+"where": "",
+"tags": [
+"#/organizacije [btn32]"
+]
+},
+"Pucko otvoreno uciliste Zagreb": {
+"raw": "Pucko otvoreno uciliste Zagreb",
+"where": "",
+"tags": [
+"#/organizacije [btn33]",
+"#/organizacije [btn43]",
+"#/organizacije [btn54]"
+]
+},
+"Sportsko učilište PESG": {
+"raw": "Sportsko učilište PESG",
+"where": "",
+"tags": [
+"#/organizacije [btn33]",
+"#/organizacije [btn54]"
+]
+},
+"Uciliste JANTAR - ustanova za obrazovanje odraslih": {
+"raw": "Uciliste JANTAR - ustanova za obrazovanje odraslih",
+"where": "",
+"tags": [
+"#/organizacije [btn33]"
+]
+},
+"PUCKO OTVORENO UCILISTE KOPRIVNICA": {
+"raw": "PUCKO OTVORENO UCILISTE KOPRIVNICA",
+"where": "",
+"tags": [
+"#/organizacije [btn33]"
+]
+},
+"Uciliste Ambitio ustanova za obrazovanje odraslih": {
+"raw": "Uciliste Ambitio ustanova za obrazovanje odraslih",
+"where": "",
+"tags": [
+"#/organizacije [btn33]"
+]
+},
+"Pucko otvoreno uciliste Auto moto centar Nova Gradiska": {
+"raw": "Pucko otvoreno uciliste Auto moto centar Nova Gradiska",
+"where": "",
+"tags": [
+"#/organizacije [btn33]"
+]
+},
+"Nova Gradiska": {
+"raw": "Nova Gradiska",
+"where": "",
+"tags": [
+"#/organizacije [btn33]"
+]
+},
+"Centar izvrsnosti Splitsko-dalmatinske županije": {
+"raw": "Centar izvrsnosti Splitsko-dalmatinske županije",
+"where": "",
+"tags": [
+"#/organizacije [btn33]"
+]
+},
+"Pucko otvoreno uciliste Varazdin": {
+"raw": "Pucko otvoreno uciliste Varazdin",
+"where": "",
+"tags": [
+"#/organizacije [btn33]"
+]
+},
+"Ustanova za obrazovanje odraslih Maksima": {
+"raw": "Ustanova za obrazovanje odraslih Maksima",
+"where": "",
+"tags": [
+"#/organizacije [btn33]"
+]
+},
+"Callidus obrazovanje d.o.o. za poduku, seminare i savjetovanja": {
+"raw": "Callidus obrazovanje d.o.o. za poduku, seminare i savjetovanja",
+"where": "",
+"tags": [
+"#/organizacije [btn33]"
+]
+},
+"CENTAR ZA CJELOŽIVOTNO UČENJE I KULTURU BJELOVAR": {
+"raw": "CENTAR ZA CJELOŽIVOTNO UČENJE I KULTURU BJELOVAR",
+"where": "",
+"tags": [
+"#/organizacije [btn33]"
+]
+},
+"BJELOVAR": {
+"raw": "BJELOVAR",
+"where": "",
+"tags": [
+"#/organizacije [btn33]"
+]
+},
+"Narodno uciliste ustanova za obrazovanje i kulturu": {
+"raw": "Narodno uciliste ustanova za obrazovanje i kulturu",
+"where": "",
+"tags": [
+"#/organizacije [btn33]"
+]
+},
+"LiCe - Likovni centar": {
+"raw": "LiCe - Likovni centar",
+"where": "",
+"tags": [
+"#/organizacije [btn33]"
+]
+},
+"Uciliste FINIS": {
+"raw": "Uciliste FINIS",
+"where": "",
+"tags": [
+"#/organizacije [btn33]"
+]
+},
+"Ustanova za obrazovanje odraslih Praxis - uciliste za prakticna znanja": {
+"raw": "Ustanova za obrazovanje odraslih Praxis - uciliste za prakticna znanja",
+"where": "",
+"tags": [
+"#/organizacije [btn33]"
+]
+},
+"DIOPTER OTVORENO UCILISTE": {
+"raw": "DIOPTER OTVORENO UCILISTE",
+"where": "",
+"tags": [
+"#/organizacije [btn33]"
+]
+},
+"Dječji vrtić \"Tratinčica\"": {
+"raw": "Dječji vrtić \"Tratinčica\"",
+"where": "",
+"tags": [
+"#/organizacije [btn33]"
+]
+},
+"Europski obrazovni centar": {
+"raw": "Europski obrazovni centar",
+"where": "",
+"tags": [
+"#/organizacije [btn33]"
+]
+},
+"Učilište Centar izvrsnosti Splitsko-dalmatinske županije Ustanova za obrazovanje odraslih": {
+"raw": "Učilište Centar izvrsnosti Splitsko-dalmatinske županije Ustanova za obrazovanje odraslih",
+"where": "",
+"tags": [
+"#/organizacije [btn33]"
+]
+},
+"Učilište Magistra ustanova za obrazovanje odraslih": {
+"raw": "Učilište Magistra ustanova za obrazovanje odraslih",
+"where": "",
+"tags": [
+"#/organizacije [btn33]"
+]
+},
+"Osnovna škola Josipa Matoša": {
+"raw": "Osnovna škola Josipa Matoša",
+"where": "",
+"tags": [
+"#/organizacije [btn34]",
+"#/organizacije [btn54]"
+]
+},
+"Osnovna škola Pušća": {
+"raw": "Osnovna škola Pušća",
+"where": "",
+"tags": [
+"#/organizacije [btn34]",
+"#/organizacije [btn54]"
+]
+},
+"Donja Pušća": {
+"raw": "Donja Pušća",
+"where": "",
+"tags": [
+"#/organizacije [btn34]",
+"#/organizacije [btn54]"
+]
+},
+"Osnovna škola Glina": {
+"raw": "Osnovna škola Glina",
+"where": "",
+"tags": [
+"#/organizacije [btn34]"
+]
+},
+"Glina": {
+"raw": "Glina",
+"where": "",
+"tags": [
+"#/organizacije [btn34]"
+]
+},
+"Osnovna škola Darda": {
+"raw": "Osnovna škola Darda",
+"where": "",
+"tags": [
+"#/organizacije [btn34]"
+]
+},
+"Darda": {
+"raw": "Darda",
+"where": "",
+"tags": [
+"#/organizacije [btn34]"
+]
+},
+"Osnovna škola Bartola Kašića": {
+"raw": "Osnovna škola Bartola Kašića",
+"where": "",
+"tags": [
+"#/organizacije [btn34]",
+"#/organizacije [btn43]"
+]
+},
+"Vinkovci": {
+"raw": "Vinkovci",
+"where": "",
+"tags": [
+"#/organizacije [btn34]",
+"#/organizacije [btn40]",
+"#/organizacije [btn43]"
+]
+},
+"I. Osnovna škola Varaždin": {
+"raw": "I. Osnovna škola Varaždin",
+"where": "",
+"tags": [
+"#/organizacije [btn34]"
+]
+},
+"Osnovna škola Dobriše Cesarića": {
+"raw": "Osnovna škola Dobriše Cesarića",
+"where": "",
+"tags": [
+"#/organizacije [btn34]"
+]
+},
+"Osnovna škola Josip Pupačić": {
+"raw": "Osnovna škola Josip Pupačić",
+"where": "",
+"tags": [
+"#/organizacije [btn34]"
+]
+},
+"Omis": {
+"raw": "Omis",
+"where": "",
+"tags": [
+"#/organizacije [btn34]"
+]
+},
+"Osnovna škola Vrgorac": {
+"raw": "Osnovna škola Vrgorac",
+"where": "",
+"tags": [
+"#/organizacije [btn34]"
+]
+},
+"Vrgorac": {
+"raw": "Vrgorac",
+"where": "",
+"tags": [
+"#/organizacije [btn34]"
+]
+},
+"Osnovna škola Ivana Cankara": {
+"raw": "Osnovna škola Ivana Cankara",
+"where": "",
+"tags": [
+"#/organizacije [btn34]"
+]
+},
+"Osnovna škola Petrijanec": {
+"raw": "Osnovna škola Petrijanec",
+"where": "",
+"tags": [
+"#/organizacije [btn34]"
+]
+},
+"Petrijanec": {
+"raw": "Petrijanec",
+"where": "",
+"tags": [
+"#/organizacije [btn34]"
+]
+},
+"Osnovna škola Ive Andrića": {
+"raw": "Osnovna škola Ive Andrića",
+"where": "",
+"tags": [
+"#/organizacije [btn34]"
+]
+},
+"Osnovna škola Bilje": {
+"raw": "Osnovna škola Bilje",
+"where": "",
+"tags": [
+"#/organizacije [btn34]"
+]
+},
+"Bilje": {
+"raw": "Bilje",
+"where": "",
+"tags": [
+"#/organizacije [btn34]",
+"#/organizacije [btn37]"
+]
+},
+"Osnovna škola Tituša Brezovačkog": {
+"raw": "Osnovna škola Tituša Brezovačkog",
+"where": "",
+"tags": [
+"#/organizacije [btn34]"
+]
+},
+"Osnovna škola Tomaša Goričanca Mala Subotica": {
+"raw": "Osnovna škola Tomaša Goričanca Mala Subotica",
+"where": "",
+"tags": [
+"#/organizacije [btn34]"
+]
+},
+"Mala Subotica": {
+"raw": "Mala Subotica",
+"where": "",
+"tags": [
+"#/organizacije [btn34]"
+]
+},
+"Osnovna škola Višnjevac": {
+"raw": "Osnovna škola Višnjevac",
+"where": "",
+"tags": [
+"#/organizacije [btn34]"
+]
+},
+"Višnjevac": {
+"raw": "Višnjevac",
+"where": "",
+"tags": [
+"#/organizacije [btn34]"
+]
+},
+"Osnovna škola Horvati": {
+"raw": "Osnovna škola Horvati",
+"where": "",
+"tags": [
+"#/organizacije [btn34]"
+]
+},
+"Osnovna škola Ivana Gundulića": {
+"raw": "Osnovna škola Ivana Gundulića",
+"where": "",
+"tags": [
+"#/organizacije [btn34]"
+]
+},
+"Osnovna škola Vladimira Becića Osijek": {
+"raw": "Osnovna škola Vladimira Becića Osijek",
+"where": "",
+"tags": [
+"#/organizacije [btn34]"
+]
+},
+"Osnovna škola Bogoslav Šulek": {
+"raw": "Osnovna škola Bogoslav Šulek",
+"where": "",
+"tags": [
+"#/organizacije [btn34]"
+]
+},
+"Osnovna skola Julija Kempfa Pozega": {
+"raw": "Osnovna skola Julija Kempfa Pozega",
+"where": "",
+"tags": [
+"#/organizacije [btn34]"
+]
+},
+"Pozega": {
+"raw": "Pozega",
+"where": "",
+"tags": [
+"#/organizacije [btn34]"
+]
+},
+"OS \"Djuro Pilar\" Slavonski Brod": {
+"raw": "OS \"Djuro Pilar\" Slavonski Brod",
+"where": "",
+"tags": [
+"#/organizacije [btn34]"
+]
+},
+"SLAVONSKI BROD": {
+"raw": "SLAVONSKI BROD",
+"where": "",
+"tags": [
+"#/organizacije [btn34]"
+]
+},
+"Osnovna škola Bršadin": {
+"raw": "Osnovna škola Bršadin",
+"where": "",
+"tags": [
+"#/organizacije [btn34]"
+]
+},
+"Bršadin": {
+"raw": "Bršadin",
+"where": "",
+"tags": [
+"#/organizacije [btn34]"
+]
+},
+"Osnovna skola Frana Galovica": {
+"raw": "Osnovna skola Frana Galovica",
+"where": "",
+"tags": [
+"#/organizacije [btn34]"
+]
+},
+"VOLONTERSKI CENTAR ISTRA": {
+"raw": "VOLONTERSKI CENTAR ISTRA",
+"where": "",
+"tags": [
+"#/organizacije [btn35]"
+]
+},
+"Telecentar": {
+"raw": "Telecentar",
+"where": "",
+"tags": [
+"#/organizacije [btn35]"
+]
+},
+"IRENA-Istarska Regionalna Energetska Agencija za energetske djelatnosti d.o.o.": {
+"raw": "IRENA-Istarska Regionalna Energetska Agencija za energetske djelatnosti d.o.o.",
+"where": "",
+"tags": [
+"#/organizacije [btn35]"
+]
+},
+"Sveučilište u Zagrebu, Građevinski fakultet": {
+"raw": "Sveučilište u Zagrebu, Građevinski fakultet",
+"where": "",
+"tags": [
+"#/organizacije [btn35]"
+]
+},
+"Centar za zenske studije": {
+"raw": "Centar za zenske studije",
+"where": "",
+"tags": [
+"#/organizacije [btn35]"
+]
+},
+"NEZAVISNA UDRUGA MLADIH": {
+"raw": "NEZAVISNA UDRUGA MLADIH",
+"where": "",
+"tags": [
+"#/organizacije [btn35]"
+]
+},
+"Lepoglava": {
+"raw": "Lepoglava",
+"where": "",
+"tags": [
+"#/organizacije [btn35]"
+]
+},
+"OIKON DOO - INSTITUT ZA PRIMIJENJENU EKOLOGIJU": {
+"raw": "OIKON DOO - INSTITUT ZA PRIMIJENJENU EKOLOGIJU",
+"where": "",
+"tags": [
+"#/organizacije [btn35]"
+]
+},
+"Pucko otvoreno uciliste Obris": {
+"raw": "Pucko otvoreno uciliste Obris",
+"where": "",
+"tags": [
+"#/organizacije [btn35]"
+]
+},
+"Požega": {
+"raw": "Požega",
+"where": "",
+"tags": [
+"#/organizacije [btn35]",
+"#/organizacije [btn40]",
+"#/organizacije [btn43]"
+]
+},
+"Centar za odgoj i obrazovanje Krapinske Toplice": {
+"raw": "Centar za odgoj i obrazovanje Krapinske Toplice",
+"where": "",
+"tags": [
+"#/organizacije [btn35]"
+]
+},
+"Krapinske Toplice": {
+"raw": "Krapinske Toplice",
+"where": "",
+"tags": [
+"#/organizacije [btn35]"
+]
+},
+"Cistoca d.o.o. Karlovac": {
+"raw": "Cistoca d.o.o. Karlovac",
+"where": "",
+"tags": [
+"#/organizacije [btn35]"
+]
+},
+"Dječji vrtić \"Matije Gupca\"": {
+"raw": "Dječji vrtić \"Matije Gupca\"",
+"where": "",
+"tags": [
+"#/organizacije [btn35]"
+]
+},
+"ENERGETSKI INSTITUT HRVOJE POZAR": {
+"raw": "ENERGETSKI INSTITUT HRVOJE POZAR",
+"where": "",
+"tags": [
+"#/organizacije [btn35]"
+]
+},
+"FOUNDATION FOR PARTNERSHIP AND CIVIL SOCIETY DEVELOPMENT": {
+"raw": "FOUNDATION FOR PARTNERSHIP AND CIVIL SOCIETY DEVELOPMENT",
+"where": "",
+"tags": [
+"#/organizacije [btn35]"
+]
+},
+"PULA": {
+"raw": "PULA",
+"where": "",
+"tags": [
+"#/organizacije [btn35]",
+"#/organizacije [btn47]"
+]
+},
+"Osnovna škola Nad Lipom": {
+"raw": "Osnovna škola Nad Lipom",
+"where": "",
+"tags": [
+"#/organizacije [btn35]"
+]
+},
+"Regionalna razvojna agencija Slavonije i Baranje d.o.o. za medjunarodnu i regionalnu suradnju": {
+"raw": "Regionalna razvojna agencija Slavonije i Baranje d.o.o. za medjunarodnu i regionalnu suradnju",
+"where": "",
+"tags": [
+"#/organizacije [btn35]"
+]
+},
+"Rijecka razvojna agencija Porin": {
+"raw": "Rijecka razvojna agencija Porin",
+"where": "",
+"tags": [
+"#/organizacije [btn35]"
+]
+},
+"Savez udruga Rojca": {
+"raw": "Savez udruga Rojca",
+"where": "",
+"tags": [
+"#/organizacije [btn35]"
+]
+},
+"Supera poslovno upravljanje d.o.o.": {
+"raw": "Supera poslovno upravljanje d.o.o.",
+"where": "",
+"tags": [
+"#/organizacije [btn35]"
+]
+},
+"UDRUGA PERPETUUM": {
+"raw": "UDRUGA PERPETUUM",
+"where": "",
+"tags": [
+"#/organizacije [btn35]"
+]
+},
+"Volonterski centar Osijek": {
+"raw": "Volonterski centar Osijek",
+"where": "",
+"tags": [
+"#/organizacije [btn35]"
+]
+},
+"MREZA MLADIH HRVATSKE UDRUG": {
+"raw": "MREZA MLADIH HRVATSKE UDRUG",
+"where": "",
+"tags": [
+"#/organizacije [btn35]"
+]
+},
+"SVEUCILISTE JOSIPA JURJA STROSSMAYERA U OSIJEKU POLJOPRIVREDNI FAKULTET U OSIJEKU": {
+"raw": "SVEUCILISTE JOSIPA JURJA STROSSMAYERA U OSIJEKU POLJOPRIVREDNI FAKULTET U OSIJEKU",
+"where": "",
+"tags": [
+"#/organizacije [btn35]"
+]
+},
+"Autonomni centar": {
+"raw": "Autonomni centar",
+"where": "",
+"tags": [
+"#/organizacije [btn35]"
+]
+},
+"AZRRI AGENCIJA ZA RURALNI RAZVOJ ISTRE DOO PAZIN": {
+"raw": "AZRRI AGENCIJA ZA RURALNI RAZVOJ ISTRE DOO PAZIN",
+"where": "",
+"tags": [
+"#/organizacije [btn35]"
+]
+},
+"PAZIN": {
+"raw": "PAZIN",
+"where": "",
+"tags": [
+"#/organizacije [btn35]"
+]
+},
+"Bio Forma d.o.o.": {
+"raw": "Bio Forma d.o.o.",
+"where": "",
+"tags": [
+"#/organizacije [btn35]"
+]
+},
+"TIR Consulting Group j.d.o.o": {
+"raw": "TIR Consulting Group j.d.o.o",
+"where": "",
+"tags": [
+"#/organizacije [btn36]",
+"#/organizacije [btn44]",
+"#/organizacije [btn54]"
+]
+},
+"Learning Wizard d.o.o. za savjetovanje": {
+"raw": "Learning Wizard d.o.o. za savjetovanje",
+"where": "",
+"tags": [
+"#/organizacije [btn36]"
+]
+},
+"Domas, obrt za poduku, savjetovanje i poslovne usluge, vl. Domagoj Morić": {
+"raw": "Domas, obrt za poduku, savjetovanje i poslovne usluge, vl. Domagoj Morić",
+"where": "",
+"tags": [
+"#/organizacije [btn36]"
+]
+},
+"Lucera d.o.o.": {
+"raw": "Lucera d.o.o.",
+"where": "",
+"tags": [
+"#/organizacije [btn36]"
+]
+},
+"fabula movens d.o.o.": {
+"raw": "fabula movens d.o.o.",
+"where": "",
+"tags": [
+"#/organizacije [btn36]"
+]
+},
+"Riječka razvojna agencija Porin d.o.o. za istraživanje, razvoj i ostale poslovne djelatnosti": {
+"raw": "Riječka razvojna agencija Porin d.o.o. za istraživanje, razvoj i ostale poslovne djelatnosti",
+"where": "",
+"tags": [
+"#/organizacije [btn36]"
+]
+},
+"RIJEKA": {
+"raw": "RIJEKA",
+"where": "",
+"tags": [
+"#/organizacije [btn36]",
+"#/organizacije [btn41]",
+"#/organizacije [btn44]"
+]
+},
+"TEHNOLOSKI PARK VARAZDIN DOO ZA INKUBACIJU INOVATIVNIH TEHNOLOGIJSKIHPODUZECA": {
+"raw": "TEHNOLOSKI PARK VARAZDIN DOO ZA INKUBACIJU INOVATIVNIH TEHNOLOGIJSKIHPODUZECA",
+"where": "",
+"tags": [
+"#/organizacije [btn36]"
+]
+},
+"Wizard, obrt za savjetovanje": {
+"raw": "Wizard, obrt za savjetovanje",
+"where": "",
+"tags": [
+"#/organizacije [btn36]"
+]
+},
+"AQUILONIS d.o.o.": {
+"raw": "AQUILONIS d.o.o.",
+"where": "",
+"tags": [
+"#/organizacije [btn36]"
+]
+},
+"Isoropia d.o.o. za savjetovanje": {
+"raw": "Isoropia d.o.o. za savjetovanje",
+"where": "",
+"tags": [
+"#/organizacije [btn36]"
+]
+},
+"Kalimera, obrt za usluge": {
+"raw": "Kalimera, obrt za usluge",
+"where": "",
+"tags": [
+"#/organizacije [btn36]"
+]
+},
+"Terrible Creations Ltd.": {
+"raw": "Terrible Creations Ltd.",
+"where": "",
+"tags": [
+"#/organizacije [btn36]"
+]
+},
+"IZVORI DRUSTVO S OGRANICENOM ODGOVORNOSCU ZA NAKLADNICKU DIELATNOST": {
+"raw": "IZVORI DRUSTVO S OGRANICENOM ODGOVORNOSCU ZA NAKLADNICKU DIELATNOST",
+"where": "",
+"tags": [
+"#/organizacije [btn36]"
+]
+},
+"Amber IT Solutions d.o.o.": {
+"raw": "Amber IT Solutions d.o.o.",
+"where": "",
+"tags": [
+"#/organizacije [btn36]"
+]
+},
+"Urbani šumari društvo s ograničenom odgovornošću za usluge": {
+"raw": "Urbani šumari društvo s ograničenom odgovornošću za usluge",
+"where": "",
+"tags": [
+"#/organizacije [btn36]"
+]
+},
+"Velika Gorica": {
+"raw": "Velika Gorica",
+"where": "",
+"tags": [
+"#/organizacije [btn36]"
+]
+},
+"Bilaver consulting ltd": {
+"raw": "Bilaver consulting ltd",
+"where": "",
+"tags": [
+"#/organizacije [btn36]"
+]
+},
+"ERICSSON NIKOLA TESLA D.D.": {
+"raw": "ERICSSON NIKOLA TESLA D.D.",
+"where": "",
+"tags": [
+"#/organizacije [btn36]"
+]
+},
+"HRVATSKI TELEKOM": {
+"raw": "HRVATSKI TELEKOM",
+"where": "",
+"tags": [
+"#/organizacije [btn36]"
+]
+},
+"Laboratory of Social Psychology": {
+"raw": "Laboratory of Social Psychology",
+"where": "",
+"tags": [
+"#/organizacije [btn36]"
+]
+},
+"Pican": {
+"raw": "Pican",
+"where": "",
+"tags": [
+"#/organizacije [btn36]"
+]
+},
+"LUNAR": {
+"raw": "LUNAR",
+"where": "",
+"tags": [
+"#/organizacije [btn36]"
+]
+},
+"MP Enterprise d.o.o.": {
+"raw": "MP Enterprise d.o.o.",
+"where": "",
+"tags": [
+"#/organizacije [btn36]"
+]
+},
+"PROFIL KLETT društvo s ograničenom odgovornošću za izdavačku djelatnost": {
+"raw": "PROFIL KLETT društvo s ograničenom odgovornošću za izdavačku djelatnost",
+"where": "",
+"tags": [
+"#/organizacije [btn36]"
+]
+},
+"Algebra d.o.o.": {
+"raw": "Algebra d.o.o.",
+"where": "",
+"tags": [
+"#/organizacije [btn36]"
+]
+},
+"Dječji vrtić \"Dječji svijet\"": {
+"raw": "Dječji vrtić \"Dječji svijet\"",
+"where": "",
+"tags": [
+"#/organizacije [btn37]"
+]
+},
+"DV \"Pahuljica\"": {
+"raw": "DV \"Pahuljica\"",
+"where": "",
+"tags": [
+"#/organizacije [btn37]"
+]
+},
+"Palit": {
+"raw": "Palit",
+"where": "",
+"tags": [
+"#/organizacije [btn37]"
+]
+},
+"Dječji vrtić \"Petar Pan\"": {
+"raw": "Dječji vrtić \"Petar Pan\"",
+"where": "",
+"tags": [
+"#/organizacije [btn37]"
+]
+},
+"DV \"Obzori\"": {
+"raw": "DV \"Obzori\"",
+"where": "",
+"tags": [
+"#/organizacije [btn37]"
+]
+},
+"Djecji vrtic Iskrica": {
+"raw": "Djecji vrtic Iskrica",
+"where": "",
+"tags": [
+"#/organizacije [btn37]"
+]
+},
+"Djecji vrtic Radost Zadar": {
+"raw": "Djecji vrtic Radost Zadar",
+"where": "",
+"tags": [
+"#/organizacije [btn37]"
+]
+},
+"Dječji vrtić Rijeka": {
+"raw": "Dječji vrtić Rijeka",
+"where": "",
+"tags": [
+"#/organizacije [btn37]"
+]
+},
+"Dječji vrtić \"Ivanić Grad\"": {
+"raw": "Dječji vrtić \"Ivanić Grad\"",
+"where": "",
+"tags": [
+"#/organizacije [btn37]"
+]
+},
+"Ivanić-Grad": {
+"raw": "Ivanić-Grad",
+"where": "",
+"tags": [
+"#/organizacije [btn37]"
+]
+},
+"Dječji vrtić \"Pčelica\"": {
+"raw": "Dječji vrtić \"Pčelica\"",
+"where": "",
+"tags": [
+"#/organizacije [btn37]"
+]
+},
+"Kindergarten \"\"Ivanic Grad\"\"": {
+"raw": "Kindergarten \"\"Ivanic Grad\"\"",
+"where": "",
+"tags": [
+"#/organizacije [btn37]"
+]
+},
+"Ivanic Grad": {
+"raw": "Ivanic Grad",
+"where": "",
+"tags": [
+"#/organizacije [btn37]"
+]
+},
+"Dječji vrtić \"Reheki\"": {
+"raw": "Dječji vrtić \"Reheki\"",
+"where": "",
+"tags": [
+"#/organizacije [btn37]"
+]
+},
+"Orehovica": {
+"raw": "Orehovica",
+"where": "",
+"tags": [
+"#/organizacije [btn37]"
+]
+},
+"Dječji vrtić \"Grlica\"": {
+"raw": "Dječji vrtić \"Grlica\"",
+"where": "",
+"tags": [
+"#/organizacije [btn37]"
+]
+},
+"Dječji vrtić \"Jarun\"": {
+"raw": "Dječji vrtić \"Jarun\"",
+"where": "",
+"tags": [
+"#/organizacije [btn37]"
+]
+},
+"Dječji vrtić \"Varaždin\"": {
+"raw": "Dječji vrtić \"Varaždin\"",
+"where": "",
+"tags": [
+"#/organizacije [btn37]"
+]
+},
+"Dječji vrtić More": {
+"raw": "Dječji vrtić More",
+"where": "",
+"tags": [
+"#/organizacije [btn37]"
+]
+},
+"DJECJI VRTIC RADOST LUDBREG": {
+"raw": "DJECJI VRTIC RADOST LUDBREG",
+"where": "",
+"tags": [
+"#/organizacije [btn37]"
+]
+},
+"Dječji vrtić \"Medveščak\"": {
+"raw": "Dječji vrtić \"Medveščak\"",
+"where": "",
+"tags": [
+"#/organizacije [btn37]"
+]
+},
+"Djecji vrtic Cvit Mediterana": {
+"raw": "Djecji vrtic Cvit Mediterana",
+"where": "",
+"tags": [
+"#/organizacije [btn37]"
+]
+},
+"Dječji vrtić Osijek": {
+"raw": "Dječji vrtić Osijek",
+"where": "",
+"tags": [
+"#/organizacije [btn37]"
+]
+},
+"DV \"Čigra\"": {
+"raw": "DV \"Čigra\"",
+"where": "",
+"tags": [
+"#/organizacije [btn37]"
+]
+},
+"Češki dječji vrtić Ferde Mravenca Daruvar": {
+"raw": "Češki dječji vrtić Ferde Mravenca Daruvar",
+"where": "",
+"tags": [
+"#/organizacije [btn37]"
+]
+},
+"Djecijivrticsisaknovi": {
+"raw": "Djecijivrticsisaknovi",
+"where": "",
+"tags": [
+"#/organizacije [btn37]"
+]
+},
+"Sisak": {
+"raw": "Sisak",
+"where": "",
+"tags": [
+"#/organizacije [btn37]",
+"#/organizacije [btn40]",
+"#/organizacije [btn47]"
+]
+},
+"Dječji vrtić \"Drniš\"": {
+"raw": "Dječji vrtić \"Drniš\"",
+"where": "",
+"tags": [
+"#/organizacije [btn37]"
+]
+},
+"Drniš": {
+"raw": "Drniš",
+"where": "",
+"tags": [
+"#/organizacije [btn37]"
+]
+},
+"Dječji vrtić \"Duga Resa\"": {
+"raw": "Dječji vrtić \"Duga Resa\"",
+"where": "",
+"tags": [
+"#/organizacije [btn37]"
+]
+},
+"Duga Resa": {
+"raw": "Duga Resa",
+"where": "",
+"tags": [
+"#/organizacije [btn37]"
+]
+},
+"ENTER Koprivnica drustvo s ogranicenom odgovornoscu za usluge, trgovinu i posredovanje za poduzetnike": {
+"raw": "ENTER Koprivnica drustvo s ogranicenom odgovornoscu za usluge, trgovinu i posredovanje za poduzetnike",
+"where": "",
+"tags": [
+"#/organizacije [btn38]"
+]
+},
+"Croatian teachers' union": {
+"raw": "Croatian teachers' union",
+"where": "",
+"tags": [
+"#/organizacije [btn38]"
+]
+},
+"DRIOPE d.o.o. za poslovne usluge": {
+"raw": "DRIOPE d.o.o. za poslovne usluge",
+"where": "",
+"tags": [
+"#/organizacije [btn38]"
+]
+},
+"PODUZETNIČKO-RAZVOJNI CENTAR OPĆINE ERDUT LOKALNA RAZVOJNA AGENCIJA d.o.o.": {
+"raw": "PODUZETNIČKO-RAZVOJNI CENTAR OPĆINE ERDUT LOKALNA RAZVOJNA AGENCIJA d.o.o.",
+"where": "",
+"tags": [
+"#/organizacije [btn38]"
+]
+},
+"Dalj": {
+"raw": "Dalj",
+"where": "",
+"tags": [
+"#/organizacije [btn38]",
+"#/organizacije [btn40]"
+]
+},
+"BKOSI Pulac Rijeka": {
+"raw": "BKOSI Pulac Rijeka",
+"where": "",
+"tags": [
+"#/organizacije [btn39]"
+]
+},
+"Orijentacijski klub Varaždin": {
+"raw": "Orijentacijski klub Varaždin",
+"where": "",
+"tags": [
+"#/organizacije [btn39]"
+]
+},
+"Elektrotehnička i prometna škola Osijek": {
+"raw": "Elektrotehnička i prometna škola Osijek",
+"where": "",
+"tags": [
+"#/organizacije [btn40]",
+"#/organizacije [btn44]",
+"#/organizacije [btn48]"
+]
+},
+"Ekonomska i Turistička škola Daruvar": {
+"raw": "Ekonomska i Turistička škola Daruvar",
+"where": "",
+"tags": [
+"#/organizacije [btn40]",
+"#/organizacije [btn43]",
+"#/organizacije [btn48]"
+]
+},
+"Srednja škola Bedekovčina": {
+"raw": "Srednja škola Bedekovčina",
+"where": "",
+"tags": [
+"#/organizacije [btn40]",
+"#/organizacije [btn43]",
+"#/organizacije [btn54]"
+]
+},
+"Bedekovčina": {
+"raw": "Bedekovčina",
+"where": "",
+"tags": [
+"#/organizacije [btn40]",
+"#/organizacije [btn43]",
+"#/organizacije [btn54]"
+]
+},
+"Srednja škola Dugo Selo": {
+"raw": "Srednja škola Dugo Selo",
+"where": "",
+"tags": [
+"#/organizacije [btn40]",
+"#/organizacije [btn54]"
+]
+},
+"Dugo Selo": {
+"raw": "Dugo Selo",
+"where": "",
+"tags": [
+"#/organizacije [btn40]",
+"#/organizacije [btn54]"
+]
+},
+"Gospodarska škola": {
+"raw": "Gospodarska škola",
+"where": "",
+"tags": [
+"#/organizacije [btn40]",
+"#/organizacije [btn43]",
+"#/organizacije [btn54]"
+]
+},
+"Tehnička škola Nikole Tesle": {
+"raw": "Tehnička škola Nikole Tesle",
+"where": "",
+"tags": [
+"#/organizacije [btn40]",
+"#/organizacije [btn54]"
+]
+},
+"Srednja škola Valpovo": {
+"raw": "Srednja škola Valpovo",
+"where": "",
+"tags": [
+"#/organizacije [btn40]"
+]
+},
+"Valpovo": {
+"raw": "Valpovo",
+"where": "",
+"tags": [
+"#/organizacije [btn40]"
+]
+},
+"Ekonomska škola, Požega": {
+"raw": "Ekonomska škola, Požega",
+"where": "",
+"tags": [
+"#/organizacije [btn40]",
+"#/organizacije [btn43]"
+]
+},
+"Turističko - Ugostiteljska Škola, Split": {
+"raw": "Turističko - Ugostiteljska Škola, Split",
+"where": "",
+"tags": [
+"#/organizacije [btn40]"
+]
+},
+"Industrijsko-Obrtnička škola": {
+"raw": "Industrijsko-Obrtnička škola",
+"where": "",
+"tags": [
+"#/organizacije [btn40]"
+]
+},
+"Turistička i Ugostiteljska škola Dubrovnik": {
+"raw": "Turistička i Ugostiteljska škola Dubrovnik",
+"where": "",
+"tags": [
+"#/organizacije [btn40]",
+"#/organizacije [btn46]"
+]
+},
+"Škola za Cestovni Promet": {
+"raw": "Škola za Cestovni Promet",
+"where": "",
+"tags": [
+"#/organizacije [btn40]"
+]
+},
+"Srednja škola - Centar za odgoj i obrazovanje": {
+"raw": "Srednja škola - Centar za odgoj i obrazovanje",
+"where": "",
+"tags": [
+"#/organizacije [btn40]"
+]
+},
+"Srednja škola Dalj": {
+"raw": "Srednja škola Dalj",
+"where": "",
+"tags": [
+"#/organizacije [btn40]"
+]
+},
+"Klesarska škola": {
+"raw": "Klesarska škola",
+"where": "",
+"tags": [
+"#/organizacije [btn40]"
+]
+},
+"Pučišća": {
+"raw": "Pučišća",
+"where": "",
+"tags": [
+"#/organizacije [btn40]"
+]
+},
+"Strojarska Tehnička škola Fausta Vrančića": {
+"raw": "Strojarska Tehnička škola Fausta Vrančića",
+"where": "",
+"tags": [
+"#/organizacije [btn40]"
+]
+},
+"Poljoprivredno Šumarska škola Vinkovci": {
+"raw": "Poljoprivredno Šumarska škola Vinkovci",
+"where": "",
+"tags": [
+"#/organizacije [btn40]"
+]
+},
+"Ekonomska škola Braća Radić": {
+"raw": "Ekonomska škola Braća Radić",
+"where": "",
+"tags": [
+"#/organizacije [btn40]"
+]
+},
+"Đakovo": {
+"raw": "Đakovo",
+"where": "",
+"tags": [
+"#/organizacije [btn40]"
+]
+},
+"Srednja škola Fra Andrije Kačića Miošića": {
+"raw": "Srednja škola Fra Andrije Kačića Miošića",
+"where": "",
+"tags": [
+"#/organizacije [btn40]"
+]
+},
+"Ploče": {
+"raw": "Ploče",
+"where": "",
+"tags": [
+"#/organizacije [btn40]"
+]
+},
+"Srednja skola Matije Antuna Reljkovica": {
+"raw": "Srednja skola Matije Antuna Reljkovica",
+"where": "",
+"tags": [
+"#/organizacije [btn40]"
+]
+},
+"Tehnicka skola Sisak": {
+"raw": "Tehnicka skola Sisak",
+"where": "",
+"tags": [
+"#/organizacije [btn40]"
+]
+},
+"Srednja škola \"\"Arboretum Opeka\"\"": {
+"raw": "Srednja škola \"\"Arboretum Opeka\"\"",
+"where": "",
+"tags": [
+"#/organizacije [btn40]"
+]
+},
+"Vinica": {
+"raw": "Vinica",
+"where": "",
+"tags": [
+"#/organizacije [btn40]"
+]
+},
+"Prva Ekonomska škola": {
+"raw": "Prva Ekonomska škola",
+"where": "",
+"tags": [
+"#/organizacije [btn40]"
+]
+},
+"University of Rijeka": {
+"raw": "University of Rijeka",
+"where": "",
+"tags": [
+"#/organizacije [btn41]",
+"#/organizacije [btn44]",
+"#/organizacije [btn54]"
+]
+},
+"SVEUCILISTE ALGEBRA BERNAYS": {
+"raw": "SVEUCILISTE ALGEBRA BERNAYS",
+"where": "",
+"tags": [
+"#/organizacije [btn41]",
+"#/organizacije [btn44]",
+"#/organizacije [btn46]"
+]
+},
+"Sveučilište Jurja Dobrile u Puli": {
+"raw": "Sveučilište Jurja Dobrile u Puli",
+"where": "",
+"tags": [
+"#/organizacije [btn41]"
+]
+},
+"PAR UNIVERSITY OF APPLIED SCIENCES": {
+"raw": "PAR UNIVERSITY OF APPLIED SCIENCES",
+"where": "",
+"tags": [
+"#/organizacije [btn41]"
+]
+},
+"SVEUCILISTE ALGEBRA": {
+"raw": "SVEUCILISTE ALGEBRA",
+"where": "",
+"tags": [
+"#/organizacije [btn41]"
+]
+},
+"Sveučilište u Zagrebu, Fakultet strojarstva i brodogradnje": {
+"raw": "Sveučilište u Zagrebu, Fakultet strojarstva i brodogradnje",
+"where": "",
+"tags": [
+"#/organizacije [btn41]"
+]
+},
+"Sveučilište u Rijeci, Pomorski fakultet": {
+"raw": "Sveučilište u Rijeci, Pomorski fakultet",
+"where": "",
+"tags": [
+"#/organizacije [btn41]"
+]
+},
+"Sveučilište u Zagrebu, Edukacijsko-rehabilitacijski fakultet": {
+"raw": "Sveučilište u Zagrebu, Edukacijsko-rehabilitacijski fakultet",
+"where": "",
+"tags": [
+"#/organizacije [btn41]"
+]
+},
+"Sveučilište u Zagrebu, Fakultet elektrotehnike i računarstva": {
+"raw": "Sveučilište u Zagrebu, Fakultet elektrotehnike i računarstva",
+"where": "",
+"tags": [
+"#/organizacije [btn41]"
+]
+},
+"Sveučilište u Rijeci, Filozofski fakultet": {
+"raw": "Sveučilište u Rijeci, Filozofski fakultet",
+"where": "",
+"tags": [
+"#/organizacije [btn41]"
+]
+},
+"Sveučilište VERN, Zagreb": {
+"raw": "Sveučilište VERN, Zagreb",
+"where": "",
+"tags": [
+"#/organizacije [btn41]"
+]
+},
+"Sveučilište u Zagrebu, Agronomski fakultet": {
+"raw": "Sveučilište u Zagrebu, Agronomski fakultet",
+"where": "",
+"tags": [
+"#/organizacije [btn41]"
+]
+},
+"SVEUCILISTE U ZAGREBU, FAKULTET ORGANIZACIJE I INFORMATIKE": {
+"raw": "SVEUCILISTE U ZAGREBU, FAKULTET ORGANIZACIJE I INFORMATIKE",
+"where": "",
+"tags": [
+"#/organizacije [btn41]"
+]
+},
+"VISOKO UCILISTE ALGEBRA": {
+"raw": "VISOKO UCILISTE ALGEBRA",
+"where": "",
+"tags": [
+"#/organizacije [btn41]"
+]
+},
+"Sveučilište u Zagrebu, Arhitektonski fakultet": {
+"raw": "Sveučilište u Zagrebu, Arhitektonski fakultet",
+"where": "",
+"tags": [
+"#/organizacije [btn41]"
+]
+},
+"Zdravstveno veleuciliste": {
+"raw": "Zdravstveno veleuciliste",
+"where": "",
+"tags": [
+"#/organizacije [btn41]"
+]
+},
+"ALGEBRA BERNAYS UNIVERSITY": {
+"raw": "ALGEBRA BERNAYS UNIVERSITY",
+"where": "",
+"tags": [
+"#/organizacije [btn41]"
+]
+},
+"Odred izvidjaca pomoraca Posejdon": {
+"raw": "Odred izvidjaca pomoraca Posejdon",
+"where": "",
+"tags": [
+"#/organizacije [btn46]"
+]
+},
+"UDRUGE CENTAR ZA MIR, NENASILJE I LJUDSKA PRAVA - OSIJEK": {
+"raw": "UDRUGE CENTAR ZA MIR, NENASILJE I LJUDSKA PRAVA - OSIJEK",
+"where": "",
+"tags": [
+"#/organizacije [btn46]"
+]
+},
+"Roditelji u Akciji": {
+"raw": "Roditelji u Akciji",
+"where": "",
+"tags": [
+"#/organizacije [btn46]"
+]
+},
+"Udruga za cjelozivotno strukovno obrazovanje STRUKA": {
+"raw": "Udruga za cjelozivotno strukovno obrazovanje STRUKA",
+"where": "",
+"tags": [
+"#/organizacije [btn46]"
+]
+},
+"\"Culture Hub Croatia\" Platforma za edukaciju, kreativnost i poticanje razvoja kroz kulturu": {
+"raw": "\"Culture Hub Croatia\" Platforma za edukaciju, kreativnost i poticanje razvoja kroz kulturu",
+"where": "",
+"tags": [
+"#/organizacije [btn47]"
+]
+},
+"\"PRIME\" SPORT STUDIO": {
+"raw": "\"PRIME\" SPORT STUDIO",
+"where": "",
+"tags": [
+"#/organizacije [btn47]"
+]
+},
+"\"SNAGA ŠUME /FOREST POWER\"": {
+"raw": "\"SNAGA ŠUME /FOREST POWER\"",
+"where": "",
+"tags": [
+"#/organizacije [btn47]"
+]
+},
+"{N}D GRUPA - KLASTER {N}D TEHNOLOGIJA": {
+"raw": "{N}D GRUPA - KLASTER {N}D TEHNOLOGIJA",
+"where": "",
+"tags": [
+"#/organizacije [btn47]"
+]
+},
+"Sveta Nedelja": {
+"raw": "Sveta Nedelja",
+"where": "",
+"tags": [
+"#/organizacije [btn47]"
+]
+},
+"{N}D GRUPA, KLASTER {N}D TEHNOLOGIJA": {
+"raw": "{N}D GRUPA, KLASTER {N}D TEHNOLOGIJA",
+"where": "",
+"tags": [
+"#/organizacije [btn47]"
+]
+},
+"{N} GRADA DRAGODID": {
+"raw": "{N} GRADA DRAGODID",
+"where": "",
+"tags": [
+"#/organizacije [btn47]"
+]
+},
+"Šapjane": {
+"raw": "Šapjane",
+"where": "",
+"tags": [
+"#/organizacije [btn47]"
+]
+},
+"{N}Film Ltd.": {
+"raw": "{N}Film Ltd.",
+"where": "",
+"tags": [
+"#/organizacije [btn47]"
+]
+},
+"A-soft d.o.o. Opatija": {
+"raw": "A-soft d.o.o. Opatija",
+"where": "",
+"tags": [
+"#/organizacije [btn47]"
+]
+},
+"Opatija": {
+"raw": "Opatija",
+"where": "",
+"tags": [
+"#/organizacije [btn47]"
+]
+},
+"Activity Dinarica": {
+"raw": "Activity Dinarica",
+"where": "",
+"tags": [
+"#/organizacije [btn47]"
+]
+},
+"knin": {
+"raw": "knin",
+"where": "",
+"tags": [
+"#/organizacije [btn47]"
+]
+},
+"AGENCIJA LOKALNE DEMOKRACIJE SISAK": {
+"raw": "AGENCIJA LOKALNE DEMOKRACIJE SISAK",
+"where": "",
+"tags": [
+"#/organizacije [btn47]"
+]
+},
+"AGENCIJE ZA ZASTITU OSOBNIH PODATAKA": {
+"raw": "AGENCIJE ZA ZASTITU OSOBNIH PODATAKA",
+"where": "",
+"tags": [
+"#/organizacije [btn47]"
+]
+},
+"AGRIVI DOO ZA PROIZVODNJU, TRGOVINU I USLUGE": {
+"raw": "AGRIVI DOO ZA PROIZVODNJU, TRGOVINU I USLUGE",
+"where": "",
+"tags": [
+"#/organizacije [btn47]"
+]
+},
+"Agronomska skola Zagreb": {
+"raw": "Agronomska skola Zagreb",
+"where": "",
+"tags": [
+"#/organizacije [btn47]"
+]
+},
+"Aiki En Udruga za promicanje skladnog zivljenja": {
+"raw": "Aiki En Udruga za promicanje skladnog zivljenja",
+"where": "",
+"tags": [
+"#/organizacije [btn47]"
+]
+},
+"Akademija za politički razvoj": {
+"raw": "Akademija za politički razvoj",
+"where": "",
+"tags": [
+"#/organizacije [btn47]"
+]
+},
+"Akademija zdravog zivljenja": {
+"raw": "Akademija zdravog zivljenja",
+"where": "",
+"tags": [
+"#/organizacije [btn47]"
+]
+},
+"AKCELERATOR ZA ODRZIVO DRUSTVO": {
+"raw": "AKCELERATOR ZA ODRZIVO DRUSTVO",
+"where": "",
+"tags": [
+"#/organizacije [btn47]"
+]
+},
+"Aktivni Građani": {
+"raw": "Aktivni Građani",
+"where": "",
+"tags": [
+"#/organizacije [btn47]"
+]
+}
+}

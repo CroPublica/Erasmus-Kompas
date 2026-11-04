@@ -21,20 +21,30 @@ export const NAV: NavTop[] = [
   { key: 'home', href: '/', label: { hr: 'Početna', en: 'Home' }, icon: 'home', subs: [] },
   { key: 'overview-s', href: '/overview/', label: { hr: 'Pregled', en: 'Overview' }, icon: 'dash', subs: [
     { key: 'overview', href: '/overview/', label: { hr: 'Ključni pokazatelji', en: 'Key figures' } },
+    { key: 'timeline', href: '/timeline/', label: { hr: 'Kroz vrijeme', en: 'Over time' } },
+    { key: 'countries', href: '/countries/', label: { hr: 'Partnerske države', en: 'Partner countries' } },
   ] },
   { key: 'places-s', href: '/places/', label: { hr: 'Županije', en: 'Counties' }, icon: 'pin', subs: [
     { key: 'places', href: '/places/', label: { hr: 'Karta i poredak', en: 'Map and ranking' } },
+    { key: 'compare', href: '/compare/', label: { hr: 'Usporedba županija', en: 'Compare counties' } },
+    { key: 'coverage', href: '/coverage/', label: { hr: 'Pokrivenost škola', en: 'School coverage' } },
   ] },
   { key: 'topics-s', href: '/topics/', label: { hr: 'Teme i problemi', en: 'Topics and problems' }, icon: 'hash', subs: [
     { key: 'topics', href: '/topics/', label: { hr: 'Teme kroz vrijeme', en: 'Topics over time' } },
-    { key: 'methods', href: '/methods/', label: { hr: 'Što rade projekti', en: 'What projects do' } },
+    { key: 'problems', href: '/problems/', label: { hr: 'Problemi i rješenja', en: 'Problems and solutions' } },
     { key: 'graph', href: '/graph/', label: { hr: 'Mreža pojmova', en: 'Concept network' } },
+    { key: 'methods', href: '/methods/', label: { hr: 'Što rade projekti', en: 'What projects do' } },
   ] },
   { key: 'find-s', href: '/projects/', label: { hr: 'Projekti i organizacije', en: 'Projects and organisations' }, icon: 'folder', subs: [
     { key: 'projects', href: '/projects/', label: { hr: 'Projekti', en: 'Projects' } },
     { key: 'orgs', href: '/organisations/', label: { hr: 'Organizacije', en: 'Organisations' } },
   ] },
   { key: 'ask', href: '/ask/', label: { hr: 'Asistent', en: 'Assistant' }, icon: 'chat', subs: [] },
+  { key: 'info-s', href: '/about/', label: { hr: 'Informacije', en: 'Information' }, icon: 'info', subs: [
+    { key: 'about', href: '/about/', label: { hr: 'O podacima', en: 'About the data' } },
+    { key: 'glossary', href: '/glossary/', label: { hr: 'Rječnik pojmova', en: 'Glossary' } },
+    { key: 'downloads', href: '/downloads/', label: { hr: 'Preuzimanje', en: 'Downloads' } },
+  ] },
 ];
 
 /** `active` as the pages give it -> the sidebar entry to mark. 'coverage' is today's front page. */

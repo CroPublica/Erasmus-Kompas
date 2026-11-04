@@ -1,0 +1,11 @@
+---
+import Base from '../../layouts/Base.astro';
+import EkView from '../../components/EkView.astro';
+import { LANGS, type Lang } from '../../lib/i18n';
+export const getStaticPaths = () => LANGS.map((lang) => ({ params: { lang } }));
+const lang = Astro.params.lang as Lang;
+const T = { hr: ['Kroz vrijeme', 'Kako se broj projekata mijenjao po godinama.'], en: ['Over time', 'How the number of projects changed by year.'] }[lang];
+---
+<Base ek lang={lang} title={T[0]} path="/timeline/" active="timeline" description={T[1]}>
+  <EkView view="timeline" lang={lang} />
+</Base>

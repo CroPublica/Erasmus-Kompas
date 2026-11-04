@@ -1,0 +1,11 @@
+---
+import Base from '../../layouts/Base.astro';
+import EkView from '../../components/EkView.astro';
+import { LANGS, type Lang } from '../../lib/i18n';
+export const getStaticPaths = () => LANGS.map((lang) => ({ params: { lang } }));
+const lang = Astro.params.lang as Lang;
+const T = { hr: ['Rječnik pojmova', 'Objašnjenja pojmova korištenih u atlasu.'], en: ['Glossary', 'Explanations of the terms used in the atlas.'] }[lang];
+---
+<Base ek lang={lang} title={T[0]} path="/glossary/" active="glossary" description={T[1]}>
+  <EkView view="glossary" lang={lang} />
+</Base>

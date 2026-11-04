@@ -1,60 +1,11 @@
 ---
 import Base from '../../layouts/Base.astro';
-import nat from '../../data/national.json';
-import { LANGS, t, num, pct, eur, type Lang } from '../../lib/i18n';
-import { country } from '../../lib/countries';
+import EkView from '../../components/EkView.astro';
+import { LANGS, type Lang } from '../../lib/i18n';
 export const getStaticPaths = () => LANGS.map((lang) => ({ params: { lang } }));
 const lang = Astro.params.lang as Lang;
-const s = t(lang);
-const periods = [['all', s.pAll], ['2014-2020', s.p1], ['2021-2027', s.p2]] as const;
-const cp = ['2014-2020', '2021-2027'] as const;
+const T = { hr: ['Pregled', 'Ključni pokazatelji KA2 partnerstava s hrvatskim sudionikom.'], en: ['Overview', 'Key figures of KA2 partnerships with a Croatian participant.'] }[lang];
 ---
-<Base lang={lang} title={s.ovTitle} path="/overview/" active="overview" description={s.ovLead}>
-  <div class="kicker">{s.nav2.overview}</div>
-  <h1>{s.ovTitle}</h1>
-  <p class="lead">{s.ovLead}</p>
-  <div class="seg-group" id="ov-filters"><div><div class="kicker">{s.ovPeriod}</div>
-    <div class="seg" role="group" aria-label={s.ovPeriod} style="margin-top:8px">
-      {periods.map(([v, l], i) => <button type="button" data-val={v} aria-pressed={i === 0 ? 'true' : 'false'}>{l}</button>)}
-    </div></div></div>
-
-  {periods.map(([v], i) => {
-    const d = (nat as any).periods[v];
-    return (
-      <section data-ov={v} hidden={i !== 0} style="margin-top:20px">
-        <div class="grid kpis">
-          <div class="card kpi"><small>{s.ovProjects}</small><div class="big">{num(lang, d.projects)}</div><small>{pct(lang, d.projects / d.eu_ka2_projects)} % {s.ovShare} ({num(lang, d.eu_ka2_projects)})</small></div>
-          <div class="card kpi"><small>{s.ovCoordinated}</small><div class="big">{num(lang, d.coordinated)}</div><small>{pct(lang, d.coordinated / d.projects)} % {lang === 'hr' ? 'tih projekata' : 'of these projects'}</small></div>
-          <div class="card kpi"><small>{s.ovValue}</small><div class="big">{eur(lang, d.value_involved_eur)}</div><small>{s.valueInvolved}</small></div>
-        </div>
-        <section class="card" style="margin-top:18px">
-          <h2>{s.ovWho}</h2><p class="lead" style="font-size:.9rem">{s.ovWhoLead}</p>
-          {d.classes.map((c: any) => (
-            <div class="barrow" style="grid-template-columns:14em 1fr 3em"><span>{s.classNames[c.org_class] ?? c.org_class}</span><span class="track"><i style={`width:${(c.projects_coordinated / d.classes[0].projects_coordinated) * 100}%`}></i></span><span class="mono" style="text-align:right">{num(lang, c.projects_coordinated)}</span></div>
-          ))}
-          {d.classes.some((c: any) => c.org_class === 'ngo') && <p class="lead" style="font-size:.85rem;margin-top:10px">{s.ovWhoNote(num(lang, d.classes.find((c: any) => c.org_class === 'ngo').projects_coordinated), num(lang, d.ngo_typed_in_eu_export))}</p>}
-        </section>
-        {(cp as readonly string[]).includes(v) && (() => {
-          const rows = (nat as any).countries[v]; const hr = rows.find((r: any) => r.country === 'HR');
-          return (
-            <section class="card" style="margin-top:18px">
-              <h2>{s.ovCountries}</h2><p class="lead" style="font-size:.9rem">{s.ovCountriesLead}</p>
-              <table><thead><tr><th class="num">{s.ovRank}</th><th>{s.ovCountry}</th><th class="num">{s.ovCoordProj}</th></tr></thead>
-                <tbody>{rows.map((r: any) => (
-                  <tr class={r.country === 'HR' ? 'hl' : undefined}><td class="num">{r.rank}</td><td>{country(lang, r.country)}</td><td class="num">{num(lang, r.coordinated_projects)}</td></tr>
-                ))}</tbody></table>
-              {hr && <p class="lead" style="margin-top:10px">{s.ovCroatiaRanks(String(hr.rank), String(hr.countries_total))}</p>}
-            </section>
-          );
-        })()}
-      </section>
-    );
-  })}
-  <p class="method">{s.partial}</p>
+<Base ek lang={lang} title={T[0]} path="/overview/" active="overview" description={T[1]}>
+  <EkView view="overview" lang={lang} />
 </Base>
-<script>
-  document.querySelectorAll<HTMLElement>('#ov-filters button').forEach((b) => b.addEventListener('click', () => {
-    document.querySelectorAll<HTMLElement>('#ov-filters button').forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
-    document.querySelectorAll<HTMLElement>('[data-ov]').forEach((sec) => (sec.hidden = sec.dataset.ov !== b.dataset.val));
-  }));
-</script>

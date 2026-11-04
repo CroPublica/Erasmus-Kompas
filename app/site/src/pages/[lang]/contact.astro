@@ -1,0 +1,11 @@
+---
+import Base from '../../layouts/Base.astro';
+import EkView from '../../components/EkView.astro';
+import { LANGS, type Lang } from '../../lib/i18n';
+export const getStaticPaths = () => LANGS.map((lang) => ({ params: { lang } }));
+const lang = Astro.params.lang as Lang;
+const T = { hr: ['Kontakt', 'Kontakt.'], en: ['Contact', 'Contact.'] }[lang];
+---
+<Base ek lang={lang} title={T[0]} path="/contact/" active="" description={T[1]}>
+  <EkView view="contact" lang={lang} />
+</Base>

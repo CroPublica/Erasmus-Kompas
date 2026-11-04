@@ -1,23 +1,11 @@
 ---
 import Base from '../../../layouts/Base.astro';
-import counties from '../../../data/counties.json';
-import { LANGS, t, num, eur, slug, type Lang } from '../../../lib/i18n';
+import EkView from '../../../components/EkView.astro';
+import { LANGS, type Lang } from '../../../lib/i18n';
 export const getStaticPaths = () => LANGS.map((lang) => ({ params: { lang } }));
 const lang = Astro.params.lang as Lang;
-const s = t(lang);
-const base = import.meta.env.BASE_URL.replace(/\/$/, '');
-const rows = [...counties].map((c: any) => ({ ...c, all: c.ka2.all ?? {} })).sort((a, b) => (b.all.projects_involved ?? 0) - (a.all.projects_involved ?? 0));
+const T = { hr: ['Županije', 'Karta županija i poredak.'], en: ['Counties', 'County map and ranking.'] }[lang];
 ---
-<Base lang={lang} title={s.placesTitle} path="/places/" active="places" description={s.placesLead}>
-  <div class="kicker">{s.nav.places}</div>
-  <h1>{s.placesTitle}</h1>
-  <p class="lead">{s.placesLead}</p>
-  <div class="card" style="margin-top:20px;overflow-x:auto"><table>
-    <thead><tr><th>{s.county}</th><th class="num">{s.orgsInCounty}</th><th class="num">{s.projectsInvolved}</th><th class="num">{s.coordinatedProj}</th><th class="num">{s.grantsCoord}</th></tr></thead>
-    <tbody>{rows.map((c) => (
-      <tr><td><a href={`${base}/${lang}/places/${slug(c.stem)}/`}>{c.label}</a></td>
-        <td class="num">{num(lang, c.all.organisations ?? 0)}</td><td class="num">{num(lang, c.all.projects_involved ?? 0)}</td>
-        <td class="num">{num(lang, c.all.projects_coordinated ?? 0)}</td><td class="num">{eur(lang, c.all.grants_coordinated_eur)}</td></tr>
-    ))}</tbody>
-  </table></div>
+<Base ek lang={lang} title={T[0]} path="/places/" active="places" description={T[1]}>
+  <EkView view="places" lang={lang} />
 </Base>

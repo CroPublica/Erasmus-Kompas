@@ -1,0 +1,11 @@
+---
+import Base from '../../layouts/Base.astro';
+import EkView from '../../components/EkView.astro';
+import { LANGS, type Lang } from '../../lib/i18n';
+export const getStaticPaths = () => LANGS.map((lang) => ({ params: { lang } }));
+const lang = Astro.params.lang as Lang;
+const T = { hr: ['Partnerske države', 'S kojim državama Hrvatska surađuje.'], en: ['Partner countries', 'Which countries Croatia works with.'] }[lang];
+---
+<Base ek lang={lang} title={T[0]} path="/countries/" active="countries" description={T[1]}>
+  <EkView view="countries" lang={lang} />
+</Base>

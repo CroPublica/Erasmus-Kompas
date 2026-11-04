@@ -1,0 +1,1978 @@
+{
+"{N} mil. €": {
+"raw": "{N} mil. €",
+"where": "",
+"tags": [
+"#/pregled",
+"#/pregled [btn3]",
+"#/pregled [btn4]"
+]
+},
+"{E} ima {N} KA{N} projekata sa sudionikom iz županije ({N}. od {N}), od toga {N} koordiniranih. U projektima sudjeluje {N} organizacija, a vrijednost projekata je {N} mil. €.": {
+"raw": "{E} ima {N} KA{N} projekata sa sudionikom iz županije ({N}. od {N}), od toga {N} koordiniranih. U projektima sudjeluje {N} organizacija, a vrijednost projekata je {N} mil. €.",
+"where": "",
+"tags": [
+"#/pregled",
+"#/pregled [btn3]",
+"#/pregled [btn4]"
+]
+},
+"{N} November {N}": {
+"raw": "{N} November {N}",
+"where": "",
+"tags": [
+"#/pregled",
+"#/pregled [btn3]",
+"#/pregled [btn4]"
+]
+},
+"Italy": {
+"raw": "Italy",
+"where": "",
+"tags": [
+"#/pregled",
+"#/pregled [btn3]",
+"#/pregled [btn4]"
+]
+},
+"Spain": {
+"raw": "Spain",
+"where": "",
+"tags": [
+"#/pregled",
+"#/pregled [btn3]",
+"#/pregled [btn4]"
+]
+},
+"Greece": {
+"raw": "Greece",
+"where": "",
+"tags": [
+"#/pregled",
+"#/pregled [btn3]",
+"#/pregled [btn4]"
+]
+},
+"Poland": {
+"raw": "Poland",
+"where": "",
+"tags": [
+"#/pregled",
+"#/pregled [btn3]",
+"#/pregled [btn4]"
+]
+},
+"Türkiye": {
+"raw": "Türkiye",
+"where": "",
+"tags": [
+"#/pregled",
+"#/pregled [btn3]",
+"#/pregled [btn4]"
+]
+},
+"{N} država, najčešće Italy →": {
+"raw": "{N} država, najčešće Italy →",
+"where": "",
+"tags": [
+"#/pregled",
+"#/pregled [btn3]",
+"#/pregled [btn4]"
+]
+},
+"Split-Dalmatia County has {N} KA{N} projects with a participant from the county (rank {N} of {N}), of which {N} were coordinated from it. {N} organisations take part, and the projects are worth €{N}M.": {
+"raw": "Split-Dalmatia County has {N} KA{N} projects with a participant from the county (rank {N} of {N}), of which {N} were coordinated from it. {N} organisations take part, and the projects are worth €{N}M.",
+"where": "",
+"tags": [
+"#/pregled",
+"#/pregled [btn3]",
+"#/pregled [btn4]"
+]
+},
+"County page": {
+"raw": "County page",
+"where": "",
+"tags": [
+"#/pregled",
+"#/pregled [btn3]",
+"#/pregled [btn4]"
+]
+},
+"Compare counties": {
+"raw": "Compare counties",
+"where": "",
+"tags": [
+"#/pregled",
+"#/pregled [btn3]",
+"#/pregled [btn4]"
+]
+},
+"{N} rows matching the current filters": {
+"raw": "{N} rows matching the current filters",
+"where": "",
+"tags": [
+"#/pregled",
+"#/pregled [btn3]",
+"#/pregled [btn4]"
+]
+},
+"{N}–{N}: {N} mil. €": {
+"raw": "{N}–{N}: {N} mil. €",
+"where": "",
+"tags": [
+"#/pregled",
+"#/pregled [btn3]",
+"#/pregled [btn4]"
+]
+},
+"{N}–{N}: {N} mil. € · {N}–{N}: {N} mil. €": {
+"raw": "{N}–{N}: {N} mil. € · {N}–{N}: {N} mil. €",
+"where": "",
+"tags": [
+"#/pregled",
+"#/pregled [btn3]",
+"#/pregled [btn4]"
+]
+},
+"All counties": {
+"raw": "All counties",
+"where": "",
+"tags": [
+"#/pregled",
+"#/pregled [btn3]",
+"#/pregled [btn4]"
+]
+},
+"Bjelovar-Bilogora": {
+"raw": "Bjelovar-Bilogora",
+"where": "",
+"tags": [
+"#/pregled",
+"#/pregled [btn3]",
+"#/pregled [btn4]"
+]
+},
+"Brod-Posavina": {
+"raw": "Brod-Posavina",
+"where": "",
+"tags": [
+"#/pregled",
+"#/pregled [btn3]",
+"#/pregled [btn4]"
+]
+},
+"Dubrovnik-Neretva": {
+"raw": "Dubrovnik-Neretva",
+"where": "",
+"tags": [
+"#/pregled",
+"#/pregled [btn3]",
+"#/pregled [btn4]"
+]
+},
+"City of Zagreb": {
+"raw": "City of Zagreb",
+"where": "",
+"tags": [
+"#/pregled",
+"#/pregled [btn3]",
+"#/pregled [btn4]"
+]
+},
+"Istria": {
+"raw": "Istria",
+"where": "",
+"tags": [
+"#/pregled",
+"#/pregled [btn3]",
+"#/pregled [btn4]"
+]
+},
+"Karlovac": {
+"raw": "Karlovac",
+"where": "",
+"tags": [
+"#/pregled",
+"#/pregled [btn3]",
+"#/pregled [btn4]"
+]
+},
+"Koprivnica-Križevci": {
+"raw": "Koprivnica-Križevci",
+"where": "",
+"tags": [
+"#/pregled",
+"#/pregled [btn3]",
+"#/pregled [btn4]"
+]
+},
+"Krapina-Zagorje": {
+"raw": "Krapina-Zagorje",
+"where": "",
+"tags": [
+"#/pregled",
+"#/pregled [btn3]",
+"#/pregled [btn4]"
+]
+},
+"Lika-Senj": {
+"raw": "Lika-Senj",
+"where": "",
+"tags": [
+"#/pregled",
+"#/pregled [btn3]",
+"#/pregled [btn4]"
+]
+},
+"Međimurje": {
+"raw": "Međimurje",
+"where": "",
+"tags": [
+"#/pregled",
+"#/pregled [btn3]",
+"#/pregled [btn4]"
+]
+},
+"Osijek-Baranja": {
+"raw": "Osijek-Baranja",
+"where": "",
+"tags": [
+"#/pregled",
+"#/pregled [btn3]",
+"#/pregled [btn4]"
+]
+},
+"Požega-Slavonia": {
+"raw": "Požega-Slavonia",
+"where": "",
+"tags": [
+"#/pregled",
+"#/pregled [btn3]",
+"#/pregled [btn4]"
+]
+},
+"Primorje-Gorski Kotar": {
+"raw": "Primorje-Gorski Kotar",
+"where": "",
+"tags": [
+"#/pregled",
+"#/pregled [btn3]",
+"#/pregled [btn4]"
+]
+},
+"Šibenik-Knin": {
+"raw": "Šibenik-Knin",
+"where": "",
+"tags": [
+"#/pregled",
+"#/pregled [btn3]",
+"#/pregled [btn4]"
+]
+},
+"Sisak-Moslavina": {
+"raw": "Sisak-Moslavina",
+"where": "",
+"tags": [
+"#/pregled",
+"#/pregled [btn3]",
+"#/pregled [btn4]"
+]
+},
+"Split-Dalmatia": {
+"raw": "Split-Dalmatia",
+"where": "",
+"tags": [
+"#/pregled",
+"#/pregled [btn3]",
+"#/pregled [btn4]"
+]
+},
+"Varaždin": {
+"raw": "Varaždin",
+"where": "",
+"tags": [
+"#/pregled",
+"#/pregled [btn3]",
+"#/pregled [btn4]"
+]
+},
+"Virovitica-Podravina": {
+"raw": "Virovitica-Podravina",
+"where": "",
+"tags": [
+"#/pregled",
+"#/pregled [btn3]",
+"#/pregled [btn4]"
+]
+},
+"Vukovar-Syrmia": {
+"raw": "Vukovar-Syrmia",
+"where": "",
+"tags": [
+"#/pregled",
+"#/pregled [btn3]",
+"#/pregled [btn4]"
+]
+},
+"Zadar": {
+"raw": "Zadar",
+"where": "",
+"tags": [
+"#/pregled",
+"#/pregled [btn3]",
+"#/pregled [btn4]"
+]
+},
+"Zagreb": {
+"raw": "Zagreb",
+"where": "",
+"tags": [
+"#/pregled",
+"#/pregled [btn3]",
+"#/pregled [btn4]"
+]
+},
+"All sectors": {
+"raw": "All sectors",
+"where": "",
+"tags": [
+"#/pregled",
+"#/pregled [btn3]",
+"#/pregled [btn4]"
+]
+},
+"School education": {
+"raw": "School education",
+"where": "",
+"tags": [
+"#/pregled",
+"#/pregled [btn3]",
+"#/pregled [btn4]"
+]
+},
+"Vocational education and training (VET)": {
+"raw": "Vocational education and training (VET)",
+"where": "",
+"tags": [
+"#/pregled",
+"#/pregled [btn3]",
+"#/pregled [btn4]"
+]
+},
+"Higher education": {
+"raw": "Higher education",
+"where": "",
+"tags": [
+"#/pregled",
+"#/pregled [btn3]",
+"#/pregled [btn4]"
+]
+},
+"Adult education": {
+"raw": "Adult education",
+"where": "",
+"tags": [
+"#/pregled",
+"#/pregled [btn3]",
+"#/pregled [btn4]"
+]
+},
+"Youth": {
+"raw": "Youth",
+"where": "",
+"tags": [
+"#/pregled",
+"#/pregled [btn3]",
+"#/pregled [btn4]"
+]
+},
+"Other": {
+"raw": "Other",
+"where": "",
+"tags": [
+"#/pregled",
+"#/pregled [btn3]",
+"#/pregled [btn4]"
+]
+},
+"All types": {
+"raw": "All types",
+"where": "",
+"tags": [
+"#/pregled",
+"#/pregled [btn3]",
+"#/pregled [btn4]"
+]
+},
+"Cooperation partnerships": {
+"raw": "Cooperation partnerships",
+"where": "",
+"tags": [
+"#/pregled",
+"#/pregled [btn3]",
+"#/pregled [btn4]"
+]
+},
+"Small-scale partnerships": {
+"raw": "Small-scale partnerships",
+"where": "",
+"tags": [
+"#/pregled",
+"#/pregled [btn3]",
+"#/pregled [btn4]"
+]
+},
+"Strategic partnerships": {
+"raw": "Strategic partnerships",
+"where": "",
+"tags": [
+"#/pregled",
+"#/pregled [btn3]",
+"#/pregled [btn4]"
+]
+},
+"School exchange partnerships": {
+"raw": "School exchange partnerships",
+"where": "",
+"tags": [
+"#/pregled",
+"#/pregled [btn3]",
+"#/pregled [btn4]"
+]
+},
+"Capacity building": {
+"raw": "Capacity building",
+"where": "",
+"tags": [
+"#/pregled",
+"#/pregled [btn3]",
+"#/pregled [btn4]"
+]
+},
+"Alliances and other actions": {
+"raw": "Alliances and other actions",
+"where": "",
+"tags": [
+"#/pregled",
+"#/pregled [btn3]",
+"#/pregled [btn4]"
+]
+},
+"County": {
+"raw": "County",
+"where": "",
+"tags": [
+"#/pregled",
+"#/pregled [btn3]",
+"#/pregled [btn4]"
+]
+},
+"Remove filter: School education": {
+"raw": "Remove filter: School education",
+"where": "",
+"tags": [
+"#/pregled [btn8]"
+]
+},
+"Not available with the selected sector or project type": {
+"raw": "Not available with the selected sector or project type",
+"where": "",
+"tags": [
+"#/pregled [btn8]",
+"#/pregled [btn9]",
+"#/pregled [btn10]"
+]
+},
+"Remove filter: Vocational education and training (VET)": {
+"raw": "Remove filter: Vocational education and training (VET)",
+"where": "",
+"tags": [
+"#/pregled [btn9]"
+]
+},
+"Remove filter: Higher education": {
+"raw": "Remove filter: Higher education",
+"where": "",
+"tags": [
+"#/pregled [btn10]"
+]
+},
+"Remove filter: Adult education": {
+"raw": "Remove filter: Adult education",
+"where": "",
+"tags": [
+"#/pregled [btn11]"
+]
+},
+"Remove filter: Youth": {
+"raw": "Remove filter: Youth",
+"where": "",
+"tags": [
+"#/pregled [btn12]"
+]
+},
+"Remove filter: Other": {
+"raw": "Remove filter: Other",
+"where": "",
+"tags": [
+"#/pregled [btn13]"
+]
+},
+"Remove filter: Cooperation partnerships": {
+"raw": "Remove filter: Cooperation partnerships",
+"where": "",
+"tags": [
+"#/pregled [btn15]"
+]
+},
+"Remove filter: Small-scale partnerships": {
+"raw": "Remove filter: Small-scale partnerships",
+"where": "",
+"tags": [
+"#/pregled [btn16]"
+]
+},
+"Remove filter: Strategic partnerships": {
+"raw": "Remove filter: Strategic partnerships",
+"where": "",
+"tags": [
+"#/pregled [btn17]"
+]
+},
+"Remove filter: School exchange partnerships": {
+"raw": "Remove filter: School exchange partnerships",
+"where": "",
+"tags": [
+"#/pregled [btn18]"
+]
+},
+"Remove filter: Capacity building": {
+"raw": "Remove filter: Capacity building",
+"where": "",
+"tags": [
+"#/pregled [btn19]"
+]
+},
+"Remove filter: Alliances and other actions": {
+"raw": "Remove filter: Alliances and other actions",
+"where": "",
+"tags": [
+"#/pregled [btn20]"
+]
+},
+"Remove filter: Bjelovar-Bilogora County": {
+"raw": "Remove filter: Bjelovar-Bilogora County",
+"where": "",
+"tags": [
+"#/pregled [btn23]"
+]
+},
+"Not available with the selected county": {
+"raw": "Not available with the selected county",
+"where": "",
+"tags": [
+"#/pregled [btn23]",
+"#/pregled [btn24]",
+"#/pregled [btn25]"
+]
+},
+"Remove filter: Brod-Posavina County": {
+"raw": "Remove filter: Brod-Posavina County",
+"where": "",
+"tags": [
+"#/pregled [btn24]"
+]
+},
+"Remove filter: Dubrovnik-Neretva County": {
+"raw": "Remove filter: Dubrovnik-Neretva County",
+"where": "",
+"tags": [
+"#/pregled [btn25]",
+"#/pregled [btn55]"
+]
+},
+"Remove filter: City of Zagreb": {
+"raw": "Remove filter: City of Zagreb",
+"where": "",
+"tags": [
+"#/pregled [btn26]",
+"#/pregled [btn49]"
+]
+},
+"Remove filter: Istria County": {
+"raw": "Remove filter: Istria County",
+"where": "",
+"tags": [
+"#/pregled [btn27]",
+"#/pregled [btn54]"
+]
+},
+"Remove filter: Karlovac County": {
+"raw": "Remove filter: Karlovac County",
+"where": "",
+"tags": [
+"#/pregled [btn28]"
+]
+},
+"Remove filter: Koprivnica-Križevci County": {
+"raw": "Remove filter: Koprivnica-Križevci County",
+"where": "",
+"tags": [
+"#/pregled [btn29]"
+]
+},
+"Remove filter: Krapina-Zagorje County": {
+"raw": "Remove filter: Krapina-Zagorje County",
+"where": "",
+"tags": [
+"#/pregled [btn30]"
+]
+},
+"Remove filter: Lika-Senj County": {
+"raw": "Remove filter: Lika-Senj County",
+"where": "",
+"tags": [
+"#/pregled [btn31]"
+]
+},
+"Remove filter: Međimurje County": {
+"raw": "Remove filter: Međimurje County",
+"where": "",
+"tags": [
+"#/pregled [btn32]",
+"#/pregled [btn56]"
+]
+},
+"Remove filter: Osijek-Baranja County": {
+"raw": "Remove filter: Osijek-Baranja County",
+"where": "",
+"tags": [
+"#/pregled [btn33]",
+"#/pregled [btn52]"
+]
+},
+"Remove filter: Požega-Slavonia County": {
+"raw": "Remove filter: Požega-Slavonia County",
+"where": "",
+"tags": [
+"#/pregled [btn34]"
+]
+},
+"Remove filter: Primorje-Gorski Kotar County": {
+"raw": "Remove filter: Primorje-Gorski Kotar County",
+"where": "",
+"tags": [
+"#/pregled [btn35]",
+"#/pregled [btn50]"
+]
+},
+"Remove filter: Šibenik-Knin County": {
+"raw": "Remove filter: Šibenik-Knin County",
+"where": "",
+"tags": [
+"#/pregled [btn36]"
+]
+},
+"Remove filter: Sisak-Moslavina County": {
+"raw": "Remove filter: Sisak-Moslavina County",
+"where": "",
+"tags": [
+"#/pregled [btn37]"
+]
+},
+"Remove filter: Split-Dalmatia County": {
+"raw": "Remove filter: Split-Dalmatia County",
+"where": "",
+"tags": [
+"#/pregled [btn38]",
+"#/pregled [btn51]"
+]
+},
+"Remove filter: Varaždin County": {
+"raw": "Remove filter: Varaždin County",
+"where": "",
+"tags": [
+"#/pregled [btn39]",
+"#/pregled [btn53]"
+]
+},
+"Remove filter: Virovitica-Podravina County": {
+"raw": "Remove filter: Virovitica-Podravina County",
+"where": "",
+"tags": [
+"#/pregled [btn40]"
+]
+},
+"Remove filter: Vukovar-Syrmia County": {
+"raw": "Remove filter: Vukovar-Syrmia County",
+"where": "",
+"tags": [
+"#/pregled [btn41]"
+]
+},
+"Remove filter: Zadar County": {
+"raw": "Remove filter: Zadar County",
+"where": "",
+"tags": [
+"#/pregled [btn42]"
+]
+},
+"Remove filter: Zagreb County": {
+"raw": "Remove filter: Zagreb County",
+"where": "",
+"tags": [
+"#/pregled [btn43]"
+]
+},
+"Preuzimanje": {
+"raw": "Preuzimanje",
+"where": "",
+"tags": [
+"#/pregled [btn46]",
+"#/pregled [btn47]",
+"#/pregled [btn48]"
+]
+},
+"redaka": {
+"raw": "redaka",
+"where": "",
+"tags": [
+"#/pregled [btn46]",
+"#/pregled [btn47]",
+"#/pregled [btn48]"
+]
+},
+"Preuzimanje CSV: {N} redaka": {
+"raw": "Preuzimanje CSV: {N} redaka",
+"where": "",
+"tags": [
+"#/pregled [btn46]",
+"#/usporedba [btn31]",
+"#/teme [btn4]"
+]
+},
+"Primijenjeni filteri": {
+"raw": "Primijenjeni filteri",
+"where": "",
+"tags": [
+"#/pregled [btn47]",
+"#/usporedba [btn32]",
+"#/teme [btn5]"
+]
+},
+"Broj redaka": {
+"raw": "Broj redaka",
+"where": "",
+"tags": [
+"#/pregled [btn47]",
+"#/usporedba [btn32]",
+"#/teme [btn5]"
+]
+},
+"Izvezeno": {
+"raw": "Izvezeno",
+"where": "",
+"tags": [
+"#/pregled [btn47]",
+"#/pregled [btn48]",
+"#/usporedba [btn32]"
+]
+},
+"Izvor: Erasmus+ Kompas (erasmus-plus.ec.europa.eu, data.gov.hr, MZO). Neovisan projekt, nije službena stranica Europske komisije.": {
+"raw": "Izvor: Erasmus+ Kompas (erasmus-plus.ec.europa.eu, data.gov.hr, MZO). Neovisan projekt, nije službena stranica Europske komisije.",
+"where": "",
+"tags": [
+"#/pregled [btn47]",
+"#/pregled [btn48]",
+"#/usporedba [btn32]"
+]
+},
+"Podaci": {
+"raw": "Podaci",
+"where": "",
+"tags": [
+"#/pregled [btn47]",
+"#/usporedba [btn32]",
+"#/teme [btn5]"
+]
+},
+"O izvozu": {
+"raw": "O izvozu",
+"where": "",
+"tags": [
+"#/pregled [btn47]",
+"#/usporedba [btn32]",
+"#/teme [btn5]"
+]
+},
+"Preuzimanje Excel: {N} redaka": {
+"raw": "Preuzimanje Excel: {N} redaka",
+"where": "",
+"tags": [
+"#/pregled [btn47]",
+"#/usporedba [btn32]",
+"#/teme [btn5]"
+]
+},
+"Stranica": {
+"raw": "Stranica",
+"where": "",
+"tags": [
+"#/pregled [btn48]",
+"#/usporedba [btn33]",
+"#/teme [btn6]"
+]
+},
+"Preuzimanje PDF: {N} redaka": {
+"raw": "Preuzimanje PDF: {N} redaka",
+"where": "",
+"tags": [
+"#/pregled [btn48]",
+"#/usporedba [btn33]",
+"#/teme [btn6]"
+]
+},
+"Choose a county…": {
+"raw": "Choose a county…",
+"where": "",
+"tags": [
+"#/usporedba",
+"#/usporedba [btn3]",
+"#/usporedba [btn4]"
+]
+},
+"Add a county": {
+"raw": "Add a county",
+"where": "",
+"tags": [
+"#/usporedba",
+"#/usporedba [btn3]",
+"#/usporedba [btn4]"
+]
+},
+"Up to four counties": {
+"raw": "Up to four counties",
+"where": "",
+"tags": [
+"#/usporedba [btn6]",
+"#/usporedba [btn7]",
+"#/usporedba [btn8]"
+]
+},
+"Environment and climate change, {N}: {N}% ({N})": {
+"raw": "Environment and climate change, {N}: {N}% ({N})",
+"where": "",
+"tags": [
+"#/teme",
+"#/teme [btn3]",
+"#/teme [btn4]"
+]
+},
+"Entrepreneurial learning - entrepreneurship education, {N}: {N}% ({N})": {
+"raw": "Entrepreneurial learning - entrepreneurship education, {N}: {N}% ({N})",
+"where": "",
+"tags": [
+"#/teme",
+"#/teme [btn3]",
+"#/teme [btn4]"
+]
+},
+"Digital skills and competences, {N}: {N}% ({N})": {
+"raw": "Digital skills and competences, {N}: {N}% ({N})",
+"where": "",
+"tags": [
+"#/teme",
+"#/teme [btn3]",
+"#/teme [btn4]"
+]
+},
+"Artificial Intelligence (AI) and data usage, {N}: {N}% ({N})": {
+"raw": "Artificial Intelligence (AI) and data usage, {N}: {N}% ({N})",
+"where": "",
+"tags": [
+"#/teme",
+"#/teme [btn3]",
+"#/teme [btn4]"
+]
+},
+"ICT - new technologies - digital competences, {N}: {N}% ({N})": {
+"raw": "ICT - new technologies - digital competences, {N}: {N}% ({N})",
+"where": "",
+"tags": [
+"#/teme",
+"#/teme [btn3]",
+"#/teme [btn4]"
+]
+},
+"Environment and climate change": {
+"raw": "Environment and climate change",
+"where": "",
+"tags": [
+"#/teme",
+"#/teme [btn3]",
+"#/teme [btn4]"
+]
+},
+"Entrepreneurial learning - entrepreneurship education": {
+"raw": "Entrepreneurial learning - entrepreneurship education",
+"where": "",
+"tags": [
+"#/teme",
+"#/teme [btn3]",
+"#/teme [btn4]"
+]
+},
+"Digital skills and competences": {
+"raw": "Digital skills and competences",
+"where": "",
+"tags": [
+"#/teme",
+"#/teme [btn3]",
+"#/teme [btn4]"
+]
+},
+"Artificial Intelligence (AI) and data usage": {
+"raw": "Artificial Intelligence (AI) and data usage",
+"where": "",
+"tags": [
+"#/teme",
+"#/teme [btn3]",
+"#/teme [btn4]"
+]
+},
+"ICT - new technologies - digital competences": {
+"raw": "ICT - new technologies - digital competences",
+"where": "",
+"tags": [
+"#/teme",
+"#/teme [btn3]",
+"#/teme [btn4]"
+]
+},
+"Cultural heritage": {
+"raw": "Cultural heritage",
+"where": "",
+"tags": [
+"#/teme",
+"#/teme [btn3]",
+"#/teme [btn4]"
+]
+},
+"Teaching and learning of foreign languages": {
+"raw": "Teaching and learning of foreign languages",
+"where": "",
+"tags": [
+"#/teme",
+"#/teme [btn3]",
+"#/teme [btn4]"
+]
+},
+"Open and distance learning": {
+"raw": "Open and distance learning",
+"where": "",
+"tags": [
+"#/teme",
+"#/teme [btn3]",
+"#/teme [btn4]"
+]
+},
+"Cooperation between educational institutions and business": {
+"raw": "Cooperation between educational institutions and business",
+"where": "",
+"tags": [
+"#/teme",
+"#/teme [btn3]",
+"#/teme [btn4]"
+]
+},
+"Pedagogy and didactics": {
+"raw": "Pedagogy and didactics",
+"where": "",
+"tags": [
+"#/teme",
+"#/teme [btn3]",
+"#/teme [btn4]"
+]
+},
+"Research and innovation": {
+"raw": "Research and innovation",
+"where": "",
+"tags": [
+"#/teme",
+"#/teme [btn3]",
+"#/teme [btn4]"
+]
+},
+"Energy and resources": {
+"raw": "Energy and resources",
+"where": "",
+"tags": [
+"#/teme",
+"#/teme [btn3]",
+"#/teme [btn4]"
+]
+},
+"Enterprise, industry, SMEs and entrepreneurship": {
+"raw": "Enterprise, industry, SMEs and entrepreneurship",
+"where": "",
+"tags": [
+"#/teme",
+"#/teme [btn3]",
+"#/teme [btn4]"
+]
+},
+"Social responsibility of educational institutions": {
+"raw": "Social responsibility of educational institutions",
+"where": "",
+"tags": [
+"#/teme",
+"#/teme [btn3]",
+"#/teme [btn4]"
+]
+},
+"Agriculture, forestry and fisheries": {
+"raw": "Agriculture, forestry and fisheries",
+"where": "",
+"tags": [
+"#/teme",
+"#/teme [btn3]",
+"#/teme [btn4]"
+]
+},
+"Early childhood education and care": {
+"raw": "Early childhood education and care",
+"where": "",
+"tags": [
+"#/teme",
+"#/teme [btn3]",
+"#/teme [btn4]"
+]
+},
+"Recognition, transparency, certification": {
+"raw": "Recognition, transparency, certification",
+"where": "",
+"tags": [
+"#/teme",
+"#/teme [btn3]",
+"#/teme [btn4]"
+]
+},
+"Quality assurance": {
+"raw": "Quality assurance",
+"where": "",
+"tags": [
+"#/teme",
+"#/teme [btn3]",
+"#/teme [btn4]"
+]
+},
+"Roma and/or other minorities": {
+"raw": "Roma and/or other minorities",
+"where": "",
+"tags": [
+"#/teme",
+"#/teme [btn3]",
+"#/teme [btn4]"
+]
+},
+"Reaching the policy level/dialogue with decision makers": {
+"raw": "Reaching the policy level/dialogue with decision makers",
+"where": "",
+"tags": [
+"#/teme",
+"#/teme [btn3]",
+"#/teme [btn4]"
+]
+},
+"Economic and financial affairs (including funding issues)": {
+"raw": "Economic and financial affairs (including funding issues)",
+"where": "",
+"tags": [
+"#/teme",
+"#/teme [btn3]",
+"#/teme [btn4]"
+]
+},
+"New learning and teaching methods and approaches": {
+"raw": "New learning and teaching methods and approaches",
+"where": "",
+"tags": [
+"#/teme",
+"#/teme [btn3]",
+"#/teme [btn4]"
+]
+},
+"Inclusion, promoting equality and non-discrimination": {
+"raw": "Inclusion, promoting equality and non-discrimination",
+"where": "",
+"tags": [
+"#/teme",
+"#/teme [btn3]",
+"#/teme [btn4]"
+]
+},
+"Creating new, innovative or joint curricula or courses": {
+"raw": "Creating new, innovative or joint curricula or courses",
+"where": "",
+"tags": [
+"#/teme",
+"#/teme [btn3]",
+"#/teme [btn4]"
+]
+},
+"Digital content, technologies and practices": {
+"raw": "Digital content, technologies and practices",
+"where": "",
+"tags": [
+"#/teme",
+"#/teme [btn3]",
+"#/teme [btn4]"
+]
+},
+"Green skills": {
+"raw": "Green skills",
+"where": "",
+"tags": [
+"#/teme",
+"#/teme [btn3]",
+"#/teme [btn4]"
+]
+},
+"Physical and mental health, well-being": {
+"raw": "Physical and mental health, well-being",
+"where": "",
+"tags": [
+"#/teme",
+"#/teme [btn3]",
+"#/teme [btn4]"
+]
+},
+"European identity and values": {
+"raw": "European identity and values",
+"where": "",
+"tags": [
+"#/teme",
+"#/teme [btn3]",
+"#/teme [btn4]"
+]
+},
+"Quality and innovation of youth work": {
+"raw": "Quality and innovation of youth work",
+"where": "",
+"tags": [
+"#/teme",
+"#/teme [btn3]",
+"#/teme [btn4]"
+]
+},
+"Creativity, arts and culture": {
+"raw": "Creativity, arts and culture",
+"where": "",
+"tags": [
+"#/teme",
+"#/teme [btn3]",
+"#/teme [btn4]"
+]
+},
+"Development of training courses": {
+"raw": "Development of training courses",
+"where": "",
+"tags": [
+"#/teme",
+"#/teme [btn3]",
+"#/teme [btn4]"
+]
+},
+"Democracy and inclusive democratic participation": {
+"raw": "Democracy and inclusive democratic participation",
+"where": "",
+"tags": [
+"#/teme",
+"#/teme [btn3]",
+"#/teme [btn4]"
+]
+},
+"Disabilities": {
+"raw": "Disabilities",
+"where": "",
+"tags": [
+"#/teme",
+"#/teme [btn3]",
+"#/teme [btn4]"
+]
+},
+"Inclusion of marginalised young people": {
+"raw": "Inclusion of marginalised young people",
+"where": "",
+"tags": [
+"#/teme",
+"#/teme [btn3]",
+"#/teme [btn4]"
+]
+},
+"Key competences development": {
+"raw": "Key competences development",
+"where": "",
+"tags": [
+"#/teme",
+"#/teme [btn3]",
+"#/teme [btn4]"
+]
+},
+"Initial and continuous training for teachers, trainers and other education staff": {
+"raw": "Initial and continuous training for teachers, trainers and other education staff",
+"where": "",
+"tags": [
+"#/teme",
+"#/teme [btn3]",
+"#/teme [btn4]"
+]
+},
+"Science, technology, engineering and mathematics (STEM)": {
+"raw": "Science, technology, engineering and mathematics (STEM)",
+"where": "",
+"tags": [
+"#/teme",
+"#/teme [btn3]",
+"#/teme [btn4]"
+]
+},
+"Bridging intercultural, intergenerational and social divide": {
+"raw": "Bridging intercultural, intergenerational and social divide",
+"where": "",
+"tags": [
+"#/teme",
+"#/teme [btn3]",
+"#/teme [btn4]"
+]
+},
+"Overcoming skills mismatch and addressing the needs of the labour market": {
+"raw": "Overcoming skills mismatch and addressing the needs of the labour market",
+"where": "",
+"tags": [
+"#/teme",
+"#/teme [btn3]",
+"#/teme [btn4]"
+]
+},
+"Community development": {
+"raw": "Community development",
+"where": "",
+"tags": [
+"#/teme",
+"#/teme [btn3]",
+"#/teme [btn4]"
+]
+},
+"Employability": {
+"raw": "Employability",
+"where": "",
+"tags": [
+"#/teme",
+"#/teme [btn3]",
+"#/teme [btn4]"
+]
+},
+"Soft skills": {
+"raw": "Soft skills",
+"where": "",
+"tags": [
+"#/teme",
+"#/teme [btn3]",
+"#/teme [btn4]"
+]
+},
+"Media literacy and tackling disinformation": {
+"raw": "Media literacy and tackling disinformation",
+"where": "",
+"tags": [
+"#/teme",
+"#/teme [btn3]",
+"#/teme [btn4]"
+]
+},
+"Promoting gender equality": {
+"raw": "Promoting gender equality",
+"where": "",
+"tags": [
+"#/teme",
+"#/teme [btn3]",
+"#/teme [btn4]"
+]
+},
+"Promotion of alternative forms of participation": {
+"raw": "Promotion of alternative forms of participation",
+"where": "",
+"tags": [
+"#/teme",
+"#/teme [btn3]",
+"#/teme [btn4]"
+]
+},
+"Digital youth work": {
+"raw": "Digital youth work",
+"where": "",
+"tags": [
+"#/teme",
+"#/teme [btn3]",
+"#/teme [btn4]"
+]
+},
+"Youth employability": {
+"raw": "Youth employability",
+"where": "",
+"tags": [
+"#/teme",
+"#/teme [btn3]",
+"#/teme [btn4]"
+]
+},
+"Information and communication technologies (ICT)": {
+"raw": "Information and communication technologies (ICT)",
+"where": "",
+"tags": [
+"#/teme",
+"#/teme [btn3]",
+"#/teme [btn4]"
+]
+},
+"Career guidance": {
+"raw": "Career guidance",
+"where": "",
+"tags": [
+"#/teme",
+"#/teme [btn3]",
+"#/teme [btn4]"
+]
+},
+"Awareness about the European Union": {
+"raw": "Awareness about the European Union",
+"where": "",
+"tags": [
+"#/teme",
+"#/teme [btn3]",
+"#/teme [btn4]"
+]
+},
+"Digital transformation planning and implementation": {
+"raw": "Digital transformation planning and implementation",
+"where": "",
+"tags": [
+"#/teme",
+"#/teme [btn3]",
+"#/teme [btn4]"
+]
+},
+"Digital safety": {
+"raw": "Digital safety",
+"where": "",
+"tags": [
+"#/teme",
+"#/teme [btn3]",
+"#/teme [btn4]"
+]
+},
+"Human rights and rule of law": {
+"raw": "Human rights and rule of law",
+"where": "",
+"tags": [
+"#/teme",
+"#/teme [btn3]",
+"#/teme [btn4]"
+]
+},
+"Reception and integration of refugees and migrants": {
+"raw": "Reception and integration of refugees and migrants",
+"where": "",
+"tags": [
+"#/teme",
+"#/teme [btn3]",
+"#/teme [btn4]"
+]
+},
+"Development of disadvantaged rural and urban areas": {
+"raw": "Development of disadvantaged rural and urban areas",
+"where": "",
+"tags": [
+"#/teme",
+"#/teme [btn3]",
+"#/teme [btn4]"
+]
+},
+"International relations and development cooperation": {
+"raw": "International relations and development cooperation",
+"where": "",
+"tags": [
+"#/teme",
+"#/teme [btn3]",
+"#/teme [btn4]"
+]
+},
+"Preventing early school leaving and failure in education": {
+"raw": "Preventing early school leaving and failure in education",
+"where": "",
+"tags": [
+"#/teme",
+"#/teme [btn3]",
+"#/teme [btn4]"
+]
+},
+"Inter-regional cooperation": {
+"raw": "Inter-regional cooperation",
+"where": "",
+"tags": [
+"#/teme",
+"#/teme [btn3]",
+"#/teme [btn4]"
+]
+},
+"Prevention of bullying": {
+"raw": "Prevention of bullying",
+"where": "",
+"tags": [
+"#/teme",
+"#/teme [btn3]",
+"#/teme [btn4]"
+]
+},
+"Tackling geographical remoteness and involving rural areas": {
+"raw": "Tackling geographical remoteness and involving rural areas",
+"where": "",
+"tags": [
+"#/teme",
+"#/teme [btn3]",
+"#/teme [btn4]"
+]
+},
+"Equal access and transition to labour market": {
+"raw": "Equal access and transition to labour market",
+"where": "",
+"tags": [
+"#/teme",
+"#/teme [btn3]",
+"#/teme [btn4]"
+]
+},
+"Active ageing": {
+"raw": "Active ageing",
+"where": "",
+"tags": [
+"#/teme",
+"#/teme [btn3]",
+"#/teme [btn4]"
+]
+},
+"Social innovation": {
+"raw": "Social innovation",
+"where": "",
+"tags": [
+"#/teme",
+"#/teme [btn3]",
+"#/teme [btn4]"
+]
+},
+"Micro-credentials": {
+"raw": "Micro-credentials",
+"where": "",
+"tags": [
+"#/teme",
+"#/teme [btn3]",
+"#/teme [btn4]"
+]
+},
+"Work-based learning": {
+"raw": "Work-based learning",
+"where": "",
+"tags": [
+"#/teme",
+"#/teme [btn3]",
+"#/teme [btn4]"
+]
+},
+"Disaster prevention, preparedness and recovery": {
+"raw": "Disaster prevention, preparedness and recovery",
+"where": "",
+"tags": [
+"#/teme",
+"#/teme [btn3]",
+"#/teme [btn4]"
+]
+},
+"Preventing racism and discrimination": {
+"raw": "Preventing racism and discrimination",
+"where": "",
+"tags": [
+"#/teme",
+"#/teme [btn3]",
+"#/teme [btn4]"
+]
+},
+"Green transport and mobility": {
+"raw": "Green transport and mobility",
+"where": "",
+"tags": [
+"#/teme",
+"#/teme [btn3]",
+"#/teme [btn4]"
+]
+},
+"Youth policy development": {
+"raw": "Youth policy development",
+"where": "",
+"tags": [
+"#/teme",
+"#/teme [btn3]",
+"#/teme [btn4]"
+]
+},
+"Promoting LGBT+ equality": {
+"raw": "Promoting LGBT+ equality",
+"where": "",
+"tags": [
+"#/teme",
+"#/teme [btn3]",
+"#/teme [btn4]"
+]
+},
+"Social assistance and welfare": {
+"raw": "Social assistance and welfare",
+"where": "",
+"tags": [
+"#/teme",
+"#/teme [btn3]",
+"#/teme [btn4]"
+]
+},
+"Preventing radicalisation": {
+"raw": "Preventing radicalisation",
+"where": "",
+"tags": [
+"#/teme",
+"#/teme [btn3]",
+"#/teme [btn4]"
+]
+},
+"Support for European and regional innovation and smart specialisation strategies": {
+"raw": "Support for European and regional innovation and smart specialisation strategies",
+"where": "",
+"tags": [
+"#/teme",
+"#/teme [btn3]",
+"#/teme [btn4]"
+]
+},
+"Basic skills and key competences": {
+"raw": "Basic skills and key competences",
+"where": "",
+"tags": [
+"#/teme",
+"#/teme [btn3]",
+"#/teme [btn4]"
+]
+},
+"Prevention of conflicts, post-conflict rehabilitation": {
+"raw": "Prevention of conflicts, post-conflict rehabilitation",
+"where": "",
+"tags": [
+"#/teme",
+"#/teme [btn3]",
+"#/teme [btn4]"
+]
+},
+"Graduate tracking systems": {
+"raw": "Graduate tracking systems",
+"where": "",
+"tags": [
+"#/teme",
+"#/teme [btn3]",
+"#/teme [btn4]"
+]
+},
+"New innovative curricula/educational methods/development of training courses": {
+"raw": "New innovative curricula/educational methods/development of training courses",
+"where": "",
+"tags": [
+"#/teme",
+"#/teme [btn3]",
+"#/teme [btn4]"
+]
+},
+"Creativity and culture": {
+"raw": "Creativity and culture",
+"where": "",
+"tags": [
+"#/teme",
+"#/teme [btn3]",
+"#/teme [btn4]"
+]
+},
+"Inclusion - equity": {
+"raw": "Inclusion - equity",
+"where": "",
+"tags": [
+"#/teme",
+"#/teme [btn3]",
+"#/teme [btn4]"
+]
+},
+"Key Competences (incl. mathematics and literacy) - basic skills": {
+"raw": "Key Competences (incl. mathematics and literacy) - basic skills",
+"where": "",
+"tags": [
+"#/teme",
+"#/teme [btn3]",
+"#/teme [btn4]"
+]
+},
+"EU Citizenship, EU awareness and Democracy": {
+"raw": "EU Citizenship, EU awareness and Democracy",
+"where": "",
+"tags": [
+"#/teme",
+"#/teme [btn3]",
+"#/teme [btn4]"
+]
+},
+"International cooperation, international relations, development cooperation": {
+"raw": "International cooperation, international relations, development cooperation",
+"where": "",
+"tags": [
+"#/teme",
+"#/teme [btn3]",
+"#/teme [btn4]"
+]
+},
+"Intercultural/intergenerational education and (lifelong)learning": {
+"raw": "Intercultural/intergenerational education and (lifelong)learning",
+"where": "",
+"tags": [
+"#/teme",
+"#/teme [btn3]",
+"#/teme [btn4]"
+]
+},
+"Early School Leaving / combating failure in education": {
+"raw": "Early School Leaving / combating failure in education",
+"where": "",
+"tags": [
+"#/teme",
+"#/teme [btn3]",
+"#/teme [btn4]"
+]
+},
+"Health and wellbeing": {
+"raw": "Health and wellbeing",
+"where": "",
+"tags": [
+"#/teme",
+"#/teme [btn3]",
+"#/teme [btn4]"
+]
+},
+"Youth (Participation, Youth Work, Youth Policy)": {
+"raw": "Youth (Participation, Youth Work, Youth Policy)",
+"where": "",
+"tags": [
+"#/teme",
+"#/teme [btn3]",
+"#/teme [btn4]"
+]
+},
+"Labour market issues incl. career guidance / youth unemployment": {
+"raw": "Labour market issues incl. career guidance / youth unemployment",
+"where": "",
+"tags": [
+"#/teme",
+"#/teme [btn3]",
+"#/teme [btn4]"
+]
+},
+"Access for disadvantaged": {
+"raw": "Access for disadvantaged",
+"where": "",
+"tags": [
+"#/teme",
+"#/teme [btn3]",
+"#/teme [btn4]"
+]
+},
+"Disabilities - special needs": {
+"raw": "Disabilities - special needs",
+"where": "",
+"tags": [
+"#/teme",
+"#/teme [btn3]",
+"#/teme [btn4]"
+]
+},
+"Civic engagement / responsible citizenship": {
+"raw": "Civic engagement / responsible citizenship",
+"where": "",
+"tags": [
+"#/teme",
+"#/teme [btn3]",
+"#/teme [btn4]"
+]
+},
+"Quality Improvement Institutions and/or methods (incl. school development)": {
+"raw": "Quality Improvement Institutions and/or methods (incl. school development)",
+"where": "",
+"tags": [
+"#/teme",
+"#/teme [btn3]",
+"#/teme [btn4]"
+]
+},
+"Gender equality / equal opportunities": {
+"raw": "Gender equality / equal opportunities",
+"where": "",
+"tags": [
+"#/teme",
+"#/teme [btn3]",
+"#/teme [btn4]"
+]
+},
+"Social dialogue": {
+"raw": "Social dialogue",
+"where": "",
+"tags": [
+"#/teme",
+"#/teme [btn3]",
+"#/teme [btn4]"
+]
+},
+"Natural sciences": {
+"raw": "Natural sciences",
+"where": "",
+"tags": [
+"#/teme",
+"#/teme [btn3]",
+"#/teme [btn4]"
+]
+},
+"Overcoming skills mismatches (basic/transversal)": {
+"raw": "Overcoming skills mismatches (basic/transversal)",
+"where": "",
+"tags": [
+"#/teme",
+"#/teme [btn3]",
+"#/teme [btn4]"
+]
+},
+"Migrants' issues": {
+"raw": "Migrants' issues",
+"where": "",
+"tags": [
+"#/teme",
+"#/teme [btn3]",
+"#/teme [btn4]"
+]
+},
+"Integration of refugees": {
+"raw": "Integration of refugees",
+"where": "",
+"tags": [
+"#/teme",
+"#/teme [btn3]",
+"#/teme [btn4]"
+]
+},
+"Social entrepreneurship / social innovation": {
+"raw": "Social entrepreneurship / social innovation",
+"where": "",
+"tags": [
+"#/teme",
+"#/teme [btn3]",
+"#/teme [btn4]"
+]
+},
+"Regional dimension and cooperation": {
+"raw": "Regional dimension and cooperation",
+"where": "",
+"tags": [
+"#/teme",
+"#/teme [btn3]",
+"#/teme [btn4]"
+]
+},
+"Rural development and urbanisation": {
+"raw": "Rural development and urbanisation",
+"where": "",
+"tags": [
+"#/teme",
+"#/teme [btn3]",
+"#/teme [btn4]"
+]
+},
+"Quality and Relevance of Higher Education in Partner Countries": {
+"raw": "Quality and Relevance of Higher Education in Partner Countries",
+"where": "",
+"tags": [
+"#/teme",
+"#/teme [btn3]",
+"#/teme [btn4]"
+]
+},
+"Recognition (non-formal and informal learning/credits)": {
+"raw": "Recognition (non-formal and informal learning/credits)",
+"where": "",
+"tags": [
+"#/teme",
+"#/teme [btn3]",
+"#/teme [btn4]"
+]
+},
+"Transport and mobility": {
+"raw": "Transport and mobility",
+"where": "",
+"tags": [
+"#/teme",
+"#/teme [btn3]",
+"#/teme [btn4]"
+]
+},
+"Ethics, religion and philosophy (incl. Inter-religious dialogue)": {
+"raw": "Ethics, religion and philosophy (incl. Inter-religious dialogue)",
+"where": "",
+"tags": [
+"#/teme",
+"#/teme [btn3]",
+"#/teme [btn4]"
+]
+},
+"Home and justice affairs (human rights & rule of law)": {
+"raw": "Home and justice affairs (human rights & rule of law)",
+"where": "",
+"tags": [
+"#/teme",
+"#/teme [btn3]",
+"#/teme [btn4]"
+]
+},
+"Post-conflict/post-disaster rehabilitation": {
+"raw": "Post-conflict/post-disaster rehabilitation",
+"where": "",
+"tags": [
+"#/teme",
+"#/teme [btn3]",
+"#/teme [btn4]"
+]
+},
+"Combat violence and tackle racism, discrimination and intolerance in sport": {
+"raw": "Combat violence and tackle racism, discrimination and intolerance in sport",
+"where": "",
+"tags": [
+"#/teme",
+"#/teme [btn3]",
+"#/teme [btn4]"
+]
+},
+"Digital skills": {
+"raw": "Digital skills",
+"where": "",
+"tags": [
+"#/teme",
+"#/teme [btn3]",
+"#/teme [btn4]"
+]
+},
+"Healthy lifestyle, active ageing": {
+"raw": "Healthy lifestyle, active ageing",
+"where": "",
+"tags": [
+"#/teme",
+"#/teme [btn3]",
+"#/teme [btn4]"
+]
+},
+"{N}-{N}-AT{N}-KA{N}-VET-{N}": {
+"raw": "{N}-{N}-AT{N}-KA{N}-VET-{N}",
+"where": "",
+"tags": [
+"#/projekti/2026-1-AT01-KA210-VET-000449326",
+"#/projekti/2026-1-AT01-KA210-VET-000449326 [in #view input[type=search] a]",
+"#/projekti/2026-1-AT01-KA210-VET-000449326 [in #view input[type=search] zzzzqq]"
+]
+},
+"Advancing Competencies of vocational Teachers in Artificial Intelligence integration": {
+"raw": "Advancing Competencies of vocational Teachers in Artificial Intelligence integration",
+"where": "",
+"tags": [
+"#/projekti/2026-1-AT01-KA210-VET-000449326",
+"#/projekti/2026-1-AT01-KA210-VET-000449326 [in #view input[type=search] a]",
+"#/projekti/2026-1-AT01-KA210-VET-000449326 [in #view input[type=search] zzzzqq]"
+]
+},
+"Austria": {
+"raw": "Austria",
+"where": "",
+"tags": [
+"#/projekti/2026-1-AT01-KA210-VET-000449326",
+"#/projekti/2026-1-AT01-KA210-VET-000449326 [in #view input[type=search] a]",
+"#/projekti/2026-1-AT01-KA210-VET-000449326 [in #view input[type=search] zzzzqq]"
+]
+},
+"Croatia": {
+"raw": "Croatia",
+"where": "",
+"tags": [
+"#/projekti/2026-1-AT01-KA210-VET-000449326",
+"#/projekti/2026-1-AT01-KA210-VET-000449326 [in #view input[type=search] a]",
+"#/projekti/2026-1-AT01-KA210-VET-000449326 [in #view input[type=search] zzzzqq]"
+]
+},
+"Slovenia": {
+"raw": "Slovenia",
+"where": "",
+"tags": [
+"#/projekti/2026-1-AT01-KA210-VET-000449326",
+"#/projekti/2026-1-AT01-KA210-VET-000449326 [in #view input[type=search] a]",
+"#/projekti/2026-1-AT01-KA210-VET-000449326 [in #view input[type=search] zzzzqq]"
+]
+},
+"NEXTGEN-SKILLS: Future-Proof VET Employability": {
+"raw": "NEXTGEN-SKILLS: Future-Proof VET Employability",
+"where": "",
+"tags": [
+"#/projekti/2026-1-AT01-KA210-VET-000449326",
+"#/projekti/2026-1-AT01-KA210-VET-000449326 [in #view input[type=search] a]",
+"#/projekti/2026-1-AT01-KA210-VET-000449326 [in #view input[type=search] zzzzqq]"
+]
+},
+"Small Climate Wins – An Adult Learning Model for Engaging Passive Citizens": {
+"raw": "Small Climate Wins – An Adult Learning Model for Engaging Passive Citizens",
+"where": "",
+"tags": [
+"#/projekti/2026-1-AT01-KA210-VET-000449326",
+"#/projekti/2026-1-AT01-KA210-VET-000449326 [in #view input[type=search] a]",
+"#/projekti/2026-1-AT01-KA210-VET-000449326 [in #view input[type=search] zzzzqq]"
+]
+},
+"UnaVersity for Sustainability: Developing forward-thinking adult education services that use community access to support Just Transition": {
+"raw": "UnaVersity for Sustainability: Developing forward-thinking adult education services that use community access to support Just Transition",
+"where": "",
+"tags": [
+"#/projekti/2026-1-AT01-KA210-VET-000449326",
+"#/projekti/2026-1-AT01-KA210-VET-000449326 [in #view input[type=search] a]",
+"#/projekti/2026-1-AT01-KA210-VET-000449326 [in #view input[type=search] zzzzqq]"
+]
+},
+"BRIDGE": {
+"raw": "BRIDGE",
+"where": "",
+"tags": [
+"#/projekti/2026-1-AT01-KA210-VET-000449326",
+"#/projekti/2026-1-AT01-KA210-VET-000449326 [in #view input[type=search] a]",
+"#/projekti/2026-1-AT01-KA210-VET-000449326 [in #view input[type=search] zzzzqq]"
+]
+},
+"Redesigning STEM programmes in a {N}st century way - inclusive and green": {
+"raw": "Redesigning STEM programmes in a {N}st century way - inclusive and green",
+"where": "",
+"tags": [
+"#/projekti/2026-1-AT01-KA210-VET-000449326",
+"#/projekti/2026-1-AT01-KA210-VET-000449326 [in #view input[type=search] a]",
+"#/projekti/2026-1-AT01-KA210-VET-000449326 [in #view input[type=search] zzzzqq]"
+]
+}
+}
