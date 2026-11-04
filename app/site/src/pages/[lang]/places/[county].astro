@@ -29,18 +29,18 @@ const typeName: Record<string, string> = lang === 'hr'
   </div>
   <div class="grid two-eq" style="margin-top:18px">
     <section class="card"><h2>{s.coverageByType}</h2>
-      <table><thead><tr><th>{s.type}</th><th class="num">{s.schools}</th><th class="num">%</th><th class="num">95 %</th><th class="num">{s.expected}</th></tr></thead>
+      <div class="tablewrap"><table><thead><tr><th>{s.type}</th><th class="num">{s.schools}</th><th class="num">%</th><th class="num">95 %</th><th class="num">{s.expected}</th></tr></thead>
       <tbody>{c.coverage.map((x: any) => (
         <tr><td>{typeName[x.school_type] ?? x.school_type}</td><td class="num">{num(lang, x.participating)}/{num(lang, x.institutions)}</td>
           <td class="num">{pct(lang, x.rate, 0)}</td><td class="num">{pct(lang, x.rate_low, 0)}–{pct(lang, x.rate_high, 0)}</td><td class="num">≈{num(lang, x.expected, 1)}</td></tr>
-      ))}</tbody></table>
+      ))}</tbody></table></div>
       <p class="lead" style="font-size:.85rem;margin-top:10px">{s.method.split('.')[0]}.</p>
     </section>
     <section class="card"><h2>{s.topOrgs}</h2>
-      <table><thead><tr><th>{s.name}</th><th class="num">{s.projects}</th><th class="num">{s.coordinated}</th></tr></thead>
+      <div class="tablewrap"><table><thead><tr><th>{s.name}</th><th class="num">{s.projects}</th><th class="num">{s.coordinated}</th></tr></thead>
       <tbody>{top.map((o) => (
         <tr><td><a href={`${base}/${lang}/organisations/${slug(o.id)}/`}>{o.name}</a></td><td class="num">{num(lang, o.projects)}</td><td class="num">{num(lang, o.coordinated)}</td></tr>
-      ))}</tbody></table>
+      ))}</tbody></table></div>
     </section>
   </div>
 </Base>

@@ -76,7 +76,7 @@ await test('organisation page: project link opens the project page with summary'
 });
 await test('project page links to the EU Project Results Platform', async () => {
   const p = await open('/en/projects/' + '2023-1-hr01-ka220-sch-000158622'.replace(/[^a-z0-9]+/g, '-') + '/');
-  const href = await p.locator('a', { hasText: 'Project Results Platform' }).getAttribute('href');
+  const href = await p.locator('main a', { hasText: 'Project Results Platform' }).getAttribute('href');
   assert.match(href, /^https:\/\/erasmus-plus\.ec\.europa\.eu\/projects\/search\/details\//);
 });
 await test('similar organisations are listed', async () => {
