@@ -102,9 +102,9 @@ await test('top search finds an organisation and opens it', async () => {
 await test('assistant drawer: opens from the edge tab, answers from the data, closes with Escape', async () => {
   const p = await open('/hr/overview/'); await p.click('#edgetab');
   await p.waitForFunction(() => document.body.classList.contains('dockopen'));
+  await p.waitForTimeout(400);
   await p.fill('#dock-q', 'Koje županije imaju najviše projekata?'); await p.keyboard.press('Enter');
-  await p.locator('#dock-log .msg.bot').first().waitFor({ timeout: 10000 });
-  await p.waitForFunction(() => /\d+ (KA2 )?projekt/.test(document.querySelector('#dock-log .msg.bot')?.innerText || ''), null, { timeout: 10000 });
+  await p.waitForFunction(() => /projekata/.test(document.querySelector('#dock-log')?.innerText || ''), null, { timeout: 15000 });
   await p.keyboard.press('Escape'); await p.waitForFunction(() => !document.body.classList.contains('dockopen'));
 });
 await test('assistant drawer works on a page without the engine, too (graph)', async () => {

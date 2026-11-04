@@ -189,6 +189,7 @@ const tabs = here.top && here.top.subs.length > 1 ? here.top.subs : [];
     }
   });
   markScrollable(); addEventListener('load', markScrollable); addEventListener('resize', markScrollable);
+  { let mt = 0; const v = document.getElementById('view'); if (v) new MutationObserver(() => { clearTimeout(mt); mt = window.setTimeout(markScrollable, 250); }).observe(v, { childList: true, subtree: true }); }
   // ---- theme: light or dark, remembered; without a choice the system setting applies
   const themeBtn = document.getElementById('theme')!;
   const isDark = () => document.documentElement.dataset.theme === 'dark' || (!document.documentElement.dataset.theme && matchMedia('(prefers-color-scheme: dark)').matches);
