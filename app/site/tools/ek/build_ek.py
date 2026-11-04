@@ -43,7 +43,9 @@ i18n = sub(i18n, "function collect(root = document.body)", "function collect(roo
 i18n = sub(i18n, "    const y = window.scrollY, navOpen = document.body.classList.contains('navopen');\n    if (typeof paintDate === 'function') paintDate();\n    if (typeof route === 'function') route();\n    window.scrollTo(0, y); if (navOpen) setNav(true);\n", '', 'i18n.js')
 i18n = sub(i18n, "    $$('.lang button').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.lang === l)));\n", '', 'i18n.js')
 i18n = sub(i18n, "const I18N = (() => {", "const VIEWROOT = () => document.getElementById('view') || document.body;\nconst I18N = (() => {", 'i18n.js')
-parts = [core, rd('ui.js'), rd('export.js'), i18n, rd('i18n-en.js'), rd('views.js'), rd('views2.js'), rd('heromap.js'), rd('hero.js'), rd('pages.js'), rd('assistant.js'), rd('engine.js')]
+views2 = sub(rd('views2.js'), "new MutationObserver(enhSoon).observe($('#view'),", "if ($('#view')) new MutationObserver(enhSoon).observe($('#view'),", 'views2.js')
+views2 = sub(views2, "$('#view').addEventListener('change', enhSoon); $('#view').addEventListener('input', enhSoon);", "if ($('#view')) { $('#view').addEventListener('change', enhSoon); $('#view').addEventListener('input', enhSoon); }", 'views2.js')
+parts = [core, rd('ui.js'), rd('export.js'), i18n, rd('i18n-en.js'), rd('views.js'), views2, rd('heromap.js'), rd('hero.js'), rd('pages.js'), rd('assistant.js'), rd('engine.js')]
 bundle = '(function(){\n"use strict";\n' + '\n'.join(parts) + '\n})();\n'
 open(os.path.join(OUT, 'ek.js'), 'w', encoding='utf-8').write(bundle)
 print(f'public/ek/ek.js {len(bundle) // 1024} KB, D.json {os.path.getsize(dpath) // 1024} KB')

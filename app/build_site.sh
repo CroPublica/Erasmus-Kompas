@@ -16,6 +16,7 @@ node -e 'const [a,b,c]=process.versions.node.split(".").map(Number); process.exi
   || { echo "Node $(node --version) is too old for Astro 7 (need >= 22.23.4)"; exit 1; }
 
 echo "== export site data"; .venv/bin/python pipeline/70_export_site.py
+echo "== v8 views (bundle and data)"; python3 site/tools/ek/build_ek.py
 echo "== build site"; (cd site && { [ -d node_modules ] || npm ci; } && npx astro build)
 if [ "$TEST" = 1 ]; then echo "== browser tests"; (cd site && node tests/ui.mjs); fi
 if [ "$DOCKER" = 1 ]; then echo "== container image"; docker build -f deploy/Dockerfile --build-arg SITE_BASE="${SITE_BASE:-/}" --build-arg SITE_URL="${SITE_URL:-}" -t ka2-atlas .; fi

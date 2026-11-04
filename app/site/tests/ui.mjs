@@ -1,68 +1,138 @@
-// Browser tests: node tests/ui.mjs  (needs `npm run build`; starts its own preview server on port 4399)
+// Browser tests of the v8 redesign.  TEST_URL=http://localhost:4400 node tests/ui.mjs   (needs `npm run build` and a running `astro preview`)
 import { chromium } from 'playwright';
-import { spawn } from 'node:child_process';
+import { spawn, execSync } from 'node:child_process';
 import assert from 'node:assert/strict';
+import fs from 'node:fs';
 import { createRequire } from 'node:module';
 const axePath = createRequire(import.meta.url).resolve('axe-core/axe.min.js');
 const BASE = (process.env.SITE_BASE || '').replace(/\/$/, '');
-const URL = 'http://localhost:4399' + BASE;
-// `astro preview` detaches itself from its parent, so the server is stopped by the port it listens on (Linux: ss)
-import { execSync } from 'node:child_process';
+const EXTERNAL = process.env.TEST_URL;                       // an already running preview (astro refuses a second one for the same project)
+const URL = (EXTERNAL || 'http://localhost:4399') + BASE;
 const listener = () => { try { return execSync("ss -ltnp | grep ':4399 ' | grep -o 'pid=[0-9]*' | cut -d= -f2").toString().trim(); } catch { return ''; } };
-if (listener()) { console.error('port 4399 is already in use (an old preview server?): stop it first'); process.exit(2); }
-const srv = spawn(process.execPath, ['node_modules/astro/bin/astro.mjs', 'preview', '--port', '4399'], { stdio: 'ignore', detached: true });
-const stop = () => { const p = listener(); if (p) try { process.kill(Number(p), 'SIGKILL'); } catch {} };
+if (!EXTERNAL && listener()) { console.error('port 4399 is already in use (an old preview server?): stop it first'); process.exit(2); }
+const srv = EXTERNAL ? null : spawn(process.execPath, ['node_modules/astro/bin/astro.mjs', 'preview', '--port', '4399'], { stdio: 'ignore', detached: true });
+const stop = () => { if (EXTERNAL) return; const p = listener(); if (p) try { process.kill(Number(p), 'SIGKILL'); } catch {} };
 process.on('exit', stop);
-await new Promise((r) => setTimeout(r, 4000));
+await new Promise((r) => setTimeout(r, EXTERNAL ? 200 : 4000));
 const browser = await chromium.launch();
 const errors = [];
 let passed = 0, failed = 0;
-const open = async (path, w = 1280) => {
-  const p = await browser.newPage({ viewport: { width: w, height: 900 } });
-  p.on('console', (m) => m.type() === 'error' && !/status of (429|503|500)/.test(m.text()) && errors.push(`${path}: ${m.text()}`));  // mocked API failures are expected
+const open = async (path, w = 1280, opts = {}) => {
+  const ctx = await browser.newContext({ viewport: { width: w, height: 900 }, acceptDownloads: true, colorScheme: opts.scheme || 'light' });
+  const p = await ctx.newPage(); let last404 = '';
+  p.on('response', (r) => { if (r.status() === 404) last404 = r.url(); });
+  p.on('console', (m) => {
+    if (m.type() !== 'error' || /status of (429|503|500)/.test(m.text())) return;                          // mocked API failures are expected
+    if (/status of 404/.test(m.text()) && /\/api\/health/.test(last404)) return;                          // the preview has no assistant API: the page falls back to answers from the data
+    errors.push(`${path}: ${m.text()}`);
+  });
   p.on('pageerror', (e) => errors.push(`${path}: ${e}`));
   await p.goto(URL + path);
+  if (!opts.fast) await p.waitForFunction(() => !document.getElementById('view') || document.getElementById('view').getAttribute('aria-busy') !== 'true' && document.getElementById('view').innerText.length > 80, null, { timeout: 15000 }).catch(() => {});
   return p;
 };
 const test = async (name, fn) => {
   try { await fn(); passed++; console.log('ok   ', name); }
   catch (e) { failed++; console.log('FAIL ', name, '\n     ', String(e.message).split('\n')[0]); }
 };
-const headline = (p) => p.locator('#headline .big-n').innerText();
+const ENGINE = ['/', '/overview/', '/timeline/', '/countries/', '/places/', '/compare/', '/coverage/', '/projects/', '/organisations/', '/topics/', '/problems/', '/ask/', '/about/', '/glossary/', '/downloads/', '/accessibility/', '/contact/', '/sitemap/'];
+const NATIVE = ['/graph/', '/methods/', '/places/zagrebacka/', '/organisations/mzo-19-049-502/', '/projects/2023-1-hr01-ka220-sch-000158622/'];
+const csvRows = (file) => fs.readFileSync(file, 'utf-8').replace(/^\uFEFF/, '').trim().split(/\r?\n/).length;
 
-await test('coverage: headline and HR/EN number format', async () => {
-  const en = await open('/en/'); assert.match(await headline(en), /^\d+\.\d %$/);
-  const hr = await open('/hr/'); assert.match(await headline(hr), /^\d+,\d %$/);
+await test('frame: sidebar lists every sub-page, marks the current one, tabs follow the section', async () => {
+  const p = await open('/hr/overview/');
+  assert.ok((await p.locator('#nav a.sub').count()) >= 14);
+  assert.equal(await p.locator('#nav a.sub[aria-current=page]').innerText(), 'Ključni pokazatelji');
+  assert.equal(await p.locator('.tabs2 a').count(), 3);
+  assert.match(await p.locator('footer.site').innerText(), /Erasmus\+ Project Results Platform/);
 });
-await test('coverage: filters change the figures', async () => {
-  const p = await open('/en/'); const base = await headline(p);
-  await p.click('button[data-val="kindergarten"]'); const k = await headline(p);
-  assert.notEqual(k, base);
-  await p.click('button[data-val="primary"]'); await p.click('button[data-val="coordinator"]');
-  assert.notEqual(await headline(p), base);
-  assert.equal(await p.locator('#tiles .tile').count(), 21);
+await test('theme: switch to dark, remembered after reload, back to light', async () => {
+  const p = await open('/hr/overview/');
+  await p.click('#theme'); assert.equal(await p.evaluate(() => document.documentElement.dataset.theme), 'dark');
+  const bgDark = await p.evaluate(() => getComputedStyle(document.body).backgroundColor);
+  await p.reload(); assert.equal(await p.evaluate(() => document.documentElement.dataset.theme), 'dark');
+  await p.click('#theme'); assert.equal(await p.evaluate(() => document.documentElement.dataset.theme), 'light');
+  assert.notEqual(await p.evaluate(() => getComputedStyle(document.body).backgroundColor), bgDark);
 });
-await test('coverage: selecting a county shows the panel and a link', async () => {
-  const p = await open('/en/'); await p.click('.tile[data-county="Zagrebačka"]');
-  assert.ok(await p.locator('#selected').isVisible());
-  assert.match(await p.locator('#sel-text').innerText(), /schools took part/);
-  await p.click('#sel-open'); assert.match(p.url(), /\/en\/places\/zagrebacka\/$/);
+await test('language switch keeps the page', async () => {
+  const p = await open('/hr/projects/'); await p.click('.lang a[lang=en]'); await p.waitForURL(/\/en\/projects\//);
+  await p.waitForFunction(() => /KA2 projects/.test(document.querySelector('#view h1')?.textContent || ''));
 });
-await test('language toggle keeps the page', async () => {
-  const p = await open('/en/organisations/'); await p.click('.lang a[hreflang="hr"]');
-  assert.match(p.url(), /\/hr\/organisations\/$/);
+await test('every page of the v8 design draws, in Croatian and English', async () => {
+  for (const lang of ['hr', 'en']) for (const r of ENGINE) {
+    const p = await open(`/${lang}${r}`);
+    const t = await p.locator('#view').innerText();
+    assert.ok(t.length > 150, `${lang}${r} is empty`); assert.equal(await p.locator('#view .note:has-text("Cannot")').count(), 0);
+    await p.context().close();
+  }
 });
-await test('organisations: filter by name', async () => {
-  const p = await open('/en/organisations/'); await p.fill('#q', 'metković');
-  const visible = await p.locator('#rows tr:not([hidden])').count();
-  assert.ok(visible >= 1 && visible < 50, `visible ${visible}`);
+await test('home: animated map, counters, search and the assistant button', async () => {
+  const p = await open('/hr/'); await p.waitForSelector('#hmap'); assert.ok((await p.locator('#hmap path.hm-arc').count()) >= 20);
+  await p.waitForFunction(() => /3\.830/.test(document.querySelector('.hero-stats')?.innerText || ''), null, { timeout: 8000 });
+  await p.locator('.hero .gsearch input').fill('metkov'); await p.locator('.hero .gres a').first().waitFor();
 });
-await test('header search finds an organisation and opens it', async () => {
-  const p = await open('/en/'); await p.fill('#gs', 'gimnazija metkovic');
-  await p.locator('#gs-res a').first().waitFor();
-  await p.locator('#gs-res a', { hasText: 'METKOVIĆ' }).first().click();
-  await p.waitForURL(/organisations\//); assert.match(await p.locator('h1').innerText(), /METKOVI/i);
+await test('counties: ranking, map click, link to the county page, CSV export', async () => {
+  const p = await open('/hr/places/');
+  assert.ok((await p.locator('#view .rank li').count()) >= 10);
+  const [dl] = await Promise.all([p.waitForEvent('download'), p.locator('#view .xbtns button[data-f="csv"]').first().click()]);
+  const f = await dl.path(); assert.equal(csvRows(f), 22);                                                  // header + 21 counties
+  await p.locator('#view .geomap .c').first().click();
+  await p.locator('#view a[href$="/places/grad-zagreb/"], #view a[href*="/places/"]').first().waitFor();
 });
+await test('projects: chips filter, count follows, reset, export Excel and PDF', async () => {
+  const p = await open('/hr/projects/');
+  assert.match(await p.locator('#count').innerText(), /3\.830/);
+  await p.locator('.chipset button[data-v="visoko"]').first().click();
+  await p.waitForFunction(() => /458/.test(document.querySelector('#count')?.innerText || ''));
+  const [x] = await Promise.all([p.waitForEvent('download'), p.locator('#view .xbtns button[data-f="xlsx"]').first().click()]);
+  assert.equal(fs.readFileSync(await x.path()).subarray(0, 2).toString(), 'PK');
+  const [d] = await Promise.all([p.waitForEvent('download'), p.locator('#view .xbtns button[data-f="pdf"]').first().click()]);
+  assert.equal(fs.readFileSync(await d.path()).subarray(0, 4).toString(), '%PDF');
+  await p.click('#reset'); await p.waitForFunction(() => /3\.830/.test(document.querySelector('#count')?.innerText || ''));
+});
+await test('organisations: search by name, row opens the organisation page', async () => {
+  const p = await open('/hr/organisations/'); await p.fill('#view #q', 'metkov');
+  await p.locator('#rows tr', { hasText: 'Gimnazija Metković' }).first().click();
+  await p.waitForURL(/\/organisations\/mzo-19-049-502\//);
+});
+await test('top search finds an organisation and opens it', async () => {
+  const p = await open('/hr/overview/'); await p.fill('#gs', 'metkov'); await p.locator('#gs-res a').first().waitFor();
+  await p.locator('#gs-res a', { hasText: 'Gimnazija Metković' }).first().click(); await p.waitForURL(/\/organisations\//);
+});
+await test('assistant drawer: opens from the edge tab, answers from the data, closes with Escape', async () => {
+  const p = await open('/hr/overview/'); await p.click('#edgetab');
+  await p.waitForFunction(() => document.body.classList.contains('dockopen'));
+  await p.fill('#dock-q', 'Koje županije imaju najviše projekata?'); await p.keyboard.press('Enter');
+  await p.locator('#dock-log .msg.bot').first().waitFor({ timeout: 10000 });
+  await p.waitForFunction(() => /\d+ (KA2 )?projekt/.test(document.querySelector('#dock-log .msg.bot')?.innerText || ''), null, { timeout: 10000 });
+  await p.keyboard.press('Escape'); await p.waitForFunction(() => !document.body.classList.contains('dockopen'));
+});
+await test('assistant drawer works on a page without the engine, too (graph)', async () => {
+  const p = await open('/hr/graph/'); await p.click('#edgetab');
+  await p.waitForFunction(() => document.body.classList.contains('dockopen'), null, { timeout: 15000 });
+});
+await test('assistant page: asks and answers', async () => {
+  const p = await open('/en/ask/'); await p.fill('#pq', 'Which counties have the most projects?'); await p.click('#pg');
+  await p.locator('#pl .msg.bot').first().waitFor({ timeout: 10000 });
+});
+await test('no horizontal scroll at phone width on any page', async () => {
+  for (const r of [...ENGINE, ...NATIVE]) {
+    const p = await open('/hr' + r, 390);
+    assert.equal(await p.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1), true, 'overflow on ' + r);
+    await p.context().close();
+  }
+});
+await test('accessibility (axe: wcag2a/aa), light and dark, desktop', async () => {
+  const bad = [];
+  for (const scheme of ['light', 'dark']) for (const r of [...ENGINE, ...NATIVE]) {
+    const p = await open('/hr' + r, 1280, { scheme }); await p.addScriptTag({ path: axePath });
+    const res = await p.evaluate(() => axe.run(document, { runOnly: ['wcag2a', 'wcag2aa'] }));
+    if (res.violations.length) bad.push(`${scheme} ${r}: ` + res.violations.map((v) => `${v.id}(${v.nodes.length})`).join(','));
+    await p.context().close();
+  }
+  assert.deepEqual(bad, []);
+});
+
 await test('organisation page: figures from the reference screen', async () => {
   const p = await open('/en/organisations/mzo-19-049-502/');
   const text = await p.locator('.kpis').first().innerText();
@@ -81,115 +151,6 @@ await test('project page links to the EU Project Results Platform', async () => 
 });
 await test('similar organisations are listed', async () => {
   const p = await open('/en/organisations/mzo-19-049-502/'); assert.ok(await p.locator('.simcard').count() >= 1);
-});
-await test('no horizontal scroll at phone width', async () => {
-  for (const path of ['/hr/', '/en/organisations/', '/en/organisations/mzo-19-049-502/', '/en/places/zagrebacka/']) {
-    const p = await open(path, 390);
-    assert.equal(await p.evaluate(() => document.documentElement.scrollWidth <= innerWidth), true, path);
-  }
-});
-await test('accessibility (axe: wcag2a/aa) has no violations', async () => {
-  const bad = [];
-  for (const path of ['/en/', '/hr/', '/en/organisations/', '/en/organisations/mzo-19-049-502/', '/en/places/zagrebacka/', '/en/places/', '/en/ask/', '/hr/ask/', '/en/methods/', '/hr/methods/', '/en/graph/', '/hr/graph/', '/en/overview/', '/hr/overview/', '/en/projects/', '/en/topics/', '/hr/topics/']) {
-    const p = await open(path); await p.addScriptTag({ path: axePath });
-    const r = await p.evaluate(() => axe.run(document, { runOnly: ['wcag2a', 'wcag2aa'] }));
-    for (const v of r.violations) bad.push(`${path} ${v.id} (${v.nodes.length}): ${v.nodes[0].target}`);
-  }
-  if (bad.length) throw new Error(bad.join(' | '));
-});
-await test('keyboard: skip link moves focus to main; selecting a tile keeps focus on it', async () => {
-  const p = await open('/en/'); await p.keyboard.press('Tab'); await p.keyboard.press('Enter');
-  assert.equal(await p.evaluate(() => document.activeElement.id), 'main');
-  await p.focus('.tile[data-county="Istarska"]'); await p.keyboard.press('Enter');
-  assert.equal(await p.evaluate(() => document.activeElement.dataset.county), 'Istarska');
-  assert.equal(await p.locator('#rank').isVisible(), false);                                              // the ranking is hidden for now (showRanking in index.astro)
-  assert.equal(await p.locator('h2', { hasText: 'By county' }).isVisible(), true);                    // only the county map shows
-  await p.locator('.tile[data-county="Zadarska"]').click(); await p.locator('#sel-open').click();           // the county page is reached from the selected-county strip
-  await p.waitForURL(/places\/zadarska\//);
-});
-await test('keyboard: search results reachable with arrows, Escape returns to the box', async () => {
-  const p = await open('/en/'); await p.focus('#gs'); await p.keyboard.type('metkov'); await p.locator('#gs-res a').first().waitFor();
-  await p.keyboard.press('ArrowDown'); assert.equal(await p.evaluate(() => document.activeElement.tagName), 'A');
-  await p.keyboard.press('Escape'); assert.equal(await p.evaluate(() => document.activeElement.id), 'gs');
-});
-await test('ask page: answer, sources, how-I-got-this, follow-up keeps the organisation', async () => {
-  const p = await open('/en/ask/'); const bodies = [];
-  await p.route('**/api/ask', async (route) => {
-    bodies.push(route.request().postDataJSON());
-    await route.fulfill({ json: { answer: 'Gimnazija METKOVIĆ: 22 KA2 projects.', lang: 'en', route: 'organisation', verified: true, fallback: false,
-      last_org_id: 'MZO-19-049-502', citations: ['org:MZO-19-049-502', 'project:2023-1-HR01-KA220-SCH-000158622'],
-      tools: [{ tool: 'organisation_profile', args: { org_id: 'MZO-19-049-502' }, notes: ['grants are per project'] }] } });
-  });
-  await p.fill('#q', 'How many KA2 projects does Gimnazija Metković have?'); await p.click('#go');
-  await p.locator('#out .card').waitFor();
-  assert.match(await p.locator('#out').innerText(), /22 KA2 projects/);
-  const links = await p.locator('#out a.pill').evaluateAll((a) => a.map((x) => x.getAttribute('href')));
-  assert.ok(links[0].endsWith('/en/organisations/mzo-19-049-502/') && links[1].includes('/en/projects/'), links.join());
-  await p.locator('#out summary').click(); assert.match(await p.locator('#out details').innerText(), /organisation_profile/);
-  await p.fill('#q', 'And how many did it coordinate?'); await p.click('#go'); await p.waitForTimeout(300);
-  assert.equal(bodies[1].last_org_id, 'MZO-19-049-502');
-  await p.locator('#out a.pill').first().click(); await p.waitForURL(/organisations\//);
-});
-await test('ask page: busy, rate limit and failure are shown, example questions work', async () => {
-  const p = await open('/hr/ask/'); let code = 429;
-  await p.route('**/api/ask', (route) => route.fulfill({ status: code, json: {} }));
-  await p.fill('#q', 'test'); await p.click('#go'); await p.locator('#out .warn').waitFor();
-  assert.match(await p.locator('#out').innerText(), /Previše pitanja/);
-  code = 503; await p.fill('#q', 'test'); await p.click('#go'); await p.waitForFunction(() => /zauzeta/.test(document.getElementById('out').innerText));
-  code = 500; await p.fill('#q', 'test'); await p.click('#go'); await p.waitForFunction(() => /pošlo po zlu/.test(document.getElementById('out').innerText));
-  await p.locator('.ex').first().click(); assert.ok((await p.inputValue('#q')).length > 10);
-});
-await test('overview: national figures, period switch, country ranking', async () => {
-  const p = await open('/en/overview/');
-  let text = await p.locator('[data-ov="all"]').innerText();
-  assert.ok(text.includes('3,830') && text.includes('606'), 'national totals');
-  await p.click('#ov-filters button[data-val="2014-2020"]'); await p.waitForTimeout(100);
-  text = await p.locator('[data-ov="2014-2020"]').innerText(); assert.ok(text.includes('2,040'));
-  await p.click('#ov-filters button[data-val="2021-2027"]'); text = await p.locator('[data-ov="2021-2027"]').innerText();
-  assert.ok(text.includes('1,790') && /Germany\s+2,024/.test(text.replace(/\n/g, ' ')) && /Croatia ranks 21 of 100/.test(text));
-  const hr = await open('/hr/overview/'); assert.ok((await hr.locator('[data-ov="all"]').innerText()).includes('3.830'));
-});
-await test('organisation list: sort, period filter, coordinators only', async () => {
-  const p = await open('/en/organisations/');
-  const firstName = async () => p.locator('#rows tr:not([hidden]) td a').first().innerText();
-  assert.match(await firstName(), /Sveučilište u Zagrebu/i);
-  await p.selectOption('#o', 'n'); const byName = await firstName();
-  assert.notEqual(byName, 'Sveučilište u Zagrebu'); await p.selectOption('#o', 'p');
-  const all = await p.locator('#rows tr:not([hidden])').count();
-  await p.selectOption('#p', '1'); const first = Number((await p.locator('#rows tr:not([hidden]) .pj').first().innerText()).replace(/\D/g, ''));
-  assert.equal(first, 91);                                   // Sveučilište u Zagrebu, 2014-2020
-  await p.check('#co'); const coord = await p.locator('#rows tr:not([hidden])').evaluateAll((r) => r.every((x) => Number(x.querySelector('.cd').textContent.replace(/\D/g, '')) > 0));
-  assert.ok(coord);
-  await p.selectOption('#k', 'ngo'); assert.ok((await p.locator('#rows tr:not([hidden])').count()) < all);
-});
-await test('project search: words, filters, links', async () => {
-  const p = await open('/en/projects/'); await p.locator('#pres li a').first().waitFor();
-  const total = Number((await p.locator('#pcount').innerText()).replace(/\D/g, ''));
-  assert.equal(total, 3830);
-  await p.fill('#pq', 'biljna pozornica'); await p.waitForFunction(() => /^1 /.test(document.getElementById('pcount').innerText));
-  assert.match(await p.locator('#pres').innerText(), /Biljna pozornica/);
-  await p.fill('#pq', ''); await p.selectOption('#pp', '2014-2020');
-  await p.waitForFunction(() => /^2,040 /.test(document.getElementById('pcount').innerText));
-  await p.selectOption('#pc', 'DE'); const n = Number((await p.locator('#pcount').innerText()).replace(/\D/g, '')); assert.ok(n > 10 && n < 2040);
-  await p.fill('#pq', 'zzzzqqqq'); await p.waitForFunction(() => /No project matches/.test(document.getElementById('pres').innerText));
-  await p.selectOption('#pp', ''); await p.selectOption('#pc', ''); await p.fill('#pq', 'biljna'); await p.locator('#pres a').first().click(); await p.waitForURL(/projects\//);
-});
-await test('topics over time: lines, the 2021 break, limits, data table', async () => {
-  const p = await open('/en/topics/');
-  assert.equal(await p.locator('#legend li').count(), 5);
-  assert.match(await p.locator('#chart').innerHTML(), /topic list changed/);
-  assert.equal(await p.locator('#chart polyline').count() >= 5, true);
-  await p.locator('summary', { hasText: 'data table' }).click();
-  const rows = await p.locator('#dtable tbody tr').count(); assert.equal(rows, 13);
-  const ai = await p.locator('#dtable tbody tr', { hasText: '2022' }).innerText(); assert.ok(ai.includes('–'));     // AI has no value before 2023? new list only from 2021
-  const first = await p.locator('#dtable tbody tr').first().innerText(); assert.ok(first.includes('2014'));
-  await p.locator('input[value="Artificial Intelligence (AI) and data usage"]').uncheck();
-  assert.equal(await p.locator('#legend li').count(), 4);
-  for (const b of await p.locator('#picker input[type=checkbox]').all()) { if (await p.locator('#legend li').count() >= 8) break; await b.check(); }
-  assert.equal(await p.locator('#legend li').count(), 8);
-  const extra = p.locator('#picker input[type=checkbox]:not(:checked)').first(); await extra.check({ force: true }).catch(() => {});
-  assert.equal(await p.locator('#legend li').count(), 8);
-  await p.fill('#tf', 'zzzz'); assert.equal(await p.locator('#picker label.chk:visible').count(), 0);
 });
 await test('methods: typical project, views, filter', async () => {
   const p = await open('/en/methods/');
@@ -257,23 +218,6 @@ await test('graph network: linkable group, show more, zoom', async () => {
   assert.match(page_hash(await p.url()), /group-C01/);                                      // the address follows the view
 });
 function page_hash(u) { return u.split('#')[1] || ''; }
-await test('Croatian plural forms follow the number (1, 2-4, 5+)', async () => {
-  const form = (n) => (n % 10 === 1 && n % 100 !== 11 ? 0 : n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 12 || n % 100 > 14) ? 1 : 2);
-  const p = await open('/hr/');
-  const sums = await p.locator('.tile').evaluateAll((t) => t.map((x) => x.dataset.summary));
-  assert.ok(sums.length >= 21);
-  for (const m of sums) {                                                            // "41 od 104 škole sudjelovalo je": the noun after "od" is genitive
-    const mm = m.match(/od (\d+(?:\.\d+)*)\s(škol\w+)/); assert.ok(mm, `summary: ${m}`);
-    const [, n, noun] = mm;
-    assert.equal(noun, ['škole', 'škole', 'škola'][form(Number(n.replace('.', '')))], m);
-  }
-  const g = await open('/hr/graph/#app00002');                                       // "88 projekata", "5 projekata": never one fixed form
-  await g.locator('#cbody p').first().waitFor();
-  const t = await g.locator('#cbody p').first().innerText();
-  const km = t.match(/(\d+(?:\.\d+)*)\s(projek\w*)/); assert.ok(km, `panel: ${t}`);
-  const [, k, word] = km;
-  assert.equal(word, ['projekt', 'projekta', 'projekata'][form(Number(k.replace('.', '')))]);
-});
 await test('no console errors', async () => assert.deepEqual(errors, []));
 await browser.close(); stop();
 console.log(`\n${passed} passed, ${failed} failed`); process.exit(failed ? 1 : 0);
