@@ -29,6 +29,30 @@ SCHOOL_TYPES = {"both": ("primary", "secondary", "combined"), "primary": ("prima
 _SMALL = {"u", "of", "the", "and", "na", "za", "i"}      # dropped from name matching ("i." the numeral is kept: it ends in a dot)
 
 
+EN_COUNTY = {"Bjelovarsko-bilogorska": "Bjelovar-Bilogora County", "Brodsko-posavska": "Brod-Posavina County", "Dubrovačko-neretvanska": "Dubrovnik-Neretva County",
+             "Grad Zagreb": "City of Zagreb", "Istarska": "Istria County", "Karlovačka": "Karlovac County", "Koprivničko-križevačka": "Koprivnica-Križevci County",
+             "Krapinsko-zagorska": "Krapina-Zagorje County", "Ličko-senjska": "Lika-Senj County", "Međimurska": "Međimurje County", "Osječko-baranjska": "Osijek-Baranja County",
+             "Požeško-slavonska": "Požega-Slavonia County", "Primorsko-goranska": "Primorje-Gorski Kotar County", "Sisačko-moslavačka": "Sisak-Moslavina County",
+             "Splitsko-dalmatinska": "Split-Dalmatia County", "Varaždinska": "Varaždin County", "Virovitičko-podravska": "Virovitica-Podravina County",
+             "Vukovarsko-srijemska": "Vukovar-Syrmia County", "Zadarska": "Zadar County", "Zagrebačka": "Zagreb County", "Šibensko-kninska": "Šibenik-Knin County"}
+
+GLOSSARY = {   # term -> (words that select it, Croatian, English); the same wording as the Glossary page
+    "coordinator": ("koordinator|coordinator", "Koordinator je organizacija koja podnosi prijavu, vodi projekt i prima grant. Hrvatska je koordinator kada je vodeća organizacija iz Hrvatske.",
+                    "The coordinator is the organisation that submits the application, leads the project and receives the grant. Croatia is the coordinator when the lead organisation is Croatian."),
+    "partner": ("partner", "Partner je organizacija koja sudjeluje u projektu koji netko drugi koordinira.", "A partner is an organisation that takes part in a project that someone else coordinates."),
+    "ka2": (r"ka\s?2|ka\s?1|partnerstv|partnership", "KA1 su mobilnosti pojedinaca (učenje u inozemstvu), a KA2 suradnja organizacija i razmjena dobrih praksi kroz partnerstva. Ovaj atlas prikazuje samo KA2.",
+            "KA1 is mobility of individuals (learning abroad) and KA2 is cooperation between organisations and the exchange of good practice through partnerships. This atlas shows KA2 only."),
+    "call year": ("godina poziva|call year", "Godina poziva je godina natječaja na kojem je projekt odabran. Godina 2026. još traje, pa je prikazana kao nepotpuna.",
+                  "The call year is the year of the call in which the project was selected. 2026 is still running, so it is shown as incomplete."),
+    "grant": ("grant|potpor|vrijednost projekt|project value", "Vrijednost projekta je okvirni iznos potpore dodijeljen projektu pri odabiru. Bilježi se po projektu i ne dijeli se među partnere.",
+              "Project value is the indicative amount awarded to the project at selection. It is recorded per project and is not split between partners."),
+    "good practice": ("dobra praksa|dobre prakse|good practice", "Dobra praksa je oznaka koju Europska komisija dodjeljuje projektima izdvojenima kao primjeri. Nije ocjena kvalitete projekata bez te oznake.",
+                      "Good practice is a label the European Commission gives to projects it picks out as examples. It is not a quality rating of projects without the label."),
+    "coverage": ("pokrivenost|coverage", "Pokrivenost škola je udio osnovnih i srednjih škola u županiji koje su sudjelovale u barem jednom KA2 projektu. Škole su s registrom povezane prema nazivu i poštanskom broju, pa je udio procjena.",
+                 "School coverage is the share of primary and secondary schools in a county that took part in at least one KA2 project. Schools are matched to the register by name and postcode, so the share is an estimate."),
+}
+
+
 @dataclass
 class ToolResult:
     tool: str
@@ -113,6 +137,9 @@ class Toolbox:
             return "Grad Zagreb"
         if re.search(r"\b(grad zagreb|gradu zagrebu|grada zagreba|gradom zagrebom|city of zagreb)\b", t):      # the city, not the county of Zagreb and not the university
             return "Grad Zagreb"
+        for stem, en in EN_COUNTY.items():                  # English names: Split-Dalmatia, Istria, Varaždin County
+            if stem != "Grad Zagreb" and re.search(rf"\b{re.escape(_fold(en.replace(' County', '')))}\b", t):
+                return stem
         best = None
         for stem in self._counties:
             s = _fold(stem)
@@ -277,8 +304,64 @@ class Toolbox:
                          "value_involved_eur = full grants of all projects involved in (never add across counties); organisations counted by county of registered postcode")
         return res
 
-    def top_organisations(self, county: Optional[str] = None, period: str = "all", limit: int = 5) -> ToolResult:
-        res = ToolResult("top_organisations", {"county": county, "period": period, "limit": limit})
+    def glossary(self, text: str) -> ToolResult:
+        res = ToolResult("glossary", {"text": text})
+        low = text.lower()
+        for term, (pat, hr, en) in GLOSSARY.items():
+            if re.search(pat, low):
+                res.rows.append({"term": term, "hr": hr, "en": en})
+                res.citations.append(f"glossary:{term.replace(' ', '-')}")
+                break
+        if not res.rows:
+            res.notes.append("no such term in the glossary")
+        return res
+
+    def year_projects(self, year: int) -> ToolResult:
+        """KA2 projects of one call year that have a Croatian participant (each once), and how many of them Croatia coordinated."""
+        res = ToolResult("year_projects", {"year": year})
+        r = self._rows("select count(distinct project_id) projects, count(distinct case when role = 'coordinator' then project_id end) coordinated "
+                       "from participation x where call_year = ?", [year])
+        res.rows = [{"year": year, "projects": r[0]["projects"], "coordinated": r[0]["coordinated"]}] if r and r[0]["projects"] else []
+        if not res.rows:
+            res.notes.append("no projects with a Croatian participant in that call year")
+        elif year == 2026:
+            res.notes.append("2026 selection is not complete")
+        return res
+
+    def county_project(self, county: str, n: int = 1, order: str = "first", period: str = "all") -> ToolResult:
+        """The n-th KA2 project (by call year, then project id) with an organisation from the county, counted from the start ("first") or the end ("last"), with its topics."""
+        res = ToolResult("county_project", {"county": county, "n": n, "order": order, "period": period})
+        stem = self.resolve_county(county)
+        if not stem or period not in PERIODS or order not in ("first", "last") or n < 1:
+            res.notes.append("unknown county" if not stem else "bad argument")
+            return res
+        where, params = ["o.county = ?"], [stem]
+        if period != "all":
+            where.append("p.period = ?"); params.append(period)
+        rows = self._rows("select p.project_id, p.call_year, p.period, p.action_type, p.title, p.topics_raw, p.grant_eur from project p "
+                          "where p.project_id in (select x.project_id from participation x join organisation o using (org_id) where " + " and ".join(where).replace("p.period", "x.period") + ") "
+                          "order by p.call_year " + ("asc" if order == "first" else "desc") + ", p.project_id " + ("asc" if order == "first" else "desc"), params)
+        total = len(rows)
+        if n > total:
+            res.notes.append(f"the county has only {total} projects")
+            res.rows = [{"total": total, "label": self._counties[stem], "n": n}]
+            return res
+        r = rows[n - 1]
+        concepts = self._rows("select g.kind, g.label_en, l.label_hr from project_concept pc join graph_node g on g.node_id = pc.concept_id "
+                              "left join concept_label l on l.node_id = g.node_id where pc.project_id = ? order by g.n_projects desc", [r["project_id"]])
+        same_year = sum(1 for x in rows if x["call_year"] == r["call_year"])
+        res.rows = [{**r, "rank": n, "order": order, "total": total, "label": self._counties[stem], "same_year": same_year,
+                     "topics": [x.strip() for x in (r["topics_raw"] or "").replace(";", ",").split(",") if x.strip()],
+                     "concept_topics": [[c["label_en"], c["label_hr"]] for c in concepts if c["kind"] == "topic"],
+                     "concept_other": [[c["label_en"], c["label_hr"]] for c in concepts if c["kind"] != "topic"][:5]}]
+        res.citations = [f"project:{r['project_id']}", f"county:{stem}"]
+        res.notes.append("projects are ordered by call year, then project id: several projects share a call year, so 'first' means first in that order, not by date of submission; "
+                         "a project with organisations from several counties is in each of them")
+        return res
+
+    def top_organisations(self, county: Optional[str] = None, period: str = "all", limit: int = 5, role: str = "any") -> ToolResult:
+        """Organisations ranked by the KA2 projects they take part in (role "any") or only by those they coordinate (role "coordinator")."""
+        res = ToolResult("top_organisations", {"county": county, "period": period, "limit": limit, "role": role})
         stem = self.resolve_county(county) if county else None
         if county and not stem:
             res.notes.append("unknown county")
@@ -287,9 +370,10 @@ class Toolbox:
         if stem:
             where.append("county = ?"); params.append(stem)
         res.rows = self._rows(f"select org_id, org_name, county, projects, coordinated from v_org_ka2 where {' and '.join(where)} "
-                              f"order by projects desc, org_name limit {int(limit)}", params)
+                              f"order by {'coordinated' if role == 'coordinator' else 'projects'} desc, projects desc, org_name limit {int(limit)}", params)
         res.citations = [f"org:{r['org_id']}" for r in res.rows]
-        res.notes.append("projects = KA2 projects the organisation takes part in (as coordinator or partner)")
+        res.notes.append("coordinated = KA2 projects the organisation leads; projects = all KA2 projects it takes part in (as coordinator or partner)" if role == "coordinator"
+                         else "projects = KA2 projects the organisation takes part in (as coordinator or partner)")
         return res
 
     def national_stats(self, period: str = "all") -> ToolResult:

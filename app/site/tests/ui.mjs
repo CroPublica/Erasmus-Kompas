@@ -115,6 +115,18 @@ await test('assistant page: asks and answers', async () => {
   const p = await open('/en/ask/'); await p.fill('#pq', 'Which counties have the most projects?'); await p.click('#pg');
   await p.locator('#pl .msg.bot').first().waitFor({ timeout: 10000 });
 });
+await test('assistant: on the English page the suggestions send English, the box is English, the Ask page has no second shortcut', async () => {
+  const p = await open('/en/ask/'); const sent = [];
+  await p.route('**/api/ask', (r) => { sent.push(JSON.parse(r.request().postData())); r.abort(); });
+  assert.equal(await p.getAttribute('#pq', 'placeholder'), 'Type a question about the data…');
+  assert.equal(await p.locator('#edgetab').isVisible(), false);
+  await p.locator('.topics .sug button').first().click(); await p.waitForTimeout(800);
+  assert.equal(sent.length, 1); assert.equal(sent[0].lang, 'en'); assert.match(sent[0].question, /^[A-Za-z ?+-]+$/);
+  const d = await open('/en/'); await d.locator('#l-ask').click();
+  assert.equal(await d.locator('#dock-q').getAttribute('placeholder'), 'Type a question about the data…');
+  assert.match(await d.locator('#dock h2').innerText(), /^Kompas assistant/);
+  assert.match(await d.locator('#dock .welcome h3').innerText(), /What would you like to know/);
+});
 await test('no horizontal scroll at phone width on any page', async () => {
   for (const r of [...ENGINE, ...NATIVE]) {
     const p = await open('/hr' + r, 390);

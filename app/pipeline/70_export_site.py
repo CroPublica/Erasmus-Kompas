@@ -50,7 +50,10 @@ def scrub(text):
 
 def write(name, obj):
     OUT.mkdir(parents=True, exist_ok=True)
-    (OUT / name).write_text(json.dumps(obj, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
+    text = json.dumps(obj, ensure_ascii=False, separators=(",", ":"))
+    if name == "graph.json":      # the site writes British English (organisation); the concept labels come from the model with both spellings
+        text = text.replace("organization", "organisation").replace("Organization", "Organisation")
+    (OUT / name).write_text(text, encoding="utf-8")
     print(f"  {name:16s} {(OUT / name).stat().st_size / 1024:8.0f} KB")
 
 

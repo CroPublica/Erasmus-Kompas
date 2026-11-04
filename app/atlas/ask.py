@@ -22,9 +22,9 @@ import os
 
 from atlas.config import make_chat_model
 from atlas.countries import country_name
-from atlas.tools import Toolbox, ToolResult
+from atlas.tools import EN_COUNTY, Toolbox, ToolResult
 
-Route = Literal["limits", "success", "organisation", "county", "national", "coverage", "country_ranking", "county_ranking", "partner_countries", "top_organisations",
+Route = Literal["limits", "success", "organisation", "county", "national", "coverage", "country_ranking", "county_ranking", "partner_countries", "county_project", "glossary", "year_count", "value", "top_organisations",
                 "project_search", "concepts", "out_of_scope"]
 
 
@@ -50,6 +50,10 @@ Choose exactly one route:
 - country_ranking: which country coordinates most / where Croatia ranks among countries
 - county_ranking: which counties have the most projects (a ranking of counties, no single county named)
 - partner_countries: which countries Croatian organisations partner with / cooperate with
+- county_project: the first / second / n-th / last project of one named county, and its topics
+- glossary: what a term means (coordinator, partner, KA2, call year, good practice, grant)
+- year_count: how many projects in one call year
+- value: the total value (grants) of the projects
 - top_organisations: the most active organisations (nationally or in a county)
 - project_search: find projects about a topic given in plain words (give the topic words in 'topic')
 - concepts: the content of projects: most common methods, approaches, target groups, outputs or problems; what projects do about a problem or theme; what to expect in a typical project; groups of related concepts
@@ -70,6 +74,10 @@ Examples (the answer is always one JSON object):
 "Koja zemlja najčešće koordinira KA2 projekte u EU?" -> {"route": "country_ranking"}
 "Koja hrvatska organizacija ima najviše projekata?" -> {"route": "top_organisations"}
 "Koje županije imaju najviše projekata?" -> {"route": "county_ranking"}
+"What does coordinator mean?" -> {"route": "glossary"}
+"How many projects were there in 2023?" -> {"route": "year_count"}
+"What is the total value of the projects?" -> {"route": "value"}
+"What was the topic of the first project in Grad Zagreb?" -> {"route": "county_project", "county": "Grad Zagreb"}
 "S kojim državama Hrvatska surađuje?" -> {"route": "partner_countries"}
 "Koji projekti rješavaju nedostatak digitalnih vještina u Slavoniji?" -> {"route": "concepts"}
 "Koje su najčešće metode u KA2 projektima?" -> {"route": "concepts"}
@@ -150,7 +158,7 @@ def detect_language(text: str, hint: Optional[str] = None) -> str:
     return "hr" if hr >= en and hr > 0 else ("hr" if not text.strip() else "en")
 
 
-CONCEPT_WORDS = re.compile(r"najčešć\w* (metod|pristup|aktivnost|rezultat|ishod|ciljn|problem|izazov)|najcesc\w* (metod|pristup|aktivnost|rezultat|ishod|ciljn|problem|izazov)|"
+CONCEPT_WORDS = re.compile(r"(which|what) (are the )?(most )?(common |frequent |popular )?topics|topics (are )?(the )?most|najčešće tem|koje su (najčešće )?tem|koje tem\w* (su )?najčešć|najčešć\w* (metod|pristup|aktivnost|rezultat|ishod|ciljn|problem|izazov)|najcesc\w* (metod|pristup|aktivnost|rezultat|ishod|ciljn|problem|izazov)|"
                            r"most (common|frequent)\w* (method|approach|activit|output|result|target|problem|challenge)|common (method|approach|activit|output|target|problem)|"
                            r"tipičn\w* projekt|typical project|što (se )?(može )?očekivati|what (can|to|should) (you |one |someone )?expect|od nule|from scratch|"
                            r"koje (metode|pristupe|aktivnosti|probleme|izazove)|which (methods|approaches|activities|problems|challenges|outputs)|što rade projekti|what do projects do|"
@@ -202,6 +210,33 @@ def yes_no_lead(question: str, lang: str, results: list[dict]) -> str:
     return ""
 
 
+_ORD = {"first": 1, "1st": 1, "prvi": 1, "prvog": 1, "prva": 1, "prvu": 1, "second": 2, "2nd": 2, "drugi": 2, "drugog": 2, "third": 3, "3rd": 3, "treći": 3, "treceg": 3, "trećeg": 3, "treci": 3,
+        "fourth": 4, "četvrti": 4, "cetvrti": 4, "fifth": 5, "peti": 5, "sixth": 6, "šesti": 6, "sesti": 6, "seventh": 7, "sedmi": 7, "eighth": 8, "osmi": 8, "ninth": 9, "deveti": 9, "tenth": 10, "deseti": 10}
+_LAST = ("last", "latest", "newest", "most recent", "zadnji", "posljednji", "najnoviji")
+
+
+def ordinal_request(q: str) -> Optional[tuple[int, str]]:
+    """(n, 'first'|'last') when the question asks for the n-th / first / last project; None otherwise."""
+    q = q.lower()
+    if not re.search(r"projek|project", q):
+        return None
+    if any(re.search(rf"\b{w}\b", q) for w in _LAST):
+        return 1, "last"
+    if re.search(r"\b(earliest|oldest|najstariji|najraniji)\b", q):
+        return 1, "first"
+    m = re.search(r"\b(\d{1,3})(?:st|nd|rd|th)\b|\b(\d{1,3})\.\s*projekt", q)
+    if m:
+        return int(m.group(1) or m.group(2)), "first"
+    for w, n in _ORD.items():
+        if re.search(rf"\b{w}\b", q):
+            return n, "first"
+    m = re.search(r"\bproject (?:number |no\.? |#)(\d{1,3})\b|\bprojekt (?:broj |br\. )(\d{1,3})\b", q)
+    return (int(m.group(1) or m.group(2)), "first") if m else None
+
+
+COORD_RANK = re.compile(r"koordinira\w*|koordinator\w*|coordinat\w*", re.I)
+
+
 def enrich_plan(plan: dict, question: str, tb) -> dict:
     """Fill arguments the small router often drops, from the question text itself (never overrides a value it gave)."""
     q = question.lower()
@@ -222,6 +257,17 @@ def enrich_plan(plan: dict, question: str, tb) -> dict:
     school_words = re.search(r"škol|skol|school|vrti[ćc]|kindergarten|postot|udio|share|pokrivenost|očekiv|ocekiv|participation rate|iznad|ispod|above|below", q)
     if re.search(r"ravnatelj|director|principal|e-?mail|telefon|phone|zbroji|sum up|add up|total across", q):
         plan["route"] = "out_of_scope"
+    elif re.search(r"what (does|do|is|are) (an? |the )?[\w\s+-]{2,30}( mean)?\??$|što (znači|je|su)\b|\bmeaning of\b|\bdefin", q) and tb.glossary(question).rows:
+        plan["route"] = "glossary"
+    elif len(set(years)) == 1 and 2014 <= years[0] <= 2026 and re.search(r"koliko|how many|number of", q) and re.search(r"projek|project", q) and not tb.resolve_county(question) \
+            and not tb.find_organisation_in_text(question).rows and not SUCCESS_WORDS.search(q):
+        plan["route"] = "year_count"
+    elif re.search(r"(total|ukupn\w*) (value|vrijednost|worth|grants?)|vrijednost (svih )?projekata|value of (all )?(the )?projects|how much (money|funding)|koliko (novca|sredstava)", q) and not tb.resolve_county(question) \
+            and not tb.find_organisation_in_text(question).rows:
+        plan["route"] = "value"
+    elif ordinal_request(q) and tb.resolve_county(question):
+        plan["route"] = "county_project"
+        plan["county"] = tb.resolve_county(question)
     elif SUCCESS_WORDS.search(q):
         plan["route"] = "success"
     elif CONCEPT_WORDS.search(q):
@@ -232,6 +278,9 @@ def enrich_plan(plan: dict, question: str, tb) -> dict:
         plan["route"] = "partner_countries"
     elif re.search(r"(koje|koja|which)\s+([\wčćšžđ]+\s+)?(županij|zupanij|countie)", q) and not tb.resolve_county(question):
         plan["route"] = "county_ranking"
+    elif plan["route"] == "county_ranking" and tb.resolve_county(question):      # a county is named: it is not a ranking of counties
+        plan["county"] = tb.resolve_county(question)
+        plan["route"] = "top_organisations" if re.search(r"\bwho\b|organi[sz]ation|school|tko|organizacij|škol|ustanov", q) else "county"
     elif re.search(r"koja zemlja|koje zemlje|na kojem je mjestu|which country|which countries|\brank", q) and not tb.find_organisation_in_text(question).rows:
         plan["route"] = "country_ranking"
     elif re.search(r"vrste organizacija|types? of organi[sz]ations|koje organizacije najčešće koordin", q):
@@ -378,12 +427,6 @@ def hr_plural(n, one: str, few: str, many: str) -> str:
     return many
 
 
-EN_COUNTY = {"Bjelovarsko-bilogorska": "Bjelovar-Bilogora County", "Brodsko-posavska": "Brod-Posavina County", "Dubrovačko-neretvanska": "Dubrovnik-Neretva County",
-             "Grad Zagreb": "City of Zagreb", "Istarska": "Istria County", "Karlovačka": "Karlovac County", "Koprivničko-križevačka": "Koprivnica-Križevci County",
-             "Krapinsko-zagorska": "Krapina-Zagorje County", "Ličko-senjska": "Lika-Senj County", "Međimurska": "Međimurje County", "Osječko-baranjska": "Osijek-Baranja County",
-             "Požeško-slavonska": "Požega-Slavonia County", "Primorsko-goranska": "Primorje-Gorski Kotar County", "Sisačko-moslavačka": "Sisak-Moslavina County",
-             "Splitsko-dalmatinska": "Split-Dalmatia County", "Varaždinska": "Varaždin County", "Virovitičko-podravska": "Virovitica-Podravina County",
-             "Vukovarsko-srijemska": "Vukovar-Syrmia County", "Zadarska": "Zadar County", "Zagrebačka": "Zagreb County", "Šibensko-kninska": "Šibenik-Knin County"}
 
 
 def _label(lang: str, label: str) -> str:
@@ -416,7 +459,19 @@ CLASS_NAMES = {"ngo": ("nevladine organizacije", "non-governmental organisations
                "other": ("ostalo", "other"), "research": ("istraživački centri", "research bodies")}
 
 
+def en_style(text: str) -> str:
+    """English usage: €952.7 million, €7,340,431, 24% (the Croatian text keeps 952,7 milijuna € and 24 %)."""
+    text = re.sub(r"(\d[\d,]*(?:\.\d+)?) million €", r"€\1 million", text)
+    text = re.sub(r"(?<![\d,.])(\d[\d,]*(?:\.\d+)?) €", r"€\1", text)
+    return re.sub(r"(\d) %", r"\1%", text)
+
+
 def template_answer(lang: str, route: str, results: list[dict]) -> str:
+    out = _template_answer(lang, route, results)
+    return en_style(out) if lang == "en" else out
+
+
+def _template_answer(lang: str, route: str, results: list[dict]) -> str:
     """Plain answer assembled by code from the first tool results; used when the model's answer cannot be verified."""
     hr = lang == "hr"
     if not results or not any(r["rows"] for r in results):
@@ -438,8 +493,8 @@ def template_answer(lang: str, route: str, results: list[dict]) -> str:
         if hr:
             s = (f"{r['name']} ({_town(r['town'])}): {f(r['projects'])} KA2 {hr_plural(r['projects'], 'projekt', 'projekta', 'projekata')} ({f(r['projects_2014_2020'])} u 2014.–2020., {f(r['projects_2021_2027'])} u 2021.–2026.), "
                  f"od toga {f(r['coordinated'])} kao koordinator" + (f" ({hr_plural(len(cp), 'izvorni naslov', 'izvorna naslova', 'izvornih naslova') if r['coordinated'] <= len(cp) else 'primjeri izvornih naslova'}: {'; '.join(cp)})" if cp else "") + ". "
-                 f"Potpore projekata koje koordinira: {f(r['grants_coordinated_eur'] or 0)} €; vrijednost svih projekata u kojima sudjeluje: {f(r['value_involved_eur'] or 0)} €."
-                 + (f" Najčešće partnerske zemlje: {', '.join(cc)}." if cc else ""))
+                 f"Bespovratna sredstva projekata koje koordinira: {f(r['grants_coordinated_eur'] or 0)} €; vrijednost svih projekata u kojima sudjeluje: {f(r['value_involved_eur'] or 0)} €."
+                 + (f" Najčešće partnerske države: {', '.join(cc)}." if cc else ""))
         else:
             s = (f"{r['name']} ({_town(r['town'])}): {f(r['projects'])} KA2 projects ({f(r['projects_2014_2020'])} in 2014–2020, {f(r['projects_2021_2027'])} in 2021–2026), "
                  f"{f(r['coordinated'])} as coordinator" + (f" ({'original ' + ('title' if len(cp) == 1 else 'titles') if r['coordinated'] <= len(cp) else 'examples of original titles'}: {'; '.join(cp)})" if cp else "") + ". "
@@ -456,9 +511,14 @@ def template_answer(lang: str, route: str, results: list[dict]) -> str:
         return (f"Našao sam: {names}. Koju misliš?" if hr else f"I found: {names}. Which one do you mean?")
     if t == "county_stats":
         return (f"{r['label']}: {f(r['organisations'])} {hr_plural(r['organisations'], 'organizacija', 'organizacije', 'organizacija')}, {f(r['projects_involved'])} {hr_plural(r['projects_involved'], 'projekt', 'projekta', 'projekata')}, od toga {f(r['projects_coordinated'])} koordiniranih; "
-                f"potpore koordiniranih projekata {f(r['grants_coordinated_eur'] or 0)} € ({f((r['grants_coordinated_eur'] or 0) / 1e6, 2)} mil. €)." if hr else
+                f"bespovratna sredstva koordiniranih projekata {f(r['grants_coordinated_eur'] or 0)} € ({f((r['grants_coordinated_eur'] or 0) / 1e6, 2)} mil. €)." if hr else
                 f"{_label(lang, r['label'])}: {f(r['organisations'])} organisations, {f(r['projects_involved'])} projects, {f(r['projects_coordinated'])} coordinated; "
                 f"grants of coordinated projects {f(r['grants_coordinated_eur'] or 0)} € ({f((r['grants_coordinated_eur'] or 0) / 1e6, 2)} million €).")
+    if route == "value" and t == "national_stats":
+        r = results[-1]["rows"][0]
+        mil = r["value_involved_eur"] / 1e6
+        return (f"Ukupna vrijednost svih KA2 projekata s hrvatskim sudionikom je {f(mil, 1)} milijuna € ({f(r['projects'])} projekata). To je puni iznos bespovratnih sredstava svakog projekta, ne samo hrvatski dio." if hr else
+                f"The total value of all KA2 projects with a Croatian participant is {f(mil, 1)} million € ({f(r['projects'])} projects). This is the full grant of each project, not only the Croatian share.")
     if t == "national_stats":
         cls = r.get("coordinating_organisation_classes", [])[:4]
         ctext = ", ".join(f"{CLASS_NAMES.get(x['org_class'], (x['org_class'],) * 2)[0 if hr else 1]} {f(x['projects_coordinated'])}" for x in cls)
@@ -508,6 +568,41 @@ def template_answer(lang: str, route: str, results: list[dict]) -> str:
         tail_hr = (f" Hrvatska je na {hrr['rank']}. mjestu od {hrr['countries_total']} zemalja koordinatora u {'2014.–2020.' if hrr['period'] == '2014-2020' else '2021.–2026.'} ({f(hrr['coordinated_projects'])} projekata)." if hr else f" Croatia ranks {hrr['rank']} of {hrr['countries_total']} coordinating countries in {'2014–2020' if hrr['period'] == '2014-2020' else '2021–2026'} ({f(hrr['coordinated_projects'])} projects).") if hrr else ""
         return (f"Najviše KA2 projekata koordinira {country_name(top['country'], lang)} ({f(top['coordinated_projects'])})." if hr else
                 f"Most KA2 projects are coordinated from {country_name(top['country'], lang)} ({f(top['coordinated_projects'])}).") + tail_hr
+    if t == "county_project":
+        r = results[-1]["rows"][0] if results[-1]["rows"] else None
+        if r is None:
+            return "Nisam našao taj projekt." if hr else "I could not find that project."
+        place = _label(lang, r["label"]) if lang == "en" else r["label"]
+        if "title" not in r:
+            return (f"{place} ima samo {f(r['total'])} projekata, pa {r['n']}. ne postoji." if hr else f"{place} has only {f(r['total'])} projects, so there is no number {r['n']}.")
+        which = (("zadnji" if r["rank"] == 1 else f"{r['rank']}. od kraja") if r["order"] == "last" else f"{r['rank']}.") if hr else \
+                (("last" if r["rank"] == 1 else f"{r['rank']}th from last") if r["order"] == "last" else {1: "first", 2: "second", 3: "third"}.get(r["rank"], f"{r['rank']}th"))
+        topics = r["topics"] or []
+        ct = [(x[1] if hr and x[1] else x[0]) for x in r["concept_topics"]]
+        top = "; ".join(topics) if topics else ""
+        cts = ", ".join(ct)
+        yr = r["call_year"]
+        if hr:
+            s = f"{which.capitalize() if r['order'] == 'last' else which + ' projekt'} ({place}, poziv {yr}.): {quote_title(r['title'], None, 110, lang)}."
+            s += f" Teme prema izvoru: {top}." if top else " Izvor ne navodi teme."
+            s += f" Pojmovi tema izdvojeni iz sažetka: {cts}." if cts else ""
+            s += f" Projekti su poredani po godini poziva i šifri; {f(r['same_year'])} projekata iz županije dijeli godinu {yr}., pa „{'zadnji' if r['order'] == 'last' else 'prvi'}” znači {'zadnji' if r['order'] == 'last' else 'prvi'} u tom redoslijedu." if r["same_year"] > 1 else ""
+            return s
+        s = f"The {which} project ({place}, {yr} call): {quote_title(r['title'], None, 110, lang)}."
+        s += f" Topics in the source: {top}." if top else " The source lists no topics."
+        s += f" Topic concepts found in the summary: {cts}." if cts else ""
+        s += f" Projects are ordered by call year and then by project id; {f(r['same_year'])} projects from the county share the {yr} call, so “{r['order']}” means {r['order']} in that order." if r["same_year"] > 1 else ""
+        return s
+    if t == "glossary":
+        r = results[-1]["rows"][0] if results[-1]["rows"] else None
+        return (r["hr"] if hr else r["en"]) if r else ("Taj pojam nije u rječniku." if hr else "That term is not in the glossary.")
+    if t == "year_projects":
+        r = results[-1]["rows"][0] if results[-1]["rows"] else None
+        if not r:
+            return "Za tu godinu poziva nema projekata s hrvatskim sudionikom." if hr else "There are no projects with a Croatian participant in that call year."
+        tail = (" Odabir za 2026. još nije potpun." if hr else " The 2026 selection is not complete.") if r["year"] == 2026 else ""
+        return (f"U pozivu {r['year']}. odabrano je {f(r['projects'])} KA2 {hr_plural(r['projects'], 'projekt', 'projekta', 'projekata')} s hrvatskim sudionikom, a Hrvatska je koordinirala {f(r['coordinated'])}." + tail if hr else
+                f"In the {r['year']} call, {f(r['projects'])} KA2 projects with a Croatian participant were selected, and Croatia coordinated {f(r['coordinated'])}." + tail)
     if t == "county_ranking":
         rows = results[-1]["rows"]
         names = lambda r: _label(lang, r["label"]) if lang == "en" else r["label"]
@@ -521,6 +616,9 @@ def template_answer(lang: str, route: str, results: list[dict]) -> str:
         rows = results[-1]["rows"][:5]
         county = results[-1]["args"].get("county")
         where = (f" ({_label(lang, str(county))})" if lang == "en" else f" ({county}{'' if county == 'Grad Zagreb' else ' županija'})") if county else (" u Hrvatskoj" if hr else " in Croatia")
+        if results[-1]["args"].get("role") == "coordinator":
+            head = f"Organizacije koje koordiniraju najviše KA2 projekata{where}, broj koordiniranih projekata: " if hr else f"Organisations that coordinate the most KA2 projects{where}, number of coordinated projects: "
+            return head + "; ".join(f"{x['org_name']}: {f(x['coordinated'])}" for x in rows) + "."
         head = f"Najaktivnije organizacije{where}, broj KA2 projekata: " if hr else f"Most active organisations{where}, number of KA2 projects: "
         return head + "; ".join(f"{x['org_name']}: {f(x['projects'])}" for x in rows) + "."
     if t == "search_projects":
@@ -769,12 +867,21 @@ class Asker:
             results.append(tb.success_rate(per, ys[0] if len(ys) == 1 else None, "KA1" if re.search(r"\bka\s?1\b", s["question"].lower()) else "KA2"))
         elif r == "county_ranking":
             results.append(tb.county_ranking(plan["period"]))
+        elif r == "glossary":
+            results.append(tb.glossary(s["question"]))
+        elif r == "year_count":
+            results.append(tb.year_projects(int(re.search(r"20[12]\d", s["question"]).group(0))))
+        elif r == "value":
+            results.append(tb.national_stats(plan["period"]))
+        elif r == "county_project" and plan["county"]:
+            n, order = ordinal_request(s["question"]) or (1, "first")
+            results.append(tb.county_project(plan["county"], n, order, plan["period"]))
         elif r == "partner_countries":
             results.append(tb.partner_countries(plan["period"]))
         elif r == "country_ranking":
             results.append(tb.country_stats("2021-2027" if plan["period"] == "all" else plan["period"]))
         elif r == "top_organisations":
-            results.append(tb.top_organisations(plan["county"], plan["period"]))
+            results.append(tb.top_organisations(plan["county"], plan["period"], 5, "coordinator" if COORD_RANK.search(s["question"]) else "any"))
         elif r == "project_search" and plan["topic"]:
             results.append(tb.search_projects(plan["topic"], plan["period"]))
             if not results[-1].rows:                      # no keyword hit (summaries are mostly English): try the concept names, which also exist in Croatian

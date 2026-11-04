@@ -19,7 +19,7 @@ const T = {
     mFilter: 'Filter approaches', mNone: 'No approach matches.', mShown: (n: number) => `${n} approaches`,
     gTitle: 'Concept network', gKicker: 'TOPICS AND PROBLEMS · CONCEPT NETWORK',
     gLead: 'Concepts that appear together in projects: approaches, target groups, results, problems and topics. A larger circle means more projects, and a line means joint projects.',
-    gCaveat: 'Groups are found by a graph algorithm, they are not official categories, and “together” means the same projects, not cause and effect. A project can fit several groups, and about four in ten projects fit none clearly. Several groups follow the type of action and the period (for example school exchanges in 2014–2020).',
+    gCaveat: 'Groups are found by a network-clustering algorithm, they are not official categories, and “together” means the same projects, not cause and effect. A project can fit several groups, and about four in ten projects fit none clearly. Several groups follow the type of action and the period (for example school exchanges in 2014–2020).',
     gGroups: 'Groups of concepts', gGroupsLead: 'The groups matched by at least 20 projects, largest first.',
     gProjects: 'projects', gOf: 'of', gGp: 'good practice',
     gPick: 'Pick a concept', gSearch: 'Search a concept (English or Croatian)', gNoMatch: 'No concept matches.', gGoes: 'Most often in the same projects',

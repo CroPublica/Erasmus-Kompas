@@ -66,7 +66,7 @@ const EK = {
     try { entry[0](holder, arg ? [null, arg] : null); initSearch(root); } catch (e) { holder.innerHTML = `<div class="note">${esc(e.message)}</div>`; console.error(e); }
     ekLinks(root); root.setAttribute('aria-busy', 'false'); root.querySelectorAll('pre').forEach((el) => { el.tabIndex = 0; el.setAttribute('role', 'region'); if (!el.hasAttribute('aria-label')) el.setAttribute('aria-label', document.body.dataset.scrollable || 'Code'); });
     new MutationObserver(() => ekLinks(root)).observe(root, { childList: true, subtree: true });
-    Assistant.setContext(EK_VIEWKEY[name] || 'o', name);
+    Assistant.setContext(EK_VIEWKEY[name] || 'o', name); setTimeout(() => { const h = $('h1', holder); if (h) Assistant.setContext(EK_VIEWKEY[name] || 'o', h.textContent.trim().slice(0, 60)); }, 0);   // the title once the view has been translated
     if (name === 'ask') Assistant.hide();
     if (window.__pre) { const pr = window.__pre; window.__pre = null; const el = $(pr.sel, holder); if (el) { el.value = pr.value; el.dispatchEvent(new Event(pr.ev || 'input', { bubbles: true })); } }
     this.current = name;

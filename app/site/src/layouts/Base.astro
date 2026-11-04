@@ -40,7 +40,7 @@ const tabs = here.top && here.top.subs.length > 1 ? here.top.subs : [];
     <link rel="preload" href={`${base}/fonts/SourceSerif4-Semibold.woff2`} as="font" type="font/woff2" crossorigin="anonymous" />
     <script is:inline>try{var t=localStorage.getItem('ek-theme');if(t==='light'||t==='dark')document.documentElement.dataset.theme=t}catch(e){}</script>
   </head>
-  <body data-base={base} data-scrollable={c.scrollable}>
+  <body data-base={base} data-scrollable={c.scrollable} class={active === 'ask' ? 'onask' : undefined}>
     <a class="skip" href="#main">{s.skip}</a>
     <div class="layout">
       <aside class="side" id="side" aria-label={c.menu} translate="no">
@@ -114,8 +114,8 @@ const tabs = here.top && here.top.subs.length > 1 ? here.top.subs : [];
         </main>
       </div>
     </div>
-    <section class="dock" id="dock" role="dialog" aria-labelledby="dock-title" aria-modal="false" translate="no">
-      <header class="dock-head">
+    <section class="dock" id="dock" role="dialog" aria-labelledby="dock-title" aria-modal="false">
+      <header class="dock-head" translate="no">
         <span class="avatar" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 40 40"><path d="M20 4l5 16-5 16-5-16z" fill="#ffd617"/><path d="M4 20l16-5 16 5-16 5z" fill="#fff"/></svg></span>
         <h2 id="dock-title">{c.dockTitle}<small>{c.dockSub}</small></h2>
         <button type="button" class="ic" id="dock-new" title={c.dockNew} aria-label={c.dockNew}><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></button>

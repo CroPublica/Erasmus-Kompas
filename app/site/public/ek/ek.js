@@ -522,17 +522,19 @@ const I18N = (() => {
     walk(root, { t: (n) => add(n.data, (n.parentElement && (n.parentElement.closest('[id],[class]') || n.parentElement).tagName + '.' + (n.parentElement.className || '')).slice(0, 60)), a: (el) => { for (const a of ATTRS) if (el.hasAttribute(a)) add(el.getAttribute(a), '@' + a); } });
     return [...out].map(([key, v]) => ({ key, ...v }));
   }
-  const watch = () => obs.observe(VIEWROOT(), { childList: true, subtree: true, characterData: true, attributes: true, attributeFilter: ATTRS });
+  const OBSO = { childList: true, subtree: true, characterData: true, attributes: true, attributeFilter: ATTRS };
+  const watch = () => { const dk = document.getElementById('dock'); if (dk) obs.observe(dk, OBSO); obs.observe(VIEWROOT(), OBSO); };
+  const watchOld = () => obs.observe(VIEWROOT(), { childList: true, subtree: true, characterData: true, attributes: true, attributeFilter: ATTRS });
 
   function setLang(l, opts = {}) {
     if (l === LANG && !opts.force) return;
     obs.disconnect();
-    if (l === 'hr') toHR(VIEWROOT());
+    if (l === 'hr') { toHR(VIEWROOT()); const dk = document.getElementById('dock'); if (dk) toHR(dk); }
     LANG = l; document.documentElement.lang = l;
     tr = l === 'en' ? (s) => (typeof s === 'string' ? translate(s) : s) : (s) => s;
     try { regionNames = new Intl.DisplayNames([l], { type: 'region' }); } catch (e) { /* ostaje prethodni */ }
     try { localStorage.setItem('ek-lang', l); } catch (e) { /* privatni način ili ograničenje */ }
-    if (l === 'en') toEN(VIEWROOT());
+    if (l === 'en') { toEN(VIEWROOT()); const dk = document.getElementById('dock'); if (dk) toEN(dk); }
     watch();
   }
   const init = () => {
@@ -862,6 +864,8 @@ const EN_ENT = {
 };
 const EN_CTRY = ["Afghanistan", "Albania", "Algeria", "American Samoa", "Andorra", "Angola", "Anguilla", "Antarctica", "Antigua & Barbuda", "Argentina", "Armenia", "Aruba", "Ascension Island", "Australia", "Austria", "Azerbaijan", "Bahamas", "Bahrain", "Bangladesh", "Barbados", "Belarus", "Belgium", "Belize", "Benin", "Bermuda", "Bhutan", "Bolivia", "Bosnia & Herzegovina", "Botswana", "Bouvet Island", "Brazil", "British Indian Ocean Territory", "British Virgin Islands", "Brunei", "Bulgaria", "Burkina Faso", "Burundi", "Cambodia", "Cameroon", "Canada", "Canary Islands", "Cape Verde", "Caribbean Netherlands", "Cayman Islands", "Central African Republic", "Ceuta & Melilla", "Chad", "Chile", "China", "Christmas Island", "Clipperton Island", "Cocos (Keeling) Islands", "Colombia", "Comoros", "Congo - Brazzaville", "Congo - Kinshasa", "Cook Islands", "Costa Rica", "Croatia", "Cuba", "Curaçao", "Cyprus", "Czechia", "Côte d’Ivoire", "Denmark", "Diego Garcia", "Djibouti", "Dominica", "Dominican Republic", "Ecuador", "Egypt", "El Salvador", "Equatorial Guinea", "Eritrea", "Estonia", "Eswatini", "Ethiopia", "European Union", "Eurozone", "Falkland Islands", "Faroe Islands", "Fiji", "Finland", "France", "French Guiana", "French Polynesia", "French Southern Territories", "Gabon", "Gambia", "Georgia", "Germany", "Ghana", "Gibraltar", "Greece", "Greenland", "Grenada", "Guadeloupe", "Guam", "Guatemala", "Guernsey", "Guinea", "Guinea-Bissau", "Guyana", "Haiti", "Heard & McDonald Islands", "Honduras", "Hong Kong SAR China", "Hungary", "Iceland", "India", "Indonesia", "Iran", "Iraq", "Ireland", "Isle of Man", "Israel", "Italy", "Jamaica", "Japan", "Jersey", "Jordan", "Kazakhstan", "Kenya", "Kiribati", "Kosovo", "Kuwait", "Kyrgyzstan", "Laos", "Latvia", "Lebanon", "Lesotho", "Liberia", "Libya", "Liechtenstein", "Lithuania", "Luxembourg", "Macao SAR China", "Madagascar", "Malawi", "Malaysia", "Maldives", "Mali", "Malta", "Marshall Islands", "Martinique", "Mauritania", "Mauritius", "Mayotte", "Mexico", "Micronesia", "Moldova", "Monaco", "Mongolia", "Montenegro", "Montserrat", "Morocco", "Mozambique", "Myanmar (Burma)", "Namibia", "Nauru", "Nepal", "Netherlands", "New Caledonia", "New Zealand", "Nicaragua", "Niger", "Nigeria", "Niue", "Norfolk Island", "North Korea", "North Macedonia", "Northern Mariana Islands", "Norway", "Oman", "Outlying Oceania", "Pakistan", "Palau", "Palestinian Territories", "Panama", "Papua New Guinea", "Paraguay", "Peru", "Philippines", "Pitcairn Islands", "Poland", "Portugal", "Pseudo-Accents", "Pseudo-Bidi", "Puerto Rico", "Qatar", "Romania", "Russia", "Rwanda", "Réunion", "Samoa", "San Marino", "Sark", "Saudi Arabia", "Senegal", "Serbia", "Seychelles", "Sierra Leone", "Singapore", "Sint Maarten", "Slovakia", "Slovenia", "Solomon Islands", "Somalia", "South Africa", "South Georgia & South Sandwich Islands", "South Korea", "South Sudan", "Spain", "Sri Lanka", "St. Barthélemy", "St. Helena", "St. Kitts & Nevis", "St. Lucia", "St. Martin", "St. Pierre & Miquelon", "St. Vincent & Grenadines", "Sudan", "Suriname", "Svalbard & Jan Mayen", "Sweden", "Switzerland", "Syria", "São Tomé & Príncipe", "Taiwan", "Tajikistan", "Tanzania", "Thailand", "Timor-Leste", "Togo", "Tokelau", "Tonga", "Trinidad & Tobago", "Tristan da Cunha", "Tunisia", "Turkmenistan", "Turks & Caicos Islands", "Tuvalu", "Türkiye", "U.S. Outlying Islands", "U.S. Virgin Islands", "Uganda", "Ukraine", "United Arab Emirates", "United Kingdom", "United Nations", "United States", "Unknown Region", "Uruguay", "Uzbekistan", "Vanuatu", "Vatican City", "Venezuela", "Vietnam", "Wallis & Futuna", "Western Sahara", "Yemen", "Zambia", "Zimbabwe", "Åland Islands"];
 const EN_DICT = {
+"Upišite pitanje o podacima…": "Type a question about the data…",
+"Vrsta pitanja: ": "Question type: ",
 "Preskoči na sadržaj": "Skip to content",
 "Izbornik": "Menu",
 "Zatvori izbornik": "Close menu",
@@ -2788,12 +2792,24 @@ const AskAPI = (() => {
     probe.then((a) => { document.documentElement.dataset.ask = a ? 'api' : 'demo'; if (a && window.console) console.info('[Erasmus+ Kompas] Asistent koristi API: ' + a); });
     return probe;
   }
+  const ROUTE_NAME = { county_ranking: ['rang županija', 'ranking of counties'], county: ['jedna županija', 'one county'], county_project: ['projekt u županiji', 'project in a county'], top_organisations: ['najaktivnije organizacije', 'most active organisations'],
+    organisation: ['jedna organizacija', 'one organisation'], national: ['Hrvatska u cjelini', 'Croatia as a whole'], coverage: ['pokrivenost škola', 'school coverage'], country_ranking: ['rang država', 'ranking of countries'],
+    partner_countries: ['partnerske države', 'partner countries'], project_search: ['pretraga projekata', 'project search'], concepts: ['sadržaj projekata', 'project content'], glossary: ['rječnik', 'glossary'],
+    year_count: ['projekti po godini poziva', 'projects by call year'], value: ['vrijednost projekata', 'project value'], success: ['prolaznost prijava', 'success rate'], limits: ['izvan obuhvata (KA1/KA3)', 'outside the scope (KA1/KA3)'] };
+  const TOOL_NAME = { county_ranking: ['rang županija', 'county ranking'], county_stats: ['podaci o županiji', 'county figures'], county_project: ['n-ti projekt županije', 'n-th project of a county'], top_organisations: ['najaktivnije organizacije', 'most active organisations'],
+    organisation_profile: ['profil organizacije', 'organisation profile'], find_organisation: ['traženje organizacije', 'organisation lookup'], national_stats: ['državni pokazatelji', 'national figures'], partner_countries: ['partnerske države', 'partner countries'],
+    country_stats: ['države koordinatori', 'coordinating countries'], coverage: ['pokrivenost škola', 'school coverage'], search_projects: ['pretraga projekata', 'project search'], search_concepts: ['pretraga pojmova', 'concept search'],
+    concept_profile: ['profil pojma', 'concept profile'], common_concepts: ['najčešći pojmovi', 'most common concepts'], community_overview: ['skupine pojmova', 'concept groups'], concept_trends: ['trendovi pojmova', 'concept trends'],
+    connected_concepts: ['povezani pojmovi', 'connected concepts'], glossary: ['rječnik', 'glossary'], year_projects: ['projekti jedne godine poziva', 'projects of one call year'], success_rate: ['prolaznost prijava', 'success rate'], similar_organisations: ['slične organizacije', 'similar organisations'] };
+  const ARG_NAME = { period: ['razdoblje', 'period'], limit: ['broj', 'limit'], county: ['županija', 'county'], role: ['uloga', 'role'], year: ['godina', 'year'], n: ['redni broj', 'number'], order: ['redoslijed', 'order'], text: ['pojam', 'term'] };
+  const GLOSS_NAME = { coordinator: ['Koordinator', 'Coordinator'], partner: ['Partner', 'Partner'], ka2: ['KA1 i KA2', 'KA1 and KA2'], 'call-year': ['Godina poziva', 'Call year'], grant: ['Vrijednost projekata', 'Project value'], 'good-practice': ['Dobra praksa', 'Good practice'], coverage: ['Pokrivenost škola', 'School coverage'] };
   const link = (c) => {
     const i = c.indexOf(':'), k = c.slice(0, i), id = c.slice(i + 1);
     if (k === 'org') { const o = D.orgs.find((x) => x[0] === id); return [o ? o[1] : id.replace(/^(OID|MZO)-/, ''), '#/organizacije/' + encodeURIComponent(id)]; }
     if (k === 'project') { const p = D.projects.find((x) => x[0] === id); return [p ? p[1] : id, '#/projekti/' + encodeURIComponent(id)]; }
     if (k === 'county') { const z = countyBy(id); return [z ? shortCounty(z) : id, '#/mjesta/' + encodeURIComponent(id)]; }
     if (k === 'concept') return [id.replace(/^TOP:/, ''), '#/graf'];
+    if (k === 'glossary') return [T('Rječnik: ', 'Glossary: ') + (GLOSS_NAME[id] ? T(...GLOSS_NAME[id]) : id), '#/rjecnik'];
     return [c, '#/o-podacima'];
   };
   /* vraća null (ugrađeni odgovori) | {real} | {msg} | {down} */
@@ -2806,8 +2822,8 @@ const AskAPI = (() => {
       if (r.status === 503) return { msg: 'Asistent je trenutno zauzet. Pokušajte ponovno za nekoliko trenutaka.' };
       if (!r.ok) return { down: true };
       const a = await r.json(); lastOrg = a.last_org_id || lastOrg;
-      const tools = (a.tools || []).map((x) => x.tool + '(' + Object.entries(x.args || {}).filter(([, v]) => v !== null && v !== undefined).map(([k, v]) => k + '=' + v).join(', ') + ')');
-      return { real: { real: true, text: String(a.answer || ''), src: (a.citations || []).map(link), steps: [(a.route ? 'route: ' + a.route : ''), ...tools].filter(Boolean), fallback: !!a.fallback } };
+      const tools = (a.tools || []).map((x) => T('Izračun: ', 'Calculation: ') + (TOOL_NAME[x.tool] ? T(...TOOL_NAME[x.tool]) : x.tool) + (Object.entries(x.args || {}).some(([, v]) => v !== null && v !== undefined) ? ' (' + Object.entries(x.args || {}).filter(([, v]) => v !== null && v !== undefined).map(([k, v]) => (ARG_NAME[k] ? T(...ARG_NAME[k]) : k) + ': ' + v).join('; ') + ')' : ''));
+      return { real: { real: true, text: String(a.answer || ''), src: (a.citations || []).map(link), steps: [(a.route ? T('Vrsta pitanja: ', 'Question type: ') + (ROUTE_NAME[a.route] ? T(...ROUTE_NAME[a.route]) : a.route) : ''), ...tools].filter(Boolean), fallback: !!a.fallback } };
     } catch (e) { return { down: true }; } finally { clearTimeout(t); }
   }
   return { ask, available, forget: () => { lastOrg = null; } };
@@ -2822,7 +2838,7 @@ const Assistant = (() => {
   const welcome = () => `<div class="welcome"><div><h3>Što vas zanima?</h3><p>Odgovaram na pitanja o projektima, organizacijama, županijama, državama i temama. Brojke računam iz podataka atlasa i uz odgovor navodim izvor.</p></div><div class="sug">${prompts().map((p) => `<button type="button" data-q="${esc(p)}">${esc(p)}</button>`).join('')}</div></div>`;
   const ans = (m) => { if (!m.done) return null; if (m.real) return m.real; if (m.msg) return { text: m.msg, src: [], err: true }; if (!m.c || m.c.l !== LANG) m.c = { l: LANG, a: canned(m.q) }; return m.down ? { ...m.c.a, note: 'Asistent s modelom trenutno nije dostupan. Prikazan je odgovor izračunan izravno iz podataka.' } : m.c.a; };
   const msg = (m) => { const a = ans(m); return `<div class="msg you">${esc(m.q)}</div>` + (a ? `<div class="msg bot">${AV}<div class="bubble"><p${a.real ? ' class="real"' : ''}>${esc(a.text)}</p>${a.fallback ? '<p class="small muted">Odgovor nije u potpunosti potvrđen podacima.</p>' : ''}${a.note ? `<p class="small muted">${esc(a.note)}</p>` : ''}${a.rows ? rank(a.rows.map((r) => ({ label: r[0], v: r[1], text: r[2] })), { nonum: true, cls: 'compact' }) : ''}${a.steps ? `<details><summary>Kako je izračunano</summary><ol>${a.steps.map((s) => `<li>${esc(s)}</li>`).join('')}</ol></details>` : ''}${a.src && a.src.length ? `<div class="srcrow"><span>Izvori:</span>${a.src.map(([l, h]) => `<a href="${h}">${esc(l)}</a>`).join('')}</div>` : ''}</div></div>` : `<div class="msg bot">${AV}<div class="bubble"><div class="typing" role="status"><i></i><i></i><i></i><span>Tražim u podacima…</span></div></div></div>`); };
-  function paint() { for (const m of mounts) { m.log.innerHTML = `<div class="msgs">${thread.length ? thread.map(msg).join('') : ''}</div>` + (thread.length ? '' : welcome()); m.log.scrollTop = m.log.scrollHeight; } $$('.sug button[data-q]').forEach((b) => b.onclick = () => ask(b.dataset.q)); const c = $('#dock-ctx'); if (c) c.innerHTML = `<span class="ctx">Gledate: <b>${esc(ctx.title)}</b></span>`; }
+  function paint() { for (const m of mounts) { m.log.innerHTML = `<div class="msgs">${thread.length ? thread.map(msg).join('') : ''}</div>` + (thread.length ? '' : welcome()); m.log.scrollTop = m.log.scrollHeight; } $$('.sug button[data-q]').forEach((b) => b.onclick = () => ask(b.textContent.trim())); const c = $('#dock-ctx'); if (c) c.innerHTML = `<span class="ctx">Gledate: <b>${esc(ctx.title)}</b></span>`; }
   function mount(log, form, input, go) {
     const m = { log, go }; mounts.add(m);
     form.addEventListener('submit', (e) => { e.preventDefault(); const q = input.value.trim(); if (q) { input.value = ''; input.style.height = 'auto'; ask(q); } });
@@ -2855,11 +2871,11 @@ function viewPitajte(root) {
   root.innerHTML = `${head('Pitajte · Asistent', 'Asistent za pitanja o podacima', 'Poseban asistent koji odgovara na pitanja o ovim podacima: projektima, organizacijama, županijama, državama i temama. Odgovara samo iz podataka atlasa i uz svaki odgovor navodi izvore.')}
   <div class="fullchat"><section class="chatcol" aria-label="Razgovor s asistentom"><div class="chathead"><span class="avatar" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 40 40"><path d="M20 4l5 16-5 16-5-16z" fill="#ffd617"/><path d="M4 20l16-5 16 5-16 5z" fill="#fff"/></svg></span><div><b>Kompas asistent</b><small>Odgovara iz podataka atlasa, uz izvore</small></div><button type="button" class="ic" id="pnew" title="Novi razgovor" aria-label="Novi razgovor" style="margin-left:auto"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 109-9 9 9 0 00-6.4 2.6L3 8"/><path d="M3 3v5h5"/></svg></button></div>
     <div class="chatlog" id="pl" role="log" aria-live="polite"></div>
-    <form id="pf"><label class="sr" for="pq">Pitanje</label><div class="composer"><textarea id="pq" rows="1" maxlength="500" placeholder="Upišite pitanje o podacima…" required></textarea><button class="send" type="submit" id="pg" aria-label="Pošalji"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M12 19V5M5.5 11.5 12 5l6.5 6.5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div></form></section>
+    <form id="pf"><label class="sr" for="pq">Pitanje</label><div class="composer"><textarea id="pq" rows="1" maxlength="500" placeholder="${T('Upišite pitanje o podacima…', 'Type a question about the data…')}" required></textarea><button class="send" type="submit" id="pg" aria-label="Pošalji"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M12 19V5M5.5 11.5 12 5l6.5 6.5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div></form></section>
   <aside class="topics card" aria-label="Što možete pitati"><h2>Što možete pitati</h2>${TOP.map(([t, qs]) => `<div><h3>${t}</h3><div class="sug">${qs.map((q) => `<button type="button" data-q="${esc(q)}">${esc(q)}</button>`).join('')}</div></div>`).join('')}<p class="small muted">Asistent ne zna ništa izvan ovih podataka i može pogriješiti. Provjerite izvore ispod odgovora.</p></aside></div>`;
   const off = Assistant.mount($('#pl', root), $('#pf', root), $('#pq', root), $('#pg', root));
   route.cleanup = off; $('#pnew', root).onclick = () => Assistant.reset();
-  $$('.topics .sug button', root).forEach((b) => b.onclick = () => Assistant.ask(b.dataset.q));
+  $$('.topics .sug button', root).forEach((b) => b.onclick = () => Assistant.ask(b.textContent.trim()));
 }
 
 /* ============ glue: the prototype's views run inside real pages of the Astro site ============
@@ -2930,7 +2946,7 @@ const EK = {
     try { entry[0](holder, arg ? [null, arg] : null); initSearch(root); } catch (e) { holder.innerHTML = `<div class="note">${esc(e.message)}</div>`; console.error(e); }
     ekLinks(root); root.setAttribute('aria-busy', 'false'); root.querySelectorAll('pre').forEach((el) => { el.tabIndex = 0; el.setAttribute('role', 'region'); if (!el.hasAttribute('aria-label')) el.setAttribute('aria-label', document.body.dataset.scrollable || 'Code'); });
     new MutationObserver(() => ekLinks(root)).observe(root, { childList: true, subtree: true });
-    Assistant.setContext(EK_VIEWKEY[name] || 'o', name);
+    Assistant.setContext(EK_VIEWKEY[name] || 'o', name); setTimeout(() => { const h = $('h1', holder); if (h) Assistant.setContext(EK_VIEWKEY[name] || 'o', h.textContent.trim().slice(0, 60)); }, 0);   // the title once the view has been translated
     if (name === 'ask') Assistant.hide();
     if (window.__pre) { const pr = window.__pre; window.__pre = null; const el = $(pr.sel, holder); if (el) { el.value = pr.value; el.dispatchEvent(new Event(pr.ev || 'input', { bubbles: true })); } }
     this.current = name;

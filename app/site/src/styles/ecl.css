@@ -447,6 +447,8 @@ body.dockopen .dock{display:grid;grid-template-columns:minmax(0,1fr);width:min(4
 .edgetab:hover{background:var(--blue-dk)}
 .edgetab::before{content:"";width:18px;height:4px;background:var(--yellow);border-radius:2px}
 body.dockopen .edgetab,body.navopen .edgetab{display:none}
+/* the Ask page is the assistant: no second shortcut to it (right-edge tab, top-bar button, panel) */
+body.onask .edgetab,body.onask #tb-ask,body.onask .dock{display:none!important}
 .scrim{position:fixed;inset:0;background:rgba(11,42,91,.5);z-index:45}
 .scrim[hidden]{display:none}
 
@@ -486,7 +488,8 @@ footer.site h2{font:700 .78rem var(--sans);letter-spacing:.12em;text-transform:u
 dd,.res .t,.kpi .num{overflow-wrap:anywhere}
 .seg{max-width:100%}
 /* ---------- prilagodba ---------- */
-@media (min-width:1500px){body.dockopen .layout{grid-template-columns:var(--side) minmax(0,1fr) 400px}}
+/* wide screens: the dock sits outside .layout, so it is fixed to the right edge and the page makes room for it (no overlay) */
+@media (min-width:1500px){.dock{position:fixed;right:0;top:0;bottom:0}body.dockopen .layout{margin-right:400px}}
 @media (max-width:1499px){
   .dock{position:fixed;right:0;top:0;bottom:0;box-shadow:-18px 0 40px -20px rgba(0,30,80,.5)}
 }

@@ -116,12 +116,24 @@ const AskAPI = (() => {
     probe.then((a) => { document.documentElement.dataset.ask = a ? 'api' : 'demo'; if (a && window.console) console.info('[Erasmus+ Kompas] Asistent koristi API: ' + a); });
     return probe;
   }
+  const ROUTE_NAME = { county_ranking: ['rang županija', 'ranking of counties'], county: ['jedna županija', 'one county'], county_project: ['projekt u županiji', 'project in a county'], top_organisations: ['najaktivnije organizacije', 'most active organisations'],
+    organisation: ['jedna organizacija', 'one organisation'], national: ['Hrvatska u cjelini', 'Croatia as a whole'], coverage: ['pokrivenost škola', 'school coverage'], country_ranking: ['rang država', 'ranking of countries'],
+    partner_countries: ['partnerske države', 'partner countries'], project_search: ['pretraga projekata', 'project search'], concepts: ['sadržaj projekata', 'project content'], glossary: ['rječnik', 'glossary'],
+    year_count: ['projekti po godini poziva', 'projects by call year'], value: ['vrijednost projekata', 'project value'], success: ['prolaznost prijava', 'success rate'], limits: ['izvan obuhvata (KA1/KA3)', 'outside the scope (KA1/KA3)'] };
+  const TOOL_NAME = { county_ranking: ['rang županija', 'county ranking'], county_stats: ['podaci o županiji', 'county figures'], county_project: ['n-ti projekt županije', 'n-th project of a county'], top_organisations: ['najaktivnije organizacije', 'most active organisations'],
+    organisation_profile: ['profil organizacije', 'organisation profile'], find_organisation: ['traženje organizacije', 'organisation lookup'], national_stats: ['državni pokazatelji', 'national figures'], partner_countries: ['partnerske države', 'partner countries'],
+    country_stats: ['države koordinatori', 'coordinating countries'], coverage: ['pokrivenost škola', 'school coverage'], search_projects: ['pretraga projekata', 'project search'], search_concepts: ['pretraga pojmova', 'concept search'],
+    concept_profile: ['profil pojma', 'concept profile'], common_concepts: ['najčešći pojmovi', 'most common concepts'], community_overview: ['skupine pojmova', 'concept groups'], concept_trends: ['trendovi pojmova', 'concept trends'],
+    connected_concepts: ['povezani pojmovi', 'connected concepts'], glossary: ['rječnik', 'glossary'], year_projects: ['projekti jedne godine poziva', 'projects of one call year'], success_rate: ['prolaznost prijava', 'success rate'], similar_organisations: ['slične organizacije', 'similar organisations'] };
+  const ARG_NAME = { period: ['razdoblje', 'period'], limit: ['broj', 'limit'], county: ['županija', 'county'], role: ['uloga', 'role'], year: ['godina', 'year'], n: ['redni broj', 'number'], order: ['redoslijed', 'order'], text: ['pojam', 'term'] };
+  const GLOSS_NAME = { coordinator: ['Koordinator', 'Coordinator'], partner: ['Partner', 'Partner'], ka2: ['KA1 i KA2', 'KA1 and KA2'], 'call-year': ['Godina poziva', 'Call year'], grant: ['Vrijednost projekata', 'Project value'], 'good-practice': ['Dobra praksa', 'Good practice'], coverage: ['Pokrivenost škola', 'School coverage'] };
   const link = (c) => {
     const i = c.indexOf(':'), k = c.slice(0, i), id = c.slice(i + 1);
     if (k === 'org') { const o = D.orgs.find((x) => x[0] === id); return [o ? o[1] : id.replace(/^(OID|MZO)-/, ''), '#/organizacije/' + encodeURIComponent(id)]; }
     if (k === 'project') { const p = D.projects.find((x) => x[0] === id); return [p ? p[1] : id, '#/projekti/' + encodeURIComponent(id)]; }
     if (k === 'county') { const z = countyBy(id); return [z ? shortCounty(z) : id, '#/mjesta/' + encodeURIComponent(id)]; }
     if (k === 'concept') return [id.replace(/^TOP:/, ''), '#/graf'];
+    if (k === 'glossary') return [T('Rječnik: ', 'Glossary: ') + (GLOSS_NAME[id] ? T(...GLOSS_NAME[id]) : id), '#/rjecnik'];
     return [c, '#/o-podacima'];
   };
   /* vraća null (ugrađeni odgovori) | {real} | {msg} | {down} */
@@ -134,8 +146,8 @@ const AskAPI = (() => {
       if (r.status === 503) return { msg: 'Asistent je trenutno zauzet. Pokušajte ponovno za nekoliko trenutaka.' };
       if (!r.ok) return { down: true };
       const a = await r.json(); lastOrg = a.last_org_id || lastOrg;
-      const tools = (a.tools || []).map((x) => x.tool + '(' + Object.entries(x.args || {}).filter(([, v]) => v !== null && v !== undefined).map(([k, v]) => k + '=' + v).join(', ') + ')');
-      return { real: { real: true, text: String(a.answer || ''), src: (a.citations || []).map(link), steps: [(a.route ? 'route: ' + a.route : ''), ...tools].filter(Boolean), fallback: !!a.fallback } };
+      const tools = (a.tools || []).map((x) => T('Izračun: ', 'Calculation: ') + (TOOL_NAME[x.tool] ? T(...TOOL_NAME[x.tool]) : x.tool) + (Object.entries(x.args || {}).some(([, v]) => v !== null && v !== undefined) ? ' (' + Object.entries(x.args || {}).filter(([, v]) => v !== null && v !== undefined).map(([k, v]) => (ARG_NAME[k] ? T(...ARG_NAME[k]) : k) + ': ' + v).join('; ') + ')' : ''));
+      return { real: { real: true, text: String(a.answer || ''), src: (a.citations || []).map(link), steps: [(a.route ? T('Vrsta pitanja: ', 'Question type: ') + (ROUTE_NAME[a.route] ? T(...ROUTE_NAME[a.route]) : a.route) : ''), ...tools].filter(Boolean), fallback: !!a.fallback } };
     } catch (e) { return { down: true }; } finally { clearTimeout(t); }
   }
   return { ask, available, forget: () => { lastOrg = null; } };
@@ -150,7 +162,7 @@ const Assistant = (() => {
   const welcome = () => `<div class="welcome"><div><h3>Što vas zanima?</h3><p>Odgovaram na pitanja o projektima, organizacijama, županijama, državama i temama. Brojke računam iz podataka atlasa i uz odgovor navodim izvor.</p></div><div class="sug">${prompts().map((p) => `<button type="button" data-q="${esc(p)}">${esc(p)}</button>`).join('')}</div></div>`;
   const ans = (m) => { if (!m.done) return null; if (m.real) return m.real; if (m.msg) return { text: m.msg, src: [], err: true }; if (!m.c || m.c.l !== LANG) m.c = { l: LANG, a: canned(m.q) }; return m.down ? { ...m.c.a, note: 'Asistent s modelom trenutno nije dostupan. Prikazan je odgovor izračunan izravno iz podataka.' } : m.c.a; };
   const msg = (m) => { const a = ans(m); return `<div class="msg you">${esc(m.q)}</div>` + (a ? `<div class="msg bot">${AV}<div class="bubble"><p${a.real ? ' class="real"' : ''}>${esc(a.text)}</p>${a.fallback ? '<p class="small muted">Odgovor nije u potpunosti potvrđen podacima.</p>' : ''}${a.note ? `<p class="small muted">${esc(a.note)}</p>` : ''}${a.rows ? rank(a.rows.map((r) => ({ label: r[0], v: r[1], text: r[2] })), { nonum: true, cls: 'compact' }) : ''}${a.steps ? `<details><summary>Kako je izračunano</summary><ol>${a.steps.map((s) => `<li>${esc(s)}</li>`).join('')}</ol></details>` : ''}${a.src && a.src.length ? `<div class="srcrow"><span>Izvori:</span>${a.src.map(([l, h]) => `<a href="${h}">${esc(l)}</a>`).join('')}</div>` : ''}</div></div>` : `<div class="msg bot">${AV}<div class="bubble"><div class="typing" role="status"><i></i><i></i><i></i><span>Tražim u podacima…</span></div></div></div>`); };
-  function paint() { for (const m of mounts) { m.log.innerHTML = `<div class="msgs">${thread.length ? thread.map(msg).join('') : ''}</div>` + (thread.length ? '' : welcome()); m.log.scrollTop = m.log.scrollHeight; } $$('.sug button[data-q]').forEach((b) => b.onclick = () => ask(b.dataset.q)); const c = $('#dock-ctx'); if (c) c.innerHTML = `<span class="ctx">Gledate: <b>${esc(ctx.title)}</b></span>`; }
+  function paint() { for (const m of mounts) { m.log.innerHTML = `<div class="msgs">${thread.length ? thread.map(msg).join('') : ''}</div>` + (thread.length ? '' : welcome()); m.log.scrollTop = m.log.scrollHeight; } $$('.sug button[data-q]').forEach((b) => b.onclick = () => ask(b.textContent.trim())); const c = $('#dock-ctx'); if (c) c.innerHTML = `<span class="ctx">Gledate: <b>${esc(ctx.title)}</b></span>`; }
   function mount(log, form, input, go) {
     const m = { log, go }; mounts.add(m);
     form.addEventListener('submit', (e) => { e.preventDefault(); const q = input.value.trim(); if (q) { input.value = ''; input.style.height = 'auto'; ask(q); } });
@@ -183,9 +195,9 @@ function viewPitajte(root) {
   root.innerHTML = `${head('Pitajte · Asistent', 'Asistent za pitanja o podacima', 'Poseban asistent koji odgovara na pitanja o ovim podacima: projektima, organizacijama, županijama, državama i temama. Odgovara samo iz podataka atlasa i uz svaki odgovor navodi izvore.')}
   <div class="fullchat"><section class="chatcol" aria-label="Razgovor s asistentom"><div class="chathead"><span class="avatar" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 40 40"><path d="M20 4l5 16-5 16-5-16z" fill="#ffd617"/><path d="M4 20l16-5 16 5-16 5z" fill="#fff"/></svg></span><div><b>Kompas asistent</b><small>Odgovara iz podataka atlasa, uz izvore</small></div><button type="button" class="ic" id="pnew" title="Novi razgovor" aria-label="Novi razgovor" style="margin-left:auto"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 109-9 9 9 0 00-6.4 2.6L3 8"/><path d="M3 3v5h5"/></svg></button></div>
     <div class="chatlog" id="pl" role="log" aria-live="polite"></div>
-    <form id="pf"><label class="sr" for="pq">Pitanje</label><div class="composer"><textarea id="pq" rows="1" maxlength="500" placeholder="Upišite pitanje o podacima…" required></textarea><button class="send" type="submit" id="pg" aria-label="Pošalji"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M12 19V5M5.5 11.5 12 5l6.5 6.5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div></form></section>
+    <form id="pf"><label class="sr" for="pq">Pitanje</label><div class="composer"><textarea id="pq" rows="1" maxlength="500" placeholder="${T('Upišite pitanje o podacima…', 'Type a question about the data…')}" required></textarea><button class="send" type="submit" id="pg" aria-label="Pošalji"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M12 19V5M5.5 11.5 12 5l6.5 6.5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div></form></section>
   <aside class="topics card" aria-label="Što možete pitati"><h2>Što možete pitati</h2>${TOP.map(([t, qs]) => `<div><h3>${t}</h3><div class="sug">${qs.map((q) => `<button type="button" data-q="${esc(q)}">${esc(q)}</button>`).join('')}</div></div>`).join('')}<p class="small muted">Asistent ne zna ništa izvan ovih podataka i može pogriješiti. Provjerite izvore ispod odgovora.</p></aside></div>`;
   const off = Assistant.mount($('#pl', root), $('#pf', root), $('#pq', root), $('#pg', root));
   route.cleanup = off; $('#pnew', root).onclick = () => Assistant.reset();
-  $$('.topics .sug button', root).forEach((b) => b.onclick = () => Assistant.ask(b.dataset.q));
+  $$('.topics .sug button', root).forEach((b) => b.onclick = () => Assistant.ask(b.textContent.trim()));
 }

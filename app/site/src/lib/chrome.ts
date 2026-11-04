@@ -34,7 +34,7 @@ const T = {
     src2: ['Erasmus+ programme 2021–2027 (data.gov.hr)', 'Agency for Mobility and EU Programmes. Croatian participants and amounts.'],
     src3: ['Registers of institutions (data.gov.hr)', 'Ministry of Science and Education: kindergartens, primary and secondary schools, higher education.'],
     sourceCode: 'Source code (GitHub)',
-    dockTitle: 'Compass assistant', dockSub: 'Answers only from the atlas data', dockNew: 'New conversation', dockFull: 'Open on the full page', dockClose: 'Close the assistant', dockQ: 'Question for the assistant',
+    dockTitle: 'Kompas assistant', dockSub: 'Answers only from the atlas data', dockNew: 'New conversation', dockFull: 'Open on the full page', dockClose: 'Close the assistant', dockQ: 'Question for the assistant',
     dockPh: 'Type a question about the data…', dockSend: 'Send', dockNote: 'The assistant can be wrong. Check the sources under the answer.', loading: 'Loading…',
     legal: 'Figures are taken from the public sources named above and calculated in this project. This is an independent project and not an official site of the European Commission or the Agency for Mobility and EU Programmes.',
   },

@@ -285,3 +285,57 @@ def test_page_language_decides_for_bare_names():
     assert detect_language("Which counties have the most projects?", "hr") == "en"
     assert detect_language("Koliko projekata ima Splitsko-dalmatinska županija?", "en") == "hr"
     assert detect_language("Varaždinska") == "hr"
+
+
+@pytest.mark.parametrize("question,lang,expect", [
+    ("what was the first topic of very first project in Grad Zagreb", "en", ("MANUCULTURA", "Creativity and culture")),
+    ("Koji je prvi projekt u Gradu Zagrebu i koja mu je tema?", "hr", ("MANUCULTURA", "Teme prema izvoru")),
+    ("What is the 5th project in Istria County?", "en", ("EH-CMap", "Energy and resources")),
+    ("What is the last project in Varaždin County?", "en", ("last", "2026"))])
+def test_nth_project_of_a_county_with_its_topics(tb, question, lang, expect):
+    r = asker(tb, FakeRouter(route="out_of_scope")).ask(question)
+    assert r["route"] == "county_project" and r["tools"][0]["tool"] == "county_project" and r["verified"], r["problems"]
+    assert r["lang"] == lang and all(x in r["answer"] for x in expect)
+    assert r["citations"] and r["citations"][0].startswith("project:")
+
+
+def test_nth_project_beyond_the_end_says_so(tb):
+    res = tb.county_project("Istarska", 9999)
+    assert res.rows[0]["total"] < 9999 and "only" in res.notes[0]
+
+
+def test_english_county_names_resolve(tb):
+    assert tb.resolve_county("projects in Split-Dalmatia County") == "Splitsko-dalmatinska"
+    assert tb.resolve_county("Istria") == "Istarska" and tb.resolve_county("City of Zagreb") == "Grad Zagreb"
+
+
+@pytest.mark.parametrize("question,route,expect", [
+    ("What does coordinator mean?", "glossary", "submits the application"),
+    ("Što znači koordinator?", "glossary", "podnosi prijavu"),
+    ("How many projects were there in 2023?", "year_count", "328"),
+    ("Koliko je projekata bilo 2023.?", "year_count", "328"),
+    ("What is the total value of the projects?", "value", "million"),
+    ("Who coordinates the most projects in Osijek-Baranja County?", "top_organisations", "Osijek"),
+    ("Which topics are the most common?", "concepts", "topics")])
+def test_suggested_questions_of_the_ask_page(tb, question, route, expect):
+    r = asker(tb, FakeRouter(route="county_ranking" if route == "top_organisations" else "out_of_scope")).ask(question)   # the small router sends the county question to the ranking
+    assert r["route"] == route and r["verified"], (r["route"], r["problems"])
+    assert expect.lower() in r["answer"].lower() or route == "concepts"
+
+
+def test_coordinator_question_ranks_by_coordinations(tb):
+    a = asker(tb, FakeRouter(route="top_organisations")).ask("Who coordinates the most projects?")
+    b = asker(tb, FakeRouter(route="top_organisations")).ask("Which organisations have the most projects?")
+    assert a["tools"][0]["args"]["role"] == "coordinator" and b["tools"][0]["args"]["role"] == "any"
+    assert "coordinate the most" in a["answer"] and a["answer"] != b["answer"] and a["verified"]
+    rows = tb.top_organisations(None, "all", 5, "coordinator").rows
+    assert [r["coordinated"] for r in rows] == sorted((r["coordinated"] for r in rows), reverse=True)
+
+
+def test_english_money_and_percent_style_and_croatian_terms(tb):
+    from atlas.ask import en_style
+    assert en_style("worth 952.7 million € (7,340,431 €), 24 %") == "worth €952.7 million (€7,340,431), 24%"
+    r = asker(tb, FakeRouter(route="organisation", organisation="Gimnazija Metković")).ask("Koliko KA2 projekata ima Gimnazija Metković?")
+    assert "Bespovratna sredstva projekata koje koordinira" in r["answer"] and "Potpore" not in r["answer"]
+    p = asker(tb, FakeRouter(route="partner_countries")).ask("S kojim državama Hrvatska surađuje?")
+    assert "zemlje" not in p["answer"]

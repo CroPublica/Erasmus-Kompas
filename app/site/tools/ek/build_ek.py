@@ -64,6 +64,10 @@ i18n = sub(i18n, "function collect(root = document.body)", "function collect(roo
 i18n = sub(i18n, "    const y = window.scrollY, navOpen = document.body.classList.contains('navopen');\n    if (typeof paintDate === 'function') paintDate();\n    if (typeof route === 'function') route();\n    window.scrollTo(0, y); if (navOpen) setNav(true);\n", '', 'i18n.js')
 i18n = sub(i18n, "    $$('.lang button').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.lang === l)));\n", '', 'i18n.js')
 i18n = sub(i18n, "const I18N = (() => {", "const VIEWROOT = () => document.getElementById('view') || document.body;\nconst I18N = (() => {", 'i18n.js')
+# the assistant dock lives outside #view: translate and watch it as well
+i18n = sub(i18n, "if (l === 'hr') toHR(VIEWROOT());", "if (l === 'hr') { toHR(VIEWROOT()); const dk = document.getElementById('dock'); if (dk) toHR(dk); }", 'i18n.js')
+i18n = sub(i18n, "if (l === 'en') toEN(VIEWROOT());", "if (l === 'en') { toEN(VIEWROOT()); const dk = document.getElementById('dock'); if (dk) toEN(dk); }", 'i18n.js')
+i18n = sub(i18n, "const watch = () => obs.observe(VIEWROOT(), {", "const OBSO = { childList: true, subtree: true, characterData: true, attributes: true, attributeFilter: ATTRS };\n  const watch = () => { const dk = document.getElementById('dock'); if (dk) obs.observe(dk, OBSO); obs.observe(VIEWROOT(), OBSO); };\n  const watchOld = () => obs.observe(VIEWROOT(), {", 'i18n.js')
 views2 = sub(rd('views2.js'), "new MutationObserver(enhSoon).observe($('#view'),", "if ($('#view')) new MutationObserver(enhSoon).observe($('#view'),", 'views2.js')
 views2 = sub(views2, "$('#view').addEventListener('change', enhSoon); $('#view').addEventListener('input', enhSoon);", "if ($('#view')) { $('#view').addEventListener('change', enhSoon); $('#view').addEventListener('input', enhSoon); }", 'views2.js')
 views = rd('views.js')
@@ -87,6 +91,7 @@ views = sub(views, "  draw();\n}\n\n/* ============ view: Problemi i rješenja",
 views = views.replace("const base = () => (typeof window.EK_DATA_BASE === 'string' ? window.EK_DATA_BASE : 'data/');", "const base = () => window.EK_DATA_BASE;")
 pages = rd('pages.js')
 en = sub(rd('i18n-en.js'), '"Nema pojmova za odabrane filtre.": "No terms for the selected filters."', '"Nema pojmova za odabrane filtre.": "No terms for the selected filters.",\n"Hrvatske organizacije u projektima s ovim pojmom": "Croatian organisations in projects with this term"', 'i18n-en.js')
+en = en.replace('const EN_DICT = {', 'const EN_DICT = {\n"Upišite pitanje o podacima…": "Type a question about the data…",\n"Vrsta pitanja: ": "Question type: ",', 1)
 parts = [core, rd('ui.js'), rd('export.js'), i18n, en, views, views2, rd('heromap.js'), rd('hero.js'), pages, rd('assistant.js'), rd('engine.js')]
 bundle = '(function(){\n"use strict";\n' + '\n'.join(parts) + '\n})();\n'
 open(os.path.join(OUT, 'ek.js'), 'w', encoding='utf-8').write(bundle)

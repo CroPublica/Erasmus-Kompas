@@ -6,7 +6,7 @@ export type Lang = (typeof LANGS)[number];
 const T = {
   en: {
     site: 'ERASMUS+ KOMPAS', tagline: 'Erasmus+ partnerships · Croatia',
-    nav: { graph: 'Explore graph', coverage: 'Coverage map', orgs: 'Organisations', places: 'Places', ask: 'Ask' },
+    nav: { graph: 'Concept network', coverage: 'Coverage map', orgs: 'Organisations', places: 'Places', ask: 'Ask' },
     soon: 'coming soon', search: 'Search', searchPh: 'Organisation, town…',
     coverageKicker: 'COVERAGE · KA2 PARTNERSHIPS 2014–2026', coverageTitle: 'Which schools take part?',
     coverageLead: 'Share of schools in each county that took part in at least one KA2 partnership, as coordinator or partner.',
@@ -37,7 +37,7 @@ const T = {
     topNames: 'Topic names are the EU’s own and are shown in English.', topCount: 'Projects', topYear: 'Call year', topFilter: 'Filter topics', topNone: 'Choose at least one topic.',
     similar: 'Similar organisations', similarLead: 'Same type of institution in the same county, same town first. Distances are not shown.', noKa2: 'No KA2 projects found since 2014', sameTown: 'same town',
     euCard: 'View on the Erasmus+ Project Results Platform', projectSite: 'Project website', euLinks: 'On the web',
-    projectKicker: 'PROJECT', summary: 'Summary', participants: 'Croatian participants', partners: 'Partner countries', grant: 'Grant', grantNote: 'Indicative amount awarded at selection for the whole project, not split between partners.', gpNote: 'Marked as good practice', notComparable: 'School exchange partnerships pay each school its own grant, so this total is not comparable with other KA2 projects.', summaryNote: 'Project text is in the language it was submitted in.', topicsLbl: 'Topics', conceptsLbl: 'Key concepts', conceptsNote: 'A language model picked these out of the summary; each links to what usually goes with it in the graph.', noTopics: 'No topics listed in the source.',
+    projectKicker: 'PROJECT', summary: 'Summary', participants: 'Croatian participants', partners: 'Partner countries', grant: 'Grant', grantNote: 'Indicative amount awarded at selection for the whole project, not split between partners.', gpNote: 'Marked as good practice', notComparable: 'School exchange partnerships pay each school its own grant, so this total is not comparable with other KA2 projects.', summaryNote: 'Project text is in the language it was submitted in.', topicsLbl: 'Topics', conceptsLbl: 'Key concepts', conceptsNote: 'A language model picked these out of the summary; each links to what usually goes with it in the concept network.', noTopics: 'No topics listed in the source.',
     byCounty: 'By county', byCountyLead: 'One equal tile per county, placed roughly where it lies, so small counties stay visible.',
     ranked: 'Ranked, with uncertainty',
     rankedLead: 'Bars show the 95 % range. Only counties whose whole bar sits off the national line differ clearly; small counties have wide bars.',
@@ -68,7 +68,7 @@ const T = {
   },
   hr: {
     site: 'ERASMUS+ KOMPAS', tagline: 'Erasmus+ partnerstva · Hrvatska',
-    nav: { graph: 'Istražite graf', coverage: 'Karta pokrivenosti', orgs: 'Organizacije', places: 'Mjesta', ask: 'Pitajte' },
+    nav: { graph: 'Mreža pojmova', coverage: 'Karta pokrivenosti', orgs: 'Organizacije', places: 'Mjesta', ask: 'Pitajte' },
     soon: 'uskoro', search: 'Tražite', searchPh: 'Organizacija, mjesto…',
     coverageKicker: 'POKRIVENOST · KA2 PARTNERSTVA 2014.–2026.', coverageTitle: 'Koje škole sudjeluju?',
     coverageLead: 'Udio škola u svakoj županiji koje su sudjelovale u barem jednom KA2 partnerstvu, kao koordinator ili partner.',
