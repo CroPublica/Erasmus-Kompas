@@ -80,3 +80,10 @@ aside.side{view-transition-name:ek-side}
 .topbar{view-transition-name:ek-top}
 ::view-transition-old(root),::view-transition-new(root){animation-duration:.18s}
 @media (prefers-reduced-motion:reduce){::view-transition-group(*),::view-transition-old(*),::view-transition-new(*){animation:none!important}}
+
+/* concept network legend: one tidy row, like the legend of the map */
+.gv-legend{display:flex;flex-wrap:wrap;align-items:center;gap:8px 20px;margin:12px 0 10px;font-size:.9rem;color:var(--ink)}
+.gv-key{display:inline-flex;align-items:center;gap:8px;line-height:1.2}
+.gv-key svg{width:16px;height:16px;flex:none}
+.gv-key.gv-note{color:var(--muted);font-size:.85rem}
+.gv-crumbs{margin:12px 0 4px}

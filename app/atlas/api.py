@@ -48,6 +48,7 @@ def client_id(request: Request) -> str:
 class AskRequest(BaseModel):
     question: str = Field(..., max_length=MAX_QUESTION_CHARS)
     last_org_id: Optional[str] = Field(None, max_length=64)
+    lang: Optional[str] = Field(None, pattern="^(hr|en)$")      # language of the page the question was typed on
 
 
 def create_app(asker: Optional[Asker] = None) -> FastAPI:
@@ -80,7 +81,7 @@ def create_app(asker: Optional[Asker] = None) -> FastAPI:
         except asyncio.TimeoutError:
             raise HTTPException(503, "busy, try again shortly")
         try:
-            result = await asyncio.to_thread(get_asker().ask, req.question, req.last_org_id)
+            result = await asyncio.to_thread(get_asker().ask, req.question, req.last_org_id, req.lang)
         finally:
             state["sem"].release()
         log.info("ask route=%s lang=%s verified=%s fallback=%s total_s=%s", result["route"], result["lang"], result["verified"],

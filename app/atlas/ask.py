@@ -127,7 +127,17 @@ _EN_WORDS = {"the", "how", "which", "what", "many", "is", "of", "in", "did", "ha
 _EN_WORDS -= {"on", "it", "me"}                      # also Croatian words (on = he, me, ...): they must not count for English
 
 
-def detect_language(text: str) -> str:
+def detect_language(text: str, hint: Optional[str] = None) -> str:
+    """Language of the question. `hint` is the language of the page the question came from: a bare name
+    (Varaždinska, Sveučilište u Zagrebu) says nothing, so it keeps the page language unless the question
+    is clearly a sentence in the other one (two or more function words)."""
+    if hint in ("hr", "en"):
+        tl = re.sub(r"\S+-\S+", " ", text.lower())
+        words = set(re.findall(r"[a-zčćžšđ]+", tl))
+        other = (_EN_WORDS if hint == "hr" else _HR_WORDS)
+        own = (_HR_WORDS if hint == "hr" else _EN_WORDS)
+        o, w = len(words & other), len(words & own)
+        return ("en" if hint == "hr" else "hr") if o >= 2 and o > w else hint
     t = re.sub(r"\b[A-ZČĆŽŠĐ]\w*", " ", text.lstrip()[:1] + text[1:] if False else text)   # capitalised words are names (Varaždinska, Zagreb)
     t = (text.split(None, 1)[0].lower() + " " if text.split(None, 1) and text.split(None, 1)[0][:1].isupper() else "") + t.lower()
     t = re.sub(r"\S+-\S+", " ", t)                    # hyphenated names (Koprivničko-križevačka županija): not wording
@@ -609,6 +619,7 @@ def _concept_answer_core(lang: str, results: list[dict]) -> str:
 class State(TypedDict, total=False):
     question: str
     lang: str
+    lang_hint: Optional[str]
     last_org_id: Optional[str]
     plan: Optional[dict]
     results: list[dict]
@@ -648,7 +659,7 @@ class Asker:
 
     # -- nodes
     def n_language(self, s: State) -> State:
-        lang = detect_language(s["question"])
+        lang = detect_language(s["question"], s.get("lang_hint"))
         base = {"lang": lang, "attempts": 0, "trace": [], "timings": {}}
         if not s["question"].strip():
             base.update(done=True, plan={"route": "out_of_scope"}, results=[], trace=["empty question"],
@@ -814,9 +825,9 @@ class Asker:
         g.add_conditional_edges("verify", lambda s: "end" if s.get("done") else "compose", {"end": END, "compose": "compose"})
         return g.compile()
 
-    def ask(self, question: str, last_org_id: Optional[str] = None) -> dict:
+    def ask(self, question: str, last_org_id: Optional[str] = None, lang_hint: Optional[str] = None) -> dict:
         t0 = time.time()
-        s = self.graph.invoke({"question": question, "last_org_id": last_org_id})
+        s = self.graph.invoke({"question": question, "last_org_id": last_org_id, "lang_hint": lang_hint})
         results = s.get("results", [])
         cites = []
         for r in results:

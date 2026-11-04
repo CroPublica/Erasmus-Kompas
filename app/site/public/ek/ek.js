@@ -2801,7 +2801,7 @@ const AskAPI = (() => {
     const u = await available(); if (!u) return null;
     const [sig, t] = tmo(120000);
     try {
-      const r = await fetch(u, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ question: q, last_org_id: lastOrg }), signal: sig });
+      const r = await fetch(u, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ question: q, last_org_id: lastOrg, lang: document.documentElement.lang === 'en' ? 'en' : 'hr' }), signal: sig });
       if (r.status === 429) return { msg: 'Previše upita u kratkom vremenu. Pričekajte minutu i pokušajte ponovno.' };
       if (r.status === 503) return { msg: 'Asistent je trenutno zauzet. Pokušajte ponovno za nekoliko trenutaka.' };
       if (!r.ok) return { down: true };
@@ -2928,7 +2928,7 @@ const EK = {
     root.innerHTML = '';
     const holder = document.createElement('div'); root.append(holder);
     try { entry[0](holder, arg ? [null, arg] : null); initSearch(root); } catch (e) { holder.innerHTML = `<div class="note">${esc(e.message)}</div>`; console.error(e); }
-    ekLinks(root); root.setAttribute('aria-busy', 'false');
+    ekLinks(root); root.setAttribute('aria-busy', 'false'); root.querySelectorAll('pre').forEach((el) => { el.tabIndex = 0; el.setAttribute('role', 'region'); if (!el.hasAttribute('aria-label')) el.setAttribute('aria-label', document.body.dataset.scrollable || 'Code'); });
     new MutationObserver(() => ekLinks(root)).observe(root, { childList: true, subtree: true });
     Assistant.setContext(EK_VIEWKEY[name] || 'o', name);
     if (name === 'ask') Assistant.hide();

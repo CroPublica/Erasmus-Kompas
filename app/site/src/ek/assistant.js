@@ -129,7 +129,7 @@ const AskAPI = (() => {
     const u = await available(); if (!u) return null;
     const [sig, t] = tmo(120000);
     try {
-      const r = await fetch(u, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ question: q, last_org_id: lastOrg }), signal: sig });
+      const r = await fetch(u, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ question: q, last_org_id: lastOrg, lang: document.documentElement.lang === 'en' ? 'en' : 'hr' }), signal: sig });
       if (r.status === 429) return { msg: 'Previše upita u kratkom vremenu. Pričekajte minutu i pokušajte ponovno.' };
       if (r.status === 503) return { msg: 'Asistent je trenutno zauzet. Pokušajte ponovno za nekoliko trenutaka.' };
       if (!r.ok) return { down: true };

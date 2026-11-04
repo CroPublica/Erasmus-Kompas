@@ -275,3 +275,13 @@ def test_partner_countries_are_not_confused_with_coordinators_or_schools(tb, que
 def test_a_named_county_still_goes_to_the_county_route(tb):
     r = asker(tb, FakeRouter(route="county", county="Splitsko-dalmatinska")).ask("Koliko projekata ima Splitsko-dalmatinska županija?")
     assert r["route"] == "county" and "320" in r["answer"]
+
+
+def test_page_language_decides_for_bare_names():
+    from atlas.ask import detect_language
+    assert detect_language("Varaždinska", "en") == "en"
+    assert detect_language("Sveučilište u Zagrebu", "en") == "en"
+    assert detect_language("Varaždinska", "hr") == "hr"
+    assert detect_language("Which counties have the most projects?", "hr") == "en"
+    assert detect_language("Koliko projekata ima Splitsko-dalmatinska županija?", "en") == "hr"
+    assert detect_language("Varaždinska") == "hr"

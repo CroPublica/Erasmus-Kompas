@@ -5,7 +5,7 @@ from atlas import api
 
 
 class FakeAsker:
-    def ask(self, question, last_org_id=None):
+    def ask(self, question, last_org_id=None, lang_hint=None):
         return {"answer": f"echo: {question}", "lang": "hr", "route": "national", "citations": [], "tools": [], "verified": True,
                 "fallback": False, "last_org_id": last_org_id, "timings": {"total_s": 0.01}}
 
