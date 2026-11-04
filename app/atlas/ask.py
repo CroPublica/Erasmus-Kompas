@@ -24,7 +24,7 @@ from atlas.config import make_chat_model
 from atlas.countries import country_name
 from atlas.tools import Toolbox, ToolResult
 
-Route = Literal["limits", "success", "organisation", "county", "national", "coverage", "country_ranking", "top_organisations",
+Route = Literal["limits", "success", "organisation", "county", "national", "coverage", "country_ranking", "county_ranking", "partner_countries", "top_organisations",
                 "project_search", "concepts", "out_of_scope"]
 
 
@@ -48,6 +48,8 @@ Choose exactly one route:
 - coverage: share of schools (or kindergartens) that took part, by county, against the national rate or expectation
 - success: success rate of Croatian applications (applications received, projects contracted, pass rate) by call year
 - country_ranking: which country coordinates most / where Croatia ranks among countries
+- county_ranking: which counties have the most projects (a ranking of counties, no single county named)
+- partner_countries: which countries Croatian organisations partner with / cooperate with
 - top_organisations: the most active organisations (nationally or in a county)
 - project_search: find projects about a topic given in plain words (give the topic words in 'topic')
 - concepts: the content of projects: most common methods, approaches, target groups, outputs or problems; what projects do about a problem or theme; what to expect in a typical project; groups of related concepts
@@ -67,6 +69,8 @@ Examples (the answer is always one JSON object):
 "Koliko škola u Ličko-senjskoj županiji još nije sudjelovalo?" -> {"route": "coverage", "county": "Ličko-senjska"}
 "Koja zemlja najčešće koordinira KA2 projekte u EU?" -> {"route": "country_ranking"}
 "Koja hrvatska organizacija ima najviše projekata?" -> {"route": "top_organisations"}
+"Koje županije imaju najviše projekata?" -> {"route": "county_ranking"}
+"S kojim državama Hrvatska surađuje?" -> {"route": "partner_countries"}
 "Koji projekti rješavaju nedostatak digitalnih vještina u Slavoniji?" -> {"route": "concepts"}
 "Koje su najčešće metode u KA2 projektima?" -> {"route": "concepts"}
 "What do projects do about early school leaving?" -> {"route": "concepts"}
@@ -214,6 +218,10 @@ def enrich_plan(plan: dict, question: str, tb) -> dict:
         plan["route"] = "concepts"
     elif re.search(r"\bka\s?1\b|\bka\s?3\b|mobilnost", q):
         plan["route"] = "limits"
+    elif re.search(r"kojim (dr[zž]avama|zemljama)|partnersk\w* (dr[zž]av|zemlj)|partner countr|(which|what) countries .*(partner|work|cooperat|collaborat)|(surađ|suradj|partner)\w* (s|sa) (kojim|kojima)", q) and not tb.find_organisation_in_text(question).rows:
+        plan["route"] = "partner_countries"
+    elif re.search(r"(koje|koja|which)\s+([\wčćšžđ]+\s+)?(županij|zupanij|countie)", q) and not tb.resolve_county(question):
+        plan["route"] = "county_ranking"
     elif re.search(r"koja zemlja|koje zemlje|na kojem je mjestu|which country|which countries|\brank", q) and not tb.find_organisation_in_text(question).rows:
         plan["route"] = "country_ranking"
     elif re.search(r"vrste organizacija|types? of organi[sz]ations|koje organizacije najčešće koordin", q):
@@ -490,6 +498,15 @@ def template_answer(lang: str, route: str, results: list[dict]) -> str:
         tail_hr = (f" Hrvatska je na {hrr['rank']}. mjestu od {hrr['countries_total']} zemalja koordinatora u {'2014.–2020.' if hrr['period'] == '2014-2020' else '2021.–2026.'} ({f(hrr['coordinated_projects'])} projekata)." if hr else f" Croatia ranks {hrr['rank']} of {hrr['countries_total']} coordinating countries in {'2014–2020' if hrr['period'] == '2014-2020' else '2021–2026'} ({f(hrr['coordinated_projects'])} projects).") if hrr else ""
         return (f"Najviše KA2 projekata koordinira {country_name(top['country'], lang)} ({f(top['coordinated_projects'])})." if hr else
                 f"Most KA2 projects are coordinated from {country_name(top['country'], lang)} ({f(top['coordinated_projects'])}).") + tail_hr
+    if t == "county_ranking":
+        rows = results[-1]["rows"]
+        names = lambda r: _label(lang, r["label"]) if lang == "en" else r["label"]
+        return ((f"Županije prema broju KA2 projekata sa sudionikom iz županije: " + "; ".join(f"{names(x)}: {f(x['projects_involved'])}" for x in rows) + ". Projekt s organizacijama iz dvije županije broji se u obje.") if hr else
+                (f"Counties by number of KA2 projects with a participant from the county: " + "; ".join(f"{names(x)}: {f(x['projects_involved'])}" for x in rows) + ". A project with organisations from two counties counts in both."))
+    if t == "partner_countries":
+        rows = results[-1]["rows"]
+        return ((f"Najčešće partnerske države u KA2 projektima s hrvatskim sudionikom (broj projekata): " + "; ".join(f"{country_name(x['country'], lang)}: {f(x['projects'])}" for x in rows) + f". Ukupno {f(rows[0]['countries_total'])} država, {f(rows[0]['projects_total'])} projekata.") if hr else
+                (f"Most frequent partner countries in KA2 projects with a Croatian participant (number of projects): " + "; ".join(f"{country_name(x['country'], lang)}: {f(x['projects'])}" for x in rows) + f". {f(rows[0]['countries_total'])} countries in all, {f(rows[0]['projects_total'])} projects."))
     if t == "top_organisations":
         rows = results[-1]["rows"][:5]
         county = results[-1]["args"].get("county")
@@ -739,6 +756,10 @@ class Asker:
             ys = sorted({int(y) for y in re.findall(r"20[12]\d", s["question"])})
             per = "2014-2020" if ys and ys[-1] <= 2020 else "2021-2027"
             results.append(tb.success_rate(per, ys[0] if len(ys) == 1 else None, "KA1" if re.search(r"\bka\s?1\b", s["question"].lower()) else "KA2"))
+        elif r == "county_ranking":
+            results.append(tb.county_ranking(plan["period"]))
+        elif r == "partner_countries":
+            results.append(tb.partner_countries(plan["period"]))
         elif r == "country_ranking":
             results.append(tb.country_stats("2021-2027" if plan["period"] == "all" else plan["period"]))
         elif r == "top_organisations":

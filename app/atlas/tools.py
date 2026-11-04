@@ -310,6 +310,36 @@ class Toolbox:
         res.notes.append("projects with at least one Croatian participant; 2026 selection is not complete; organisation classes group the EU organisation types (ngo includes civil society organisations at European level)")
         return res
 
+    def county_ranking(self, period: str = "all", limit: int = 5) -> ToolResult:
+        """Counties by number of KA2 projects with a participant from the county (a project with organisations from two counties counts in both)."""
+        res = ToolResult("county_ranking", {"period": period, "limit": limit})
+        if period not in PERIODS:
+            res.notes.append("unknown period")
+            return res
+        rows = self._rows("select county, projects_involved, projects_coordinated, organisations from v_county_ka2 where period = ? "
+                          "order by projects_involved desc, county", [period])
+        for i, r in enumerate(rows, 1):
+            r["rank"], r["label"], r["counties_total"] = i, self._counties.get(r["county"], r["county"]), len(rows)
+        res.rows = rows[:limit]
+        res.citations = [f"county:{r['county']}" for r in res.rows]
+        res.notes.append("projects_involved = projects with an organisation from the county (each once); a project with organisations from two counties counts in both, so the counts do not add up to the national total")
+        return res
+
+    def partner_countries(self, period: str = "all", limit: int = 8) -> ToolResult:
+        """Countries whose organisations are partners in the same KA2 projects as Croatian organisations (projects counted once per country)."""
+        res = ToolResult("partner_countries", {"period": period, "limit": limit})
+        if period != "all" and period not in PERIODS:
+            res.notes.append("unknown period")
+            return res
+        where, params = ("", []) if period == "all" else (" where period = ?", [period])
+        rows = self._rows(f"select countries from project{where}", params)
+        from collections import Counter
+        cc = Counter(c for r in rows for c in set((r["countries"] or "").split(",")) if c and c != "HR")
+        total = len(rows)
+        res.rows = [{"country": c, "projects": n, "rank": i, "countries_total": len(cc), "projects_total": total} for i, (c, n) in enumerate(cc.most_common(limit), 1)]
+        res.notes.append("number of KA2 projects with a Croatian participant that also have a partner from the country; country codes are Erasmus+ codes (EL = Greece)")
+        return res
+
     def country_stats(self, period: str = "2021-2027", limit: int = 10) -> ToolResult:
         """Coordinating countries across all KA2 projects in the EU export (not only Croatian ones)."""
         res = ToolResult("country_stats", {"period": period, "limit": limit})

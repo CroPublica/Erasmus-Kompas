@@ -254,3 +254,24 @@ def test_titles_are_quoted_as_names_and_lists_have_a_lead_sentence(tb):
 def test_an_organisation_named_in_the_question_beats_the_country_ranking(tb):
     r = asker(tb, FakeRouter(route="organisation", organisation="Srednja škola Metković")).ask("Which countries does Srednja škola Metković work with most?")   # the word 'countries' must not override the router
     assert r["route"] == "organisation" and "Works most with" in r["answer"]
+
+
+@pytest.mark.parametrize("question,wrong_route", [("Koje županije imaju najviše projekata?", "county"), ("Which counties have the most projects?", "county"),
+                                                    ("Koje županije imaju najviše projekata?", "national")])
+def test_ranking_of_counties_is_answered_whatever_the_router_says(tb, question, wrong_route):
+    r = asker(tb, FakeRouter(route=wrong_route)).ask(question)
+    assert r["route"] == "county_ranking" and ("Grad Zagreb" in r["answer"] or "City of Zagreb" in r["answer"]) and "1.445" in r["answer"].replace(",", ".") and r["citations"]
+    assert r["tools"][0]["tool"] == "county_ranking" and "Nema dokaza" not in r["answer"] and "No evidence" not in r["answer"]
+
+
+@pytest.mark.parametrize("question,wrong_route", [("S kojim državama Hrvatska surađuje?", "coverage"), ("Which countries does Croatia partner with?", "country_ranking"),
+                                                    ("S kojim državama Hrvatska surađuje?", "county")])
+def test_partner_countries_are_not_confused_with_coordinators_or_schools(tb, question, wrong_route):
+    r = asker(tb, FakeRouter(route=wrong_route)).ask(question)
+    assert r["route"] == "partner_countries" and r["tools"][0]["tool"] == "partner_countries"
+    assert ("Italija" in r["answer"] or "Italy" in r["answer"]) and "škola" not in r["answer"]
+
+
+def test_a_named_county_still_goes_to_the_county_route(tb):
+    r = asker(tb, FakeRouter(route="county", county="Splitsko-dalmatinska")).ask("Koliko projekata ima Splitsko-dalmatinska županija?")
+    assert r["route"] == "county" and "320" in r["answer"]
