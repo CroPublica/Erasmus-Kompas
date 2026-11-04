@@ -64,7 +64,7 @@ const EK = {
     root.innerHTML = '';
     const holder = document.createElement('div'); root.append(holder);
     try { entry[0](holder, arg ? [null, arg] : null); initSearch(root); } catch (e) { holder.innerHTML = `<div class="note">${esc(e.message)}</div>`; console.error(e); }
-    ekLinks(root);
+    ekLinks(root); root.setAttribute('aria-busy', 'false');
     new MutationObserver(() => ekLinks(root)).observe(root, { childList: true, subtree: true });
     Assistant.setContext(EK_VIEWKEY[name] || 'o', name);
     if (name === 'ask') Assistant.hide();

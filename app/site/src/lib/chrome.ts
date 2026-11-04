@@ -21,7 +21,7 @@ const T = {
     legal: 'Brojke su preuzete iz navedenih javnih izvora i izračunate u ovom projektu. Ovo je neovisan projekt i nije službena stranica Europske komisije ni Agencije za mobilnost i programe EU.',
   },
   en: {
-    tagline: 'KA2 partnerships atlas', nav: 'Main navigation', menu: 'Menu', closeMenu: 'Close the menu', path: 'Breadcrumb', atlas: 'Atlas',
+    tagline: 'Atlas of KA2 partnerships', nav: 'Main navigation', menu: 'Menu', closeMenu: 'Close the menu', path: 'Breadcrumb', atlas: 'Atlas',
     lang: 'Language', scrollable: 'Scrollable table', theme: 'Theme', themeLight: 'Light theme', themeDark: 'Dark theme', toLight: 'Switch to the light theme', toDark: 'Switch to the dark theme',
     askTitle: 'Have a question?', askText: 'The assistant answers only from the atlas data and gives its sources with every answer.', askBtn: 'Ask the assistant', assistant: 'Assistant',
     notOfficial: 'An independent open-data project. Not an official site of the European Commission.',

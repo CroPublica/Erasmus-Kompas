@@ -71,3 +71,12 @@ svg.hl .gv-node:not(.on) { opacity: .28; }
 .linkish{font:inherit;color:var(--blue);background:none;border:0;padding:0;text-decoration:underline;cursor:pointer;text-align:left}
 .mono{font-variant-numeric:tabular-nums;color:var(--muted)}
 .gv-key svg{width:18px;height:18px;flex:none}
+
+/* page changes: no jump while the view is still being drawn */
+.ekview[aria-busy="true"]{min-height:100vh}
+.ekview[aria-busy="true"]>.lead{opacity:0}
+@view-transition{navigation:auto}
+aside.side{view-transition-name:ek-side}
+.topbar{view-transition-name:ek-top}
+::view-transition-old(root),::view-transition-new(root){animation-duration:.18s}
+@media (prefers-reduced-motion:reduce){::view-transition-group(*),::view-transition-old(*),::view-transition-new(*){animation:none!important}}

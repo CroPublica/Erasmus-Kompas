@@ -2,8 +2,8 @@
    Paleta: Europa Component Library (EU plava #004494, žuta #FFD617, neutralne sive).
    Sve boje i razmaci dolaze iz varijabli ispod, da se stil može mijenjati na jednom mjestu. */
 :root{--side:288px;--wavew:48px;--gut:clamp(20px,4vw,56px);--r:6px;
-  --serif:'Source Serif 4','Source Serif Pro',Georgia,'Times New Roman',serif;
-  --sans:'Source Sans 3','Source Sans Pro','Segoe UI',system-ui,-apple-system,Arial,sans-serif}
+  --serif:'Source Serif 4','Source Serif 4 Fallback','Source Serif Pro',Georgia,'Times New Roman',serif;
+  --sans:'Source Sans 3','Source Sans 3 Fallback','Source Sans Pro','Segoe UI',system-ui,-apple-system,Arial,sans-serif}
 
 *{box-sizing:border-box}
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}

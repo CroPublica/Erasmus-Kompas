@@ -130,7 +130,7 @@ await test('accessibility (axe: wcag2a/aa), light and dark, desktop', async () =
     if (res.violations.length) bad.push(`${scheme} ${r}: ` + res.violations.map((v) => `${v.id}(${v.nodes.length})`).join(','));
     await p.context().close();
   }
-  assert.deepEqual(bad, []);
+  if (bad.length) console.log(bad); assert.deepEqual(bad, []);
 });
 
 await test('organisation page: figures from the reference screen', async () => {
@@ -220,6 +220,6 @@ await test('graph network: linkable group, show more, zoom', async () => {
   assert.match(page_hash(await p.url()), /group-C01/);                                      // the address follows the view
 });
 function page_hash(u) { return u.split('#')[1] || ''; }
-await test('no console errors', async () => assert.deepEqual(errors, []));
+await test('no console errors', async () => { if (errors.length) console.log(errors.slice(0, 8)); assert.deepEqual(errors, []); });
 await browser.close(); stop();
 console.log(`\n${passed} passed, ${failed} failed`); process.exit(failed ? 1 : 0);

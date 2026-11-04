@@ -32,6 +32,12 @@ const tabs = here.top && here.top.subs.length > 1 ? here.top.subs : [];
     {description && <meta name="description" content={description} />}
     <link rel="alternate" hreflang={otherLang(lang)} href={href(otherLang(lang))} />
     <link rel="icon" href={`${base}/favicon.ico`} />
+    {ek && <link rel="preload" href={`${base}/ek/D.json`} as="fetch" crossorigin="anonymous" />}
+    {ek && <link rel="preload" href={`${base}/ek/ek.js`} as="script" />}
+    <link rel="preload" href={`${base}/fonts/SourceSans3-Regular.woff2`} as="font" type="font/woff2" crossorigin="anonymous" />
+    <link rel="preload" href={`${base}/fonts/SourceSans3-Semibold.woff2`} as="font" type="font/woff2" crossorigin="anonymous" />
+    <link rel="preload" href={`${base}/fonts/SourceSans3-Bold.woff2`} as="font" type="font/woff2" crossorigin="anonymous" />
+    <link rel="preload" href={`${base}/fonts/SourceSerif4-Semibold.woff2`} as="font" type="font/woff2" crossorigin="anonymous" />
     <script is:inline>try{var t=localStorage.getItem('ek-theme');if(t==='light'||t==='dark')document.documentElement.dataset.theme=t}catch(e){}</script>
   </head>
   <body data-base={base} data-scrollable={c.scrollable}>
@@ -184,11 +190,11 @@ const tabs = here.top && here.top.subs.length > 1 ? here.top.subs : [];
   document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && body.classList.contains('navopen')) { setNav(false); menu.focus(); } });
   // ---- regions that scroll sideways must be reachable from the keyboard
   const markScrollable = () => document.querySelectorAll<HTMLElement>('main *').forEach((el) => {
-    if (el.scrollWidth > el.clientWidth + 1 && /(auto|scroll)/.test(getComputedStyle(el).overflowX) && !el.hasAttribute('tabindex')) {
+    if ((el.tagName === 'PRE' || (el.scrollWidth > el.clientWidth + 1 && /(auto|scroll)/.test(getComputedStyle(el).overflowX))) && !el.hasAttribute('tabindex')) {
       el.tabIndex = 0; el.setAttribute('role', 'region'); if (!el.hasAttribute('aria-label')) el.setAttribute('aria-label', body.dataset.scrollable!);
     }
   });
-  markScrollable(); addEventListener('load', markScrollable); addEventListener('resize', markScrollable);
+  markScrollable(); addEventListener('load', markScrollable); addEventListener('resize', markScrollable); document.fonts?.ready.then(markScrollable);
   { let mt = 0; const v = document.getElementById('view'); if (v) new MutationObserver(() => { clearTimeout(mt); mt = window.setTimeout(markScrollable, 250); }).observe(v, { childList: true, subtree: true }); }
   // ---- theme: light or dark, remembered; without a choice the system setting applies
   const themeBtn = document.getElementById('theme')!;
