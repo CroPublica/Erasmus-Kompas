@@ -335,6 +335,8 @@ def check_polish(draft: str, answer: str) -> list[str]:
 
 # ---------------------------------------------------------------------------------------------------- deterministic fallbacks
 def _fmt(lang: str, x: float, d: int = 0) -> str:
+    if x is None:                                  # a missing figure must never crash an answer
+        return "–"
     s = f"{x:,.{d}f}"
     return s.replace(",", " ").replace(".", ",").replace(" ", ".") if lang == "hr" else s
 
@@ -400,9 +402,9 @@ def template_answer(lang: str, route: str, results: list[dict]) -> str:
         return (f"Našao sam: {names}. Koju misliš?" if hr else f"I found: {names}. Which one do you mean?")
     if t == "county_stats":
         return (f"{r['label']}: {f(r['organisations'])} {hr_plural(r['organisations'], 'organizacija', 'organizacije', 'organizacija')}, {f(r['projects_involved'])} {hr_plural(r['projects_involved'], 'projekt', 'projekta', 'projekata')}, od toga {f(r['projects_coordinated'])} koordiniranih; "
-                f"potpore koordiniranih projekata {f(r['grants_coordinated_eur'])} € ({f(r['grants_coordinated_eur'] / 1e6, 2)} mil. €)." if hr else
+                f"potpore koordiniranih projekata {f(r['grants_coordinated_eur'] or 0)} € ({f((r['grants_coordinated_eur'] or 0) / 1e6, 2)} mil. €)." if hr else
                 f"{r['label']}: {f(r['organisations'])} organisations, {f(r['projects_involved'])} projects, {f(r['projects_coordinated'])} coordinated; "
-                f"grants of coordinated projects {f(r['grants_coordinated_eur'])} € ({f(r['grants_coordinated_eur'] / 1e6, 2)} million €).")
+                f"grants of coordinated projects {f(r['grants_coordinated_eur'] or 0)} € ({f((r['grants_coordinated_eur'] or 0) / 1e6, 2)} million €).")
     if t == "national_stats":
         cls = r.get("coordinating_organisation_classes", [])[:4]
         ctext = ", ".join(f"{CLASS_NAMES.get(x['org_class'], (x['org_class'],) * 2)[0 if hr else 1]} {f(x['projects_coordinated'])}" for x in cls)
