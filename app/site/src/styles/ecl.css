@@ -391,7 +391,7 @@ pre.code{margin:14px 0 0;padding:16px 18px;background:#0b2a5b;color:#e7efff;bord
 .bubble{background:var(--card);border:1px solid var(--line);border-radius:4px 14px 14px 14px;padding:14px 16px;display:grid;gap:12px;min-width:0}
 .bubble p{line-height:1.5}
 .bubble p.real{white-space:pre-line}
-.leadmark{font-style:normal;font-size:.8em;opacity:.75;margin-left:4px}
+.leadmark{font-style:normal;font-size:.8em;opacity:.9;margin-left:4px}
 .bubble .rank{margin-top:-2px}
 .bubble details{font-size:.88rem;color:var(--muted)}
 .bubble details summary{cursor:pointer;color:var(--blue);font-weight:600}

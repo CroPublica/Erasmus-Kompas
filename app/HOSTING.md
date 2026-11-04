@@ -19,6 +19,7 @@ No TLS, password, security headers or caching: fine for a demo, do not expose it
 ## 2. Static host for the site + the API on one small server
 
 - Build: `SITE_URL=https://your.domain ./build_site.sh` (add `SITE_BASE=/atlas` if served under a sub-path).
+  `build_site.sh` also runs `site/tools/ek/build_ek.py` (the v8 views and about 34 MB of per-project JSON, generated and not committed); a plain `docker build` from a fresh checkout needs that step first.
 - Upload `site/dist` to any static host (GitHub Pages, Netlify, an object-storage bucket); serve `404.html` for missing pages.
 - Without the Ask page this is all that is needed, and it costs almost nothing.
 - For Ask, run `uvicorn atlas.api:app --host 127.0.0.1 --port 8000` on a machine with Ollama and put it behind a reverse proxy

@@ -102,8 +102,18 @@ Pages (each in Croatian and English): coverage map, overview, projects (search),
 ```
 export PATH=~/.local/opt/node/bin:$PATH      # Node >= 22.23.4 (see LOG.md)
 .venv/bin/python pipeline/70_export_site.py  # DuckDB -> site/src/data/*.json
+python3 site/tools/ek/build_ek.py            # v8 views: public/ek/ek.js, D.json and one small JSON per project/organisation (generated, not committed)
 cd site && npm install && npm run build      # static site in site/dist (npm run dev for development)
 ```
+
+### Design (Erasmus+ Kompas, design v8)
+
+The site follows the design in `design/FINAL DESIGN ERASMUS ATLAS` (Europa Component Library look, light and dark theme, assistant drawer on every page).
+Most pages are drawn by the prototype's views, carved into one script: `site/src/ek/*.js` (the prototype, patched by `site/tools/ek/build_ek.py`)
+becomes `site/public/ek/ek.js`; its data (`D.json`) is made from the same exports as the rest of the site (`site/tools/ek/repo_to_D.py`).
+The detail pages (project, organisation, county) read one small file each (`public/ek/p/…`, `o/…`), the graph page its Croatian-organisation lists (`concept_orgs.json`).
+**`build_ek.py` has to run before `astro build`** (`build_site.sh` does it). Graph and Methods are native Astro pages in the same frame.
+Theme: `tokens.css` (light and dark tokens); the choice is kept in `localStorage` (`ek-theme`).
 
 ### Build and deploy the site
 

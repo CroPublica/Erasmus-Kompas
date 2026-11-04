@@ -1,4 +1,5 @@
 # Build:  docker build -f deploy/Dockerfile -t ka2-atlas .   (run from app/; site/src/data must already be exported)
+# Needs:  python3 site/tools/ek/build_ek.py has run (./build_site.sh does it): site/public/ek/ holds the generated views and per-project files.
 # Run:    docker run --rm -p 8080:8080 ka2-atlas
 FROM node:22.23.4-alpine AS build
 WORKDIR /site
