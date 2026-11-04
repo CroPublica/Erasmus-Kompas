@@ -222,3 +222,35 @@ def test_question_about_a_first_topic_gets_the_common_topics_and_says_why(tb):
     assert "common_concepts" in " ".join(r["trace"]) and "no “first” topic" in r["answer"] and r["verified"]
     r = a.ask("Tell me about quantum entanglement in projects")
     assert r["answer"].startswith("No evidence") and "Try a specific theme" in r["answer"]            # says what can be asked instead
+
+
+def test_language_follows_the_words_not_the_names(tb):
+    from atlas.ask import detect_language
+    assert detect_language("Has Ustanova za obrazovanje odraslih Dante ever coordinated a KA2 project?") == "en"      # Croatian names inside an English question
+    assert detect_language("How many schools in Koprivničko-križevačka županija take part in KA2?") == "en"
+    assert detect_language("Which countries does Srednja škola Metković work with most?") == "en"
+    assert detect_language("Koliko KA2 projekata ima Gimnazija Metković?") == "hr"
+    assert detect_language("Koliko škola u Koprivničko-križevačka županija sudjeluje u KA2?") == "hr"
+
+
+def test_english_answers_use_english_county_names_and_croatian_ones_keep_theirs(tb):
+    from atlas.ask import _label, EN_COUNTY
+    assert _label("en", "Varaždinska županija") == "Varaždin County" and _label("en", "Grad Zagreb") == "City of Zagreb"
+    assert _label("hr", "Varaždinska županija") == "Varaždinska županija"
+    assert len(EN_COUNTY) == 21 and not any("ska County" in v or "ška County" in v for v in EN_COUNTY.values())      # no 'Varaždinska County' hybrids
+
+
+def test_titles_are_quoted_as_names_and_lists_have_a_lead_sentence(tb):
+    from atlas.ask import quote_title
+    assert quote_title("Biljna pozornica", 2023) == "„Biljna pozornica” (2023)" and quote_title("A title", 2020, lang="en") == "“A title” (2020)"
+    assert quote_title("word " * 40, None, 30).endswith("…”") and len(quote_title("word " * 40, None, 30)) < 40       # cut at a word, never mid-word
+    a = asker(tb, FakeRouter(route="top_organisations", county="Istarska"))
+    r = a.ask("Koje su najaktivnije organizacije u Istarska županija?")
+    assert r["answer"].startswith("Najaktivnije organizacije (Istarska županija), broj KA2 projekata:")
+    r = asker(tb, FakeRouter(route="organisation", organisation="Gimnazija Metković")).ask("Koliko projekata ima Gimnazija Metković?")
+    assert "izvorni naslov" in r["answer"] and "„Biljna pozornica” (2023)" in r["answer"]
+
+
+def test_an_organisation_named_in_the_question_beats_the_country_ranking(tb):
+    r = asker(tb, FakeRouter(route="organisation", organisation="Srednja škola Metković")).ask("Which countries does Srednja škola Metković work with most?")   # the word 'countries' must not override the router
+    assert r["route"] == "organisation" and "Works most with" in r["answer"]

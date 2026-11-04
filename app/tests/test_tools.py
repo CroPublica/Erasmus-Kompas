@@ -199,3 +199,9 @@ def test_connected_concepts_report_neighbours_and_bridging_groups(tb):
     r = tb.connected_concepts(5)
     assert {x["measure"] for x in r.rows} == {"neighbours", "groups"}
     assert all(x["neighbours"] >= 1 for x in r.rows)
+
+
+def test_grad_zagreb_is_a_county_but_the_university_of_zagreb_is_not(tb):
+    assert tb.resolve_county("How many schools in Grad Zagreb take part in KA2?") == "Grad Zagreb"
+    assert tb.resolve_county("Koliko škola u Gradu Zagrebu sudjeluje u KA2?") == "Grad Zagreb"
+    assert tb.resolve_county("Koliko KA2 projekata ima Sveučilište u Zagrebu?") is None      # an organisation, not a county

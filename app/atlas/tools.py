@@ -111,6 +111,8 @@ class Toolbox:
         t = _fold(text)
         if t in ("zagreb", "grad zagreb", "city of zagreb"):
             return "Grad Zagreb"
+        if re.search(r"\b(grad zagreb|gradu zagrebu|grada zagreba|gradom zagrebom|city of zagreb)\b", t):      # the city, not the county of Zagreb and not the university
+            return "Grad Zagreb"
         best = None
         for stem in self._counties:
             s = _fold(stem)

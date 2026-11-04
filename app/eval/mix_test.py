@@ -30,7 +30,7 @@ EN_FUNCTION = {"the", "of", "and", "with", "for", "from", "are", "was", "were", 
                "through", "during", "projects", "project", "schools", "school", "students", "teachers", "training", "learning", "education",
                "skills", "young", "people", "support", "development", "activities", "approach", "approaches", "organisations", "organisation"}
 HR_FUNCTION = {"je", "su", "se", "koji", "koja", "koje", "od", "za", "iz", "kao", "ili", "nije", "nema", "dokaza", "najčešće", "projekata",
-               "projekta", "projekt", "škola", "županija", "ukupno", "razdoblje", "razdoblju", "koordinator", "partner", "ima", "bilo"}
+               "projekta", "projekt", "škola", "županija", "ukupno", "razdoblje", "razdoblju", "koordinator", "ima", "bilo"}
 HR_LETTERS = re.compile(r"[čćžšđČĆŽŠĐ]")
 WORD = re.compile(r"[A-Za-zČĆŽŠĐčćžšđ]+")
 
@@ -59,9 +59,16 @@ def names_in(obj, out: set) -> set:
     return out
 
 
+ALL_NAMES: list[str] = []          # every organisation and county name in the database, longest first: whatever the answer quotes from it is a name
+
+
 def leaks(answer: str, lang: str, names: set | None = None) -> list[str]:
     for n in sorted(names or (), key=len, reverse=True):
         answer = answer.replace(n, " ")
+    for n in ALL_NAMES:
+        if n in answer:
+            answer = answer.replace(n, " ")
+    answer = re.sub(r"[„“”\"]+[^„“”\"]*[„“”\"]+", " ", answer)           # quoted titles, also with doubled quotation marks
     text = strip_names(answer)
     words = WORD.findall(text)
     out = []
@@ -137,6 +144,8 @@ def main():
     a = ap.parse_args()
     con = duckdb.connect(str(DB_PATH), read_only=True)
     qs = build_questions(con)
+    ALL_NAMES.extend(sorted({r[0] for r in con.execute("select name from organisation union select name from institution union select label from county").fetchall() if r[0] and len(r[0]) > 6}
+                            | set(__import__("atlas.ask", fromlist=["EN_COUNTY"]).EN_COUNTY.values()), key=len, reverse=True))
     con.close()
     asker = Asker()
     rows = []
