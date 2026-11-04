@@ -117,7 +117,9 @@ await test('assistant page: asks and answers', async () => {
 });
 await test('assistant: on the English page the suggestions send English, the box is English, the Ask page has no second shortcut', async () => {
   const p = await open('/en/ask/'); const sent = [];
-  await p.route('**/api/ask', (r) => { sent.push(JSON.parse(r.request().postData())); r.abort(); });
+  await p.route('**/api/health', (r) => r.fulfill({ status: 200, contentType: 'application/json', body: '{"status":"ok"}' }));
+  await p.route('**/api/ask', (r) => { sent.push(JSON.parse(r.request().postData())); r.fulfill({ status: 503, body: 'busy' }); });
+  await p.reload({ waitUntil: 'networkidle' });                                                          // the page probes the API once, so reload with the mock in place
   assert.equal(await p.getAttribute('#pq', 'placeholder'), 'Type a question about the data…');
   assert.equal(await p.locator('#edgetab').isVisible(), false);
   await p.locator('.topics .sug button').first().click(); await p.waitForTimeout(800);
@@ -137,7 +139,8 @@ await test('no horizontal scroll at phone width on any page', async () => {
 await test('accessibility (axe: wcag2a/aa), light and dark, desktop', async () => {
   const bad = [];
   for (const scheme of ['light', 'dark']) for (const r of [...ENGINE, ...NATIVE]) {
-    const p = await open('/hr' + r, 1280, { scheme }); await p.addScriptTag({ path: axePath });
+    const p = await open('/hr' + r, 1280, { scheme }); await p.waitForTimeout(1300);                  // the hero buttons fade in for about a second; axe would read them half transparent
+    await p.addScriptTag({ path: axePath });
     const res = await p.evaluate(() => axe.run(document, { runOnly: ['wcag2a', 'wcag2aa'] }));
     if (res.violations.length) bad.push(`${scheme} ${r}: ` + res.violations.map((v) => `${v.id}(${v.nodes.length})`).join(','));
     await p.context().close();
