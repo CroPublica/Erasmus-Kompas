@@ -22,7 +22,7 @@ const rows = nodes.filter((n) => n[1] === 'approach').map((n) => {
 const views = [['all', c.vAll, c.vAllNote], ['growing', c.vGrowing, c.vGrowingNote], ['fading', c.vFading, c.vFadingNote], ['rare', c.vRare, c.vRareNote]] as const;
 const vsText: Record<string, string> = { above: c.gpAbove, below: c.gpBelow, unclear: c.gpUnclear };
 ---
-<Base lang={lang} title={c.mTitle} path="/methods/" active="methods" description={c.mLead}>
+<Base ek lang={lang} title={c.mTitle} path="/methods/" active="methods" description={c.mLead}>
   <div class="kicker">{c.mKicker}</div>
   <h1>{c.mTitle}</h1>
   <p class="lead">{c.mLead}</p>
@@ -51,7 +51,7 @@ const vsText: Record<string, string> = { above: c.gpAbove, below: c.gpBelow, unc
   </div>
   <p class="lead" id="viewnote" style="font-size:.9rem;margin-top:10px" aria-live="polite">{c.vAllNote}</p>
   <label class="sr" for="mf">{c.mFilter}</label>
-  <input id="mf" type="search" placeholder={c.mFilter} style="width:100%;max-width:420px;margin:10px 0" />
+  <input class="field" id="mf" type="search" placeholder={c.mFilter} style="width:100%;max-width:420px;margin:10px 0" />
   <p class="lead" id="count" aria-live="polite" style="font-size:.9rem"></p>
   <div style="overflow-x:auto">
     <table id="mtable">

@@ -18,6 +18,27 @@ D = json.load(open(dpath, encoding='utf-8'))
 D['geo'] = json.load(open(os.path.join(HERE, 'geo.json'), encoding='utf-8'))
 open(dpath, 'w', encoding='utf-8').write(json.dumps(D, ensure_ascii=False, separators=(',', ':')))
 
+# the detail pages read the full record (summary, partners, concepts) of one project or organisation: one small file each, generated, not committed
+import re, shutil, unicodedata
+
+
+def slug(s):
+    s = unicodedata.normalize('NFD', str(s))
+    s = ''.join(ch for ch in s if not unicodedata.combining(ch)).replace('đ', 'd').replace('Đ', 'D').lower()
+    return re.sub(r'^-|-$', '', re.sub(r'[^a-z0-9]+', '-', s))
+
+
+shutil.copyfile(os.path.join(SITE, 'src', 'data', 'concept_orgs.json'), os.path.join(OUT, 'concept_orgs.json'))
+for name, sub_dir in (('projects_full.json', 'p'), ('orgs_full.json', 'o')):
+    src = os.path.join(SITE, 'src', 'data', name)
+    if not os.path.exists(src):
+        continue
+    out = os.path.join(OUT, sub_dir)
+    shutil.rmtree(out, ignore_errors=True)
+    os.makedirs(out)
+    for k, v in json.load(open(src, encoding='utf-8')).items():
+        open(os.path.join(out, slug(k) + '.json'), 'w', encoding='utf-8').write(json.dumps(v, ensure_ascii=False, separators=(',', ':')))
+
 
 def rd(f):
     return open(os.path.join(SRC, f), encoding='utf-8').read()
@@ -45,7 +66,31 @@ i18n = sub(i18n, "    $$('.lang button').forEach((b) => b.setAttribute('aria-pre
 i18n = sub(i18n, "const I18N = (() => {", "const VIEWROOT = () => document.getElementById('view') || document.body;\nconst I18N = (() => {", 'i18n.js')
 views2 = sub(rd('views2.js'), "new MutationObserver(enhSoon).observe($('#view'),", "if ($('#view')) new MutationObserver(enhSoon).observe($('#view'),", 'views2.js')
 views2 = sub(views2, "$('#view').addEventListener('change', enhSoon); $('#view').addEventListener('input', enhSoon);", "if ($('#view')) { $('#view').addEventListener('change', enhSoon); $('#view').addEventListener('input', enhSoon); }", 'views2.js')
-parts = [core, rd('ui.js'), rd('export.js'), i18n, rd('i18n-en.js'), rd('views.js'), views2, rd('heromap.js'), rd('hero.js'), rd('pages.js'), rd('assistant.js'), rd('engine.js')]
+views = rd('views.js')
+views = sub(views, "const find = async (name, key, id) => {", "const find = async (name, key, id) => { const one = await fetch(window.EK_DATA_BASE + (name[0] === 'p' ? 'p/' : 'o/') + EK_SLUG(id) + '.json').then((r) => (r.ok ? r.json() : null)).catch(() => null); if (one) return one; return null; };\n  const findOld = async (name, key, id) => {", 'views.js')
+views = sub(views, "    $('#cbody', root).hidden = false; $('#chint', root).hidden = true;", """    ekPartners(n, $('#cbody', root));
+    $('#cbody', root).hidden = false; $('#chint', root).hidden = true;""", 'views.js')
+views = sub(views, "function viewGraf(root) {", """let CONCEPT_ORGS = null;
+function ekPartners(n, box) {
+  const draw = (all) => { const c = all && all[n[0]]; if (!c || !c.top || !c.top.length || !box.isConnected) return; const s = document.createElement('section'); s.className = 'partners'; s.innerHTML = `<div class="kicker">${tr('Hrvatske organizacije u projektima s ovim pojmom')}</div><ul class="check-list" style="margin-top:8px">${c.top.map(([id, nm, k]) => `<li><a href="#/organizacije/${encodeURIComponent(id)}">${esc(nm)}</a> <span class="mono small">· ${k} ${tr('projekata')}</span></li>`).join('')}</ul>`; box.append(s); };
+  if (CONCEPT_ORGS) draw(CONCEPT_ORGS); else fetch(window.EK_DATA_BASE + 'concept_orgs.json').then((r) => (r.ok ? r.json() : null)).then((j) => { CONCEPT_ORGS = j || {}; draw(CONCEPT_ORGS); }).catch(() => { CONCEPT_ORGS = {}; });
+}
+function viewGraf(root) {""", 'views.js')
+views = sub(views, "  draw();\n}\n\n/* ============ view: Problemi i rješenja", """  draw();
+  /* links from the assistant: graph/#<concept id> opens the concept, graph/#group-C01 opens the group */
+  const hh = decodeURIComponent(location.hash.slice(1));
+  if (hh.startsWith('group-')) { const k = g.communities.findIndex((c) => c.id === hh.slice(6)); const d = $$('#comms details', root)[k]; if (d) { const f = $('details.fold', root); if (f) f.open = true; d.open = true; setTimeout(() => d.scrollIntoView({ block: 'center' }), 50); } }
+  else if (hh) { const i = N.findIndex((x) => x[0] === hh); if (i >= 0) { show(i); setTimeout(() => $('#cpanel', root).scrollIntoView({ block: 'start' }), 50); } }
+}
+
+/* ============ view: Problemi i rješenja""", 'views.js')
+views = views.replace("const base = () => (typeof window.EK_DATA_BASE === 'string' ? window.EK_DATA_BASE : 'data/');", "const base = () => window.EK_DATA_BASE;")
+pages = rd('pages.js')
+en = sub(rd('i18n-en.js'), '"Nema pojmova za odabrane filtre.": "No terms for the selected filters."', '"Nema pojmova za odabrane filtre.": "No terms for the selected filters.",\n"Hrvatske organizacije u projektima s ovim pojmom": "Croatian organisations in projects with this term"', 'i18n-en.js')
+parts = [core, rd('ui.js'), rd('export.js'), i18n, en, views, views2, rd('heromap.js'), rd('hero.js'), pages, rd('assistant.js'), rd('engine.js')]
 bundle = '(function(){\n"use strict";\n' + '\n'.join(parts) + '\n})();\n'
+open(os.path.join(OUT, 'ek.js'), 'w', encoding='utf-8').write(bundle)
+import re
+bundle = re.sub(r'decodeURIComponent\(window\.__h \|\| location\.hash\)\.endsWith\(id\)', 'true', bundle)
 open(os.path.join(OUT, 'ek.js'), 'w', encoding='utf-8').write(bundle)
 print(f'public/ek/ek.js {len(bundle) // 1024} KB, D.json {os.path.getsize(dpath) // 1024} KB')

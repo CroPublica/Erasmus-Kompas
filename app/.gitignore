@@ -23,3 +23,6 @@ eval/data/
 deploy/htpasswd
 data/api.log
 data/tunnel.log
+site/public/ek/p/
+site/public/ek/o/
+site/public/ek/*_full.json

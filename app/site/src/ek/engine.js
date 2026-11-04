@@ -12,7 +12,7 @@ const NAVS = [];
 const subOn = () => false;
 
 const EK_BASE = (document.body.dataset.base || '').replace(/\/$/, '');
-const EK_SLUG = (s) => String(s).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
+const EK_SLUG = (s) => String(s).normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/đ/g, 'd').replace(/Đ/g, 'D').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
 /* '#/mjesta/Split' -> '/hr/places/split/' */
 const EK_ROUTES = [
   [/^#\/?$/, () => '/'], [/^#\/pregled$/, () => '/overview/'], [/^#\/kronologija$/, () => '/timeline/'], [/^#\/drzave$/, () => '/countries/'],
@@ -35,14 +35,19 @@ function go(h) { location.href = ekUrl(h); }
   Object.defineProperty(window, '__pre', { get: () => pre, set: (v) => { pre = v; try { sessionStorage.setItem('ek-pre', JSON.stringify(v)); } catch (e) { /* no storage */ } }, configurable: true });
 })();
 
+/* detail pages: the address holds the slug, the views want the real id */
+const bySlug = (list, key, s) => { const f = list.find((x) => EK_SLUG(key(x)) === s); return f ? key(f) : s; };
+const detail = (fn, list, key) => (root, a) => { const s = a && a[1] || ''; fn(root, bySlug(list(), key, s)); };
 const EK_VIEWS = {
+  project: [detail(viewProjekt, () => D.projects, (x) => x[0]), '#/projekti'], org: [detail(viewOrganizacija, () => O(), (x) => x.id), '#/organizacije'],
+  county: [detail(viewZupanija, () => D.counties, (x) => x.stem), '#/mjesta'], graph: [viewGraf, '#/graf'],
   landing: [viewLanding, '#/'], overview: [viewPregled, '#/pregled'], timeline: [viewKronologija, '#/kronologija'], countries: [viewDrzave, '#/drzave'],
   places: [viewMjesta, '#/mjesta'], compare: [viewUsporedba, '#/usporedba'], coverage: [viewPokrivenost, '#/pokrivenost'],
   projects: [viewProjekti, '#/projekti'], organisations: [viewOrganizacije, '#/organizacije'], topics: [viewTeme, '#/teme'], problems: [viewProblemi, '#/pristupi'],
   ask: [viewPitajte, '#/pitajte'], about: [viewOPodacima, '#/o-podacima'], glossary: [viewRjecnik, '#/rjecnik'], downloads: [viewPreuzimanje, '#/preuzimanje'],
   accessibility: [viewPristupacnost, '#/pristupacnost'], contact: [viewKontakt, '#/kontakt'], sitemap: [viewMapaStranice, '#/mapa-stranice'], notfound: [viewNotFound, '#/404']
 };
-const EK_VIEWKEY = { landing: 'pocetna', overview: 'pregled', timeline: 'pregled', countries: 'pregled', places: 'zupanije', compare: 'zupanije', coverage: 'zupanije', projects: 'trazi', organisations: 'trazi', topics: 'teme', problems: 'teme', ask: 'pitajte', about: 'o', glossary: 'o', downloads: 'o' };
+const EK_VIEWKEY = { project: 'trazi', org: 'trazi', county: 'zupanije', graph: 'teme', landing: 'pocetna', overview: 'pregled', timeline: 'pregled', countries: 'pregled', places: 'zupanije', compare: 'zupanije', coverage: 'zupanije', projects: 'trazi', organisations: 'trazi', topics: 'teme', problems: 'teme', ask: 'pitajte', about: 'o', glossary: 'o', downloads: 'o' };
 
 /* every '#/...' link the views write becomes a real link, also in what they draw later (filters, "show more") */
 function ekLinks(root) {

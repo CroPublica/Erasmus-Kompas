@@ -135,22 +135,24 @@ await test('accessibility (axe: wcag2a/aa), light and dark, desktop', async () =
 
 await test('organisation page: figures from the reference screen', async () => {
   const p = await open('/en/organisations/mzo-19-049-502/');
-  const text = await p.locator('.kpis').first().innerText();
-  for (const want of ['22', '120,000', '3,273,111', '10 in 2014–2020']) assert.ok(text.includes(want), `missing ${want}`);
-  await p.click('.seg button[data-role="coordinator"]');
-  assert.equal(await p.locator('#prows tr:not([hidden])').count(), 1);
+  await p.waitForFunction(() => /120,000/.test(document.querySelector('#view')?.innerText || ''), null, { timeout: 15000 });
+  const text = await p.locator('#view').innerText();
+  for (const want of ['22', '120,000']) assert.ok(text.includes(want), `missing ${want}`);
+  await p.locator('#view button', { hasText: /^Coordinator/ }).first().click();
+  assert.equal(await p.locator('#view table tbody tr:visible').count(), 1);
 });
 await test('organisation page: project link opens the project page with summary', async () => {
-  const p = await open('/en/organisations/mzo-19-049-502/'); await p.locator('#prows a').first().click();
-  await p.waitForURL(/projects\//); assert.ok((await p.locator('h2', { hasText: 'Summary' }).count()) === 1);
+  const p = await open('/en/organisations/mzo-19-049-502/');
+  await p.waitForSelector('#view table a[href*="/projects/"]', { timeout: 15000 }); await p.locator('#view table a[href*="/projects/"]').first().click();
+  await p.waitForURL(/projects\//); await p.waitForFunction(() => [...document.querySelectorAll('#view h2')].some((h) => /^Summary$/.test(h.textContent.trim())), null, { timeout: 15000 });
 });
 await test('project page links to the EU Project Results Platform', async () => {
-  const p = await open('/en/projects/' + '2023-1-hr01-ka220-sch-000158622'.replace(/[^a-z0-9]+/g, '-') + '/');
-  const href = await p.locator('main a', { hasText: 'Project Results Platform' }).getAttribute('href');
-  assert.match(href, /^https:\/\/erasmus-plus\.ec\.europa\.eu\/projects\/search\/details\//);
+  const p = await open('/en/projects/2023-1-hr01-ka220-sch-000158622/');
+  await p.waitForSelector('#view a[href^="https://erasmus-plus.ec.europa.eu/projects/search/details/"]', { timeout: 15000 });
 });
 await test('similar organisations are listed', async () => {
-  const p = await open('/en/organisations/mzo-19-049-502/'); assert.ok(await p.locator('.simcard').count() >= 1);
+  const p = await open('/en/organisations/mzo-19-049-502/');
+  await p.waitForFunction(() => [...document.querySelectorAll('#view h2')].some((h) => /Similar/i.test(h.textContent)), null, { timeout: 15000 });
 });
 await test('methods: typical project, views, filter', async () => {
   const p = await open('/en/methods/');

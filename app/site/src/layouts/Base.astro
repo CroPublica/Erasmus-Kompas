@@ -167,7 +167,7 @@ const tabs = here.top && here.top.subs.length > 1 ? here.top.subs : [];
   const w = window as any;
   w.EKLoad = w.EKLoad || (() => { let p: Promise<void> | null = null; return () => p ||= (async () => {
     const b = document.body.dataset.base || '';
-    w.EK_ASK_API = `${b}/api/ask`;
+    w.EK_ASK_API = `${b}/api/ask`; w.EK_DATA_BASE = `${b}/ek/`;
     w.__EK_D = await (await fetch(`${b}/ek/D.json`)).json();
     await new Promise<void>((ok, bad) => { const sc = document.createElement('script'); sc.src = `${b}/ek/ek.js`; sc.onload = () => ok(); sc.onerror = () => bad(new Error('ek.js')); document.head.append(sc); });
   })(); })();

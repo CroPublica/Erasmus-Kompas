@@ -1679,7 +1679,8 @@ const EN_DICT = {
 "↘ slabi": "↘ declining",
 "↗ raste": "↗ growing",
 "Nema dovoljno zajedničkih projekata (najmanje {N}).": "Not enough joint projects (at least {N1}).",
-"Nema pojmova za odabrane filtre.": "No terms for the selected filters."
+"Nema pojmova za odabrane filtre.": "No terms for the selected filters.",
+"Hrvatske organizacije u projektima s ovim pojmom": "Croatian organisations in projects with this term"
 };
 
 /* ============ view: Projekti ============ */
@@ -1810,9 +1811,10 @@ const SAMPLE = { name: 'Gimnazija Metković', years: { 2014: [0], 2015: [0, 'g']
    npr. iz mape data/ pokraj HTML-a). Bez njih (file://, nema datoteka) prikazuju se podaci iz popisa i uzorak. */
 const FULL = (() => {
   const cache = {}, idx = {};
-  const base = () => (typeof window.EK_DATA_BASE === 'string' ? window.EK_DATA_BASE : 'data/');
+  const base = () => window.EK_DATA_BASE;
   const load = (name) => cache[name] || (cache[name] = /^https?:$/.test(location.protocol) ? fetch(base() + name).then((r) => (r.ok ? r.json() : null)).catch(() => null) : Promise.resolve(null));
-  const find = async (name, key, id) => { const all = await load(name); if (!all) return null; if (!idx[name]) idx[name] = all[id] ? all : Object.fromEntries(Object.values(all).map((x) => [x[key], x])); return idx[name][id] || all[id] || null; };
+  const find = async (name, key, id) => { const one = await fetch(window.EK_DATA_BASE + (name[0] === 'p' ? 'p/' : 'o/') + EK_SLUG(id) + '.json').then((r) => (r.ok ? r.json() : null)).catch(() => null); if (one) return one; return null; };
+  const findOld = async (name, key, id) => { const all = await load(name); if (!all) return null; if (!idx[name]) idx[name] = all[id] ? all : Object.fromEntries(Object.values(all).map((x) => [x[key], x])); return idx[name][id] || all[id] || null; };
   return { org: (id) => find('orgs_full.json', 'org_id', id), project: (id) => find('projects_full.json', 'project_id', id) };
 })();
 const STATUS_API = { finalized: 0, ongoing: 1, terminated: 2 };
@@ -1865,10 +1867,15 @@ function viewOrganizacija(root, id) {
   }
   paint();
   const my = ++seq;
-  FULL.org(id).then((f) => { if (f && root.isConnected && my === seq && decodeURIComponent(window.__h || location.hash).endsWith(id)) { X = orgFromFull(f); paint(); } });
+  FULL.org(id).then((f) => { if (f && root.isConnected && my === seq && true) { X = orgFromFull(f); paint(); } });
 }
 
 /* ============ view: Graf ============ */
+let CONCEPT_ORGS = null;
+function ekPartners(n, box) {
+  const draw = (all) => { const c = all && all[n[0]]; if (!c || !c.top || !c.top.length || !box.isConnected) return; const s = document.createElement('section'); s.className = 'partners'; s.innerHTML = `<div class="kicker">${tr('Hrvatske organizacije u projektima s ovim pojmom')}</div><ul class="check-list" style="margin-top:8px">${c.top.map(([id, nm, k]) => `<li><a href="#/organizacije/${encodeURIComponent(id)}">${esc(nm)}</a> <span class="mono small">· ${k} ${tr('projekata')}</span></li>`).join('')}</ul>`; box.append(s); };
+  if (CONCEPT_ORGS) draw(CONCEPT_ORGS); else fetch(window.EK_DATA_BASE + 'concept_orgs.json').then((r) => (r.ok ? r.json() : null)).then((j) => { CONCEPT_ORGS = j || {}; draw(CONCEPT_ORGS); }).catch(() => { CONCEPT_ORGS = {}; });
+}
 function viewGraf(root) {
   const g = D.graph, N = g.nodes, KIND = { approach: ['Pristup', '#2a78d6'], target_group: ['Ciljna skupina', '#eb6834'], output: ['Rezultat', '#1baf7a'], problem: ['Problem', '#4b5563'], topic: ['Tema', '#7d7d77'] };
   const name = (n) => bi(n[2], n[3]), neigh = new Map();
@@ -1898,11 +1905,16 @@ function viewGraf(root) {
     sel = i; draw(); const n = N[i], rel = (neigh.get(i) || []).sort((a, b) => b[2] - a[2]), comm = g.communities.find((k) => k.id === n[10]);
     const groups = ['target_group', 'approach', 'output', 'problem', 'topic'].map((kd) => { const it = rel.filter((r) => N[r[0]][1] === kd).slice(0, 5); return it.length ? `<div><div class="kicker" style="color:var(--muted)">${KIND[kd][0]}</div><ul style="padding-left:18px;margin:6px 0 10px">${it.map((r) => `<li><button type="button" class="linkish" data-i="${r[0]}">${esc(name(N[r[0]]))}</button> <span class="mono small">· zajedno ${fmt(r[1])}</span></li>`).join('')}</ul></div>` : ''; }).join('');
     $('#cbody', root).innerHTML = `<h3 style="margin:4px 0">${esc(name(n))}</h3><p class="lead" style="margin:0 0 8px">${KIND[n[1]][0]} · ${fmt(n[4])} projekata (${Math.round(n[4] / g.projects * 100)} %)</p><p class="lead small" style="margin:0 0 8px">Razdoblja: 2014.–2020. ${fmt(n[5])} · 2021.–2027. ${fmt(n[6])}</p>${comm ? `<p class="lead small" style="margin:0 0 8px">Skupina: ${esc(comm.name[1] || comm.name[0])}</p>` : ''}<div class="grid three" style="margin-top:6px">${groups}</div>`;
+    ekPartners(n, $('#cbody', root));
     $('#cbody', root).hidden = false; $('#chint', root).hidden = true; $$('#cbody button[data-i]', root).forEach((b) => b.onclick = () => show(+b.dataset.i));
   }
   $('#cs', root).oninput = (e) => { const q = fold(e.target.value.trim()), ul = $('#cres', root); ul.innerHTML = ''; if (q.length < 2) return; let k = 0; for (let i = 0; i < N.length && k < 12; i++) if (fold(N[i][2] + ' ' + (N[i][3] || '')).includes(q)) { k++; const li = document.createElement('li'); li.innerHTML = `<button type="button" class="linkish" data-i="${i}">${esc(name(N[i]))}</button> <span class="mono small">· ${KIND[N[i][1]][0]} · ${fmt(N[i][4])}</span>`; li.querySelector('button').onclick = () => show(i); ul.append(li); } };
   $('#comms', root).innerHTML = g.communities.map((k) => `<details class="card"><summary><b>${esc(bi(k.name[0], k.name[1]))}</b> <span class="mono small"> · ${fmt(k.n)} projekata (${Math.round(k.share * 100)} %)</span></summary><p class="lead small" style="margin:8px 0">2014.–2020.: ${fmt(k.p1)} · 2021.–2027.: ${fmt(k.p2)}</p><div class="grid three">${[['top_approach', 'Pristupi'], ['top_target_group', 'Ciljne skupine'], ['top_output', 'Rezultati'], ['top_problem', 'Problemi'], ['top_topic', 'Teme']].filter(([key]) => k[key].length).map(([key, l]) => `<div><div class="kicker" style="color:var(--muted)">${l}</div><ul style="padding-left:18px;margin:6px 0 0">${k[key].slice(0, 5).map((a) => `<li>${esc(bi(a[0], a[1]))}</li>`).join('')}</ul></div>`).join('')}</div></details>`).join('');
   draw();
+  /* links from the assistant: graph/#<concept id> opens the concept, graph/#group-C01 opens the group */
+  const hh = decodeURIComponent(location.hash.slice(1));
+  if (hh.startsWith('group-')) { const k = g.communities.findIndex((c) => c.id === hh.slice(6)); const d = $$('#comms details', root)[k]; if (d) { const f = $('details.fold', root); if (f) f.open = true; d.open = true; setTimeout(() => d.scrollIntoView({ block: 'center' }), 50); } }
+  else if (hh) { const i = N.findIndex((x) => x[0] === hh); if (i >= 0) { show(i); setTimeout(() => $('#cpanel', root).scrollIntoView({ block: 'start' }), 50); } }
 }
 
 /* ============ view: Problemi i rješenja ============ */
@@ -2462,7 +2474,7 @@ function viewProjekt(root, id) {
   }
   paint();
   const my = ++seq;
-  FULL.project(id).then((f) => { if (f && root.isConnected && my === seq && decodeURIComponent(window.__h || location.hash).endsWith(id)) { F = f; paint(); } });
+  FULL.project(id).then((f) => { if (f && root.isConnected && my === seq && true) { F = f; paint(); } });
 }
 
 /* ============ prikaz: Rječnik ============ */
@@ -2864,7 +2876,7 @@ const NAVS = [];
 const subOn = () => false;
 
 const EK_BASE = (document.body.dataset.base || '').replace(/\/$/, '');
-const EK_SLUG = (s) => String(s).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
+const EK_SLUG = (s) => String(s).normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/đ/g, 'd').replace(/Đ/g, 'D').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
 /* '#/mjesta/Split' -> '/hr/places/split/' */
 const EK_ROUTES = [
   [/^#\/?$/, () => '/'], [/^#\/pregled$/, () => '/overview/'], [/^#\/kronologija$/, () => '/timeline/'], [/^#\/drzave$/, () => '/countries/'],
@@ -2887,14 +2899,19 @@ function go(h) { location.href = ekUrl(h); }
   Object.defineProperty(window, '__pre', { get: () => pre, set: (v) => { pre = v; try { sessionStorage.setItem('ek-pre', JSON.stringify(v)); } catch (e) { /* no storage */ } }, configurable: true });
 })();
 
+/* detail pages: the address holds the slug, the views want the real id */
+const bySlug = (list, key, s) => { const f = list.find((x) => EK_SLUG(key(x)) === s); return f ? key(f) : s; };
+const detail = (fn, list, key) => (root, a) => { const s = a && a[1] || ''; fn(root, bySlug(list(), key, s)); };
 const EK_VIEWS = {
+  project: [detail(viewProjekt, () => D.projects, (x) => x[0]), '#/projekti'], org: [detail(viewOrganizacija, () => O(), (x) => x.id), '#/organizacije'],
+  county: [detail(viewZupanija, () => D.counties, (x) => x.stem), '#/mjesta'], graph: [viewGraf, '#/graf'],
   landing: [viewLanding, '#/'], overview: [viewPregled, '#/pregled'], timeline: [viewKronologija, '#/kronologija'], countries: [viewDrzave, '#/drzave'],
   places: [viewMjesta, '#/mjesta'], compare: [viewUsporedba, '#/usporedba'], coverage: [viewPokrivenost, '#/pokrivenost'],
   projects: [viewProjekti, '#/projekti'], organisations: [viewOrganizacije, '#/organizacije'], topics: [viewTeme, '#/teme'], problems: [viewProblemi, '#/pristupi'],
   ask: [viewPitajte, '#/pitajte'], about: [viewOPodacima, '#/o-podacima'], glossary: [viewRjecnik, '#/rjecnik'], downloads: [viewPreuzimanje, '#/preuzimanje'],
   accessibility: [viewPristupacnost, '#/pristupacnost'], contact: [viewKontakt, '#/kontakt'], sitemap: [viewMapaStranice, '#/mapa-stranice'], notfound: [viewNotFound, '#/404']
 };
-const EK_VIEWKEY = { landing: 'pocetna', overview: 'pregled', timeline: 'pregled', countries: 'pregled', places: 'zupanije', compare: 'zupanije', coverage: 'zupanije', projects: 'trazi', organisations: 'trazi', topics: 'teme', problems: 'teme', ask: 'pitajte', about: 'o', glossary: 'o', downloads: 'o' };
+const EK_VIEWKEY = { project: 'trazi', org: 'trazi', county: 'zupanije', graph: 'teme', landing: 'pocetna', overview: 'pregled', timeline: 'pregled', countries: 'pregled', places: 'zupanije', compare: 'zupanije', coverage: 'zupanije', projects: 'trazi', organisations: 'trazi', topics: 'teme', problems: 'teme', ask: 'pitajte', about: 'o', glossary: 'o', downloads: 'o' };
 
 /* every '#/...' link the views write becomes a real link, also in what they draw later (filters, "show more") */
 function ekLinks(root) {
