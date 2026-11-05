@@ -64,7 +64,7 @@ D = {
 "Prikaz pojmova koje je jezični model izdvojio iz sažetaka projekata (pristupi, ciljne skupine, rezultati, problemi, teme). Brojevi su donja granica, pa pokazuju obrasce, a ne točne brojke.":"A view of the concepts the language model extracted from project summaries (approaches, target groups, results, problems, topics). The numbers are a lower bound, so they show patterns, not exact figures.",
 "Nijedan pojam ne odgovara pretrazi.":"No concept matches the search.",
 "Informacije · Preuzimanje podataka":"Information · Data download","Preuzmite otvorene podatke":"Download the open data",
-"Skupovi podataka na kojima se temelji atlas. Preuzimanje u prototipu stvara CSV izravno iz podataka koje stranica već sadrži.":"The datasets the atlas is based on. In the prototype, downloading creates a CSV directly from the data the page already contains.",
+"Skupovi podataka na kojima se temelji atlas.":"The datasets the atlas is based on.",
 "{N} KA{N} projekata s hrvatskim sudionikom: oznaka, naslov, godina, razdoblje, sektor, vrsta, status, dobra praksa i države.":"{N1} KA{N2} projects with a Croatian participant: code, title, year, period, sector, type, status, good practice and countries.",
 "projekti.csv":"projects.csv","Preuzmi CSV":"Download CSV",
 "{N} hrvatskih organizacija: mjesto, županija, vrsta, broj projekata i koordinacija po razdobljima.":"{N1} Croatian organisations: place, county, type, number of projects and coordinations by period.",

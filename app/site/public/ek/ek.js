@@ -1409,7 +1409,7 @@ const EN_DICT = {
 "Nijedan pojam ne odgovara pretrazi.": "No concept matches the search.",
 "Informacije · Preuzimanje podataka": "Information · Data download",
 "Preuzmite otvorene podatke": "Download the open data",
-"Skupovi podataka na kojima se temelji atlas. Preuzimanje u prototipu stvara CSV izravno iz podataka koje stranica već sadrži.": "The datasets the atlas is based on. In the prototype, downloading creates a CSV directly from the data the page already contains.",
+"Skupovi podataka na kojima se temelji atlas.": "The datasets the atlas is based on.",
 "{N} KA{N} projekata s hrvatskim sudionikom: oznaka, naslov, godina, razdoblje, sektor, vrsta, status, dobra praksa i države.": "{N1} KA{N2} projects with a Croatian participant: code, title, year, period, sector, type, status, good practice and countries.",
 "projekti.csv": "projects.csv",
 "Preuzmi CSV": "Download CSV",
@@ -2531,7 +2531,7 @@ function viewPreuzimanje(root) {
     ['zupanije.csv', 'Županije', 'Pokazatelji za 21 županiju po razdobljima: organizacije, projekti, koordinacije i vrijednost projekata.', () => [LL(['zupanija', 'razdoblje', 'organizacija', 'projekata', 'koordinirano', 'vrijednost_eur'], ['county', 'period', 'organisations', 'projects', 'coordinated', 'value_eur']), ...D.counties.flatMap((c) => ['all', '2014-2020', '2021-2027'].map((k) => [I18N.ent(c.label), PL(k), c.ka2[k].organisations, c.ka2[k].projects_involved, c.ka2[k].projects_coordinated, Math.round(c.ka2[k].value_involved_eur)]))]],
     ['projekti-po-godinama.csv', 'Projekti po godinama', 'Broj projekata po godini poziva, razdoblju, sektoru i vrsti projekta.', () => [LL(['godina', 'razdoblje', 'sektor', 'vrsta', 'broj'], ['year', 'period', 'sector', 'type', 'count']), ...D.rows.map((r) => [r[0], PL(r[1]), I18N.ent(LAB.sector[r[2]]), I18N.ent(LAB.kind[r[3]]), r[4]])]]
   ];
-  root.innerHTML = `${head('Informacije · Preuzimanje podataka', 'Preuzmite otvorene podatke', 'Skupovi podataka na kojima se temelji atlas. Preuzimanje u prototipu stvara CSV izravno iz podataka koje stranica već sadrži.')}
+  root.innerHTML = `${head('Informacije · Preuzimanje podataka', 'Preuzmite otvorene podatke', 'Skupovi podataka na kojima se temelji atlas.')}
   <div class="grid two" style="margin-top:0"><section class="card" style="padding:0"><div>${SETS.map(([f, t, d], i) => `<div class="ds"><div><h3>${t}</h3><p>${d}</p><p class="mono small" style="margin-top:6px">${f}</p></div><div class="acts"><button type="button" class="btn sm primary" data-i="${i}">Preuzmi CSV</button></div></div>`).join('')}</div></section>
   <div class="stack"><section class="card"><h2>Kako koristiti podatke</h2><ul class="check-list" style="margin-top:14px"><li>Navedite izvore: Erasmus+ Project Results Platform (Europska komisija), Program Erasmus+ 2021.–2027. i registri ustanova na data.gov.hr (Agencija za mobilnost i programe EU, Ministarstvo znanosti, obrazovanja i mladih).</li><li>Provjerite uvjete korištenja u izvoru; atlas ne mijenja licence izvornih skupova.</li><li>Pročitajte <a href="#/o-podacima">ograničenja podataka</a> prije usporedbi.</li></ul></section>
   <section class="card"><h2>Za programere</h2><p class="lead">U pravoj aplikaciji isti su podaci dostupni kao JSON, a pitanja se šalju asistentu.</p><pre class="code">GET  /data/projects.json
