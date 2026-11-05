@@ -1,4 +1,6 @@
-# Erasmus+ Kompas (app)
+# Erasmus+ Kompas (app): developer guide
+
+Setup, pipeline, tests and hosting. Architecture, datasets, tools and licences (Croatian and English): [../README.md](../README.md).
 
 Public website on Croatian participation in Erasmus+ KA2 partnerships, 2014–2026.
 
