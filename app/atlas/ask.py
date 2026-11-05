@@ -277,9 +277,26 @@ def enrich_plan(plan: dict, question: str, tb) -> dict:
     town = towns[0] if len(towns) == 1 else None
     if len(towns) >= 2 and re.search(r"vi[šs]e|manje|usporedi|razlik|više|more|fewer|less|compare|versus|\bvs\b|odnosu|naspram|ili|or\b|tko ima|who has", q):
         plan["towns"] = towns[:4]
-    specific_org = re.search(r"\bgimnazija\b|\bsveu[čc]ili[šs]te\b|osnovna škola|srednja škola|dječji vrtić|\bfakultet\b|\bpu[čc]ko\b|\bu[čc]ili[šs]te\b|\bcentar\b|\budruga\b", q)
+    specific_org = re.search(r"\bgimnazija\b|\bsveu[čc]ili[šs]te\b|osnovna škola|srednja škola|dječji vrtić|\bfakultet\b|\bpu[čc]ko\b|\bu[čc]ili[šs]te\b|\bcentar\b|\budruga\b|\b(osnovna|srednja|glazbena|strukovna|medicinska|tehni[čc]ka|ekonomska|umjetni[čc]ka)\s+[šs]kola\b|sli[čc]n\w+|similar", q)
     if re.search(r"ravnatelj|director|principal|e-?mail|telefon|phone|zbroji|sum up|add up|total across|kako (se )?prijavi|how (do i|to|can i) (apply|submit)|natje[čc]aj\w* (za|za prijavu)", q):
         plan["route"] = "out_of_scope"
+    elif re.search(r"ignor\w* (all |the )?(previous|prior|above)|system prompt|ignoriraj|zanemari (sve )?(prethodn|upute)|prompt injection|jailbreak|(print|reveal|show|ispiši|otkrij|prikaži) (your |svoj\w* )?(system |sistemsk\w* )?(prompt|upute)", q):
+        plan["route"] = "out_of_scope"
+    elif re.search(r"^(a )?(samo|only|just)\b.*\b20[12]\d", q.strip()) and len(q.split()) <= 6:
+        plan["route"] = "national"                  # "A samo 2021.–2026.?": the national figures for that period
+    elif re.search(r"\b(kolko|koliko)\b.*\b(eura|euro|€)\b|how many euros|how much (money|is that)", q) and not tb.find_organisation_in_text(question).rows:
+        plan["route"] = "value"
+    elif re.search(r"(udio|postotak|posto|share|proportion|percent\w*)\b.*\b(svim|ukupn\w*|all|total)\b.*(eu\b|europske unije|european union)", q) and not tb.resolve_county(question) and not specific_org:
+        plan["route"] = "national"
+    elif re.search(r"^koliko (je )?[\wčćšžđ]*\s*županij\w*|^how many counties", q.strip()) and not re.search(r"najvi|najmanj|škol|school|vrti|most|least|top", q):
+        plan["route"] = "county_ranking"
+    elif len(set(years)) == 2 and re.search(r"koliko|how many", q) and re.search(r"vi[šs]e|manje|nego|more|fewer|less|than", q) and re.search(r"projek|project", q) and not tb.resolve_county(question):
+        plan["route"] = "year_count"
+    elif re.search(r"sli[čc]n\w+|similar", q) and (tb.find_organisation_in_text(question).rows or _named_in_genitive(question, tb)) and not plan.get("towns"):
+        plan["route"] = "organisation"                # "similar schools near X": the organisation profile lists them
+        plan["organisation"] = plan.get("organisation") or _named_in_genitive(question, tb)
+    elif plan["route"] == "partner_countries" and tb.find_organisation_in_text(question).rows and not plan.get("towns"):
+        plan["route"] = "organisation"                # the profile of a named organisation already lists its partner countries
     elif plan.get("towns"):
         plan["route"] = "town"
     elif town and not specific_org and re.search(
@@ -297,6 +314,9 @@ def enrich_plan(plan: dict, question: str, tb) -> dict:
     elif YEAR_TREND_WORDS.search(q) and re.search(r"projek|project|sudjelovanj|participation|međugodišnj|medjugodisnj|year[- ]on[- ]year|koje je godine|koja (je )?godin|which year", q) and not SUCCESS_WORDS.search(q) and not tb.resolve_county(question) \
             and not tb.find_organisation_in_text(question).rows and not CONCEPT_WORDS.search(q):
         plan["route"] = "year_count"
+    elif re.search(r"\b(od|since|from|nakon|after)\s+20[12]\d\b(?!\s*\.?\s*(do|to|[–-]))", q) and len(set(years)) == 1 and re.search(r"koliko|how many", q) and re.search(r"projek|project", q) \
+            and not tb.resolve_county(question) and not tb.find_organisation_in_text(question).rows and not YEAR_TREND_WORDS.search(q):
+        plan["route"] = "national"                  # "projects since 2014" is the whole period, not one call year
     elif len(set(years)) == 1 and 2014 <= years[0] <= 2026 and re.search(r"koliko|how many|number of", q) and re.search(r"projek|project", q) and not tb.resolve_county(question) \
             and not tb.find_organisation_in_text(question).rows and not SUCCESS_WORDS.search(q):
         plan["route"] = "year_count"
@@ -326,6 +346,10 @@ def enrich_plan(plan: dict, question: str, tb) -> dict:
         plan["route"] = "limits"
     elif re.search(r"kojim (dr[zž]avama|zemljama)|partnersk\w* (dr[zž]av|zemlj)|partner countr|(which|what) countries .*(partner|work|cooperat|collaborat)|(surađ|suradj|partner)\w* (s|sa) (kojim|kojima)", q) and not tb.find_organisation_in_text(question).rows:
         plan["route"] = "partner_countries"
+    elif re.search(r"(koje|koja|which)\s+([\wčćšžđ]+\s+)?(županij|zupanij|countie)", q) and not tb.resolve_county(question) \
+            and re.search(r"udio|share|postotak|participation|iznad|ispod|above|below|jasno|clearly|škol|skol|school", q):
+        plan["route"] = "coverage"                    # which counties are above or below the national share of schools
+        plan["county"] = None
     elif re.search(r"(koje|koja|which)\s+([\wčćšžđ]+\s+)?(županij|zupanij|countie)", q) and not tb.resolve_county(question):
         plan["route"] = "county_ranking"
     elif plan["route"] == "county_ranking" and tb.resolve_county(question):      # a county is named: it is not a ranking of counties
@@ -346,10 +370,15 @@ def enrich_plan(plan: dict, question: str, tb) -> dict:
         plan["route"] = "coverage"
     elif plan["route"] == "concepts" and not re.search(r"projekt|škol|skol|erasmus|ka2|organiz|tem[aeu]\b|problem|vještin|vjestin|digital|project|school|theme|skill|educat|obrazov|učenik|nastavn|sustav|partner|teacher|student|pupil|youth|learner|učitelj|mladi|učenic|roditelj|parent|inclusion|uključi|bullying|nasilj|methods?\b|metod|approach|pristup", q):
         plan["route"] = "out_of_scope"
+    if plan["route"] == "project_search" and plan.get("topic"):        # "umjetna inteligencija u obrazovanju": the generic tail would match every education project
+        short = re.sub(r"\s+(u|in)\s+(obrazovanju|obrazovanje|školstvu|skolstvu|education|schools?|školama|skolama)$", "", plan["topic"].strip(), flags=re.I)
+        if len(short.split()) >= 1 and short:
+            plan["topic"] = short
     if plan.get("school_type", "both") == "both" and plan["route"] in ("coverage", "county"):
-        if re.search(r"osnovn\w* škol|osnovn\w* skol|primary school", q):
+        both_types = re.search(r"osnovn", q) and re.search(r"srednj", q)       # "osnovnih i srednjih škola" is both
+        if re.search(r"osnovn\w* škol|osnovn\w* skol|primary school", q) and not both_types:
             plan["school_type"] = "primary"
-        elif re.search(r"srednj\w* škol|srednj\w* skol|secondary school|gimnazij\w* i strukovn", q):
+        elif re.search(r"srednj\w* škol|srednj\w* skol|secondary school|gimnazij\w* i strukovn", q) and not both_types:
             plan["school_type"] = "secondary"
     if plan.get("school_type", "both") == "both":
         if re.search(r"vrti[ćc]|kindergarten|preschool", q):
@@ -357,6 +386,20 @@ def enrich_plan(plan: dict, question: str, tb) -> dict:
     if plan.get("role", "any") == "any" and re.search(r"koordinator|koordinira|coordinat", q) and plan["route"] == "coverage":
         plan["role"] = "coordinator"
     return plan
+
+
+_GENITIVE = (("Gimnazije", "Gimnazija"), ("Sveučilišta", "Sveučilište"), ("škole", "škola"), ("Škole", "Škola"), ("vrtića", "vrtić"), ("Fakulteta", "Fakultet"), ("Učilišta", "Učilište"))
+
+
+def _named_in_genitive(question: str, tb) -> Optional[str]:
+    """An organisation written in the genitive ("blizu Gimnazije Metković"): the name after 'blizu / near / like', put back to the nominative."""
+    m = re.search(r"(?:blizu|near|like|kao|poput)\s+([A-ZČĆŽŠĐ][^?]+?)\s*\??$", question.strip())
+    if not m:
+        return None
+    name = m.group(1)
+    for gen, nom in _GENITIVE:
+        name = name.replace(gen, nom)
+    return name if tb.find_organisation(name).rows else None
 
 
 def looks_like_follow_up(question: str, plan: dict) -> bool:
@@ -1042,6 +1085,10 @@ class Asker:
             results.append(tb.town_organisations(plan["town"], plan["period"]))
         elif r == "partner_countries":
             org_id = s.get("last_org_id") if plan.get("follow_up") else None
+            if not org_id:
+                named = tb.find_organisation_in_text(s["question"])
+                if named.rows and named.rows[0].get("org_id") and not any("ambiguous" in n for n in named.notes):
+                    org_id = named.rows[0]["org_id"]
             results.append(tb.partner_countries(plan["period"], org_id=org_id, town=None if org_id else plan.get("town")))
         elif r == "country_ranking" and len(countries_in_text(s["question"])) >= 2:
             results.append(tb.country_compare(countries_in_text(s["question"])))

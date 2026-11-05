@@ -14,7 +14,7 @@
 # Select a profile with  active_profile  below, or per run:  ATLAS_PROFILE=gemma8b
 # Other overrides: ATLAS_OLLAMA_URL (default http://127.0.0.1:11434), ATLAS_OPENAI_API_KEY.
 
-# auto = "light" when a GPU is present (NVIDIA or Apple silicon), otherwise "cpu". Force CPU with ATLAS_FORCE_CPU=1.
+# auto = "qwen3_4b_2507" when a GPU is present (NVIDIA or Apple silicon), otherwise "cpu". Force CPU with ATLAS_FORCE_CPU=1.
 active_profile: auto
 
 # Limits that matter on CPU-only machines: too many parallel LLM calls starve the threads and can freeze the host.
@@ -89,6 +89,22 @@ profiles:
   # Removed 2026-10-30 after testing (models deleted from Ollama; results in LOG.md): gemma_e4b, gemma31b (Q4), qwen35_bf16, cand_mistral24, cand_qwen3_14b, cand_gemma3tools.
 
   # DeepSeek R1 distills 8B/14B/32B were tested 2026-10-31 and deleted (see LOG.md); their profiles were removed.
+
+  # Qwen 2.5 7B Instruct (Apache-2.0, unlike the 3B build) for routing and phrasing; tested against light and qwen35 on 2026-11-05.
+  qwen25_7b:
+    ask_router:   {provider: ollama, model: "qwen2.5:7b-instruct", temperature: 0.0, num_ctx: 4096}
+    ask_answer:   {provider: ollama, model: "qwen2.5:7b-instruct", temperature: 0.2, num_ctx: 8192}
+    extraction:   {provider: ollama, model: "gemma4:latest",       temperature: 0.0, num_ctx: 8192}
+    translation:  {provider: ollama, model: "gemma4:latest",       temperature: 0.0, num_ctx: 4096}
+    embeddings:   {provider: ollama, model: "bge-m3"}
+
+  # Qwen3 4B Instruct 2507 (Q4_K_M) for routing and phrasing; tested against light, qwen35 and qwen25_7b on 2026-11-05.
+  qwen3_4b_2507:
+    ask_router:   {provider: ollama, model: "qwen3:4b-instruct-2507-q4_K_M", temperature: 0.0, num_ctx: 4096}
+    ask_answer:   {provider: ollama, model: "qwen3:4b-instruct-2507-q4_K_M", temperature: 0.2, num_ctx: 4096}
+    extraction:   {provider: ollama, model: "gemma4:latest",       temperature: 0.0, num_ctx: 8192}
+    translation:  {provider: ollama, model: "gemma4:latest",       temperature: 0.0, num_ctx: 4096}
+    embeddings:   {provider: ollama, model: "bge-m3"}
 
   # CPU-only host that can run a 9B model (16+ cores, 16 GB RAM or more): tested 2026-11-01 on a 16-core machine with no GPU.
   cpu_qwen35:

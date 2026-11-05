@@ -39,8 +39,8 @@ def load_profile(profile: Optional[str] = None, path: Path = DEFAULT_PATH) -> di
     """Return {role: ModelSpec} for a profile (argument > ATLAS_PROFILE > active_profile in the file)."""
     raw = yaml.safe_load(Path(path).read_text(encoding="utf-8"))
     name = profile or os.environ.get("ATLAS_PROFILE") or raw["active_profile"]
-    if name == "auto":                                     # GPU present -> "light", otherwise the CPU profile
-        name = "light" if gpu_available() else "cpu"
+    if name == "auto":                                     # GPU present -> "qwen3_4b_2507" (Apache-2.0), otherwise the CPU profile
+        name = "qwen3_4b_2507" if gpu_available() else "cpu"
     if name not in raw["profiles"]:
         raise KeyError(f"profile {name!r} not in {path}; available: {sorted(raw['profiles'])}")
     specs = {role: ModelSpec(**cfg) for role, cfg in raw["profiles"][name].items()}

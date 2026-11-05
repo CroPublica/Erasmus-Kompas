@@ -87,10 +87,11 @@ Podaci nastali u ovom projektu (nisu vanjski skup podataka): odluke o organizaci
 | Model | Namjena | Licencija |
 |---|---|---|
 | Qwen 3.5 9B (Q8) | izdvajanje pojmova iz sažetaka projekata (korak 50) | Apache-2.0 |
-| Qwen 3.5 4B | usmjerivač pitanja asistenta | Apache-2.0 |
+| Qwen3 4B Instruct 2507 (Q4_K_M) | usmjerivač pitanja asistenta (profil `qwen3_4b_2507`, zadan); oblikuje odgovore samo kad `ATLAS_ANSWER_MODE` nije `template` | Apache-2.0 |
 | Gemma 4 31B (Q8) | hrvatski nazivi pojmova i skupina (koraci 52, 61); oblikovanje odgovora kad je taj način uključen | Apache-2.0 |
 | BGE-M3 | višejezični ugrađeni vektori (pretraga po značenju, spajanje bliskih pojmova) | MIT |
-| Qwen 2.5 3B Instruct | samo u izbornim profilima `light`/`cpu`, ne u demonstraciji | Qwen Research Licence (istraživačka uporaba) |
+| Qwen 3.5 4B, Qwen 2.5 7B Instruct | usmjerivači u alternativnim profilima `qwen35`, `gemma31b_q8`, `qwen25_7b` (`ATLAS_PROFILE=...`); testirani, nisu odabrani | Apache-2.0 |
+| Qwen 2.5 3B Instruct | samo u starim profilima `light`/`cpu`, više nije zadan | Qwen Research Licence (istraživačka uporaba) |
 
 **AI asistent korišten u razvoju:** Claude Code (Anthropic) pomogao je pri pisanju i testiranju koda i dokumentacije te pri provjeri hrvatske terminologije; sve promjene pregledao je vlasnik projekta. Izlaz modela u podacima (pojmovi, hrvatski nazivi, nazivi skupina) smatra se nacrtom dok se ne pregleda.
 
@@ -187,10 +188,11 @@ Derived data made in this project (not an external dataset): organisation decisi
 | Model | Use | Licence |
 |---|---|---|
 | Qwen 3.5 9B (Q8) | extraction of concepts from project summaries (step 50) | Apache-2.0 |
-| Qwen 3.5 4B | question router of the assistant | Apache-2.0 |
+| Qwen3 4B Instruct 2507 (Q4_K_M) | question router of the assistant (profile `qwen3_4b_2507`, the default); phrases answers only when `ATLAS_ANSWER_MODE` is not `template` | Apache-2.0 |
 | Gemma 4 31B (Q8) | Croatian names of concepts and groups (steps 52, 61); phrasing of answers when that mode is on | Apache-2.0 |
 | BGE-M3 | multilingual embeddings (meaning search, merging of near-duplicate concepts) | MIT |
-| Qwen 2.5 3B Instruct | only in the optional `light`/`cpu` profiles, not in the demo | Qwen Research Licence (research use) |
+| Qwen 3.5 4B, Qwen 2.5 7B Instruct | routers in the alternative profiles `qwen35`, `gemma31b_q8`, `qwen25_7b` (`ATLAS_PROFILE=...`); tested, not chosen | Apache-2.0 |
+| Qwen 2.5 3B Instruct | only in the old `light`/`cpu` profiles, no longer the default | Qwen Research Licence (research use) |
 
 **AI assistant used in development:** Claude Code (Anthropic) helped to write and test code and documentation and to review the Croatian terminology; all changes were reviewed by the project owner. Model output in the data (concepts, Croatian labels, group names) is marked as draft until reviewed.
 

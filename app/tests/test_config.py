@@ -40,7 +40,7 @@ def test_auto_profile_follows_the_gpu(monkeypatch):
     from atlas import config
     monkeypatch.delenv("ATLAS_PROFILE", raising=False)
     monkeypatch.setattr(config, "gpu_available", lambda: True)
-    assert load_profile("auto")["ask_router"].model == load_profile("light")["ask_router"].model
+    assert load_profile("auto")["ask_router"].model == load_profile("qwen3_4b_2507")["ask_router"].model
     monkeypatch.setattr(config, "gpu_available", lambda: False)
     assert load_profile("auto")["ask_answer"] == load_profile("cpu")["ask_answer"]
 
