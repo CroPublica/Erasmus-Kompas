@@ -26,7 +26,7 @@ const open = async (path, w = 1280, opts = {}) => {
     if (/status of 404/.test(m.text()) && /\/api\/health/.test(last404)) return;                          // the preview has no assistant API: the page falls back to answers from the data
     errors.push(`${path}: ${m.text()}`);
   });
-  p.on('pageerror', (e) => errors.push(`${path}: ${e}`));
+  p.on('pageerror', (e) => { if (!/ViewTransition opt-in disabled/.test(String(e))) errors.push(`${path}: ${e}`); });   // the browser aborts a cross-document transition when the next click comes mid-fade: harmless
   await p.goto(URL + path);
   if (!opts.fast) await p.waitForFunction(() => !document.getElementById('view') || document.getElementById('view').getAttribute('aria-busy') !== 'true' && document.getElementById('view').innerText.length > 80, null, { timeout: 15000 }).catch(() => {});
   return p;
@@ -44,7 +44,7 @@ await test('frame: sidebar lists every sub-page, marks the current one, tabs fol
   assert.ok((await p.locator('#nav a.sub').count()) >= 14);
   assert.equal(await p.locator('#nav a.sub[aria-current=page]').innerText(), 'Ključni pokazatelji');
   assert.equal(await p.locator('.tabs2 a').count(), 3);
-  assert.match(await p.locator('footer.site').innerText(), /Erasmus\+ Project Results Platform/);
+  assert.match(await p.locator('footer.site').innerText(), /Platforma za rezultate projekata programa Erasmus\+/);
 });
 await test('theme: switch to dark, remembered after reload, back to light', async () => {
   const p = await open('/hr/overview/');
