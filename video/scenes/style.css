@@ -1,0 +1,43 @@
+@font-face{font-family:"Src Sans";src:url(../assets/fonts/SourceSans3-Regular.woff2);font-weight:400}
+@font-face{font-family:"Src Sans";src:url(../assets/fonts/SourceSans3-Medium.woff2);font-weight:500}
+@font-face{font-family:"Src Sans";src:url(../assets/fonts/SourceSans3-Semibold.woff2);font-weight:600}
+@font-face{font-family:"Src Sans";src:url(../assets/fonts/SourceSans3-Bold.woff2);font-weight:700}
+@font-face{font-family:"Src Serif";src:url(../assets/fonts/SourceSerif4-Semibold.woff2);font-weight:600}
+@font-face{font-family:"Src Serif";src:url(../assets/fonts/SourceSerif4-Bold.woff2);font-weight:700}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%;background:#060e1f;overflow:hidden}
+#frame{position:absolute;inset:0 0 56px 0;display:flex;align-items:center;justify-content:center}
+#stage{position:relative;width:1920px;height:1080px;flex:none;overflow:hidden;color:#fff;font:500 34px/1.25 "Src Sans",sans-serif;background:radial-gradient(1400px 900px at 70% 20%,#0d3a7c 0%,#0b2a5b 55%,#081f45 100%);transform-origin:center}
+#controls{position:absolute;left:0;right:0;bottom:0;height:56px;display:flex;gap:16px;align-items:center;padding:0 20px;background:#0b1730;color:#fff;font:500 18px "Src Sans",sans-serif}
+#controls button{font:600 18px "Src Sans",sans-serif;background:#ffd617;color:#0b2a5b;border:0;border-radius:6px;padding:7px 18px;cursor:pointer;min-width:110px}
+#controls input{flex:1}
+body.render #controls{display:none}
+body.render #frame{inset:0;display:block}
+body.render #stage{transform:none!important}
+.scene{position:absolute;inset:0;visibility:hidden}
+.a{position:absolute}
+.serif{font-family:"Src Serif",serif;font-weight:700}
+.card{background:#f5f7fb;color:#1d2a44;border-radius:18px;box-shadow:0 18px 50px rgba(0,0,0,.28)}
+.glass{background:rgba(255,255,255,.08);border:1.5px solid rgba(255,255,255,.2);border-radius:18px}
+.muted{color:#bfd0e4}
+.yellow{color:#ffd617}
+.ink-muted{color:#566782}
+.pill{background:#f5f7fb;color:#1d2a44;border-radius:14px;padding:12px 22px;font-size:30px;line-height:1.15;font-weight:600;display:flex;align-items:center}
+.kind{font-size:26px;letter-spacing:.09em;text-transform:uppercase;font-weight:700;color:#bfd0e4}
+.box{display:flex;flex-direction:column;justify-content:center;padding:10px 20px;background:rgba(255,255,255,.1);border:1.5px solid rgba(255,255,255,.3);border-radius:14px;line-height:1.12}
+.box b{font-size:33px;font-weight:700;color:#fff}
+.box small{font-size:25px;color:#bfd0e4;font-weight:500;margin-top:4px}
+.box.hot{background:#ffd617;border-color:#ffd617}
+.box.hot b{color:#0b2a5b}
+.box.hot small{color:#0b2a5b}
+#head{position:absolute;left:64px;right:64px;top:30px;height:60px;display:flex;align-items:center;gap:18px;z-index:5}
+#head .brand{font-weight:700;font-size:28px;color:#fff}
+#head .sep{width:2px;height:30px;background:rgba(255,255,255,.3)}
+#head .label{font-size:28px;font-weight:600;color:#ffd617}
+#head .ticks{margin-left:auto;display:flex;gap:8px}
+#head .tick{width:48px;height:7px;border-radius:4px;background:rgba(255,255,255,.22)}
+#head .tick.on{background:#ffd617}
+#head .tick.done{background:rgba(255,255,255,.65)}
+#sub{position:absolute;left:0;right:0;bottom:36px;display:flex;justify-content:center;z-index:6;pointer-events:none}
+#sub div{max-width:1560px;padding:14px 34px;background:rgba(5,15,36,.88);border-radius:12px;text-align:center;font:600 45px/1.24 "Src Sans",sans-serif;color:#fff}
+#sub div:empty{display:none}

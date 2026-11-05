@@ -1,0 +1,160 @@
+WEBVTT
+
+00:00:01.000 --> 00:00:06.091
+Od dvije tisuće četrnaeste godine
+u KA2 partnerstvima programa Erasmus+
+
+00:00:06.141 --> 00:00:10.141
+sudjelovala je tek jedna od tri
+hrvatske osnovne i srednje škole.
+
+00:00:10.541 --> 00:00:11.641
+Koje su to škole?
+
+00:00:12.041 --> 00:00:13.141
+S kim surađuju?
+
+00:00:13.541 --> 00:00:15.541
+Čime se bave njihovi projekti?
+
+00:00:15.941 --> 00:00:19.214
+Erasmus+ Kompas pruža
+odgovore na ova pitanja.
+
+00:00:20.364 --> 00:00:22.909
+Erasmus+ Kompas namijenjen je školama,
+
+00:00:23.089 --> 00:00:26.180
+udrugama, gradovima,
+županijama, građanima,
+
+00:00:26.360 --> 00:00:31.451
+novinarima te istraživačima koji žele
+saznati više o samim projektima.
+
+00:00:32.601 --> 00:00:35.692
+Podatke smo preuzeli
+s Platforme za rezultate
+
+00:00:35.742 --> 00:00:39.560
+projekata Erasmus+
+te s Portala otvorenih podataka,
+
+00:00:39.740 --> 00:00:43.922
+gdje smo pronašli podatke
+Agencije za mobilnost i programe EU-a
+
+00:00:43.972 --> 00:00:46.881
+te registre obrazovnih
+ustanova u Hrvatskoj.
+
+00:00:48.031 --> 00:00:53.304
+Na karti odmah možemo vidjeti udio
+škola koji sudjeluje u svakoj županiji:
+
+00:00:53.484 --> 00:00:56.029
+od četrnaest i pol posto u Zagrebačkoj
+
+00:00:56.079 --> 00:00:59.715
+do gotovo pedeset sedam posto
+u Varaždinskoj županiji.
+
+00:01:00.865 --> 00:01:03.593
+Svaka organizacija ima svoju stranicu.
+
+00:01:03.993 --> 00:01:08.356
+Naprimjer, gimnazija Metković
+sudjelovala je u dvadeset dva projekta,
+
+00:01:08.536 --> 00:01:10.355
+a jedan je koordinirala.
+
+00:01:10.755 --> 00:01:13.300
+Popis se može filtrirati po županiji,
+
+00:01:13.480 --> 00:01:19.116
+vrsti i razdoblju te ga možete preuzeti
+kao CSV, Excel ili PDF datoteku.
+
+00:01:20.266 --> 00:01:24.085
+Jezični model izdvojio je iz
+projektnih sažetaka probleme,
+
+00:01:24.265 --> 00:01:26.628
+pristupe, ciljne skupine i rezultate.
+
+00:01:27.028 --> 00:01:29.755
+Mreža pojmova pokazuje što ide zajedno,
+
+00:01:29.935 --> 00:01:35.026
+primjerice rano napuštanje školovanja
+i učenike u nepovoljnom položaju.
+
+00:01:36.176 --> 00:01:38.722
+Također možete i jednostavno pitati,
+
+00:01:38.902 --> 00:01:41.084
+na hrvatskom ili engleskom jeziku.
+
+00:01:41.484 --> 00:01:45.484
+Na upit „rani prekid školovanja”
+Asistent po značenju prepoznaje
+
+00:01:45.534 --> 00:01:49.715
+rano napuštanje školovanja
+i pronalazi četrdeset dva projekta,
+
+00:01:49.895 --> 00:01:51.714
+s primjerima i izvorima.
+
+00:01:52.864 --> 00:01:56.864
+Podaci se obrađuju u Pythonu
+i spajaju u bazu DuckDB,
+
+00:01:57.044 --> 00:02:01.225
+a iz nje nastaje statično
+web-sjedište izrađeno u alatu Astro.
+
+00:02:01.625 --> 00:02:05.080
+Sažetke je obradio
+jezični model pokrenut lokalno,
+
+00:02:05.260 --> 00:02:08.715
+a algoritam grupira
+povezane pojmove u skupine.
+
+00:02:09.115 --> 00:02:12.751
+Kad korisnik postavi pitanje,
+model samo usmjerava upit.
+
+00:02:13.151 --> 00:02:16.424
+Alati dohvaćaju podatke,
+a odgovor sastavlja kôd.
+
+00:02:16.824 --> 00:02:20.278
+Zato brojke proizlaze iz podataka,
+a ne iz modela.
+
+00:02:21.428 --> 00:02:24.701
+Škole imaju uvid u to
+tko u njihovoj županiji
+
+00:02:24.751 --> 00:02:28.387
+već sudjeluje u projektima
+i čime se ti projekti bave.
+
+00:02:28.787 --> 00:02:32.787
+Građani, novinari i istraživači
+mogu na jednostavan način
+
+00:02:32.837 --> 00:02:36.837
+saznati više o partnerstvima
+programa Erasmus+ u svojem kraju.
+
+00:02:37.987 --> 00:02:41.624
+U planu su alat za traženje partnera,
+vodič za prvi projekt,
+
+00:02:41.804 --> 00:02:46.167
+redovito osvježavanje podataka
+svake godine i javni API.
