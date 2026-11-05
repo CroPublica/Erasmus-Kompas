@@ -79,7 +79,7 @@ def main():
         text = strip_acc(r["answer"])
         miss = [e for e in (q["expected"] or []) if not any(strip_acc(v) in text for v in variants(e))]
         checks = {
-            "route": r["route"] in ("concepts", "project_search") if q["group"] in CONCEPT_GROUPS else
+            "route": r["route"] in ("concepts", "project_search", "concept_aliases") if q["group"] in CONCEPT_GROUPS else
                      True if ROUTE_OK.get(q["route"], 1) is None else r["route"] in ROUTE_OK.get(q["route"], {r["route"]}),
             "facts": not miss if q["expected"] else None,
             "language": detect_language(r["answer"]) == q["lang"] if len(r["answer"]) > 40 else True,

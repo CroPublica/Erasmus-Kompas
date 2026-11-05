@@ -31,7 +31,7 @@ YEAR_TREND_WORDS = re.compile(r"koje je godine|koja (je )?godin|u kojoj (je )?go
                          r"po godinama|per year|by year|rast[ao]|rasl[ao]|rasla|padal|pad\b|opao|grew|grow|increas|decreas|declin|trend|mijenjao|mijenjal|changed over|najmanje projekata|najviše projekata u godini")
 
 
-Route = Literal["limits", "success", "organisation", "county", "national", "coverage", "country_ranking", "county_ranking", "partner_countries", "town", "county_project", "glossary", "year_count", "value", "top_organisations",
+Route = Literal["limits", "success", "organisation", "county", "national", "coverage", "country_ranking", "county_ranking", "partner_countries", "town", "concept_aliases", "county_project", "glossary", "year_count", "value", "top_organisations",
                 "project_search", "concepts", "out_of_scope"]
 
 
@@ -292,6 +292,13 @@ def enrich_plan(plan: dict, question: str, tb) -> dict:
         plan["route"] = "county_ranking"
     elif len(set(years)) == 2 and re.search(r"koliko|how many", q) and re.search(r"vi[šs]e|manje|nego|more|fewer|less|than", q) and re.search(r"projek|project", q) and not tb.resolve_county(question):
         plan["route"] = "year_count"
+    elif ALIAS_WORDS.search(q) and quoted_term(question):
+        plan["route"] = "concept_aliases"
+        plan["topic"] = quoted_term(question)
+    elif re.search(r"\([^()]{3,60}\)", question) and quoted_term(question) and re.search(r"postoji|ima li|is there|are there|koji projekti|which projects", q) and re.search(r"projekt|project", q) \
+            and not re.search(r"objasni|što (je|znači)|explain|what (is|does)|meaning", q) and plan["route"] in ("project_search", "concepts", "glossary", "out_of_scope") and not tb.find_organisation_in_text(question).rows:
+        plan["route"] = "project_search"             # the term in brackets is the best search word: "(repair café)"
+        plan["topic"] = quoted_term(question)
     elif re.search(r"sli[čc]n\w+|similar", q) and (tb.find_organisation_in_text(question).rows or _named_in_genitive(question, tb)) and not plan.get("towns"):
         plan["route"] = "organisation"                # "similar schools near X": the organisation profile lists them
         plan["organisation"] = plan.get("organisation") or _named_in_genitive(question, tb)
@@ -400,6 +407,20 @@ def _named_in_genitive(question: str, tb) -> Optional[str]:
     for gen, nom in _GENITIVE:
         name = name.replace(gen, nom)
     return name if tb.find_organisation(name).rows else None
+
+
+ALIAS_WORDS = re.compile(r"alias|sinonim|synonym|drugi nazivi|drugi izrazi|kako se (još )?(zove|naziva|pi[šs]e)|razli[čc]it\w+ (nazivi|izrazi)|(different|other|alternative) (names|wordings|terms)|how else|nazivi? za|names? for", re.I)
+_NOT_A_TERM = re.compile(r"^(alias\w*|npr\.?|e\.?g\.?|primjer\w*|sinonim\w*|synonym\w*)$", re.I)
+
+
+def quoted_term(question: str) -> Optional[str]:
+    """The term the user put in quotation marks or brackets ("... 'repair café' ...", "(repair café)"), quotes first."""
+    for pat in (r"[\"'„“‘’”]([^\"'„“‘’”]{3,60})[\"'„“‘’”]", r"\(([^()]{3,60})\)"):
+        for m in re.finditer(pat, question):
+            term = m.group(1).strip()
+            if re.search(r"[A-Za-zČĆŽŠĐčćžšđ]{3,}", term) and not _NOT_A_TERM.match(term):
+                return term
+    return None
 
 
 def looks_like_follow_up(question: str, plan: dict) -> bool:
@@ -772,6 +793,18 @@ def _template_answer(lang: str, route: str, results: list[dict]) -> str:
     if t == "county_ranking" and results[-1]["rows"] and results[-1]["args"].get("count_only"):
         n = results[-1]["rows"][0]["counties_total"]
         return f"U KA2 projektima sudjeluju organizacije iz svih {f(n)} županija (uključujući Grad Zagreb)." if hr else f"Organisations from all {f(n)} counties (including the City of Zagreb) take part in KA2 projects."
+    if t == "concept_aliases":
+        r = results[-1]["rows"][0]
+        if r.get("no_concept"):
+            ex = "; ".join(f"„{x}”" for x in r["examples"])
+            return ((f"„{r['term']}” nije zaseban pojam u mreži pojmova (premalo projekata ga navodi). Riječi se pojavljuju u {f(r['projects_found'])} projekata, na primjer: {ex}." if r["projects_found"] else
+                     f"„{r['term']}” nije pojam u mreži pojmova i nijedan naslov ni sažetak projekta ne sadrži te riječi.") if hr else
+                    (f"“{r['term']}” is not a concept of its own in the concept network (too few projects state it). The words appear in {f(r['projects_found'])} projects, for example: {ex}." if r["projects_found"] else
+                     f"“{r['term']}” is not a concept in the network and no project title or summary contains those words."))
+        name = (r.get("label_hr") or r["label_en"]) if hr else r["label_en"]
+        al = "; ".join(r["aliases"]) if r["aliases"] else ("nema drugih zabilježenih izraza" if hr else "no other recorded wordings")
+        return (f"Pojam „{name}” ({f(r['n_projects'])} projekata) u opisima projekata pojavljuje se i pod ovim izrazima (izvorno na engleskom): {al}." if hr else
+                f"The concept “{name}” ({f(r['n_projects'])} projects) is also worded in project texts as: {al}.")
     if t == "town_compare":
         rows = results[-1]["rows"]
         if len(rows) < 2:
@@ -819,7 +852,9 @@ def _template_answer(lang: str, route: str, results: list[dict]) -> str:
         head = f"Najaktivnije organizacije{where}, broj KA2 projekata: " if hr else f"Most active organisations{where}, number of KA2 projects: "
         return head + "; ".join(f"{x['org_name']}: {f(x['projects'])}" for x in rows) + "."
     if t == "search_projects":
-        head = "Projekti koji odgovaraju pretrazi (izvorni naslovi): " if hr else "Projects matching the search (original titles): "
+        what = str(results[-1]["args"].get("text") or "").strip()
+        head = (f"Za pretragu „{what}” pronađeni su ovi projekti, navedeni pod izvornim naslovima: " if what else "Projekti koji odgovaraju pretrazi (izvorni naslovi): ") if hr else \
+               (f"Projects matching the search “{what}” (original titles): " if what else "Projects matching the search (original titles): ")
         return head + "; ".join(quote_title(x["title"], x.get("call_year"), 100, lang) for x in results[-1]["rows"][:5]) + "."
     if t in ("common_concepts", "concept_profile", "community_overview", "search_concepts", "concept_trends", "connected_concepts"):
         return _concept_answer(lang, results)
@@ -1079,6 +1114,8 @@ class Asker:
         elif r == "county_project" and plan["county"]:
             n, order = ordinal_request(s["question"]) or (1, "first")
             results.append(tb.county_project(plan["county"], n, order, plan["period"]))
+        elif r == "concept_aliases" and plan.get("topic"):
+            results.append(tb.concept_aliases(plan["topic"]))
         elif r == "town" and plan.get("towns"):
             results.append(tb.town_compare(plan["towns"], plan["period"]))
         elif r == "town" and plan.get("town"):

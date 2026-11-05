@@ -27,7 +27,7 @@ def test_unknown_profile_is_an_error():
 def test_cpu_profile_uses_multilingual_embeddings():
     specs = load_profile("cpu")
     assert specs["embeddings"].model == "bge-m3"
-    assert specs["ask_answer"].model == "qwen2.5:3b-instruct"      # the default tag of this model is already Q4_K_M
+    assert {s.model for r, s in specs.items() if r != "embeddings"} == {"qwen3:4b-instruct-2507-q4_K_M"}      # all four chat roles: the Apache-2.0 model, not Qwen 2.5 3B
 
 
 def test_concurrency_default_and_override(monkeypatch):

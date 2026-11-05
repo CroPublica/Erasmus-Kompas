@@ -810,6 +810,29 @@ class Toolbox:
                 break
         return out
 
+    def concept_aliases(self, text: str, limit: int = 12) -> ToolResult:
+        """The wordings that projects use for one concept (the merged phrases of `concept_map`), or, when the network has no such concept,
+        how many project texts contain the words and which projects they are."""
+        res = ToolResult("concept_aliases", {"text": text, "limit": limit})
+        found = self.search_concepts(text, None, 3)
+        nodes = [r for r in found.rows if r.get("node_id")]
+        if nodes:
+            n, aliases = nodes[0], []
+            for cand in nodes:                         # an EU topic has no wordings: take the first match that has some
+                ph = self._rows("select phrase from concept_map where concept_id = ? order by length(phrase), phrase limit ?", [cand["node_id"], limit + 1])
+                al = [r["phrase"] for r in ph if r["phrase"].lower() != (cand["label_en"] or "").lower()][:limit]
+                if al:
+                    n, aliases = cand, al
+                    break
+            res.rows = [{"term": text, "node_id": n["node_id"], "kind": n["kind"], "label_en": n["label_en"], "label_hr": n.get("label_hr"), "n_projects": n["n_projects"], "aliases": aliases}]
+            res.citations = [f"concept:{n['node_id']}"]
+            return res
+        pr = self.search_projects(text, "all", 5)
+        res.rows = [{"term": text, "no_concept": True, "projects_found": len(pr.rows), "examples": [r["title"] for r in pr.rows[:3]]}]
+        res.citations = [c for c in pr.citations[:3]]
+        res.notes.append("no concept of the network carries these words (a concept needs several projects); the projects are found by their title or summary")
+        return res
+
     def search_concepts(self, text: str, kind: Optional[str] = None, limit: int = 5) -> ToolResult:
         """Concepts (approaches, target groups, outputs, problems) and EU topics whose English or Croatian name matches the words of `text`."""
         res = ToolResult("search_concepts", {"text": text, "kind": kind, "limit": limit})

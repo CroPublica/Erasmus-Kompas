@@ -526,3 +526,16 @@ def test_primary_and_secondary_together_is_the_whole_school_count(tb):
 def test_which_counties_above_or_below_the_school_share_is_a_coverage_question(tb):
     r = asker(tb, FakeRouter(route="county_ranking")).ask("Koja županija ima najveći udio škola u KA2 partnerstvima?")
     assert r["route"] == "coverage"
+
+
+def test_aliases_of_a_term_are_listed_or_the_missing_concept_is_said(tb):
+    r = asker(tb, FakeRouter(route="out_of_scope")).ask("Koji su nazivi (aliasi) za 'repair café' u opisima projekata?")
+    assert r["route"] == "concept_aliases" and "nije zaseban pojam" in r["answer"] and "Circular Connections" in r["answer"]
+    r = asker(tb, FakeRouter(route="out_of_scope")).ask("What other names are used for \"peer learning\"?")
+    assert r["route"] == "concept_aliases" and "peer-to-peer learning" in r["answer"]
+
+
+def test_a_term_in_brackets_is_the_search_word_but_explain_questions_are_left_alone(tb):
+    r = asker(tb, FakeRouter(route="project_search", topic="popravci i ponovna uporaba")).ask("Postoji li KA2 projekt o popravcima i ponovnoj uporabi (repair café) iz Hrvatske?")
+    assert r["tools"][0]["args"]["text"] == "repair café" and "Circular Connections" in r["answer"]
+    assert asker(tb, FakeRouter(route="glossary")).ask("Objasni što je 'peer learning' u ovim projektima.")["route"] != "project_search"

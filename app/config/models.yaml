@@ -31,13 +31,14 @@ profiles:
     translation:  {provider: ollama, model: "gemma4:latest",       temperature: 0.0, num_ctx: 4096}
     embeddings:   {provider: ollama, model: "bge-m3"}
 
-  # CPU-only host (no GPU): smallest model that can still produce valid JSON; the default tag is already Q4_K_M.
+  # CPU-only host (no GPU): the same small Apache-2.0 model as the GPU default (4B, Q4_K_M), so both hosts route the same way.
+  # (Qwen 2.5 3B was used here until 2026-11-05; its licence is research-only.)
   # bge-m3 (not nomic-embed-text, which is English-focused) because queries are Croatian.
   cpu:
-    ask_router:   {provider: ollama, model: "qwen2.5:3b-instruct", temperature: 0.0, num_ctx: 4096}
-    ask_answer:   {provider: ollama, model: "qwen2.5:3b-instruct", temperature: 0.2, num_ctx: 4096}
-    extraction:   {provider: ollama, model: "qwen2.5:3b-instruct", temperature: 0.0, num_ctx: 4096}
-    translation:  {provider: ollama, model: "qwen2.5:3b-instruct", temperature: 0.0, num_ctx: 2048}
+    ask_router:   {provider: ollama, model: "qwen3:4b-instruct-2507-q4_K_M", temperature: 0.0, num_ctx: 4096}
+    ask_answer:   {provider: ollama, model: "qwen3:4b-instruct-2507-q4_K_M", temperature: 0.2, num_ctx: 4096}
+    extraction:   {provider: ollama, model: "qwen3:4b-instruct-2507-q4_K_M", temperature: 0.0, num_ctx: 4096}
+    translation:  {provider: ollama, model: "qwen3:4b-instruct-2507-q4_K_M", temperature: 0.0, num_ctx: 2048}
     embeddings:   {provider: ollama, model: "bge-m3"}
 
   # Everything on the Gemma model that is already installed.

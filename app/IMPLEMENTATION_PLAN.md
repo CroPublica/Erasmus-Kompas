@@ -206,9 +206,9 @@ question ─► detect language ─► route (structured output)
 | Qwen2.5 7B / 3B, Llama 3.x 8B, Mistral Nemo 12B | general multilingual; Croatian quality varies |
 | GaMS (Slovenian-led South Slavic model that includes Croatian) | worth testing; check current availability and licence before relying on it |
 
-**CPU-only hosting.** A `cpu` profile exists in `config/models.yaml`: `qwen2.5:3b-instruct-q4_K_M` for every chat role and `bge-m3` for
+**CPU-only hosting.** A `cpu` profile exists in `config/models.yaml`: `qwen3:4b-instruct-2507-q4_K_M` (Apache-2.0; changed from Qwen 2.5 3B on 2026-11-05) for every chat role and `bge-m3` for
 embeddings, with `runtime.max_concurrency: 2` (env `ATLAS_MAX_CONCURRENCY`) so parallel requests do not starve the CPU.
-Rough memory needs for a 3B Q4 model are 8 GB RAM minimum, 16 GB comfortable. Two things to know:
+Rough memory needs for a 3B–4B Q4 model are 8 GB RAM minimum, 16 GB comfortable. Two things to know:
 - Qwen 2.5's officially listed languages do not include Croatian, so "handles Croatian natively" is unverified. The bake-off decides.
 - `nomic-embed-text` is English-focused, so it is not used for Croatian queries; `bge-m3` is.
 
