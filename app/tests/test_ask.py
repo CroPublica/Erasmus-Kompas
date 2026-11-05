@@ -175,7 +175,7 @@ def test_concepts_route_answers_from_the_concept_tools(tb):
 def test_list_questions_narrowed_by_a_concept_use_that_concept(tb):
     a = asker(tb, FakeRouter(route="concepts"))
     r = a.ask("Which approaches work best for students with fewer opportunities?")           # the qualifier must not be dropped
-    assert "tools=['search_concepts', 'concept_profile']" in " ".join(r["trace"]) and "students with fewer opportunities" in r["answer"]
+    assert "tools=['search_concepts', 'concept_profile']" in " ".join(r["trace"]) and "students with fewer opportunities" in r["answer"].lower()
     r = a.ask("Koji se pristupi najčešće koriste za rad s učenicima s manje mogućnosti?")
     assert "concept_profile" in " ".join(r["trace"]) and "manje mogućnosti" in r["answer"]
     r = a.ask("Koje su najčešće metode u KA2 projektima?")                                    # nothing to narrow: the overall list
@@ -539,3 +539,12 @@ def test_a_term_in_brackets_is_the_search_word_but_explain_questions_are_left_al
     r = asker(tb, FakeRouter(route="project_search", topic="popravci i ponovna uporaba")).ask("Postoji li KA2 projekt o popravcima i ponovnoj uporabi (repair café) iz Hrvatske?")
     assert r["tools"][0]["args"]["text"] == "repair café" and "Circular Connections" in r["answer"]
     assert asker(tb, FakeRouter(route="glossary")).ask("Objasni što je 'peer learning' u ovim projektima.")["route"] != "project_search"
+
+
+def test_pretty_en_labels():
+    from atlas.labels import pretty_en
+    assert pretty_en("use of ict tools in teaching") == "Use of information and communication technology (ICT) tools in teaching"
+    assert pretty_en("learning teaching activities (ltta)") == "Learning, teaching and training activities (LTTA)"
+    assert pretty_en("training of trainers (ltta)") == "Training of trainers (LTTA)"
+    assert pretty_en("vet teachers and trainers") == "VET teachers and trainers"
+    assert pretty_en("Information and communication technologies (ICT)") == "Information and communication technologies (ICT)"

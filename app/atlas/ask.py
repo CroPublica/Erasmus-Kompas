@@ -22,6 +22,7 @@ import os
 
 from atlas.config import make_chat_model
 from atlas.countries import country_name, countries_in_text
+from atlas.labels import pretty_en
 from atlas.tools import EN_COUNTY, Toolbox, ToolResult
 
 VALUE_DETAIL = re.compile(r"prosje[čc]n\w* (vrijednost|iznos|bespovratn|grant)|average (value|grant|funding|project value)|najskuplj|najjeftinij|most expensive|cheapest|najmanj\w* (dodijeljen|vrijednost|iznos)|smallest (grant|value|project)|"
@@ -740,7 +741,7 @@ def _template_answer(lang: str, route: str, results: list[dict]) -> str:
         which = (("zadnji" if r["rank"] == 1 else f"{r['rank']}. od kraja") if r["order"] == "last" else f"{r['rank']}.") if hr else \
                 (("last" if r["rank"] == 1 else f"{r['rank']}th from last") if r["order"] == "last" else {1: "first", 2: "second", 3: "third"}.get(r["rank"], f"{r['rank']}th"))
         topics = r["topics"] or []
-        ct = [(x[1] if hr and x[1] else x[0]) for x in r["concept_topics"]]
+        ct = [(x[1] if hr and x[1] else pretty_en(x[0])) for x in r["concept_topics"]]
         top = "; ".join(topics) if topics else ""
         cts = ", ".join(ct)
         yr = r["call_year"]
@@ -801,7 +802,7 @@ def _template_answer(lang: str, route: str, results: list[dict]) -> str:
                      f"„{r['term']}” nije pojam u mreži pojmova i nijedan naslov ni sažetak projekta ne sadrži te riječi.") if hr else
                     (f"“{r['term']}” is not a concept of its own in the concept network (too few projects state it). The words appear in {f(r['projects_found'])} projects, for example: {ex}." if r["projects_found"] else
                      f"“{r['term']}” is not a concept in the network and no project title or summary contains those words."))
-        name = (r.get("label_hr") or r["label_en"]) if hr else r["label_en"]
+        name = (r.get("label_hr") or r["label_en"]) if hr else pretty_en(r["label_en"])
         al = "; ".join(r["aliases"]) if r["aliases"] else ("nema drugih zabilježenih izraza" if hr else "no other recorded wordings")
         return (f"Pojam „{name}” ({f(r['n_projects'])} projekata) u opisima projekata pojavljuje se i pod ovim izrazima (izvorno na engleskom): {al}." if hr else
                 f"The concept “{name}” ({f(r['n_projects'])} projects) is also worded in project texts as: {al}.")
@@ -877,7 +878,7 @@ def _concept_answer(lang: str, results: list[dict]) -> str:
 def _concept_answer_core(lang: str, results: list[dict]) -> str:
     hr = lang == "hr"
     f = lambda x, d=0: _fmt(lang, x, d)
-    name = lambda x: (x.get("label_hr") or x["label_en"]) if hr else x["label_en"]
+    name = lambda x: (x.get("label_hr") or x["label_en"]) if hr else pretty_en(x["label_en"])
     commons = [x for x in results if x["tool"] == "common_concepts" and x["rows"]]
     if commons:
         parts = []
