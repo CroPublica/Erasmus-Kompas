@@ -40,6 +40,8 @@ GLOSSARY = {   # term -> (words that select it, Croatian, English); the same wor
     "coordinator": ("koordinator|coordinator", "Koordinator je organizacija koja podnosi prijavu, vodi projekt i prima grant. Hrvatska je koordinator kada je vodeća organizacija iz Hrvatske.",
                     "The coordinator is the organisation that submits the application, leads the project and receives the grant. Croatia is the coordinator when the lead organisation is Croatian."),
     "partner": ("partner", "Partner je organizacija koja sudjeluje u projektu koji netko drugi koordinira.", "A partner is an organisation that takes part in a project that someone else coordinates."),
+    "erasmus+": (r"erasmus\+?\s*\??$|što je erasmus|sto je erasmus|what is erasmus", "Erasmus+ je program Europske unije za obrazovanje, osposobljavanje, mlade i sport. Ovaj atlas prikazuje samo njegova KA2 partnerstva (suradnja organizacija) s hrvatskim sudionicima, 2014.–2026.",
+                  "Erasmus+ is the European Union programme for education, training, youth and sport. This atlas shows only its KA2 partnerships (cooperation between organisations) with Croatian participants, 2014–2026."),
     "ka2": (r"ka\s?2|ka\s?1|partnerstv|partnership", "KA1 su mobilnosti pojedinaca (učenje u inozemstvu), a KA2 suradnja organizacija i razmjena dobrih praksi kroz partnerstva. Ovaj atlas prikazuje samo KA2.",
             "KA1 is mobility of individuals (learning abroad) and KA2 is cooperation between organisations and the exchange of good practice through partnerships. This atlas shows KA2 only."),
     "call year": ("godina poziva|call year", "Godina poziva je godina natječaja na kojem je projekt odabran. Godina 2026. još traje, pa je prikazana kao nepotpuna.",
@@ -152,6 +154,107 @@ class Toolbox:
             if len(towns) == 1:
                 best = towns[0]["county"]
         return best
+
+    def _town_index(self):
+        """(folded town, display name, pattern for the town and its Croatian case forms) for towns that have organisations, longest names first."""
+        if getattr(self, "_towns", None) is None:
+            rows = self._rows("select lower(strip_accents(town)) key, town, count(*) n from organisation where town is not null and trim(town) <> '' group by 1, 2")
+            best = {}
+            for r in rows:
+                k = r["key"].replace("-", " ").strip()
+                nice = r["town"] if not r["town"].isupper() else r["town"].title()
+                if k not in best or r["n"] > best[k][1]:
+                    best[k] = (nice, r["n"])
+            out = []
+            for k, (nice, _n) in best.items():
+                if len(k) < 3 or k in ("grad zagreb",):
+                    continue
+                if k[-1] in "aeiou":
+                    alts = [k[:-1] + e for e in ("a", "e", "i", "u", "o", "om", "ama", "")]
+                else:
+                    alts = [k + e for e in (("", "a", "u", "om", "i") if len(k) <= 4 else ("", "a", "u", "e", "om", "i", "ima"))]
+                    if k.endswith("ar"):                                       # Zadar -> Zadra, Zadru
+                        alts += [k[:-2] + "r" + e for e in ("a", "u", "om")]
+                if k.endswith("ka"):                                           # Rijeka -> Rijeci
+                    alts.append(k[:-2] + "ci")
+                out.append((k, nice, re.compile(r"(?<![a-z0-9])(" + "|".join(re.escape(a) for a in alts) + r")(?![a-z0-9])")))
+            out.sort(key=lambda x: -len(x[0]))
+            self._towns = out
+        return self._towns
+
+    def _town_hits(self, text: str) -> list[tuple[int, str, str]]:
+        """(position, key, name) of towns in the text; names of four letters or fewer (Vis, Bol, Pula) must be written with a capital letter."""
+        t = _fold(text)
+        plain = " ".join(strip_diacritics(text or "").replace("-", " ").split())
+        hits = []
+        for k, nice, pat in self._town_index():
+            m = pat.search(t)
+            if not m:
+                continue
+            if len(k) <= 4:
+                caps = re.search(r"(?<![A-Za-z0-9])" + re.escape(k[0].upper() + k[1:-1] if k[-1] in "aeiou" else k[0].upper() + k[1:]) + r"[a-z]{0,2}(?![A-Za-z0-9])", plain)
+                if not caps:
+                    continue
+            hits.append((m.start(), k, nice))
+        return hits
+
+    def resolve_town(self, text: str) -> Optional[str]:
+        """Town name (as written in the register) found in free text with Croatian case endings, or None. Zagreb is left to the county logic."""
+        hits = self._town_hits(text)
+        return max(hits, key=lambda h: len(h[1]))[2] if hits else None
+
+    def count_towns(self, text: str) -> int:
+        """How many different towns the text names (a question comparing two towns is not a single-town question)."""
+        keys = [h[1] for h in self._town_hits(text)]
+        return len([k for k in keys if not any(k != o and k in o for o in keys)])
+
+    def resolve_towns(self, text: str) -> list[str]:
+        """Every town named in the text, in the order they appear (a town whose name sits inside a longer matched name is dropped)."""
+        hits = self._town_hits(text)
+        keys = [h[1] for h in hits]
+        return [nice for _pos, k, nice in sorted(hits) if not any(k != o and k in o for o in keys)]
+
+    def town_compare(self, towns: list[str], period: str = "all") -> ToolResult:
+        """Organisations, projects and coordinated projects of two or more towns side by side."""
+        res = ToolResult("town_compare", {"towns": towns, "period": period})
+        for town in towns:
+            one = self.town_organisations(town, period, limit=1)
+            if one.rows:
+                s = one.rows[0]
+                res.rows.append({"town": s["town"], "organisations": s["organisations"], "projects": s["projects"], "coordinated": s["coordinated"],
+                                 "top_organisation": one.rows[1]["name"] if len(one.rows) > 1 else None})
+                res.citations += one.citations
+        res.notes.append("a project with organisations from two towns counts in both; organisations are placed in a town by the address in the EU export")
+        return res
+
+    def _town_org_ids(self, town: str) -> list[str]:
+        key = _fold(town)
+        return [r["org_id"] for r in self._rows("select org_id from organisation where replace(lower(strip_accents(town)), '-', ' ') = ?", [key])]
+
+    def town_organisations(self, town: str, period: str = "all", limit: int = 8) -> ToolResult:
+        """KA2 organisations of one town: how many, in how many projects, and the most active ones."""
+        res = ToolResult("town_organisations", {"town": town, "period": period, "limit": limit})
+        if period != "all" and period not in PERIODS:
+            res.notes.append("unknown period")
+            return res
+        ids = self._town_org_ids(town)
+        if not ids:
+            res.notes.append("unknown town")
+            return res
+        pw, params = ("", []) if period == "all" else (" and x.period = ?", [period])
+        ph = ",".join("?" * len(ids))
+        s = self._rows(f"select count(distinct x.org_id) organisations, count(distinct x.project_id) projects, "
+                       f"count(distinct case when x.role = 'coordinator' then x.project_id end) coordinated from participation x where x.org_id in ({ph}){pw}", ids + params)[0]
+        reg = self._rows(f"select count(*) n from institution where replace(lower(strip_accents(town)), '-', ' ') = ?", [_fold(town)])[0]["n"]
+        top = self._rows(f"select o.org_id, o.name, count(distinct x.project_id) projects, count(distinct case when x.role = 'coordinator' then x.project_id end) coordinated "
+                         f"from participation x join organisation o using (org_id) where x.org_id in ({ph}){pw} group by 1, 2 order by 3 desc, 2 limit ?", ids + params + [limit])
+        county = self._rows("select county from organisation where org_id = ?", [ids[0]])[0]["county"]
+        res.rows = [{"summary": True, "town": town, "county": county, "organisations": s["organisations"], "projects": s["projects"], "coordinated": s["coordinated"], "registry_institutions": reg}] + \
+                   [{"org_id": r["org_id"], "name": r["name"], "projects": r["projects"], "coordinated": r["coordinated"]} for r in top]
+        res.citations = [f"org:{r['org_id']}" for r in top]
+        res.notes.append("organisations are placed in a town by the address in the EU export; a project with organisations from two towns counts in both; "
+                         "registry_institutions = schools and kindergartens of the town in the school register, whether or not they took part")
+        return res
 
     def _name_index(self):
         """(search name, id, org_id or None, source) for organisations (with aliases) and registry institutions."""
@@ -328,6 +431,100 @@ class Toolbox:
             res.notes.append("2026 selection is not complete")
         return res
 
+    def year_series(self, question: str = "") -> ToolResult:
+        """KA2 projects with a Croatian participant per call year, with the figures that questions about trends ask for (highest, lowest, biggest rise and fall, averages)."""
+        res = ToolResult("year_series", {"question": question})
+        rows = self._rows("select call_year as yr, count(distinct project_id) projects, count(distinct case when role = 'coordinator' then project_id end) coordinated "
+                          "from participation group by call_year order by call_year", [])
+        res.rows = [{"year": int(r["yr"]), "projects": r["projects"], "coordinated": r["coordinated"]} for r in rows]
+        full = [r for r in res.rows if r["year"] <= 2025]               # 2026 is not a complete selection: it is shown, never ranked
+        if len(full) >= 2:
+            by = {r["year"]: r["projects"] for r in full}
+            steps = [(y, by[y] - by[y - 1]) for y in sorted(by) if y - 1 in by]
+            hi, lo = max(full, key=lambda r: r["projects"]), min(full, key=lambda r: r["projects"])
+            up, down = max(steps, key=lambda s: s[1]), min(steps, key=lambda s: s[1])
+            avg = lambda a, b: round(sum(by[y] for y in range(a, b + 1) if y in by) / max(1, len([y for y in range(a, b + 1) if y in by])), 1)
+            res.rows.append({"summary": True, "highest_year": hi["year"], "highest_projects": hi["projects"], "lowest_year": lo["year"], "lowest_projects": lo["projects"],
+                             "biggest_rise_year": up[0], "biggest_rise": up[1], "biggest_fall_year": down[0], "biggest_fall": down[1],
+                             "average_2014_2020": avg(2014, 2020), "average_2021_2025": avg(2021, 2025)})
+        q = question.lower()
+        ys = sorted({int(y) for y in re.findall(r"20[12]\d", q)})
+        by_all = {r["year"]: r["projects"] for r in res.rows if not r.get("summary")}
+        if res.rows and res.rows[-1].get("summary"):
+            sm = res.rows[-1]
+            if re.search(r"(najve[ćc]\w*|biggest|largest|greatest)( \w+)? (pad|fall|drop|decline|decrease)|pad broja|(godina|year) .*(pad|fall|drop)", q):
+                sm["focus"] = "fall"
+            elif re.search(r"(najve[ćc]\w*|biggest|largest|greatest)( \w+)? (rast|rise|growth|increase)|međugodišnj\w* rast|year[- ]on[- ]year (rise|growth)", q):
+                sm["focus"] = "rise"
+            elif re.search(r"prosje[čc]an|average|mean", q) and len(ys) == 2 and all(y in by_all for y in ys):
+                span = [by_all[y] for y in range(ys[0], ys[1] + 1) if y in by_all]
+                sm["focus"], sm["avg_from"], sm["avg_to"], sm["avg"] = "average", ys[0], ys[1], round(sum(span) / len(span), 1)
+            elif re.search(r"koliko .*(vi[šs]e|manje|more|fewer)|how many (more|fewer)|razlik", q) and len(ys) == 2 and all(y in by_all for y in ys):
+                sm["focus"], sm["diff_a"], sm["diff_b"], sm["diff_a_projects"], sm["diff_b_projects"], sm["diff"] = "diff", ys[1], ys[0], by_all[ys[1]], by_all[ys[0]], by_all[ys[1]] - by_all[ys[0]]
+            elif re.search(r"najmanje|least|fewest|lowest", q):
+                sm["focus"] = "lowest"
+            elif re.search(r"najvi[šs]e|most|highest|largest|najve[ćc]", q):
+                sm["focus"] = "highest"
+            elif re.search(r"prije 2020|before 2020|rast[ao]|rasl[ao]|grew|grow|increas|declin|padal|trend|changed|mijenjao", q):
+                pre = [by_all[y] for y in range(2014, 2021) if y in by_all]
+                sm["focus"] = "trend"
+                sm["trend_first"], sm["trend_last"], sm["trend_peak_year"] = by_all[2014], by_all[2020], 2020
+                after = [by_all[y] for y in range(2021, 2026) if y in by_all]
+                sm["trend_after_min"], sm["trend_after_max"] = min(after), max(after)
+        res.notes.append("2026 selection is not complete: it is not used for highest, lowest, rise, fall or averages")
+        return res
+
+    def project_values(self, question: str = "", period: str = "all") -> ToolResult:
+        """Grants of the KA2 projects with a Croatian participant: average, median, most and least expensive, and how many are above an amount.
+
+        The grant is the full grant of the project, not the Croatian share. The question decides which figure leads (focus) and the amount for "more than N"."""
+        res = ToolResult("project_values", {"question": question, "period": period})
+        if period not in PERIODS:
+            res.notes.append("unknown period")
+            return res
+        q = question.lower()
+        pw, params = ("", []) if period == "all" else (" and x.period = ?", [period])
+        base = "from project p where p.project_id in (select x.project_id from participation x where 1 = 1" + pw + ") and p.grant_eur > 0"
+        s = self._rows("select count(*) projects, sum(grant_eur) total, avg(grant_eur) average, median(grant_eur) median, "
+                       "avg(case when hr_coordinated then grant_eur end) average_coordinated, count(case when hr_coordinated then 1 end) coordinated, "
+                       "count(case when grant_not_comparable then 1 end) not_comparable " + base, params)[0]
+        row = {k: (round(v, 0) if isinstance(v, float) else v) for k, v in s.items()}
+        row["summary"] = True
+        m = re.search(r"(\d+(?:[.,]\d+)?)\s*(milijun\w*|mil\b|million\w*|tisu[ćc]\w*|thousand|k\b)", q)
+        amount = None
+        if m:
+            num = float(m.group(1).replace(",", "."))
+            amount = num * (1e6 if m.group(2).startswith(("mil", "milijun")) else 1e3)
+        elif re.search(r"milijun|million", q):
+            amount = 1e6
+        else:
+            m2 = re.search(r"\b(\d{1,3}(?:[.,\s]\d{3})+)\b", q)
+            amount = float(re.sub(r"[.,\s]", "", m2.group(1))) if m2 else None
+        if re.search(r"najskuplj|most expensive|highest|largest|biggest|najve[ćc]u|najvi[šs]u", q):
+            row["focus"] = "max"
+        elif re.search(r"najjeftinij|cheapest|lowest|smallest|najmanj\w*", q):
+            row["focus"] = "min"
+        elif amount and re.search(r"ve[ćc]u|više od|vise od|iznad|preko|more than|above|over|exceed|manju|manje od|ispod|less than|below|under", q):
+            row["focus"] = "below" if re.search(r"manju|manje od|ispod|less than|below|under", q) else "above"
+        elif re.search(r"prosje[čc]n|average|mean", q):
+            row["focus"] = "average_coordinated" if re.search(r"koordin|coordinat", q) else "average"
+        elif re.search(r"medijan|median", q):
+            row["focus"] = "median"
+        if row.get("focus") in ("above", "below"):
+            op = ">" if row["focus"] == "above" else "<"
+            row["amount"] = amount
+            row["count_threshold"] = self._rows("select count(*) n " + base + f" and p.grant_eur {op} ?", params + [amount])[0]["n"]
+        if row.get("focus") in ("max", "min"):
+            order = "desc" if row["focus"] == "max" else "asc"
+            top = self._rows("select p.project_id, p.title, p.call_year, p.grant_eur, p.hr_coordinated " + base + f" order by p.grant_eur {order}, p.project_id limit 3", params)
+            res.rows = [row] + [{"rank": i, "project_id": r["project_id"], "title": r["title"], "call_year": r["call_year"], "grant_eur": r["grant_eur"], "hr_coordinated": r["hr_coordinated"]}
+                                for i, r in enumerate(top, 1)]
+            res.citations = [f"project:{r['project_id']}" for r in top]
+        else:
+            res.rows = [row]
+        res.notes.append("the grant is the full grant of each project, not the Croatian share; projects with a grant of 0 are left out; a few grants are flagged as not comparable between programmes")
+        return res
+
     def county_project(self, county: str, n: int = 1, order: str = "first", period: str = "all") -> ToolResult:
         """The n-th KA2 project (by call year, then project id) with an organisation from the county, counted from the start ("first") or the end ("last"), with its topics."""
         res = ToolResult("county_project", {"county": county, "n": n, "order": order, "period": period})
@@ -376,8 +573,8 @@ class Toolbox:
                          else "projects = KA2 projects the organisation takes part in (as coordinator or partner)")
         return res
 
-    def national_stats(self, period: str = "all") -> ToolResult:
-        res = ToolResult("national_stats", {"period": period})
+    def national_stats(self, period: str = "all", question: str = "") -> ToolResult:
+        res = ToolResult("national_stats", {"period": period, "question": question})
         if period not in PERIODS:
             res.notes.append("unknown period")
             return res
@@ -391,17 +588,27 @@ class Toolbox:
         by_period = {x["period"]: x["projects"] for x in self._rows("select period, projects from v_hr_participation")}
         res.rows = [{**r, "projects_2014_2020": by_period.get("2014-2020"), "projects_2021_2027": by_period.get("2021-2027"), "eu_ka2_projects": eu, "share_of_eu_ka2_projects": r["projects"] / eu,
                      "coordinating_organisation_classes": types}]
+        orgs = self._rows("select count(distinct org_id) n from participation where (? = 'all' or period = ?)", [period, period])[0]["n"]
+        res.rows[0]["organisations"] = orgs
+        res.rows[0]["coordinated_share_of_projects"] = r["coordinated"] / r["projects"] if r["projects"] else 0
+        q = question.lower()
+        if re.search(r"koliko (ukupno |je )?(razli[čc]itih )?(hrvatskih )?(organizacija|ustanova)|how many (different |croatian )*organi[sz]ations", q):
+            res.rows[0]["focus"] = "organisations"
+        elif re.search(r"postotak|udio|posto|percent|share|proportion", q) and re.search(r"koordin|coordinat", q):
+            res.rows[0]["focus"] = "coordinated_share"
+        elif re.search(r"koliko .*koordin|how many .*coordinat|u koliko .*koordinator", q):
+            res.rows[0]["focus"] = "coordinated"
         res.notes.append("projects with at least one Croatian participant; 2026 selection is not complete; organisation classes group the EU organisation types (ngo includes civil society organisations at European level)")
         return res
 
-    def county_ranking(self, period: str = "all", limit: int = 5) -> ToolResult:
+    def county_ranking(self, period: str = "all", limit: int = 5, order_by: str = "projects") -> ToolResult:
         """Counties by number of KA2 projects with a participant from the county (a project with organisations from two counties counts in both)."""
-        res = ToolResult("county_ranking", {"period": period, "limit": limit})
+        res = ToolResult("county_ranking", {"period": period, "limit": limit, "order_by": order_by})
         if period not in PERIODS:
             res.notes.append("unknown period")
             return res
         rows = self._rows("select county, projects_involved, projects_coordinated, organisations from v_county_ka2 where period = ? "
-                          "order by projects_involved desc, county", [period])
+                          "order by " + ("organisations desc, projects_involved desc" if order_by == "organisations" else "projects_involved desc") + ", county", [period])
         for i, r in enumerate(rows, 1):
             r["rank"], r["label"], r["counties_total"] = i, self._counties.get(r["county"], r["county"]), len(rows)
         res.rows = rows[:limit]
@@ -409,19 +616,43 @@ class Toolbox:
         res.notes.append("projects_involved = projects with an organisation from the county (each once); a project with organisations from two counties counts in both, so the counts do not add up to the national total")
         return res
 
-    def partner_countries(self, period: str = "all", limit: int = 8) -> ToolResult:
+    def partner_countries(self, period: str = "all", limit: int = 8, org_id: Optional[str] = None, town: Optional[str] = None) -> ToolResult:
         """Countries whose organisations are partners in the same KA2 projects as Croatian organisations (projects counted once per country)."""
-        res = ToolResult("partner_countries", {"period": period, "limit": limit})
+        res = ToolResult("partner_countries", {"period": period, "limit": limit, "org_id": org_id, "town": town})
         if period != "all" and period not in PERIODS:
             res.notes.append("unknown period")
             return res
         where, params = ("", []) if period == "all" else (" where period = ?", [period])
+        subject = None
+        if org_id or town:
+            ids = [org_id] if org_id else self._town_org_ids(town)
+            if not ids:
+                res.notes.append("unknown organisation or town")
+                return res
+            subject = (self._rows("select name from organisation where org_id = ?", [org_id])[0]["name"] if org_id else town)
+            ph = ",".join("?" * len(ids))
+            where += (" and " if where else " where ") + f"project_id in (select project_id from participation where org_id in ({ph}))"
+            params = params + ids
         rows = self._rows(f"select countries from project{where}", params)
         from collections import Counter
         cc = Counter(c for r in rows for c in set((r["countries"] or "").split(",")) if c and c != "HR")
         total = len(rows)
-        res.rows = [{"country": c, "projects": n, "rank": i, "countries_total": len(cc), "projects_total": total} for i, (c, n) in enumerate(cc.most_common(limit), 1)]
+        res.rows = [{"country": c, "projects": n, "rank": i, "countries_total": len(cc), "projects_total": total, **({"subject": subject} if subject else {})} for i, (c, n) in enumerate(cc.most_common(limit), 1)]
         res.notes.append("number of KA2 projects with a Croatian participant that also have a partner from the country; country codes are Erasmus+ codes (EL = Greece)")
+        return res
+
+    def country_compare(self, codes: list[str]) -> ToolResult:
+        """KA2 projects coordinated from the named countries in the whole EU export (both programme periods), with each country's rank."""
+        res = ToolResult("country_compare", {"countries": codes})
+        rows = self._rows("""select c country, sum(n) coordinated_projects from (
+                               select "Coordinator's country" c, count(*) n from stg_ka2_2014_2020 where "Coordinator's country" is not null group by 1
+                               union all
+                               select "Coordinator's country" c, count(*) n from stg_ka2_2021_2027 where "Coordinator's country" is not null group by 1) group by 1 order by 2 desc""")
+        for i, r in enumerate(rows, 1):
+            r["rank"], r["countries_total"] = i, len(rows)
+            r["coordinated_projects"] = int(r["coordinated_projects"])
+        res.rows = [r for c in codes for r in rows if r["country"] == c]
+        res.notes.append("count of KA2 projects coordinated from each country in the EU export, 2014-2026 together; country codes are Erasmus+ codes (EL = Greece)")
         return res
 
     def country_stats(self, period: str = "2021-2027", limit: int = 10) -> ToolResult:

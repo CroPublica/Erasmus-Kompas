@@ -21,10 +21,17 @@ from pydantic import BaseModel, Field
 import os
 
 from atlas.config import make_chat_model
-from atlas.countries import country_name
+from atlas.countries import country_name, countries_in_text
 from atlas.tools import EN_COUNTY, Toolbox, ToolResult
 
-Route = Literal["limits", "success", "organisation", "county", "national", "coverage", "country_ranking", "county_ranking", "partner_countries", "county_project", "glossary", "year_count", "value", "top_organisations",
+VALUE_DETAIL = re.compile(r"prosje[čc]n\w* (vrijednost|iznos|bespovratn|grant)|average (value|grant|funding|project value)|najskuplj|najjeftinij|most expensive|cheapest|najmanj\w* (dodijeljen|vrijednost|iznos)|smallest (grant|value|project)|"
+                         r"(vrijednost|iznos|grant)\w* (ve[ćc]\w*|manj\w*|iznad|ispod) od|(more|less) than [\d.,]+ ?(million|mil|thousand)|medijan|median|vrijednost\w* (ve[ćc]u|manju)|"
+                         r"koliko projekata ima vrijednost|how many projects .*(grant|value) (above|over|more|below|under|less)")
+YEAR_TREND_WORDS = re.compile(r"koje je godine|koja (je )?godin|u kojoj (je )?godin|which year|what year|međugodišnj|medjugodisnj|year[- ]on[- ]year|prosječan godišnji|prosjecan godisnji|average (annual|per year)|"
+                         r"po godinama|per year|by year|rast[ao]|rasl[ao]|rasla|padal|pad\b|opao|grew|grow|increas|decreas|declin|trend|mijenjao|mijenjal|changed over|najmanje projekata|najviše projekata u godini")
+
+
+Route = Literal["limits", "success", "organisation", "county", "national", "coverage", "country_ranking", "county_ranking", "partner_countries", "town", "county_project", "glossary", "year_count", "value", "top_organisations",
                 "project_search", "concepts", "out_of_scope"]
 
 
@@ -33,6 +40,8 @@ class Plan(BaseModel):
     route: Route
     organisation: Optional[str] = Field(None, description="organisation or school name exactly as written in the question")
     county: Optional[str] = Field(None, description="county name as written in the question")
+    towns: Optional[list[str]] = Field(None, description="two or more towns compared with each other")
+    town: Optional[str] = Field(None, description="town or city name when the question asks about the organisations of one town")
     period: Literal["all", "2014-2020", "2021-2027"] = "all"
     school_type: Literal["both", "primary", "secondary", "kindergarten"] = "both"
     role: Literal["any", "coordinator"] = "any"
@@ -47,6 +56,7 @@ Choose exactly one route:
 - national: Croatia as a whole (number of projects, coordinated, share of EU projects, types of organisations)
 - coverage: share of schools (or kindergartens) that took part, by county, against the national rate or expectation
 - success: success rate of Croatian applications (applications received, projects contracted, pass rate) by call year
+- town: organisations / schools of one town or city (not a county), e.g. "Koje organizacije iz Pule sudjeluju u KA2?"
 - country_ranking: which country coordinates most / where Croatia ranks among countries
 - county_ranking: which counties have the most projects (a ranking of counties, no single county named)
 - partner_countries: which countries Croatian organisations partner with / cooperate with
@@ -72,6 +82,7 @@ Examples (the answer is always one JSON object):
 "Koliki postotak osnovnih i srednjih škola sudjeluje u KA2?" -> {"route": "coverage"}
 "Koliko škola u Ličko-senjskoj županiji još nije sudjelovalo?" -> {"route": "coverage", "county": "Ličko-senjska"}
 "Koja zemlja najčešće koordinira KA2 projekte u EU?" -> {"route": "country_ranking"}
+"Koje organizacije iz Pule sudjeluju u KA2?" -> {"route": "town"}
 "Koja hrvatska organizacija ima najviše projekata?" -> {"route": "top_organisations"}
 "Koje županije imaju najviše projekata?" -> {"route": "county_ranking"}
 "What does coordinator mean?" -> {"route": "glossary"}
@@ -116,6 +127,12 @@ DRAFT:
 LANG_RULE = {"hr": "Odgovori isključivo na hrvatskom jeziku. Koristi samo podatke iz alata. Ako nema dokaza, reci to.",
              "en": "Answer in English only. Use only data from the tools. If there is no evidence, say so."}
 
+HELP_WORDS = re.compile(r"^(bok|bog|pozdrav|dobar dan|dobro jutro|dobra večer|zdravo|hej|hello|hi|hey|good (morning|afternoon|evening))\b|"
+                        r"što (sve )?(mogu|možeš|možete|znaš|znate) (pitati|učiniti|napraviti)|šta mogu pitati|mo[zž]e[sš]? li[a-z]* (mi )?pomo[ćc]i|can you help|what can (i ask|you do)|how (do|can) i use|kako (se )?koristi")
+HELP = {"hr": "Pomažem s podacima o hrvatskom sudjelovanju u Erasmus+ KA2 partnerstvima (2014.–2026.). Na primjer: „Koliko KA2 projekata ima Sveučilište u Splitu?”, „Koje su tri najaktivnije organizacije u Primorsko-goranskoj županiji?”, "
+              "„S kojim zemljama Hrvatska najčešće surađuje?”, „Koliko škola u Splitsko-dalmatinskoj županiji još nije sudjelovalo u KA2?” ili „Koji projekti govore o umjetnoj inteligenciji?”. Ne mogu odgovarati na pitanja o KA1 mobilnostima, prijavama ni o osobnim podacima.",
+        "en": "I help with data on Croatian participation in Erasmus+ KA2 partnerships (2014–2026). For example: “How many KA2 projects does the University of Split have?”, “Which are the three most active organisations in Primorje-Gorski Kotar County?”, "
+              "“Which countries does Croatia work with most?”, “How many schools in Split-Dalmatia County have not yet taken part in KA2?” or “Which projects are about artificial intelligence?”. I cannot answer questions about KA1 mobility, how to apply, or personal data."}
 REFUSAL = {"hr": "Na to pitanje ne mogu odgovoriti: bavim se samo podacima o hrvatskom sudjelovanju u Erasmus+ KA2 partnerstvima 2014.–2026.",
            "en": "I can't answer that: I only cover Croatian participation in Erasmus+ KA2 partnerships, 2014–2026."}
 LIMITS = {"hr": "Taj dio nije u podacima: ovdje su samo KA2 partnerstva (bez KA1 mobilnosti i drugih akcija).",
@@ -255,13 +272,46 @@ def enrich_plan(plan: dict, question: str, tb) -> dict:
     if plan["route"] == "success" and not SUCCESS_WORDS.search(q):         # the small router over-uses this route: only keywords may select it
         plan["route"] = "county" if tb.resolve_county(question) else ("national" if re.search(r"koliko|how many|number of", q) else "out_of_scope")
     school_words = re.search(r"škol|skol|school|vrti[ćc]|kindergarten|postot|udio|share|pokrivenost|očekiv|ocekiv|participation rate|iznad|ispod|above|below", q)
-    if re.search(r"ravnatelj|director|principal|e-?mail|telefon|phone|zbroji|sum up|add up|total across", q):
+    no_county_word = not re.search(r"župani|zupani|county", q)
+    towns = tb.resolve_towns(question) if no_county_word else []
+    town = towns[0] if len(towns) == 1 else None
+    if len(towns) >= 2 and re.search(r"vi[šs]e|manje|usporedi|razlik|više|more|fewer|less|compare|versus|\bvs\b|odnosu|naspram|ili|or\b|tko ima|who has", q):
+        plan["towns"] = towns[:4]
+    specific_org = re.search(r"\bgimnazija\b|\bsveu[čc]ili[šs]te\b|osnovna škola|srednja škola|dječji vrtić|\bfakultet\b|\bpu[čc]ko\b|\bu[čc]ili[šs]te\b|\bcentar\b|\budruga\b", q)
+    if re.search(r"ravnatelj|director|principal|e-?mail|telefon|phone|zbroji|sum up|add up|total across|kako (se )?prijavi|how (do i|to|can i) (apply|submit)|natje[čc]aj\w* (za|za prijavu)", q):
         plan["route"] = "out_of_scope"
+    elif plan.get("towns"):
+        plan["route"] = "town"
+    elif town and not specific_org and re.search(
+            r"organi[sz]acij|ustanov|škol|skol|vrti[ćc]|organi[sz]ation|school|institution|kindergarten|tko |who |koje su|which|surađ|suradi|cooperat|worked with|partner", q) \
+            and not CONCEPT_WORDS.search(q) and not SUCCESS_WORDS.search(q) and not re.search(r"još nije|nije sudjel|not yet|not taken|pokrivenost|udio|postotak|koliko (škola|osnovn|srednj|vrti)|how many (schools|primary|secondary|kindergarten)", q):
+        plan["town"] = town
+        plan["route"] = "partner_countries" if re.search(r"kojim (dr[zž]avama|zemljama)|partnersk\w* (dr[zž]av|zemlj)|partner countr|which countries|what countries|worked with|collaborat\w+ with|cooperat\w+ with|s kim (je|su) .*(surađ|suradi)", q) else "town"
     elif re.search(r"what (does|do|is|are) (an? |the )?[\w\s+-]{2,30}( mean)?\??$|što (znači|je|su)\b|\bmeaning of\b|\bdefin", q) and tb.glossary(question).rows:
         plan["route"] = "glossary"
+    elif re.search(r"\b20[12]\d\s*\.?\s*[–-]\s*20[12]\d", q) and re.search(r"koliko|how many", q) and re.search(r"projek|project", q) and not YEAR_TREND_WORDS.search(q) \
+            and not tb.resolve_county(question) and not tb.find_organisation_in_text(question).rows and not SUCCESS_WORDS.search(q):
+        plan["route"] = "national"                  # a range of years is a programme period: the national figures give both periods
+    elif re.search(r"razlik\w* .*(razdoblj|period)|difference between (the )?(two )?(programme )?periods", q) and not tb.resolve_county(question):
+        plan["route"] = "national"
+    elif YEAR_TREND_WORDS.search(q) and re.search(r"projek|project|sudjelovanj|participation|međugodišnj|medjugodisnj|year[- ]on[- ]year|koje je godine|koja (je )?godin|which year", q) and not SUCCESS_WORDS.search(q) and not tb.resolve_county(question) \
+            and not tb.find_organisation_in_text(question).rows and not CONCEPT_WORDS.search(q):
+        plan["route"] = "year_count"
     elif len(set(years)) == 1 and 2014 <= years[0] <= 2026 and re.search(r"koliko|how many|number of", q) and re.search(r"projek|project", q) and not tb.resolve_county(question) \
             and not tb.find_organisation_in_text(question).rows and not SUCCESS_WORDS.search(q):
         plan["route"] = "year_count"
+    elif re.search(r"(postotak|udio|posto|percent|share|proportion)\b.*(koordin|coordinat)|(koordin|coordinat).*(postotak|udio|percent|share)", q) and not tb.resolve_county(question) \
+            and not tb.find_organisation_in_text(question).rows and not SUCCESS_WORDS.search(q) and not re.search(r"eu\b|europsk|all eu|u eu", q):
+        plan["route"] = "national"
+    elif re.search(r"u koliko .*koordinator|koliko .*koordinira hrvatska|how many .*coordinated by (a )?croatian", q) and not tb.resolve_county(question) and not town \
+            and not tb.find_organisation_in_text(question).rows and len(countries_in_text(question)) < 2:
+        plan["route"] = "national"
+    elif re.search(r"^koliko (ukupno |je )?(različitih |razlicitih )?(hrvatskih )?(organizacija|ustanova)|^how many (different |croatian )*organi[sz]ations", q.strip()) \
+            and re.search(r"ukupno|razli[čc]it|hrvatskih|iz hrvatske|u hrvatskoj|croatian|different|in croatia|from croatia", q) \
+            and not re.search(r"najaktivnij|najvi[šs]e|most|top|\bu\b [a-zčćšžđ]+ž?upanij|county|škol|school|vrti", q) and not tb.resolve_county(question) and not tb.find_organisation_in_text(question).rows:
+        plan["route"] = "national"
+    elif VALUE_DETAIL.search(q) and not tb.resolve_county(question) and not tb.find_organisation_in_text(question).rows:
+        plan["route"] = "value"
     elif re.search(r"(total|ukupn\w*) (value|vrijednost|worth|grants?)|vrijednost (svih )?projekata|value of (all )?(the )?projects|how much (money|funding)|koliko (novca|sredstava)", q) and not tb.resolve_county(question) \
             and not tb.find_organisation_in_text(question).rows:
         plan["route"] = "value"
@@ -281,6 +331,8 @@ def enrich_plan(plan: dict, question: str, tb) -> dict:
     elif plan["route"] == "county_ranking" and tb.resolve_county(question):      # a county is named: it is not a ranking of counties
         plan["county"] = tb.resolve_county(question)
         plan["route"] = "top_organisations" if re.search(r"\bwho\b|organi[sz]ation|school|tko|organizacij|škol|ustanov", q) else "county"
+    elif len(countries_in_text(question)) >= 2 and re.search(r"koordin|coordinat|projek|project", q) and not tb.find_organisation_in_text(question).rows:
+        plan["route"] = "country_ranking"
     elif re.search(r"koja zemlja|koje zemlje|na kojem je mjestu|which country|which countries|\brank", q) and not tb.find_organisation_in_text(question).rows:
         plan["route"] = "country_ranking"
     elif re.search(r"vrste organizacija|types? of organi[sz]ations|koje organizacije najčešće koordin", q):
@@ -294,6 +346,11 @@ def enrich_plan(plan: dict, question: str, tb) -> dict:
         plan["route"] = "coverage"
     elif plan["route"] == "concepts" and not re.search(r"projekt|škol|skol|erasmus|ka2|organiz|tem[aeu]\b|problem|vještin|vjestin|digital|project|school|theme|skill|educat|obrazov|učenik|nastavn|sustav|partner|teacher|student|pupil|youth|learner|učitelj|mladi|učenic|roditelj|parent|inclusion|uključi|bullying|nasilj|methods?\b|metod|approach|pristup", q):
         plan["route"] = "out_of_scope"
+    if plan.get("school_type", "both") == "both" and plan["route"] in ("coverage", "county"):
+        if re.search(r"osnovn\w* škol|osnovn\w* skol|primary school", q):
+            plan["school_type"] = "primary"
+        elif re.search(r"srednj\w* škol|srednj\w* skol|secondary school|gimnazij\w* i strukovn", q):
+            plan["school_type"] = "secondary"
     if plan.get("school_type", "both") == "both":
         if re.search(r"vrti[ćc]|kindergarten|preschool", q):
             plan["school_type"] = "kindergarten"
@@ -306,7 +363,7 @@ def looks_like_follow_up(question: str, plan: dict) -> bool:
     """A short question that names nothing, asked after an organisation answer ("A koliko ih je koordinirala?", "and its grants?")."""
     words = re.findall(r"\w+", question)
     named = bool(plan.get("organisation") or plan.get("county")) or any(w[:1].isupper() for w in words[1:])
-    return len(words) <= 8 and not named and plan["route"] in ("national", "organisation", "county", "coverage", "top_organisations", "project_search")
+    return len(words) <= 8 and not named and plan["route"] in ("national", "organisation", "county", "coverage", "top_organisations", "project_search", "partner_countries")
 
 
 # ---------------------------------------------------------------------------------------------------- number checking
@@ -468,6 +525,11 @@ def en_style(text: str) -> str:
 
 def template_answer(lang: str, route: str, results: list[dict]) -> str:
     out = _template_answer(lang, route, results)
+    last = results[-1] if results else None
+    per = (last or {}).get("args", {}).get("period") if last and last.get("tool") in ("county_stats", "town_organisations") else None
+    if per in ("2014-2020", "2021-2027") and out:
+        label = "2014.–2020." if per == "2014-2020" else "2021.–2026."
+        out = (f"Razdoblje {label}: " if lang == "hr" else f"Period {label.replace('.', '')}: ") + out
     return en_style(out) if lang == "en" else out
 
 
@@ -514,11 +576,42 @@ def _template_answer(lang: str, route: str, results: list[dict]) -> str:
                 f"bespovratna sredstva koordiniranih projekata {f(r['grants_coordinated_eur'] or 0)} € ({f((r['grants_coordinated_eur'] or 0) / 1e6, 2)} mil. €)." if hr else
                 f"{_label(lang, r['label'])}: {f(r['organisations'])} organisations, {f(r['projects_involved'])} projects, {f(r['projects_coordinated'])} coordinated; "
                 f"grants of coordinated projects {f(r['grants_coordinated_eur'] or 0)} € ({f((r['grants_coordinated_eur'] or 0) / 1e6, 2)} million €).")
+    if t == "project_values":
+        rows = results[-1]["rows"]; r = rows[0]; top = rows[1:]
+        eur = lambda v: f"{f(v)} €"
+        fc = r.get("focus")
+        title = lambda x: quote_title(x["title"], None, 110, lang)
+        if fc in ("max", "min"):
+            lst = "; ".join(f"{title(x)} ({x['call_year']}): {eur(x['grant_eur'])}" for x in top)
+            return ((f"Najskuplji KA2 projekti s hrvatskim sudionikom: {lst}." if fc == "max" else f"Projekti s najmanjom dodijeljenom vrijednošću: {lst}.") if hr else
+                    (f"Most expensive KA2 projects with a Croatian participant: {lst}." if fc == "max" else f"Projects with the smallest grant: {lst}.")) + \
+                   (" Vrijednost je puni iznos bespovratnih sredstava projekta, ne hrvatski dio." if hr else " The value is the full grant of the project, not the Croatian share.")
+        if fc in ("above", "below"):
+            w_hr, w_en = ("većom", "above") if fc == "above" else ("manjom", "below")
+            return (f"Projekata s hrvatskim sudionikom s vrijednošću {w_hr} od {eur(r['amount'])} ima {f(r['count_threshold'])} od {f(r['projects'])}." if hr else
+                    f"{f(r['count_threshold'])} of {f(r['projects'])} KA2 projects with a Croatian participant have a grant {w_en} {eur(r['amount'])}.")
+        if fc == "average_coordinated":
+            return (f"Prosječna vrijednost projekata koje koordinira hrvatska organizacija je {eur(r['average_coordinated'])} ({f(r['coordinated'])} projekata)." if hr else
+                    f"The average grant of projects coordinated by a Croatian organisation is {eur(r['average_coordinated'])} ({f(r['coordinated'])} projects).")
+        if fc == "median":
+            return f"Medijan vrijednosti projekta je {eur(r['median'])}." if hr else f"The median project grant is {eur(r['median'])}."
+        return (f"Prosječna vrijednost KA2 projekta s hrvatskim sudionikom je {eur(r['average'])} (medijan {eur(r['median'])}; {f(r['projects'])} projekata, ukupno {f(r['total'] / 1e6, 1)} mil. €). Projekti koje koordinira hrvatska organizacija: prosječno {eur(r['average_coordinated'])}. Vrijednost je puni iznos bespovratnih sredstava projekta." if hr else
+                f"The average grant of a KA2 project with a Croatian participant is {eur(r['average'])} (median {eur(r['median'])}; {f(r['projects'])} projects, {f(r['total'] / 1e6, 1)} million € in all). Projects coordinated by a Croatian organisation: {eur(r['average_coordinated'])} on average. The value is the full grant of the project.")
     if route == "value" and t == "national_stats":
         r = results[-1]["rows"][0]
         mil = r["value_involved_eur"] / 1e6
         return (f"Ukupna vrijednost svih KA2 projekata s hrvatskim sudionikom je {f(mil, 1)} milijuna € ({f(r['projects'])} projekata). To je puni iznos bespovratnih sredstava svakog projekta, ne samo hrvatski dio." if hr else
                 f"The total value of all KA2 projects with a Croatian participant is {f(mil, 1)} million € ({f(r['projects'])} projects). This is the full grant of each project, not only the Croatian share.")
+    if t == "national_stats" and results[-1]["rows"] and results[-1]["rows"][0].get("focus"):
+        r = results[-1]["rows"][0]; fc = r["focus"]
+        if fc == "organisations":
+            return (f"U KA2 projektima sudjelovalo je {f(r['organisations'])} različitih organizacija iz Hrvatske u {f(r['projects'])} projekata." if hr else
+                    f"{f(r['organisations'])} different Croatian organisations took part in {f(r['projects'])} KA2 projects.")
+        if fc == "coordinated_share":
+            return (f"Hrvatska organizacija koordinira {f(r['coordinated'])} od {f(r['projects'])} KA2 projekata s hrvatskim sudionikom, to jest {f(r['coordinated_share_of_projects'] * 100, 1)} %." if hr else
+                    f"A Croatian organisation coordinates {f(r['coordinated'])} of {f(r['projects'])} KA2 projects with a Croatian participant, that is {f(r['coordinated_share_of_projects'] * 100, 1)}%.")
+        return (f"Hrvatska organizacija koordinira {f(r['coordinated'])} od {f(r['projects'])} KA2 projekata s hrvatskim sudionikom." if hr else
+                f"A Croatian organisation coordinates {f(r['coordinated'])} of {f(r['projects'])} KA2 projects with a Croatian participant.")
     if t == "national_stats":
         cls = r.get("coordinating_organisation_classes", [])[:4]
         ctext = ", ".join(f"{CLASS_NAMES.get(x['org_class'], (x['org_class'],) * 2)[0 if hr else 1]} {f(x['projects_coordinated'])}" for x in cls)
@@ -562,6 +655,11 @@ def _template_answer(lang: str, route: str, results: list[dict]) -> str:
                     else f"{lab}: {f(r['applications'])} applications, {f(r['contracted'])} contracted ({f(r['rate'] * 100, 1)} %)")
         head = (f"Prijave i ugovoreni projekti u Hrvatskoj ({scope.strip(', ')}): " if hr else f"Applications and contracted projects in Croatia ({scope.strip(', ')}): ")
         return head + "; ".join(line(r) for r in rows) + "."
+    if t == "country_compare":
+        rows = results[-1]["rows"]
+        parts = [f"{country_name(x['country'], lang)}: {f(x['coordinated_projects'])} ({x['rank']}. {'mjesto' if hr else 'place'})" if hr else f"{country_name(x['country'], lang)}: {f(x['coordinated_projects'])} (rank {x['rank']})" for x in rows]
+        return (f"KA2 projekti koordinirani iz pojedine zemlje, 2014.–2026.: " + "; ".join(parts) + f". Poredak je među {f(rows[0]['countries_total'])} zemalja." if hr else
+                f"KA2 projects coordinated from each country, 2014–2026: " + "; ".join(parts) + f". Rank is among {f(rows[0]['countries_total'])} countries.")
     if t == "country_stats":
         top = results[-1]["rows"][0]
         hrr = next((x for x in results[-1]["rows"] if x["country"] == "HR"), None)
@@ -596,6 +694,31 @@ def _template_answer(lang: str, route: str, results: list[dict]) -> str:
     if t == "glossary":
         r = results[-1]["rows"][0] if results[-1]["rows"] else None
         return (r["hr"] if hr else r["en"]) if r else ("Taj pojam nije u rječniku." if hr else "That term is not in the glossary.")
+    if t == "year_series":
+        rows = [x for x in results[-1]["rows"] if not x.get("summary")]
+        sm = next((x for x in results[-1]["rows"] if x.get("summary")), None)
+        line = "; ".join(f"{x['year']}.: {f(x['projects'])}" if hr else f"{x['year']}: {f(x['projects'])}" for x in rows)
+        if not sm:
+            return line
+        fc = sm.get("focus")
+        lead = ""
+        sg = lambda v: ("+" if v > 0 else "") + f(v)
+        if fc == "lowest": lead = f"Najmanje projekata bilo je {sm['lowest_year']}. ({f(sm['lowest_projects'])}). " if hr else f"The fewest projects were in {sm['lowest_year']} ({f(sm['lowest_projects'])}). "
+        elif fc == "highest": lead = f"Najviše projekata bilo je {sm['highest_year']}. ({f(sm['highest_projects'])}). " if hr else f"The most projects were in {sm['highest_year']} ({f(sm['highest_projects'])}). "
+        elif fc == "rise": lead = f"Najveći međugodišnji rast bio je {sm['biggest_rise_year']}. ({sg(sm['biggest_rise'])} projekata). " if hr else f"The biggest year-on-year rise was in {sm['biggest_rise_year']} ({sg(sm['biggest_rise'])} projects). "
+        elif fc == "fall": lead = f"Najveći međugodišnji pad bio je {sm['biggest_fall_year']}. ({f(sm['biggest_fall'])} projekata). " if hr else f"The biggest year-on-year fall was in {sm['biggest_fall_year']} ({f(sm['biggest_fall'])} projects). "
+        elif fc == "average": lead = f"Prosječan broj projekata po godini od {sm['avg_from']}. do {sm['avg_to']}. iznosi {f(sm['avg'])}. " if hr else f"The average number of projects per year from {sm['avg_from']} to {sm['avg_to']} is {f(sm['avg'])}. "
+        elif fc == "diff": lead = (f"{sm['diff_a']}. godine bilo je {f(sm['diff_a_projects'])} projekata, a {sm['diff_b']}. {f(sm['diff_b_projects'])}: razlika je {sg(sm['diff'])}. " if hr else
+                                    f"There were {f(sm['diff_a_projects'])} projects in {sm['diff_a']} and {f(sm['diff_b_projects'])} in {sm['diff_b']}: a difference of {sg(sm['diff'])}. ")
+        elif fc == "trend": lead = (f"Da: broj projekata rastao je s {f(sm['trend_first'])} u 2014. na {f(sm['trend_last'])} u 2020., a u 2021.–2025. kretao se između {f(sm['trend_after_min'])} i {f(sm['trend_after_max'])} godišnje. " if hr else
+                                     f"Yes: the number of projects grew from {f(sm['trend_first'])} in 2014 to {f(sm['trend_last'])} in 2020, and in 2021–2025 stayed between {f(sm['trend_after_min'])} and {f(sm['trend_after_max'])} a year. ")
+        if hr:
+            return lead + (f"KA2 projekata s hrvatskim sudionikom po godini poziva: {line}. Najviše: {sm['highest_year']}. ({f(sm['highest_projects'])}), najmanje: {sm['lowest_year']}. ({f(sm['lowest_projects'])}). "
+                    f"Najveći međugodišnji rast: {sm['biggest_rise_year']}. ({'+' if sm['biggest_rise'] >= 0 else ''}{f(sm['biggest_rise'])}), najveći pad: {sm['biggest_fall_year']}. ({f(sm['biggest_fall'])}). "
+                    f"Prosjek po godini: {f(sm['average_2014_2020'])} u 2014.–2020. i {f(sm['average_2021_2025'])} u 2021.–2025. Odabir za 2026. još nije potpun pa se ne uspoređuje.")
+        return lead + (f"KA2 projects with a Croatian participant per call year: {line}. Highest: {sm['highest_year']} ({f(sm['highest_projects'])}), lowest: {sm['lowest_year']} ({f(sm['lowest_projects'])}). "
+                f"Biggest year-on-year rise: {sm['biggest_rise_year']} ({'+' if sm['biggest_rise'] >= 0 else ''}{f(sm['biggest_rise'])}), biggest fall: {sm['biggest_fall_year']} ({f(sm['biggest_fall'])}). "
+                f"Average per year: {f(sm['average_2014_2020'])} in 2014–2020 and {f(sm['average_2021_2025'])} in 2021–2025. The 2026 selection is not complete, so it is not compared.")
     if t == "year_projects":
         r = results[-1]["rows"][0] if results[-1]["rows"] else None
         if not r:
@@ -603,15 +726,46 @@ def _template_answer(lang: str, route: str, results: list[dict]) -> str:
         tail = (" Odabir za 2026. još nije potpun." if hr else " The 2026 selection is not complete.") if r["year"] == 2026 else ""
         return (f"U pozivu {r['year']}. odabrano je {f(r['projects'])} KA2 {hr_plural(r['projects'], 'projekt', 'projekta', 'projekata')} s hrvatskim sudionikom, a Hrvatska je koordinirala {f(r['coordinated'])}." + tail if hr else
                 f"In the {r['year']} call, {f(r['projects'])} KA2 projects with a Croatian participant were selected, and Croatia coordinated {f(r['coordinated'])}." + tail)
+    if t == "county_ranking" and results[-1]["rows"] and results[-1]["args"].get("count_only"):
+        n = results[-1]["rows"][0]["counties_total"]
+        return f"U KA2 projektima sudjeluju organizacije iz svih {f(n)} županija (uključujući Grad Zagreb)." if hr else f"Organisations from all {f(n)} counties (including the City of Zagreb) take part in KA2 projects."
+    if t == "town_compare":
+        rows = results[-1]["rows"]
+        if len(rows) < 2:
+            return "Nije moguće usporediti: gradovi nisu u podacima." if hr else "Cannot compare: the towns are not in the data."
+        line = "; ".join(f"{x['town']}: {f(x['projects'])} {hr_plural(x['projects'], 'projekt', 'projekta', 'projekata')}, {f(x['organisations'])} {hr_plural(x['organisations'], 'organizacija', 'organizacije', 'organizacija')}, koordiniranih {f(x['coordinated'])}" if hr else
+                         f"{x['town']}: {f(x['projects'])} projects, {f(x['organisations'])} organisations, {f(x['coordinated'])} coordinated" for x in rows)
+        best = max(rows, key=lambda x: x["projects"])
+        tie = sum(1 for x in rows if x["projects"] == best["projects"]) > 1
+        tail = "" if tie else (f" Najviše projekata ima {best['town']}." if hr else f" {best['town']} has the most projects.")
+        return (f"KA2 projekti s organizacijom iz grada – " if hr else "KA2 projects with an organisation from the town – ") + line + "." + tail
+    if t == "town_organisations":
+        rows = results[-1]["rows"]
+        if not rows:
+            return "Taj grad nije u podacima." if hr else "That town is not in the data."
+        sm, top = rows[0], rows[1:]
+        if not sm["organisations"]:
+            return (f"Nijedna organizacija iz mjesta {sm['town']} nije sudjelovala u KA2 projektu (u registru škola ima {f(sm['registry_institutions'])} ustanova)." if hr else
+                    f"No organisation from {sm['town']} has taken part in a KA2 project ({f(sm['registry_institutions'])} institutions in the school register).")
+        lst = "; ".join(f"{x['name']} ({f(x['projects'])})" for x in top)
+        return (f"{sm['town']}: u KA2 projektima sudjeluje {f(sm['organisations'])} {hr_plural(sm['organisations'], 'organizacija', 'organizacije', 'organizacija')}; projekata: {f(sm['projects'])}, od toga koordiniranih: {f(sm['coordinated'])}. Najaktivnije (broj projekata): {lst}." if hr else
+                f"{sm['town']}: {f(sm['organisations'])} organisations take part in KA2 projects; projects: {f(sm['projects'])}, of which coordinated: {f(sm['coordinated'])}. Most active (number of projects): {lst}.")
     if t == "county_ranking":
         rows = results[-1]["rows"]
         names = lambda r: _label(lang, r["label"]) if lang == "en" else r["label"]
+        if results[-1]["args"].get("order_by") == "organisations":
+            return ((f"Županije prema broju organizacija koje sudjeluju u KA2: " + "; ".join(f"{names(x)}: {f(x['organisations'])}" for x in rows) + ".") if hr else
+                    (f"Counties by number of organisations taking part in KA2: " + "; ".join(f"{names(x)}: {f(x['organisations'])}" for x in rows) + "."))
         return ((f"Županije prema broju KA2 projekata sa sudionikom iz županije: " + "; ".join(f"{names(x)}: {f(x['projects_involved'])}" for x in rows) + ". Projekt s organizacijama iz dvije županije broji se u obje.") if hr else
                 (f"Counties by number of KA2 projects with a participant from the county: " + "; ".join(f"{names(x)}: {f(x['projects_involved'])}" for x in rows) + ". A project with organisations from two counties counts in both."))
     if t == "partner_countries":
         rows = results[-1]["rows"]
-        return ((f"Najčešće partnerske države u KA2 projektima s hrvatskim sudionikom (broj projekata): " + "; ".join(f"{country_name(x['country'], lang)}: {f(x['projects'])}" for x in rows) + f". Ukupno {f(rows[0]['countries_total'])} država, {f(rows[0]['projects_total'])} projekata.") if hr else
-                (f"Most frequent partner countries in KA2 projects with a Croatian participant (number of projects): " + "; ".join(f"{country_name(x['country'], lang)}: {f(x['projects'])}" for x in rows) + f". {f(rows[0]['countries_total'])} countries in all, {f(rows[0]['projects_total'])} projects."))
+        who_hr = f" – {rows[0]['subject']}" if rows and rows[0].get("subject") else " s hrvatskim sudionikom"
+        who_en = f" – {rows[0]['subject']}" if rows and rows[0].get("subject") else " with a Croatian participant"
+        if not rows:
+            return "Za to nema partnerskih država u podacima." if hr else "There are no partner countries for that in the data."
+        return ((f"Najčešće partnerske države u KA2 projektima{who_hr} (broj projekata): " + "; ".join(f"{country_name(x['country'], lang)}: {f(x['projects'])}" for x in rows) + f". Ukupno {f(rows[0]['countries_total'])} država, {f(rows[0]['projects_total'])} projekata.") if hr else
+                (f"Most frequent partner countries in KA2 projects{who_en} (number of projects): " + "; ".join(f"{country_name(x['country'], lang)}: {f(x['projects'])}" for x in rows) + f". {f(rows[0]['countries_total'])} countries in all, {f(rows[0]['projects_total'])} projects."))
     if t == "top_organisations":
         rows = results[-1]["rows"][:5]
         county = results[-1]["args"].get("county")
@@ -794,11 +948,13 @@ class Asker:
         if plan is not None:
             plan = enrich_plan(plan, s["question"], self.tb)
             if s.get("last_org_id") and not plan.get("organisation") and looks_like_follow_up(s["question"], plan):
-                plan.update(route="organisation", follow_up=True)
+                plan.update(follow_up=True) if plan["route"] == "partner_countries" else plan.update(route="organisation", follow_up=True)
         if plan is not None and plan["route"] == "organisation" and not plan.get("organisation") and not s.get("last_org_id") \
                 and not self.tb.find_organisation_in_text(s["question"]).rows:
             county = self.tb.resolve_county(s["question"])      # "organisation" with no organisation named anywhere: a county question if a county is named, else a national one
             plan["route"], plan["county"] = ("county", county) if county else ("national", plan.get("county"))
+        if HELP_WORDS.search(s["question"].strip().lower()) and len(s["question"]) < 70:
+            return {"plan": {"route": "limits"}, "results": [], "done": True, "answer": HELP[s["lang"]], "trace": s["trace"] + ["help"]}
         if plan is None or plan["route"] == "out_of_scope":
             return {"plan": plan or {"route": "out_of_scope"}, "results": [], "done": True, "answer": REFUSAL[s["lang"]], "trace": s["trace"] + ["refused"]}
         if plan["route"] == "limits":
@@ -858,7 +1014,7 @@ class Asker:
         elif r == "county" and plan["county"]:
             results.append(tb.county_stats(plan["county"], plan["period"]))
         elif r == "national":
-            results.append(tb.national_stats(plan["period"]))
+            results.append(tb.national_stats(plan["period"], s["question"]))
         elif r == "coverage":
             results.append(tb.coverage(plan["county"], plan["school_type"], plan["period"], plan["role"]))
         elif r == "success":
@@ -866,18 +1022,29 @@ class Asker:
             per = "2014-2020" if ys and ys[-1] <= 2020 else "2021-2027"
             results.append(tb.success_rate(per, ys[0] if len(ys) == 1 else None, "KA1" if re.search(r"\bka\s?1\b", s["question"].lower()) else "KA2"))
         elif r == "county_ranking":
-            results.append(tb.county_ranking(plan["period"]))
+            by_orgs = bool(re.search(r"najvi[šs]e organizacij|most organi[sz]ations|najvi[šs]e ustanova|broj organizacija", s["question"].lower()))
+            results.append(tb.county_ranking(plan["period"], order_by="organisations" if by_orgs else "projects"))
+            if re.search(r"^koliko (je )?[\wčćšžđ]*\s*županij\w*|^how many counties", s["question"].lower().strip()) and not re.search(r"najvi|najmanj|most|least|top", s["question"].lower()):
+                results[-1].args["count_only"] = True
         elif r == "glossary":
             results.append(tb.glossary(s["question"]))
         elif r == "year_count":
-            results.append(tb.year_projects(int(re.search(r"20[12]\d", s["question"]).group(0))))
+            ys = {int(y) for y in re.findall(r"20[12]\d", s["question"])}
+            results.append(tb.year_projects(ys.pop()) if len(ys) == 1 and not YEAR_TREND_WORDS.search(s["question"].lower()) else tb.year_series(s["question"]))
         elif r == "value":
-            results.append(tb.national_stats(plan["period"]))
+            results.append(tb.project_values(s["question"], plan["period"]) if VALUE_DETAIL.search(s["question"].lower()) else tb.national_stats(plan["period"]))
         elif r == "county_project" and plan["county"]:
             n, order = ordinal_request(s["question"]) or (1, "first")
             results.append(tb.county_project(plan["county"], n, order, plan["period"]))
+        elif r == "town" and plan.get("towns"):
+            results.append(tb.town_compare(plan["towns"], plan["period"]))
+        elif r == "town" and plan.get("town"):
+            results.append(tb.town_organisations(plan["town"], plan["period"]))
         elif r == "partner_countries":
-            results.append(tb.partner_countries(plan["period"]))
+            org_id = s.get("last_org_id") if plan.get("follow_up") else None
+            results.append(tb.partner_countries(plan["period"], org_id=org_id, town=None if org_id else plan.get("town")))
+        elif r == "country_ranking" and len(countries_in_text(s["question"])) >= 2:
+            results.append(tb.country_compare(countries_in_text(s["question"])))
         elif r == "country_ranking":
             results.append(tb.country_stats("2021-2027" if plan["period"] == "all" else plan["period"]))
         elif r == "top_organisations":

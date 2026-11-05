@@ -339,3 +339,145 @@ def test_english_money_and_percent_style_and_croatian_terms(tb):
     assert "Bespovratna sredstva projekata koje koordinira" in r["answer"] and "Potpore" not in r["answer"]
     p = asker(tb, FakeRouter(route="partner_countries")).ask("S kojim državama Hrvatska surađuje?")
     assert "zemlje" not in p["answer"]
+
+
+@pytest.mark.parametrize("question,expected", [
+    ("Koje je godine bilo najmanje projekata?", "Najmanje projekata bilo je 2014. (113)"),
+    ("Koja je godina imala najveći pad broja projekata?", "2021. (-212"),
+    ("Koja je godina imala najveći međugodišnji rast?", "2020. (+215"),
+    ("Koliki je prosječan godišnji broj projekata od 2014. do 2020.?", "iznosi 291"),
+    ("Koliko je projekata više bilo 2020. nego 2014.?", "razlika je +491"),
+    ("Je li hrvatsko sudjelovanje u KA2 raslo?", "rastao je s 113 u 2014. na 604 u 2020."),
+])
+def test_questions_about_years_without_one_year_are_answered_from_the_series(tb, question, expected):
+    """These used to crash (no year in the question) or answer only the first year named."""
+    r = asker(tb, FakeRouter(route="year_count")).ask(question)
+    assert r["route"] == "year_count" and expected in r["answer"] and r["tools"][-1]["tool"] == "year_series"
+
+
+def test_single_year_question_still_answers_that_year(tb):
+    r = asker(tb, FakeRouter(route="year_count")).ask("Koliko je projekata bilo 2018. godine?")
+    assert r["tools"][-1]["tool"] == "year_projects" and "346" in r["answer"]
+
+
+def test_a_range_of_years_is_answered_by_period_not_by_the_first_year(tb):
+    r = asker(tb, FakeRouter(route="year_count")).ask("Koliko je KA2 projekata s hrvatskim sudionicima bilo 2014.–2020., a koliko 2021.–2026.?")
+    assert r["route"] == "national" and "2.040" in r["answer"] and "1.790" in r["answer"]
+
+
+@pytest.mark.parametrize("question,expected", [
+    ("Kolika je prosječna vrijednost projekta?", "249.015"),
+    ("Kolika je prosječna vrijednost projekata koje koordiniraju hrvatske organizacije?", "184.463"),
+    ("Koji je najskuplji projekt s hrvatskim sudionikom?", "14.400.000"),
+    ("Koji projekt ima najmanju dodijeljenu vrijednost?", "750"),
+    ("Koliko projekata ima vrijednost veću od milijun eura?", "56 od"),
+    ("How many projects have a grant above 500,000 euros?", "153"),
+])
+def test_value_questions_use_the_project_values_tool(tb, question, expected):
+    r = asker(tb, FakeRouter(route="value")).ask(question)
+    assert r["tools"][-1]["tool"] == "project_values" and expected in r["answer"]
+
+
+def test_total_value_still_uses_the_national_total(tb):
+    r = asker(tb, FakeRouter(route="value")).ask("Kolika je ukupna vrijednost projekata s hrvatskim sudionicima?")
+    assert r["tools"][-1]["tool"] == "national_stats" and "952,7" in r["answer"]
+
+
+@pytest.mark.parametrize("question", ["Bok!", "Što mogu pitati?", "Možeš li mi pomoći?", "Hello, what can you do?"])
+def test_greetings_and_help_get_examples_not_a_refusal(tb, question):
+    r = asker(tb, FakeRouter(route="out_of_scope")).ask(question)
+    assert r["tools"] == [] and ("Na primjer" in r["answer"] or "For example" in r["answer"])
+
+
+def test_counts_and_shares_are_numbers_not_rankings(tb):
+    a = asker(tb, FakeRouter(route="top_organisations"))
+    assert "1.498" in a.ask("Koliko ukupno organizacija iz Hrvatske sudjeluje u KA2?")["answer"]
+    assert "15,8 %" in a.ask("Koliki postotak projekata s hrvatskim sudionicima koordiniraju hrvatske organizacije?")["answer"]
+    assert "21" in asker(tb, FakeRouter(route="county_ranking")).ask("Koliko županija sudjeluje u KA2?")["answer"]
+
+
+def test_school_type_in_the_question_filters_the_coverage(tb):
+    a = asker(tb, FakeRouter(route="coverage", county="Splitsko-dalmatinska"))
+    assert "od 99 škola" in a.ask("Koliko osnovnih škola u Splitsko-dalmatinskoj županiji sudjeluje u KA2?")["answer"]
+
+
+@pytest.mark.parametrize("question,expected", [
+    ("Koje organizacije iz Pule sudjeluju u KA2 projektima?", "Sveučilište Jurja Dobrile u Puli"),
+    ("Koje organizacije iz Cavtata sudjeluju u KA2?", "Muzeji i galerije Konavala"),
+    ("Koje organizacije iz Gospića sudjeluju u Erasmus+ projektima?", "Gimnazija Gospić"),
+    ("Koje škole iz Metkovića sudjeluju u KA2?", "Srednja škola Metković"),
+    ("Which organisations in Rijeka take part in KA2?", "organisations take part"),
+])
+def test_questions_about_a_town_list_its_organisations(tb, question, expected):
+    r = asker(tb, FakeRouter(route="organisation")).ask(question)
+    assert r["route"] == "town" and r["tools"][-1]["tool"] == "town_organisations" and expected in r["answer"]
+
+
+def test_town_tool_counts_match_the_data(tb):
+    rows = tb.town_organisations("Gospić").rows
+    assert rows[0]["organisations"] == 4 and rows[0]["projects"] == 12 and rows[1]["name"] == "Gimnazija Gospić"
+    assert tb.resolve_town("iz Zadra") == "Zadar" and tb.resolve_town("u Rijeci") is None or tb.resolve_town("iz Rijeke") == "Rijeka"
+
+
+def test_a_county_name_is_not_taken_for_a_town(tb):
+    r = asker(tb, FakeRouter(route="county", county="Splitsko-dalmatinska")).ask("Koliko škola u Splitsko-dalmatinskoj županiji još nije sudjelovalo u KA2?")
+    assert r["route"] == "coverage"
+
+
+def test_partner_countries_of_a_town_and_of_a_remembered_organisation(tb):
+    a = asker(tb, FakeRouter(route="partner_countries"))
+    r = a.ask("S kojim zemljama surađuju organizacije iz Zadra?")
+    assert r["tools"][-1]["args"]["town"] == "Zadar" and "Zadar" in r["answer"]
+    first = asker(tb, FakeRouter(route="organisation", organisation="Gimnazija Metković")).ask("Koliko KA2 projekata ima Gimnazija Metković?")
+    r = a.ask("A s kojim zemljama surađuje?", first["last_org_id"])
+    assert r["tools"][-1]["args"]["org_id"] == first["last_org_id"] and "Gimnazija Metković" in r["answer"]
+
+
+def test_county_with_most_organisations_ranks_by_organisations(tb):
+    r = asker(tb, FakeRouter(route="county_ranking")).ask("Koja županija ima najviše organizacija u KA2?")
+    assert "broju organizacija" in r["answer"] and r["tools"][-1]["args"]["order_by"] == "organisations"
+
+
+def test_how_to_apply_is_refused_not_answered_with_a_project(tb):
+    r = asker(tb, FakeRouter(route="project_search", topic="natječaj")).ask("Kako se prijaviti na KA2 natječaj?")
+    assert r["route"] == "out_of_scope"
+
+
+def test_county_answer_names_the_period_it_was_filtered_to(tb):
+    r = asker(tb, FakeRouter(route="county", county="Međimurska", period="2021-2027")).ask("Koliko projekata koordiniraju organizacije iz Međimurske županije 2021.–2026.?")
+    assert r["answer"].startswith("Razdoblje 2021.–2026.") and "67" in r["answer"]
+
+
+def test_two_named_countries_are_compared(tb):
+    r = asker(tb, FakeRouter(route="country_ranking")).ask("Koliko KA2 projekata koordinira Hrvatska u odnosu na Sloveniju?")
+    assert r["tools"][-1]["tool"] == "country_compare" and "Hrvatska: 606" in r["answer"] and "Slovenija: 636" in r["answer"]
+
+
+def test_year_question_without_the_word_project_survives_a_wrong_router_route(tb):
+    r = asker(tb, FakeRouter(route="success")).ask("Koja je godina imala najveći međugodišnji rast?")
+    assert r["route"] == "year_count" and "2020. (+215" in r["answer"]
+
+
+def test_coordinator_share_follow_up_without_an_organisation_is_national(tb):
+    r = asker(tb, FakeRouter(route="top_organisations")).ask("U koliko je tih projekata koordinator hrvatska organizacija?")
+    assert r["route"] == "national" and "606" in r["answer"]
+
+
+def test_ordinary_words_are_not_taken_for_short_town_names(tb):
+    assert tb.resolve_towns("Dubrovnik i Split: tko ima više projekata?") == ["Dubrovnik", "Split"]      # 'više' is not Vis
+    assert tb.resolve_towns("bol u leđima") == [] and tb.resolve_towns("Organizacije na Visu") == ["Vis"]
+
+
+@pytest.mark.parametrize("question,expected", [
+    ("Dubrovnik i Split: tko ima više projekata?", "Najviše projekata ima Split"),
+    ("Koliko projekata ima Pula u odnosu na Zadar?", "Najviše projekata ima Zadar"),
+    ("Which has more projects, Rijeka or Osijek?", "Rijeka has the most projects"),
+])
+def test_towns_can_be_compared(tb, question, expected):
+    r = asker(tb, FakeRouter(route="top_organisations")).ask(question)
+    assert r["route"] == "town" and r["tools"][-1]["tool"] == "town_compare" and expected in r["answer"]
+
+
+def test_who_has_a_town_worked_with_is_answered_by_partner_countries(tb):
+    r = asker(tb, FakeRouter(route="organisation")).ask("Who has Osijek worked with?")
+    assert r["tools"][-1]["tool"] == "partner_countries" and r["tools"][-1]["args"]["town"] == "Osijek"

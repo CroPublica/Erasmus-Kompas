@@ -19,3 +19,19 @@ NAMES = {  # code: (English, Croatian)
 def country_name(code: str, lang: str) -> str:
     n = NAMES.get(code)
     return (n[1] if lang == "hr" else n[0]) if n else code
+
+
+def countries_in_text(text: str) -> list[str]:
+    """Erasmus+ codes of the countries named in a question, in the order they appear (Croatian case endings and English names)."""
+    import re
+    from atlas.tools import _fold
+    low = _fold(text)
+    found = []
+    for code, (en, hr) in NAMES.items():
+        h = _fold(hr)
+        stem = h[:-1] if h[-1] in "aeiou" and len(h) > 4 else h
+        for pat in (rf"(?<![a-z]){re.escape(stem)}\w{{0,3}}(?![a-z])", rf"(?<![a-z]){re.escape(_fold(en))}(?![a-z])"):
+            m = re.search(pat, low)
+            if m:
+                found.append((m.start(), code)); break
+    return [c for _, c in sorted(found)]
