@@ -37,7 +37,7 @@ const T = {
     gZoomIn: 'Zoom in', gZoomOut: 'Zoom out', gZoomReset: 'Reset view', gMore: 'Show more concepts', gLess: 'Show fewer concepts',
   },
   hr: {
-    mTitle: 'Metode i što očekivati', mKicker: 'METODE · ŠTO RADE PROJEKTI',
+    mTitle: 'Metode i što očekivati', mKicker: 'METODE · ČIME SE BAVE PROJEKTI',
     mLead: 'Što KA2 projekti s hrvatskim sudionikom kažu da rade, s kim rade i što proizvode, izbrojeno iz sažetaka projekata. Pokazuje što je uobičajeno, što raste, a što se rijetko koristi.',
     mCaveat: 'Jezični model pročitao je svaki sažetak i izdvojio pristupe, ciljne skupine, rezultate i probleme; slični izrazi grupirani su po značenju. Brojevi su donja granica: projekt koji nešto radi, ali to ne spominje, nije izbrojen. „Dobra praksa” je oznaka EU-a za projekte odabrane kao primjere; ona ne mjeri koliko dobro metoda djeluje, a metoda s malo projekata ima široki raspon nesigurnosti.',
     mDataNote: 'Napomena o podacima: nacionalni popis projekata 2014.–2020. (tablica 1) ima 2.061 projekt, 50 manje od županijskog sažetka iste agencije (2.111, tablica 5); nijedna županija nije iznad svog broja pa projekti nedostaju na popisu. Brojke na ovim stranicama dolaze iz skupova podataka EU-a, koji ne ovise o tom popisu.',

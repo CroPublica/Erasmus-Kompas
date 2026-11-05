@@ -272,7 +272,7 @@ const Xport = (() => {
   const fname = (d, ext) => `erasmus-kompas_${fold(d.id).replace(/[^a-z0-9]+/g, '-')}_${today()}.${ext}`;
   const save = (blob, name) => { const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = name; document.body.append(a); a.click(); setTimeout(() => { a.remove(); URL.revokeObjectURL(a.href); }, 800); };
   const shown = (c, v) => v == null || v === '' ? '' : c.t === 'int' ? fmt(Math.round(v)) : c.t === 'dec' ? dec(v) : c.t === 'pct' ? dec(v) + ' %' : String(v);
-  const SRC = () => tr('Izvor: Erasmus+ Kompas (erasmus-plus.ec.europa.eu, data.gov.hr, MZO). Neovisan projekt, nije službena stranica Europske komisije.');
+  const SRC = () => tr('Izvor: Erasmus+ Kompas (erasmus-plus.ec.europa.eu, data.gov.hr, MZOM). Neovisan projekt, nije službena stranica Europske komisije.');
 
   /* ---- CSV ---- */
   const cell = (v) => { v = v == null ? '' : String(v); return /[",\n\r]/.test(v) ? '"' + v.replace(/"/g, '""') + '"' : v; };
@@ -1421,7 +1421,7 @@ const EN_DICT = {
 "Broj projekata po godini poziva, razdoblju, sektoru i vrsti projekta.": "Number of projects by call year, period, sector and project type.",
 "projekti-po-godinama.csv": "projects-by-year.csv",
 "Kako koristiti podatke": "How to use the data",
-"Navedite izvor: Erasmus+ Project Results Platform, Agencija za mobilnost i programe EU, Ministarstvo znanosti i obrazovanja.": "Cite the source: Erasmus+ Project Results Platform, Agency for Mobility and EU Programmes, Ministry of Science and Education.",
+"Navedite izvor: Erasmus+ Project Results Platform, Agencija za mobilnost i programe EU, Ministarstvo znanosti, obrazovanja i mladih.": "Cite the source: Erasmus+ Project Results Platform, Agency for Mobility and EU Programmes, Ministry of Science, Education and Youth.",
 "Provjerite uvjete korištenja u izvoru; atlas ne mijenja licence izvornih skupova.": "Check the terms of use at the source; the atlas does not change the licences of the original datasets.",
 "Pročitajte": "Read the",
 "ograničenja podataka": "data limitations",
@@ -1497,7 +1497,7 @@ const EN_DICT = {
 "Kako je izračunano": "How it was calculated",
 "{N} projekata": "{N1} projects",
 "Organizacije": "Organisations",
-"Ministarstvo znanosti i obrazovanja": "Ministry of Science and Education",
+"Ministarstvo znanosti, obrazovanja i mladih": "Ministry of Science, Education and Youth",
 "redaka prema trenutnim filterima": "rows matching the current filters",
 "Preuzimanje": "Download",
 "redaka": "rows",
@@ -1507,7 +1507,7 @@ const EN_DICT = {
 "O izvozu": "About the export",
 "Podaci": "Data",
 "Stranica": "Page",
-"Izvor: Erasmus+ Kompas (erasmus-plus.ec.europa.eu, data.gov.hr, MZO). Neovisan projekt, nije službena stranica Europske komisije.": "Source: Erasmus+ Kompas (erasmus-plus.ec.europa.eu, data.gov.hr, MZO). An independent project, not an official European Commission website.",
+"Izvor: Erasmus+ Kompas (erasmus-plus.ec.europa.eu, data.gov.hr, MZOM). Neovisan projekt, nije službena stranica Europske komisije.": "Source: Erasmus+ Kompas (erasmus-plus.ec.europa.eu, data.gov.hr, MZOM). An independent project, not an official European Commission website.",
 "Države koje surađuju s Hrvatskom u KA{N} projektima": "Countries cooperating with Croatia in KA{N1} projects",
 "Države sudionice": "Participating countries",
 "Godina {N}. još traje": "The year {N1} is still in progress",
@@ -1613,19 +1613,19 @@ const EN_DICT = {
 "Dječji vrtići": "Kindergartens",
 "Osnovne škole": "Primary schools",
 "Ustanove iz sustava visokog obrazovanja": "Higher education institutions",
-"Ministarstvo znanosti i obrazovanja, data.gov.hr. Registri ustanova, za izračun pokrivenosti po županijama.": "Ministry of Science and Education, data.gov.hr. Institution registers, used to compute coverage by county.",
+"Ministarstvo znanosti, obrazovanja i mladih, data.gov.hr. Registri ustanova, za izračun pokrivenosti po županijama.": "Ministry of Science, Education and Youth, data.gov.hr. Institution registers, used to compute coverage by county.",
 "Registri ustanova (data.gov.hr)": "Institution registers (data.gov.hr)",
 "Registri ustanova": "Institution registers",
-"Ministarstvo znanosti i obrazovanja: dječji vrtići, osnovne i srednje škole, visoko obrazovanje.": "Ministry of Science and Education: kindergartens, primary and secondary schools, higher education.",
+"Ministarstvo znanosti, obrazovanja i mladih: dječji vrtići, osnovne i srednje škole, visoko obrazovanje.": "Ministry of Science, Education and Youth: kindergartens, primary and secondary schools, higher education.",
 "Agencija za mobilnost i programe EU · data.gov.hr": "Agency for Mobility and EU Programmes · data.gov.hr",
-"Ministarstvo znanosti i obrazovanja · data.gov.hr": "Ministry of Science and Education · data.gov.hr",
+"Ministarstvo znanosti, obrazovanja i mladih · data.gov.hr": "Ministry of Science, Education and Youth · data.gov.hr",
 "Dječji vrtići, osnovne i srednje škole te visoko obrazovanje, za izračun pokrivenosti.": "Kindergartens, primary and secondary schools and higher education, used to compute coverage.",
 "Za AI asistente (MCP)": "For AI assistants (MCP)",
 "Isti sloj upita dostupan je i kao MCP poslužitelj, pa asistenti poput Claudea mogu pretraživati projekte, otvoriti profil organizacije, izračunati pokrivenost i pronaći slične organizacije — iz istih podataka i s istim izvorima.": "The same query layer is also available as an MCP server, so assistants such as Claude can search projects, open an organisation profile, compute coverage and find similar organisations — from the same data and with the same sources.",
 "Pretraga projekata i profil organizacije.": "Project search and organisation profile.",
 "Pokrivenost po županiji i prvi projekti po sektoru.": "Coverage by county and first projects by sector.",
 "Slične organizacije u istom sektoru i blizini.": "Similar organisations in the same sector and nearby.",
-"Navedite izvore: Erasmus+ Project Results Platform (Europska komisija), Program Erasmus+ {N}.–{N}. i registri ustanova na data.gov.hr (Agencija za mobilnost i programe EU, Ministarstvo znanosti i obrazovanja).": "Cite the sources: Erasmus+ Project Results Platform (European Commission), the Erasmus+ programme {N1}–{N2} and the institution registers on data.gov.hr (Agency for Mobility and EU Programmes, Ministry of Science and Education).",
+"Navedite izvore: Erasmus+ Project Results Platform (Europska komisija), Program Erasmus+ {N}.–{N}. i registri ustanova na data.gov.hr (Agencija za mobilnost i programe EU, Ministarstvo znanosti, obrazovanja i mladih).": "Cite the sources: Erasmus+ Project Results Platform (European Commission), the Erasmus+ programme {N1}–{N2} and the institution registers on data.gov.hr (Agency for Mobility and EU Programmes, Ministry of Science, Education and Youth).",
 "Ključni pokazatelji": "Key indicators",
 "Karta i poredak": "Map and ranking",
 "Teme i problemi": "Topics and problems",
@@ -1636,7 +1636,7 @@ const EN_DICT = {
 "Program Erasmus+ {N}–{N}": "Erasmus+ programme {N1}–{N2}",
 "Program Erasmus+ {N}–{N} (data.gov.hr)": "Erasmus+ programme {N1}–{N2} (data.gov.hr)",
 "Europska komisija. Popisi KA{N} projekata {N}–{N} i {N}–{N}": "European Commission. Lists of KA{N1} projects {N2}–{N3} and {N4}–{N5}",
-"Navedite izvore: Erasmus+ Project Results Platform (Europska komisija), Program Erasmus+ {N}–{N} i registri ustanova na data.gov.hr (Agencija za mobilnost i programe EU, Ministarstvo znanosti i obrazovanja).": "Cite the sources: Erasmus+ Project Results Platform (European Commission), the Erasmus+ programme {N1}–{N2} and the institution registers on data.gov.hr (Agency for Mobility and EU Programmes, Ministry of Science and Education).",
+"Navedite izvore: Erasmus+ Project Results Platform (Europska komisija), Program Erasmus+ {N}–{N} i registri ustanova na data.gov.hr (Agencija za mobilnost i programe EU, Ministarstvo znanosti, obrazovanja i mladih).": "Cite the sources: Erasmus+ Project Results Platform (European Commission), the Erasmus+ programme {N1}–{N2} and the institution registers on data.gov.hr (Agency for Mobility and EU Programmes, Ministry of Science, Education and Youth).",
 "{E} ima {N} KA{N} projekata sa sudionikom iz županije ({N}. od {N}), od toga {N} koordiniranih. U projektima sudjeluje {N} organizacija, a vrijednost projekata je {N} mil. €.": "{E1} has {N1} KA{N2} projects with a participant from the county (rank {N3} of {N4}), of which {N5} were coordinated from it. {N6} organisations take part, and the projects are worth €{N7}M.",
 "Odaberite područje, a zatim označite teme. Najviše osam odjednom.": "Choose an area, then tick topics. Up to eight at a time.",
 "Područje": "Area",
@@ -2000,7 +2000,7 @@ function viewOPodacima(root) {
   <h2>Izvori</h2><ul class="srcl">
     <li><a href="https://erasmus-plus.ec.europa.eu/projects" target="_blank" rel="noopener">Erasmus+ Project Results Platform</a><br><span class="small">Europska komisija. Skupovi podataka o KA2 projektima za 2014.–2020. i 2021.–2027.</span></li>
     <li><a href="https://data.gov.hr" target="_blank" rel="noopener">Portal otvorenih podataka (data.gov.hr)</a><br><span class="small">Agencija za mobilnost i programe EU. Popisi projekata i organizacija.</span></li>
-    <li><a href="https://mzo.gov.hr" target="_blank" rel="noopener">Ministarstvo znanosti i obrazovanja</a><br><span class="small">Registri škola, za izračun pokrivenosti po županijama.</span></li></ul>
+    <li><a href="https://mzo.gov.hr" target="_blank" rel="noopener">Ministarstvo znanosti, obrazovanja i mladih</a><br><span class="small">Registri škola, za izračun pokrivenosti po županijama.</span></li></ul>
   <h2>Što brojke ne obuhvaćaju</h2><ul>
     <li>Samo KA2 projekte. KA1 mobilnosti nisu uključene.</li>
     <li>Odabir za 2026. još traje, pa je posljednja godina nepotpuna.</li>
@@ -2533,7 +2533,7 @@ function viewPreuzimanje(root) {
   ];
   root.innerHTML = `${head('Informacije · Preuzimanje podataka', 'Preuzmite otvorene podatke', 'Skupovi podataka na kojima se temelji atlas. Preuzimanje u prototipu stvara CSV izravno iz podataka koje stranica već sadrži.')}
   <div class="grid two" style="margin-top:0"><section class="card" style="padding:0"><div>${SETS.map(([f, t, d], i) => `<div class="ds"><div><h3>${t}</h3><p>${d}</p><p class="mono small" style="margin-top:6px">${f}</p></div><div class="acts"><button type="button" class="btn sm primary" data-i="${i}">Preuzmi CSV</button></div></div>`).join('')}</div></section>
-  <div class="stack"><section class="card"><h2>Kako koristiti podatke</h2><ul class="check-list" style="margin-top:14px"><li>Navedite izvore: Erasmus+ Project Results Platform (Europska komisija), Program Erasmus+ 2021.–2027. i registri ustanova na data.gov.hr (Agencija za mobilnost i programe EU, Ministarstvo znanosti i obrazovanja).</li><li>Provjerite uvjete korištenja u izvoru; atlas ne mijenja licence izvornih skupova.</li><li>Pročitajte <a href="#/o-podacima">ograničenja podataka</a> prije usporedbi.</li></ul></section>
+  <div class="stack"><section class="card"><h2>Kako koristiti podatke</h2><ul class="check-list" style="margin-top:14px"><li>Navedite izvore: Erasmus+ Project Results Platform (Europska komisija), Program Erasmus+ 2021.–2027. i registri ustanova na data.gov.hr (Agencija za mobilnost i programe EU, Ministarstvo znanosti, obrazovanja i mladih).</li><li>Provjerite uvjete korištenja u izvoru; atlas ne mijenja licence izvornih skupova.</li><li>Pročitajte <a href="#/o-podacima">ograničenja podataka</a> prije usporedbi.</li></ul></section>
   <section class="card"><h2>Za programere</h2><p class="lead">U pravoj aplikaciji isti su podaci dostupni kao JSON, a pitanja se šalju asistentu.</p><pre class="code">GET  /data/projects.json
 GET  /data/orgs.json
 POST /api/ask   { "question": "…" }</pre></section>
@@ -2671,7 +2671,7 @@ function viewLanding(root) {
     <div class="srcgrid">
       <article class="src"><a href="https://erasmus-plus.ec.europa.eu/projects/projects-lists" target="_blank" rel="noopener noreferrer">Erasmus+ Project Results Platform</a><small>Europska komisija</small><p>KA2 projekti 2014.–2020. i 2021.–2027.: naslovi, vrste, države i iznosi.</p></article>
       <article class="src"><a href="https://data.gov.hr/ckan/hr/dataset/program-erasmus-za-razdoblje-od-2021-do-2027-godine" target="_blank" rel="noopener noreferrer">Program Erasmus+ 2021.–2027.</a><small>Agencija za mobilnost i programe EU · data.gov.hr</small><p>Hrvatski sudionici i organizacije u projektima.</p></article>
-      <article class="src"><a href="https://data.gov.hr/ckan/hr/dataset/osnovne-skole" target="_blank" rel="noopener noreferrer">Registri ustanova</a><small>Ministarstvo znanosti i obrazovanja · data.gov.hr</small><p>Dječji vrtići, osnovne i srednje škole te visoko obrazovanje, za izračun pokrivenosti.</p></article>
+      <article class="src"><a href="https://data.gov.hr/ckan/hr/dataset/osnovne-skole" target="_blank" rel="noopener noreferrer">Registri ustanova</a><small>Ministarstvo znanosti, obrazovanja i mladih · data.gov.hr</small><p>Dječji vrtići, osnovne i srednje škole te visoko obrazovanje, za izračun pokrivenosti.</p></article>
     </div>
   </div></section>`;
   function strip() {
@@ -2785,7 +2785,7 @@ function canned(q) {
       rows: [[P1, p1.projects, fmt(p1.projects)], [P2, p2.projects, fmt(p2.projects)]], src: [[T('Pregled', 'Overview'), '#/pregled'], [T('Projekti', 'Projects'), '#/projekti']],
       steps: [T('Tema: ukupni broj projekata', 'Topic: total number of projects'), T('Tablica: nacionalni pokazatelji po razdobljima', 'Table: national indicators by period')] };
   }
-  if (/izvor|odakle|podac|source|where|data/.test(f)) return { text: T('Podaci dolaze iz tri javna izvora: Erasmus+ Project Results Platform (Europska komisija), portala data.gov.hr (Agencija za mobilnost i programe EU) i registara škola Ministarstva znanosti i obrazovanja. Atlas ih povezuje i izračunava pokazatelje, ništa se ne unosi ručno.', 'The data comes from three public sources: the Erasmus+ Project Results Platform (European Commission), the data.gov.hr portal (Agency for Mobility and EU Programmes) and the school registers of the Ministry of Science and Education. The atlas links them and calculates the indicators; nothing is entered by hand.'), src: [[T('O podacima', 'About the data'), '#/o-podacima']], steps: [T('Tema: izvori podataka', 'Topic: data sources'), T('Stranica: O podacima', 'Page: About the data')] };
+  if (/izvor|odakle|podac|source|where|data/.test(f)) return { text: T('Podaci dolaze iz tri javna izvora: Erasmus+ Project Results Platform (Europska komisija), portala data.gov.hr (Agencija za mobilnost i programe EU) i registara škola Ministarstva znanosti, obrazovanja i mladih. Atlas ih povezuje i izračunava pokazatelje, ništa se ne unosi ručno.', 'The data comes from three public sources: the Erasmus+ Project Results Platform (European Commission), the data.gov.hr portal (Agency for Mobility and EU Programmes) and the school registers of the Ministry of Science, Education and Youth. The atlas links them and calculates the indicators; nothing is entered by hand.'), src: [[T('O podacima', 'About the data'), '#/o-podacima']], steps: [T('Tema: izvori podataka', 'Topic: data sources'), T('Stranica: O podacima', 'Page: About the data')] };
   return { text: T('Na to pitanje u podacima atlasa nemam odgovor. Mogu odgovoriti o županijama, organizacijama, partnerskim državama, temama, sektorima, vrijednosti projekata i pokrivenosti škola. Probajte jedno od predloženih pitanja.', 'I have no answer to that question in the atlas data. I can answer about counties, organisations, partner countries, topics, sectors, project value and school coverage. Try one of the suggested questions.'), src: [[T('Mapa stranice', 'Site map'), '#/mapa-stranice']], steps: [T('Pitanje nije prepoznato među temama atlasa', 'The question was not recognised among the atlas topics')], none: true };
 }
 
@@ -2796,6 +2796,7 @@ function canned(q) {
    Postavke prije učitavanja skripte:  window.EK_ASK_API = '/api/ask'  (adresa)  |  false  (uvijek ugrađeni odgovori). */
 const AskAPI = (() => {
   let lastOrg = null, probe = null;
+  const T = (hr, en) => (LANG === 'en' ? en : hr);                 // T of canned() is local to it: this module needs its own
   const url = () => { const c = window.EK_ASK_API; if (c === false) return null; if (typeof c === 'string' && c) return c; return /^https?:$/.test(location.protocol) ? '/api/ask' : null; };
   const tmo = (ms) => { const c = new AbortController(); return [c.signal, setTimeout(() => c.abort(), ms)]; };
   function available() {

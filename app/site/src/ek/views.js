@@ -288,7 +288,7 @@ function viewOPodacima(root) {
   <h2>Izvori</h2><ul class="srcl">
     <li><a href="https://erasmus-plus.ec.europa.eu/projects" target="_blank" rel="noopener">Erasmus+ Project Results Platform</a><br><span class="small">Europska komisija. Skupovi podataka o KA2 projektima za 2014.–2020. i 2021.–2027.</span></li>
     <li><a href="https://data.gov.hr" target="_blank" rel="noopener">Portal otvorenih podataka (data.gov.hr)</a><br><span class="small">Agencija za mobilnost i programe EU. Popisi projekata i organizacija.</span></li>
-    <li><a href="https://mzo.gov.hr" target="_blank" rel="noopener">Ministarstvo znanosti i obrazovanja</a><br><span class="small">Registri škola, za izračun pokrivenosti po županijama.</span></li></ul>
+    <li><a href="https://mzo.gov.hr" target="_blank" rel="noopener">Ministarstvo znanosti, obrazovanja i mladih</a><br><span class="small">Registri škola, za izračun pokrivenosti po županijama.</span></li></ul>
   <h2>Što brojke ne obuhvaćaju</h2><ul>
     <li>Samo KA2 projekte. KA1 mobilnosti nisu uključene.</li>
     <li>Odabir za 2026. još traje, pa je posljednja godina nepotpuna.</li>

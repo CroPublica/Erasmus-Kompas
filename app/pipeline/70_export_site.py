@@ -255,7 +255,7 @@ def main():
                         "organisations": len(index), "counties": len(counties),
                         "sources": "Erasmus+ Project Results Platform, KA2 exports 2014-2020 and 2021-2027; "
                                    "Croatian Agency for Mobility and EU Programmes (data.gov.hr); "
-                                   "Ministry of Science and Education school registers"})
+                                   "Ministry of Science, Education and Youth school registers"})
     con.close()
 
 

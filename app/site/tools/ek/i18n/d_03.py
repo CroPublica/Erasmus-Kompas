@@ -72,7 +72,7 @@ D = {
 "Pokazatelji za {N} županiju po razdobljima: organizacije, projekti, koordinacije i vrijednost projekata.":"Indicators for {N1} counties by period: organisations, projects, coordinations and project value.",
 "zupanije.csv":"counties.csv","Projekti po godinama":"Projects by year","Broj projekata po godini poziva, razdoblju, sektoru i vrsti projekta.":"Number of projects by call year, period, sector and project type.",
 "projekti-po-godinama.csv":"projects-by-year.csv","Kako koristiti podatke":"How to use the data",
-"Navedite izvor: Erasmus+ Project Results Platform, Agencija za mobilnost i programe EU, Ministarstvo znanosti i obrazovanja.":"Cite the source: Erasmus+ Project Results Platform, Agency for Mobility and EU Programmes, Ministry of Science and Education.",
+"Navedite izvor: Erasmus+ Project Results Platform, Agencija za mobilnost i programe EU, Ministarstvo znanosti, obrazovanja i mladih.":"Cite the source: Erasmus+ Project Results Platform, Agency for Mobility and EU Programmes, Ministry of Science, Education and Youth.",
 "Provjerite uvjete korištenja u izvoru; atlas ne mijenja licence izvornih skupova.":"Check the terms of use at the source; the atlas does not change the licences of the original datasets.",
 "Pročitajte":"Read the","ograničenja podataka":"data limitations","prije usporedbi.":"before making comparisons.","Za programere":"For developers",
 "U pravoj aplikaciji isti su podaci dostupni kao JSON, a pitanja se šalju asistentu.":"In the real application the same data is available as JSON, and questions are sent to the assistant.","Preuzeto ✓":"Downloaded ✓",

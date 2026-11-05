@@ -33,7 +33,7 @@ export const NAV: NavTop[] = [
     { key: 'topics', href: '/topics/', label: { hr: 'Teme kroz vrijeme', en: 'Topics over time' } },
     { key: 'problems', href: '/problems/', label: { hr: 'Problemi i rješenja', en: 'Problems and solutions' } },
     { key: 'graph', href: '/graph/', label: { hr: 'Mreža pojmova', en: 'Concept network' } },
-    { key: 'methods', href: '/methods/', label: { hr: 'Što rade projekti', en: 'What projects do' } },
+    { key: 'methods', href: '/methods/', label: { hr: 'Čime se bave projekti', en: 'What projects do' } },
   ] },
   { key: 'find-s', href: '/projects/', label: { hr: 'Projekti i organizacije', en: 'Projects and organisations' }, icon: 'folder', subs: [
     { key: 'projects', href: '/projects/', label: { hr: 'Projekti', en: 'Projects' } },

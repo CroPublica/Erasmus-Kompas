@@ -129,6 +129,23 @@ await test('assistant: on the English page the suggestions send English, the box
   assert.match(await d.locator('#dock h2').innerText(), /^Kompas assistant/);
   assert.match(await d.locator('#dock .welcome h3').innerText(), /What would you like to know/);
 });
+await test('assistant: a real API answer (200 with citations) is shown as it is, without the "not available" note', async () => {
+  const p = await open('/en/ask/'); const seen = [];
+  p.on('console', (m) => { if (m.type() === 'error') seen.push(m.text()); });
+  await p.route('**/api/health', (r) => r.fulfill({ status: 200, contentType: 'application/json', body: '{"status":"ok"}' }));
+  await p.route('**/api/ask', (r) => r.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify({
+    answer: 'Split-Dalmatia County has 320 projects.', lang: 'en', route: 'county', verified: true, fallback: false, last_org_id: null,
+    citations: ['county:Splitsko-dalmatinska', 'county:Grad Zagreb', 'org:OID-E10208520', 'project:2023-1-HR01-KA220-SCH-000158622', 'concept:TOP:Digital skills', 'glossary:grant'],
+    tools: [{ tool: 'county_stats', args: { county: 'Splitsko-dalmatinska', period: 'all' }, rows: [] }] }) }));
+  await p.reload({ waitUntil: 'networkidle' });
+  await p.locator('.topics .sug button').first().click(); await p.waitForTimeout(1500);
+  const txt = await p.locator('#view').innerText();
+  assert.match(txt, /Split-Dalmatia County has 320 projects\./);
+  assert.doesNotMatch(txt, /not available right now|computed directly from the data/);
+  assert.ok((await p.locator('#view .bubble a').count()) >= 4, 'the sources are linked');
+  assert.match(await p.locator('#view .bubble').first().textContent(), /Calculation: county figures/);      // the steps sit in a closed <details>, so innerText would skip them
+  assert.deepEqual(seen.filter((m) => !/status of (404)/.test(m)), []);
+});
 await test('no horizontal scroll at phone width on any page', async () => {
   for (const r of [...ENGINE, ...NATIVE]) {
     const p = await open('/hr' + r, 390);

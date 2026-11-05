@@ -101,7 +101,7 @@ function viewPreuzimanje(root) {
   ];
   root.innerHTML = `${head('Informacije · Preuzimanje podataka', 'Preuzmite otvorene podatke', 'Skupovi podataka na kojima se temelji atlas. Preuzimanje u prototipu stvara CSV izravno iz podataka koje stranica već sadrži.')}
   <div class="grid two" style="margin-top:0"><section class="card" style="padding:0"><div>${SETS.map(([f, t, d], i) => `<div class="ds"><div><h3>${t}</h3><p>${d}</p><p class="mono small" style="margin-top:6px">${f}</p></div><div class="acts"><button type="button" class="btn sm primary" data-i="${i}">Preuzmi CSV</button></div></div>`).join('')}</div></section>
-  <div class="stack"><section class="card"><h2>Kako koristiti podatke</h2><ul class="check-list" style="margin-top:14px"><li>Navedite izvore: Erasmus+ Project Results Platform (Europska komisija), Program Erasmus+ 2021.–2027. i registri ustanova na data.gov.hr (Agencija za mobilnost i programe EU, Ministarstvo znanosti i obrazovanja).</li><li>Provjerite uvjete korištenja u izvoru; atlas ne mijenja licence izvornih skupova.</li><li>Pročitajte <a href="#/o-podacima">ograničenja podataka</a> prije usporedbi.</li></ul></section>
+  <div class="stack"><section class="card"><h2>Kako koristiti podatke</h2><ul class="check-list" style="margin-top:14px"><li>Navedite izvore: Erasmus+ Project Results Platform (Europska komisija), Program Erasmus+ 2021.–2027. i registri ustanova na data.gov.hr (Agencija za mobilnost i programe EU, Ministarstvo znanosti, obrazovanja i mladih).</li><li>Provjerite uvjete korištenja u izvoru; atlas ne mijenja licence izvornih skupova.</li><li>Pročitajte <a href="#/o-podacima">ograničenja podataka</a> prije usporedbi.</li></ul></section>
   <section class="card"><h2>Za programere</h2><p class="lead">U pravoj aplikaciji isti su podaci dostupni kao JSON, a pitanja se šalju asistentu.</p><pre class="code">GET  /data/projects.json
 GET  /data/orgs.json
 POST /api/ask   { "question": "…" }</pre></section>
@@ -239,7 +239,7 @@ function viewLanding(root) {
     <div class="srcgrid">
       <article class="src"><a href="https://erasmus-plus.ec.europa.eu/projects/projects-lists" target="_blank" rel="noopener noreferrer">Erasmus+ Project Results Platform</a><small>Europska komisija</small><p>KA2 projekti 2014.–2020. i 2021.–2027.: naslovi, vrste, države i iznosi.</p></article>
       <article class="src"><a href="https://data.gov.hr/ckan/hr/dataset/program-erasmus-za-razdoblje-od-2021-do-2027-godine" target="_blank" rel="noopener noreferrer">Program Erasmus+ 2021.–2027.</a><small>Agencija za mobilnost i programe EU · data.gov.hr</small><p>Hrvatski sudionici i organizacije u projektima.</p></article>
-      <article class="src"><a href="https://data.gov.hr/ckan/hr/dataset/osnovne-skole" target="_blank" rel="noopener noreferrer">Registri ustanova</a><small>Ministarstvo znanosti i obrazovanja · data.gov.hr</small><p>Dječji vrtići, osnovne i srednje škole te visoko obrazovanje, za izračun pokrivenosti.</p></article>
+      <article class="src"><a href="https://data.gov.hr/ckan/hr/dataset/osnovne-skole" target="_blank" rel="noopener noreferrer">Registri ustanova</a><small>Ministarstvo znanosti, obrazovanja i mladih · data.gov.hr</small><p>Dječji vrtići, osnovne i srednje škole te visoko obrazovanje, za izračun pokrivenosti.</p></article>
     </div>
   </div></section>`;
   function strip() {

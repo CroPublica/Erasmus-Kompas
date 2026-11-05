@@ -7,7 +7,7 @@ const Xport = (() => {
   const fname = (d, ext) => `erasmus-kompas_${fold(d.id).replace(/[^a-z0-9]+/g, '-')}_${today()}.${ext}`;
   const save = (blob, name) => { const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = name; document.body.append(a); a.click(); setTimeout(() => { a.remove(); URL.revokeObjectURL(a.href); }, 800); };
   const shown = (c, v) => v == null || v === '' ? '' : c.t === 'int' ? fmt(Math.round(v)) : c.t === 'dec' ? dec(v) : c.t === 'pct' ? dec(v) + ' %' : String(v);
-  const SRC = () => tr('Izvor: Erasmus+ Kompas (erasmus-plus.ec.europa.eu, data.gov.hr, MZO). Neovisan projekt, nije službena stranica Europske komisije.');
+  const SRC = () => tr('Izvor: Erasmus+ Kompas (erasmus-plus.ec.europa.eu, data.gov.hr, MZOM). Neovisan projekt, nije službena stranica Europske komisije.');
 
   /* ---- CSV ---- */
   const cell = (v) => { v = v == null ? '' : String(v); return /[",\n\r]/.test(v) ? '"' + v.replace(/"/g, '""') + '"' : v; };
