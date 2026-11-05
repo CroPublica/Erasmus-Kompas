@@ -17,7 +17,7 @@ D = {
 "Ažurirano":"Updated"," · {N} organizacija · {N} županija":" · {N1} organisations · {N2} counties","· {N} organizacija · {N} županija":"· {N1} organisations · {N2} counties",
 "{E} u brojkama":"{E1} in numbers","Ključni pokazatelji za odabrano programsko razdoblje.":"Key indicators for the selected programme period.",
 "Razdoblje":"Period","Projekata":"Projects","KA{N} s hrvatskim sudionikom":"KA{N1} with Croatian participants","Koordinirano":"Coordinated",
-"{N}% projekata":"{N1}% of projects","Vrijednost":"Value","svih tih projekata":"across all these projects","Udio u EU":"Share of the EU",
+"{N}% projekata":"{N1}% of projects","Vrijednost":"Value","svih tih projekata":"across all these projects","Udio u EU":"Share of EU total",
 "od {N} KA{N} projekata":"of {N1} KA{N2} projects","Kroz godine":"Over the years",
 "Koliko je KA{N} projekata s hrvatskim sudionikom odabrano po godini poziva.":"How many KA{N1} projects with a Croatian participant were selected per call year.",
 "Podjela po sektoru i vrsti →":"Breakdown by sector and type →","Projekti po godini poziva":"Projects by call year",

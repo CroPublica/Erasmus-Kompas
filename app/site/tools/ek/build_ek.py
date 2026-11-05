@@ -90,7 +90,7 @@ views = sub(views, "  draw();\n}\n\n/* ============ view: Problemi i rješenja",
 /* ============ view: Problemi i rješenja""", 'views.js')
 views = views.replace("const base = () => (typeof window.EK_DATA_BASE === 'string' ? window.EK_DATA_BASE : 'data/');", "const base = () => window.EK_DATA_BASE;")
 pages = rd('pages.js')
-en = sub(rd('i18n-en.js'), '"Nema pojmova za odabrane filtre.": "No terms for the selected filters."', '"Nema pojmova za odabrane filtre.": "No terms for the selected filters.",\n"Hrvatske organizacije u projektima s ovim pojmom": "Croatian organisations in projects with this term"', 'i18n-en.js')
+en = sub(rd('i18n-en.js'), '"Nema pojmova za odabrane filtre.": "No concepts for the selected filters."', '"Nema pojmova za odabrane filtre.": "No concepts for the selected filters.",\n"Hrvatske organizacije u projektima s ovim pojmom": "Croatian organisations in projects with this concept"', 'i18n-en.js')
 en = en.replace('const EN_DICT = {', 'const EN_DICT = {\n"Upišite pitanje o podacima…": "Type a question about the data…",\n"Vrsta pitanja: ": "Question type: ",', 1)
 parts = [core, rd('ui.js'), rd('export.js'), i18n, en, views, views2, rd('heromap.js'), rd('hero.js'), pages, rd('assistant.js'), rd('engine.js')]
 bundle = '(function(){\n"use strict";\n' + '\n'.join(parts) + '\n})();\n'

@@ -18,4 +18,5 @@ ENT = {
  'Poduzeća (MSP)':'Businesses (SMEs)','Predškolske ustanove':'Pre-primary institutions','Sport':'Sport','Kultura':'Culture','Istraživačke organizacije':'Research organisations','Savjetovanje':'Counselling',
  # statusi
  'Završen':'Completed','U tijeku':'Ongoing','Prekinut':'Terminated',
+ "Ustanove ranog i predškolskog odgoja i obrazovanja":"Early childhood education and care institutions", "Sportske organizacije":"Sports organisations", "Kulturne organizacije":"Cultural organisations", "Centri za savjetovanje i usmjeravanje":"Guidance and counselling centres", "Ostale organizacije":"Other organisations", "Ustanove za obrazovanje odraslih":"Adult education providers", "Odgoj i opće obrazovanje":"School education", "Strukovno obrazovanje i osposobljavanje (SOO)":"Vocational education and training (VET)", "Suradnička partnerstva":"Cooperation partnerships", "Partnerstva za razmjenu škola":"School exchange partnerships", "Jačanje kapaciteta":"Capacity building", "Savezi i ostale aktivnosti":"Alliances and other actions"
 }

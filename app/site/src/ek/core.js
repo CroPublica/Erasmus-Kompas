@@ -30,9 +30,9 @@ const sum = (a) => a.reduce((x, y) => x + y, 0);
 
 const LAB = {
   period: { all: '2014.–2026.', '2014-2020': '2014.–2020.', '2021-2027': '2021.–2027.' },
-  sector: { skolsko: 'Školsko obrazovanje', strukovno: 'Strukovno obrazovanje (VET)', visoko: 'Visoko obrazovanje', odrasli: 'Obrazovanje odraslih', mladi: 'Mladi', ostalo: 'Ostalo' },
-  kind: { suradnja: 'Partnerstva za suradnju', mala: 'Mala partnerstva', strateska: 'Strateška partnerstva', razmjena: 'Razmjena škola', kapaciteti: 'Izgradnja kapaciteta', ostalo: 'Savezi i ostale akcije' },
-  cls: { ngo: 'Nevladine organizacije', higher_education: 'Visoka učilišta', school_primary: 'Osnovne škole', school_vocational: 'Strukovne škole', school_secondary_general: 'Gimnazije i opće srednje škole', public_body: 'Javna tijela', adult_education: 'Obrazovanje odraslih', sme_business: 'Poduzeća (MSP)', school_preprimary: 'Predškolske ustanove', other: 'Ostalo', sport: 'Sport', culture: 'Kultura', research: 'Istraživačke organizacije', counselling: 'Savjetovanje' },
+  sector: { skolsko: 'Odgoj i opće obrazovanje', strukovno: 'Strukovno obrazovanje i osposobljavanje (SOO)', visoko: 'Visoko obrazovanje', odrasli: 'Obrazovanje odraslih', mladi: 'Mladi', ostalo: 'Ostalo' },
+  kind: { suradnja: 'Suradnička partnerstva', mala: 'Mala partnerstva', strateska: 'Strateška partnerstva', razmjena: 'Partnerstva za razmjenu škola', kapaciteti: 'Jačanje kapaciteta', ostalo: 'Savezi i ostale aktivnosti' },
+  cls: { ngo: 'Nevladine organizacije', higher_education: 'Visoka učilišta', school_primary: 'Osnovne škole', school_vocational: 'Strukovne škole', school_secondary_general: 'Gimnazije i opće srednje škole', public_body: 'Javna tijela', adult_education: 'Ustanove za obrazovanje odraslih', sme_business: 'Poduzeća (MSP)', school_preprimary: 'Ustanove ranog i predškolskog odgoja i obrazovanja', other: 'Ostale organizacije', sport: 'Sportske organizacije', culture: 'Kulturne organizacije', research: 'Istraživačke organizacije', counselling: 'Centri za savjetovanje i usmjeravanje' },
   status: ['Završen', 'U tijeku', 'Prekinut']
 };
 const SECTOR_COL = { skolsko: '#004494', strukovno: '#0f8b8d', visoko: '#f8ae21', odrasli: '#a23e87', mladi: '#6a8bc4', ostalo: '#9aa5b8' };

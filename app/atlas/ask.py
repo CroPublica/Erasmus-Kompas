@@ -618,7 +618,7 @@ def _template_answer(lang: str, route: str, results: list[dict]) -> str:
         if any(x["org_class"] == "ngo" for x in cls):      # the class is wider than what the EU export types as NGO (no numbers here: the verifier checks every number against the tool output)
             ctext += (". Nevladine organizacije uključuju organizacije kojima je prazna vrsta dopunjena iz drugih zapisa i europske organizacije civilnog društva" if hr else
                       ". Non-governmental organisations include organisations whose blank type was filled from other records and European civil-society organisations")
-        return (f"{f(r['projects'])} KA2 {hr_plural(r['projects'], 'projekt', 'projekta', 'projekata')} ima hrvatskog sudionika ({f(r['projects_2014_2020'])} u 2014.–2020., {f(r['projects_2021_2027'])} u 2021.–2026.), a {f(r['coordinated'])} ih koordinira hrvatska organizacija ({f(r['share_of_eu_ka2_projects'] * 100, 1)} % svih KA2 projekata u EU). Koordiniraju najčešće: {ctext}."
+        return (f"{f(r['projects'])} KA2 {hr_plural(r['projects'], 'projekt', 'projekta', 'projekata')} ima hrvatskog sudionika ({f(r['projects_2014_2020'])} u 2014.–2020., {f(r['projects_2021_2027'])} u 2021.–2026.), a {f(r['coordinated'])} ih koordinira hrvatska organizacija ({f(r['share_of_eu_ka2_projects'] * 100, 1)} % svih KA2 projekata u EU-u). Koordiniraju najčešće: {ctext}."
                 if hr else f"{f(r['projects'])} KA2 projects have a Croatian participant ({f(r['projects_2014_2020'])} in 2014–2020, {f(r['projects_2021_2027'])} in 2021–2026) and {f(r['coordinated'])} are coordinated from Croatia ({f(r['share_of_eu_ka2_projects'] * 100, 1)} % of all EU KA2 projects). Most frequent coordinators: {ctext}.")
     if t == "coverage":
         nat = last["rows"][0]["national"]
@@ -658,12 +658,12 @@ def _template_answer(lang: str, route: str, results: list[dict]) -> str:
     if t == "country_compare":
         rows = results[-1]["rows"]
         parts = [f"{country_name(x['country'], lang)}: {f(x['coordinated_projects'])} ({x['rank']}. {'mjesto' if hr else 'place'})" if hr else f"{country_name(x['country'], lang)}: {f(x['coordinated_projects'])} (rank {x['rank']})" for x in rows]
-        return (f"KA2 projekti koordinirani iz pojedine zemlje, 2014.–2026.: " + "; ".join(parts) + f". Poredak je među {f(rows[0]['countries_total'])} zemalja." if hr else
+        return (f"KA2 projekti koordinirani iz pojedine države, 2014.–2026.: " + "; ".join(parts) + f". Poredak je među {f(rows[0]['countries_total'])} država." if hr else
                 f"KA2 projects coordinated from each country, 2014–2026: " + "; ".join(parts) + f". Rank is among {f(rows[0]['countries_total'])} countries.")
     if t == "country_stats":
         top = results[-1]["rows"][0]
         hrr = next((x for x in results[-1]["rows"] if x["country"] == "HR"), None)
-        tail_hr = (f" Hrvatska je na {hrr['rank']}. mjestu od {hrr['countries_total']} zemalja koordinatora u {'2014.–2020.' if hrr['period'] == '2014-2020' else '2021.–2026.'} ({f(hrr['coordinated_projects'])} projekata)." if hr else f" Croatia ranks {hrr['rank']} of {hrr['countries_total']} coordinating countries in {'2014–2020' if hrr['period'] == '2014-2020' else '2021–2026'} ({f(hrr['coordinated_projects'])} projects).") if hrr else ""
+        tail_hr = (f" Hrvatska je na {hrr['rank']}. mjestu od {hrr['countries_total']} država koordinatora u {'2014.–2020.' if hrr['period'] == '2014-2020' else '2021.–2026.'} ({f(hrr['coordinated_projects'])} projekata)." if hr else f" Croatia ranks {hrr['rank']} of {hrr['countries_total']} coordinating countries in {'2014–2020' if hrr['period'] == '2014-2020' else '2021–2026'} ({f(hrr['coordinated_projects'])} projects).") if hrr else ""
         return (f"Najviše KA2 projekata koordinira {country_name(top['country'], lang)} ({f(top['coordinated_projects'])})." if hr else
                 f"Most KA2 projects are coordinated from {country_name(top['country'], lang)} ({f(top['coordinated_projects'])}).") + tail_hr
     if t == "county_project":
@@ -809,7 +809,7 @@ def _concept_answer_core(lang: str, results: list[dict]) -> str:
             parts.append(f"{kn[:1].upper() + kn[1:]}: {items}.")
         head = "Najčešće u KA2 projektima s hrvatskim sudionikom (broj projekata, udio): " if hr else "Most common in KA2 projects with a Croatian participant (projects, share): "
         if commons[0]["args"].get("topic_note"):
-            head = ("Podaci nemaju „prvu” temu projekta: svaki projekt ima jednu ili više tema EU programa. Najčešće teme (broj projekata, udio): " if hr else
+            head = ("Podaci nemaju „prvu” temu projekta: svaki projekt ima jednu ili više tema EU-a. Najčešće teme (broj projekata, udio): " if hr else
                     "The data has no “first” topic per project: each project has one or more EU programme topics. The most common topics (projects, share): ")
         miss = commons[0]["args"].get("qualifier_not_found")
         if miss:
@@ -824,7 +824,7 @@ def _concept_answer_core(lang: str, results: list[dict]) -> str:
         up, down = part("growing"), part("fading")
         kn = KIND_NAMES[last["args"]["kind"]][0 if hr else 1]
         if hr:
-            return (f"{kn[:1].upper() + kn[1:]} — udio projekata 2014.–2020. → 2021.–2026. Rastu: {up or 'nema'}. Slabe: {down or 'nema'}. "
+            return (f"{kn[:1].upper() + kn[1:]} — udio projekata 2014.–2020. → 2021.–2026. Rastu: {up or 'nema'}. Opadaju: {down or 'nema'}. "
                     "Dio promjene dolazi iz vrste poziva (npr. školska razmjena uglavnom je do 2020.), a ne iz struke. " + CONCEPT_CAVEAT[lang])
         return (f"{kn[:1].upper() + kn[1:]} — share of projects 2014–2020 → 2021–2026. Growing: {up or 'none'}. Fading: {down or 'none'}. "
                 "Part of the change comes from the call design (for example school exchange was mainly an action of 2014–2020), not from the field. " + CONCEPT_CAVEAT[lang])
@@ -844,7 +844,7 @@ def _concept_answer_core(lang: str, results: list[dict]) -> str:
     if last["tool"] == "concept_profile":
         r = last["rows"][0]
         kn = {"approach": ("pristup", "approach"), "target_group": ("ciljna skupina", "target group"), "output": ("rezultat", "output"),
-              "problem": ("problem", "problem"), "topic": ("tema EU programa", "EU topic")}[r["kind"]][0 if hr else 1]
+              "problem": ("problem", "problem"), "topic": ("tema EU-a", "EU topic")}[r["kind"]][0 if hr else 1]
         rel = []
         focus = last["args"].get("focus")
         for kd in sorted(("target_group", "approach", "output", "problem", "topic"), key=lambda k: k != focus):

@@ -46,7 +46,7 @@ GLOSSARY = {   # term -> (words that select it, Croatian, English); the same wor
             "KA1 is mobility of individuals (learning abroad) and KA2 is cooperation between organisations and the exchange of good practice through partnerships. This atlas shows KA2 only."),
     "call year": ("godina poziva|call year", "Godina poziva je godina natječaja na kojem je projekt odabran. Godina 2026. još traje, pa je prikazana kao nepotpuna.",
                   "The call year is the year of the call in which the project was selected. 2026 is still running, so it is shown as incomplete."),
-    "grant": ("grant|potpor|vrijednost projekt|project value", "Vrijednost projekta je okvirni iznos potpore dodijeljen projektu pri odabiru. Bilježi se po projektu i ne dijeli se među partnere.",
+    "grant": ("grant|potpor|vrijednost projekt|project value", "Vrijednost projekta je okvirni iznos bespovratnih sredstava dodijeljen projektu pri odabiru. Bilježi se po projektu i ne dijeli se među partnere.",
               "Project value is the indicative amount awarded to the project at selection. It is recorded per project and is not split between partners."),
     "good practice": ("dobra praksa|dobre prakse|good practice", "Dobra praksa je oznaka koju Europska komisija dodjeljuje projektima izdvojenima kao primjeri. Nije ocjena kvalitete projekata bez te oznake.",
                       "Good practice is a label the European Commission gives to projects it picks out as examples. It is not a quality rating of projects without the label."),
