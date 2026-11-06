@@ -1,0 +1,224 @@
+1
+00:00:01,000 --> 00:00:04,333
+Since twenty fourteen,
+only one in three Croatian primary
+
+2
+00:00:04,383 --> 00:00:08,828
+and secondary schools has taken
+part in Erasmus+ KA2 partnerships.
+
+3
+00:00:09,228 --> 00:00:10,328
+Which schools are they?
+
+4
+00:00:10,728 --> 00:00:11,839
+Who do they work with?
+
+5
+00:00:12,239 --> 00:00:13,794
+What are their projects about?
+
+6
+00:00:14,194 --> 00:00:16,639
+Erasmus+ Kompas answers these questions.
+
+7
+00:00:17,789 --> 00:00:21,344
+KA2 is the Erasmus+
+key action in which different
+
+8
+00:00:21,394 --> 00:00:24,506
+organisations work together
+and share experience.
+
+9
+00:00:26,456 --> 00:00:29,122
+Erasmus+ Kompas is designed for schools,
+
+10
+00:00:29,302 --> 00:00:31,747
+associations, cities, counties, citizens,
+
+11
+00:00:31,927 --> 00:00:35,927
+journalists and researchers who want
+to learn more about KA2 projects.
+
+12
+00:00:37,077 --> 00:00:39,521
+Our data comes from the Erasmus+
+
+13
+00:00:39,571 --> 00:00:42,904
+Project Results Platform
+and Croatia's Open Data Portal,
+
+14
+00:00:43,084 --> 00:00:47,973
+which provides datasets from the
+Agency for Mobility and EU Programmes
+
+15
+00:00:48,023 --> 00:00:51,134
+and registers of educational institutions.
+
+16
+00:00:52,284 --> 00:00:54,951
+You can explore data by county and topic,
+
+17
+00:00:55,131 --> 00:00:58,464
+find projects and organisations,
+or ask the Assistant.
+
+18
+00:00:59,614 --> 00:01:02,726
+The map shows the share of schools
+taking part in each county:
+
+19
+00:01:02,906 --> 00:01:05,794
+from fourteen and a half per cent
+in Zagreb County
+
+20
+00:01:05,844 --> 00:01:09,178
+to almost fifty-seven per cent
+in Varaždin County.
+
+21
+00:01:10,328 --> 00:01:12,994
+Every organisation has its own page.
+
+22
+00:01:13,394 --> 00:01:16,506
+For example,
+Gimnazija Metković has taken part
+
+23
+00:01:16,556 --> 00:01:19,667
+in twenty-two projects
+and coordinated one of them.
+
+24
+00:01:20,067 --> 00:01:23,400
+The organisation list
+can be filtered by county,
+
+25
+00:01:23,580 --> 00:01:28,024
+type and period, and downloaded
+as a CSV, Excel or PDF file.
+
+26
+00:01:29,174 --> 00:01:32,063
+A language model extracted
+problems, approaches,
+
+27
+00:01:32,243 --> 00:01:35,132
+target groups and results
+from the project summaries.
+
+28
+00:01:35,532 --> 00:01:37,977
+The concept network
+shows related concepts,
+
+29
+00:01:38,157 --> 00:01:42,157
+such as early school leaving and students
+from disadvantaged backgrounds.
+
+30
+00:01:43,307 --> 00:01:47,084
+You can also simply ask the Assistant,
+in Croatian or English.
+
+31
+00:01:47,484 --> 00:01:49,262
+Ask about “dropping out of school”,
+
+32
+00:01:49,442 --> 00:01:52,109
+and the Assistant
+recognises school dropout
+
+33
+00:01:52,159 --> 00:01:54,826
+by its meaning and finds
+five relevant projects,
+
+34
+00:01:55,006 --> 00:01:56,561
+with examples and sources.
+
+35
+00:01:57,711 --> 00:02:02,600
+The data is processed in Python
+and merged into a DuckDB database,
+
+36
+00:02:02,780 --> 00:02:05,891
+which is used to build
+a static website with Astro.
+
+37
+00:02:06,291 --> 00:02:10,069
+A language model running
+locally processed the summaries,
+
+38
+00:02:10,249 --> 00:02:12,916
+and an algorithm grouped related concepts.
+
+39
+00:02:13,316 --> 00:02:16,871
+When a user asks a question,
+the model only routes it.
+
+40
+00:02:17,271 --> 00:02:20,160
+Tools retrieve the data,
+and code writes the answer.
+
+41
+00:02:20,560 --> 00:02:23,893
+So the figures come from the data,
+not from the model.
+
+42
+00:02:25,043 --> 00:02:28,599
+Schools can see which organisations
+in their county already
+
+43
+00:02:28,649 --> 00:02:31,538
+take part in projects and what
+those projects are about.
+
+44
+00:02:31,938 --> 00:02:35,049
+Citizens, journalists
+and researchers can easily
+
+45
+00:02:35,099 --> 00:02:37,988
+learn more about
+KA2 partnerships in their area.
+
+46
+00:02:39,138 --> 00:02:41,360
+Planned next steps
+are a partner search tool,
+
+47
+00:02:41,540 --> 00:02:42,873
+a guide for first projects,
+
+48
+00:02:43,053 --> 00:02:46,164
+an annual data refresh and a public API.

@@ -1,32 +1,40 @@
 #!/usr/bin/env python3
-"""Turn script_hr.md into subtitles and scene data. Run from anywhere: python3 video/build.py
+"""Turn a script into subtitles and scene data. Run from anywhere: python3 video/build.py [hr|en]
 
-Writes subtitles_hr.srt, subtitles_hr.vtt and scenes/data.js. All figures are read from the app's data files, and the
+Writes subtitles_<lang>.srt, subtitles_<lang>.vtt and scenes/data.js (Croatian) or scenes/data_en.js (English). All figures are read from the app's data files, and the
 build stops if a figure the script speaks no longer matches them. Timing is an estimate from syllables until a voice exists.
 """
 import json
 import re
+import sys
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parent
-RATE = 5.5            # syllables per second, about 130 words per minute in this script
+RATE = {"hr": 5.9, "en": 4.5}   # syllables per second, a brisk but normal narration (about 140 words per minute in the Croatian script)
 COMMA, STOP, GAP = 0.18, 0.40, 0.75   # pauses in seconds: comma or colon, end of sentence, between sections
-LEAD, TAIL = 1.0, 5.0                 # silence before the first word; end card after the last word
+LEAD, TAIL = 1.0, 3.4                 # silence before the first word; end card after the last word
+HOLD = {"ka2": 0.8}                # extra silent seconds after a section, so its slide can be read
 MAX_LINE, MAX_SECONDS = 42, 178.0
+LANG = sys.argv[1] if len(sys.argv) > 1 else "hr"
 
 # Obvious slips corrected in the subtitles only; script_hr.md stays as written.
-CORRECTIONS = {"smo smo": "smo"}
+CORRECTIONS = {}
 # Kept on one line or in one subtitle.
-KEEP = ["dvije tisuće četrnaeste godine", "četrnaest i pol posto", "gotovo pedeset sedam posto", "dvadeset dva projekta",
-        "četrdeset dva projekta", "Erasmus+ Kompas", "„rani prekid školovanja”", "Varaždinskoj županiji", "ciljne skupine",
+KEEP = ["dvije tisuće četrnaeste godine", "četrnaest i pol posto", "do gotovo pedeset sedam posto", "dvadeset dva projekta",
+        "sto sedamdeset pet relevantnih projekata", "Erasmus+ Kompas", "Varaždinskoj županiji", "ciljane skupine",
         "rano napuštanje školovanja", "web-sjedište izrađeno", "jezični model", "jedna od tri", "Portala otvorenih podataka",
         "projektnih sažetaka", "Agencije za mobilnost i programe EU-a", "CSV, Excel ili PDF", "javni API",
         "uvid u to", "već sudjeluje", "alat za traženje partnera", "vodič za prvi projekt", "u bazu DuckDB", "alatu Astro", "u Pythonu"]
 WEAK = {"u", "na", "s", "sa", "za", "o", "od", "do", "iz", "po", "k", "te", "i", "a", "ili", "ali", "se", "je", "su", "koji", "koje", "što",
         "tko", "kao", "ga", "ti", "ova", "ove", "više", "kad", "zato", "svojem", "svakoj", "njihovoj", "samim"}
 SPOKEN = {"ka2": 2, "erasmus+": 4, "eu-a": 3, "csv": 3, "pdf": 3, "api": 3, "duckdb": 3, "python": 2, "pythonu": 3, "excel": 2, "astro": 2}
-SECTION_LABEL = {"Mreža pojmova": "mreza", "Karta": "karta", "Organizacije": "organizacije", "Pitanja": "pitanja"}
+KEEP_EN = ["Erasmus+ Kompas", "Project Results Platform", "Open Data Portal", "Agency for Mobility and EU Programmes", "fourteen and a half per cent", "almost fifty-seven per cent",
+           "Zagreb County", "Varaždin County", "twenty-two projects", "forty-two relevant projects", "CSV, Excel or PDF", "early school leaving", "DuckDB database", "public API",
+           "“dropping out of school”,", "school dropout", "target groups", "KA2 partnerships", "Gimnazija Metković", "language model", "twenty fourteen", "key action", "good practice"]
+WEAK_EN = {"the", "a", "an", "of", "in", "to", "for", "and", "or", "by", "with", "from", "who", "which", "that", "as", "is", "are", "at", "on", "into", "their", "these", "those", "how", "its", "has", "can", "not"}
+SECTION_LABEL = {"What is KA2?": "ka2", "Overview": "pregled", "Map": "karta", "Organisations": "organizacije", "Concept network": "mreza", "Questions": "pitanja", "Što je KA2?": "ka2",
+                 "Pregled": "pregled", "Mreža pojmova": "mreza", "Karta": "karta", "Organizacije": "organizacije", "Pitanja": "pitanja"}
 SECTION_ID = {1: "problem", 2: "korisnici", 3: "izvori", 5: "arhitektura", 6: "vrijednost", 7: "razvoj"}
 
 
@@ -34,6 +42,9 @@ def syllables(word):
     w = re.sub(r"[„”.,:;?!()]", "", word.lower())
     if w in SPOKEN:
         return SPOKEN[w]
+    if LANG == "en":
+        w = re.sub(r"e$", "", w)
+        return max(1, len(re.findall(r"[aeiouy]+", w)))
     n = len(re.findall(r"[aeiouô]", w)) + len(re.findall(r"(?<![aeiouô])r(?![aeiouô])", w))
     return max(1, n)
 
@@ -58,13 +69,13 @@ def parse_script(text):
 
 
 def protect(text):
-    for k in KEEP:
+    for k in (KEEP_EN if LANG == "en" else KEEP):
         text = text.replace(k, k.replace(" ", " "))
     return text
 
 
 def weak_end(word):
-    return word.replace(" ", " ").split(" ")[-1].lower() in WEAK
+    return word.replace(" ", " ").split(" ")[-1].lower() in (WEAK_EN if LANG == "en" else WEAK)
 
 
 def clitic_start(word):
@@ -122,13 +133,13 @@ def make_cues(sections):
     for s in sections:
         s["start"] = round(t, 3)
         s["cues"] = []
-        for sentence in re.findall(r"[^.?!]+[.?!]+”?|[^.?!]+$", s["text"]):
+        for sentence in re.findall(r".+?[.?!]+”?(?=\s|$)", s["text"]):
             sentence = sentence.strip()
             pieces = split_sentence(sentence)
             for k, piece in enumerate(pieces):
                 lines = [" ".join(p).replace(" ", " ") for p in two_lines(piece)]
                 text = " ".join(lines)
-                dur = sum(syllables(w) for w in text.split(" ")) / RATE
+                dur = sum(syllables(w) for w in text.split(" ")) / RATE[LANG]
                 dur = max(dur, 1.1)
                 pause = STOP if k == len(pieces) - 1 else COMMA if text[-1] in ",:" else 0.05
                 cue = {"start": round(t, 3), "end": round(t + dur, 3), "lines": lines, "text": text}
@@ -136,7 +147,7 @@ def make_cues(sections):
                 s["cues"].append(cue)
                 t += dur + pause
         s["end"] = round(t - STOP, 3)
-        t += GAP
+        t += GAP + HOLD.get(s["id"], 0)
     return cues, round(sections[-1]["end"] + TAIL, 3)
 
 
@@ -161,27 +172,31 @@ def figures():
     group = next(c for c in G["communities"] if c["name"][1] == "Sprječavanje ranog napuštanja školovanja")
     node = next(n for n in G["nodes"] if n[3] == "rano napuštanje školovanja" and n[1] == "problem")
     county = next(c for c in D["counties"] if c["stem"] == org["county"])
-    mix = json.loads((ROOT / "app/eval/results/mix_test.json").read_text(encoding="utf-8"))
-    answer = next(x["answer"] for x in mix if x["question"] == "rani prekid školovanja")
-    examples = re.search(r"Primjeri projekata \(izvorni naslovi\): (.+?)\. Pojmovi", answer)[1].split("; ")
+    topic = next(n for n in G["nodes"] if n[0] == "TOP:Preventing early school leaving and failure in education")   # the Croatian Assistant scene shows this result (assets/screens/assistant_hr.png)
     checks = [(rates[0][0], "Zagrebačka"), (round(100 * rates[0][1][0] / rates[0][1][1], 1), 14.5), (rates[-1][0], "Varaždinska"),
-              (round(100 * rates[-1][1][0] / rates[-1][1][1], 1), 56.9), (org["projects"], 22), (org["coordinated"], 1), (node[4], 42)]
+              (round(100 * rates[-1][1][0] / rates[-1][1][1], 1), 56.9), (org["projects"], 22), (org["coordinated"], 1), (topic[4:7], [175, 153, 22])]
     bad = [c for c in checks if c[0] != c[1]]
     if bad or not 0.30 < part / inst < 0.36:
         raise SystemExit(f"The script no longer matches the data: {bad}, schools {part}/{inst}")
+    en = LANG == "en"
+    dropout = next(n for n in G["nodes"] if n[2] == "school dropout" and n[1] == "problem")   # the English Assistant scene shows this result (assets/screens/assistant_en.png)
+    if en and dropout[4:7] != [5, 4, 1]:
+        raise SystemExit(f"The English Assistant screenshot no longer matches the data: {dropout[4:7]}")
+    county_en = {"Zagrebačka": "Zagreb County", "Varaždinska": "Varaždin County", "Dubrovačko-neretvanska": "Dubrovnik-Neretva County"}
+    county_label = lambda stem: county_en[stem] if en else stem + " županija"
     return {
         "meta": {k: D["meta"][k] for k in ("projects", "organisations", "counties")}, "schools": [part, inst],
         "rates": {k: v for k, v in rates}, "lowest": rates[0][0], "highest": rates[-1][0], "geo": D["geo"],
+        "lowest_label": county_label(rates[0][0]), "highest_label": county_label(rates[-1][0]), "org_county_label": county_label(org["county"]),
         "org": {k: org[k] for k in ("name", "town", "county", "projects", "coordinated", "p1", "p2")},
-        "county": {"name": county["label"], "organisations": county["ka2"]["all"]["organisations"], "projects": county["ka2"]["all"]["projects_involved"]},
-        "group": {k: [t[1] for t in group[f"top_{k}"]] for k in ("problem", "approach", "target_group", "output")},
-        "concept": {"name": node[3], "n": node[4], "p1": node[5], "p2": node[6]},
-        "answer_intro": answer.split(" rano napuštanje")[0], "examples": examples,
+        "county": {"name": county_label(org["county"]) if en else county["label"], "organisations": county["ka2"]["all"]["organisations"], "projects": county["ka2"]["all"]["projects_involved"]},
+        "group": {k: [x[0 if en else 1] for x in group[f"top_{k}"]] for k in ("problem", "approach", "target_group", "output")},
+        "concept": {"name": node[2] if en else node[3]},
     }
 
 
 def main():
-    sections = parse_script((HERE / "script_hr.md").read_text(encoding="utf-8"))
+    sections = parse_script((HERE / f"script_{LANG}.md").read_text(encoding="utf-8"))
     cues, duration = make_cues(sections)
     if duration > MAX_SECONDS:
         raise SystemExit(f"Too long: {duration:.1f} s (limit {MAX_SECONDS} s)")
@@ -190,10 +205,10 @@ def main():
         body = "\n".join(c["lines"])
         srt += [str(i), f"{stamp(c['start'], ',')} --> {stamp(c['end'], ',')}", body, ""]
         vtt += [f"{stamp(c['start'], '.')} --> {stamp(c['end'], '.')}", body, ""]
-    (HERE / "subtitles_hr.srt").write_text("\n".join(srt), encoding="utf-8")
-    (HERE / "subtitles_hr.vtt").write_text("\n".join(vtt), encoding="utf-8")
-    data = {"duration": duration, "sections": [{k: s[k] for k in ("id", "group", "n", "label", "start", "end", "cues")} for s in sections], "fig": figures()}
-    (HERE / "scenes/data.js").write_text("window.VIDEO=" + json.dumps(data, ensure_ascii=False) + ";\n", encoding="utf-8")
+    (HERE / f"subtitles_{LANG}.srt").write_text("\n".join(srt), encoding="utf-8")
+    (HERE / f"subtitles_{LANG}.vtt").write_text("\n".join(vtt), encoding="utf-8")
+    data = {"lang": LANG, "duration": duration, "sections": [{k: s[k] for k in ("id", "group", "n", "label", "start", "end", "cues")} for s in sections], "fig": figures()}
+    (HERE / ("scenes/data.js" if LANG == "hr" else "scenes/data_en.js")).write_text("window.VIDEO=" + json.dumps(data, ensure_ascii=False) + ";\n", encoding="utf-8")
     words = sum(len(s["text"].split()) for s in sections)
     print(f"{words} words, {len(cues)} subtitles, total {duration:.1f} s ({int(duration // 60)}:{int(duration % 60):02})")
     for s in sections:

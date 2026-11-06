@@ -1,18 +1,23 @@
 // Renders index.html to an MP4 (or PNG stills) with macOS's own WebKit and AVFoundation; nothing to install.
 //   swiftc -O render.swift -o render_bin -framework AppKit -framework WebKit -framework AVFoundation
-//   ./render_bin                                  writes erasmus_kompas_titlovi.mp4
+//   ./render_bin                                  writes erasmus_kompas_titlovi.mp4 (Croatian)
+//   ./render_bin --en                             writes erasmus_kompas_subtitles_en.mp4 (English)
 //   ./render_bin --stills 3.5,12,40               writes stills/t<seconds>.png
 import AppKit
 import AVFoundation
 import WebKit
 
+let english = CommandLine.arguments.contains("--en")
+
 final class Renderer: NSObject, WKNavigationDelegate {
-    let w = 1920, h = 1080, fps = 30
+    let w = 1920, h = 1080, outW = 3840, outH = 2160, fps = 30   // the page is laid out at w x h and captured at outW x outH
     let stills: [Double]?
     var web: WKWebView!, win: NSWindow!
     var writer: AVAssetWriter!, input: AVAssetWriterInput!, adaptor: AVAssetWriterInputPixelBufferAdaptor!
     var frame = 0, total = 0
     let started = Date()
+    let partial = URL(fileURLWithPath: english ? "render_in_progress_en.mp4" : "render_in_progress.mp4").absoluteURL   // the finished video only replaces the old one if the whole render succeeds
+    let finished = URL(fileURLWithPath: english ? "erasmus_kompas_subtitles_en.mp4" : "erasmus_kompas_titlovi.mp4").absoluteURL
 
     init(stills: [Double]?) { self.stills = stills }
 
@@ -22,7 +27,7 @@ final class Renderer: NSObject, WKNavigationDelegate {
         win.contentView = web
         win.orderBack(nil)
         web.navigationDelegate = self
-        let page = URL(fileURLWithPath: "index.html").absoluteURL
+        let page = URL(fileURLWithPath: english ? "index_en.html" : "index.html").absoluteURL
         web.loadFileURL(page, allowingReadAccessTo: page.deletingLastPathComponent())
     }
 
@@ -37,18 +42,26 @@ final class Renderer: NSObject, WKNavigationDelegate {
                 return
             }
             self.total = Int((d * Double(self.fps)).rounded(.up))
+            // Make the browser paint each large screenshot once, off the clock, so no frame catches it still blank.
+            self.web.callAsyncJavaScript("await window.primeImages()", arguments: [:], in: nil, in: .page) { _ in
             if self.stills != nil { try? FileManager.default.createDirectory(atPath: "stills", withIntermediateDirectories: true); self.nextStill(0) } else { self.beginVideo() }
+            }
         }
     }
 
-    func snapshot(_ t: Double, _ done: @escaping (CGImage) -> Void) {
+    func snapshot(_ t: Double, attempt: Int = 1, _ done: @escaping (CGImage) -> Void) {
         web.evaluateJavaScript("seek(\(t)); 1") { _, error in
             if let error { print("seek error at \(t):", error); exit(1) }
             let cfg = WKSnapshotConfiguration()
             cfg.rect = NSRect(x: 0, y: 0, width: self.w, height: self.h)
-            cfg.snapshotWidth = NSNumber(value: Double(self.w) / (NSScreen.main?.backingScaleFactor ?? 2))
+            cfg.snapshotWidth = NSNumber(value: Double(self.outW) / (self.win.backingScaleFactor))
             self.web.takeSnapshot(with: cfg) { image, err in
-                guard let image, let cg = image.cgImage(forProposedRect: nil, context: nil, hints: nil) else { print("snapshot failed:", err as Any); exit(1) }
+                guard let image, let cg = image.cgImage(forProposedRect: nil, context: nil, hints: nil) else {
+                    print("snapshot failed at \(t) s, attempt \(attempt):", err as Any); fflush(stdout)
+                    if attempt >= 8 { exit(1) }
+                    DispatchQueue.main.asyncAfter(deadline: .now() + Double(attempt)) { self.snapshot(t, attempt: attempt + 1, done) }
+                    return
+                }
                 done(cg)
             }
         }
@@ -64,16 +77,16 @@ final class Renderer: NSObject, WKNavigationDelegate {
     }
 
     func beginVideo() {
-        let out = URL(fileURLWithPath: "erasmus_kompas_titlovi.mp4").absoluteURL
+        let out = partial
         try? FileManager.default.removeItem(at: out)
         writer = try! AVAssetWriter(outputURL: out, fileType: .mp4)
         input = AVAssetWriterInput(mediaType: .video, outputSettings: [
-            AVVideoCodecKey: AVVideoCodecType.h264, AVVideoWidthKey: w, AVVideoHeightKey: h,
-            AVVideoCompressionPropertiesKey: [AVVideoAverageBitRateKey: 8_000_000, AVVideoProfileLevelKey: AVVideoProfileLevelH264HighAutoLevel],
+            AVVideoCodecKey: AVVideoCodecType.h264, AVVideoWidthKey: outW, AVVideoHeightKey: outH,
+            AVVideoCompressionPropertiesKey: [AVVideoAverageBitRateKey: 24_000_000, AVVideoProfileLevelKey: AVVideoProfileLevelH264HighAutoLevel],
         ])
         input.expectsMediaDataInRealTime = false
         adaptor = AVAssetWriterInputPixelBufferAdaptor(assetWriterInput: input, sourcePixelBufferAttributes: [
-            kCVPixelBufferPixelFormatTypeKey as String: kCVPixelFormatType_32BGRA, kCVPixelBufferWidthKey as String: w, kCVPixelBufferHeightKey as String: h,
+            kCVPixelBufferPixelFormatTypeKey as String: kCVPixelFormatType_32BGRA, kCVPixelBufferWidthKey as String: outW, kCVPixelBufferHeightKey as String: outH,
         ])
         writer.add(input)
         writer.startWriting()
@@ -86,7 +99,9 @@ final class Renderer: NSObject, WKNavigationDelegate {
             input.markAsFinished()
             writer.finishWriting {
                 print("done: \(self.total) frames in \(Int(Date().timeIntervalSince(self.started))) s, status \(self.writer.status.rawValue)")
-                exit(self.writer.status == .completed ? 0 : 1)
+                guard self.writer.status == .completed else { exit(1) }
+                _ = try! FileManager.default.replaceItemAt(self.finished, withItemAt: self.partial)
+                exit(0)
             }
             return
         }
@@ -96,14 +111,15 @@ final class Renderer: NSObject, WKNavigationDelegate {
                 CVPixelBufferPoolCreatePixelBuffer(nil, self.adaptor.pixelBufferPool!, &buffer)
                 let pb = buffer!
                 CVPixelBufferLockBaseAddress(pb, [])
-                let ctx = CGContext(data: CVPixelBufferGetBaseAddress(pb), width: self.w, height: self.h, bitsPerComponent: 8, bytesPerRow: CVPixelBufferGetBytesPerRow(pb),
+                let ctx = CGContext(data: CVPixelBufferGetBaseAddress(pb), width: self.outW, height: self.outH, bitsPerComponent: 8, bytesPerRow: CVPixelBufferGetBytesPerRow(pb),
                                     space: CGColorSpaceCreateDeviceRGB(), bitmapInfo: CGImageAlphaInfo.premultipliedFirst.rawValue | CGBitmapInfo.byteOrder32Little.rawValue)!
-                ctx.draw(cg, in: CGRect(x: 0, y: 0, width: self.w, height: self.h))
+                ctx.draw(cg, in: CGRect(x: 0, y: 0, width: self.outW, height: self.outH))
                 CVPixelBufferUnlockBaseAddress(pb, [])
                 while !self.input.isReadyForMoreMediaData { RunLoop.current.run(until: Date().addingTimeInterval(0.005)) }
                 self.adaptor.append(pb, withPresentationTime: CMTime(value: CMTimeValue(self.frame), timescale: CMTimeScale(self.fps)))
             }
             self.frame += 1
+            if cg.width != self.outW && self.frame == 1 { print("captured at \(cg.width) px, expected \(self.outW)"); exit(1) }
             if self.frame % 300 == 0 { print("\(self.frame)/\(self.total)"); fflush(stdout) }
             self.nextFrame()
         }
