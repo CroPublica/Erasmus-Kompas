@@ -107,7 +107,18 @@ def _stem_match(a: str, b: str) -> bool:
     if len(short) >= 4 and long_.startswith(short) and len(long_) - len(short) <= 2:        # rano / ranom, skill / skills
         return True
     sa, sb = (a[:-2] if len(a) >= 6 else a), (b[:-2] if len(b) >= 6 else b)
-    return sa == sb
+    if sa == sb:
+        return True
+    if min(len(a), len(b)) >= 4 and min(len(a), len(b)) < 6:                        # short adjectives: rano / ranim / ranog (the last two letters are the whole ending)
+        return _hr_base(a) == _hr_base(b)
+    return False
+
+
+def _hr_base(w: str) -> str:
+    for e in ("ima", "ama", "ega", "emu", "oga", "omu", "im", "om", "em", "og", "oj", "ih", "a", "e", "i", "o", "u"):
+        if w.endswith(e) and len(w) - len(e) >= 3:
+            return w[: -len(e)]
+    return w
 
 
 class Toolbox:
@@ -182,9 +193,23 @@ class Toolbox:
             self._towns = out
         return self._towns
 
+    def _without_county_names(self, t: str) -> str:
+        """Folded text with the county names taken out, so that 'Lika-Senj' or 'Ličko-senjska' is not read as the town of Senj and 'Splitsko-dalmatinska' not as Split."""
+        if getattr(self, "_county_names", None) is None:
+            names = []
+            for stem in self._counties:
+                f = _fold(stem)
+                if f != "grad zagreb":
+                    names.append(re.escape(f[:-2]) + r"[a-z-]*")
+            for en in EN_COUNTY.values():
+                bare = en.replace(" County", "")
+                names.append(re.escape(_fold(bare)) + ("" if "-" in bare else r" county"))     # a one-word English name (Varaždin) can also be the town: only with 'county'
+            self._county_names = re.compile(r"(?<![a-z0-9])(?:" + "|".join(sorted(names, key=len, reverse=True)) + r")(?![a-z0-9])")
+        return self._county_names.sub(" ", t)
+
     def _town_hits(self, text: str) -> list[tuple[int, str, str]]:
         """(position, key, name) of towns in the text; names of four letters or fewer (Vis, Bol, Pula) must be written with a capital letter."""
-        t = _fold(text)
+        t = self._without_county_names(_fold(text))
         plain = " ".join(strip_diacritics(text or "").replace("-", " ").split())
         hits = []
         for k, nice, pat in self._town_index():
@@ -641,9 +666,16 @@ class Toolbox:
         res.notes.append("number of KA2 projects with a Croatian participant that also have a partner from the country; country codes are Erasmus+ codes (EL = Greece)")
         return res
 
-    def country_compare(self, codes: list[str]) -> ToolResult:
-        """KA2 projects coordinated from the named countries in the whole EU export (both programme periods), with each country's rank."""
-        res = ToolResult("country_compare", {"countries": codes})
+    def country_compare(self, codes: list[str], partners: bool = False) -> ToolResult:
+        """KA2 projects coordinated from the named countries in the whole EU export (both programme periods), with each country's rank.
+        With partners=True: how many KA2 projects with a Croatian participant have a partner from each country, with its rank among partner countries."""
+        res = ToolResult("country_compare", {"countries": codes, "partners": partners})
+        if partners:
+            allp = self.partner_countries("all", 10_000).rows
+            by = {r["country"]: r for r in allp}
+            res.rows = [{"country": c, "partner_projects": by[c]["projects"], "partner_rank": by[c]["rank"], "partner_countries_total": by[c]["countries_total"]} for c in codes if c in by]
+            res.notes.append("number of KA2 projects with a Croatian participant that also have a partner from the country, 2014-2026 together; country codes are Erasmus+ codes (EL = Greece)")
+            return res
         rows = self._rows("""select c country, sum(n) coordinated_projects from (
                                select "Coordinator's country" c, count(*) n from stg_ka2_2014_2020 where "Coordinator's country" is not null group by 1
                                union all
@@ -759,8 +791,28 @@ class Toolbox:
         res.notes.append("keyword match only; summaries are in the language they were submitted in")
         return res
 
+    def mention_count(self, phrase: str, period: str = "all") -> ToolResult:
+        """How many projects name the exact phrase in their title or summary (accent- and case-insensitive, whole words; no synonyms, no other word forms).
+        Counts the KA2 projects with a Croatian participant; the summaries are mostly in English, so the phrase should be the English wording."""
+        res = ToolResult("mention_count", {"text": phrase, "period": period})
+        words = re.findall(r"[a-z0-9]+", _fold(phrase))
+        if not words:
+            res.notes.append("empty phrase")
+            return res
+        pat = r"(^|[^a-z0-9])" + r"[^a-z0-9]+".join(re.escape(w) for w in words) + r"([^a-z0-9]|$)"
+        where, params = ("", [pat]) if period == "all" else (" and period = ?", [pat, period])
+        rows = self._rows(f"select period, count(*) n, count(*) filter (where regexp_matches(strip_accents(lower(coalesce(title, ''))), ?)) in_title from project "
+                          f"where regexp_matches(strip_accents(lower(coalesce(title, '') || ' ' || coalesce(summary, ''))), ?){where} group by period",
+                          [pat] + params)
+        by = {r["period"]: r for r in rows}
+        res.rows = [{"phrase": phrase, "projects": sum(r["n"] for r in rows), "in_title": sum(r["in_title"] for r in rows),
+                     "projects_2014_2020": by.get("2014-2020", {}).get("n", 0), "projects_2021_2027": by.get("2021-2027", {}).get("n", 0)}]
+        res.notes.append("exact phrase in the title or summary only: other wordings (synonyms, other languages) are not counted")
+        return res
+
     # ------------------------------------------------------------------ concepts (steps 51, 52, 60)
-    _CONCEPT_STOP = {"koji", "koje", "koja", "kakve", "kakvi", "koliko", "projekti", "projekata", "projekte", "projekt", "erasmus", "ka2", "najcesce", "cesto",
+    _CONCEPT_STOP = {"related", "relating", "relate", "deal", "deals", "dealing", "concern", "concerned", "concerning", "address", "addresses", "addressing", "povezano", "povezani", "povezana", "povezane", "vezano", "vezani", "govori", "govore", "bavi", "bave", "tice", "odnose",
+                     "koji", "koje", "koja", "kakve", "kakvi", "koliko", "projekti", "projekata", "projekte", "projekt", "erasmus", "ka2", "najcesce", "cesto",
                      "what", "which", "projects", "project", "how", "many", "about", "with", "used", "most", "common", "commonly", "usually", "that", "does",
                      "kako", "sto", "gdje", "tipicni", "tipicne", "tipican", "uobicajeni", "uobicajene", "metode", "metoda", "aktivnosti", "rezultati", "ciljne", "skupine", "pristupi", "pristup", "koriste", "koristi", "rade", "problemi", "znamo", "approaches", "approach", "outputs", "target", "groups", "know", "tell", "methods", "activities", "results", "pristupili", "proizveli", "navedi", "primjere", "primjeri", "postoji", "hrvatski", "hrvatskim", "hrvatske", "sudionicima", "sudjeluju", "rjesavanje", "rjesavaju", "kojim", "bave", "najcesce", "zajedno", "examples", "example", "croatian", "croatia", "address", "produce", "dobre", "prakse", "practice", "good", "ponovnoj", "ovim", "ovom", "ovih", "ovog"}
 

@@ -143,7 +143,8 @@ NOT_BUILT = {"hr": "Pitanja o problemima, rješenjima i vezama među temama još
 
 _HR_WORDS = {"je", "li", "koliko", "koji", "koja", "koje", "što", "sto", "se", "na", "za", "ima", "od", "kako", "kolika", "sudjeluje",
              "projekata", "projekta", "škola", "skola", "županija", "zupanija", "ih", "iz", "su", "bilo", "najviše", "najvise", "koju",
-             "prijava", "prijave", "ugovoreno", "ugovoreni", "hrvatskoj", "projekti", "postavi", "pitanje", "hrvatskom", "sudjelovanju", "partnerstvima", "nema", "dokaza", "podacima", "ne", "mogu", "nije", "nisu", "ili", "jasno", "iznad", "ispod"}
+             "prijava", "prijave", "ugovoreno", "ugovoreni", "hrvatskoj", "projekti", "postavi", "pitanje", "hrvatskom", "sudjelovanju", "partnerstvima", "nema", "dokaza", "podacima", "ne", "mogu", "nije", "nisu", "ili", "jasno", "iznad", "ispod",
+             "usporedi", "usporedite", "kao", "partnere", "partneri", "partnera", "hrvatskih", "organizacija", "organizacije", "kojim", "koliki", "gradonačelnik"}
 _EN_WORDS = {"the", "how", "which", "what", "many", "is", "of", "in", "did", "has", "have", "does", "do", "are", "was", "were", "projects",
              "schools", "county", "more", "most", "than", "to", "and", "who", "where", "when", "why", "give", "tell", "show", "find", "about", "there",
              "ever", "any", "all", "with", "from", "by", "for", "that", "this", "work", "works", "take", "took", "part", "coordinate", "coordinated",
@@ -252,6 +253,10 @@ def ordinal_request(q: str) -> Optional[tuple[int, str]]:
     return (int(m.group(1) or m.group(2)), "first") if m else None
 
 
+COUNT_Q = re.compile(r"koliko|how many|number of|broj projekata")
+PARTNER_WORDS = re.compile(r"partner|surađ|suradnj|cooperat|collaborat|worked with")
+OFF_TOPIC = re.compile(r"\b(mayor|governor|population|inhabitants|weather|temperature|restaurant|football|salary|tax)\b|\bgradona[čc]elni\w*|\b[žz]upan\b|\bstanovni[šs]tv\w*|broj stanovnika|vrijeme sutra|capital (city )?of|\bglavni grad|prime minister|\bpremijer\w*|\bpredsjednik\w*|\bpresident\b|\brestoran\w*|\bhotel\b|\bnogomet\w*|\bpla[ćc]a\b|\bporez\w*|when was .* founded|history of|povijest grada", re.I)
+
 COORD_RANK = re.compile(r"koordinira\w*|koordinator\w*|coordinat\w*", re.I)
 
 
@@ -279,7 +284,9 @@ def enrich_plan(plan: dict, question: str, tb) -> dict:
     if len(towns) >= 2 and re.search(r"vi[šs]e|manje|usporedi|razlik|više|more|fewer|less|compare|versus|\bvs\b|odnosu|naspram|ili|or\b|tko ima|who has", q):
         plan["towns"] = towns[:4]
     specific_org = re.search(r"\bgimnazija\b|\bsveu[čc]ili[šs]te\b|osnovna škola|srednja škola|dječji vrtić|\bfakultet\b|\bpu[čc]ko\b|\bu[čc]ili[šs]te\b|\bcentar\b|\budruga\b|\b(osnovna|srednja|glazbena|strukovna|medicinska|tehni[čc]ka|ekonomska|umjetni[čc]ka)\s+[šs]kola\b|sli[čc]n\w+|similar", q)
-    if re.search(r"ravnatelj|director|principal|e-?mail|telefon|phone|zbroji|sum up|add up|total across|kako (se )?prijavi|how (do i|to|can i) (apply|submit)|natje[čc]aj\w* (za|za prijavu)", q):
+    if OFF_TOPIC.search(q):
+        plan["route"] = "out_of_scope"                # "Who is the mayor of Zagreb?": a named town is not a reason to answer with its Erasmus+ figures
+    elif re.search(r"ravnatelj|director|principal|e-?mail|telefon|phone|zbroji|sum up|add up|total across|kako (se )?prijavi|how (do i|to|can i) (apply|submit)|natje[čc]aj\w* (za|za prijavu)", q):
         plan["route"] = "out_of_scope"
     elif re.search(r"ignor\w* (all |the )?(previous|prior|above)|system prompt|ignoriraj|zanemari (sve )?(prethodn|upute)|prompt injection|jailbreak|(print|reveal|show|ispiši|otkrij|prikaži) (your |svoj\w* )?(system |sistemsk\w* )?(prompt|upute)", q):
         plan["route"] = "out_of_scope"
@@ -363,7 +370,7 @@ def enrich_plan(plan: dict, question: str, tb) -> dict:
     elif plan["route"] == "county_ranking" and tb.resolve_county(question):      # a county is named: it is not a ranking of counties
         plan["county"] = tb.resolve_county(question)
         plan["route"] = "top_organisations" if re.search(r"\bwho\b|organi[sz]ation|school|tko|organizacij|škol|ustanov", q) else "county"
-    elif len(countries_in_text(question)) >= 2 and re.search(r"koordin|coordinat|projek|project", q) and not tb.find_organisation_in_text(question).rows:
+    elif len(countries_in_text(question)) >= 2 and re.search(r"koordin|coordinat|projek|project|partner|usporedi|uspored|compare|comparison|surađ|cooperat|versus|\bvs\b", q) and not tb.find_organisation_in_text(question).rows:
         plan["route"] = "country_ranking"
     elif re.search(r"koja zemlja|koje zemlje|na kojem je mjestu|which country|which countries|\brank", q) and not tb.find_organisation_in_text(question).rows:
         plan["route"] = "country_ranking"
@@ -716,10 +723,16 @@ def _template_answer(lang: str, route: str, results: list[dict]) -> str:
             lab = ("ukupno" if hr else "total") if y == "total" else f"{y}."
             if not hr and y != "total":
                 lab = str(y)
-            return (f"{lab}: {f(r['applications'])} prijava, {f(r['contracted'])} ugovoreno ({f(r['rate'] * 100, 1)} %)" if hr
+            return (f"{lab}: {f(r['applications'])} {hr_plural(r['applications'], 'prijava', 'prijave', 'prijava')}, {f(r['contracted'])} ugovoreno ({f(r['rate'] * 100, 1)} %)" if hr
                     else f"{lab}: {f(r['applications'])} applications, {f(r['contracted'])} contracted ({f(r['rate'] * 100, 1)} %)")
         head = (f"Prijave i ugovoreni projekti u Hrvatskoj ({scope.strip(', ')}): " if hr else f"Applications and contracted projects in Croatia ({scope.strip(', ')}): ")
         return head + "; ".join(line(r) for r in rows) + "."
+    if t == "country_compare" and results[-1]["rows"] and "partner_projects" in results[-1]["rows"][0]:
+        rows = results[-1]["rows"]
+        parts = [(f"{country_name(x['country'], lang)}: {f(x['partner_projects'])} {hr_plural(x['partner_projects'], 'projekt', 'projekta', 'projekata')} s partnerom iz te države ({x['partner_rank']}. mjesto među {f(x['partner_countries_total'])} partnerskih država)" if hr else
+                  f"{country_name(x['country'], lang)}: {f(x['partner_projects'])} {'project' if x['partner_projects'] == 1 else 'projects'} with a partner from that country (rank {x['partner_rank']} of {f(x['partner_countries_total'])} partner countries)") for x in rows]
+        return (f"Partneri hrvatskih organizacija u KA2 projektima, 2014.–2026.: " + "; ".join(parts) + "." if hr else
+                f"Partners of Croatian organisations in KA2 projects, 2014–2026: " + "; ".join(parts) + ".")
     if t == "country_compare":
         rows = results[-1]["rows"]
         parts = [f"{country_name(x['country'], lang)}: {f(x['coordinated_projects'])} ({x['rank']}. {'mjesto' if hr else 'place'})" if hr else f"{country_name(x['country'], lang)}: {f(x['coordinated_projects'])} (rank {x['rank']})" for x in rows]
@@ -826,7 +839,7 @@ def _template_answer(lang: str, route: str, results: list[dict]) -> str:
                     f"No organisation from {sm['town']} has taken part in a KA2 project ({f(sm['registry_institutions'])} institutions in the school register).")
         lst = "; ".join(f"{x['name']} ({f(x['projects'])})" for x in top)
         return (f"{sm['town']}: u KA2 projektima sudjeluje {f(sm['organisations'])} {hr_plural(sm['organisations'], 'organizacija', 'organizacije', 'organizacija')}; projekata: {f(sm['projects'])}, od toga koordiniranih: {f(sm['coordinated'])}. Najaktivnije (broj projekata): {lst}." if hr else
-                f"{sm['town']}: {f(sm['organisations'])} organisations take part in KA2 projects; projects: {f(sm['projects'])}, of which coordinated: {f(sm['coordinated'])}. Most active (number of projects): {lst}.")
+                f"{sm['town']}: {f(sm['organisations'])} {'organisation takes' if sm['organisations'] == 1 else 'organisations take'} part in KA2 projects; projects: {f(sm['projects'])}, of which coordinated: {f(sm['coordinated'])}. Most active (number of projects): {lst}.")
     if t == "county_ranking":
         rows = results[-1]["rows"]
         names = lambda r: _label(lang, r["label"]) if lang == "en" else r["label"]
@@ -857,7 +870,7 @@ def _template_answer(lang: str, route: str, results: list[dict]) -> str:
         head = (f"Za pretragu „{what}” pronađeni su ovi projekti, navedeni pod izvornim naslovima: " if what else "Projekti koji odgovaraju pretrazi (izvorni naslovi): ") if hr else \
                (f"Projects matching the search “{what}” (original titles): " if what else "Projects matching the search (original titles): ")
         return head + "; ".join(quote_title(x["title"], x.get("call_year"), 100, lang) for x in results[-1]["rows"][:5]) + "."
-    if t in ("common_concepts", "concept_profile", "community_overview", "search_concepts", "concept_trends", "connected_concepts"):
+    if t in ("common_concepts", "concept_profile", "community_overview", "search_concepts", "concept_trends", "connected_concepts", "mention_count"):
         return _concept_answer(lang, results)
     return "Nema dokaza u podacima za ovo pitanje." if hr else "No evidence found in the data for this question."
 
@@ -879,6 +892,22 @@ def _concept_answer_core(lang: str, results: list[dict]) -> str:
     hr = lang == "hr"
     f = lambda x, d=0: _fmt(lang, x, d)
     name = lambda x: (x.get("label_hr") or x["label_en"]) if hr else pretty_en(x["label_en"])
+    counted = next((x for x in results if x["tool"] == "search_concepts" and x["args"].get("count_question") and x["rows"]), None)
+    if counted:
+        topic = next(r for r in counted["rows"] if r["kind"] == "topic")
+        other = next(r for r in counted["rows"] if r["kind"] != "topic")
+        kn = {"approach": ("pristup", "approach"), "target_group": ("ciljna skupina", "target group"), "output": ("rezultat", "output"), "problem": ("problem", "problem")}.get(other["kind"], (other["kind"],) * 2)[0 if hr else 1]
+        mention = next((x for x in results if x["tool"] == "mention_count" and x["rows"]), None)
+        mrow = mention["rows"][0] if mention else None
+        if hr:
+            return (f"Broj projekata ovisi o tome što se broji. Tema EU-a „{name(topic)}”: {f(topic['n_projects'])} {hr_plural(topic['n_projects'], 'projekt', 'projekta', 'projekata')} "
+                    f"(prijavitelji su odabrali tu temu). Pojam „{name(other)}” ({kn}): {f(other['n_projects'])} {hr_plural(other['n_projects'], 'projekt', 'projekta', 'projekata')} "
+                    f"(jezični model ga je našao u sažecima, pa je to donja granica). "
+                    + (f"Točan izraz „{mrow['phrase']}” (na engleskom, kako su pisani sažeci) navodi se u naslovu ili sažetku {f(mrow['projects'])} {hr_plural(mrow['projects'], 'projekta', 'projekta', 'projekata')}; sinonimi i drugi jezici nisu uračunati. " if mrow else "") + CONCEPT_CAVEAT[lang])
+        return (f"The number of projects depends on what is counted. EU topic “{name(topic)}”: {f(topic['n_projects'])} {'project' if topic['n_projects'] == 1 else 'projects'} "
+                f"(the applicants chose that topic). Concept “{name(other)}” ({kn}): {f(other['n_projects'])} {'project' if other['n_projects'] == 1 else 'projects'} "
+                f"(a language model found it in the summaries, so this is a lower bound). "
+                + (f"The exact phrase “{mrow['phrase']}” appears in the title or summary of {f(mrow['projects'])} {'project' if mrow['projects'] == 1 else 'projects'}; synonyms and other languages are not counted. " if mrow else "") + CONCEPT_CAVEAT[lang])
     commons = [x for x in results if x["tool"] == "common_concepts" and x["rows"]]
     if commons:
         parts = []
@@ -1063,9 +1092,14 @@ class Asker:
                 if not found.rows and kind == "topic":                          # "what was the first topic of every project": the data has several EU topics per project, no first one
                     found = tb.common_concepts("topic", plan["period"], 8)
                     found.args["topic_note"] = True
+                kinds_found = {x.get("kind") for x in found.rows} if found.tool == "search_concepts" else set()
+                if COUNT_Q.search(q) and found.tool == "search_concepts" and not found.args.get("by_meaning") and "topic" in kinds_found and len(kinds_found) > 1:
+                    found.args["count_question"] = True                      # "how many projects are related to X": the topic and the concept give different counts, so both are shown
                 results.append(found)
                 if found.rows and found.tool == "search_concepts":
                     results.append(tb.concept_profile(found.rows[0]["node_id"], kind))
+                    if found.args.get("count_question"):                      # a third measure: the exact wording in the titles and summaries
+                        results.append(tb.mention_count(next(r for r in found.rows if r["kind"] != "topic")["label_en"]))
             used = [x.as_dict() for x in results]
             out = {"plan": plan, "results": used, "trace": s["trace"] + [f"tools={[x['tool'] for x in used]}"]}
             if self.mode == "polish":
@@ -1129,7 +1163,7 @@ class Asker:
                     org_id = named.rows[0]["org_id"]
             results.append(tb.partner_countries(plan["period"], org_id=org_id, town=None if org_id else plan.get("town")))
         elif r == "country_ranking" and len(countries_in_text(s["question"])) >= 2:
-            results.append(tb.country_compare(countries_in_text(s["question"])))
+            results.append(tb.country_compare(countries_in_text(s["question"]), partners=bool(PARTNER_WORDS.search(s["question"].lower()))))
         elif r == "country_ranking":
             results.append(tb.country_stats("2021-2027" if plan["period"] == "all" else plan["period"]))
         elif r == "top_organisations":

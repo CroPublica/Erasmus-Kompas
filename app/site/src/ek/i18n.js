@@ -23,7 +23,7 @@ const I18N = (() => {
   }
   const enEnt = (hr) => {
     if (EN_ENT[hr]) return EN_ENT[hr];
-    if (hr.endsWith(' županija')) { const s = hr.slice(0, -9); return `${EN_ENT[s] || s} County`; }
+    if (hr.endsWith(' županija')) { const s = hr.slice(0, -9), e = EN_ENT[s] || s; return /County$/.test(e) ? e : `${e} County`; }
     return hr;
   };
   const numEN = (t) => /^\d{1,3}(\.\d{3})+$/.test(t) ? t.replace(/\./g, ',') : /^\d+,\d{1,2}$/.test(t) ? t.replace(',', '.') : t;
@@ -48,7 +48,7 @@ const I18N = (() => {
   function translate(raw) {
     const m = /^(\s*)([\s\S]*?)(\s*)$/.exec(raw); if (!m[2]) return raw;
     const p = parse(m[2]), bare = p.key.replace(/\{[NE]\}/g, '');
-    if (!hasL(bare) && !p.e.length) { const nn = norm(m[2]); return nn === m[2] ? raw : m[1] + nn + m[3]; }
+    if (!hasL(bare) && !p.e.length && EN_DICT[p.key] == null) { const nn = norm(m[2]); return nn === m[2] ? raw : m[1] + nn + m[3]; }   /* a text of one-letter words ("10 u 2014–2020") is still looked up */
     let out = one(m[2]);
     if (out == null && m[2].includes(' · ')) {                       /* „Zagreb · Visoka učilišta”: prevodi se svaki dio posebno */
       let any = false;

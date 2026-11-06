@@ -76,4 +76,5 @@ const EK = {
 };
 /* language: the page decides, the dictionary translates what the views draw */
 if (EK.lang === 'en') I18N.setLang('en', { force: true });
+EK.i18n = I18N;                     // the translation layer, for the tests (EK.i18n.missing lists what a page could not translate)
 window.EK = EK;

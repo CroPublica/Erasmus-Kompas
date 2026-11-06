@@ -24,7 +24,7 @@ function canned(q) {
   const T = (hr, en) => (LANG === 'en' ? en : hr), E = (s) => I18N.ent(s);
   const P1 = T('2014.–2020.', '2014–2020'), P2 = T('2021.–2027.', '2021–2027'), P0 = T('2014.–2026.', '2014–2026');
   const county = findCounty(f), year = (f.match(/\b(20[12]\d)\b/) || [])[1];
-  const sector = (k) => E(LAB.sector[k]), cls = (k) => E(LAB.cls[k] || k);
+  const sector = (k) => E(LAB.sector[k]), cls = (k) => E(clsName(k));
   if (county) {
     const k = county.ka2.all, order = byC('all'), pos = order.findIndex((c) => c.stem === county.stem) + 1, name = E(county.label);
     return { text: T(`${county.label} ima ${fmt(k.projects_involved)} KA2 projekata sa sudionikom iz županije (${pos}. od ${order.length}), od toga ${fmt(k.projects_coordinated)} koordiniranih. U projektima sudjeluje ${fmt(k.organisations)} organizacija, a vrijednost projekata je ${mil(k.value_involved_eur)}.`,
@@ -43,7 +43,7 @@ function canned(q) {
   if (/koordin|coordinat/.test(f)) {
     const cl = nat.classes.slice(0, 5);
     return { text: T(`Najviše projekata koordiniraju ${lc(cls(cl[0].org_class))} (${fmt(cl[0].projects_coordinated)}), zatim ${lc(cls(cl[1].org_class))} (${fmt(cl[1].projects_coordinated)}). Ukupno je ${fmt(nat.coordinated)} koordiniranih projekata.`, `Most projects are coordinated by ${lc(cls(cl[0].org_class))} (${fmt(cl[0].projects_coordinated)}), followed by ${lc(cls(cl[1].org_class))} (${fmt(cl[1].projects_coordinated)}). There are ${fmt(nat.coordinated)} coordinated projects in total.`),
-      rows: cl.map((c) => [LAB.cls[c.org_class] || c.org_class, c.projects_coordinated, fmt(c.projects_coordinated)]), src: [[T('Pregled', 'Overview'), '#/pregled'], [T('Organizacije', 'Organisations'), '#/organizacije']],
+      rows: cl.map((c) => [clsName(c.org_class), c.projects_coordinated, fmt(c.projects_coordinated)]), src: [[T('Pregled', 'Overview'), '#/pregled'], [T('Organizacije', 'Organisations'), '#/organizacije']],
       steps: [T('Tema: koordinacija projekata', 'Topic: project coordination'), T('Tablica: vrste organizacija, razdoblje 2014.–2026.', 'Table: organisation types, 2014–2026'), T('Poredak po broju koordiniranih projekata', 'Ranked by number of coordinated projects')] };
   }
   if (/organizacij|ustanov|sveucilist|skol.*najvise|najvise.*skol|organi[sz]ation|universit|institution/.test(f) && !/pokrivenost|coverage/.test(f)) {
@@ -97,7 +97,7 @@ function canned(q) {
       rows: [[P1, p1.projects, fmt(p1.projects)], [P2, p2.projects, fmt(p2.projects)]], src: [[T('Pregled', 'Overview'), '#/pregled'], [T('Projekti', 'Projects'), '#/projekti']],
       steps: [T('Tema: ukupni broj projekata', 'Topic: total number of projects'), T('Tablica: nacionalni pokazatelji po razdobljima', 'Table: national indicators by period')] };
   }
-  if (/izvor|odakle|podac|source|where|data/.test(f)) return { text: T('Podaci dolaze iz tri javna izvora: Erasmus+ Project Results Platform (Europska komisija), portala data.gov.hr (Agencija za mobilnost i programe EU) i registara škola Ministarstva znanosti, obrazovanja i mladih. Atlas ih povezuje i izračunava pokazatelje, ništa se ne unosi ručno.', 'The data comes from three public sources: the Erasmus+ Project Results Platform (European Commission), the data.gov.hr portal (Agency for Mobility and EU Programmes) and the school registers of the Ministry of Science, Education and Youth. The atlas links them and calculates the indicators; nothing is entered by hand.'), src: [[T('O podacima', 'About the data'), '#/o-podacima']], steps: [T('Tema: izvori podataka', 'Topic: data sources'), T('Stranica: O podacima', 'Page: About the data')] };
+  if (/izvor|odakle|podac|source|where|data/.test(f)) return { text: T('Podaci dolaze iz tri javna izvora: Platforma za rezultate projekata programa Erasmus+ (Europska komisija), portala data.gov.hr (Agencija za mobilnost i programe EU) i registara škola Ministarstva znanosti, obrazovanja i mladih. Atlas ih povezuje i izračunava pokazatelje, ništa se ne unosi ručno.', 'The data comes from three public sources: the Erasmus+ Project Results Platform (European Commission), the data.gov.hr portal (Agency for Mobility and EU Programmes) and the school registers of the Ministry of Science, Education and Youth. The atlas links them and calculates the indicators; nothing is entered by hand.'), src: [[T('O podacima', 'About the data'), '#/o-podacima']], steps: [T('Tema: izvori podataka', 'Topic: data sources'), T('Stranica: O podacima', 'Page: About the data')] };
   return { text: T('Na to pitanje u podacima atlasa nemam odgovor. Mogu odgovoriti o županijama, organizacijama, partnerskim državama, temama, sektorima, vrijednosti projekata i pokrivenosti škola. Probajte jedno od predloženih pitanja.', 'I have no answer to that question in the atlas data. I can answer about counties, organisations, partner countries, topics, sectors, project value and school coverage. Try one of the suggested questions.'), src: [[T('Mapa stranice', 'Site map'), '#/mapa-stranice']], steps: [T('Pitanje nije prepoznato među temama atlasa', 'The question was not recognised among the atlas topics')], none: true };
 }
 
@@ -120,13 +120,33 @@ const AskAPI = (() => {
   const ROUTE_NAME = { county_ranking: ['rang županija', 'ranking of counties'], county: ['jedna županija', 'one county'], county_project: ['projekt u županiji', 'project in a county'], top_organisations: ['najaktivnije organizacije', 'most active organisations'],
     organisation: ['jedna organizacija', 'one organisation'], national: ['Hrvatska u cjelini', 'Croatia as a whole'], coverage: ['pokrivenost škola', 'school coverage'], country_ranking: ['rang država', 'ranking of countries'],
     partner_countries: ['partnerske države', 'partner countries'], project_search: ['pretraga projekata', 'project search'], concepts: ['sadržaj projekata', 'project content'], glossary: ['rječnik', 'glossary'],
-    year_count: ['projekti po godini poziva', 'projects by call year'], value: ['vrijednost projekata', 'project value'], success: ['prolaznost prijava', 'success rate'], limits: ['izvan obuhvata (KA1/KA3)', 'outside the scope (KA1/KA3)'] };
+    year_count: ['projekti po godini poziva', 'projects by call year'], value: ['vrijednost projekata', 'project value'], success: ['prolaznost prijava', 'success rate'], limits: ['izvan obuhvata (KA1/KA3)', 'outside the scope (KA1/KA3)'],
+    town: ['grad', 'town'], concept_aliases: ['izrazi za isti pojam', 'wordings of one concept'], out_of_scope: ['izvan obuhvata atlasa', 'outside the scope of the atlas'] };
   const TOOL_NAME = { county_ranking: ['rang županija', 'county ranking'], county_stats: ['podaci o županiji', 'county figures'], county_project: ['n-ti projekt županije', 'n-th project of a county'], top_organisations: ['najaktivnije organizacije', 'most active organisations'],
     organisation_profile: ['profil organizacije', 'organisation profile'], find_organisation: ['traženje organizacije', 'organisation lookup'], national_stats: ['državni pokazatelji', 'national figures'], partner_countries: ['partnerske države', 'partner countries'],
     country_stats: ['države koordinatori', 'coordinating countries'], coverage: ['pokrivenost škola', 'school coverage'], search_projects: ['pretraga projekata', 'project search'], search_concepts: ['pretraga pojmova', 'concept search'],
     concept_profile: ['profil pojma', 'concept profile'], common_concepts: ['najčešći pojmovi', 'most common concepts'], community_overview: ['skupine pojmova', 'concept groups'], concept_trends: ['trendovi pojmova', 'concept trends'],
-    connected_concepts: ['povezani pojmovi', 'connected concepts'], glossary: ['rječnik', 'glossary'], year_projects: ['projekti jedne godine poziva', 'projects of one call year'], success_rate: ['prolaznost prijava', 'success rate'], similar_organisations: ['slične organizacije', 'similar organisations'] };
-  const ARG_NAME = { period: ['razdoblje', 'period'], limit: ['broj', 'limit'], county: ['županija', 'county'], role: ['uloga', 'role'], year: ['godina', 'year'], n: ['redni broj', 'number'], order: ['redoslijed', 'order'], text: ['pojam', 'term'] };
+    connected_concepts: ['povezani pojmovi', 'connected concepts'], glossary: ['rječnik', 'glossary'], year_projects: ['projekti jedne godine poziva', 'projects of one call year'], success_rate: ['prolaznost prijava', 'success rate'], similar_organisations: ['slične organizacije', 'similar organisations'],
+    town_compare: ['usporedba gradova', 'town comparison'], town_organisations: ['organizacije u gradu', 'organisations in a town'], year_series: ['projekti po godinama', 'projects by year'],
+    project_values: ['vrijednost projekata', 'project value'], country_compare: ['usporedba država', 'country comparison'], concept_aliases: ['izrazi za isti pojam', 'wordings of one concept'], mention_count: ['navodi izraza u sažecima', 'phrase mentions in summaries'] };
+  // argument values as a person reads them: a period, an organisation, a concept or a code is shown by its name, never as the value the API uses
+  const ARG_VAL = { 'role:any': ['svi', 'any'], 'role:coordinator': ['koordinator', 'coordinator'], 'role:partner': ['partner', 'partner'],
+    'school_type:both': ['osnovne i srednje', 'primary and secondary'], 'school_type:primary': ['osnovne', 'primary'], 'school_type:secondary': ['srednje', 'secondary'], 'school_type:kindergarten': ['vrtići', 'kindergartens'],
+    'order:first': ['prvi', 'first'], 'order:last': ['zadnji', 'last'], 'order_by:projects': ['broj projekata', 'number of projects'], 'order_by:organisations': ['broj organizacija', 'number of organisations'],
+    'kind:approach': ['pristup', 'approach'], 'kind:target_group': ['ciljna skupina', 'target group'], 'kind:output': ['rezultat', 'output'], 'kind:problem': ['problem', 'problem'], 'kind:topic': ['tema EU-a', 'EU topic'],
+    'mode:in_text': ['u tekstu pitanja', 'in the text of the question'], 'by_meaning:true': ['da', 'yes'], 'partners:true': ['da', 'yes'], 'partners:false': ['ne', 'no'] };
+  const argVal = (k, v) => {
+    if (Array.isArray(v)) return v.map((x) => argVal(k, x)).join(', ');
+    if (k === 'period') return v === 'all' ? T('sva razdoblja', 'all periods') : String(v).replace(/(\d{4})-(\d{4})/, T('$1.–$2.', '$1–$2'));
+    if (k === 'org_id') { const o = D.orgs.find((x) => x[0] === v); return o ? o[1] : v; }
+    if (k === 'countries') return country(v);
+    if (k === 'node_id') { const n = ((D.graph || {}).nodes || []).find((x) => x[0] === v); return n ? bi(n[2], n[3]) : v; }
+    const m = ARG_VAL[k + ':' + v]; return m ? T(...m) : v;
+  };
+  const ARG_NAME = { period: ['razdoblje', 'period'], limit: ['broj', 'limit'], county: ['županija', 'county'], role: ['uloga', 'role'], year: ['godina', 'year'], n: ['redni broj', 'number'], order: ['redoslijed', 'order'], text: ['pojam', 'term'],
+    town: ['grad', 'town'], towns: ['gradovi', 'towns'], query: ['upit', 'query'], mode: ['način', 'mode'], org_id: ['organizacija', 'organisation'], question: ['pitanje', 'question'], countries: ['države', 'countries'],
+    action: ['akcija', 'action'], sector: ['sektor', 'sector'], school_type: ['vrsta škola', 'school type'], kind: ['vrsta pojma', 'concept type'], focus: ['fokus', 'focus'], node_id: ['pojam', 'concept'],
+    community_id: ['skupina pojmova', 'concept group'], order_by: ['poredano po', 'ordered by'], by_meaning: ['po značenju', 'by meaning'], partners: ['kao partneri', 'as partners'] };
   const GLOSS_NAME = { coordinator: ['Koordinator', 'Coordinator'], partner: ['Partner', 'Partner'], ka2: ['KA1 i KA2', 'KA1 and KA2'], 'call-year': ['Godina poziva', 'Call year'], grant: ['Vrijednost projekata', 'Project value'], 'good-practice': ['Dobra praksa', 'Good practice'], coverage: ['Pokrivenost škola', 'School coverage'] };
   const link = (c) => {
     const i = c.indexOf(':'), k = c.slice(0, i), id = c.slice(i + 1);
@@ -147,7 +167,7 @@ const AskAPI = (() => {
       if (r.status === 503) return { msg: 'Asistent je trenutno zauzet. Pokušajte ponovno za nekoliko trenutaka.' };
       if (!r.ok) return { down: true };
       const a = await r.json(); lastOrg = a.last_org_id || lastOrg;
-      const tools = (a.tools || []).map((x) => T('Izračun: ', 'Calculation: ') + (TOOL_NAME[x.tool] ? T(...TOOL_NAME[x.tool]) : x.tool) + (Object.entries(x.args || {}).some(([, v]) => v !== null && v !== undefined) ? ' (' + Object.entries(x.args || {}).filter(([, v]) => v !== null && v !== undefined).map(([k, v]) => (ARG_NAME[k] ? T(...ARG_NAME[k]) : k) + ': ' + v).join('; ') + ')' : ''));
+      const tools = (a.tools || []).map((x) => T('Izračun: ', 'Calculation: ') + (TOOL_NAME[x.tool] ? T(...TOOL_NAME[x.tool]) : x.tool) + (Object.entries(x.args || {}).some(([, v]) => v !== null && v !== undefined) ? ' (' + Object.entries(x.args || {}).filter(([, v]) => v !== null && v !== undefined).map(([k, v]) => (ARG_NAME[k] ? T(...ARG_NAME[k]) : k) + ': ' + argVal(k, v)).join('; ') + ')' : ''));
       return { real: { real: true, text: String(a.answer || ''), src: (a.citations || []).map(link), steps: [(a.route ? T('Vrsta pitanja: ', 'Question type: ') + (ROUTE_NAME[a.route] ? T(...ROUTE_NAME[a.route]) : a.route) : ''), ...tools].filter(Boolean), fallback: !!a.fallback } };
     } catch (e) { return { down: true }; } finally { clearTimeout(t); }
   }

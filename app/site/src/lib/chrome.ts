@@ -7,7 +7,7 @@ const T = {
     lang: 'Jezik', scrollable: 'Tablica koja se može pomicati', theme: 'Tema', themeLight: 'Svijetla tema', themeDark: 'Tamna tema', toLight: 'Prebaci na svijetlu temu', toDark: 'Prebaci na tamnu temu',
     askTitle: 'Imate pitanje?', askText: 'Asistent odgovara samo iz podataka atlasa i uz odgovor navodi izvore.', askBtn: 'Pitajte asistenta', assistant: 'Asistent',
     notOfficial: 'Neovisni projekt otvorenih podataka. Nije službena stranica Europske komisije.',
-    searchLabel: 'Pretražite atlas', searchPh: 'Pretražite županije, organizacije, projekte…', searchOpen: 'Pretraži',
+    searchLabel: 'Pretražite atlas', searchPh: 'Pretražite županije, organizacije, projekte…', searchOpen: 'Pretražite',
     fbrand: 'Atlas sudjelovanja Hrvatske u Erasmus+ KA2 partnerstvima: tko ih koordinira, gdje se provode i koje teme biraju.',
     sources: 'Izvori podataka', about: 'O podacima', atlasH: 'Atlas', updated: 'Ažurirano', scope: 'Obuhvat', calc: 'Izračun',
     scopeText: 'KA2 partnerstva. Mobilnost u okviru KA1 nije uključena.',

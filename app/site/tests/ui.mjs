@@ -252,6 +252,45 @@ await test('graph network: linkable group, show more, zoom', async () => {
   assert.match(page_hash(await p.url()), /group-C01/);                                      // the address follows the view
 });
 function page_hash(u) { return u.split('#')[1] || ''; }
+// ---- regressions from the fix list of 6 November: things that came back or were never caught ----
+const markerProject = (() => { const f = JSON.parse(fs.readFileSync('src/data/projects_full.json', 'utf-8')); return Object.keys(f).find((k) => (f[k].summary || '').includes('<<') && f[k].hr && f[k].hr.length); })();
+await test('English pages have no Croatian one-letter words in numbers ("91 u 2014") and no "<<" markers', async () => {
+  for (const path of ['/en/organisations/mzo-19-049-502/', '/en/organisations/oid-e10209270/', `/en/projects/${markerProject.toLowerCase()}/`, '/en/places/varazdinska/']) {
+    const p = await open(path); const t = await p.locator('#view').innerText();
+    assert.doesNotMatch(t, /\d+ u (19|20)\d\d/, `${path}: ${t.match(/\d+ u (19|20)\d\d/)}`);
+    assert.doesNotMatch(t, /<<|>>/, `${path}: markers left in the text`);
+  }
+});
+await test('project summary: each "<< X >>" marker is a heading, in both languages', async () => {
+  for (const [lang, word] of [['hr', /Pozadina|Ciljevi|Provedba|Rezultati/], ['en', /Background|Objectives|Implementation|Results/]]) {
+    const p = await open(`/${lang}/projects/${markerProject.toLowerCase()}/`); await p.waitForTimeout(1200);
+    const heads = await p.locator('#view h3').allInnerTexts();
+    assert.ok(heads.some((h) => word.test(h)), `${lang}: headings ${JSON.stringify(heads)}`);
+  }
+});
+await test('English county page: the browser title and the heading use the English county name', async () => {
+  const p = await open('/en/places/varazdinska/'); assert.match(await p.title(), /Varaždin County/); assert.doesNotMatch(await p.title(), /županija/);
+  const z = await open('/en/places/zagrebacka/'); assert.match(await z.title(), /Zagreb County/);
+  const c = await open('/en/coverage/'); assert.doesNotMatch(await c.locator('#view').innerText(), /\d %/, 'English percent signs have no space');
+});
+await test('assistant: no step of "How it was calculated" shows a raw code (snake_case), in either language', async () => {
+  for (const lang of ['hr', 'en']) {
+    const p = await open(`/${lang}/ask/`);
+    await p.route('**/api/health', (r) => r.fulfill({ status: 200, contentType: 'application/json', body: '{"status":"ok"}' }));
+    await p.route('**/api/ask', (r) => r.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify({
+      answer: 'Test answer with enough text to be shown as it is.', lang, route: 'town', verified: true, fallback: false, last_org_id: null, citations: [],
+      tools: [{ tool: 'town_compare', args: { towns: ['Pula', 'Rijeka'], period: 'all' }, rows: [] },
+              { tool: 'search_concepts', args: { text: 'x', kind: 'topic', limit: 5, by_meaning: true }, rows: [] },
+              { tool: 'country_compare', args: { countries: ['IT', 'ES'], partners: true }, rows: [] },
+              { tool: 'coverage', args: { county: 'Varaždinska', school_type: 'primary', period: 'all', role: 'coordinator' }, rows: [] },
+              { tool: 'county_ranking', args: { period: '2014-2020', limit: 5, order_by: 'organisations' }, rows: [] }] }) }));
+    await p.reload({ waitUntil: 'networkidle' });
+    await p.locator('.topics .sug button').first().click(); await p.waitForTimeout(1500);
+    const t = await p.locator('#view .bubble').first().textContent();
+    assert.doesNotMatch(t, /\b[a-z]+_[a-z_]+\b/, `${lang}: ${t.match(/\b[a-z]+_[a-z_]+\b/)}`);
+    assert.doesNotMatch(t, /razdoblje: all\b|period: all(?! periods)/);
+  }
+});
 await test('no console errors', async () => { if (errors.length) console.log(errors.slice(0, 8)); assert.deepEqual(errors, []); });
 await browser.close(); stop();
 console.log(`\n${passed} passed, ${failed} failed`); process.exit(failed ? 1 : 0);

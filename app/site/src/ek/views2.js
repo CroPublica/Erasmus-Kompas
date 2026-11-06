@@ -71,7 +71,7 @@ function viewPregled(root) {
     const box = $('#who', root);
     if (st.county || st.sector || st.kind) { box.innerHTML = '<div class="empty">Raspodjela po vrsti organizacije dostupna je samo za cijelu Hrvatsku. Poništite filtre županije, sektora i vrste projekta da je vidite.</div>'; return; }
     const cl = D.periods[st.period].classes.slice(0, 8), tt = D.periods[st.period].coordinated;
-    box.innerHTML = rank(cl.map((c) => ({ label: LAB.cls[c.org_class] || c.org_class, v: c.projects_coordinated, text: fmt(c.projects_coordinated), st: pct(c.projects_coordinated / tt, 0) + ' %' })), { nonum: true });
+    box.innerHTML = rank(cl.map((c) => ({ label: clsName(c.org_class), v: c.projects_coordinated, text: fmt(c.projects_coordinated), st: pct(c.projects_coordinated / tt, 0) + ' %' })), { nonum: true });
   }
   function counties() {
     const box = $('#cr', root), more = $('#crmore', root);
@@ -177,7 +177,7 @@ function viewZupanija(root, stem) {
   <div class="grid kpis4" style="margin-top:0">
     <article class="card kpi"><small>Organizacija</small><div class="big">${fmt(a.organisations || 0)}</div><small>${fmt(p1.organisations || 0)} + ${fmt(p2.organisations || 0)} po razdobljima</small></article>
     <article class="card kpi"><small>Projekata sa sudionikom</small><div class="big">${fmt(a.projects_involved || 0)}</div><small>${fmt(p1.projects_involved || 0)} + ${fmt(p2.projects_involved || 0)} po razdobljima</small></article>
-    <article class="card kpi"><small>Koordinirano</small><div class="big">${fmt(a.projects_coordinated || 0)}</div><small>Grantovi: ${mil(a.grants_coordinated_eur || 0)}</small></article>
+    <article class="card kpi"><small>Koordinirano</small><div class="big">${fmt(a.projects_coordinated || 0)}</div><small>Bespovratna sredstva: ${mil(a.grants_coordinated_eur || 0)}</small></article>
     <article class="card kpi"><small>Vrijednost projekata</small><div class="big">${mil(a.value_involved_eur || 0)}</div><small>svih projekata sa sudionikom</small></article>
   </div>
   <div class="grid two">

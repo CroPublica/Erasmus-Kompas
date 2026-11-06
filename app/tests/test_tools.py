@@ -205,3 +205,12 @@ def test_grad_zagreb_is_a_county_but_the_university_of_zagreb_is_not(tb):
     assert tb.resolve_county("How many schools in Grad Zagreb take part in KA2?") == "Grad Zagreb"
     assert tb.resolve_county("Koliko škola u Gradu Zagrebu sudjeluje u KA2?") == "Grad Zagreb"
     assert tb.resolve_county("Koliko KA2 projekata ima Sveučilište u Zagrebu?") is None      # an organisation, not a county
+
+
+def test_mention_count_counts_exact_phrase_in_titles_and_summaries(tb=None):
+    from atlas.tools import Toolbox
+    t = Toolbox()
+    r = t.mention_count("early school leaving").rows[0]
+    assert r["projects"] > 40 and r["projects"] == r["projects_2014_2020"] + r["projects_2021_2027"] and 0 <= r["in_title"] <= r["projects"]
+    assert t.mention_count("Early  School-Leaving").rows[0]["projects"] == r["projects"]            # case, spacing and hyphens do not matter
+    assert t.mention_count("zzzz qqqq xxxx").rows[0]["projects"] == 0

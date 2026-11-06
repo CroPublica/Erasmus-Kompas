@@ -2,7 +2,7 @@
 let gsN = 0;
 const searchHTML = (cls = '') => {
   const id = 'gs' + (++gsN);
-  return `<div class="gsearch ${cls}" role="search"><svg class="gi" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg><label class="sr" for="${id}">Pretraži atlas</label><input id="${id}" type="search" placeholder="Pretraži županije, organizacije, projekte…" autocomplete="off" role="combobox" aria-expanded="false" aria-controls="${id}-r"><kbd aria-hidden="true">/</kbd><div class="gres" id="${id}-r" hidden></div></div>`;
+  return `<div class="gsearch ${cls}" role="search"><svg class="gi" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg><label class="sr" for="${id}">Pretražite atlas</label><input id="${id}" type="search" placeholder="Pretražite županije, organizacije, projekte…" autocomplete="off" role="combobox" aria-expanded="false" aria-controls="${id}-r"><kbd aria-hidden="true">/</kbd><div class="gres" id="${id}-r" hidden></div></div>`;
 };
 let PIDX = null;
 function initSearch(root) {
@@ -28,7 +28,7 @@ function initSearch(root) {
       box.innerHTML = grp('Stranice', pgs.map((p) => item(p[0], p[1], p[2] || ''))) + grp('Županije', cs.map((c) => item('#/mjesta/' + encodeURIComponent(c.stem), c.label, `${fmt(c.ka2.all.projects_involved)} projekata`)))
         + grp('Organizacije', os.map((o) => item('#/organizacije/' + encodeURIComponent(o[0]), o[1], o[2] || '')))
         + grp('Projekti', ps.map((p) => item('#/projekti/' + encodeURIComponent(p[0]), p[1], `${p[2]}.`)).concat(item('#/projekti', `Svi projekti za „<span translate="no">${esc(raw)}</span>”`, 'otvori popis s filterom', `data-pq="${esc(raw)}"`, true)))
-        + grp('Asistent', [item('#/pitajte', `Pitaj asistenta: „<span translate="no">${esc(raw)}</span>”`, 'odgovor iz podataka atlasa', `data-ask="${esc(raw)}"`, true)]);
+        + grp('Asistent', [item('#/pitajte', `Pitajte asistenta: „<span translate="no">${esc(raw)}</span>”`, 'odgovor iz podataka atlasa', `data-ask="${esc(raw)}"`, true)]);
       open();
     }
     input.addEventListener('input', run); input.addEventListener('focus', run);
@@ -84,7 +84,7 @@ function upgradeSelect(sel) {
     }
     host.dataset.mode = 'pop';
     const o = opts.find((x) => x.value === cur) || opts[0], [vn] = splitOpt(o ? o.text : '');
-    host.innerHTML = `<button type="button" class="pickbtn${cur ? ' set' : ''}" aria-haspopup="listbox" aria-expanded="${popOpen}"${dis ? ' disabled' : ''}${labelled}><span class="v">${esc(vn)}</span>${CHEV}</button><div class="pop" role="dialog" aria-label="${esc(lab ? lab.textContent : 'Odabir')}"${popOpen ? '' : ' hidden'}><div class="popsearch"><input type="search" placeholder="Pretraži popis…" autocomplete="off" aria-label="Pretraži popis"></div><ul role="listbox" class="poplist">${opts.map((x) => { const [n, c] = splitOpt(x.text); return `<li role="presentation" data-n="${esc(fold(n + ' ' + tr(n)))}"><button type="button" role="option" aria-selected="${x.value === cur}" data-v="${esc(x.value)}">${CHECK}<span>${esc(n)}</span>${c ? `<em>${c}</em>` : ''}</button></li>`; }).join('')}</ul><p class="popnone" hidden>Nema rezultata.</p></div>`;
+    host.innerHTML = `<button type="button" class="pickbtn${cur ? ' set' : ''}" aria-haspopup="listbox" aria-expanded="${popOpen}"${dis ? ' disabled' : ''}${labelled}><span class="v">${esc(vn)}</span>${CHEV}</button><div class="pop" role="dialog" aria-label="${esc(lab ? lab.textContent : 'Odabir')}"${popOpen ? '' : ' hidden'}><div class="popsearch"><input type="search" placeholder="Pretražite popis…" autocomplete="off" aria-label="Pretražite popis"></div><ul role="listbox" class="poplist">${opts.map((x) => { const [n, c] = splitOpt(x.text); return `<li role="presentation" data-n="${esc(fold(n + ' ' + tr(n)))}"><button type="button" role="option" aria-selected="${x.value === cur}" data-v="${esc(x.value)}">${CHECK}<span>${esc(n)}</span>${c ? `<em>${c}</em>` : ''}</button></li>`; }).join('')}</ul><p class="popnone" hidden>Nema rezultata.</p></div>`;
     if (popOpen) $('.popsearch input', host)?.focus();
   }
   host.addEventListener('click', (e) => {

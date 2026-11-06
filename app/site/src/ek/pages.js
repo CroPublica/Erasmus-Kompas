@@ -12,10 +12,10 @@ const PAGES = [
   ['#/teme', 'Teme kroz vrijeme', 'Udio tema u projektima po godini', 'Teme i problemi'],
   ['#/pristupi', 'Problemi i rješenja', 'Koje probleme projekti navode i što uz njih rade', 'Teme i problemi'],
   ['#/graf', 'Mreža pojmova', 'Pojmovi koji se pojavljuju zajedno u projektima', 'Teme i problemi'],
-  ['#/projekti', 'Projekti', 'Pretraga projekata po temi, sektoru i državi', 'Pretraži'],
-  ['#/projekti/' + encodeURIComponent(D.projects[0][0]), 'Detalj projekta (primjer)', 'Osnovni podaci i države jednog projekta', 'Pretraži'],
-  ['#/organizacije', 'Organizacije', 'Pretraga hrvatskih organizacija u KA2 projektima', 'Pretraži'],
-  ['#/organizacije/' + encodeURIComponent(SAMPLE_ORG), 'Detalj organizacije (primjer)', 'Sudjelovanje, projekti i partneri jedne organizacije', 'Pretraži'],
+  ['#/projekti', 'Projekti', 'Pretraga projekata po temi, sektoru i državi', 'Pretražite'],
+  ['#/projekti/' + encodeURIComponent(D.projects[0][0]), 'Detalj projekta (primjer)', 'Osnovni podaci i države jednog projekta', 'Pretražite'],
+  ['#/organizacije', 'Organizacije', 'Pretraga hrvatskih organizacija u KA2 projektima', 'Pretražite'],
+  ['#/organizacije/' + encodeURIComponent(SAMPLE_ORG), 'Detalj organizacije (primjer)', 'Sudjelovanje, projekti i partneri jedne organizacije', 'Pretražite'],
   ['#/pitajte', 'Asistent', 'Pitanja običnim jezikom, odgovori uz izvore', 'Pitajte'],
   ['#/o-podacima', 'O podacima', 'Izvori, obuhvat i ograničenja', 'Informacije'],
   ['#/rjecnik', 'Rječnik pojmova', 'Objašnjenja stručnih izraza', 'Informacije'],
@@ -24,6 +24,16 @@ const PAGES = [
   ['#/kontakt', 'Kontakt i povratne informacije', 'Prijava greške u podacima, prijedlozi, pitanja', 'Informacije'],
   ['#/mapa-stranice', 'Mapa stranice', 'Popis svih stranica atlasa', 'Informacije']
 ];
+
+/* The EU summaries mark their parts as "<< Objectives >>": each marker becomes a small heading, in the language of the page */
+const SUMMARY_HEAD = { background: ['Background', 'Pozadina'], objectives: ['Objectives', 'Ciljevi'], implementation: ['Implementation', 'Provedba'], results: ['Results', 'Rezultati'] };
+function summaryHtml(text) {
+  const head = (m) => { const k = String(m).trim(), h = SUMMARY_HEAD[k.toLowerCase()]; return `<h3 style="margin:18px 0 6px;font-size:1rem">${esc(h ? bi(h[0], h[1]) : k)}</h3>`; };
+  return String(text).split(/\n+/).map((t) => t.trim()).filter(Boolean).map((t) => {
+    const m = /^<<\s*([^<>]+?)\s*>>\s*([\s\S]*)$/.exec(t);
+    return m ? head(m[1]) + (m[2] ? `<p style="max-width:75ch">${esc(m[2])}</p>` : '') : `<p style="max-width:75ch">${esc(t)}</p>`;
+  }).join('');
+}
 
 /* ============ prikaz: Projekt (detalj) ============ */
 function viewProjekt(root, id) {
@@ -41,9 +51,9 @@ function viewProjekt(root, id) {
   ${head(`Projekt · ${LAB.kind[p[5]]}`, esc(p[1]), `Poziv ${p[2]}. · ${LAB.sector[p[4]]} · ${LAB.status[p[6]]}`)}
   <div class="grid two" style="margin-top:0">
     <div class="stack">
-      ${F ? `<section class="card"><h2>Sažetak</h2><p class="lead small">Sažetak je preuzet iz javnih podataka EU-a i nije lektoriran.</p>${F.summary ? String(F.summary).split(/\n+/).map((t) => `<p style="max-width:75ch">${esc(t)}</p>`).join('') : '<p>–</p>'}</section>` : ''}
+      ${F ? `<section class="card"><h2>Sažetak</h2><p class="lead small">Sažetak je preuzet iz javnih podataka EU-a i nije lektoriran.</p>${F.summary ? summaryHtml(F.summary) : '<p>–</p>'}</section>` : ''}
       <section class="card"><h2>Osnovni podaci</h2><div style="margin-top:14px">${dl([['Oznaka projekta', `<span class="mono">${esc(id)}</span>`], ['Godina poziva', p[2] + '.'], ['Programsko razdoblje', LAB.period[p[3]]], ['Vrsta projekta', `${LAB.kind[p[5]]}${action ? ` <span class="pill">${esc(action)}</span>` : ''}`], ['Sektor', LAB.sector[p[4]] + (field ? ` <span class="pill">${esc(field)}</span>` : '')], ['Status', LAB.status[p[6]] + (p[6] === 1 ? ' <span class="pill warm">u tijeku</span>' : '')], ['Vodeća država', cLead ? esc(country(cLead)) : '—'], ['Dobra praksa', p[7] ? '<span class="pill green">Da, oznaka EU-a</span>' : 'Nije označen']].concat(F && F.grant_eur != null ? [['Dodijeljeni iznos', `${eur(F.grant_eur)}${F.grant_not_comparable ? ' <span class="pill warm">nije usporediv</span>' : ''}`]] : []))}</div></section>
-      ${F ? '' : '<div class="note">Sažetak projekta, popis sudionika i dodijeljeni iznos čitaju se iz datoteke <span class="mono">projects_full.json</span>, koja se generira u pipelineu i nije u ovom prototipu. Prikazani su podaci koji postoje u popisu projekata.</div>'}
+      ${F ? '' : '<div class="note">Sažetak projekta, popis sudionika i dodijeljeni iznos trenutačno nisu dostupni. Prikazani su podaci iz popisa projekata.</div>'}
       ${F && (F.results_card_url || F.project_website) ? `<section class="card"><h2>Poveznice EU-a</h2><ul class="check-list" style="margin-top:12px">${F.results_card_url ? `<li><a href="${esc(F.results_card_url)}" target="_blank" rel="noopener noreferrer">Kartica projekta na platformi EU-a</a></li>` : ''}${F.project_website ? `<li><a href="${esc(F.project_website)}" target="_blank" rel="noopener noreferrer nofollow">Mrežna stranica projekta</a></li>` : ''}</ul></section>` : ''}
     </div>
     <div class="stack">
@@ -81,7 +91,7 @@ const GLOSS = [
 ];
 function viewRjecnik(root) {
   root.innerHTML = `${head('Informacije · Rječnik', 'Rječnik pojmova', 'Kratka objašnjenja izraza koji se koriste u atlasu, da brojke možete čitati s razumijevanjem.')}
-  <div class="filters" style="margin-bottom:20px"><label class="f" style="flex:1 1 320px"><span class="lab">Pretraži pojmove</span><input id="gq" type="search" placeholder="Npr. koordinator…" autocomplete="off" style="width:100%;max-width:420px"></label></div>
+  <div class="filters" style="margin-bottom:20px"><label class="f" style="flex:1 1 320px"><span class="lab">Pretražite pojmove</span><input id="gq" type="search" placeholder="Npr. koordinator…" autocomplete="off" style="width:100%;max-width:420px"></label></div>
   <div class="gloss" id="gl">${GLOSS.map(([t, d]) => `<details data-n="${esc(fold(t + ' ' + d))}"><summary>${esc(t)}</summary><p>${esc(d)}</p></details>`).join('')}</div><p class="empty" id="gn" hidden style="margin-top:12px">Nijedan pojam ne odgovara pretrazi.</p>`;
   $('#gq', root).oninput = (e) => { const q = fold(e.target.value.trim()); let n = 0; $$('#gl details', root).forEach((d) => { const h = !!q && !d.dataset.n.includes(q); d.hidden = h; if (!h) n++; if (q && !h) d.open = true; }); $('#gn', root).hidden = n > 0; };
 }
@@ -101,9 +111,8 @@ function viewPreuzimanje(root) {
   ];
   root.innerHTML = `${head('Informacije · Preuzimanje podataka', 'Preuzmite otvorene podatke', 'Skupovi podataka na kojima se temelji atlas.')}
   <div class="grid two" style="margin-top:0"><section class="card" style="padding:0"><div>${SETS.map(([f, t, d], i) => `<div class="ds"><div><h3>${t}</h3><p>${d}</p><p class="mono small" style="margin-top:6px">${f}</p></div><div class="acts"><button type="button" class="btn sm primary" data-i="${i}">Preuzmi CSV</button></div></div>`).join('')}</div></section>
-  <div class="stack"><section class="card"><h2>Kako koristiti podatke</h2><ul class="check-list" style="margin-top:14px"><li>Navedite izvore: Erasmus+ Project Results Platform (Europska komisija), Program Erasmus+ 2021.–2027. i registri ustanova na data.gov.hr (Agencija za mobilnost i programe EU, Ministarstvo znanosti, obrazovanja i mladih).</li><li>Provjerite uvjete korištenja u izvoru; atlas ne mijenja licence izvornih skupova.</li><li>Pročitajte <a href="#/o-podacima">ograničenja podataka</a> prije usporedbi.</li></ul></section>
-  <section class="card"><h2>Za programere</h2><p class="lead">U pravoj aplikaciji isti su podaci dostupni kao JSON, a pitanja se šalju asistentu.</p><pre class="code">GET  /data/projects.json
-GET  /data/orgs.json
+  <div class="stack"><section class="card"><h2>Kako koristiti podatke</h2><ul class="check-list" style="margin-top:14px"><li>Navedite izvore: Platforma za rezultate projekata programa Erasmus+ (Europska komisija), Program Erasmus+ 2021.–2027. i registri ustanova na data.gov.hr (Agencija za mobilnost i programe EU, Ministarstvo znanosti, obrazovanja i mladih).</li><li>Provjerite uvjete korištenja u izvoru; atlas ne mijenja licence izvornih skupova.</li><li>Pročitajte <a href="#/o-podacima">ograničenja podataka</a> prije usporedbi.</li></ul></section>
+  <section class="card"><h2>Za programere</h2><p class="lead">Popis projekata dostupan je kao JSON, a pitanja se šalju asistentu.</p><pre class="code">GET  /projects.json
 POST /api/ask   { "question": "…" }</pre></section>
   <section class="card"><h2>Za AI asistente (MCP)</h2><p class="lead">Isti sloj upita dostupan je i kao MCP poslužitelj, pa asistenti poput Claudea mogu pretraživati projekte, otvoriti profil organizacije, izračunati pokrivenost i pronaći slične organizacije — iz istih podataka i s istim izvorima.</p><ul class="check-list"><li>Pretraga projekata i profil organizacije.</li><li>Pokrivenost po županiji i prvi projekti po sektoru.</li><li>Slične organizacije u istom sektoru i blizini.</li></ul></section></div></div>`;
   $$('button[data-i]', root).forEach((b) => b.onclick = () => { const s = SETS[+b.dataset.i]; download(tr(s[0]), s[3]()); b.textContent = tr('Preuzeto ✓'); setTimeout(() => (b.textContent = tr('Preuzmi CSV')), 2000); });
@@ -137,9 +146,9 @@ function viewKontakt(root) {
     <div class="field-row"><label for="km">Poruka</label><textarea id="km" class="field" maxlength="1500" required placeholder="Što ste primijetili ili što biste željeli?"></textarea><small class="muted" id="kerr" role="alert"></small></div>
     <div class="field-row"><label for="ke">E-pošta <span class="muted" style="font-weight:400">(nije obavezna, samo ako želite odgovor)</span></label><input id="ke" class="field" type="email" autocomplete="email"></div>
     <button class="btn primary" type="submit">Pošalji poruku</button></form>
-    <div id="kok" hidden class="note" style="margin-top:20px;border-left-color:var(--green);background:var(--green-bg)" role="status"><b>Hvala.</b> U ovom prototipu poruka se ne šalje nikamo. U pravoj aplikaciji stigla bi na adresu projekta i u popis zadataka na GitHubu.</div></section>
+    <div id="kok" hidden class="note" style="margin-top:20px;border-left-color:var(--green);background:var(--green-bg)" role="status"><b>Poruka nije poslana.</b> Ovaj obrazac još ne šalje poruke. Greške i prijedloge prijavite putem poveznice u dijelu „Drugi načini”.</div></section>
   <div class="stack"><section class="card"><h2>Drugi načini</h2><ul class="check-list" style="margin-top:14px"><li><a href="https://github.com/CroPublica/Erasmus-Kompas/issues" target="_blank" rel="noopener">Prijava na GitHubu</a> za greške i prijedloge s tehničkim detaljima.</li><li><a href="#/pitajte">Pitajte asistenta</a> za brza pitanja o podacima.</li><li><a href="#/rjecnik">Rječnik</a> objašnjava većinu izraza u atlasu.</li></ul></section></div></div>`;
-  $('#kf', root).onsubmit = (e) => { e.preventDefault(); const m = $('#km', root).value.trim(); $('#kerr', root).textContent = m ? '' : 'Upišite poruku.'; $('#kok', root).hidden = !m; if (m) { $('#kf', root).reset(); $('#kok', root).scrollIntoView({ block: 'nearest' }); } };
+  $('#kf', root).onsubmit = (e) => { e.preventDefault(); const m = $('#km', root).value.trim(); $('#kerr', root).textContent = m ? '' : 'Upišite poruku.'; $('#kok', root).hidden = !m; if (m) $('#kok', root).scrollIntoView({ block: 'nearest' }); };
 }
 
 /* ============ prikaz: Mapa stranice ============ */
@@ -186,7 +195,7 @@ function viewLanding(root) {
         <p class="lead hrise" style="--d:2">Erasmus+ Kompas je otvoreni atlas partnerstava hrvatskih škola, udruga i ustanova. Pokazuje tko već surađuje, gdje i na kojim temama, da lakše pronađete partnera, ideju ili prazninu koju vaš projekt može popuniti.</p>
         <div class="hrise" style="--d:3">${searchHTML('hero')}</div>
         <div class="hero-quick hrise" style="--d:4"><a href="#/mjesta">Karta županija</a><a href="#/pokrivenost">Pokrivenost škola</a><a href="#/drzave">Partnerske države</a></div>
-        <div class="actions hrise" style="--d:5"><a class="btn primary" href="#/pregled">Istražite atlas ${hico('arrow', 18)}</a><button class="btn" type="button" id="l-ask">Pitaj asistenta</button></div>
+        <div class="actions hrise" style="--d:5"><a class="btn primary" href="#/pregled">Istražite atlas ${hico('arrow', 18)}</a><button class="btn" type="button" id="l-ask">Pitajte asistenta</button></div>
         <p class="l-meta hrise" style="--d:6">Ažurirano <time translate="no" datetime="${D.meta.generated}">${fdate(D.meta.generated)}</time></p>
       </div>
       ${hm.html}
@@ -219,7 +228,7 @@ function viewLanding(root) {
 
   <section class="band"><div class="wrap"><div class="grid cols3" style="margin-top:0">
     <article class="card"><div class="head"><h2>Županije s najviše projekata</h2></div><p class="lead">KA2 projekti sa sudionikom iz županije, 2014.–2026.</p>${rank(topC('all').slice(0, 6).map((c) => ({ label: shortCounty(c), v: c.ka2.all.projects_involved, text: fmt(c.ka2.all.projects_involved), href: '#/mjesta/' + encodeURIComponent(c.stem) })), { nonum: true, cls: 'compact', max: topC('all')[0].ka2.all.projects_involved })}<div class="cardfoot"><span>6 od 21 županije</span><a href="#/mjesta">Karta i cijeli poredak →</a></div></article>
-    <article class="card"><div class="head"><h2>Tko koordinira iz Hrvatske</h2></div><p class="lead">Koordinirani projekti po vrsti organizacije (${fmt(nat.coordinated)} ukupno).</p>${rank(cl.map((c) => ({ label: LAB.cls[c.org_class] || c.org_class, v: c.projects_coordinated, text: fmt(c.projects_coordinated), st: pct(c.projects_coordinated / nat.coordinated, 0) + ' %' })), { nonum: true })}<div class="cardfoot"><span></span><a href="#/pregled">Pregled s filtrima →</a></div></article>
+    <article class="card"><div class="head"><h2>Tko koordinira iz Hrvatske</h2></div><p class="lead">Koordinirani projekti po vrsti organizacije (${fmt(nat.coordinated)} ukupno).</p>${rank(cl.map((c) => ({ label: clsName(c.org_class), v: c.projects_coordinated, text: fmt(c.projects_coordinated), st: pct(c.projects_coordinated / nat.coordinated, 0) + ' %' })), { nonum: true })}<div class="cardfoot"><span></span><a href="#/pregled">Pregled s filtrima →</a></div></article>
     <article class="card"><div class="head"><h2>S kojim državama surađujemo</h2></div><p class="lead">Broj zajedničkih projekata s organizacijama iz države.</p>${rank(ctop.slice(0, 6).map((c) => ({ label: country(c), v: ctr[c], text: fmt(ctr[c]) })), { nonum: true, cls: 'alt' })}<div class="cardfoot"><span></span><a href="#/drzave">Sve države →</a></div></article>
   </div></div></section>
 
@@ -230,14 +239,14 @@ function viewLanding(root) {
 
   <section class="band tint"><div class="wrap"><div class="askband">
     <div><div class="kicker">Asistent</div><h2 class="l-h" style="margin-top:12px">Imate pitanje o podacima?</h2><p class="l-sub">Poseban asistent odgovara na pitanja o projektima, organizacijama, županijama i temama. Odgovara samo iz podataka atlasa i uz svaki odgovor navodi izvor.</p>
-      <form id="lask"><label class="sr" for="lq">Pitanje</label><div class="askrow"><input id="lq" maxlength="500" placeholder="Npr. Koje županije imaju najviše projekata?" autocomplete="off" required><button type="submit">Pitaj</button></div><div class="eg">${EX.slice(0, 3).map((e) => `<button type="button">${esc(e)}</button>`).join('')}</div></form></div>
+      <form id="lask"><label class="sr" for="lq">Pitanje</label><div class="askrow"><input id="lq" maxlength="500" placeholder="Npr. Koje županije imaju najviše projekata?" autocomplete="off" required><button type="submit">Pitajte</button></div><div class="eg">${EX.slice(0, 3).map((e) => `<button type="button">${esc(e)}</button>`).join('')}</div></form></div>
     <div class="demo" aria-hidden="true"><div class="msg you">Koje županije imaju najviše projekata?</div><div class="msg bot"><span class="avatar"><svg width="18" height="18" viewBox="0 0 40 40"><path d="M20 4l5 16-5 16-5-16z" fill="#ffd617"/><path d="M4 20l16-5 16 5-16 5z" fill="#fff"/></svg></span><div class="bubble"><p>${esc(sample.text)}</p>${sample.rows ? rank(sample.rows.slice(0, 3).map((r) => ({ label: r[0], v: r[1], text: r[2] })), { nonum: true, cls: 'compact' }) : ''}<div class="srcrow">Izvori: ${sample.src.map(([l]) => `<span class="pill blue">${esc(l)}</span>`).join(' ')}</div></div></div></div>
   </div></div></section>
 
   <section class="band"><div class="wrap">
     <div class="secthead"><div><h2 class="l-h">Odakle podaci</h2><p class="l-sub">Svi izvori su javni. Atlas ih povezuje i izračunava pokazatelje, ništa se ne unosi ručno.</p></div><a class="btn sm" href="#/o-podacima">Izvori i ograničenja →</a></div>
     <div class="srcgrid">
-      <article class="src"><a href="https://erasmus-plus.ec.europa.eu/projects/projects-lists" target="_blank" rel="noopener noreferrer">Erasmus+ Project Results Platform</a><small>Europska komisija</small><p>KA2 projekti 2014.–2020. i 2021.–2027.: naslovi, vrste, države i iznosi.</p></article>
+      <article class="src"><a href="https://erasmus-plus.ec.europa.eu/projects/projects-lists" target="_blank" rel="noopener noreferrer">Platforma za rezultate projekata programa Erasmus+</a><small>Europska komisija</small><p>KA2 projekti 2014.–2020. i 2021.–2027.: naslovi, vrste, države i iznosi.</p></article>
       <article class="src"><a href="https://data.gov.hr/ckan/hr/dataset/program-erasmus-za-razdoblje-od-2021-do-2027-godine" target="_blank" rel="noopener noreferrer">Program Erasmus+ 2021.–2027.</a><small>Agencija za mobilnost i programe EU · data.gov.hr</small><p>Hrvatski sudionici i organizacije u projektima.</p></article>
       <article class="src"><a href="https://data.gov.hr/ckan/hr/dataset/osnovne-skole" target="_blank" rel="noopener noreferrer">Registri ustanova</a><small>Ministarstvo znanosti, obrazovanja i mladih · data.gov.hr</small><p>Dječji vrtići, osnovne i srednje škole te visoko obrazovanje, za izračun pokrivenosti.</p></article>
     </div>

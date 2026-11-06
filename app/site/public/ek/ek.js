@@ -31,11 +31,13 @@ const sum = (a) => a.reduce((x, y) => x + y, 0);
 
 const LAB = {
   period: { all: '2014.–2026.', '2014-2020': '2014.–2020.', '2021-2027': '2021.–2027.' },
-  sector: { skolsko: 'Odgoj i opće obrazovanje', strukovno: 'Strukovno obrazovanje i osposobljavanje (SOO)', visoko: 'Visoko obrazovanje', odrasli: 'Obrazovanje odraslih', mladi: 'Mladi', ostalo: 'Ostalo' },
-  kind: { suradnja: 'Suradnička partnerstva', mala: 'Mala partnerstva', strateska: 'Strateška partnerstva', razmjena: 'Partnerstva za razmjenu škola', kapaciteti: 'Jačanje kapaciteta', ostalo: 'Savezi i ostale aktivnosti' },
+  sector: { skolsko: 'Školsko obrazovanje', strukovno: 'Strukovno obrazovanje i osposobljavanje (SOO)', visoko: 'Visoko obrazovanje', odrasli: 'Obrazovanje odraslih', mladi: 'Mladi', ostalo: 'Ostalo' },
+  kind: { suradnja: 'Partnerstva za suradnju', mala: 'Mala partnerstva', strateska: 'Strateška partnerstva', razmjena: 'Partnerstva za razmjenu škola', kapaciteti: 'Izgradnja kapaciteta', ostalo: 'Savezi i ostale aktivnosti' },
   cls: { ngo: 'Nevladine organizacije', higher_education: 'Visoka učilišta', school_primary: 'Osnovne škole', school_vocational: 'Strukovne škole', school_secondary_general: 'Gimnazije i opće srednje škole', public_body: 'Javna tijela', adult_education: 'Ustanove za obrazovanje odraslih', sme_business: 'Poduzeća (MSP)', school_preprimary: 'Ustanove ranog i predškolskog odgoja i obrazovanja', other: 'Ostale organizacije', sport: 'Sportske organizacije', culture: 'Kulturne organizacije', research: 'Istraživačke organizacije', counselling: 'Centri za savjetovanje i usmjeravanje' },
   status: ['Završen', 'U tijeku', 'Prekinut']
 };
+// Name of an organisation class; a class without a label is shown as 'other', never as its code (the build checks that every class has a label)
+const clsName = (c) => LAB.cls[c] || LAB.cls.other;
 const SECTOR_COL = { skolsko: '#004494', strukovno: '#0f8b8d', visoko: '#f8ae21', odrasli: '#a23e87', mladi: '#6a8bc4', ostalo: '#9aa5b8' };
 const KIND_COL = { suradnja: '#004494', mala: '#f8ae21', strateska: '#0f8b8d', razmjena: '#a23e87', kapaciteti: '#6a8bc4', ostalo: '#9aa5b8' };
 
@@ -140,7 +142,7 @@ const mapCard = (title, lead) => `<h3>${title}</h3><p class="lead">${lead}</p><d
 let gsN = 0;
 const searchHTML = (cls = '') => {
   const id = 'gs' + (++gsN);
-  return `<div class="gsearch ${cls}" role="search"><svg class="gi" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg><label class="sr" for="${id}">Pretraži atlas</label><input id="${id}" type="search" placeholder="Pretraži županije, organizacije, projekte…" autocomplete="off" role="combobox" aria-expanded="false" aria-controls="${id}-r"><kbd aria-hidden="true">/</kbd><div class="gres" id="${id}-r" hidden></div></div>`;
+  return `<div class="gsearch ${cls}" role="search"><svg class="gi" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg><label class="sr" for="${id}">Pretražite atlas</label><input id="${id}" type="search" placeholder="Pretražite županije, organizacije, projekte…" autocomplete="off" role="combobox" aria-expanded="false" aria-controls="${id}-r"><kbd aria-hidden="true">/</kbd><div class="gres" id="${id}-r" hidden></div></div>`;
 };
 let PIDX = null;
 function initSearch(root) {
@@ -166,7 +168,7 @@ function initSearch(root) {
       box.innerHTML = grp('Stranice', pgs.map((p) => item(p[0], p[1], p[2] || ''))) + grp('Županije', cs.map((c) => item('#/mjesta/' + encodeURIComponent(c.stem), c.label, `${fmt(c.ka2.all.projects_involved)} projekata`)))
         + grp('Organizacije', os.map((o) => item('#/organizacije/' + encodeURIComponent(o[0]), o[1], o[2] || '')))
         + grp('Projekti', ps.map((p) => item('#/projekti/' + encodeURIComponent(p[0]), p[1], `${p[2]}.`)).concat(item('#/projekti', `Svi projekti za „<span translate="no">${esc(raw)}</span>”`, 'otvori popis s filterom', `data-pq="${esc(raw)}"`, true)))
-        + grp('Asistent', [item('#/pitajte', `Pitaj asistenta: „<span translate="no">${esc(raw)}</span>”`, 'odgovor iz podataka atlasa', `data-ask="${esc(raw)}"`, true)]);
+        + grp('Asistent', [item('#/pitajte', `Pitajte asistenta: „<span translate="no">${esc(raw)}</span>”`, 'odgovor iz podataka atlasa', `data-ask="${esc(raw)}"`, true)]);
       open();
     }
     input.addEventListener('input', run); input.addEventListener('focus', run);
@@ -222,7 +224,7 @@ function upgradeSelect(sel) {
     }
     host.dataset.mode = 'pop';
     const o = opts.find((x) => x.value === cur) || opts[0], [vn] = splitOpt(o ? o.text : '');
-    host.innerHTML = `<button type="button" class="pickbtn${cur ? ' set' : ''}" aria-haspopup="listbox" aria-expanded="${popOpen}"${dis ? ' disabled' : ''}${labelled}><span class="v">${esc(vn)}</span>${CHEV}</button><div class="pop" role="dialog" aria-label="${esc(lab ? lab.textContent : 'Odabir')}"${popOpen ? '' : ' hidden'}><div class="popsearch"><input type="search" placeholder="Pretraži popis…" autocomplete="off" aria-label="Pretraži popis"></div><ul role="listbox" class="poplist">${opts.map((x) => { const [n, c] = splitOpt(x.text); return `<li role="presentation" data-n="${esc(fold(n + ' ' + tr(n)))}"><button type="button" role="option" aria-selected="${x.value === cur}" data-v="${esc(x.value)}">${CHECK}<span>${esc(n)}</span>${c ? `<em>${c}</em>` : ''}</button></li>`; }).join('')}</ul><p class="popnone" hidden>Nema rezultata.</p></div>`;
+    host.innerHTML = `<button type="button" class="pickbtn${cur ? ' set' : ''}" aria-haspopup="listbox" aria-expanded="${popOpen}"${dis ? ' disabled' : ''}${labelled}><span class="v">${esc(vn)}</span>${CHEV}</button><div class="pop" role="dialog" aria-label="${esc(lab ? lab.textContent : 'Odabir')}"${popOpen ? '' : ' hidden'}><div class="popsearch"><input type="search" placeholder="Pretražite popis…" autocomplete="off" aria-label="Pretražite popis"></div><ul role="listbox" class="poplist">${opts.map((x) => { const [n, c] = splitOpt(x.text); return `<li role="presentation" data-n="${esc(fold(n + ' ' + tr(n)))}"><button type="button" role="option" aria-selected="${x.value === cur}" data-v="${esc(x.value)}">${CHECK}<span>${esc(n)}</span>${c ? `<em>${c}</em>` : ''}</button></li>`; }).join('')}</ul><p class="popnone" hidden>Nema rezultata.</p></div>`;
     if (popOpen) $('.popsearch input', host)?.focus();
   }
   host.addEventListener('click', (e) => {
@@ -441,7 +443,7 @@ const I18N = (() => {
   }
   const enEnt = (hr) => {
     if (EN_ENT[hr]) return EN_ENT[hr];
-    if (hr.endsWith(' županija')) { const s = hr.slice(0, -9); return `${EN_ENT[s] || s} County`; }
+    if (hr.endsWith(' županija')) { const s = hr.slice(0, -9), e = EN_ENT[s] || s; return /County$/.test(e) ? e : `${e} County`; }
     return hr;
   };
   const numEN = (t) => /^\d{1,3}(\.\d{3})+$/.test(t) ? t.replace(/\./g, ',') : /^\d+,\d{1,2}$/.test(t) ? t.replace(',', '.') : t;
@@ -466,7 +468,7 @@ const I18N = (() => {
   function translate(raw) {
     const m = /^(\s*)([\s\S]*?)(\s*)$/.exec(raw); if (!m[2]) return raw;
     const p = parse(m[2]), bare = p.key.replace(/\{[NE]\}/g, '');
-    if (!hasL(bare) && !p.e.length) { const nn = norm(m[2]); return nn === m[2] ? raw : m[1] + nn + m[3]; }
+    if (!hasL(bare) && !p.e.length && EN_DICT[p.key] == null) { const nn = norm(m[2]); return nn === m[2] ? raw : m[1] + nn + m[3]; }   /* a text of one-letter words ("10 u 2014–2020") is still looked up */
     let out = one(m[2]);
     if (out == null && m[2].includes(' · ')) {                       /* „Zagreb · Visoka učilišta”: prevodi se svaki dio posebno */
       let any = false;
@@ -554,7 +556,7 @@ const EN_ENT = {
  "Osječko-baranjska": "Osijek-Baranja",
  "Primorsko-goranska": "Primorje-Gorski Kotar",
  "Istarska": "Istria",
- "Zagrebačka": "Zagreb",
+ "Zagrebačka": "Zagreb County",
  "Brodsko-posavska": "Brod-Posavina",
  "Varaždinska": "Varaždin",
  "Šibensko-kninska": "Šibenik-Knin",
@@ -571,7 +573,6 @@ const EN_ENT = {
  "Krapinsko-zagorska": "Krapina-Zagorje",
  "Ličko-senjska": "Lika-Senj",
  "Školsko obrazovanje": "School education",
- "Strukovno obrazovanje (VET)": "Vocational education and training (VET)",
  "Visoko obrazovanje": "Higher education",
  "Obrazovanje odraslih": "Adult education",
  "Mladi": "Youth",
@@ -581,7 +582,6 @@ const EN_ENT = {
  "Strateška partnerstva": "Strategic partnerships",
  "Razmjena škola": "School exchange partnerships",
  "Izgradnja kapaciteta": "Capacity building",
- "Savezi i ostale akcije": "Alliances and other actions",
  "Nevladine organizacije": "Non-governmental organisations (NGOs)",
  "Visoka učilišta": "Higher education institutions",
  "Osnovne škole": "Primary schools",
@@ -891,7 +891,7 @@ const EN_DICT = {
 "Pregled": "Overview",
 "Županije": "Counties",
 "Teme i metode": "Topics and methods",
-"Pretraži": "Search",
+"Pretražite": "Search",
 "Projekti i organizacije": "Projects and organisations",
 "Pitajte": "Ask",
 "Asistent": "Assistant",
@@ -899,14 +899,14 @@ const EN_DICT = {
 "O podacima": "About the data",
 "Imate pitanje?": "Have a question?",
 "Asistent odgovara samo iz podataka atlasa i uz odgovor navodi izvore.": "The assistant answers only from the atlas data and cites its sources.",
-"Pitaj asistenta": "Ask the assistant",
+"Pitajte asistenta": "Ask the assistant",
 "Neovisni projekt otvorenih podataka. Nije službena stranica Europske komisije.": "An independent open-data project. Not an official European Commission website.",
 "Otvori asistenta": "Open the assistant",
 "Erasmus+ KA{N} partnerstva · {N}–{N}": "Erasmus+ KA{N1} partnerships · {N2}–{N3}",
 "Gdje i s kim {E} surađuje kroz Erasmus+": "Where and with whom {E1} cooperates through Erasmus+",
 "Otvoreni podaci o {N} partnerstava s hrvatskim sudionicima: tko ih koordinira, u kojim se županijama provode, s kojim državama i o kojim temama.": "Open data on {N1} partnerships with Croatian participants: who coordinates them, in which counties they take place, with which countries and on which topics.",
-"Pretraži atlas": "Search the atlas",
-"Pretraži županije, organizacije, projekte…": "Search counties, organisations, projects…",
+"Pretražite atlas": "Search the atlas",
+"Pretražite županije, organizacije, projekte…": "Search counties, organisations, projects…",
 "Prečaci": "Shortcuts",
 "Karta županija": "County map",
 "Pokrivenost škola": "School coverage",
@@ -979,7 +979,6 @@ const EN_DICT = {
 "Poseban asistent odgovara na pitanja o projektima, organizacijama, županijama i temama. Odgovara samo iz podataka atlasa i uz svaki odgovor navodi izvor.": "A dedicated assistant answers questions about projects, organisations, counties and topics. It answers only from the atlas data and cites a source with every answer.",
 "Pitanje": "Question",
 "Npr. Koje županije imaju najviše projekata?": "E.g. Which counties have the most projects?",
-"Pitaj": "Ask",
 "Koje županije imaju najviše projekata?": "Which counties have the most projects?",
 "Tko koordinira najviše projekata?": "Who coordinates the most projects?",
 "S kojim državama {E} surađuje?": "Which countries does {E1} work with?",
@@ -989,7 +988,7 @@ const EN_DICT = {
 "Odakle podaci": "Where the data comes from",
 "Svi izvori su javni. Atlas ih povezuje i izračunava pokazatelje, ništa se ne unosi ručno.": "All sources are public. The atlas links them and calculates the indicators; nothing is entered by hand.",
 "Izvori i ograničenja →": "Sources and limitations →",
-"Erasmus+ Project Results Platform": "Erasmus+ Project Results Platform",
+"Platforma za rezultate projekata programa Erasmus+": "Erasmus+ Project Results Platform",
 "Europska komisija": "European Commission",
 "KA{N} projekti {N}–{N} i {N}–{N}: naslovi, vrste, države i iznosi.": "KA{N1} projects {N2}–{N3} and {N4}–{N5}: titles, types, countries and amounts.",
 "Portal otvorenih podataka": "Open Data Portal",
@@ -1036,7 +1035,7 @@ const EN_DICT = {
 "Pretraga projekata po temi, sektoru i državi": "Search projects by topic, sector and country",
 "Pitanja običnim jezikom, odgovori uz izvore": "Plain-language questions, answers with sources",
 "Svi projekti za „": "All projects for “",
-"Pitaj asistenta: „": "Ask the assistant: “",
+"Pitajte asistenta: „": "Ask the assistant: “",
 "otvori popis s filterom": "open the list with the filter",
 "odgovor iz podataka atlasa": "answer from the atlas data",
 "Putanja": "Breadcrumb",
@@ -1052,8 +1051,8 @@ const EN_DICT = {
 "Sve vrste": "All types",
 "Županija": "County",
 "Sve županije": "All counties",
-"Pretraži popis…": "Search the list…",
-"Pretraži popis": "Search the list",
+"Pretražite popis…": "Search the list…",
+"Pretražite popis": "Search the list",
 "Nema rezultata.": "No results.",
 "Poništi filtre": "Reset filters",
 "Prikaži rezultate": "Show results",
@@ -1187,7 +1186,7 @@ const EN_DICT = {
 "Organizacija": "Organisation",
 "{N} + {N} po razdobljima": "{N1} + {N2} by period",
 "Projekata sa sudionikom": "Projects with a participant",
-"Grantovi: €{N}M": "Grants: €{N1}M",
+"Bespovratna sredstva: €{N}M": "Grants: €{N1}M",
 "svih projekata sa sudionikom": "of all projects with a participant",
 "Najaktivnije organizacije": "Most active organisations",
 "Po broju KA{N} projekata. Odaberite organizaciju za pojedinosti.": "By number of KA{N1} projects. Select an organisation for details.",
@@ -1257,7 +1256,7 @@ const EN_DICT = {
 "Teme i metode · Mreža pojmova": "Topics and methods · Concept network",
 "Pojmovi koji se u projektima pojavljuju zajedno: pristupi, ciljne skupine, rezultati, problemi i teme. Veći krug znači više projekata, a crta znači zajedničke projekte.": "Concepts that appear together in projects: approaches, target groups, results, problems and topics. A larger circle means more projects, and a line means joint projects.",
 "Ovo su pojmovi izdvojeni iz sažetaka projekata automatskom obradom pa je to pregled obrazaca, a ne službena klasifikacija.": "These are concepts extracted from project summaries by automatic processing, so this is an overview of patterns, not an official classification.",
-"Pretraži pojmove": "Search concepts",
+"Pretražite pojmove": "Search concepts",
 "npr. učitelji, digitalne vještine…": "e.g. teachers, digital skills…",
 "Ciljna skupina": "Target group",
 "Rezultat": "Result",
@@ -1275,7 +1274,7 @@ const EN_DICT = {
 "· Tema · {N}": "· Topic · {N1}",
 "· Pristup · {N}": "· Approach · {N1}",
 "· Ciljna skupina · {N}": "· Target group · {N1}",
-"Pretraži · Projekti": "Search · Projects",
+"Pretražite · Projekti": "Search · Projects",
 "KA{N} projekti": "KA{N1} projects",
 "Pretražite projekte s hrvatskim sudionikom i suzite ih po razdoblju, sektoru, vrsti, partnerskoj državi i statusu.": "Search projects with a Croatian participant and narrow them by period, sector, type, partner country and status.",
 "Pretraga": "Search",
@@ -1303,16 +1302,13 @@ const EN_DICT = {
 "Vodeća država": "Lead country",
 "Dobra praksa": "Good practice",
 "Nije označen": "Not designated",
-"Sažetak projekta, popis sudionika i dodijeljeni iznos čitaju se iz datoteke": "The project summary, list of participants and awarded amount are read from the file",
-"projects_full.json": "projects_full.json",
-", koja se generira u pipelineu i nije u ovom prototipu. Prikazani su podaci koji postoje u popisu projekata.": ", which is generated in the pipeline and is not in this prototype. The data available in the project list is shown.",
 "Države u projektu": "Countries in the project",
 "{N} država, od toga {N} uz Hrvatsku.": "{N1} countries, {N2} of them besides Croatia.",
 "Slični projekti": "Similar projects",
 "Ista godina poziva i ista vrsta projekta.": "Same call year and same project type.",
 "← Natrag na projekte": "← Back to projects",
 "Projekt": "Project",
-"Pretraži · Organizacije": "Search · Organisations",
+"Pretražite · Organizacije": "Search · Organisations",
 "Organizacije u KA{N} partnerstvima": "Organisations in KA{N1} partnerships",
 "Pretražite hrvatske organizacije po nazivu ili mjestu i suzite ih po županiji i vrsti.": "Search Croatian organisations by name or place and narrow them by county and type.",
 "Naziv ili mjesto…": "Name or place…",
@@ -1332,11 +1328,7 @@ const EN_DICT = {
 "koordinator": "coordinator",
 "{N} kao partner": "{N1} as partner",
 "Koordinacije po razdoblju": "Coordinations by period",
-"Grantovi, dobra praksa": "Grants, good practice",
-"Dolazi iz orgs_full.json": "Comes from orgs_full.json",
-"Detaljni dijelovi (vremenska crta, popis projekata, partneri, teme) čitaju se iz": "Detailed sections (timeline, project list, partners, topics) are read from",
-"orgs_full.json": "orgs_full.json",
-", koji se generira u pipelineu. Ispod je raspored; pun primjer vidi se na organizaciji „Gimnazija Metković”.": ", which is generated in the pipeline. The layout is shown below; a full example can be seen on the organisation “Gimnazija Metković”.",
+"Bespovratna sredstva, dobra praksa": "Grants, good practice",
 "Sudjelovanje kroz vrijeme": "Participation over time",
 "Partner": "Partner",
 "Izbor za {N}. još traje pa je zadnja godina nepotpuna. Granica razdoblja: popisi tema {N}–{N} i {N}–{N} razlikuju se.": "Selection for {N1} is still in progress, so the last year is incomplete. Period boundary: the topic lists for {N2}–{N3} and {N4}–{N5} differ.",
@@ -1344,12 +1336,9 @@ const EN_DICT = {
 "Koordinator {N}": "Coordinator {N1}",
 "Partner {N}": "Partner {N1}",
 "Vodi": "Leads",
-"Popis projekata organizacije dolazi iz datoteke orgs_full.json.": "The organisation's project list comes from the file orgs_full.json.",
 "Najčešće surađuje s": "Most often works with",
 "Države u zajedničkim projektima (broj projekata).": "Countries in joint projects (number of projects).",
-"Popis partnerskih država dolazi iz datoteke orgs_full.json.": "The list of partner countries comes from the file orgs_full.json.",
 "Teme koje se ponavljaju": "Recurring topics",
-"Teme organizacije dolaze iz datoteke orgs_full.json.": "The organisation's topics come from the file orgs_full.json.",
 "Slične organizacije": "Similar organisations",
 "Ista vrsta organizacije u istoj županiji, po broju projekata.": "Same organisation type in the same county, by number of projects.",
 "{N} KA{N} projekata": "{N1} KA{N2} projects",
@@ -1421,13 +1410,13 @@ const EN_DICT = {
 "Broj projekata po godini poziva, razdoblju, sektoru i vrsti projekta.": "Number of projects by call year, period, sector and project type.",
 "projekti-po-godinama.csv": "projects-by-year.csv",
 "Kako koristiti podatke": "How to use the data",
-"Navedite izvor: Erasmus+ Project Results Platform, Agencija za mobilnost i programe EU, Ministarstvo znanosti, obrazovanja i mladih.": "Cite the source: Erasmus+ Project Results Platform, Agency for Mobility and EU Programmes, Ministry of Science, Education and Youth.",
+"Navedite izvor: Platforma za rezultate projekata programa Erasmus+, Agencija za mobilnost i programe EU, Ministarstvo znanosti, obrazovanja i mladih.": "Cite the source: Erasmus+ Project Results Platform, Agency for Mobility and EU Programmes, Ministry of Science, Education and Youth.",
 "Provjerite uvjete korištenja u izvoru; atlas ne mijenja licence izvornih skupova.": "Check the terms of use at the source; the atlas does not change the licences of the original datasets.",
 "Pročitajte": "Read the",
 "ograničenja podataka": "data limitations",
 "prije usporedbi.": "before making comparisons.",
 "Za programere": "For developers",
-"U pravoj aplikaciji isti su podaci dostupni kao JSON, a pitanja se šalju asistentu.": "In the real application the same data is available as JSON, and questions are sent to the assistant.",
+"Popis projekata dostupan je kao JSON, a pitanja se šalju asistentu.": "The list of projects is available as JSON, and questions are sent to the assistant.",
 "Preuzeto ✓": "Downloaded ✓",
 "Informacije · Pristupačnost": "Information · Accessibility",
 "Izjava o pristupačnosti": "Accessibility statement",
@@ -1460,12 +1449,9 @@ const EN_DICT = {
 "E-pošta": "Email",
 "(nije obavezna, samo ako želite odgovor)": "(optional, only if you want a reply)",
 "Pošalji poruku": "Send message",
-"Hvala.": "Thank you.",
-"U ovom prototipu poruka se ne šalje nikamo. U pravoj aplikaciji stigla bi na adresu projekta i u popis zadataka na GitHubu.": "In this prototype the message is not sent anywhere. In the real application it would reach the project's address and the task list on GitHub.",
 "Drugi načini": "Other ways",
 "Prijava na GitHubu": "Report on GitHub",
 "za greške i prijedloge s tehničkim detaljima.": "for errors and suggestions with technical details.",
-"Pitajte asistenta": "Ask the assistant",
 "za brza pitanja o podacima.": "for quick questions about the data.",
 "objašnjava većinu izraza u atlasu.": "explains most terms in the atlas.",
 "Upišite poruku.": "Enter a message.",
@@ -1539,7 +1525,7 @@ const EN_DICT = {
 "{N} mil. €": "€{N1}M",
 "{N}–{N}: {N} mil. €": "{N1}–{N2}: €{N3}M",
 "{N}–{N}: {N} mil. € · {N}–{N}: {N} mil. €": "{N1}–{N2}: €{N3}M · {N4}–{N5}: €{N6}M",
-"Grantovi: {N} mil. €": "Grants: €{N1}M",
+"Bespovratna sredstva: {N} mil. €": "Grants: €{N1}M",
 "Svaki Erasmus+ projekt počinje s": "Every Erasmus+ project starts with",
 "pravim partnerom": "the right partner",
 "Erasmus+ Kompas je otvoreni atlas partnerstava hrvatskih škola, udruga i ustanova. Pokazuje tko već surađuje, gdje i na kojim temama, da lakše pronađete partnera, ideju ili prazninu koju vaš projekt može popuniti.": "Erasmus+ Kompas is an open atlas of partnerships involving Croatian schools, associations and institutions. It shows who is already working together, where and on which topics, so you can more easily find a partner, an idea or a gap your project could fill.",
@@ -1583,7 +1569,7 @@ const EN_DICT = {
 "Asistent je trenutno zauzet. Pokušajte ponovno za nekoliko trenutaka.": "The assistant is busy right now. Please try again in a few moments.",
 "Asistent s modelom trenutno nije dostupan. Prikazan je odgovor izračunan izravno iz podataka.": "The model-based assistant is not available right now. This answer was computed directly from the data.",
 "Odgovor nije u potpunosti potvrđen podacima.": "This answer could not be fully verified against the data.",
-"Prikazan je uzorak od {N} projekata; pun popis dolazi iz datoteke": "A sample of {N1} projects is shown; the full list comes from the file",
+"Prikazan je uzorak od {N} projekata; potpuni popis nije dostupan.": "A sample of {N1} projects is shown; the full list is not available.",
 "Sažetak": "Summary",
 "Sažetak je preuzet iz javnih podataka EU-a i nije lektoriran.": "The summary comes from public EU data and has not been proofread.",
 "Dodijeljeni iznos": "Awarded amount",
@@ -1594,7 +1580,7 @@ const EN_DICT = {
 "Hrvatski sudionici": "Croatian participants",
 "Pojmovi iz mreže": "Concepts from the network",
 "vodeća": "lead",
-"Grantovi koordiniranih projekata": "Grants of coordinated projects",
+"Bespovratna sredstva koordiniranih projekata": "Grants of coordinated projects",
 "Vrijednost svih projekata:": "Value of all projects:",
 "{N} s oznakom dobre prakse": "{N1} marked as good practice",
 "Nema partnerskih država u podacima.": "No partner countries in the data.",
@@ -1625,7 +1611,7 @@ const EN_DICT = {
 "Pretraga projekata i profil organizacije.": "Project search and organisation profile.",
 "Pokrivenost po županiji i prvi projekti po sektoru.": "Coverage by county and first projects by sector.",
 "Slične organizacije u istom sektoru i blizini.": "Similar organisations in the same sector and nearby.",
-"Navedite izvore: Erasmus+ Project Results Platform (Europska komisija), Program Erasmus+ {N}.–{N}. i registri ustanova na data.gov.hr (Agencija za mobilnost i programe EU, Ministarstvo znanosti, obrazovanja i mladih).": "Cite the sources: Erasmus+ Project Results Platform (European Commission), the Erasmus+ programme {N1}–{N2} and the institution registers on data.gov.hr (Agency for Mobility and EU Programmes, Ministry of Science, Education and Youth).",
+"Navedite izvore: Platforma za rezultate projekata programa Erasmus+ (Europska komisija), Program Erasmus+ {N}.–{N}. i registri ustanova na data.gov.hr (Agencija za mobilnost i programe EU, Ministarstvo znanosti, obrazovanja i mladih).": "Cite the sources: Erasmus+ Project Results Platform (European Commission), the Erasmus+ programme {N1}–{N2} and the institution registers on data.gov.hr (Agency for Mobility and EU Programmes, Ministry of Science, Education and Youth).",
 "Ključni pokazatelji": "Key indicators",
 "Karta i poredak": "Map and ranking",
 "Teme i problemi": "Topics and problems",
@@ -1636,7 +1622,7 @@ const EN_DICT = {
 "Program Erasmus+ {N}–{N}": "Erasmus+ programme {N1}–{N2}",
 "Program Erasmus+ {N}–{N} (data.gov.hr)": "Erasmus+ programme {N1}–{N2} (data.gov.hr)",
 "Europska komisija. Popisi KA{N} projekata {N}–{N} i {N}–{N}": "European Commission. Lists of KA{N1} projects {N2}–{N3} and {N4}–{N5}",
-"Navedite izvore: Erasmus+ Project Results Platform (Europska komisija), Program Erasmus+ {N}–{N} i registri ustanova na data.gov.hr (Agencija za mobilnost i programe EU, Ministarstvo znanosti, obrazovanja i mladih).": "Cite the sources: Erasmus+ Project Results Platform (European Commission), the Erasmus+ programme {N1}–{N2} and the institution registers on data.gov.hr (Agency for Mobility and EU Programmes, Ministry of Science, Education and Youth).",
+"Navedite izvore: Platforma za rezultate projekata programa Erasmus+ (Europska komisija), Program Erasmus+ {N}–{N} i registri ustanova na data.gov.hr (Agencija za mobilnost i programe EU, Ministarstvo znanosti, obrazovanja i mladih).": "Cite the sources: Erasmus+ Project Results Platform (European Commission), the Erasmus+ programme {N1}–{N2} and the institution registers on data.gov.hr (Agency for Mobility and EU Programmes, Ministry of Science, Education and Youth).",
 "{E} ima {N} KA{N} projekata sa sudionikom iz županije ({N}. od {N}), od toga {N} koordiniranih. U projektima sudjeluje {N} organizacija, a vrijednost projekata je {N} mil. €.": "{E1} has {N1} KA{N2} projects with a participant from the county (rank {N3} of {N4}), of which {N5} were coordinated from it. {N6} organisations take part, and the projects are worth €{N7}M.",
 "Odaberite područje, a zatim označite teme. Najviše osam odjednom.": "Choose an area, then tick topics. Up to eight at a time.",
 "Područje": "Area",
@@ -1696,7 +1682,19 @@ const EN_DICT = {
 "↗ raste": "↗ growing",
 "Nema dovoljno zajedničkih projekata (najmanje {N}).": "Not enough joint projects (at least {N1}).",
 "Nema pojmova za odabrane filtre.": "No concepts for the selected filters.",
-"Hrvatske organizacije u projektima s ovim pojmom": "Croatian organisations in projects with this concept"
+"Hrvatske organizacije u projektima s ovim pojmom": "Croatian organisations in projects with this concept",
+"sva razdoblja": "all periods",
+"{N} u {N}–{N} · {N} u {N}–{N}": "{N1} in {N2}–{N3} · {N4} in {N5}–{N6}",
+"Nije dostupno": "Not available",
+"Detaljni podaci o ovoj organizaciji (vremenska crta, popis projekata, partneri i teme) trenutačno nisu dostupni.": "Detailed data for this organisation (timeline, project list, partners and topics) is not available at the moment.",
+"Popis projekata ove organizacije nije dostupan.": "The project list of this organisation is not available.",
+"potpuni popis nije dostupan.": "the full list is not available.",
+"Popis partnerskih država nije dostupan.": "The list of partner countries is not available.",
+"Teme organizacije nisu dostupne.": "The organisation's topics are not available.",
+"Sažetak projekta, popis sudionika i dodijeljeni iznos trenutačno nisu dostupni. Prikazani su podaci iz popisa projekata.": "The project summary, the list of participants and the awarded amount are not available at the moment. The data from the project list is shown.",
+"Poruka nije poslana.": "The message has not been sent.",
+"Ovaj obrazac još ne šalje poruke. Greške i prijedloge prijavite putem poveznice u dijelu „Drugi načini”.": "This form does not send messages yet. Report errors and suggestions through the link under “Other ways”.",
+"Sudjelovanje po godinama": "Participation by year"
 };
 
 /* ============ view: Projekti ============ */
@@ -1705,7 +1703,7 @@ function viewProjekti(root) {
   let st = { q: '', period: '', sector: '', kind: '', country: '', gp: false, status: '' }, shown = 40, lastHits = [];
   const idx = P.map((p) => fold(p[1]));
   const countries = [...new Set(P.flatMap((p) => p[8].split(',').filter(Boolean)))].filter((c) => c !== 'HR').sort((a, b) => country(a).localeCompare(country(b), LANG));
-  root.innerHTML = `${head('Pretraži · Projekti', 'KA2 projekti', 'Pretražite projekte s hrvatskim sudionikom i suzite ih po razdoblju, sektoru, vrsti, partnerskoj državi i statusu.')}
+  root.innerHTML = `${head('Pretražite · Projekti', 'KA2 projekti', 'Pretražite projekte s hrvatskim sudionikom i suzite ih po razdoblju, sektoru, vrsti, partnerskoj državi i statusu.')}
   <section class="filters" aria-label="Filteri"><label class="f"><span class="lab">Pretraga</span><input id="q" type="search" placeholder="Naziv projekta…" autocomplete="off"></label><label class="f"><span class="lab">Razdoblje</span><select id="fp"></select></label><label class="f"><span class="lab">Sektor</span><select id="fs"></select></label><label class="f"><span class="lab">Vrsta projekta</span><select id="fk"></select></label><label class="f"><span class="lab">Partnerska država</span><select id="fc"></select></label><label class="f"><span class="lab">Status</span><select id="ft"></select></label><label class="chk"><input id="fg" type="checkbox">Samo dobra praksa</label>${resetBtn}</section>
   <div class="chips" id="chips" aria-live="polite"></div><p class="summary" id="count" aria-live="polite"></p><ul class="res" id="res"></ul><div class="more-wrap"><button class="more" id="more" type="button" hidden>Prikaži još</button></div>`;
   const ok = (p, skip) => (skip === 'period' || !st.period || p[3] === st.period) && (skip === 'sector' || !st.sector || p[4] === st.sector) && (skip === 'kind' || !st.kind || p[5] === st.kind) && (skip === 'status' || st.status === '' || String(p[6]) === st.status) && (skip === 'country' || !st.country || p[8].split(',').includes(st.country)) && (!st.gp || p[7]) && (!st.q || st.q.split(/\s+/).every((w) => idx[P.indexOf(p)].includes(w)));
@@ -1795,12 +1793,19 @@ function viewTeme(root) {
 }
 
 /* ============ view: Organizacije ============ */
+// Croatian names for the EU organisation types and the school register kinds (the data holds the English EU wording)
+const REG_HR = {"Non-governmental organisation/association/social enterprise": "Nevladina organizacija, udruga ili socijalno poduzeće", "School/Institute/Educational centre – General education (primary level)": "Škola, institut ili obrazovni centar – opće obrazovanje (osnovna razina)", "School/Institute/Educational centre – General education (secondary level)": "Škola, institut ili obrazovni centar – opće obrazovanje (srednja razina)", "School/Institute/Educational centre – Vocational Training (secondary level)": "Škola, institut ili obrazovni centar – strukovno obrazovanje (srednja razina)", "School/Institute/Educational centre – Vocational Training (tertiary level)": "Škola, institut ili obrazovni centar – strukovno obrazovanje (tercijarna razina)", "School/Institute/Educational centre – General education (pre-primary level)": "Škola, institut ili obrazovni centar – opće obrazovanje (predškolska razina)", "School/Institute/Educational centre – Adult education": "Škola, institut ili obrazovni centar – obrazovanje odraslih", "Small and medium sized enterprise": "Malo ili srednje poduzeće", "Higher education institution (tertiary level)": "Visoko učilište (tercijarna razina)", "Other": "Ostalo", "None": "Nije navedeno", "Local Public body": "Lokalno javno tijelo", "National Public body": "Nacionalno javno tijelo", "Regional Public body": "Regionalno javno tijelo", "Research Institute/Centre": "Istraživački institut ili centar", "Public service provider": "Pružatelj javnih usluga", "Large enterprise": "Veliko poduzeće", "Youth organisation": "Organizacija mladih", "Accreditation, certification or qualification body": "Tijelo za akreditaciju, certifikaciju ili kvalifikacije", "Social enterprise": "Socijalno poduzeće", "Social partner or other representative of working life (chambers of commerce, trade union, trade association)": "Socijalni partner ili drugi predstavnik svijeta rada (gospodarske komore, sindikati, udruge poslodavaca)", "Non-Profit making cultural organizations": "Neprofitne kulturne organizacije", "Counselling body": "Savjetodavno tijelo", "Civil Society Organisation": "Organizacija civilnog društva", "Other type of organisation": "Druga vrsta organizacije", "Foundation": "Zaklada", "Organisation or association representing (parts of) the sport sector": "Organizacija ili udruga koja zastupa (dijelove) sportskog sektora", "Sport club": "Sportski klub", "National Youth Council": "Nacionalno vijeće mladih", "Multimedia association": "Multimedijska udruga", "Publically funded cultural organizations": "Javno financirane kulturne organizacije", "Television broadcaster": "Televizijski emiter", "European or international public body": "Europsko ili međunarodno javno tijelo", "European grouping of territorial cooperation": "Europsko grupiranje za teritorijalnu suradnju", "primary": "Osnovna škola", "secondary": "Srednja škola", "kindergarten": "Dječji vrtić", "primary,secondary": "Osnovna i srednja škola", "higher_education": "Visoko učilište"};
+// Croatian names for the EU action types of the projects (the data holds the English EU wording; a type without a name is shown as it is)
+const PROJECT_TYPE_HR = {"School Exchange Partnerships": "Partnerstva za razmjenu škola", "Strategic Partnerships for school education": "Strateška partnerstva u školskom obrazovanju", "Cooperation partnerships in school education": "Partnerstva za suradnju u školskom obrazovanju", "Small-scale partnerships in school education": "Mala partnerstva u školskom obrazovanju", "Strategic Partnerships for vocational education and training": "Strateška partnerstva u strukovnom obrazovanju i osposobljavanju", "Strategic Partnerships for adult education": "Strateška partnerstva u obrazovanju odraslih", "Cooperation partnerships in higher education": "Partnerstva za suradnju u visokom obrazovanju", "Cooperation partnerships in youth": "Partnerstva za suradnju u području mladih", "Cooperation partnerships in vocational education and training": "Partnerstva za suradnju u strukovnom obrazovanju i osposobljavanju", "Strategic Partnerships for Schools Only": "Strateška partnerstva samo za škole", "Strategic Partnerships for youth": "Strateška partnerstva u području mladih", "Small-scale partnerships in youth": "Mala partnerstva u području mladih", "Cooperation partnerships in adult education": "Partnerstva za suradnju u obrazovanju odraslih", "Strategic Partnerships for higher education": "Strateška partnerstva u visokom obrazovanju", "Small-scale partnerships in adult education": "Mala partnerstva u obrazovanju odraslih", "Small-scale partnerships in vocational education and training": "Mala partnerstva u strukovnom obrazovanju i osposobljavanju", "Capacity Building in higher education": "Izgradnja kapaciteta u visokom obrazovanju", "Capacity Building for youth in neighbouring and enlargement countries": "Izgradnja kapaciteta za mlade u susjednim zemljama i zemljama proširenja", "Partnerships for Digital Education Readiness": "Partnerstva za spremnost digitalnog obrazovanja", "Partnerships for Creativity": "Partnerstva za kreativnost", "Alliances for Education and Enterprises": "Savezi za obrazovanje i poduzetništvo", "Capacity Building in Vocational Education and Training": "Izgradnja kapaciteta u strukovnom obrazovanju i osposobljavanju", "Knowledge Alliances for higher education": "Savezi znanja u visokom obrazovanju", "Forward-Looking Projects": "Projekti usmjereni na budućnost", "Capacity Building for youth in ACP countries, Latin America and Asia": "Izgradnja kapaciteta za mlade u zemljama AKP-a, Latinskoj Americi i Aziji", "Capacity Building in the field of Youth": "Izgradnja kapaciteta u području mladih", "Centers of Vocational Excellence": "Centri strukovne izvrsnosti", "European Universities": "Europska sveučilišta", "Strategic Partnerships addressing more than one field": "Strateška partnerstva koja obuhvaćaju više područja", "Teacher Academies": "Akademije za nastavnike", "Sector Skills Alliances in vocational education and training": "Sektorski savezi za vještine u strukovnom obrazovanju i osposobljavanju", "Cooperation Partnerships in the field of Education and Training – European NGOs": "Partnerstva za suradnju u području obrazovanja i osposobljavanja – europske nevladine organizacije", "Alliances for Sectoral Cooperation on Skills (implementing the ‘Blueprint’)": "Savezi za sektorsku suradnju u području vještina (provedba „Blueprinta”)", "Erasmus Mundus Joint Master": "Erasmus Mundus zajednički diplomski studij", "Erasmus Mundus Design Measures": "Erasmus Mundus mjere osmišljavanja", "Cooperation Partnerships in the field of Youth – European NGOs": "Partnerstva za suradnju u području mladih – europske nevladine organizacije"};
+const typeHr = (t) => { const k = String(t || '').replace(/\s+/g, ' ').trim(); return LANG === 'en' ? k : PROJECT_TYPE_HR[k] || k; };
+const REG_EN = { primary: 'Primary school', secondary: 'Secondary school', kindergarten: 'Kindergarten', 'primary,secondary': 'Primary and secondary school', higher_education: 'Higher education institution' };
+const regName = (r) => (REG_HR[r] ? (LANG === 'en' ? REG_EN[r] || r : REG_HR[r]) : '');
 const O = () => D.orgs.map((o) => ({ id: o[0], name: o[1], town: o[2], county: o[3], cls: o[4], projects: o[5], coordinated: o[6], p1: o[7], p2: o[8], c1: o[9], c2: o[10] }));
 function viewOrganizacije(root) {
-  const orgs = O(), counties = [...new Set(orgs.map((o) => o.county).filter(Boolean))].sort((a, b) => a.localeCompare(b, LANG)), classes = [...new Set(orgs.map((o) => o.cls).filter(Boolean))].sort((a, b) => (LAB.cls[a] || a).localeCompare(LAB.cls[b] || b, LANG));
+  const orgs = O(), counties = [...new Set(orgs.map((o) => o.county).filter(Boolean))].sort((a, b) => a.localeCompare(b, LANG)), classes = [...new Set(orgs.map((o) => o.cls).filter(Boolean))].sort((a, b) => (clsName(a)).localeCompare(clsName(b), LANG));
   let st = { q: '', county: '', cls: '', period: '', coord: false, sort: 'p' }, shownO = 25, lastList = [], lastVal = (o) => ({ pj: o.projects, cd: o.coordinated });
-  root.innerHTML = `${head('Pretraži · Organizacije', 'Organizacije u KA2 partnerstvima', 'Pretražite hrvatske organizacije po nazivu ili mjestu i suzite ih po županiji i vrsti.')}
-  <section class="filters" aria-label="Filteri"><label class="f"><span class="lab">Pretraga</span><input id="q" type="search" placeholder="Naziv ili mjesto…" autocomplete="off"></label><label class="f"><span class="lab">Županija</span><select id="c"><option value="">Sve županije</option>${counties.map((c) => `<option value="${esc(c)}">${esc(c)}</option>`).join('')}</select></label><label class="f"><span class="lab">Vrsta organizacije</span><select id="k"><option value="">Sve vrste</option>${classes.map((c) => `<option value="${c}">${LAB.cls[c] || c}</option>`).join('')}</select></label>${seg('s-per', 'Razdoblje', [['', 'Sva'], ['1', '2014.–2020.'], ['2', '2021.–2027.']], '')}<label class="f"><span class="lab">Poredak</span><select id="o"><option value="p">Po broju projekata</option><option value="c">Po koordinacijama</option><option value="n">Po nazivu</option></select></label><label class="chk"><input id="co" type="checkbox">Samo koordinatori</label>${resetBtn}</section>
+  root.innerHTML = `${head('Pretražite · Organizacije', 'Organizacije u KA2 partnerstvima', 'Pretražite hrvatske organizacije po nazivu ili mjestu i suzite ih po županiji i vrsti.')}
+  <section class="filters" aria-label="Filteri"><label class="f"><span class="lab">Pretraga</span><input id="q" type="search" placeholder="Naziv ili mjesto…" autocomplete="off"></label><label class="f"><span class="lab">Županija</span><select id="c"><option value="">Sve županije</option>${counties.map((c) => `<option value="${esc(c)}">${esc(c)}</option>`).join('')}</select></label><label class="f"><span class="lab">Vrsta organizacije</span><select id="k"><option value="">Sve vrste</option>${classes.map((c) => `<option value="${c}">${clsName(c)}</option>`).join('')}</select></label>${seg('s-per', 'Razdoblje', [['', 'Sva'], ['1', '2014.–2020.'], ['2', '2021.–2027.']], '')}<label class="f"><span class="lab">Poredak</span><select id="o"><option value="p">Po broju projekata</option><option value="c">Po koordinacijama</option><option value="n">Po nazivu</option></select></label><label class="chk"><input id="co" type="checkbox">Samo koordinatori</label>${resetBtn}</section>
   <p class="summary" id="count" aria-live="polite"></p><div class="tablewrap"><table><thead><tr><th>Naziv</th><th>Mjesto</th><th>Županija</th><th>Vrsta</th><th class="num">Projekata</th><th class="num">Koordinirano</th></tr></thead><tbody id="rows"></tbody></table></div><div class="more-wrap"><button class="more" id="omore" type="button" hidden>Prikaži još</button></div>`;
   function paint() {
     $$('#s-per button', root).forEach((b) => b.setAttribute('aria-pressed', String(st.period === b.dataset.v)));
@@ -1809,12 +1814,12 @@ function viewOrganizacije(root) {
     list.sort((a, b) => { const x = val(a), y = val(b); if (st.sort === 'n') return a.name.localeCompare(b.name, LANG); return (st.sort === 'c' ? y.cd - x.cd || y.pj - x.pj : y.pj - x.pj || y.cd - x.cd) || a.name.localeCompare(b.name, LANG); });
     lastList = list;
     $('#count', root).innerHTML = `<b>${Math.min(list.length, shownO)}</b> / ${fmt(list.length)} prikazano`; $('#omore', root).hidden = list.length <= shownO;
-    $('#rows', root).innerHTML = list.slice(0, shownO).map((o) => { const v = val(o); return `<tr class="click" data-id="${esc(o.id)}"><td><a href="#/organizacije/${encodeURIComponent(o.id)}">${esc(o.name)}</a></td><td>${esc(o.town || '')}</td><td>${esc(o.county || '')}</td><td><span class="pill">${LAB.cls[o.cls] || o.cls || ''}</span></td><td class="num">${fmt(v.pj)}</td><td class="num">${fmt(v.cd)}</td></tr>`; }).join('');
+    $('#rows', root).innerHTML = list.slice(0, shownO).map((o) => { const v = val(o); return `<tr class="click" data-id="${esc(o.id)}"><td><a href="#/organizacije/${encodeURIComponent(o.id)}">${esc(o.name)}</a></td><td>${esc(o.town || '')}</td><td>${esc(o.county || '')}</td><td><span class="pill">${clsName(o.cls)}</span></td><td class="num">${fmt(v.pj)}</td><td class="num">${fmt(v.cd)}</td></tr>`; }).join('');
     $$('#rows tr', root).forEach((r) => r.onclick = (e) => { if (e.target.tagName !== 'A') go('#/organizacije/' + encodeURIComponent(r.dataset.id)); });
   }
   $('#q', root).oninput = (e) => { st.q = e.target.value; shownO = 25; paint(); }; $('#c', root).onchange = (e) => { st.county = e.target.value; shownO = 25; paint(); }; $('#k', root).onchange = (e) => { st.cls = e.target.value; shownO = 25; paint(); }; $('#o', root).onchange = (e) => { st.sort = e.target.value; paint(); }; $('#omore', root).onclick = () => { shownO += 25; paint(); }; $('#co', root).onchange = (e) => { st.coord = e.target.checked; paint(); };
   $$('#s-per button', root).forEach((b) => b.onclick = () => { st.period = b.dataset.v; paint(); });
-  Xport.mount(root, () => ({ id: 'organizacije', title: 'Organizacije u KA2 partnerstvima', filters: [['Pretraga', st.q.trim() || '—'], ['Županija', st.county || 'Sve županije'], ['Vrsta organizacije', st.cls ? (LAB.cls[st.cls] || st.cls) : 'Sve vrste'], ['Razdoblje', st.period === '1' ? LAB.period['2014-2020'] : st.period === '2' ? LAB.period['2021-2027'] : 'Sva razdoblja'], ['Samo koordinatori', st.coord ? 'da' : 'ne']], cols: [{ h: 'ID organizacije' }, { h: 'Naziv' }, { h: 'Mjesto' }, { h: 'Županija' }, { h: 'Vrsta organizacije' }, { h: 'Projekata', t: 'int' }, { h: 'Koordinirano', t: 'int' }], rows: lastList.map((o) => { const v = lastVal(o); return [o.id, o.name, o.town || '', o.county || '', LAB.cls[o.cls] || o.cls || '', v.pj, v.cd]; }) }));
+  Xport.mount(root, () => ({ id: 'organizacije', title: 'Organizacije u KA2 partnerstvima', filters: [['Pretraga', st.q.trim() || '—'], ['Županija', st.county || 'Sve županije'], ['Vrsta organizacije', st.cls ? (clsName(st.cls)) : 'Sve vrste'], ['Razdoblje', st.period === '1' ? LAB.period['2014-2020'] : st.period === '2' ? LAB.period['2021-2027'] : 'Sva razdoblja'], ['Samo koordinatori', st.coord ? 'da' : 'ne']], cols: [{ h: 'ID organizacije' }, { h: 'Naziv' }, { h: 'Mjesto' }, { h: 'Županija' }, { h: 'Vrsta organizacije' }, { h: 'Projekata', t: 'int' }, { h: 'Koordinirano', t: 'int' }], rows: lastList.map((o) => { const v = lastVal(o); return [o.id, o.name, o.town || '', o.county || '', clsName(o.cls), v.pj, v.cd]; }) }));
   $('#reset', root).onclick = () => { st = { q: '', county: '', cls: '', period: '', coord: false, sort: 'p' }; $('#q', root).value = ''; $('#c', root).value = ''; $('#k', root).value = ''; $('#o', root).value = 'p'; $('#co', root).checked = false; paint(); };
   paint();
 }
@@ -1856,27 +1861,27 @@ function viewOrganizacija(root, id) {
     const years = has ? (X.years ? Object.keys(X.years).map(Number) : (() => { const ys = ps.map((p) => p.year).filter(Boolean); const out = []; for (let y = Math.min(...ys); y <= Math.max(...ys); y++) out.push(y); return out; })()) : [];
     const dots = has ? years.map((y) => { const tk = X.years ? X.years[y] : ps.filter((p) => p.year === y).map((p) => (p.coord ? 'c' : '') + (p.gp ? 'g' : '')); return `<div class="col">${tk.map((t) => `<i class="dot ${/c/.test(String(t)) ? 'c' : ''} ${/g/.test(String(t)) ? 'g' : ''}"></i>`).join('')}<span>'${String(y).slice(2)}${y >= 2026 && full ? '*' : ''}</span></div>`; }).join('') : '';
     const rows = ps.filter((p) => !role || (role === 'coordinator') === p.coord), shown = allRows || !full ? rows : rows.slice(0, 12);
-    const a = full ? X.all : {}, kpi4 = full ? `<article class="card kpi plain"><small>Grantovi koordiniranih projekata</small><div class="big">${eurf(a.grants_coordinated_eur)}</div><small>Vrijednost svih projekata: <span translate="no">${eurf(a.value_involved_eur)}</span></small><small>${fmt(X.gp)} s oznakom dobre prakse</small></article>` : `<article class="card kpi plain"><small>Grantovi, dobra praksa</small><div class="big na">—</div><small>Dolazi iz orgs_full.json</small></article>`;
+    const a = full ? X.all : {}, kpi4 = full ? `<article class="card kpi plain"><small>Bespovratna sredstva koordiniranih projekata</small><div class="big">${eurf(a.grants_coordinated_eur)}</div><small>Vrijednost svih projekata: <span translate="no">${eurf(a.value_involved_eur)}</span></small><small>${fmt(X.gp)} s oznakom dobre prakse</small></article>` : `<article class="card kpi plain"><small>Bespovratna sredstva, dobra praksa</small><div class="big na">—</div><small>Nije dostupno</small></article>`;
     const k2 = full && a.coordinated != null ? [a.coordinated, a.partner_only != null ? a.partner_only : o.projects - a.coordinated] : [o.coordinated, o.projects - o.coordinated];
     const simList = full && X.similar ? X.similar.map((x) => ({ id: x.id, name: x.name, town: x.town, projects: x.projects })) : sim.map((x) => ({ id: x.id, name: x.name, town: x.town, projects: x.projects }));
     root.innerHTML = `<nav class="crumbs" aria-label="Putanja"><a href="#/organizacije">Organizacije</a>${county ? `<a href="#/mjesta/${encodeURIComponent(county.stem)}">${esc(o.county)}</a>` : ''}<span>${esc(o.town || '')}</span></nav>
-  <header class="pagehead"><div class="kicker">Organizacija · ${LAB.cls[o.cls] || o.cls || ''}</div><h1>${esc(o.name)}</h1><p class="lead">${esc([o.town, o.county].filter(Boolean).join(' · '))}</p>
-  <div class="chips"><span class="pill blue">${LAB.cls[o.cls] || o.cls || ''}</span>${full && X.reg ? `<span class="pill">${esc(X.reg)}</span>` : ''}</div></header>
+  <header class="pagehead"><div class="kicker">Organizacija · ${clsName(o.cls)}</div><h1>${esc(o.name)}</h1><p class="lead">${esc([o.town, o.county].filter(Boolean).join(' · '))}</p>
+  <div class="chips"><span class="pill blue">${clsName(o.cls)}</span>${full && regName(X.reg) ? `<span class="pill">${esc(regName(X.reg))}</span>` : ''}</div></header>
   <div class="grid kpis4"><article class="card kpi plain"><small>KA2 projekata, 2014.–2026.</small><div class="big">${fmt(o.projects)}</div><small>${fmt(o.p1)} u 2014.–2020. · ${fmt(o.p2)} u 2021.–2027.</small></article>
   <article class="card kpi plain"><small>Uloga</small><div class="big">${fmt(k2[0])} <span>koordinator</span></div><small>${fmt(k2[1])} kao partner</small></article>
   <article class="card kpi plain"><small>Koordinacije po razdoblju</small><div class="big">${fmt(o.c1)} <span>/</span> ${fmt(o.c2)}</div><small>2014.–2020. / 2021.–2027.</small></article>
   ${kpi4}</div>
-  ${has ? '' : '<div class="note">Detaljni dijelovi (vremenska crta, popis projekata, partneri, teme) čitaju se iz <span class="mono">orgs_full.json</span>, koji se generira u pipelineu. Ispod je raspored; pun primjer vidi se na organizaciji „Gimnazija Metković”.</div>'}
+  ${has ? '' : '<div class="note">Detaljni podaci o ovoj organizaciji (vremenska crta, popis projekata, partneri i teme) trenutačno nisu dostupni.</div>'}
   <div class="grid two"><div class="stack">
   <section class="card"><div class="head"><h2>Sudjelovanje kroz vrijeme</h2><div class="keys"><span><i class="dot c"></i>Koordinator</span><span><i class="dot"></i>Partner</span><span><i class="dot g"></i>Dobra praksa</span></div></div>
   ${has && years.length ? `<div class="dots" role="img" aria-label="Sudjelovanje po godinama">${dots}</div>` : `<div style="margin-top:12px">${rank([{ label: '2014.–2020.', v: o.p1, text: fmt(o.p1) }, { label: '2021.–2027.', v: o.p2, text: fmt(o.p2) }], { nonum: true, max: Math.max(1, o.p1, o.p2) })}</div>`}
   <p class="lead small" style="margin-top:10px">Izbor za 2026. još traje pa je zadnja godina nepotpuna. Granica razdoblja: popisi tema 2014.–2020. i 2021.–2027. razlikuju se.</p></section>
   <section class="card"><div class="head"><h2>Projekti</h2>${has ? `<div class="seg" role="group" aria-label="Uloga"><button type="button" data-role="" aria-pressed="${role === ''}">Svi ${fmt(ps.length)}</button><button type="button" data-role="coordinator" aria-pressed="${role === 'coordinator'}">Koordinator ${fmt(nK)}</button><button type="button" data-role="partner" aria-pressed="${role === 'partner'}">Partner ${fmt(nP)}</button></div>` : ''}</div>
-  <div class="tablewrap"><table><thead><tr><th>Godina</th><th>Projekt</th><th>Vrsta</th><th>Uloga</th><th>Vodi</th><th>Status</th></tr></thead><tbody id="prows">${has ? shown.map((p) => `<tr data-role="${p.coord ? 'coordinator' : 'partner'}"><td class="mono">${p.year}</td><td>${p.id ? `<a href="#/projekti/${encodeURIComponent(p.id)}">${esc(p.title)}</a>` : `<a href="#/projekti/uzorak">${esc(p.title)}</a>`}</td><td>${esc(p.type)}</td><td>${p.coord ? '<span class="badge">Koordinator</span>' : 'Partner'}</td><td class="mono" title="${esc(p.lead ? country(p.lead) : '')}">${esc(p.lead)}</td><td>${esc(p.status)}</td></tr>`).join('') : '<tr><td colspan="6"><div class="empty">Popis projekata organizacije dolazi iz datoteke orgs_full.json.</div></td></tr>'}</tbody></table></div>
-  ${has && !full ? `<p class="lead small" style="margin-top:10px">Prikazan je uzorak od ${ps.length} projekata; pun popis dolazi iz datoteke <span class="mono">orgs_full.json</span>.</p>` : ''}
+  <div class="tablewrap"><table><thead><tr><th>Godina</th><th>Projekt</th><th>Vrsta</th><th>Uloga</th><th>Vodi</th><th>Status</th></tr></thead><tbody id="prows">${has ? shown.map((p) => `<tr data-role="${p.coord ? 'coordinator' : 'partner'}"><td class="mono">${p.year}</td><td>${p.id ? `<a href="#/projekti/${encodeURIComponent(p.id)}">${esc(p.title)}</a>` : `<a href="#/projekti/uzorak">${esc(p.title)}</a>`}</td><td>${esc(typeHr(p.type))}</td><td>${p.coord ? '<span class="badge">Koordinator</span>' : 'Partner'}</td><td title="${esc(p.lead || '')}">${esc(p.lead ? country(p.lead) : '')}</td><td>${esc(p.status)}</td></tr>`).join('') : '<tr><td colspan="6"><div class="empty">Popis projekata ove organizacije nije dostupan.</div></td></tr>'}</tbody></table></div>
+  ${has && !full ? `<p class="lead small" style="margin-top:10px">Prikazan je uzorak od ${ps.length} projekata; potpuni popis nije dostupan.</p>` : ''}
   ${full && rows.length > shown.length ? `<p><button type="button" class="btn" id="omore2">Prikaži sve ${fmt(rows.length)}</button></p>` : ''}</section></div>
-  <div class="stack"><section class="card"><h2>Najčešće surađuje s</h2><p class="lead small">Države u zajedničkim projektima (broj projekata).</p>${has && X.countries.length ? rank(X.countries.slice(0, 9).map(([c, n]) => ({ label: c, v: n, text: String(n) })), { nonum: true, cls: 'alt compact', max: Math.max(1, ...X.countries.map((c) => c[1])) }) : has ? '<div class="empty">Nema partnerskih država u podacima.</div>' : '<div class="empty">Popis partnerskih država dolazi iz datoteke orgs_full.json.</div>'}</section>
-  <section class="card"><h2>Teme koje se ponavljaju</h2><div style="margin-top:10px">${has && X.topics.length ? X.topics.map(([t, n]) => `<span class="tag">${esc(t)}<b>${n}</b></span>`).join('') : has ? '<div class="empty">Nema tema u podacima.</div>' : '<div class="empty">Teme organizacije dolaze iz datoteke orgs_full.json.</div>'}</div></section></div></div>
+  <div class="stack"><section class="card"><h2>Najčešće surađuje s</h2><p class="lead small">Države u zajedničkim projektima (broj projekata).</p>${has && X.countries.length ? rank(X.countries.slice(0, 9).map(([c, n]) => ({ label: c, v: n, text: String(n) })), { nonum: true, cls: 'alt compact', max: Math.max(1, ...X.countries.map((c) => c[1])) }) : has ? '<div class="empty">Nema partnerskih država u podacima.</div>' : '<div class="empty">Popis partnerskih država nije dostupan.</div>'}</section>
+  <section class="card"><h2>Teme koje se ponavljaju</h2><div style="margin-top:10px">${has && X.topics.length ? X.topics.map(([t, n]) => `<span class="tag">${esc(t)}<b>${n}</b></span>`).join('') : has ? '<div class="empty">Nema tema u podacima.</div>' : '<div class="empty">Teme organizacije nisu dostupne.</div>'}</div></section></div></div>
   ${simList.length ? `<section><h2 class="sh">Slične organizacije</h2><p class="lead small">Ista vrsta organizacije u istoj županiji, po broju projekata.</p><div class="grid kpis4">${simList.map((x) => `<${x.id ? 'a' : 'div'} class="card kpi plain" ${x.id ? `style="text-decoration:none" href="#/organizacije/${encodeURIComponent(x.id)}"` : ''}><div class="kicker">${esc(x.town || '')}</div><h3>${esc(x.name)}</h3><strong>${fmt(x.projects)} KA2 projekata</strong></${x.id ? 'a' : 'div'}>`).join('')}</div></section>` : ''}`;
     $$('.seg [data-role]', root).forEach((b) => b.onclick = () => { role = b.dataset.role; allRows = false; paint(); });
     const m2 = $('#omore2', root); if (m2) m2.onclick = () => { allRows = true; paint(); };
@@ -1898,7 +1903,7 @@ function viewGraf(root) {
   for (const [a, b, n] of g.edges) for (const [x, y] of [[a, b], [b, a]]) { if (!neigh.has(x)) neigh.set(x, []); neigh.get(x).push([y, n, n / Math.sqrt(N[x][4] * N[y][4])]); }
   root.innerHTML = `${head('Teme i problemi · Mreža pojmova', 'Mreža pojmova', 'Pojmovi koji se u projektima pojavljuju zajedno: pristupi, ciljne skupine, rezultati, problemi i teme. Veći krug znači više projekata, a crta znači zajedničke projekte.')}
   <div class="note">Ovo su pojmovi izdvojeni iz sažetaka projekata automatskom obradom pa je to pregled obrazaca, a ne službena klasifikacija.</div>
-  <section class="card" style="margin-top:12px"><label for="cs" class="small">Pretraži pojmove</label><input id="cs" class="field s" type="search" autocomplete="off" placeholder="npr. učitelji, digitalne vještine…" style="width:100%;margin:8px 0"><ul id="cres" style="list-style:none;padding:0;margin:0 0 8px;max-height:200px;overflow:auto"></ul><div style="margin:6px 0 10px">${Object.values(KIND).map(([l, c]) => `<span class="gv-key"><i style="background:${c}"></i>${l}</span>`).join('')}</div><div class="gv"><svg id="gsvg" viewBox="0 0 900 560" role="img" aria-label="Mreža najčešćih pojmova"></svg></div><p class="lead small" style="margin-top:8px">Prikazano je 120 najčešćih pojmova od ${fmt(N.length)}. Kliknite pojam za detalje.</p></section>
+  <section class="card" style="margin-top:12px"><label for="cs" class="small">Pretražite pojmove</label><input id="cs" class="field s" type="search" autocomplete="off" placeholder="npr. učitelji, digitalne vještine…" style="width:100%;margin:8px 0"><ul id="cres" style="list-style:none;padding:0;margin:0 0 8px;max-height:200px;overflow:auto"></ul><div style="margin:6px 0 10px">${Object.values(KIND).map(([l, c]) => `<span class="gv-key"><i style="background:${c}"></i>${l}</span>`).join('')}</div><div class="gv"><svg id="gsvg" viewBox="0 0 900 560" role="img" aria-label="Mreža najčešćih pojmova"></svg></div><p class="lead small" style="margin-top:8px">Prikazano je 120 najčešćih pojmova od ${fmt(N.length)}. Kliknite pojam za detalje.</p></section>
   <section class="card" id="cpanel" aria-live="polite" style="margin-top:14px"><div class="kicker">Odabrani pojam</div><p class="lead" id="chint" style="margin-top:6px">Odaberite pojam u mreži ili ga potražite iznad.</p><div id="cbody" hidden></div></section>
   <details class="fold"><summary>Skupine projekata (${g.communities.length})</summary><p class="lead small">Projekti se prirodno grupiraju prema pojmovima koje dijele. Otvorite skupinu za detalje.</p><div class="grid" id="comms"></div></details>`;
   const svg = $('#gsvg', root), idx = N.map((_, i) => i).sort((a, b) => N[b][4] - N[a][4]).slice(0, 120), inSet = new Set(idx), ed = g.edges.filter(([a, b]) => inSet.has(a) && inSet.has(b));
@@ -1998,7 +2003,7 @@ function viewOPodacima(root) {
   <div class="doc">
   <h2>Što atlas prikazuje</h2><p>KA2 partnerstva Erasmus+ programa u kojima sudjeluje barem jedna hrvatska organizacija, od 2014. do 2026. godine. Trenutno je to ${fmt(nat.projects)} projekata, što je ${pct(nat.share_of_eu_ka2_projects)} % svih KA2 projekata u EU. Podaci su ažurirani <time translate="no" datetime="${D.meta.generated}">${fdate(D.meta.generated)}</time>.</p>
   <h2>Izvori</h2><ul class="srcl">
-    <li><a href="https://erasmus-plus.ec.europa.eu/projects" target="_blank" rel="noopener">Erasmus+ Project Results Platform</a><br><span class="small">Europska komisija. Skupovi podataka o KA2 projektima za 2014.–2020. i 2021.–2027.</span></li>
+    <li><a href="https://erasmus-plus.ec.europa.eu/projects" target="_blank" rel="noopener">Platforma za rezultate projekata programa Erasmus+</a><br><span class="small">Europska komisija. Skupovi podataka o KA2 projektima za 2014.–2020. i 2021.–2027.</span></li>
     <li><a href="https://data.gov.hr" target="_blank" rel="noopener">Portal otvorenih podataka (data.gov.hr)</a><br><span class="small">Agencija za mobilnost i programe EU. Popisi projekata i organizacija.</span></li>
     <li><a href="https://mzo.gov.hr" target="_blank" rel="noopener">Ministarstvo znanosti, obrazovanja i mladih</a><br><span class="small">Registri škola, za izračun pokrivenosti po županijama.</span></li></ul>
   <h2>Što brojke ne obuhvaćaju</h2><ul>
@@ -2086,7 +2091,7 @@ function viewPregled(root) {
     const box = $('#who', root);
     if (st.county || st.sector || st.kind) { box.innerHTML = '<div class="empty">Raspodjela po vrsti organizacije dostupna je samo za cijelu Hrvatsku. Poništite filtre županije, sektora i vrste projekta da je vidite.</div>'; return; }
     const cl = D.periods[st.period].classes.slice(0, 8), tt = D.periods[st.period].coordinated;
-    box.innerHTML = rank(cl.map((c) => ({ label: LAB.cls[c.org_class] || c.org_class, v: c.projects_coordinated, text: fmt(c.projects_coordinated), st: pct(c.projects_coordinated / tt, 0) + ' %' })), { nonum: true });
+    box.innerHTML = rank(cl.map((c) => ({ label: clsName(c.org_class), v: c.projects_coordinated, text: fmt(c.projects_coordinated), st: pct(c.projects_coordinated / tt, 0) + ' %' })), { nonum: true });
   }
   function counties() {
     const box = $('#cr', root), more = $('#crmore', root);
@@ -2192,7 +2197,7 @@ function viewZupanija(root, stem) {
   <div class="grid kpis4" style="margin-top:0">
     <article class="card kpi"><small>Organizacija</small><div class="big">${fmt(a.organisations || 0)}</div><small>${fmt(p1.organisations || 0)} + ${fmt(p2.organisations || 0)} po razdobljima</small></article>
     <article class="card kpi"><small>Projekata sa sudionikom</small><div class="big">${fmt(a.projects_involved || 0)}</div><small>${fmt(p1.projects_involved || 0)} + ${fmt(p2.projects_involved || 0)} po razdobljima</small></article>
-    <article class="card kpi"><small>Koordinirano</small><div class="big">${fmt(a.projects_coordinated || 0)}</div><small>Grantovi: ${mil(a.grants_coordinated_eur || 0)}</small></article>
+    <article class="card kpi"><small>Koordinirano</small><div class="big">${fmt(a.projects_coordinated || 0)}</div><small>Bespovratna sredstva: ${mil(a.grants_coordinated_eur || 0)}</small></article>
     <article class="card kpi"><small>Vrijednost projekata</small><div class="big">${mil(a.value_involved_eur || 0)}</div><small>svih projekata sa sudionikom</small></article>
   </div>
   <div class="grid two">
@@ -2444,10 +2449,10 @@ const PAGES = [
   ['#/teme', 'Teme kroz vrijeme', 'Udio tema u projektima po godini', 'Teme i problemi'],
   ['#/pristupi', 'Problemi i rješenja', 'Koje probleme projekti navode i što uz njih rade', 'Teme i problemi'],
   ['#/graf', 'Mreža pojmova', 'Pojmovi koji se pojavljuju zajedno u projektima', 'Teme i problemi'],
-  ['#/projekti', 'Projekti', 'Pretraga projekata po temi, sektoru i državi', 'Pretraži'],
-  ['#/projekti/' + encodeURIComponent(D.projects[0][0]), 'Detalj projekta (primjer)', 'Osnovni podaci i države jednog projekta', 'Pretraži'],
-  ['#/organizacije', 'Organizacije', 'Pretraga hrvatskih organizacija u KA2 projektima', 'Pretraži'],
-  ['#/organizacije/' + encodeURIComponent(SAMPLE_ORG), 'Detalj organizacije (primjer)', 'Sudjelovanje, projekti i partneri jedne organizacije', 'Pretraži'],
+  ['#/projekti', 'Projekti', 'Pretraga projekata po temi, sektoru i državi', 'Pretražite'],
+  ['#/projekti/' + encodeURIComponent(D.projects[0][0]), 'Detalj projekta (primjer)', 'Osnovni podaci i države jednog projekta', 'Pretražite'],
+  ['#/organizacije', 'Organizacije', 'Pretraga hrvatskih organizacija u KA2 projektima', 'Pretražite'],
+  ['#/organizacije/' + encodeURIComponent(SAMPLE_ORG), 'Detalj organizacije (primjer)', 'Sudjelovanje, projekti i partneri jedne organizacije', 'Pretražite'],
   ['#/pitajte', 'Asistent', 'Pitanja običnim jezikom, odgovori uz izvore', 'Pitajte'],
   ['#/o-podacima', 'O podacima', 'Izvori, obuhvat i ograničenja', 'Informacije'],
   ['#/rjecnik', 'Rječnik pojmova', 'Objašnjenja stručnih izraza', 'Informacije'],
@@ -2456,6 +2461,16 @@ const PAGES = [
   ['#/kontakt', 'Kontakt i povratne informacije', 'Prijava greške u podacima, prijedlozi, pitanja', 'Informacije'],
   ['#/mapa-stranice', 'Mapa stranice', 'Popis svih stranica atlasa', 'Informacije']
 ];
+
+/* The EU summaries mark their parts as "<< Objectives >>": each marker becomes a small heading, in the language of the page */
+const SUMMARY_HEAD = { background: ['Background', 'Pozadina'], objectives: ['Objectives', 'Ciljevi'], implementation: ['Implementation', 'Provedba'], results: ['Results', 'Rezultati'] };
+function summaryHtml(text) {
+  const head = (m) => { const k = String(m).trim(), h = SUMMARY_HEAD[k.toLowerCase()]; return `<h3 style="margin:18px 0 6px;font-size:1rem">${esc(h ? bi(h[0], h[1]) : k)}</h3>`; };
+  return String(text).split(/\n+/).map((t) => t.trim()).filter(Boolean).map((t) => {
+    const m = /^<<\s*([^<>]+?)\s*>>\s*([\s\S]*)$/.exec(t);
+    return m ? head(m[1]) + (m[2] ? `<p style="max-width:75ch">${esc(m[2])}</p>` : '') : `<p style="max-width:75ch">${esc(t)}</p>`;
+  }).join('');
+}
 
 /* ============ prikaz: Projekt (detalj) ============ */
 function viewProjekt(root, id) {
@@ -2473,9 +2488,9 @@ function viewProjekt(root, id) {
   ${head(`Projekt · ${LAB.kind[p[5]]}`, esc(p[1]), `Poziv ${p[2]}. · ${LAB.sector[p[4]]} · ${LAB.status[p[6]]}`)}
   <div class="grid two" style="margin-top:0">
     <div class="stack">
-      ${F ? `<section class="card"><h2>Sažetak</h2><p class="lead small">Sažetak je preuzet iz javnih podataka EU-a i nije lektoriran.</p>${F.summary ? String(F.summary).split(/\n+/).map((t) => `<p style="max-width:75ch">${esc(t)}</p>`).join('') : '<p>–</p>'}</section>` : ''}
+      ${F ? `<section class="card"><h2>Sažetak</h2><p class="lead small">Sažetak je preuzet iz javnih podataka EU-a i nije lektoriran.</p>${F.summary ? summaryHtml(F.summary) : '<p>–</p>'}</section>` : ''}
       <section class="card"><h2>Osnovni podaci</h2><div style="margin-top:14px">${dl([['Oznaka projekta', `<span class="mono">${esc(id)}</span>`], ['Godina poziva', p[2] + '.'], ['Programsko razdoblje', LAB.period[p[3]]], ['Vrsta projekta', `${LAB.kind[p[5]]}${action ? ` <span class="pill">${esc(action)}</span>` : ''}`], ['Sektor', LAB.sector[p[4]] + (field ? ` <span class="pill">${esc(field)}</span>` : '')], ['Status', LAB.status[p[6]] + (p[6] === 1 ? ' <span class="pill warm">u tijeku</span>' : '')], ['Vodeća država', cLead ? esc(country(cLead)) : '—'], ['Dobra praksa', p[7] ? '<span class="pill green">Da, oznaka EU-a</span>' : 'Nije označen']].concat(F && F.grant_eur != null ? [['Dodijeljeni iznos', `${eur(F.grant_eur)}${F.grant_not_comparable ? ' <span class="pill warm">nije usporediv</span>' : ''}`]] : []))}</div></section>
-      ${F ? '' : '<div class="note">Sažetak projekta, popis sudionika i dodijeljeni iznos čitaju se iz datoteke <span class="mono">projects_full.json</span>, koja se generira u pipelineu i nije u ovom prototipu. Prikazani su podaci koji postoje u popisu projekata.</div>'}
+      ${F ? '' : '<div class="note">Sažetak projekta, popis sudionika i dodijeljeni iznos trenutačno nisu dostupni. Prikazani su podaci iz popisa projekata.</div>'}
       ${F && (F.results_card_url || F.project_website) ? `<section class="card"><h2>Poveznice EU-a</h2><ul class="check-list" style="margin-top:12px">${F.results_card_url ? `<li><a href="${esc(F.results_card_url)}" target="_blank" rel="noopener noreferrer">Kartica projekta na platformi EU-a</a></li>` : ''}${F.project_website ? `<li><a href="${esc(F.project_website)}" target="_blank" rel="noopener noreferrer nofollow">Mrežna stranica projekta</a></li>` : ''}</ul></section>` : ''}
     </div>
     <div class="stack">
@@ -2513,7 +2528,7 @@ const GLOSS = [
 ];
 function viewRjecnik(root) {
   root.innerHTML = `${head('Informacije · Rječnik', 'Rječnik pojmova', 'Kratka objašnjenja izraza koji se koriste u atlasu, da brojke možete čitati s razumijevanjem.')}
-  <div class="filters" style="margin-bottom:20px"><label class="f" style="flex:1 1 320px"><span class="lab">Pretraži pojmove</span><input id="gq" type="search" placeholder="Npr. koordinator…" autocomplete="off" style="width:100%;max-width:420px"></label></div>
+  <div class="filters" style="margin-bottom:20px"><label class="f" style="flex:1 1 320px"><span class="lab">Pretražite pojmove</span><input id="gq" type="search" placeholder="Npr. koordinator…" autocomplete="off" style="width:100%;max-width:420px"></label></div>
   <div class="gloss" id="gl">${GLOSS.map(([t, d]) => `<details data-n="${esc(fold(t + ' ' + d))}"><summary>${esc(t)}</summary><p>${esc(d)}</p></details>`).join('')}</div><p class="empty" id="gn" hidden style="margin-top:12px">Nijedan pojam ne odgovara pretrazi.</p>`;
   $('#gq', root).oninput = (e) => { const q = fold(e.target.value.trim()); let n = 0; $$('#gl details', root).forEach((d) => { const h = !!q && !d.dataset.n.includes(q); d.hidden = h; if (!h) n++; if (q && !h) d.open = true; }); $('#gn', root).hidden = n > 0; };
 }
@@ -2533,9 +2548,8 @@ function viewPreuzimanje(root) {
   ];
   root.innerHTML = `${head('Informacije · Preuzimanje podataka', 'Preuzmite otvorene podatke', 'Skupovi podataka na kojima se temelji atlas.')}
   <div class="grid two" style="margin-top:0"><section class="card" style="padding:0"><div>${SETS.map(([f, t, d], i) => `<div class="ds"><div><h3>${t}</h3><p>${d}</p><p class="mono small" style="margin-top:6px">${f}</p></div><div class="acts"><button type="button" class="btn sm primary" data-i="${i}">Preuzmi CSV</button></div></div>`).join('')}</div></section>
-  <div class="stack"><section class="card"><h2>Kako koristiti podatke</h2><ul class="check-list" style="margin-top:14px"><li>Navedite izvore: Erasmus+ Project Results Platform (Europska komisija), Program Erasmus+ 2021.–2027. i registri ustanova na data.gov.hr (Agencija za mobilnost i programe EU, Ministarstvo znanosti, obrazovanja i mladih).</li><li>Provjerite uvjete korištenja u izvoru; atlas ne mijenja licence izvornih skupova.</li><li>Pročitajte <a href="#/o-podacima">ograničenja podataka</a> prije usporedbi.</li></ul></section>
-  <section class="card"><h2>Za programere</h2><p class="lead">U pravoj aplikaciji isti su podaci dostupni kao JSON, a pitanja se šalju asistentu.</p><pre class="code">GET  /data/projects.json
-GET  /data/orgs.json
+  <div class="stack"><section class="card"><h2>Kako koristiti podatke</h2><ul class="check-list" style="margin-top:14px"><li>Navedite izvore: Platforma za rezultate projekata programa Erasmus+ (Europska komisija), Program Erasmus+ 2021.–2027. i registri ustanova na data.gov.hr (Agencija za mobilnost i programe EU, Ministarstvo znanosti, obrazovanja i mladih).</li><li>Provjerite uvjete korištenja u izvoru; atlas ne mijenja licence izvornih skupova.</li><li>Pročitajte <a href="#/o-podacima">ograničenja podataka</a> prije usporedbi.</li></ul></section>
+  <section class="card"><h2>Za programere</h2><p class="lead">Popis projekata dostupan je kao JSON, a pitanja se šalju asistentu.</p><pre class="code">GET  /projects.json
 POST /api/ask   { "question": "…" }</pre></section>
   <section class="card"><h2>Za AI asistente (MCP)</h2><p class="lead">Isti sloj upita dostupan je i kao MCP poslužitelj, pa asistenti poput Claudea mogu pretraživati projekte, otvoriti profil organizacije, izračunati pokrivenost i pronaći slične organizacije — iz istih podataka i s istim izvorima.</p><ul class="check-list"><li>Pretraga projekata i profil organizacije.</li><li>Pokrivenost po županiji i prvi projekti po sektoru.</li><li>Slične organizacije u istom sektoru i blizini.</li></ul></section></div></div>`;
   $$('button[data-i]', root).forEach((b) => b.onclick = () => { const s = SETS[+b.dataset.i]; download(tr(s[0]), s[3]()); b.textContent = tr('Preuzeto ✓'); setTimeout(() => (b.textContent = tr('Preuzmi CSV')), 2000); });
@@ -2569,9 +2583,9 @@ function viewKontakt(root) {
     <div class="field-row"><label for="km">Poruka</label><textarea id="km" class="field" maxlength="1500" required placeholder="Što ste primijetili ili što biste željeli?"></textarea><small class="muted" id="kerr" role="alert"></small></div>
     <div class="field-row"><label for="ke">E-pošta <span class="muted" style="font-weight:400">(nije obavezna, samo ako želite odgovor)</span></label><input id="ke" class="field" type="email" autocomplete="email"></div>
     <button class="btn primary" type="submit">Pošalji poruku</button></form>
-    <div id="kok" hidden class="note" style="margin-top:20px;border-left-color:var(--green);background:var(--green-bg)" role="status"><b>Hvala.</b> U ovom prototipu poruka se ne šalje nikamo. U pravoj aplikaciji stigla bi na adresu projekta i u popis zadataka na GitHubu.</div></section>
+    <div id="kok" hidden class="note" style="margin-top:20px;border-left-color:var(--green);background:var(--green-bg)" role="status"><b>Poruka nije poslana.</b> Ovaj obrazac još ne šalje poruke. Greške i prijedloge prijavite putem poveznice u dijelu „Drugi načini”.</div></section>
   <div class="stack"><section class="card"><h2>Drugi načini</h2><ul class="check-list" style="margin-top:14px"><li><a href="https://github.com/CroPublica/Erasmus-Kompas/issues" target="_blank" rel="noopener">Prijava na GitHubu</a> za greške i prijedloge s tehničkim detaljima.</li><li><a href="#/pitajte">Pitajte asistenta</a> za brza pitanja o podacima.</li><li><a href="#/rjecnik">Rječnik</a> objašnjava većinu izraza u atlasu.</li></ul></section></div></div>`;
-  $('#kf', root).onsubmit = (e) => { e.preventDefault(); const m = $('#km', root).value.trim(); $('#kerr', root).textContent = m ? '' : 'Upišite poruku.'; $('#kok', root).hidden = !m; if (m) { $('#kf', root).reset(); $('#kok', root).scrollIntoView({ block: 'nearest' }); } };
+  $('#kf', root).onsubmit = (e) => { e.preventDefault(); const m = $('#km', root).value.trim(); $('#kerr', root).textContent = m ? '' : 'Upišite poruku.'; $('#kok', root).hidden = !m; if (m) $('#kok', root).scrollIntoView({ block: 'nearest' }); };
 }
 
 /* ============ prikaz: Mapa stranice ============ */
@@ -2618,7 +2632,7 @@ function viewLanding(root) {
         <p class="lead hrise" style="--d:2">Erasmus+ Kompas je otvoreni atlas partnerstava hrvatskih škola, udruga i ustanova. Pokazuje tko već surađuje, gdje i na kojim temama, da lakše pronađete partnera, ideju ili prazninu koju vaš projekt može popuniti.</p>
         <div class="hrise" style="--d:3">${searchHTML('hero')}</div>
         <div class="hero-quick hrise" style="--d:4"><a href="#/mjesta">Karta županija</a><a href="#/pokrivenost">Pokrivenost škola</a><a href="#/drzave">Partnerske države</a></div>
-        <div class="actions hrise" style="--d:5"><a class="btn primary" href="#/pregled">Istražite atlas ${hico('arrow', 18)}</a><button class="btn" type="button" id="l-ask">Pitaj asistenta</button></div>
+        <div class="actions hrise" style="--d:5"><a class="btn primary" href="#/pregled">Istražite atlas ${hico('arrow', 18)}</a><button class="btn" type="button" id="l-ask">Pitajte asistenta</button></div>
         <p class="l-meta hrise" style="--d:6">Ažurirano <time translate="no" datetime="${D.meta.generated}">${fdate(D.meta.generated)}</time></p>
       </div>
       ${hm.html}
@@ -2651,7 +2665,7 @@ function viewLanding(root) {
 
   <section class="band"><div class="wrap"><div class="grid cols3" style="margin-top:0">
     <article class="card"><div class="head"><h2>Županije s najviše projekata</h2></div><p class="lead">KA2 projekti sa sudionikom iz županije, 2014.–2026.</p>${rank(topC('all').slice(0, 6).map((c) => ({ label: shortCounty(c), v: c.ka2.all.projects_involved, text: fmt(c.ka2.all.projects_involved), href: '#/mjesta/' + encodeURIComponent(c.stem) })), { nonum: true, cls: 'compact', max: topC('all')[0].ka2.all.projects_involved })}<div class="cardfoot"><span>6 od 21 županije</span><a href="#/mjesta">Karta i cijeli poredak →</a></div></article>
-    <article class="card"><div class="head"><h2>Tko koordinira iz Hrvatske</h2></div><p class="lead">Koordinirani projekti po vrsti organizacije (${fmt(nat.coordinated)} ukupno).</p>${rank(cl.map((c) => ({ label: LAB.cls[c.org_class] || c.org_class, v: c.projects_coordinated, text: fmt(c.projects_coordinated), st: pct(c.projects_coordinated / nat.coordinated, 0) + ' %' })), { nonum: true })}<div class="cardfoot"><span></span><a href="#/pregled">Pregled s filtrima →</a></div></article>
+    <article class="card"><div class="head"><h2>Tko koordinira iz Hrvatske</h2></div><p class="lead">Koordinirani projekti po vrsti organizacije (${fmt(nat.coordinated)} ukupno).</p>${rank(cl.map((c) => ({ label: clsName(c.org_class), v: c.projects_coordinated, text: fmt(c.projects_coordinated), st: pct(c.projects_coordinated / nat.coordinated, 0) + ' %' })), { nonum: true })}<div class="cardfoot"><span></span><a href="#/pregled">Pregled s filtrima →</a></div></article>
     <article class="card"><div class="head"><h2>S kojim državama surađujemo</h2></div><p class="lead">Broj zajedničkih projekata s organizacijama iz države.</p>${rank(ctop.slice(0, 6).map((c) => ({ label: country(c), v: ctr[c], text: fmt(ctr[c]) })), { nonum: true, cls: 'alt' })}<div class="cardfoot"><span></span><a href="#/drzave">Sve države →</a></div></article>
   </div></div></section>
 
@@ -2662,14 +2676,14 @@ function viewLanding(root) {
 
   <section class="band tint"><div class="wrap"><div class="askband">
     <div><div class="kicker">Asistent</div><h2 class="l-h" style="margin-top:12px">Imate pitanje o podacima?</h2><p class="l-sub">Poseban asistent odgovara na pitanja o projektima, organizacijama, županijama i temama. Odgovara samo iz podataka atlasa i uz svaki odgovor navodi izvor.</p>
-      <form id="lask"><label class="sr" for="lq">Pitanje</label><div class="askrow"><input id="lq" maxlength="500" placeholder="Npr. Koje županije imaju najviše projekata?" autocomplete="off" required><button type="submit">Pitaj</button></div><div class="eg">${EX.slice(0, 3).map((e) => `<button type="button">${esc(e)}</button>`).join('')}</div></form></div>
+      <form id="lask"><label class="sr" for="lq">Pitanje</label><div class="askrow"><input id="lq" maxlength="500" placeholder="Npr. Koje županije imaju najviše projekata?" autocomplete="off" required><button type="submit">Pitajte</button></div><div class="eg">${EX.slice(0, 3).map((e) => `<button type="button">${esc(e)}</button>`).join('')}</div></form></div>
     <div class="demo" aria-hidden="true"><div class="msg you">Koje županije imaju najviše projekata?</div><div class="msg bot"><span class="avatar"><svg width="18" height="18" viewBox="0 0 40 40"><path d="M20 4l5 16-5 16-5-16z" fill="#ffd617"/><path d="M4 20l16-5 16 5-16 5z" fill="#fff"/></svg></span><div class="bubble"><p>${esc(sample.text)}</p>${sample.rows ? rank(sample.rows.slice(0, 3).map((r) => ({ label: r[0], v: r[1], text: r[2] })), { nonum: true, cls: 'compact' }) : ''}<div class="srcrow">Izvori: ${sample.src.map(([l]) => `<span class="pill blue">${esc(l)}</span>`).join(' ')}</div></div></div></div>
   </div></div></section>
 
   <section class="band"><div class="wrap">
     <div class="secthead"><div><h2 class="l-h">Odakle podaci</h2><p class="l-sub">Svi izvori su javni. Atlas ih povezuje i izračunava pokazatelje, ništa se ne unosi ručno.</p></div><a class="btn sm" href="#/o-podacima">Izvori i ograničenja →</a></div>
     <div class="srcgrid">
-      <article class="src"><a href="https://erasmus-plus.ec.europa.eu/projects/projects-lists" target="_blank" rel="noopener noreferrer">Erasmus+ Project Results Platform</a><small>Europska komisija</small><p>KA2 projekti 2014.–2020. i 2021.–2027.: naslovi, vrste, države i iznosi.</p></article>
+      <article class="src"><a href="https://erasmus-plus.ec.europa.eu/projects/projects-lists" target="_blank" rel="noopener noreferrer">Platforma za rezultate projekata programa Erasmus+</a><small>Europska komisija</small><p>KA2 projekti 2014.–2020. i 2021.–2027.: naslovi, vrste, države i iznosi.</p></article>
       <article class="src"><a href="https://data.gov.hr/ckan/hr/dataset/program-erasmus-za-razdoblje-od-2021-do-2027-godine" target="_blank" rel="noopener noreferrer">Program Erasmus+ 2021.–2027.</a><small>Agencija za mobilnost i programe EU · data.gov.hr</small><p>Hrvatski sudionici i organizacije u projektima.</p></article>
       <article class="src"><a href="https://data.gov.hr/ckan/hr/dataset/osnovne-skole" target="_blank" rel="noopener noreferrer">Registri ustanova</a><small>Ministarstvo znanosti, obrazovanja i mladih · data.gov.hr</small><p>Dječji vrtići, osnovne i srednje škole te visoko obrazovanje, za izračun pokrivenosti.</p></article>
     </div>
@@ -2712,7 +2726,7 @@ function canned(q) {
   const T = (hr, en) => (LANG === 'en' ? en : hr), E = (s) => I18N.ent(s);
   const P1 = T('2014.–2020.', '2014–2020'), P2 = T('2021.–2027.', '2021–2027'), P0 = T('2014.–2026.', '2014–2026');
   const county = findCounty(f), year = (f.match(/\b(20[12]\d)\b/) || [])[1];
-  const sector = (k) => E(LAB.sector[k]), cls = (k) => E(LAB.cls[k] || k);
+  const sector = (k) => E(LAB.sector[k]), cls = (k) => E(clsName(k));
   if (county) {
     const k = county.ka2.all, order = byC('all'), pos = order.findIndex((c) => c.stem === county.stem) + 1, name = E(county.label);
     return { text: T(`${county.label} ima ${fmt(k.projects_involved)} KA2 projekata sa sudionikom iz županije (${pos}. od ${order.length}), od toga ${fmt(k.projects_coordinated)} koordiniranih. U projektima sudjeluje ${fmt(k.organisations)} organizacija, a vrijednost projekata je ${mil(k.value_involved_eur)}.`,
@@ -2731,7 +2745,7 @@ function canned(q) {
   if (/koordin|coordinat/.test(f)) {
     const cl = nat.classes.slice(0, 5);
     return { text: T(`Najviše projekata koordiniraju ${lc(cls(cl[0].org_class))} (${fmt(cl[0].projects_coordinated)}), zatim ${lc(cls(cl[1].org_class))} (${fmt(cl[1].projects_coordinated)}). Ukupno je ${fmt(nat.coordinated)} koordiniranih projekata.`, `Most projects are coordinated by ${lc(cls(cl[0].org_class))} (${fmt(cl[0].projects_coordinated)}), followed by ${lc(cls(cl[1].org_class))} (${fmt(cl[1].projects_coordinated)}). There are ${fmt(nat.coordinated)} coordinated projects in total.`),
-      rows: cl.map((c) => [LAB.cls[c.org_class] || c.org_class, c.projects_coordinated, fmt(c.projects_coordinated)]), src: [[T('Pregled', 'Overview'), '#/pregled'], [T('Organizacije', 'Organisations'), '#/organizacije']],
+      rows: cl.map((c) => [clsName(c.org_class), c.projects_coordinated, fmt(c.projects_coordinated)]), src: [[T('Pregled', 'Overview'), '#/pregled'], [T('Organizacije', 'Organisations'), '#/organizacije']],
       steps: [T('Tema: koordinacija projekata', 'Topic: project coordination'), T('Tablica: vrste organizacija, razdoblje 2014.–2026.', 'Table: organisation types, 2014–2026'), T('Poredak po broju koordiniranih projekata', 'Ranked by number of coordinated projects')] };
   }
   if (/organizacij|ustanov|sveucilist|skol.*najvise|najvise.*skol|organi[sz]ation|universit|institution/.test(f) && !/pokrivenost|coverage/.test(f)) {
@@ -2785,7 +2799,7 @@ function canned(q) {
       rows: [[P1, p1.projects, fmt(p1.projects)], [P2, p2.projects, fmt(p2.projects)]], src: [[T('Pregled', 'Overview'), '#/pregled'], [T('Projekti', 'Projects'), '#/projekti']],
       steps: [T('Tema: ukupni broj projekata', 'Topic: total number of projects'), T('Tablica: nacionalni pokazatelji po razdobljima', 'Table: national indicators by period')] };
   }
-  if (/izvor|odakle|podac|source|where|data/.test(f)) return { text: T('Podaci dolaze iz tri javna izvora: Erasmus+ Project Results Platform (Europska komisija), portala data.gov.hr (Agencija za mobilnost i programe EU) i registara škola Ministarstva znanosti, obrazovanja i mladih. Atlas ih povezuje i izračunava pokazatelje, ništa se ne unosi ručno.', 'The data comes from three public sources: the Erasmus+ Project Results Platform (European Commission), the data.gov.hr portal (Agency for Mobility and EU Programmes) and the school registers of the Ministry of Science, Education and Youth. The atlas links them and calculates the indicators; nothing is entered by hand.'), src: [[T('O podacima', 'About the data'), '#/o-podacima']], steps: [T('Tema: izvori podataka', 'Topic: data sources'), T('Stranica: O podacima', 'Page: About the data')] };
+  if (/izvor|odakle|podac|source|where|data/.test(f)) return { text: T('Podaci dolaze iz tri javna izvora: Platforma za rezultate projekata programa Erasmus+ (Europska komisija), portala data.gov.hr (Agencija za mobilnost i programe EU) i registara škola Ministarstva znanosti, obrazovanja i mladih. Atlas ih povezuje i izračunava pokazatelje, ništa se ne unosi ručno.', 'The data comes from three public sources: the Erasmus+ Project Results Platform (European Commission), the data.gov.hr portal (Agency for Mobility and EU Programmes) and the school registers of the Ministry of Science, Education and Youth. The atlas links them and calculates the indicators; nothing is entered by hand.'), src: [[T('O podacima', 'About the data'), '#/o-podacima']], steps: [T('Tema: izvori podataka', 'Topic: data sources'), T('Stranica: O podacima', 'Page: About the data')] };
   return { text: T('Na to pitanje u podacima atlasa nemam odgovor. Mogu odgovoriti o županijama, organizacijama, partnerskim državama, temama, sektorima, vrijednosti projekata i pokrivenosti škola. Probajte jedno od predloženih pitanja.', 'I have no answer to that question in the atlas data. I can answer about counties, organisations, partner countries, topics, sectors, project value and school coverage. Try one of the suggested questions.'), src: [[T('Mapa stranice', 'Site map'), '#/mapa-stranice']], steps: [T('Pitanje nije prepoznato među temama atlasa', 'The question was not recognised among the atlas topics')], none: true };
 }
 
@@ -2808,13 +2822,33 @@ const AskAPI = (() => {
   const ROUTE_NAME = { county_ranking: ['rang županija', 'ranking of counties'], county: ['jedna županija', 'one county'], county_project: ['projekt u županiji', 'project in a county'], top_organisations: ['najaktivnije organizacije', 'most active organisations'],
     organisation: ['jedna organizacija', 'one organisation'], national: ['Hrvatska u cjelini', 'Croatia as a whole'], coverage: ['pokrivenost škola', 'school coverage'], country_ranking: ['rang država', 'ranking of countries'],
     partner_countries: ['partnerske države', 'partner countries'], project_search: ['pretraga projekata', 'project search'], concepts: ['sadržaj projekata', 'project content'], glossary: ['rječnik', 'glossary'],
-    year_count: ['projekti po godini poziva', 'projects by call year'], value: ['vrijednost projekata', 'project value'], success: ['prolaznost prijava', 'success rate'], limits: ['izvan obuhvata (KA1/KA3)', 'outside the scope (KA1/KA3)'] };
+    year_count: ['projekti po godini poziva', 'projects by call year'], value: ['vrijednost projekata', 'project value'], success: ['prolaznost prijava', 'success rate'], limits: ['izvan obuhvata (KA1/KA3)', 'outside the scope (KA1/KA3)'],
+    town: ['grad', 'town'], concept_aliases: ['izrazi za isti pojam', 'wordings of one concept'], out_of_scope: ['izvan obuhvata atlasa', 'outside the scope of the atlas'] };
   const TOOL_NAME = { county_ranking: ['rang županija', 'county ranking'], county_stats: ['podaci o županiji', 'county figures'], county_project: ['n-ti projekt županije', 'n-th project of a county'], top_organisations: ['najaktivnije organizacije', 'most active organisations'],
     organisation_profile: ['profil organizacije', 'organisation profile'], find_organisation: ['traženje organizacije', 'organisation lookup'], national_stats: ['državni pokazatelji', 'national figures'], partner_countries: ['partnerske države', 'partner countries'],
     country_stats: ['države koordinatori', 'coordinating countries'], coverage: ['pokrivenost škola', 'school coverage'], search_projects: ['pretraga projekata', 'project search'], search_concepts: ['pretraga pojmova', 'concept search'],
     concept_profile: ['profil pojma', 'concept profile'], common_concepts: ['najčešći pojmovi', 'most common concepts'], community_overview: ['skupine pojmova', 'concept groups'], concept_trends: ['trendovi pojmova', 'concept trends'],
-    connected_concepts: ['povezani pojmovi', 'connected concepts'], glossary: ['rječnik', 'glossary'], year_projects: ['projekti jedne godine poziva', 'projects of one call year'], success_rate: ['prolaznost prijava', 'success rate'], similar_organisations: ['slične organizacije', 'similar organisations'] };
-  const ARG_NAME = { period: ['razdoblje', 'period'], limit: ['broj', 'limit'], county: ['županija', 'county'], role: ['uloga', 'role'], year: ['godina', 'year'], n: ['redni broj', 'number'], order: ['redoslijed', 'order'], text: ['pojam', 'term'] };
+    connected_concepts: ['povezani pojmovi', 'connected concepts'], glossary: ['rječnik', 'glossary'], year_projects: ['projekti jedne godine poziva', 'projects of one call year'], success_rate: ['prolaznost prijava', 'success rate'], similar_organisations: ['slične organizacije', 'similar organisations'],
+    town_compare: ['usporedba gradova', 'town comparison'], town_organisations: ['organizacije u gradu', 'organisations in a town'], year_series: ['projekti po godinama', 'projects by year'],
+    project_values: ['vrijednost projekata', 'project value'], country_compare: ['usporedba država', 'country comparison'], concept_aliases: ['izrazi za isti pojam', 'wordings of one concept'], mention_count: ['navodi izraza u sažecima', 'phrase mentions in summaries'] };
+  // argument values as a person reads them: a period, an organisation, a concept or a code is shown by its name, never as the value the API uses
+  const ARG_VAL = { 'role:any': ['svi', 'any'], 'role:coordinator': ['koordinator', 'coordinator'], 'role:partner': ['partner', 'partner'],
+    'school_type:both': ['osnovne i srednje', 'primary and secondary'], 'school_type:primary': ['osnovne', 'primary'], 'school_type:secondary': ['srednje', 'secondary'], 'school_type:kindergarten': ['vrtići', 'kindergartens'],
+    'order:first': ['prvi', 'first'], 'order:last': ['zadnji', 'last'], 'order_by:projects': ['broj projekata', 'number of projects'], 'order_by:organisations': ['broj organizacija', 'number of organisations'],
+    'kind:approach': ['pristup', 'approach'], 'kind:target_group': ['ciljna skupina', 'target group'], 'kind:output': ['rezultat', 'output'], 'kind:problem': ['problem', 'problem'], 'kind:topic': ['tema EU-a', 'EU topic'],
+    'mode:in_text': ['u tekstu pitanja', 'in the text of the question'], 'by_meaning:true': ['da', 'yes'], 'partners:true': ['da', 'yes'], 'partners:false': ['ne', 'no'] };
+  const argVal = (k, v) => {
+    if (Array.isArray(v)) return v.map((x) => argVal(k, x)).join(', ');
+    if (k === 'period') return v === 'all' ? T('sva razdoblja', 'all periods') : String(v).replace(/(\d{4})-(\d{4})/, T('$1.–$2.', '$1–$2'));
+    if (k === 'org_id') { const o = D.orgs.find((x) => x[0] === v); return o ? o[1] : v; }
+    if (k === 'countries') return country(v);
+    if (k === 'node_id') { const n = ((D.graph || {}).nodes || []).find((x) => x[0] === v); return n ? bi(n[2], n[3]) : v; }
+    const m = ARG_VAL[k + ':' + v]; return m ? T(...m) : v;
+  };
+  const ARG_NAME = { period: ['razdoblje', 'period'], limit: ['broj', 'limit'], county: ['županija', 'county'], role: ['uloga', 'role'], year: ['godina', 'year'], n: ['redni broj', 'number'], order: ['redoslijed', 'order'], text: ['pojam', 'term'],
+    town: ['grad', 'town'], towns: ['gradovi', 'towns'], query: ['upit', 'query'], mode: ['način', 'mode'], org_id: ['organizacija', 'organisation'], question: ['pitanje', 'question'], countries: ['države', 'countries'],
+    action: ['akcija', 'action'], sector: ['sektor', 'sector'], school_type: ['vrsta škola', 'school type'], kind: ['vrsta pojma', 'concept type'], focus: ['fokus', 'focus'], node_id: ['pojam', 'concept'],
+    community_id: ['skupina pojmova', 'concept group'], order_by: ['poredano po', 'ordered by'], by_meaning: ['po značenju', 'by meaning'], partners: ['kao partneri', 'as partners'] };
   const GLOSS_NAME = { coordinator: ['Koordinator', 'Coordinator'], partner: ['Partner', 'Partner'], ka2: ['KA1 i KA2', 'KA1 and KA2'], 'call-year': ['Godina poziva', 'Call year'], grant: ['Vrijednost projekata', 'Project value'], 'good-practice': ['Dobra praksa', 'Good practice'], coverage: ['Pokrivenost škola', 'School coverage'] };
   const link = (c) => {
     const i = c.indexOf(':'), k = c.slice(0, i), id = c.slice(i + 1);
@@ -2835,7 +2869,7 @@ const AskAPI = (() => {
       if (r.status === 503) return { msg: 'Asistent je trenutno zauzet. Pokušajte ponovno za nekoliko trenutaka.' };
       if (!r.ok) return { down: true };
       const a = await r.json(); lastOrg = a.last_org_id || lastOrg;
-      const tools = (a.tools || []).map((x) => T('Izračun: ', 'Calculation: ') + (TOOL_NAME[x.tool] ? T(...TOOL_NAME[x.tool]) : x.tool) + (Object.entries(x.args || {}).some(([, v]) => v !== null && v !== undefined) ? ' (' + Object.entries(x.args || {}).filter(([, v]) => v !== null && v !== undefined).map(([k, v]) => (ARG_NAME[k] ? T(...ARG_NAME[k]) : k) + ': ' + v).join('; ') + ')' : ''));
+      const tools = (a.tools || []).map((x) => T('Izračun: ', 'Calculation: ') + (TOOL_NAME[x.tool] ? T(...TOOL_NAME[x.tool]) : x.tool) + (Object.entries(x.args || {}).some(([, v]) => v !== null && v !== undefined) ? ' (' + Object.entries(x.args || {}).filter(([, v]) => v !== null && v !== undefined).map(([k, v]) => (ARG_NAME[k] ? T(...ARG_NAME[k]) : k) + ': ' + argVal(k, v)).join('; ') + ')' : ''));
       return { real: { real: true, text: String(a.answer || ''), src: (a.citations || []).map(link), steps: [(a.route ? T('Vrsta pitanja: ', 'Question type: ') + (ROUTE_NAME[a.route] ? T(...ROUTE_NAME[a.route]) : a.route) : ''), ...tools].filter(Boolean), fallback: !!a.fallback } };
     } catch (e) { return { down: true }; } finally { clearTimeout(t); }
   }
@@ -2969,6 +3003,7 @@ const EK = {
 };
 /* language: the page decides, the dictionary translates what the views draw */
 if (EK.lang === 'en') I18N.setLang('en', { force: true });
+EK.i18n = I18N;                     // the translation layer, for the tests (EK.i18n.missing lists what a page could not translate)
 window.EK = EK;
 
 })();

@@ -10,5 +10,5 @@ D = {
 "—":"—",
 }
 D.update({
-"{N} mil. €":"€{N1}M","{N}–{N}: {N} mil. €":"{N1}–{N2}: €{N3}M","{N}–{N}: {N} mil. € · {N}–{N}: {N} mil. €":"{N1}–{N2}: €{N3}M · {N4}–{N5}: €{N6}M","Grantovi: {N} mil. €":"Grants: €{N1}M",
+"{N} mil. €":"€{N1}M","{N}–{N}: {N} mil. €":"{N1}–{N2}: €{N3}M","{N}–{N}: {N} mil. € · {N}–{N}: {N} mil. €":"{N1}–{N2}: €{N3}M · {N4}–{N5}: €{N6}M","Bespovratna sredstva: {N} mil. €":"Grants: €{N1}M",
 })

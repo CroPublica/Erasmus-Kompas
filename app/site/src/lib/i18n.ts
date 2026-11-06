@@ -47,7 +47,7 @@ const T = {
     sources: 'Sources', provenance: 'Sources: Erasmus+ Project Results Platform, KA2 exports 2014–2020 and 2021–2027; Croatian Agency for Mobility and EU Programmes (data.gov.hr); Ministry of Science, Education and Youth school registers. Grants are indicative amounts awarded at selection, recorded per project — not split between partners.',
     partial: '2026 selection is still in progress, so the last year is incomplete.',
     selected: 'SELECTED', openCounty: 'Open county page', notInvolved: 'schools not yet involved',
-    tookPart: (k: string, n: number, r: string, lo: string, hi: string) => `${k} of ${new Intl.NumberFormat('en-GB').format(n)} ${n === 1 ? 'school' : 'schools'} took part (${r} %, range ${lo}–${hi} %).`,
+    tookPart: (k: string, n: number, r: string, lo: string, hi: string) => `${k} of ${new Intl.NumberFormat('en-GB').format(n)} ${n === 1 ? 'school' : 'schools'} took part (${r}%, range ${lo}–${hi}%).`,
     wouldExpect: (e: string) => `Given its mix of school types, about ${e} would be expected.`,
     orgsTitle: 'Organisations', orgsLead: 'Croatian organisations that took part in at least one KA2 partnership, 2014–2026.',
     filter: 'Filter by name or town', allCounties: 'All counties', name: 'Name', town: 'Town', projects: 'Projects', coordinated: 'Coordinated', shown: 'shown',
@@ -112,7 +112,7 @@ const T = {
     tookPart: (k: string, n: number, r: string, lo: string, hi: string) => `${k} od ${new Intl.NumberFormat('hr-HR').format(n)} ${plural(n, ['škole', 'škole', 'škola'])} sudjelovalo je (${r} %, raspon ${lo}–${hi} %).`,
     wouldExpect: (e: string) => `S obzirom na sastav vrsta škola, očekivalo bi se oko ${e}.`,
     orgsTitle: 'Organizacije', orgsLead: 'Hrvatske organizacije koje su sudjelovale u barem jednom KA2 partnerstvu, 2014.–2026.',
-    filter: 'Pretraži po nazivu ili mjestu', allCounties: 'Sve županije', name: 'Naziv', town: 'Mjesto', projects: 'Projekti', coordinated: 'Koordinirano', shown: 'prikazano',
+    filter: 'Pretražite po nazivu ili mjestu', allCounties: 'Sve županije', name: 'Naziv', town: 'Mjesto', projects: 'Projekti', coordinated: 'Koordinirano', shown: 'prikazano',
     orgKicker: 'ORGANIZACIJA', kaProjects: 'KA2 projekata', role: 'Uloga', coordinatorWord: 'koordinator', asPartner: 'kao partner',
     grantsCoord: 'Bespovratna sredstva za koordinirane projekte', valueInvolved: 'Vrijednost svih projekata u kojima sudjeluje', evidence: 'Pokazatelji kvalitete', goodPractice: 'dobra praksa',
     participation: 'Sudjelovanje po godinama', coordinatorLbl: 'Koordinator', partnerLbl: 'Partner', gpLbl: 'Dobra praksa',
@@ -150,6 +150,18 @@ export const eur = (lang: Lang, n: number | null | undefined) =>
   n == null ? '–' : `${num(lang, Math.round(n))} €`;
 
 export const pct = (lang: Lang, share: number, digits = 1) => num(lang, share * 100, digits);
+/** The percent sign: "12 %" in Croatian, "12%" in English. */
+export const pctUnit = (lang: Lang) => (lang === 'en' ? '%' : ' %');
+
+/** English names of the counties (the Croatian label of a county is 'Varaždinska županija'); the same names the English dictionary uses. */
+const EN_COUNTY: Record<string, string> = {
+  'Bjelovarsko-bilogorska': 'Bjelovar-Bilogora County', 'Brodsko-posavska': 'Brod-Posavina County', 'Dubrovačko-neretvanska': 'Dubrovnik-Neretva County', 'Grad Zagreb': 'City of Zagreb',
+  'Istarska': 'Istria County', 'Karlovačka': 'Karlovac County', 'Koprivničko-križevačka': 'Koprivnica-Križevci County', 'Krapinsko-zagorska': 'Krapina-Zagorje County',
+  'Ličko-senjska': 'Lika-Senj County', 'Međimurska': 'Međimurje County', 'Osječko-baranjska': 'Osijek-Baranja County', 'Požeško-slavonska': 'Požega-Slavonia County',
+  'Primorsko-goranska': 'Primorje-Gorski Kotar County', 'Sisačko-moslavačka': 'Sisak-Moslavina County', 'Splitsko-dalmatinska': 'Split-Dalmatia County', 'Varaždinska': 'Varaždin County',
+  'Virovitičko-podravska': 'Virovitica-Podravina County', 'Vukovarsko-srijemska': 'Vukovar-Syrmia County', 'Zadarska': 'Zadar County', 'Zagrebačka': 'Zagreb County', 'Šibensko-kninska': 'Šibenik-Knin County',
+};
+export const countyName = (lang: Lang, c: { stem: string; label: string }) => (lang === 'en' ? EN_COUNTY[c.stem] ?? c.label : c.label);
 
 /** Topic name in the page language; topics from the 2014–2020 list that have no Croatian name stay in English. */
 export const topicName = (lang: Lang, name: string): string => (lang === 'hr' ? (topicLabels as Record<string, string>)[name] || name : name);

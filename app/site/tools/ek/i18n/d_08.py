@@ -15,7 +15,7 @@ D = {
 "Program Erasmus+ {N}–{N}": "Erasmus+ programme {N1}–{N2}",
 "Program Erasmus+ {N}–{N} (data.gov.hr)": "Erasmus+ programme {N1}–{N2} (data.gov.hr)",
 "Europska komisija. Popisi KA{N} projekata {N}–{N} i {N}–{N}": "European Commission. Lists of KA{N1} projects {N2}–{N3} and {N4}–{N5}",
-"Navedite izvore: Erasmus+ Project Results Platform (Europska komisija), Program Erasmus+ {N}–{N} i registri ustanova na data.gov.hr (Agencija za mobilnost i programe EU, Ministarstvo znanosti, obrazovanja i mladih).": "Cite the sources: Erasmus+ Project Results Platform (European Commission), the Erasmus+ programme {N1}–{N2} and the institution registers on data.gov.hr (Agency for Mobility and EU Programmes, Ministry of Science, Education and Youth).",
+"Navedite izvore: Platforma za rezultate projekata programa Erasmus+ (Europska komisija), Program Erasmus+ {N}–{N} i registri ustanova na data.gov.hr (Agencija za mobilnost i programe EU, Ministarstvo znanosti, obrazovanja i mladih).": "Cite the sources: Erasmus+ Project Results Platform (European Commission), the Erasmus+ programme {N1}–{N2} and the institution registers on data.gov.hr (Agency for Mobility and EU Programmes, Ministry of Science, Education and Youth).",
 "{E} ima {N} KA{N} projekata sa sudionikom iz županije ({N}. od {N}), od toga {N} koordiniranih. U projektima sudjeluje {N} organizacija, a vrijednost projekata je {N} mil. €.": "{E1} has {N1} KA{N2} projects with a participant from the county (rank {N3} of {N4}), of which {N5} were coordinated from it. {N6} organisations take part, and the projects are worth €{N7}M.",
 
 # odabir tema

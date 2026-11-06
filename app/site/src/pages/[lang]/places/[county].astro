@@ -2,12 +2,12 @@
 import Base from '../../../layouts/Base.astro';
 import EkView from '../../../components/EkView.astro';
 import counties from '../../../data/counties.json';
-import { LANGS, slug, type Lang } from '../../../lib/i18n';
+import { LANGS, slug, countyName, type Lang } from '../../../lib/i18n';
 export const getStaticPaths = () =>
   LANGS.flatMap((lang) => (counties as any[]).map((c) => ({ params: { lang, county: slug(c.stem) }, props: { c } })));
 const lang = Astro.params.lang as Lang;
 const { c } = Astro.props as { c: any };
 ---
-<Base ek lang={lang} title={c.label} path={`/places/${slug(c.stem)}/`} active="places" description={c.label}>
+<Base ek lang={lang} title={countyName(lang, c)} path={`/places/${slug(c.stem)}/`} active="places" description={countyName(lang, c)}>
   <EkView view="county" lang={lang} arg={slug(c.stem)} />
 </Base>

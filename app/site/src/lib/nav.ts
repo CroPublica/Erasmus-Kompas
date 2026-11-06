@@ -47,8 +47,8 @@ export const NAV: NavTop[] = [
   ] },
 ];
 
-/** `active` as the pages give it -> the sidebar entry to mark. 'coverage' is today's front page. */
-export const ACTIVE_ALIAS: Record<string, string> = { coverage: 'home' };
+/** `active` as the pages give it -> the sidebar entry to mark, when the two differ. Every page, School coverage included, marks its own entry. */
+export const ACTIVE_ALIAS: Record<string, string> = {};
 
 export function findActive(active: string): { top?: NavTop; sub?: NavSub } {
   const k = ACTIVE_ALIAS[active] ?? active;

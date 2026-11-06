@@ -1,7 +1,7 @@
 ---
 import Base from '../../layouts/Base.astro';
 import g from '../../data/graph.json';
-import { LANGS, t, num, pct, projectWord, type Lang } from '../../lib/i18n';
+import { LANGS, t, num, pct, pctUnit, projectWord, type Lang } from '../../lib/i18n';
 import { ct } from '../../lib/conceptText';
 export const getStaticPaths = () => LANGS.map((lang) => ({ params: { lang } }));
 const lang = Astro.params.lang as Lang;
@@ -38,10 +38,10 @@ const lists = [['top_approach', 'approach'], ['top_target_group', 'target_group'
       <details class="card" open={false}>
         <summary style="cursor:pointer">
           <b>{title(k)}</b>
-          <span class="mono"> · {num(lang, k.n)} {projectWord(lang, k.n)} ({pct(lang, k.share, 0)} %)</span>
+          <span class="mono"> · {num(lang, k.n)} {projectWord(lang, k.n)} ({pct(lang, k.share, 0)}{pctUnit(lang)})</span>
         </summary>
         <p class="lead" style="font-size:.9rem;margin:8px 0">
-          2014–2020: {num(lang, k.p1)} · 2021–2027: {num(lang, k.p2)} · {c.gGp}: {num(lang, k.gp)} {c.gOf} {num(lang, k.n)} ({pct(lang, k.gp / k.n, 0)} %; {pct(lang, k.gp_lo, 0)}–{pct(lang, k.gp_hi, 0)})
+          2014–2020: {num(lang, k.p1)} · 2021–2027: {num(lang, k.p2)} · {c.gGp}: {num(lang, k.gp)} {c.gOf} {num(lang, k.n)} ({pct(lang, k.gp / k.n, 0)}{pctUnit(lang)}; {pct(lang, k.gp_lo, 0)}–{pct(lang, k.gp_hi, 0)})
         </p>
         <div class="grid three">
           {lists.map(([key, kind]) => k[key].length > 0 && (
@@ -65,6 +65,7 @@ const lists = [['top_approach', 'approach'], ['top_target_group', 'target_group'
   const nodes = g.nodes as unknown as N[];
   const nf = new Intl.NumberFormat(lang === 'hr' ? 'hr-HR' : 'en-GB');
   const pc = (x: number) => nf.format(Math.round(x * 100));
+  const pu = lang === 'en' ? '%' : ' %';
   const name = (n: N) => (lang === 'hr' && n[3] ? n[3] : n[2]);
   const fold = (x: string) => x.normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/đ/g, 'd').toLowerCase();
   const search = nodes.map((n) => fold(`${n[2]} ${n[3] ?? ''}`));
@@ -101,8 +102,8 @@ const lists = [['top_approach', 'approach'], ['top_target_group', 'target_group'
         `<li><button type="button" class="linkish" data-i="${r[0]}">${esc(name(nodes[r[0]]))}</button> <span class="mono">· ${c.gTogether} ${nf.format(r[1])}</span></li>`).join('')}</ul></div>` : '';
     }).join('');
     body.innerHTML = `<h3 style="margin:4px 0">${esc(name(n))}</h3>
-      <p class="lead" style="margin:0 0 8px">${(c.gKindOne as Record<string, string>)[n[1]]} · ${nf.format(n[4])} ${projectWord(lang, n[4])} (${pc(n[4] / g.projects)} %)</p>
-      <p class="lead" style="font-size:.9rem;margin:0 0 8px">${c.gPeriods}: 2014–2020 ${nf.format(n[5])} · 2021–2027 ${nf.format(n[6])} · ${c.gGp}: ${nf.format(n[7])} (${pc(n[7] / n[4])} %; ${pc(n[8])}–${pc(n[9])}; ${pc(g.gp_rate_all)} % ${lang === 'hr' ? 'svi projekti' : 'all projects'})</p>
+      <p class="lead" style="margin:0 0 8px">${(c.gKindOne as Record<string, string>)[n[1]]} · ${nf.format(n[4])} ${projectWord(lang, n[4])} (${pc(n[4] / g.projects)}${pu})</p>
+      <p class="lead" style="font-size:.9rem;margin:0 0 8px">${c.gPeriods}: 2014–2020 ${nf.format(n[5])} · 2021–2027 ${nf.format(n[6])} · ${c.gGp}: ${nf.format(n[7])} (${pc(n[7] / n[4])}${pu}; ${pc(n[8])}–${pc(n[9])}; ${pc(g.gp_rate_all)}${pu} ${lang === 'hr' ? 'svi projekti' : 'all projects'})</p>
       ${comm ? `<p class="lead" style="font-size:.9rem;margin:0 0 8px">${c.gGroup}: ${esc([comm.top_approach[0], comm.top_target_group[0], comm.top_topic[0]].filter(Boolean).slice(0, 2).map((a: any) => (lang === 'hr' && a[1] ? a[1] : a[0])).join(' · '))}</p>` : ''}
       ${orgsHtml}
       <div class="kicker" style="margin:14px 0 0">${c.gGoes}</div><div class="grid cols3" style="margin-top:10px">${groups}</div>`;

@@ -548,3 +548,43 @@ def test_pretty_en_labels():
     assert pretty_en("training of trainers (ltta)") == "Training of trainers (LTTA)"
     assert pretty_en("vet teachers and trainers") == "VET teachers and trainers"
     assert pretty_en("Information and communication technologies (ICT)") == "Information and communication technologies (ICT)"
+
+
+def test_lika_senj_is_a_county_not_the_town_of_senj(tb):
+    for q in ("What share of primary schools in Lika-Senj take part?", "Koliki udio osnovnih škola u Ličko-senjskoj županiji sudjeluje?"):
+        r = asker(tb, FakeRouter(route="coverage")).ask(q)
+        assert "coverage" in " ".join(r["trace"]) and "town" not in " ".join(r["trace"]), r["trace"]
+        assert "Senj:" not in r["answer"]
+    r = asker(tb, FakeRouter(route="town")).ask("Which organisations in Senj take part?")      # the town itself still works
+    assert "town_organisations" in " ".join(r["trace"]) and "1 organisation takes part" in r["answer"]
+
+
+def test_questions_the_atlas_cannot_answer_are_refused_even_with_a_town_in_them(tb):
+    for q in ("Who is the mayor of Zagreb?", "Tko je gradonačelnik Splita?", "What is the population of Rijeka?"):
+        r = asker(tb, FakeRouter(route="town")).ask(q)
+        assert r["route"] == "out_of_scope" and "refused" in r["trace"], (q, r["trace"])
+
+
+def test_two_countries_as_partners_are_compared(tb):
+    r = asker(tb, FakeRouter(route="out_of_scope")).ask("Compare Italy and Spain as partners")
+    assert "country_compare" in " ".join(r["trace"]) and "Italy" in r["answer"] and "Spain" in r["answer"] and "partner" in r["answer"], r["answer"]
+    r = asker(tb, FakeRouter(route="out_of_scope")).ask("Usporedi Italiju i Španjolsku kao partnere hrvatskih organizacija")
+    assert "Italija" in r["answer"] and "Španjolska" in r["answer"] and "partnerom" in r["answer"], r["answer"]
+
+
+def test_croatian_plural_of_applications_and_english_singular_of_organisation(tb):
+    r = asker(tb, FakeRouter(route="success")).ask("Koliki je uspjeh prijava u školskom obrazovanju?")
+    assert "232 prijave" in r["answer"] and "267 prijava" in r["answer"], r["answer"]
+
+
+def test_off_topic_words_do_not_catch_programme_questions(tb):
+    r = asker(tb, FakeRouter(route="concepts")).ask("What do projects on rural depopulation produce as outputs?")
+    assert r["route"] != "out_of_scope", r["trace"]
+
+
+def test_count_question_on_early_school_leaving_gives_the_same_answer_in_both_languages(tb):
+    en = asker(tb, FakeRouter(route="concepts")).ask("How many projects are related to early school leaving?")["answer"]
+    hr = asker(tb, FakeRouter(route="concepts")).ask("Koliko je projekata povezano s ranim napuštanjem školovanja?")["answer"]
+    for a in (en, hr):
+        assert "175" in a and "42" in a, a                                     # the EU topic and the concept found in the summaries
+    assert "No concept uses those words" not in en and "Nisam našao pojam s istim riječima" not in hr

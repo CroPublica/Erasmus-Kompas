@@ -1,7 +1,7 @@
 ---
 import Base from '../../layouts/Base.astro';
 import g from '../../data/graph.json';
-import { LANGS, t, num, pct, type Lang } from '../../lib/i18n';
+import { LANGS, t, num, pct, pctUnit, type Lang } from '../../lib/i18n';
 import { ct } from '../../lib/conceptText';
 export const getStaticPaths = () => LANGS.map((lang) => ({ params: { lang } }));
 const lang = Astro.params.lang as Lang;
@@ -36,7 +36,7 @@ const vsText: Record<string, string> = { above: c.gpAbove, below: c.gpBelow, unc
       <section class="card">
         <h3>{label}</h3>
         <ol style="padding-left:20px;margin:10px 0 0">
-          {top(k as string).map((n) => <li style="margin-bottom:6px">{name(n)} <span class="mono">· {num(lang, n[4])} · {pct(lang, n[4] / g.projects, 0)} %</span></li>)}
+          {top(k as string).map((n) => <li style="margin-bottom:6px">{name(n)} <span class="mono">· {num(lang, n[4])} · {pct(lang, n[4] / g.projects, 0)}{pctUnit(lang)}</span></li>)}
         </ol>
       </section>
     ))}
@@ -61,16 +61,16 @@ const vsText: Record<string, string> = { above: c.gpAbove, below: c.gpBelow, unc
           <tr data-n={`${r.n[2]} ${r.n[3] ?? ''}`.toLowerCase()} data-total={r.n[4]} data-view={r.view} hidden={r.n[4] < 20}>
             <td>{r.label}</td>
             <td class="num">{num(lang, r.n[4])}</td>
-            <td class="num">{pct(lang, r.s1, 1)} %</td>
-            <td class="num">{pct(lang, r.s2, 1)} %</td>
-            <td class="num">{num(lang, r.n[7])} ({pct(lang, r.n[7] / r.n[4], 0)} %; {pct(lang, r.n[8], 0)}–{pct(lang, r.n[9], 0)})</td>
+            <td class="num">{pct(lang, r.s1, 1)}{pctUnit(lang)}</td>
+            <td class="num">{pct(lang, r.s2, 1)}{pctUnit(lang)}</td>
+            <td class="num">{num(lang, r.n[7])} ({pct(lang, r.n[7] / r.n[4], 0)}{pctUnit(lang)}; {pct(lang, r.n[8], 0)}–{pct(lang, r.n[9], 0)})</td>
             <td>{vsText[r.vs]}</td>
           </tr>
         ))}
       </tbody>
     </table>
   </div>
-  <p class="lead" style="font-size:.85rem;margin-top:10px">{c.gpAll}: {pct(lang, base, 0)} %</p>
+  <p class="lead" style="font-size:.85rem;margin-top:10px">{c.gpAll}: {pct(lang, base, 0)}{pctUnit(lang)}</p>
   <p class="lead" id="none" hidden>{c.mNone}</p>
 </Base>
 <script>
