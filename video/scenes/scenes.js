@@ -151,10 +151,10 @@ function line(s, svg, x1, y1, x2, y2, t0, opt = {}) {
   const s = scene('ka2'), svg = svgLayer(s);
   const t0 = sec('ka2').start, t1 = at('ka2', t('surađuju', 'work together')), t2 = at('ka2', t('razmjenjuju', 'share experience'));
   s.add(120, 150, 760, 0, `<div class="serif yellow" style="font-size:200px;line-height:1">KA2</div><div style="font-size:44px;font-weight:700;margin-top:10px;line-height:1.15">${t('Ključna aktivnost programa Erasmus+', 'Erasmus+ key action')}</div>`, t0, { kind: 'pop' });
-  [[t('Suradnja organizacija', 'Organisations working together'), t1], [t('Razmjena iskustava', 'Sharing experience'), t2], [t('Kroz partnerstva', 'Through partnerships'), t2 + 0.9]].forEach(([x, when], i) => {
+  [[t('Suradnja organizacija', 'Organisations working together'), t1], [t('Razmjena iskustava', 'Sharing experience'), t2]].forEach(([x, when], i) => {
     s.add(120, 470 + i * 88, 760, 74, `<div class="pill" style="height:74px;font-size:36px">${x}</div>`, when, { kind: 'left' });
   });
-  s.add(120, 748, 780, 0, `<div class="muted" style="font-size:29px;line-height:1.25">${t('KA1 je mobilnost pojedinaca. Kompas prikazuje samo KA2.', 'KA1 is the mobility of individuals. Kompas covers KA2 only.')}</div>`, t2 + 1.3, { kind: 'fade' });
+  s.add(120, 670, 780, 0, `<div class="muted" style="font-size:29px;line-height:1.25">${t('KA1 je mobilnost pojedinaca. Kompas prikazuje samo KA2.', 'KA1 is the mobility of individuals. Kompas covers KA2 only.')}</div>`, t2 + 1.3, { kind: 'fade' });
   const cx = 1350, cy = 490, R = 300, nodes = ['school', 'group', 'city', 'search', 'person'];
   nodes.forEach((ic, i) => {
     const a = -Math.PI / 2 + i * 2 * Math.PI / nodes.length, x = cx + R * Math.cos(a), y = cy + R * Math.sin(a);
@@ -264,7 +264,7 @@ function ramp(x) {
     s.add(590, 420, 380, 0, `<div class="serif" style="font-size:120px;line-height:1;color:#004494">${O.coordinated}</div><div style="font-size:34px;font-weight:600;color:#1d2a44">${t('koordinirani projekt', 'project coordinated')}</div>`, tC, { kind: 'pop' });
     s.add(176, 640, 790, 0, `<div class="bars" style="display:flex;gap:6px;height:44px;border-radius:8px;overflow:hidden"><div style="flex:${O.p1};background:#4073af"></div><div style="flex:${O.p2};background:#004494"></div></div><div style="display:flex;gap:6px;font-size:28px;font-weight:600;color:#1d2a44;margin-top:10px"><div style="flex:${O.p1}">${t('2014.–2020.:', '2014–2020:')} ${O.p1}</div><div style="flex:${O.p2}">${t('2021.–2027.:', '2021–2027:')} ${O.p2}</div></div>`, tN + 0.5, { kind: 'fade' });
   } else {
-    shot(s, 80, 118, 960, 750, 'assets/screens/organizacija_hr.png', 2586, tOrg, [[168, 394, 543, 324, tN], [760, 394, 543, 324, tC]], { t0: tN - 0.3, scale: 0.62, left: 142, top: 0 });
+    shot(s, 80, 118, 960, 750, 'assets/screens/organizacija_hr.png', 2502, tOrg, [[101, 486, 545, 363, tN], [693, 486, 545, 363, tC]], { t0: tN - 0.3, scale: 0.62, left: 75, top: 92 });
   }
   s.add(1090, 150, 740, 0, `<div style="font-size:42px;font-weight:700">${t('Popis organizacija', 'Organisation list')}</div>`, tF - 0.2);
   [[t('Županija', 'County'), t('Sve županije', 'All counties'), t('po županiji', 'by county')], [t('Vrsta organizacije', 'Organisation type'), t('Sve vrste', 'All types'), t('vrsti', 'type')], [t('Razdoblje', 'Period'), t('Sva razdoblja', 'All periods'), t('razdoblju', 'period')]].forEach(([lab, val, ph], i) => {

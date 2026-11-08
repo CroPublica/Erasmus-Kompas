@@ -2,12 +2,14 @@
 //   swiftc -O render.swift -o render_bin -framework AppKit -framework WebKit -framework AVFoundation
 //   ./render_bin                                  writes erasmus_kompas_titlovi.mp4 (Croatian)
 //   ./render_bin --en                             writes erasmus_kompas_subtitles_en.mp4 (English)
+//   ./render_bin --voice                          writes erasmus_kompas_hr.mp4 (Croatian with voice_hr.m4a; run align_voice.py and build.py first)
 //   ./render_bin --stills 3.5,12,40               writes stills/t<seconds>.png
 import AppKit
 import AVFoundation
 import WebKit
 
 let english = CommandLine.arguments.contains("--en")
+let voice = CommandLine.arguments.contains("--voice")
 
 final class Renderer: NSObject, WKNavigationDelegate {
     let w = 1920, h = 1080, outW = 3840, outH = 2160, fps = 30   // the page is laid out at w x h and captured at outW x outH
@@ -17,7 +19,7 @@ final class Renderer: NSObject, WKNavigationDelegate {
     var frame = 0, total = 0
     let started = Date()
     let partial = URL(fileURLWithPath: english ? "render_in_progress_en.mp4" : "render_in_progress.mp4").absoluteURL   // the finished video only replaces the old one if the whole render succeeds
-    let finished = URL(fileURLWithPath: english ? "erasmus_kompas_subtitles_en.mp4" : "erasmus_kompas_titlovi.mp4").absoluteURL
+    let finished = URL(fileURLWithPath: voice ? "erasmus_kompas_hr.mp4" : english ? "erasmus_kompas_subtitles_en.mp4" : "erasmus_kompas_titlovi.mp4").absoluteURL
 
     init(stills: [Double]?) { self.stills = stills }
 
@@ -94,12 +96,36 @@ final class Renderer: NSObject, WKNavigationDelegate {
         nextFrame()
     }
 
+    // Copies the rendered picture and the voice into one file, without encoding either again.
+    func addVoice() {
+        let picture = AVURLAsset(url: partial), sound = AVURLAsset(url: URL(fileURLWithPath: "voice_hr.m4a").absoluteURL)
+        let mix = AVMutableComposition()
+        let length = picture.duration
+        try! mix.addMutableTrack(withMediaType: .video, preferredTrackID: kCMPersistentTrackID_Invalid)!
+            .insertTimeRange(CMTimeRange(start: .zero, duration: length), of: picture.tracks(withMediaType: .video)[0], at: .zero)
+        try! mix.addMutableTrack(withMediaType: .audio, preferredTrackID: kCMPersistentTrackID_Invalid)!
+            .insertTimeRange(CMTimeRange(start: .zero, duration: CMTimeMinimum(length, sound.duration)), of: sound.tracks(withMediaType: .audio)[0], at: .zero)
+        let out = URL(fileURLWithPath: "render_with_voice.mp4").absoluteURL
+        try? FileManager.default.removeItem(at: out)
+        let export = AVAssetExportSession(asset: mix, presetName: AVAssetExportPresetPassthrough)!
+        export.outputURL = out
+        export.outputFileType = .mp4
+        export.exportAsynchronously {
+            guard export.status == .completed else { print("adding the voice failed:", export.error as Any); exit(1) }
+            _ = try! FileManager.default.replaceItemAt(self.finished, withItemAt: out)
+            try? FileManager.default.removeItem(at: self.partial)
+            print("written: \(self.finished.lastPathComponent)")
+            exit(0)
+        }
+    }
+
     func nextFrame() {
         if frame >= total {
             input.markAsFinished()
             writer.finishWriting {
                 print("done: \(self.total) frames in \(Int(Date().timeIntervalSince(self.started))) s, status \(self.writer.status.rawValue)")
                 guard self.writer.status == .completed else { exit(1) }
+                if voice { self.addVoice(); return }
                 _ = try! FileManager.default.replaceItemAt(self.finished, withItemAt: self.partial)
                 exit(0)
             }

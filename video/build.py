@@ -2,7 +2,8 @@
 """Turn a script into subtitles and scene data. Run from anywhere: python3 video/build.py [hr|en]
 
 Writes subtitles_<lang>.srt, subtitles_<lang>.vtt and scenes/data.js (Croatian) or scenes/data_en.js (English). All figures are read from the app's data files, and the
-build stops if a figure the script speaks no longer matches them. Timing is an estimate from syllables until a voice exists.
+build stops if a figure the script speaks no longer matches them. Timing comes from the recorded voice where one exists (timing_hr.json, made by align_voice.py), otherwise it is
+an estimate from syllables.
 """
 import json
 import re
@@ -151,6 +152,18 @@ def make_cues(sections):
     return cues, round(sections[-1]["end"] + TAIL, 3)
 
 
+def voice_timing(sections, cues):
+    """Put the cues where the recorded voice speaks them. Returns the video's duration."""
+    timing = json.loads((HERE / f"timing_{LANG}.json").read_text(encoding="utf-8"))
+    if [c["text"] for c in timing["cues"]] != [c["text"] for c in cues]:
+        raise SystemExit(f"script_{LANG}.md no longer matches the recording: record the changed part again, then run align_voice.py, or remove timing_{LANG}.json for estimated timing")
+    for cue, real in zip(cues, timing["cues"]):
+        cue["start"], cue["end"] = real["start"], real["end"]
+    for s in sections:
+        s["start"], s["end"] = s["cues"][0]["start"], s["cues"][-1]["end"]
+    return timing["duration"]
+
+
 def stamp(t, sep):
     ms = round(t * 1000)
     return f"{ms // 3600000:02}:{ms // 60000 % 60:02}:{ms // 1000 % 60:02}{sep}{ms % 1000:03}"
@@ -198,6 +211,8 @@ def figures():
 def main():
     sections = parse_script((HERE / f"script_{LANG}.md").read_text(encoding="utf-8"))
     cues, duration = make_cues(sections)
+    if (HERE / f"timing_{LANG}.json").exists():
+        duration = voice_timing(sections, cues)
     if duration > MAX_SECONDS:
         raise SystemExit(f"Too long: {duration:.1f} s (limit {MAX_SECONDS} s)")
     srt, vtt = [], ["WEBVTT", ""]

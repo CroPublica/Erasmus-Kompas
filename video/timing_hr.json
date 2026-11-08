@@ -1,0 +1,240 @@
+{
+ "duration": 170.33,
+ "cues": [
+  {
+   "text": "Od dvije tisuće četrnaeste godine u KA2 partnerstvima programa Erasmus+",
+   "start": 1.0,
+   "end": 5.7
+  },
+  {
+   "text": "sudjelovala je tek jedna od tri hrvatske osnovne i srednje škole.",
+   "start": 5.87,
+   "end": 9.34
+  },
+  {
+   "text": "Koje su to škole?",
+   "start": 9.82,
+   "end": 11.0
+  },
+  {
+   "text": "S kim surađuju?",
+   "start": 11.33,
+   "end": 12.43
+  },
+  {
+   "text": "Čime se bave njihovi projekti?",
+   "start": 12.79,
+   "end": 14.35
+  },
+  {
+   "text": "Erasmus+ Kompas pruža odgovore na ova pitanja.",
+   "start": 14.93,
+   "end": 17.55
+  },
+  {
+   "text": "KA2 je ključna aktivnost programa Erasmus+ u kojoj",
+   "start": 18.8,
+   "end": 21.61
+  },
+  {
+   "text": "razne organizacije surađuju i razmjenjuju iskustva.",
+   "start": 21.83,
+   "end": 24.7
+  },
+  {
+   "text": "Erasmus+ Kompas namijenjen je školama,",
+   "start": 27.23,
+   "end": 29.78
+  },
+  {
+   "text": "udrugama, gradovima, županijama, građanima,",
+   "start": 29.83,
+   "end": 32.82
+  },
+  {
+   "text": "novinarima te istraživačima koji žele saznati više o KA2 projektima.",
+   "start": 33.01,
+   "end": 36.73
+  },
+  {
+   "text": "Podatke smo preuzeli s Platforme za rezultate",
+   "start": 37.98,
+   "end": 40.54
+  },
+  {
+   "text": "projekata Erasmus+ te s Portala otvorenih podataka,",
+   "start": 40.59,
+   "end": 44.5
+  },
+  {
+   "text": "gdje smo pronašli podatke Agencije za mobilnost i programe EU-a",
+   "start": 44.55,
+   "end": 47.91
+  },
+  {
+   "text": "te registre obrazovnih ustanova u Hrvatskoj.",
+   "start": 48.16,
+   "end": 50.43
+  },
+  {
+   "text": "Možete istražiti podatke po županijama i temama,",
+   "start": 52.85,
+   "end": 55.95
+  },
+  {
+   "text": "pronaći projekte i organizacije ili pitati Asistenta.",
+   "start": 56.15,
+   "end": 59.17
+  },
+  {
+   "text": "Na karti možete vidjeti udio škola koje sudjeluju u svakoj županiji:",
+   "start": 60.42,
+   "end": 64.28
+  },
+  {
+   "text": "od četrnaest i pol posto u Zagrebačkoj",
+   "start": 64.92,
+   "end": 66.919
+  },
+  {
+   "text": "do gotovo pedeset sedam posto u Varaždinskoj županiji.",
+   "start": 66.919,
+   "end": 69.85
+  },
+  {
+   "text": "Svaka organizacija ima svoju stranicu.",
+   "start": 71.31,
+   "end": 73.73
+  },
+  {
+   "text": "Na primjer, Gimnazija Metković sudjelovala je u dvadeset dva projekta,",
+   "start": 74.29,
+   "end": 78.41
+  },
+  {
+   "text": "a jedan je koordinirala.",
+   "start": 78.51,
+   "end": 80.02
+  },
+  {
+   "text": "Popis se može filtrirati po županiji,",
+   "start": 80.9,
+   "end": 83.29
+  },
+  {
+   "text": "vrsti i razdoblju te preuzeti kao CSV, Excel ili PDF datoteku.",
+   "start": 83.34,
+   "end": 87.64
+  },
+  {
+   "text": "Jezični model izdvojio je iz projektnih sažetaka probleme,",
+   "start": 88.89,
+   "end": 92.2
+  },
+  {
+   "text": "pristupe, ciljane skupine i rezultate.",
+   "start": 92.42,
+   "end": 94.85
+  },
+  {
+   "text": "Mreža pojmova prikazuje povezane pojmove,",
+   "start": 95.52,
+   "end": 98.06
+  },
+  {
+   "text": "primjerice rano napuštanje školovanja i učenike u nepovoljnom položaju.",
+   "start": 98.11,
+   "end": 102.48
+  },
+  {
+   "text": "Također možete jednostavno pitati Asistenta",
+   "start": 103.99,
+   "end": 106.51
+  },
+  {
+   "text": "na hrvatskom ili engleskom jeziku.",
+   "start": 106.9,
+   "end": 108.66
+  },
+  {
+   "text": "Na upit „rano napuštanje školovanja” Asistent",
+   "start": 109.53,
+   "end": 112.28
+  },
+  {
+   "text": "pronalazi sto sedamdeset pet relevantnih projekata,",
+   "start": 112.33,
+   "end": 114.73
+  },
+  {
+   "text": "s primjerima i izvorima.",
+   "start": 114.84,
+   "end": 117.15
+  },
+  {
+   "text": "Podaci se obrađuju u Pythonu i spajaju u bazu DuckDB,",
+   "start": 118.4,
+   "end": 121.56
+  },
+  {
+   "text": "a iz nje nastaje statično web-sjedište izrađeno u alatu Astro.",
+   "start": 122.04,
+   "end": 125.63
+  },
+  {
+   "text": "Sažetke je obradio jezični model pokrenut lokalno,",
+   "start": 126.28,
+   "end": 129.45
+  },
+  {
+   "text": "a algoritam grupira povezane pojmove u skupine.",
+   "start": 129.6,
+   "end": 132.05
+  },
+  {
+   "text": "Kad korisnik postavi pitanje, model samo usmjerava upit.",
+   "start": 133.13,
+   "end": 136.22
+  },
+  {
+   "text": "Alati dohvaćaju podatke, a odgovor sastavlja kôd.",
+   "start": 137.02,
+   "end": 140.08
+  },
+  {
+   "text": "Zato brojke proizlaze iz podataka, a ne iz modela.",
+   "start": 140.44,
+   "end": 143.5
+  },
+  {
+   "text": "Škole imaju uvid u to tko u njihovoj županiji",
+   "start": 144.94,
+   "end": 148.04
+  },
+  {
+   "text": "već sudjeluje u projektima i čime se ti projekti bave.",
+   "start": 148.09,
+   "end": 150.96
+  },
+  {
+   "text": "Građani, novinari i istraživači mogu na jednostavan način",
+   "start": 151.58,
+   "end": 155.27
+  },
+  {
+   "text": "saznati više o partnerstvima programa Erasmus+ u svojem kraju.",
+   "start": 155.37,
+   "end": 158.86
+  },
+  {
+   "text": "U planu su alat za traženje partnera, vodič za prvi projekt,",
+   "start": 160.76,
+   "end": 164.26
+  },
+  {
+   "text": "godišnje osvježavanje podataka i javni API.",
+   "start": 164.52,
+   "end": 167.18
+  }
+ ]
+}
