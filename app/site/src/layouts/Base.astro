@@ -210,6 +210,15 @@ const tabs = here.top && here.top.subs.length > 1 ? here.top.subs : [];
   markScrollable(); addEventListener('load', markScrollable); addEventListener('resize', markScrollable); document.fonts?.ready.then(markScrollable);
   { let mt = 0; const v = document.getElementById('view'); if (v) new MutationObserver(() => { clearTimeout(mt); mt = window.setTimeout(markScrollable, 250); }).observe(v, { childList: true, subtree: true }); }
   // ---- theme: light or dark, remembered; without a choice the system setting applies
+  // ---- scrollbars are hidden until something scrolls: the scrolled element gets data-scrolling for a moment (the styles in extra.css show the bar then)
+  const scrollTimers = new WeakMap<Element, number>();
+  document.addEventListener('scroll', (e) => {
+    const el = (e.target === document ? document.documentElement : e.target) as HTMLElement;
+    if (!(el instanceof HTMLElement)) return;
+    el.dataset.scrolling = '';
+    window.clearTimeout(scrollTimers.get(el));
+    scrollTimers.set(el, window.setTimeout(() => { delete el.dataset.scrolling; }, 900));
+  }, { capture: true, passive: true });
   // ---- the note about the machine-translated Croatian pages: the × on the note and the icon next to the theme button show and hide it (the choice is kept)
   const noteToggle = document.getElementById('langnote-toggle');
   const paintNote = () => { if (!noteToggle) return; const shown = document.documentElement.dataset.langnote !== 'off'; noteToggle.setAttribute('aria-pressed', String(shown)); const l = shown ? noteToggle.dataset.hide! : noteToggle.dataset.show!; noteToggle.setAttribute('aria-label', l); noteToggle.title = l; };

@@ -311,6 +311,21 @@ await test('machine-translation note: shown on Croatian pages only, links to the
   assert.equal(copy, text.replace(/ Prebaci na engleski$/, ''), 'the About page repeats the same text');
   assert.equal(await (await open('/en/about/')).locator('#langnote-about').count(), 0);
 });
+await test('scrollbars are hidden by default, appear while the page scrolls and fade out afterwards', async () => {
+  const p = await open('/hr/projects/', 1280); await p.waitForTimeout(500);
+  const color = () => p.evaluate(() => getComputedStyle(document.documentElement).scrollbarColor);
+  assert.match(await color(), /^rgba\(0, 0, 0, 0\) rgba\(0, 0, 0, 0\)$/, 'transparent at rest');
+  await p.mouse.move(640, 400); await p.evaluate(() => window.scrollTo(0, 600)); await p.waitForTimeout(150);
+  assert.equal(await p.evaluate(() => 'scrolling' in document.documentElement.dataset), true, 'marked while scrolling');
+  assert.doesNotMatch(await color(), /^rgba\(0, 0, 0, 0\) /, 'a visible thumb while scrolling');
+  await p.waitForTimeout(1300);
+  assert.equal(await p.evaluate(() => 'scrolling' in document.documentElement.dataset), false, 'the mark is removed after a moment');
+  assert.match(await color(), /^rgba\(0, 0, 0, 0\) rgba\(0, 0, 0, 0\)$/, 'hidden again');
+  const side = await p.evaluate(() => { const e = document.querySelector('.sidein'); return { width: getComputedStyle(e).scrollbarWidth, gutter: e.offsetWidth - e.clientWidth }; });
+  assert.deepEqual(side, { width: 'none', gutter: 0 }, 'the side menu has no scrollbar and no gutter');
+  const m = await open('/hr/projects/', 1280, { fast: true }); await m.mouse.move(100, 300);
+  assert.equal(await m.evaluate(() => { const e = document.querySelector('.sidein'); return e.offsetWidth - e.clientWidth; }), 0, 'still none when the pointer is over it');
+});
 await test('no console errors', async () => { if (errors.length) console.log(errors.slice(0, 8)); assert.deepEqual(errors, []); });
 await browser.close(); stop();
 console.log(`\n${passed} passed, ${failed} failed`); process.exit(failed ? 1 : 0);
