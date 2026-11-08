@@ -114,7 +114,7 @@ function viewPreuzimanje(root) {
   <div class="stack"><section class="card"><h2>Kako koristiti podatke</h2><ul class="check-list" style="margin-top:14px"><li>Navedite izvore: Platforma za rezultate projekata programa Erasmus+ (Europska komisija), Program Erasmus+ 2021.–2027. i registri ustanova na data.gov.hr (Agencija za mobilnost i programe EU, Ministarstvo znanosti, obrazovanja i mladih).</li><li>Provjerite uvjete korištenja u izvoru; atlas ne mijenja licence izvornih skupova.</li><li>Pročitajte <a href="#/o-podacima">ograničenja podataka</a> prije usporedbi.</li></ul></section>
   <section class="card"><h2>Za programere</h2><p class="lead">Popis projekata dostupan je kao JSON, a pitanja se šalju asistentu.</p><pre class="code">GET  /projects.json
 POST /api/ask   { "question": "…" }</pre></section>
-  <section class="card"><h2>Za AI asistente (MCP)</h2><p class="lead">Isti sloj upita dostupan je i kao MCP poslužitelj, pa asistenti poput Claudea mogu pretraživati projekte, otvoriti profil organizacije, izračunati pokrivenost i pronaći slične organizacije — iz istih podataka i s istim izvorima.</p><ul class="check-list"><li>Pretraga projekata i profil organizacije.</li><li>Pokrivenost po županiji i prvi projekti po sektoru.</li><li>Slične organizacije u istom sektoru i blizini.</li></ul></section></div></div>`;
+</div></div>`;
   $$('button[data-i]', root).forEach((b) => b.onclick = () => { const s = SETS[+b.dataset.i]; download(tr(s[0]), s[3]()); b.textContent = tr('Preuzeto ✓'); setTimeout(() => (b.textContent = tr('Preuzmi CSV')), 2000); });
 }
 

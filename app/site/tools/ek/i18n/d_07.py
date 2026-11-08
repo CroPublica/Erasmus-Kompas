@@ -41,10 +41,5 @@ D = {
 "Agencija za mobilnost i programe EU · data.gov.hr":"Agency for Mobility and EU Programmes · data.gov.hr",
 "Ministarstvo znanosti, obrazovanja i mladih · data.gov.hr":"Ministry of Science, Education and Youth · data.gov.hr",
 "Dječji vrtići, osnovne i srednje škole te visoko obrazovanje, za izračun pokrivenosti.":"Kindergartens, primary and secondary schools and higher education, used to compute coverage.",
-"Za AI asistente (MCP)":"For AI assistants (MCP)",
-"Isti sloj upita dostupan je i kao MCP poslužitelj, pa asistenti poput Claudea mogu pretraživati projekte, otvoriti profil organizacije, izračunati pokrivenost i pronaći slične organizacije — iz istih podataka i s istim izvorima.":"The same query layer is also available as an MCP server, so assistants such as Claude can search projects, open an organisation profile, compute coverage and find similar organisations \u2014 from the same data and with the same sources.",
-"Pretraga projekata i profil organizacije.":"Project search and organisation profile.",
-"Pokrivenost po županiji i prvi projekti po sektoru.":"Coverage by county and first projects by sector.",
-"Slične organizacije u istom sektoru i blizini.":"Similar organisations in the same sector and nearby.",
 "Navedite izvore: Platforma za rezultate projekata programa Erasmus+ (Europska komisija), Program Erasmus+ {N}.–{N}. i registri ustanova na data.gov.hr (Agencija za mobilnost i programe EU, Ministarstvo znanosti, obrazovanja i mladih).":"Cite the sources: Erasmus+ Project Results Platform (European Commission), the Erasmus+ programme {N1}–{N2} and the institution registers on data.gov.hr (Agency for Mobility and EU Programmes, Ministry of Science, Education and Youth).",
 }

@@ -1606,11 +1606,6 @@ const EN_DICT = {
 "Agencija za mobilnost i programe EU · data.gov.hr": "Agency for Mobility and EU Programmes · data.gov.hr",
 "Ministarstvo znanosti, obrazovanja i mladih · data.gov.hr": "Ministry of Science, Education and Youth · data.gov.hr",
 "Dječji vrtići, osnovne i srednje škole te visoko obrazovanje, za izračun pokrivenosti.": "Kindergartens, primary and secondary schools and higher education, used to compute coverage.",
-"Za AI asistente (MCP)": "For AI assistants (MCP)",
-"Isti sloj upita dostupan je i kao MCP poslužitelj, pa asistenti poput Claudea mogu pretraživati projekte, otvoriti profil organizacije, izračunati pokrivenost i pronaći slične organizacije — iz istih podataka i s istim izvorima.": "The same query layer is also available as an MCP server, so assistants such as Claude can search projects, open an organisation profile, compute coverage and find similar organisations — from the same data and with the same sources.",
-"Pretraga projekata i profil organizacije.": "Project search and organisation profile.",
-"Pokrivenost po županiji i prvi projekti po sektoru.": "Coverage by county and first projects by sector.",
-"Slične organizacije u istom sektoru i blizini.": "Similar organisations in the same sector and nearby.",
 "Navedite izvore: Platforma za rezultate projekata programa Erasmus+ (Europska komisija), Program Erasmus+ {N}.–{N}. i registri ustanova na data.gov.hr (Agencija za mobilnost i programe EU, Ministarstvo znanosti, obrazovanja i mladih).": "Cite the sources: Erasmus+ Project Results Platform (European Commission), the Erasmus+ programme {N1}–{N2} and the institution registers on data.gov.hr (Agency for Mobility and EU Programmes, Ministry of Science, Education and Youth).",
 "Ključni pokazatelji": "Key indicators",
 "Karta i poredak": "Map and ranking",
@@ -2552,7 +2547,7 @@ function viewPreuzimanje(root) {
   <div class="stack"><section class="card"><h2>Kako koristiti podatke</h2><ul class="check-list" style="margin-top:14px"><li>Navedite izvore: Platforma za rezultate projekata programa Erasmus+ (Europska komisija), Program Erasmus+ 2021.–2027. i registri ustanova na data.gov.hr (Agencija za mobilnost i programe EU, Ministarstvo znanosti, obrazovanja i mladih).</li><li>Provjerite uvjete korištenja u izvoru; atlas ne mijenja licence izvornih skupova.</li><li>Pročitajte <a href="#/o-podacima">ograničenja podataka</a> prije usporedbi.</li></ul></section>
   <section class="card"><h2>Za programere</h2><p class="lead">Popis projekata dostupan je kao JSON, a pitanja se šalju asistentu.</p><pre class="code">GET  /projects.json
 POST /api/ask   { "question": "…" }</pre></section>
-  <section class="card"><h2>Za AI asistente (MCP)</h2><p class="lead">Isti sloj upita dostupan je i kao MCP poslužitelj, pa asistenti poput Claudea mogu pretraživati projekte, otvoriti profil organizacije, izračunati pokrivenost i pronaći slične organizacije — iz istih podataka i s istim izvorima.</p><ul class="check-list"><li>Pretraga projekata i profil organizacije.</li><li>Pokrivenost po županiji i prvi projekti po sektoru.</li><li>Slične organizacije u istom sektoru i blizini.</li></ul></section></div></div>`;
+</div></div>`;
   $$('button[data-i]', root).forEach((b) => b.onclick = () => { const s = SETS[+b.dataset.i]; download(tr(s[0]), s[3]()); b.textContent = tr('Preuzeto ✓'); setTimeout(() => (b.textContent = tr('Preuzmi CSV')), 2000); });
 }
 
