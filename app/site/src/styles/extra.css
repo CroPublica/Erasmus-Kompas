@@ -87,3 +87,16 @@ aside.side{view-transition-name:ek-side}
 .gv-key svg{width:16px;height:16px;flex:none}
 .gv-key.gv-note{color:var(--muted);font-size:.85rem}
 .gv-crumbs{margin:12px 0 4px}
+
+/* Note about the machine-translated Croatian pages: calm, readable, dismissible (the choice is kept in localStorage) */
+.langnote{display:flex;gap:12px;align-items:flex-start;margin:0;padding:12px var(--gut);background:var(--card);border-bottom:1px solid var(--line);border-left:4px solid var(--btn);font-size:.9rem;line-height:1.5;color:var(--ink)}
+.langnote svg{flex:none;margin-top:2px;color:var(--btn)}
+.langnote p{margin:0;max-width:110ch;flex:1}
+.langnote a{font-weight:600;white-space:nowrap}
+.langnote button{flex:none;appearance:none;border:0;background:transparent;color:var(--muted);font-size:1.5rem;line-height:1;width:32px;height:32px;border-radius:var(--r);cursor:pointer}
+.langnote button:hover{background:var(--line);color:var(--ink)}
+.langnote button:focus-visible{outline:3px solid var(--focus,var(--btn));outline-offset:1px}
+:root[data-langnote="off"] .langnote{display:none}
+@media (max-width:640px){.langnote{font-size:.85rem;padding:10px 12px}}
+#langnote-toggle[aria-pressed="true"]{background:var(--btn);border-color:var(--btn);color:#fff}
+#langnote-toggle[aria-pressed="true"]:hover{background:var(--blue-dk,var(--btn));color:#fff}

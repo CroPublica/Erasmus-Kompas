@@ -291,6 +291,26 @@ await test('assistant: no step of "How it was calculated" shows a raw code (snak
     assert.doesNotMatch(t, /razdoblje: all\b|period: all(?! periods)/);
   }
 });
+await test('machine-translation note: shown on Croatian pages only, links to the English page, can be dismissed, and is repeated on the About page', async () => {
+  const hr = await open('/hr/projects/'); const note = hr.locator('#langnote');
+  assert.equal(await note.count(), 1); assert.equal(await note.isVisible(), true);
+  const text = (await note.locator('p').innerText()).replace(/\s+/g, ' ');
+  assert.match(text, /strojno prevedena s pomoću umjetne inteligencije/); assert.match(text, /preporučujemo da koristite stranicu na engleskom jeziku/);
+  assert.equal(await note.getAttribute('role'), 'note');
+  assert.match(await note.locator('a').getAttribute('href'), /\/en\/projects\/$/);                    // the same page in English
+  const land = await open('/hr/'); assert.equal(await land.locator('#langnote').isVisible(), true);      // also on the landing page
+  const en = await open('/en/projects/'); assert.equal(await en.locator('#langnote').count(), 0);
+  const tog = hr.locator('#langnote-toggle');
+  assert.equal(await tog.getAttribute('aria-pressed'), 'true'); assert.match(await tog.getAttribute('aria-label'), /^Sakrij napomenu/);
+  await tog.click(); assert.equal(await note.isVisible(), false); assert.equal(await tog.getAttribute('aria-pressed'), 'false'); assert.match(await tog.getAttribute('aria-label'), /^Prikaži napomenu/);
+  await tog.click(); assert.equal(await note.isVisible(), true, 'the icon shows the note again');
+  assert.equal(await (await open('/en/projects/')).locator('#langnote-toggle').count(), 0, 'no icon on English pages');
+  await hr.locator('#langnote-x').click(); assert.equal(await note.isVisible(), false); assert.equal(await tog.getAttribute('aria-pressed'), 'false');
+  await hr.goto(URL + '/hr/places/'); await hr.waitForTimeout(300); assert.equal(await hr.locator('#langnote').isVisible(), false, 'dismissal is remembered on the next page');
+  const about = await open('/hr/about/'); const copy = (await about.locator('#langnote-about').innerText()).replace(/\s+/g, ' ');
+  assert.equal(copy, text.replace(/ Prebaci na engleski$/, ''), 'the About page repeats the same text');
+  assert.equal(await (await open('/en/about/')).locator('#langnote-about').count(), 0);
+});
 await test('no console errors', async () => { if (errors.length) console.log(errors.slice(0, 8)); assert.deepEqual(errors, []); });
 await browser.close(); stop();
 console.log(`\n${passed} passed, ${failed} failed`); process.exit(failed ? 1 : 0);
