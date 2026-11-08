@@ -326,6 +326,54 @@ await test('scrollbars are hidden by default, appear while the page scrolls and 
   const m = await open('/hr/projects/', 1280, { fast: true }); await m.mouse.move(100, 300);
   assert.equal(await m.evaluate(() => { const e = document.querySelector('.sidein'); return e.offsetWidth - e.clientWidth; }), 0, 'still none when the pointer is over it');
 });
+await test('top-bar search finds counties, organisations and projects in groups, in both languages, and the keyboard skips the group labels', async () => {
+  for (const [lang, q, want, group] of [['hr', 'Varaždinska', 'Varaždinska županija', /županije/i], ['en', 'Varaždin County', 'Varaždin County', /counties/i]]) {
+    const p = await open(`/${lang}/projects/`); await p.locator('#gs').fill(q); await p.waitForSelector('#gs-res:not([hidden]) a');
+    assert.match(await p.locator('#gs-res .gl').first().innerText(), group);
+    assert.ok((await p.locator('#gs-res a span').allInnerTexts()).some((t) => t.includes(want)), `${lang}: county "${want}" in the results`);
+  }
+  const p = await open('/hr/projects/');
+  await p.locator('#gs').fill('Circular Connections'); await p.waitForSelector('#gs-res:not([hidden]) a');
+  assert.ok((await p.locator('#gs-res .gl').allInnerTexts()).some((t) => /projekti/i.test(t)), 'a project group');
+  assert.match(await p.locator('#gs-res a').first().getAttribute('href'), /\/hr\/projects\/[^/]+\/$/);
+  await p.locator('#gs').fill('metkovic gimnazija'); await p.waitForSelector('#gs-res:not([hidden]) a');                      // words in any order, accents optional
+  assert.ok((await p.locator('#gs-res a span').allInnerTexts()).some((t) => /Gimnazija Metković/.test(t)), 'an organisation found by words in any order');
+  await p.locator('#gs').press('ArrowDown'); assert.equal(await p.evaluate(() => document.activeElement.tagName + ':' + !!document.activeElement.closest('#gs-res')), 'A:true', 'the first ArrowDown lands on a link, not a label');
+  await p.locator('#gs').fill('Circular Connections'); await p.waitForSelector('#gs-res:not([hidden]) a'); await p.locator('#gs-res a').first().click();
+  await p.waitForURL(/\/hr\/projects\/.+\//); assert.match(await p.locator('h1').first().innerText(), /Circular Connections/);
+  await p.goto(URL + '/hr/projects/'); await p.locator('#gs').fill('zzzzqqqq'); await p.waitForTimeout(500); assert.equal(await p.locator('#gs-res').isVisible(), false, 'no results: the list stays closed');
+});
+await test('home page: the search results open on top of the buttons and figures below, not mixed with them', async () => {
+  for (const [lang, w] of [['en', 1280], ['hr', 1280], ['en', 1024], ['en', 390]]) {
+    const p = await open(`/${lang}/`, w); await p.setViewportSize({ width: w, height: 1800 }); await p.waitForTimeout(400);
+    await p.fill('.gsearch.hero input', 'a'); await p.waitForSelector('.gsearch.hero .gres:not([hidden])');
+    const covered = await p.evaluate(() => {
+      const r = document.querySelector('.gsearch.hero .gres').getBoundingClientRect(); const bad = [];
+      for (const f of [0.05, 0.25, 0.5, 0.75, 0.95]) for (const x of [0.15, 0.85]) { const e = document.elementFromPoint(r.left + r.width * x, r.top + r.height * f); if (!e || !e.closest('.gres')) bad.push(`${f},${x}:${e && e.tagName + '.' + e.className}`); }
+      return bad;
+    });
+    assert.deepEqual(covered, [], `${lang} ${w}px: something paints over the result list`);
+  }
+});
+await test('contact form: sends the message to POST /api/contact and shows what happened (sent, too many, failed, invalid input)', async () => {
+  const p = await open('/hr/contact/'); const sent = []; let status = 200;
+  await p.route('**/api/contact', (r) => { sent.push(JSON.parse(r.request().postData())); r.fulfill({ status, contentType: 'application/json', body: status === 200 ? '{"status":"ok"}' : '{"detail":"x"}' }); });
+  const submit = () => p.click('#kf button[type=submit]');
+  await submit(); assert.equal(sent.length, 0); assert.match(await p.locator('#kerr').innerText(), /Upišite poruku/);          // empty: nothing is sent
+  await p.fill('#km', 'Greška u tablici'); await p.fill('#ke', 'nije-adresa'); await submit();
+  assert.equal(sent.length, 0); assert.match(await p.locator('#keerr').innerText(), /Provjerite adresu/);                      // bad address: nothing is sent
+  await p.fill('#ke', 'ana@example.com'); await p.selectOption('#kt', 'q'); await submit(); await p.waitForSelector('#kok:not([hidden])');
+  assert.equal(sent.length, 1); assert.deepEqual({ ...sent[0], page: undefined }, { kind: 'question', message: 'Greška u tablici', email: 'ana@example.com', page: undefined, lang: 'hr', website: '' });
+  assert.equal(sent[0].page, '/hr/contact/'); assert.match(await p.locator('#kok').innerText(), /Poruka je poslana/);
+  assert.equal(await p.inputValue('#km'), '', 'the form is cleared once the message is sent');
+  status = 429; await p.fill('#km', 'još jedna'); await submit(); await p.waitForSelector('#krate:not([hidden])'); assert.equal(await p.locator('#kok').isVisible(), false);
+  assert.equal(await p.inputValue('#km'), 'još jedna', 'a message that was not sent stays in the box');
+  status = 503; await submit(); await p.waitForSelector('#kfail:not([hidden])'); assert.match(await p.locator('#kfail').innerText(), /Poruka nije poslana/);
+  assert.equal(await p.locator('#kf button[type=submit]').isDisabled(), false, 'the button works again');
+  const en = await open('/en/contact/'); await en.route('**/api/contact', (r) => r.fulfill({ status: 200, contentType: 'application/json', body: '{"status":"ok"}' }));
+  await en.fill('#km', 'A mistake in the table'); await en.click('#kf button[type=submit]'); await en.waitForSelector('#kok:not([hidden])');
+  assert.match(await en.locator('#kok').innerText(), /Your message has been sent/); assert.equal(await en.evaluate(() => document.querySelector('#kw').closest('.hp') !== null), true);
+});
 await test('no console errors', async () => { if (errors.length) console.log(errors.slice(0, 8)); assert.deepEqual(errors, []); });
 await browser.close(); stop();
 console.log(`\n${passed} passed, ${failed} failed`); process.exit(failed ? 1 : 0);

@@ -904,7 +904,7 @@ const EN_DICT = {
 "Upišite poruku.": "Enter a message.",
 "Informacije · Mapa stranice": "Information · Site map",
 "Sve stranice atlasa": "All pages of the atlas",
-"Popis svih stranica prototipa, grupiran po odjeljcima.": "A list of all prototype pages, grouped by section.",
+"Popis svih stranica atlasa, grupiran po odjeljcima.": "A list of all pages of the atlas, grouped by section.",
 "Početak": "Start",
 "Uvod u atlas, ključne brojke i poredak županija": "Introduction to the atlas, key figures and county ranking",
 "Broj projekata po godinama, sektoru i vrsti": "Number of projects by year, sector and type",
@@ -1133,7 +1133,15 @@ const EN_DICT = {
 "Popis partnerskih država nije dostupan.": "The list of partner countries is not available.",
 "Teme organizacije nisu dostupne.": "The organisation's topics are not available.",
 "Sažetak projekta, popis sudionika i dodijeljeni iznos trenutačno nisu dostupni. Prikazani su podaci iz popisa projekata.": "The project summary, the list of participants and the awarded amount are not available at the moment. The data from the project list is shown.",
+"Sudjelovanje po godinama": "Participation by year",
 "Poruka nije poslana.": "The message has not been sent.",
-"Ovaj obrazac još ne šalje poruke. Greške i prijedloge prijavite putem poveznice u dijelu „Drugi načini”.": "This form does not send messages yet. Report errors and suggestions through the link under “Other ways”.",
-"Sudjelovanje po godinama": "Participation by year"
+"Hvala.": "Thank you.",
+"Poruka je poslana.": "Your message has been sent.",
+"Pokušajte ponovno kasnije ili se javite putem poveznice u dijelu „Drugi načini”.": "Please try again later, or get in touch through the link under “Other ways”.",
+"Previše poruka u kratkom vremenu.": "Too many messages in a short time.",
+"Pričekajte nekoliko minuta i pokušajte ponovno.": "Wait a few minutes and try again.",
+"Šaljem…": "Sending…",
+"Provjerite adresu e-pošte.": "Check the e-mail address.",
+"Mrežna stranica": "Website",
+"Poruka se sprema na poslužitelju atlasa i koristi se samo za ispravak podataka i odgovor. Adresa e-pošte nije obavezna i čuva se samo uz poruku.": "The message is stored on the atlas server and is used only to correct the data and to reply. The e-mail address is optional and is kept only with the message."
 };

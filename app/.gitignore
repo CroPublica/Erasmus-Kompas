@@ -6,6 +6,8 @@ data/*.duckdb
 data/*.duckdb.wal
 data/parquet/
 data/place_conflicts.csv
+# messages from the contact form (personal data: never commit)
+data/contact_messages.jsonl
 data/review_queue.csv
 data/extraction_cache.jsonl
 # data/review/ holds human decisions and IS committed

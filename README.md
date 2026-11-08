@@ -29,7 +29,7 @@ Sve što web-stranica prikazuje izračunato je iz javnih datoteka. Ništa se ne 
           |                                                 |                        poslužuje nginx / bilo koji statični poslužitelj
           |                                                 +--> site/public/ek/ek.js + D.json (mehanizam stranica)
           |
-          +--> atlas/  Ask API (FastAPI, POST /ask, GET /health)  <--- preglednik (ladica asistenta i stranica Pitaj)
+          +--> atlas/  Ask API (FastAPI, POST /ask, POST /contact, GET /health)  <--- preglednik (ladica asistenta i stranica Pitaj)
 ```
 
 **1. Obrada podataka (`app/pipeline/`, Python, DuckDB).** Numerirani koraci koji se mogu ponoviti.
@@ -42,6 +42,8 @@ Sve što web-stranica prikazuje izračunato je iz javnih datoteka. Ništa se ne 
 **2. Web-stranica (`app/site/`, Astro 7, statična).** Hrvatske i engleske stranice iste strukture. Većinu stranica u pregledniku crta jedna skripta, `app/site/public/ek/ek.js`, izrađena iz dizajnerskog prototipa (`app/site/src/ek/*.js`, `app/site/tools/ek/build_ek.py`), a podatke dobiva iz `D.json` i po jedne male JSON datoteke za svaki projekt i organizaciju. Mreža pojmova i Metode izvorne su Astro stranice (raspored čvorova: d3-force). Svijetla i tamna tema, pristupačnost tipkovnicom, provjera alatom axe (WCAG 2 A/AA). `build_ek.py` mora se pokrenuti prije `astro build`; `build_site.sh` pokreće oboje.
 
 **3. Asistent Pitaj (`app/atlas/`, FastAPI + LangGraph).** Pitanje prolazi kroz: prepoznavanje jezika → usmjerivač (mali model uz pravila po ključnim riječima koja pitanje mogu samo premjestiti na sigurniji ili određeniji put) → alati koji upituju DuckDB (organizacija, županija, grad, nacionalni pokazatelji, pokrivenost škola, partnerske države, godišnji niz, vrijednosti projekata, pretraga pojmova, …) → odgovor koji piše kôd iz rezultata alata (zadano) ili ga oblikuje model, a zatim se provjerava: svaki broj i izvor u tekstu mora potjecati iz rezultata alata, inače se koristi predloženi odgovor iz predloška. Pitanja izvan podataka odbijaju se. Ograničenja: 500 znakova, 20 pitanja u minuti po klijentu, red čekanja s vremenskim ograničenjem. Model radi na računalu vlasnika projekta; statična stranica radi i bez njega (tada odgovara iz podataka u pregledniku).
+
+**Kontakt obrazac.** `POST /contact` (u `app/atlas/api.py`) dodaje svaku poruku kao jedan JSON redak u `app/data/contact_messages.jsonl` (datoteka nije u gitu: sadrži osobne podatke, a čita je samo vlasnik, način 600). Zapisuje se vrijeme, vrsta, jezik, stranica, poruka i neobvezna adresa e-pošte; adresa pošiljatelja (IP) koristi se samo za ograničenje broja poruka u memoriji (5 u 10 minuta) i ne sprema se, a tekst poruke ne ulazi u zapisnike. Skriveno polje za robote, ograničenje duljine (1.500 znakova) i veličine datoteke (5 MB). Čitanje: `python3 -m json.tool --json-lines app/data/contact_messages.jsonl`.
 
 **4. Postavljanje (`app/deploy/`).** Statične datoteke iza nginxa (spremnik, stroga sigurnosna zaglavlja), lozinka i Cloudflare Tunnel za javnu demonstraciju; pojedinosti u `app/HOSTING.md`.
 
@@ -130,7 +132,7 @@ Everything the site shows is computed from public files. Nothing is typed in by 
           |                                                 |                       served by nginx / any static host
           |                                                 +--> site/public/ek/ek.js + D.json (page engine)
           |
-          +--> atlas/  Ask API (FastAPI, POST /ask, GET /health)  <--- browser (assistant drawer and Ask page)
+          +--> atlas/  Ask API (FastAPI, POST /ask, POST /contact, GET /health)  <--- browser (assistant drawer and Ask page)
 ```
 
 **1. Data pipeline (`app/pipeline/`, Python, DuckDB).** Numbered steps, each re-runnable.
@@ -143,6 +145,8 @@ Everything the site shows is computed from public files. Nothing is typed in by 
 **2. Site (`app/site/`, Astro 7, static).** Croatian and English pages with the same structure. Most pages are drawn in the browser by one script, `app/site/public/ek/ek.js`, built from the design prototype (`app/site/src/ek/*.js`, `app/site/tools/ek/build_ek.py`) and fed by `D.json` plus one small JSON per project and organisation. Concept network and Methods are native Astro pages (d3-force for the layout). Light and dark theme, keyboard access, checked with axe (WCAG 2 A/AA). `build_ek.py` has to run before `astro build`; `build_site.sh` does both.
 
 **3. Ask assistant (`app/atlas/`, FastAPI + LangGraph).** A question goes through: language detection → router (small model plus keyword rules that only move a question to a safer or more specific route) → tools that query DuckDB (organisation, county, town, national figures, coverage of schools, partner countries, yearly series, project values, concept search, …) → answer written by code from the tool results (default) or phrased by the model and then checked: every number and source in the text must come from the tool results, otherwise the template answer is used. Questions outside the data are refused. Limits: 500 characters, 20 questions a minute per client, queue with timeout. The model runs on the owner's PC; the static site works without it (it then answers from the data in the browser).
+
+**Contact form.** `POST /contact` (in `app/atlas/api.py`) appends each message as one JSON line to `app/data/contact_messages.jsonl` (not in git: it holds personal data, and only the owner can read it, mode 600). It records the time, kind, language, page, message and the optional e-mail address; the sender's address (IP) is used only for the in-memory rate limit (5 per 10 minutes) and is not stored, and the text of a message never goes into the logs. There is a hidden field for robots, a length limit (1,500 characters) and a file size limit (5 MB). To read the messages: `python3 -m json.tool --json-lines app/data/contact_messages.jsonl`.
 
 **4. Hosting (`app/deploy/`).** Static files behind nginx (container, strict security headers), password and Cloudflare Tunnel for the public demo; details in `app/HOSTING.md`.
 

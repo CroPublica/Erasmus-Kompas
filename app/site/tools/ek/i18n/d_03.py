@@ -97,7 +97,7 @@ D = {
 
 "Drugi načini":"Other ways","Prijava na GitHubu":"Report on GitHub","za greške i prijedloge s tehničkim detaljima.":"for errors and suggestions with technical details.",
 "Pitajte asistenta":"Ask the assistant","za brza pitanja o podacima.":"for quick questions about the data.","objašnjava većinu izraza u atlasu.":"explains most terms in the atlas.","Upišite poruku.":"Enter a message.",
-"Informacije · Mapa stranice":"Information · Site map","Sve stranice atlasa":"All pages of the atlas","Popis svih stranica prototipa, grupiran po odjeljcima.":"A list of all prototype pages, grouped by section.",
+"Informacije · Mapa stranice":"Information · Site map","Sve stranice atlasa":"All pages of the atlas","Popis svih stranica atlasa, grupiran po odjeljcima.":"A list of all pages of the atlas, grouped by section.",
 "Početak":"Start","Uvod u atlas, ključne brojke i poredak županija":"Introduction to the atlas, key figures and county ranking",
 "Broj projekata po godinama, sektoru i vrsti":"Number of projects by year, sector and type","Do četiri županije jedna uz drugu":"Up to four counties side by side",
 "Detalj županije (primjer)":"County detail (example)","Brojke, organizacije i pokrivenost jedne županije":"Figures, organisations and coverage of one county",

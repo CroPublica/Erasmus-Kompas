@@ -11,9 +11,19 @@ D = {
  "Sažetak projekta, popis sudionika i dodijeljeni iznos trenutačno nisu dostupni. Prikazani su podaci iz popisa projekata.": "The project summary, the list of participants and the awarded amount are not available at the moment. The data from the project list is shown."
 }
 D.update({
-"Poruka nije poslana.": "The message has not been sent.",
-"Ovaj obrazac još ne šalje poruke. Greške i prijedloge prijavite putem poveznice u dijelu „Drugi načini”.": "This form does not send messages yet. Report errors and suggestions through the link under “Other ways”.",
 })
 D.update({
 "Sudjelovanje po godinama": "Participation by year",
+})
+D.update({
+"Poruka nije poslana.": "The message has not been sent.",
+"Hvala.": "Thank you.",
+"Poruka je poslana.": "Your message has been sent.",
+"Pokušajte ponovno kasnije ili se javite putem poveznice u dijelu „Drugi načini”.": "Please try again later, or get in touch through the link under “Other ways”.",
+"Previše poruka u kratkom vremenu.": "Too many messages in a short time.",
+"Pričekajte nekoliko minuta i pokušajte ponovno.": "Wait a few minutes and try again.",
+"Šaljem…": "Sending…",
+"Provjerite adresu e-pošte.": "Check the e-mail address.",
+"Mrežna stranica": "Website",
+"Poruka se sprema na poslužitelju atlasa i koristi se samo za ispravak podataka i odgovor. Adresa e-pošte nije obavezna i čuva se samo uz poruku.": "The message is stored on the atlas server and is used only to correct the data and to reply. The e-mail address is optional and is kept only with the message.",
 })

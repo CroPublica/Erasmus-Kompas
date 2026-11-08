@@ -1457,7 +1457,7 @@ const EN_DICT = {
 "Upišite poruku.": "Enter a message.",
 "Informacije · Mapa stranice": "Information · Site map",
 "Sve stranice atlasa": "All pages of the atlas",
-"Popis svih stranica prototipa, grupiran po odjeljcima.": "A list of all prototype pages, grouped by section.",
+"Popis svih stranica atlasa, grupiran po odjeljcima.": "A list of all pages of the atlas, grouped by section.",
 "Početak": "Start",
 "Uvod u atlas, ključne brojke i poredak županija": "Introduction to the atlas, key figures and county ranking",
 "Broj projekata po godinama, sektoru i vrsti": "Number of projects by year, sector and type",
@@ -1687,9 +1687,17 @@ const EN_DICT = {
 "Popis partnerskih država nije dostupan.": "The list of partner countries is not available.",
 "Teme organizacije nisu dostupne.": "The organisation's topics are not available.",
 "Sažetak projekta, popis sudionika i dodijeljeni iznos trenutačno nisu dostupni. Prikazani su podaci iz popisa projekata.": "The project summary, the list of participants and the awarded amount are not available at the moment. The data from the project list is shown.",
+"Sudjelovanje po godinama": "Participation by year",
 "Poruka nije poslana.": "The message has not been sent.",
-"Ovaj obrazac još ne šalje poruke. Greške i prijedloge prijavite putem poveznice u dijelu „Drugi načini”.": "This form does not send messages yet. Report errors and suggestions through the link under “Other ways”.",
-"Sudjelovanje po godinama": "Participation by year"
+"Hvala.": "Thank you.",
+"Poruka je poslana.": "Your message has been sent.",
+"Pokušajte ponovno kasnije ili se javite putem poveznice u dijelu „Drugi načini”.": "Please try again later, or get in touch through the link under “Other ways”.",
+"Previše poruka u kratkom vremenu.": "Too many messages in a short time.",
+"Pričekajte nekoliko minuta i pokušajte ponovno.": "Wait a few minutes and try again.",
+"Šaljem…": "Sending…",
+"Provjerite adresu e-pošte.": "Check the e-mail address.",
+"Mrežna stranica": "Website",
+"Poruka se sprema na poslužitelju atlasa i koristi se samo za ispravak podataka i odgovor. Adresa e-pošte nije obavezna i čuva se samo uz poruku.": "The message is stored on the atlas server and is used only to correct the data and to reply. The e-mail address is optional and is kept only with the message."
 };
 
 /* ============ view: Projekti ============ */
@@ -2577,17 +2585,41 @@ function viewKontakt(root) {
   <div class="grid two" style="margin-top:0"><section class="card"><form id="kf" novalidate>
     <div class="field-row"><label for="kt">Vrsta poruke</label><select id="kt" class="field"><option value="g">Greška u podacima</option><option value="p">Prijedlog poboljšanja</option><option value="q">Pitanje</option><option value="s">Suradnja</option></select></div>
     <div class="field-row"><label for="km">Poruka</label><textarea id="km" class="field" maxlength="1500" required placeholder="Što ste primijetili ili što biste željeli?"></textarea><small class="muted" id="kerr" role="alert"></small></div>
-    <div class="field-row"><label for="ke">E-pošta <span class="muted" style="font-weight:400">(nije obavezna, samo ako želite odgovor)</span></label><input id="ke" class="field" type="email" autocomplete="email"></div>
-    <button class="btn primary" type="submit">Pošalji poruku</button></form>
-    <div id="kok" hidden class="note" style="margin-top:20px;border-left-color:var(--green);background:var(--green-bg)" role="status"><b>Poruka nije poslana.</b> Ovaj obrazac još ne šalje poruke. Greške i prijedloge prijavite putem poveznice u dijelu „Drugi načini”.</div></section>
+    <div class="field-row"><label for="ke">E-pošta <span class="muted" style="font-weight:400">(nije obavezna, samo ako želite odgovor)</span></label><input id="ke" class="field" type="email" autocomplete="email"><small class="muted" id="keerr" role="alert"></small></div>
+    <div class="hp" aria-hidden="true"><label>Mrežna stranica <input id="kw" tabindex="-1" autocomplete="off"></label></div>
+    <button class="btn primary" type="submit">Pošalji poruku</button>
+    <p class="muted small" style="margin-top:14px;max-width:62ch">Poruka se sprema na poslužitelju atlasa i koristi se samo za ispravak podataka i odgovor. Adresa e-pošte nije obavezna i čuva se samo uz poruku.</p></form>
+    <div id="kok" hidden class="note" style="margin-top:20px;border-left-color:var(--green);background:var(--green-bg)" role="status"><b>Hvala.</b> Poruka je poslana.</div>
+    <div id="kfail" hidden class="note" style="margin-top:20px" role="alert"><b>Poruka nije poslana.</b> Pokušajte ponovno kasnije ili se javite putem poveznice u dijelu „Drugi načini”.</div>
+    <div id="krate" hidden class="note" style="margin-top:20px" role="alert"><b>Previše poruka u kratkom vremenu.</b> Pričekajte nekoliko minuta i pokušajte ponovno.</div></section>
   <div class="stack"><section class="card"><h2>Drugi načini</h2><ul class="check-list" style="margin-top:14px"><li><a href="https://github.com/CroPublica/Erasmus-Kompas/issues" target="_blank" rel="noopener">Prijava na GitHubu</a> za greške i prijedloge s tehničkim detaljima.</li><li><a href="#/pitajte">Pitajte asistenta</a> za brza pitanja o podacima.</li><li><a href="#/rjecnik">Rječnik</a> objašnjava većinu izraza u atlasu.</li></ul></section></div></div>`;
-  $('#kf', root).onsubmit = (e) => { e.preventDefault(); const m = $('#km', root).value.trim(); $('#kerr', root).textContent = m ? '' : 'Upišite poruku.'; $('#kok', root).hidden = !m; if (m) $('#kok', root).scrollIntoView({ block: 'nearest' }); };
+  const KIND = { g: 'error', p: 'suggestion', q: 'question', s: 'cooperation' };
+  const shown = (id) => { for (const n of ['kok', 'kfail', 'krate']) $('#' + n, root).hidden = n !== id; if (id) $('#' + id, root).scrollIntoView({ block: 'nearest' }); };
+  $('#kf', root).onsubmit = async (e) => {
+    e.preventDefault();
+    const m = $('#km', root).value.trim(), em = $('#ke', root).value.trim();
+    $('#kerr', root).textContent = m ? '' : 'Upišite poruku.';
+    $('#keerr', root).textContent = em && !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(em) ? 'Provjerite adresu e-pošte.' : '';
+    shown(null);
+    if (!m || $('#keerr', root).textContent) return;
+    const btn = $('#kf button[type=submit]', root), label = btn.textContent;
+    btn.disabled = true; btn.textContent = tr('Šaljem…');
+    let result = 'kfail';
+    try {                                                           /* POST /api/contact (nginx passes it to the API, which appends the message to a file) */
+      const r = await fetch(window.EK_CONTACT_API || '/api/contact', { method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ kind: KIND[$('#kt', root).value], message: m, email: em || null, page: location.pathname, lang: LANG, website: $('#kw', root).value }) });
+      result = r.ok ? 'kok' : r.status === 429 ? 'krate' : 'kfail';
+    } catch (err) { result = 'kfail'; }                             /* no API (a copy of the site without the server): the message is not lost silently */
+    btn.disabled = false; btn.textContent = label;
+    if (result === 'kok') $('#kf', root).reset();
+    shown(result);
+  };
 }
 
 /* ============ prikaz: Mapa stranice ============ */
 function viewMapaStranice(root) {
   const groups = [...new Set(PAGES.map((p) => p[3]))];
-  root.innerHTML = `${head('Informacije · Mapa stranice', 'Sve stranice atlasa', 'Popis svih stranica prototipa, grupiran po odjeljcima.')}
+  root.innerHTML = `${head('Informacije · Mapa stranice', 'Sve stranice atlasa', 'Popis svih stranica atlasa, grupiran po odjeljcima.')}
   <div class="sitemap">${groups.map((g) => `<section><h3>${g}</h3><ul>${PAGES.filter((p) => p[3] === g).map((p) => `<li><a href="${p[0]}"><b>${esc(p[1])}</b><small>${esc(p[2])}</small></a></li>`).join('')}</ul></section>`).join('')}</div>`;
 }
 
@@ -2626,7 +2658,7 @@ function viewLanding(root) {
         <div class="kicker hrise" style="--d:0">Erasmus+ KA2 partnerstva · 2014.–2026.</div>
         <h1 class="hrise" style="--d:1">Svaki Erasmus+ projekt počinje s <mark>pravim partnerom</mark></h1>
         <p class="lead hrise" style="--d:2">Erasmus+ Kompas je otvoreni atlas partnerstava hrvatskih škola, udruga i ustanova. Pokazuje tko već surađuje, gdje i na kojim temama, da lakše pronađete partnera, ideju ili prazninu koju vaš projekt može popuniti.</p>
-        <div class="hrise" style="--d:3">${searchHTML('hero')}</div>
+        <div class="hrise hsearch" style="--d:3">${searchHTML('hero')}</div>
         <div class="hero-quick hrise" style="--d:4"><a href="#/mjesta">Karta županija</a><a href="#/pokrivenost">Pokrivenost škola</a><a href="#/drzave">Partnerske države</a></div>
         <div class="actions hrise" style="--d:5"><a class="btn primary" href="#/pregled">Istražite atlas ${hico('arrow', 18)}</a><button class="btn" type="button" id="l-ask">Pitajte asistenta</button></div>
         <p class="l-meta hrise" style="--d:6">Ažurirano <time translate="no" datetime="${D.meta.generated}">${fdate(D.meta.generated)}</time></p>

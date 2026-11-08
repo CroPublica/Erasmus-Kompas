@@ -103,3 +103,10 @@ aside.side{view-transition-name:ek-side}
 @media (max-width:640px){.langnote{font-size:.85rem;padding:10px 12px}}
 #langnote-toggle[aria-pressed="true"]{background:var(--btn);border-color:var(--btn);color:#fff}
 #langnote-toggle[aria-pressed="true"]:hover{background:var(--blue-dk,var(--btn));color:#fff}
+
+/* Home page: the search results list opens over the buttons and the figures below it. The animated blocks of the hero each form their own layer,
+   so the one that holds the search needs a higher z-index than the blocks after it (the list's own z-index only counts inside its block). */
+.hero .hsearch{position:relative;z-index:30}
+
+/* Contact form: a field for robots only (people do not see it and the keyboard skips it) */
+.hp{position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden}

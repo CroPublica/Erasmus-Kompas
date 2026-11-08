@@ -117,7 +117,7 @@ const tabs = here.top && here.top.subs.length > 1 ? here.top.subs : [];
                   <label class="sr" for="gs">{c.searchLabel}</label>
                   <input id="gs" type="search" role="combobox" aria-autocomplete="list" placeholder={c.searchPh} autocomplete="off" aria-controls="gs-res" aria-expanded="false" />
                   <kbd aria-hidden="true">/</kbd>
-                  <div class="gres" id="gs-res" hidden></div>
+                  <div class="gres" id="gs-res" hidden data-g-counties={c.gCounties} data-g-orgs={c.gOrgs} data-g-projects={c.gProjects}></div>
                 </form>
               </div>
               {tabs.length > 0 && <nav class="tabs2" aria-label={here.top!.label[lang]}>{tabs.map((t) => <a href={to(t.href)} aria-current={here.sub?.key === t.key ? 'page' : undefined}>{t.label[lang]}</a>)}</nav>}
@@ -231,38 +231,58 @@ const tabs = here.top && here.top.subs.length > 1 ? here.top.subs : [];
   const paintTheme = () => { const d = isDark(); themeBtn.setAttribute('aria-pressed', String(d)); themeBtn.setAttribute('aria-label', d ? themeBtn.dataset.toLight! : themeBtn.dataset.toDark!); themeBtn.title = themeBtn.getAttribute('aria-label')!; };
   themeBtn.addEventListener('click', () => { const next = isDark() ? 'light' : 'dark'; document.documentElement.dataset.theme = next; try { localStorage.setItem('ek-theme', next); } catch { /* private mode */ } paintTheme(); });
   paintTheme();
-  // ---- search in the top bar (organisations, from search.json)
+  // ---- search in the top bar: counties, organisations and projects, from search.json (a word of the query may match any part of a name, in any order)
   const input = document.getElementById('gs') as HTMLInputElement | null;
   if (input) {                                                          // the landing page has its own search inside the view
   const list = document.getElementById('gs-res') as HTMLDivElement;
   const lang = document.documentElement.lang;
   const base = body.dataset.base || '';
-  let idx: [string, string, string][] | null = null;
+  type Index = { c: [string, string, string][]; o: [string, string, string][]; p: [string, string, number][] };
   const fold = (x: string) => x.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/đ/g, 'd');
-  async function load() { if (!idx) idx = await (await fetch(`${base}/search.json`)).json(); return idx!; }
+  let idx: { raw: Index; c: string[]; o: string[]; p: string[] } | null = null;
+  async function load() {
+    if (!idx) {
+      const raw = (await (await fetch(`${base}/search.json`)).json()) as Index;
+      idx = { raw, c: raw.c.map(([s, h, e]) => fold(`${s} ${h} ${e}`)), o: raw.o.map(([, n, t]) => fold(`${n} ${t}`)), p: raw.p.map(([id, t]) => fold(`${t} ${id}`)) };   // folded once, not on every key
+    }
+    return idx;
+  }
   const close = () => { list.hidden = true; input.setAttribute('aria-expanded', 'false'); };
   input.addEventListener('focus', load);
   input.addEventListener('input', async () => {
-    const q = fold(input.value.trim());
+    const words = fold(input.value.trim()).split(/\s+/).filter(Boolean);
     const data = await load();
     list.innerHTML = '';
-    if (q.length < 2) { close(); return; }
-    const hits = data.filter(([, n, t]) => fold(`${n} ${t}`).includes(q)).slice(0, 8);
-    for (const [id, n, t] of hits) {
-      const a = document.createElement('a');
-      a.href = `${base}/${lang}/organisations/${slug(id)}/`;
-      const sp = document.createElement('span'); sp.textContent = n; a.append(sp);
-      if (t) { const sm = document.createElement('small'); sm.textContent = t; a.append(sm); }
-      list.append(a);
-    }
-    list.hidden = hits.length === 0;
-    input.setAttribute('aria-expanded', String(hits.length > 0));
+    if (words.join('').length < 2) { close(); return; }
+    const pick = <T,>(keys: string[], rows: T[], max: number) => {
+      const out: T[] = [];
+      for (let i = 0; i < keys.length && out.length < max; i++) if (words.every((w) => keys[i].includes(w))) out.push(rows[i]);
+      return out;
+    };
+    const add = (title: string, items: { href: string; name: string; note?: string }[]) => {
+      if (!items.length) return;
+      const g = document.createElement('span'); g.className = 'gl'; g.textContent = title; list.append(g);
+      for (const it of items) {
+        const a = document.createElement('a'); a.href = it.href;
+        const sp = document.createElement('span'); sp.textContent = it.name; a.append(sp);
+        if (it.note) { const sm = document.createElement('small'); sm.textContent = it.note; a.append(sm); }
+        list.append(a);
+      }
+    };
+    const gl = list.dataset;
+    add(gl.gCounties!, pick(data.c, data.raw.c, 3).map(([stem, hr, en]) => ({ href: `${base}/${lang}/places/${slug(stem)}/`, name: lang === 'en' ? en : hr })));
+    add(gl.gOrgs!, pick(data.o, data.raw.o, 5).map(([id, n, t]) => ({ href: `${base}/${lang}/organisations/${slug(id)}/`, name: n, note: t })));
+    add(gl.gProjects!, pick(data.p, data.raw.p, 6).map(([id, t, y]) => ({ href: `${base}/${lang}/projects/${slug(id)}/`, name: t || id, note: String(y) })));
+    const any = list.children.length > 0;
+    list.hidden = !any;
+    input.setAttribute('aria-expanded', String(any));
   });
   input.addEventListener('keydown', (e) => { if (e.key === 'Escape') close(); if (e.key === 'ArrowDown') (list.querySelector('a') as HTMLElement | null)?.focus(); });
   list.addEventListener('keydown', (e) => {
     const a = document.activeElement as HTMLElement;
-    if (e.key === 'ArrowDown') { (a.nextElementSibling as HTMLElement | null)?.focus(); e.preventDefault(); }
-    if (e.key === 'ArrowUp') { ((a.previousElementSibling as HTMLElement | null) ?? input).focus(); e.preventDefault(); }
+    const links = [...list.querySelectorAll('a')] as HTMLElement[], at = links.indexOf(a);
+    if (e.key === 'ArrowDown') { links[at + 1]?.focus(); e.preventDefault(); }
+    if (e.key === 'ArrowUp') { (links[at - 1] ?? input).focus(); e.preventDefault(); }
     if (e.key === 'Escape') { close(); input.focus(); }
   });
   document.addEventListener('click', (e) => { if (!(e.target as HTMLElement).closest('.gsearch')) close(); });

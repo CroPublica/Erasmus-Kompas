@@ -22,7 +22,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 from common import connect  # noqa: E402
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
-from atlas.tools import Toolbox  # noqa: E402
+from atlas.tools import EN_COUNTY, Toolbox  # noqa: E402
 
 OUT = Path(__file__).resolve().parent.parent / "site" / "src" / "data"
 
@@ -106,7 +106,6 @@ def main():
     write("orgs.json", index)
     pub = OUT.parent.parent / "public"
     pub.mkdir(exist_ok=True)
-    (pub / "search.json").write_text(json.dumps([[o["id"], o["name"], o["town"] or ""] for o in index], ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
 
     # ---- similar organisations: same register kind in the same county, same town first (no coordinates, so no distances)
     inst = rows(con, """select i.inst_id, i.name, i.town, i.county, i.register_kind, i.org_id,
@@ -190,6 +189,13 @@ def main():
         del r["ncomp"]
     (OUT.parent.parent / "public" / "projects.json").write_text(json.dumps(pidx, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
     print(f"  projects.json (public) {(OUT.parent.parent / 'public' / 'projects.json').stat().st_size / 1024:6.0f} KB")
+
+    # ---- the search box of the pages: counties (c: stem, Croatian name, English name), organisations (o: id, name, town), projects (p: id, title, year)
+    search = {"c": [[c["stem"], c["label"], EN_COUNTY.get(c["stem"], c["label"])] for c in counties.values()],
+              "o": [[o["id"], o["name"], o["town"] or ""] for o in index],
+              "p": [[r["id"], r["title"] or "", r["yr"]] for r in pidx]}
+    (pub / "search.json").write_text(json.dumps(search, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
+    print(f"  search.json            {(pub / 'search.json').stat().st_size / 1024:6.0f} KB  ({len(search['c'])} counties, {len(search['o'])} organisations, {len(search['p'])} projects)")
 
     # ---- topics over time: the labels as the source gives them for each period (no crosswalk); only names that occur in both
     # topic lists are continuous across the 2020/2021 break
