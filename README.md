@@ -1,6 +1,6 @@
 # Erasmus+ Kompas
 
-[Project documentation (PDF)](dokumentacija/CroPublica_Erasmus_Kompas_dokumentacija.pdf) · [Developer guide](app/README.md)
+[Project documentation (PDF, in Croatian)](dokumentacija/CroPublica_Erasmus_Kompas_dokumentacija.pdf) · [Developer guide](app/README.md)
 
 Data atlas of Croatian participation in Erasmus+ KA2 partnerships, 2014–2026 (3,830 projects with a Croatian participant, 1,498 Croatian organisations, 21 counties).
 
@@ -97,7 +97,7 @@ Data is processed in Python and stored in DuckDB, from which a static site is ge
 
 | Model | Job | Scope |
 |---|---|---|
-| Qwen 3.5 9B (Q8) | extraction of problems, approaches, target groups and outputs from summaries (step 50) | 113,850 items from 3,795 projects, about 14 hours |
+| Qwen 3.5 9B (Q8) | extraction of problems, approaches, target groups and outputs from summaries (step 50) | 113,850 items from 3,795 projects, about 11 hours |
 | BGE-M3 | merging similar wordings (step 51) and semantic search | extracted concepts and user questions |
 | Gemma 4 31B (Q8) | Croatian names of concepts and groups (steps 52, 61) | 2,343 concepts that occur in at least three projects |
 | Qwen3 4B Instruct 2507 (Q4_K_M) | routing questions in the Assistant | every question |
@@ -114,19 +114,19 @@ Three models were tried for extraction. Eight projects were labelled by hand and
 
 Qwen 3.5 9B was chosen because it finds approaches and outputs best. Similar wordings are merged with BGE-M3 only when their cosine similarity is at least 0.80. The Croatian names of concepts and groups were proposed by Gemma 4 31B and count as drafts until reviewed by hand.
 
-**3.3 Concept network.** Nodes are EU topics and concepts that occur in at least five projects. Two nodes are linked when they occur together at least twice as often as chance would give. The Leiden algorithm splits 1,231 nodes and 7,830 links into 24 groups. A link only means the concepts occur in the same projects, not that one causes the other.
+**3.3 Concept network.** Nodes are EU topics and concepts that occur in at least five projects. Two nodes are linked when they occur together in at least three projects and at least twice as often as chance would give. The Leiden algorithm splits 1,231 nodes and 7,830 links into 24 groups; the 19 groups with at least 20 projects are shown on the site. A link only means the concepts occur in the same projects, not that one causes the other.
 
-**3.4 Site (`app/site/`).** Astro 7 generates static pages in Croatian and English; most interactive views are drawn by `app/site/public/ek/ek.js` from JSON files (`D.json` plus one small file per project and organisation). The site therefore runs on any static file server. `build_site.sh` runs `build_ek.py` and `astro build`.
+**3.4 Site (`app/site/`).** Astro 7 generates static pages in Croatian and English; most interactive views are drawn by `app/site/public/ek/ek.js` from JSON files (`D.json` plus one small file per project and organisation). The site therefore runs on any static file server. `build_site.sh` runs the export (step 70), `build_ek.py` and `astro build`.
 
 **3.5 Assistant (`app/atlas/`).** The Assistant's language model (Qwen3 4B) only sorts the question into one of 19 types and pulls details such as an organisation or county name out of it; the program then checks those details. Read-only tools fetch the data from the database, and the program writes the answer from a predefined template. Steps: language detection → routing (model) → tools (read DuckDB) → answer (program fills the template) → check (only when the model writes the answer) → answer with sources.
 
-The Assistant API is reachable only from the machine it runs on and does not store questions. A question may be at most 500 characters, and one client may ask at most 20 questions a minute. The model never sees project summaries, only the data the tools returned. When the mode in which the model phrases the answer is on (`ATLAS_ANSWER_MODE`), every number and source in the text must come from the tool results, otherwise the template answer is used.
+The Assistant API listens only on the machine it runs on (browsers reach it through nginx at `/api/`) and does not store questions. A question may be at most 500 characters, and one client may ask at most 20 questions a minute. The model never sees project summaries, only the data the tools returned. When the mode in which the model phrases the answer is on (`ATLAS_ANSWER_MODE`), every number and source in the text must come from the tool results, otherwise the template answer is used.
 
 **Contact form.** `POST /contact` (in `app/atlas/api.py`) appends each message as one JSON line to `app/data/contact_messages.jsonl` (not in git: it holds personal data, and only the owner can read it, mode 600). It records the time, kind, language, page, message and the optional e-mail address; the sender's address (IP) is used only for the in-memory rate limit (5 per 10 minutes) and is not stored, and the text of a message never goes into the logs. There is a hidden field for robots, a length limit (1,500 characters) and a file size limit (5 MB). To read the messages: `python3 -m json.tool --json-lines app/data/contact_messages.jsonl`.
 
 **3.6 Hosting (`app/deploy/`).** nginx serves the static files from a Docker container and sends HTTP security headers with every page that let the browser load content only from the same site and forbid embedding the page in other sites. The public demo runs through Cloudflare Tunnel and is password protected. Models are chosen in `app/config/models.yaml`, so they can be swapped without code changes. Details in `app/HOSTING.md`.
 
-**3.7 Tests.** 144 Python tests (`pytest`: pipeline helpers, tools, router, verifier, API) and 24 browser tests (Playwright: every page in Croatian and English, light and dark, phone width, accessibility with axe-core, assistant, graph).
+**3.7 Tests.** 185 Python tests (`pytest`: pipeline helpers, tools, router, verifier, API) and 34 browser tests (Playwright: every page in Croatian and English, light and dark, phone width, accessibility with axe-core, assistant, graph).
 
 ## 4. User value, further development and limitations
 
@@ -155,7 +155,19 @@ Schools can see which institutions in their county already take part in projects
 | 4 | Registers: primary schools, secondary schools, kindergartens, higher-education institutions | Ministry of Science, Education and Youth | matching participants to institutions, school coverage per county |
 | 5 | Erasmus+ Programme Guide 2026 | European Commission | Croatian terminology only (`app/data/review/`); no data taken |
 
-The datasets from the Open Data Portal (rows 2–4) are published under the Open Licence (Otvorena dozvola). The raw files are not in git (size); how to obtain them is in [app/README.md](app/README.md#raw-data). Derived data made in this project: organisation decisions and aliases, topic crosswalk, concept and group names (`app/data/review/*.csv`, committed) and `app/data/atlas.duckdb` (rebuilt by the pipeline, not committed). The full APA (7th edition) references are in the [Croatian section](#5-izvori-podataka).
+The datasets from the Open Data Portal (rows 2–4) are published under the Open Licence (Otvorena dozvola). The raw files are not in git (size); how to obtain them is in [app/README.md](app/README.md#raw-data). Derived data made in this project: organisation decisions and aliases, topic crosswalk, concept and group names (`app/data/review/*.csv`, committed) and `app/data/atlas.duckdb` (rebuilt by the pipeline, not committed).
+
+References (APA, 7th edition):
+
+- Agencija za mobilnost i programe Europske unije. (2026a). *Program Erasmus+ za razdoblje od 2014. do 2020. godine* [Erasmus+ programme 2014–2020] [Data set]. Open Data Portal. https://data.gov.hr/ckan/hr/dataset/program-erasmus-za-razdoblje-od-2014-do-2020-godine
+- Agencija za mobilnost i programe Europske unije. (2026b). *Program Erasmus+ za razdoblje od 2021. do 2027. godine* [Erasmus+ programme 2021–2027] [Data set]. Open Data Portal. https://data.gov.hr/ckan/hr/dataset/program-erasmus-za-razdoblje-od-2021-do-2027-godine
+- European Commission. (2025). *Erasmus+ programme guide 2026* (Version 1, 12 November 2025). https://erasmus-plus.ec.europa.eu/document/erasmus-programme-guide-2026
+- European Commission. (2026a). *Cooperation for innovation and the exchange of good practices: Projects overview* [Data set; KA2, 2014–2020]. Erasmus+ Project Results Platform. https://erasmus-plus.ec.europa.eu/projects/projects-lists
+- European Commission. (2026b). *Partnerships for cooperation and exchanges of practices: Projects overview* [Data set; KA2, 2021–2027]. Erasmus+ Project Results Platform. https://erasmus-plus.ec.europa.eu/projects/projects-lists
+- Ministarstvo znanosti, obrazovanja i mladih. (2026a). *Dječji vrtići* [Kindergartens] [Data set]. Open Data Portal. https://data.gov.hr/ckan/hr/dataset/djecji-vrtici
+- Ministarstvo znanosti, obrazovanja i mladih. (2026b). *Osnovne škole* [Primary schools] [Data set]. Open Data Portal. https://data.gov.hr/ckan/hr/dataset/osnovne-skole
+- Ministarstvo znanosti, obrazovanja i mladih. (2026c). *Srednje škole* [Secondary schools] [Data set]. Open Data Portal. https://data.gov.hr/ckan/hr/dataset/srednje-skole
+- Ministarstvo znanosti, obrazovanja i mladih. (2026d). *Ustanove iz sustava visokog obrazovanja* [Higher-education institutions] [Data set]. Open Data Portal. https://data.gov.hr/ckan/hr/dataset/ustanove-iz-sustava-visokog-obrazovanja
 
 ## 6. Tools, libraries and AI tools, with licences
 
@@ -186,9 +198,9 @@ The datasets from the Open Data Portal (rows 2–4) are published under the Open
 | Model | Licence |
 |---|---|
 | Qwen 3.5 9B, Qwen3 4B Instruct 2507 | Apache-2.0 |
-| Gemma 4 31B | Apache-2.0 |
+| Gemma 4 31B, Gemma 4 8B (compared for extraction; extraction model of the other profiles) | Apache-2.0 |
 | BGE-M3 | MIT |
-| Qwen 3.5 4B, Qwen 2.5 7B Instruct (alternative profiles in `config/models.yaml`; tested, not chosen) | Apache-2.0 |
+| Qwen 3.5 4B, Qwen 2.5 7B Instruct (alternative profiles in `app/config/models.yaml`; tested, not chosen) | Apache-2.0 |
 | Qwen 2.5 3B Instruct (old `light` profile only) | Qwen Research Licence (research use) |
 
 **AI assistant used in development:** Claude Code (Anthropic) helped to write and test code and documentation and to review the Croatian terminology; all changes were reviewed by hand. Model output in the data (concepts, Croatian names, group names) counts as a draft until reviewed.
