@@ -13,7 +13,7 @@ Data atlas of Croatian participation in Erasmus+ KA2 partnerships, 2014–2026 (
 | Institution | Sveučilište u Zagrebu, Filozofski fakultet |
 | Public demo | https://southeast-migration-harvey-bibliographic.trycloudflare.com/en/ (password protected) |
 | Repository | https://github.com/CroPublica/Erasmus-Kompas |
-| Explained video | [Croatian](https://ffzghr-my.sharepoint.com/:v:/g/personal/gthakkar_ffzg_hr/IQB334_UCuLrSY9XQY_QKmtzAZF-88ji3IBDEXawjLWhTSY?e=9pvefC&nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJTdHJlYW1XZWJBcHAiLCJyZWZlcnJhbFZpZXciOiJTaGFyZURpYWxvZy1MaW5rIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXcifX0%3D) [English](https://ffzghr-my.sharepoint.com/:v:/g/personal/ngamulin_ffzg_hr/IQAoNRXuDbOOQ7sG6xOglPS0AZem4zBPtQo_FzbhAltKFeI?nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJTdHJlYW1XZWJBcHAiLCJyZWZlcnJhbFZpZXciOiJTaGFyZURpYWxvZy1MaW5rIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXcifX0%3D&e=NzMbch)|
+| Explainer video | [Croatian](https://ffzghr-my.sharepoint.com/:v:/g/personal/gthakkar_ffzg_hr/IQB334_UCuLrSY9XQY_QKmtzAZF-88ji3IBDEXawjLWhTSY?e=9pvefC&nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJTdHJlYW1XZWJBcHAiLCJyZWZlcnJhbFZpZXciOiJTaGFyZURpYWxvZy1MaW5rIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXcifX0%3D) [English](https://ffzghr-my.sharepoint.com/:v:/g/personal/ngamulin_ffzg_hr/IQAoNRXuDbOOQ7sG6xOglPS0AZem4zBPtQo_FzbhAltKFeI?nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJTdHJlYW1XZWJBcHAiLCJyZWZlcnJhbFZpZXciOiJTaGFyZURpYWxvZy1MaW5rIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXcifX0%3D&e=NzMbch)|
 
 
 Independent project; not an official site of the European Commission.
